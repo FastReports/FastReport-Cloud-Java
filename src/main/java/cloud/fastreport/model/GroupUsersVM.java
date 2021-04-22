@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   GroupUsersVM.JSON_PROPERTY_SKIP
 })
 @JsonTypeName("GroupUsersVM")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T14:13:34.806+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GroupUsersVM {
   public static final String JSON_PROPERTY_USERS = "users";
   private List<GroupUserVM> users = null;

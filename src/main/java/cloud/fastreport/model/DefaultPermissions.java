@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   DefaultPermissions.JSON_PROPERTY_DATA_SOURCE_PERMISSIONS
 })
 @JsonTypeName("DefaultPermissions")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T14:13:34.806+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DefaultPermissions {
   public static final String JSON_PROPERTY_FILE_PERMISSIONS = "filePermissions";
   private FilePermissions filePermissions;

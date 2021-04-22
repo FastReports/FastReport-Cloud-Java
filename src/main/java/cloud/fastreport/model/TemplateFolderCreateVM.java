@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TemplateFolderCreateVM.JSON_PROPERTY_ICON
 })
 @JsonTypeName("TemplateFolderCreateVM")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T14:13:34.806+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TemplateFolderCreateVM {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;

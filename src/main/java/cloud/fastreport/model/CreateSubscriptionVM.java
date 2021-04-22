@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CreateSubscriptionVM.JSON_PROPERTY_USER_ID
 })
 @JsonTypeName("CreateSubscriptionVM")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T14:13:34.806+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateSubscriptionVM {
   public static final String JSON_PROPERTY_PLAN_ID = "planId";
   private String planId;

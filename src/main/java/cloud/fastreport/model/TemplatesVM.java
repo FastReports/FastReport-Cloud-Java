@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TemplatesVM.JSON_PROPERTY_TAKE
 })
 @JsonTypeName("TemplatesVM")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T14:13:34.806+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TemplatesVM {
   public static final String JSON_PROPERTY_FILES = "files";
   private List<TemplateVM> files = null;

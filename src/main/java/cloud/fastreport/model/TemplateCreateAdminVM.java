@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TemplateCreateAdminVM.JSON_PROPERTY_CONTENT
 })
 @JsonTypeName("TemplateCreateAdminVM")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T14:13:34.806+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TemplateCreateAdminVM {
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
   private String ownerId;

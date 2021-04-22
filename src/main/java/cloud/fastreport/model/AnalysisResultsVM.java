@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   AnalysisResultsVM.JSON_PROPERTY_RESULTS
 })
 @JsonTypeName("AnalysisResultsVM")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T14:13:34.806+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AnalysisResultsVM {
   public static final String JSON_PROPERTY_RESULTS = "results";
   private List<AnalysisResultVM> results = null;

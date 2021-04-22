@@ -43,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterUserVM.JSON_PROPERTY_PROVIDER
 })
 @JsonTypeName("RegisterUserVM")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T14:13:34.806+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RegisterUserVM {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;

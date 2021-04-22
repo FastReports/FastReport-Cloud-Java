@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SubscriptionPeriodVM.JSON_PROPERTY_PLAN
 })
 @JsonTypeName("SubscriptionPeriodVM")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T14:13:34.806+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionPeriodVM {
   public static final String JSON_PROPERTY_START_TIME = "startTime";
   private OffsetDateTime startTime;

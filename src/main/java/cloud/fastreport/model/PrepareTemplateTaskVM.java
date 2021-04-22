@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   PrepareTemplateTaskVM.JSON_PROPERTY_REPORT_PARAMETERS
 })
 @JsonTypeName("PrepareTemplateTaskVM")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T14:13:34.806+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PrepareTemplateTaskVM {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;

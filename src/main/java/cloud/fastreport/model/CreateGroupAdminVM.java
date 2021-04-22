@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CreateGroupAdminVM.JSON_PROPERTY_SUBSCRIPTION_ID
 })
 @JsonTypeName("CreateGroupAdminVM")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T14:13:34.806+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateGroupAdminVM {
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
   private String ownerId;

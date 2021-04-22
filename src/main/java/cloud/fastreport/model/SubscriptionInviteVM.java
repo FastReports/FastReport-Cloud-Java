@@ -40,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SubscriptionInviteVM.JSON_PROPERTY_CREATOR_USER_ID
 })
 @JsonTypeName("SubscriptionInviteVM")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-22T14:13:34.806+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionInviteVM {
   public static final String JSON_PROPERTY_USAGES = "usages";
   private Long usages;

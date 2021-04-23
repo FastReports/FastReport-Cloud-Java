@@ -1,7 +1,9 @@
 .gitignore
 .openapi-generator-ignore
 .travis.yml
+LICENSE
 README.md
+VERSION
 api/openapi.yaml
 build.gradle
 build.sbt

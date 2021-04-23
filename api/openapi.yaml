@@ -8,6 +8,1611 @@ security:
 - JWT: []
   ApiKey: []
 paths:
+  /download/e/{id}/thumbnail:
+    get:
+      operationId: Download_GetExportThumbnail
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+            text/json:
+              schema:
+                format: binary
+                type: string
+          description: Specified thumbnail was found
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad id provided
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription is blocked
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not enough permissions for the operation
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Specified thumbnail was not found or user do not has access
+            to it
+      summary: Returns export's thumbnail
+      tags:
+      - Download
+      x-accepts: application/json
+  /download/e/{id}:
+    get:
+      operationId: Download_GetExport
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+            text/json:
+              schema:
+                format: binary
+                type: string
+          description: Specified file was found
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad id provided
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription is blocked
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not enough permissions for the operation
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Specified file was not found or user do not has access to the
+            file
+      summary: Returns a export file with specified id
+      tags:
+      - Download
+      x-accepts: application/json
+  /download/es/{archiveName}:
+    get:
+      operationId: Download_GetExports
+      parameters:
+      - description: ids separated with a ',' sign
+        in: query
+        name: ids
+        schema:
+          type: string
+      - description: name of the created archive
+        in: path
+        name: archiveName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+            text/json:
+              schema:
+                format: binary
+                type: string
+          description: Specified file was found
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad id provided
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription is blocked
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not enough permissions for the operation
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Specified file was not found or user do not has access to the
+            file
+      summary: Returns a zip archive with selected ids
+      tags:
+      - Download
+      x-accepts: application/json
+  /download/r/{id}/thumbnail:
+    get:
+      operationId: Download_GetReportThumbnail
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+            text/json:
+              schema:
+                format: binary
+                type: string
+          description: Specified thumbnail was found
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad id provided
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription is blocked
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not enough permissions for the operation
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Specified thumbnail was not found or user do not has access
+            to it
+      summary: Returns report's thumbnail
+      tags:
+      - Download
+      x-accepts: application/json
+  /download/r/{id}:
+    get:
+      operationId: Download_GetReport
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+            text/json:
+              schema:
+                format: binary
+                type: string
+          description: Specified file was found
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: bad id provided
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription is blocked
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not enough permissions
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Specified file was not found or user do not has access to the
+            file
+      summary: Returns a prepared file with specified id
+      tags:
+      - Download
+      x-accepts: application/json
+  /download/rs/{archiveName}:
+    get:
+      operationId: Download_GetReports
+      parameters:
+      - description: ids separated with a ',' sign
+        in: query
+        name: ids
+        schema:
+          type: string
+      - description: name of the created archive
+        in: path
+        name: archiveName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+            text/json:
+              schema:
+                format: binary
+                type: string
+          description: File has been downloaded
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: wrong parameters provided
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription is blocked
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: files is not found
+      summary: Returns a zip archive with selected files
+      tags:
+      - Download
+      x-accepts: application/json
+  /download/t/{id}:
+    get:
+      operationId: Download_GetTemplate
+      parameters:
+      - description: template id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+            text/json:
+              schema:
+                format: binary
+                type: string
+          description: Specified file was found
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: bad id provided
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription is blocked
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not enough permissions
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Specified file was not found or user do not has access to the
+            file
+      summary: Returns a report file with specified id
+      tags:
+      - Download
+      x-accepts: application/json
+  /download/ts/{archiveName}:
+    get:
+      operationId: Download_GetTemplates
+      parameters:
+      - description: ids separated with a ',' sign
+        in: query
+        name: ids
+        schema:
+          type: string
+      - description: name of the created archive
+        in: path
+        name: archiveName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+            text/json:
+              schema:
+                format: binary
+                type: string
+          description: File has been downloaded
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: wrong parameters provided
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription is blocked
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: files is not found
+      summary: Returns a zip archive with selected files
+      tags:
+      - Download
+      x-accepts: application/json
+  /download/v{version}/HealthCheck:
+    get:
+      operationId: HealthCheckResultsProvider_Get
+      parameters:
+      - in: path
+        name: version
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Returns Ok
+      tags:
+      - HealthCheck
+      x-accepts: application/json
+  /api/data/v1/DataSources:
+    get:
+      operationId: DataSources_GetAvailableDataSources
+      parameters:
+      - description: subscription id
+        in: query
+        name: subscriptionId
+        schema:
+          type: string
+      - description: how many data sources will be skipped
+        in: query
+        name: skip
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: how many data sources will be taken
+        in: query
+        name: take
+        schema:
+          default: 10
+          format: int32
+          type: integer
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DataSourcesVM'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourcesVM'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DataSourcesVM'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      summary: "Returns all of the data sources, that current user have permission\
+        \ for in a subscription\r\nif subscription id is null, returns all data sources,\
+        \ that current user have permission for"
+      tags:
+      - DataSources
+      x-accepts: application/json
+    post:
+      operationId: DataSources_CreateDataSource
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CreateDataSourceVM'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataSourceVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataSourceVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateDataSourceVM'
+        description: create viewmodel
+        required: false
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content: {}
+          description: Server Error
+      summary: Create new data source
+      tags:
+      - DataSources
+      x-codegen-request-body-name: viewModel
+      x-contentType: application/json-patch+json
+      x-accepts: application/json
+  /api/data/v1/DataSources/{id}:
+    delete:
+      operationId: DataSources_DeleteDataSource
+      parameters:
+      - description: data source id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content: {}
+          description: Server Error
+      summary: Delete data source by id
+      tags:
+      - DataSources
+      x-accepts: application/json
+    get:
+      operationId: DataSources_GetDataSource
+      parameters:
+      - description: data source id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content: {}
+          description: Server Error
+      summary: Get data source by id
+      tags:
+      - DataSources
+      x-accepts: application/json
+  /api/data/v1/DataSources/{id}/rename:
+    put:
+      operationId: DataSources_RenameDataSource
+      parameters:
+      - description: data source id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/RenameDataSourceVM'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenameDataSourceVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RenameDataSourceVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RenameDataSourceVM'
+        description: rename viewmodel
+        required: false
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content: {}
+          description: Server Error
+      summary: Rename data source by id
+      tags:
+      - DataSources
+      x-codegen-request-body-name: renameModel
+      x-contentType: application/json-patch+json
+      x-accepts: application/json
+  /api/data/v1/DataSources/{id}/ConnectionString:
+    put:
+      operationId: DataSources_UpdateConnectionString
+      parameters:
+      - description: data source id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceConnectionStringVM'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceConnectionStringVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceConnectionStringVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceConnectionStringVM'
+        description: update viewmodel
+        required: false
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content: {}
+          description: Server Error
+      summary: Update data source's connection string by id
+      tags:
+      - DataSources
+      x-codegen-request-body-name: updateModel
+      x-contentType: application/json-patch+json
+      x-accepts: application/json
+  /api/data/v1/DataSources/{id}/fetch:
+    get:
+      operationId: DataSources_FetchData
+      parameters:
+      - description: datasource's id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content: {}
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content: {}
+          description: Server Error
+      summary: This should connect to a database and set data structure
+      tags:
+      - DataSources
+      x-accepts: application/json
+  /api/data/v1/DataSources/{id}/updateSubscription:
+    put:
+      operationId: DataSources_UpdateSubscriptionDataSource
+      parameters:
+      - description: data source id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceSubscriptionVM'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceSubscriptionVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceSubscriptionVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceSubscriptionVM'
+        description: update subscription viewmodel
+        required: false
+      responses:
+        "200":
+          content: {}
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content: {}
+          description: Server Error
+      summary: Update data source's subscription
+      tags:
+      - DataSources
+      x-codegen-request-body-name: updatesubscriptionModel
+      x-contentType: application/json-patch+json
+      x-accepts: application/json
+  /api/data/v1/DataSources/{id}/permissions:
+    delete:
+      operationId: DataSources_RevokePermission
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/DataSourcePermissionsVM'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSourcePermissionsVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DataSourcePermissionsVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DataSourcePermissionsVM'
+        required: false
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DataSourcePermissions'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourcePermissions'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DataSourcePermissions'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content: {}
+          description: Server Error
+      tags:
+      - DataSources
+      x-codegen-request-body-name: permissionsVM
+      x-contentType: application/json-patch+json
+      x-accepts: application/json
+    get:
+      operationId: DataSources_GetPermissions
+      parameters:
+      - description: data source id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DataSourcePermissions'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourcePermissions'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DataSourcePermissions'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content: {}
+          description: Server Error
+      summary: Get all Data source permissions
+      tags:
+      - DataSources
+      x-accepts: application/json
+    put:
+      operationId: DataSources_AddPermission
+      parameters:
+      - description: data source id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/DataSourcePermissionsVM'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSourcePermissionsVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DataSourcePermissionsVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DataSourcePermissionsVM'
+        required: false
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DataSourcePermissions'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourcePermissions'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DataSourcePermissions'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          content: {}
+          description: Server Error
+      summary: Add Permission
+      tags:
+      - DataSources
+      x-codegen-request-body-name: permissionsVM
+      x-contentType: application/json-patch+json
+      x-accepts: application/json
+  /api/data/v1/HealthCheck:
+    get:
+      operationId: HealthCheckData_Get
+      responses:
+        "200":
+          content: {}
+          description: Report processor is alive!
+      summary: healthcheck
+      tags:
+      - HealthCheck
+      x-accepts: application/json
   /api/admin/v1/ApiKeys/{userId}:
     delete:
       operationId: AdminApiKeys_DeleteApiKey
@@ -7768,953 +9373,6 @@ paths:
         time span: (month, number of new users)'
       tags:
       - AdminUsers
-      x-accepts: application/json
-  /api/data/v1/DataSources:
-    get:
-      operationId: DataSources_GetAvailableDataSources
-      parameters:
-      - description: subscription id
-        in: query
-        name: subscriptionId
-        schema:
-          type: string
-      - description: how many data sources will be skipped
-        in: query
-        name: skip
-        schema:
-          default: 0
-          format: int32
-          type: integer
-      - description: how many data sources will be taken
-        in: query
-        name: take
-        schema:
-          default: 10
-          format: int32
-          type: integer
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/DataSourcesVM'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataSourcesVM'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/DataSourcesVM'
-          description: Success
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-      summary: "Returns all of the data sources, that current user have permission\
-        \ for in a subscription\r\nif subscription id is null, returns all data sources,\
-        \ that current user have permission for"
-      tags:
-      - DataSources
-      x-accepts: application/json
-    post:
-      operationId: DataSources_CreateDataSource
-      requestBody:
-        content:
-          application/json-patch+json:
-            schema:
-              $ref: '#/components/schemas/CreateDataSourceVM'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateDataSourceVM'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/CreateDataSourceVM'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/CreateDataSourceVM'
-        description: create viewmodel
-        required: false
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/DataSourceVM'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataSourceVM'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/DataSourceVM'
-          description: Success
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          content: {}
-          description: Server Error
-      summary: Create new data source
-      tags:
-      - DataSources
-      x-codegen-request-body-name: viewModel
-      x-contentType: application/json-patch+json
-      x-accepts: application/json
-  /api/data/v1/DataSources/{id}:
-    delete:
-      operationId: DataSources_DeleteDataSource
-      parameters:
-      - description: data source id
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "204":
-          content: {}
-          description: Success
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          content: {}
-          description: Server Error
-      summary: Delete data source by id
-      tags:
-      - DataSources
-      x-accepts: application/json
-    get:
-      operationId: DataSources_GetDataSource
-      parameters:
-      - description: data source id
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/DataSourceVM'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataSourceVM'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/DataSourceVM'
-          description: Success
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          content: {}
-          description: Server Error
-      summary: Get data source by id
-      tags:
-      - DataSources
-      x-accepts: application/json
-  /api/data/v1/DataSources/{id}/rename:
-    put:
-      operationId: DataSources_RenameDataSource
-      parameters:
-      - description: data source id
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json-patch+json:
-            schema:
-              $ref: '#/components/schemas/RenameDataSourceVM'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RenameDataSourceVM'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/RenameDataSourceVM'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/RenameDataSourceVM'
-        description: rename viewmodel
-        required: false
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/DataSourceVM'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataSourceVM'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/DataSourceVM'
-          description: Success
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          content: {}
-          description: Server Error
-      summary: Rename data source by id
-      tags:
-      - DataSources
-      x-codegen-request-body-name: renameModel
-      x-contentType: application/json-patch+json
-      x-accepts: application/json
-  /api/data/v1/DataSources/{id}/ConnectionString:
-    put:
-      operationId: DataSources_UpdateConnectionString
-      parameters:
-      - description: data source id
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json-patch+json:
-            schema:
-              $ref: '#/components/schemas/UpdateDataSourceConnectionStringVM'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateDataSourceConnectionStringVM'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/UpdateDataSourceConnectionStringVM'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/UpdateDataSourceConnectionStringVM'
-        description: update viewmodel
-        required: false
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/DataSourceVM'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataSourceVM'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/DataSourceVM'
-          description: Success
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          content: {}
-          description: Server Error
-      summary: Update data source's connection string by id
-      tags:
-      - DataSources
-      x-codegen-request-body-name: updateModel
-      x-contentType: application/json-patch+json
-      x-accepts: application/json
-  /api/data/v1/DataSources/{id}/fetch:
-    get:
-      operationId: DataSources_FetchData
-      parameters:
-      - description: datasource's id
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content: {}
-          description: Success
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          content: {}
-          description: Server Error
-      summary: This should connect to a database and set data structure
-      tags:
-      - DataSources
-      x-accepts: application/json
-  /api/data/v1/DataSources/{id}/updateSubscription:
-    put:
-      operationId: DataSources_UpdateSubscriptionDataSource
-      parameters:
-      - description: data source id
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json-patch+json:
-            schema:
-              $ref: '#/components/schemas/UpdateDataSourceSubscriptionVM'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateDataSourceSubscriptionVM'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/UpdateDataSourceSubscriptionVM'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/UpdateDataSourceSubscriptionVM'
-        description: update subscription viewmodel
-        required: false
-      responses:
-        "200":
-          content: {}
-          description: Success
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          content: {}
-          description: Server Error
-      summary: Update data source's subscription
-      tags:
-      - DataSources
-      x-codegen-request-body-name: updatesubscriptionModel
-      x-contentType: application/json-patch+json
-      x-accepts: application/json
-  /api/data/v1/DataSources/{id}/permissions:
-    delete:
-      operationId: DataSources_RevokePermission
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json-patch+json:
-            schema:
-              $ref: '#/components/schemas/DataSourcePermissionsVM'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DataSourcePermissionsVM'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/DataSourcePermissionsVM'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/DataSourcePermissionsVM'
-        required: false
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/DataSourcePermissions'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataSourcePermissions'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/DataSourcePermissions'
-          description: Success
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          content: {}
-          description: Server Error
-      tags:
-      - DataSources
-      x-codegen-request-body-name: permissionsVM
-      x-contentType: application/json-patch+json
-      x-accepts: application/json
-    get:
-      operationId: DataSources_GetPermissions
-      parameters:
-      - description: data source id
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/DataSourcePermissions'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataSourcePermissions'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/DataSourcePermissions'
-          description: Success
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          content: {}
-          description: Server Error
-      summary: Get all Data source permissions
-      tags:
-      - DataSources
-      x-accepts: application/json
-    put:
-      operationId: DataSources_AddPermission
-      parameters:
-      - description: data source id
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json-patch+json:
-            schema:
-              $ref: '#/components/schemas/DataSourcePermissionsVM'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DataSourcePermissionsVM'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/DataSourcePermissionsVM'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/DataSourcePermissionsVM'
-        required: false
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/DataSourcePermissions'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataSourcePermissions'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/DataSourcePermissions'
-          description: Success
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          content: {}
-          description: Server Error
-      summary: Add Permission
-      tags:
-      - DataSources
-      x-codegen-request-body-name: permissionsVM
-      x-contentType: application/json-patch+json
-      x-accepts: application/json
-  /api/data/v1/HealthCheck:
-    get:
-      operationId: HealthCheckData_Get
-      responses:
-        "200":
-          content: {}
-          description: Report processor is alive!
-      summary: healthcheck
-      tags:
-      - HealthCheck
       x-accepts: application/json
   /api/manage/v1/ApiKeys:
     delete:
@@ -18779,699 +19437,8 @@ paths:
       x-codegen-request-body-name: permissionsVM
       x-contentType: application/json-patch+json
       x-accepts: application/json
-  /download/e/{id}/thumbnail:
-    get:
-      operationId: Download_GetExportThumbnail
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                format: binary
-                type: string
-            application/json:
-              schema:
-                format: binary
-                type: string
-            text/json:
-              schema:
-                format: binary
-                type: string
-          description: Specified thumbnail was found
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad id provided
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Subscription is blocked
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not enough permissions for the operation
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Specified thumbnail was not found or user do not has access
-            to it
-      summary: Returns export's thumbnail
-      tags:
-      - Download
-      x-accepts: application/json
-  /download/e/{id}:
-    get:
-      operationId: Download_GetExport
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                format: binary
-                type: string
-            application/json:
-              schema:
-                format: binary
-                type: string
-            text/json:
-              schema:
-                format: binary
-                type: string
-          description: Specified file was found
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad id provided
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Subscription is blocked
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not enough permissions for the operation
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Specified file was not found or user do not has access to the
-            file
-      summary: Returns a export file with specified id
-      tags:
-      - Download
-      x-accepts: application/json
-  /download/es/{archiveName}:
-    get:
-      operationId: Download_GetExports
-      parameters:
-      - description: ids separated with a ',' sign
-        in: query
-        name: ids
-        schema:
-          type: string
-      - description: name of the created archive
-        in: path
-        name: archiveName
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                format: binary
-                type: string
-            application/json:
-              schema:
-                format: binary
-                type: string
-            text/json:
-              schema:
-                format: binary
-                type: string
-          description: Specified file was found
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad id provided
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Subscription is blocked
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not enough permissions for the operation
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Specified file was not found or user do not has access to the
-            file
-      summary: Returns a zip archive with selected ids
-      tags:
-      - Download
-      x-accepts: application/json
-  /download/r/{id}/thumbnail:
-    get:
-      operationId: Download_GetReportThumbnail
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                format: binary
-                type: string
-            application/json:
-              schema:
-                format: binary
-                type: string
-            text/json:
-              schema:
-                format: binary
-                type: string
-          description: Specified thumbnail was found
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad id provided
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Subscription is blocked
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not enough permissions for the operation
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Specified thumbnail was not found or user do not has access
-            to it
-      summary: Returns report's thumbnail
-      tags:
-      - Download
-      x-accepts: application/json
-  /download/r/{id}:
-    get:
-      operationId: Download_GetReport
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                format: binary
-                type: string
-            application/json:
-              schema:
-                format: binary
-                type: string
-            text/json:
-              schema:
-                format: binary
-                type: string
-          description: Specified file was found
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: bad id provided
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Subscription is blocked
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not enough permissions
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Specified file was not found or user do not has access to the
-            file
-      summary: Returns a prepared file with specified id
-      tags:
-      - Download
-      x-accepts: application/json
-  /download/rs/{archiveName}:
-    get:
-      operationId: Download_GetReports
-      parameters:
-      - description: ids separated with a ',' sign
-        in: query
-        name: ids
-        schema:
-          type: string
-      - description: name of the created archive
-        in: path
-        name: archiveName
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                format: binary
-                type: string
-            application/json:
-              schema:
-                format: binary
-                type: string
-            text/json:
-              schema:
-                format: binary
-                type: string
-          description: File has been downloaded
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: wrong parameters provided
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Subscription is blocked
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: You don't have rights for the operation
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: files is not found
-      summary: Returns a zip archive with selected files
-      tags:
-      - Download
-      x-accepts: application/json
-  /download/t/{id}:
-    get:
-      operationId: Download_GetTemplate
-      parameters:
-      - description: template id
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                format: binary
-                type: string
-            application/json:
-              schema:
-                format: binary
-                type: string
-            text/json:
-              schema:
-                format: binary
-                type: string
-          description: Specified file was found
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: bad id provided
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Subscription is blocked
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not enough permissions
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Specified file was not found or user do not has access to the
-            file
-      summary: Returns a report file with specified id
-      tags:
-      - Download
-      x-accepts: application/json
-  /download/ts/{archiveName}:
-    get:
-      operationId: Download_GetTemplates
-      parameters:
-      - description: ids separated with a ',' sign
-        in: query
-        name: ids
-        schema:
-          type: string
-      - description: name of the created archive
-        in: path
-        name: archiveName
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                format: binary
-                type: string
-            application/json:
-              schema:
-                format: binary
-                type: string
-            text/json:
-              schema:
-                format: binary
-                type: string
-          description: File has been downloaded
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: wrong parameters provided
-        "402":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Subscription is blocked
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: You don't have rights for the operation
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: files is not found
-      summary: Returns a zip archive with selected files
-      tags:
-      - Download
-      x-accepts: application/json
-  /download/v{version}/HealthCheck:
-    get:
-      operationId: HealthCheckResultsProvider_Get
-      parameters:
-      - in: path
-        name: version
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content: {}
-          description: Success
-      summary: Returns Ok
-      tags:
-      - HealthCheck
-      x-accepts: application/json
 components:
   schemas:
-    ApiKeysVM:
-      example:
-        apiKeys:
-        - expired: 2000-01-23T04:56:07.000+00:00
-          description: description
-          value: value
-        - expired: 2000-01-23T04:56:07.000+00:00
-          description: description
-          value: value
-        count: 0
-      properties:
-        apiKeys:
-          items:
-            $ref: '#/components/schemas/ApiKeyVM'
-          type: array
-        count:
-          format: int64
-          type: integer
-      type: object
-    ApiKeyVM:
-      example:
-        expired: 2000-01-23T04:56:07.000+00:00
-        description: description
-        value: value
-      properties:
-        value:
-          type: string
-        description:
-          type: string
-        expired:
-          format: date-time
-          type: string
-      type: object
     ProblemDetails:
       additionalProperties:
         properties: {}
@@ -19489,38 +19456,13 @@ components:
         instance:
           type: string
       type: object
-    CreateApiKeyVM:
-      example:
-        expired: 2000-01-23T04:56:07.000+00:00
-        description: description
-      properties:
-        description:
-          type: string
-        expired:
-          format: date-time
-          type: string
-      required:
-      - expired
-      type: object
-    DeleteApiKeyVM:
-      example:
-        apiKey: apiKey
-      properties:
-        apiKey:
-          type: string
-      required:
-      - apiKey
-      type: object
-    CreateDataSourceAdminVM:
+    CreateDataSourceVM:
       example:
         connectionString: connectionString
         name: name
-        ownerId: ownerId
         subscriptionId: subscriptionId
         connectionType: JSON
       properties:
-        ownerId:
-          type: string
         name:
           type: string
         connectionString:
@@ -19626,17 +19568,25 @@ components:
           format: int32
           type: integer
       type: object
-    UpdateDataSourceVM:
+    RenameDataSourceVM:
       example:
-        connectionString: connectionString
         name: name
-        subscriptionId: subscriptionId
       properties:
         name:
           type: string
-        subscriptionId:
-          type: string
+      type: object
+    UpdateDataSourceConnectionStringVM:
+      example:
+        connectionString: connectionString
+      properties:
         connectionString:
+          type: string
+      type: object
+    UpdateDataSourceSubscriptionVM:
+      example:
+        subscriptionId: subscriptionId
+      properties:
+        subscriptionId:
           type: string
       type: object
     DataSourcePermissionsVM:
@@ -19809,6 +19759,100 @@ components:
           $ref: '#/components/schemas/DataSourcePermission'
         anon:
           $ref: '#/components/schemas/DataSourcePermission'
+      type: object
+    ApiKeysVM:
+      example:
+        apiKeys:
+        - expired: 2000-01-23T04:56:07.000+00:00
+          description: description
+          value: value
+        - expired: 2000-01-23T04:56:07.000+00:00
+          description: description
+          value: value
+        count: 0
+      properties:
+        apiKeys:
+          items:
+            $ref: '#/components/schemas/ApiKeyVM'
+          type: array
+        count:
+          format: int64
+          type: integer
+      type: object
+    ApiKeyVM:
+      example:
+        expired: 2000-01-23T04:56:07.000+00:00
+        description: description
+        value: value
+      properties:
+        value:
+          type: string
+        description:
+          type: string
+        expired:
+          format: date-time
+          type: string
+      type: object
+    CreateApiKeyVM:
+      example:
+        expired: 2000-01-23T04:56:07.000+00:00
+        description: description
+      properties:
+        description:
+          type: string
+        expired:
+          format: date-time
+          type: string
+      required:
+      - expired
+      type: object
+    DeleteApiKeyVM:
+      example:
+        apiKey: apiKey
+      properties:
+        apiKey:
+          type: string
+      required:
+      - apiKey
+      type: object
+    CreateDataSourceAdminVM:
+      example:
+        connectionString: connectionString
+        name: name
+        ownerId: ownerId
+        subscriptionId: subscriptionId
+        connectionType: JSON
+      properties:
+        ownerId:
+          type: string
+        name:
+          type: string
+        connectionString:
+          type: string
+        subscriptionId:
+          type: string
+        connectionType:
+          enum:
+          - JSON
+          - MSSQL
+          - CSV
+          - XML
+          - MySQL
+          - Postgres
+          type: string
+      type: object
+    UpdateDataSourceVM:
+      example:
+        connectionString: connectionString
+        name: name
+        subscriptionId: subscriptionId
+      properties:
+        name:
+          type: string
+        subscriptionId:
+          type: string
+        connectionString:
+          type: string
       type: object
     FileVM:
       example:
@@ -23006,50 +23050,6 @@ components:
         isAdmin:
           type: boolean
         provider:
-          type: string
-      type: object
-    CreateDataSourceVM:
-      example:
-        connectionString: connectionString
-        name: name
-        subscriptionId: subscriptionId
-        connectionType: JSON
-      properties:
-        name:
-          type: string
-        connectionString:
-          type: string
-        subscriptionId:
-          type: string
-        connectionType:
-          enum:
-          - JSON
-          - MSSQL
-          - CSV
-          - XML
-          - MySQL
-          - Postgres
-          type: string
-      type: object
-    RenameDataSourceVM:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-      type: object
-    UpdateDataSourceConnectionStringVM:
-      example:
-        connectionString: connectionString
-      properties:
-        connectionString:
-          type: string
-      type: object
-    UpdateDataSourceSubscriptionVM:
-      example:
-        subscriptionId: subscriptionId
-      properties:
-        subscriptionId:
           type: string
       type: object
     CreateGroupVM:

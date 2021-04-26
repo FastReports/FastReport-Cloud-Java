@@ -434,7 +434,7 @@ Name | Type | Description  | Notes
 
 ## adminExportFoldersPostFolder
 
-> FileVM adminExportFoldersPostFolder(subscriptionId, ownerId, folderId, folderVm)
+> FileVM adminExportFoldersPostFolder(subscriptionId, folderVm)
 
 Create a folder
 
@@ -468,12 +468,10 @@ public class Example {
         //JWT.setApiKeyPrefix("Token");
 
         AdminExportsApi apiInstance = new AdminExportsApi(defaultClient);
-        String subscriptionId = "subscriptionId_example"; // String | Identifier of subscription
-        String ownerId = "ownerId_example"; // String | User owner id
-        String folderId = "folderId_example"; // String | Folder to upload id
-        ExportFolderCreateVM folderVm = new ExportFolderCreateVM(); // ExportFolderCreateVM | folder create vm
+        String subscriptionId = "subscriptionId_example"; // String | 
+        AdminExportFolderCreateVM folderVm = new AdminExportFolderCreateVM(); // AdminExportFolderCreateVM | folder create vm
         try {
-            FileVM result = apiInstance.adminExportFoldersPostFolder(subscriptionId, ownerId, folderId, folderVm);
+            FileVM result = apiInstance.adminExportFoldersPostFolder(subscriptionId, folderVm);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminExportsApi#adminExportFoldersPostFolder");
@@ -491,10 +489,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscriptionId** | **String**| Identifier of subscription |
- **ownerId** | **String**| User owner id | [optional]
- **folderId** | **String**| Folder to upload id | [optional]
- **folderVm** | [**ExportFolderCreateVM**](ExportFolderCreateVM.md)| folder create vm | [optional]
+ **subscriptionId** | **String**|  |
+ **folderVm** | [**AdminExportFolderCreateVM**](AdminExportFolderCreateVM.md)| folder create vm | [optional]
 
 ### Return type
 

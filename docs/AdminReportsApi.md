@@ -434,7 +434,7 @@ Name | Type | Description  | Notes
 
 ## adminReportFoldersPostFolder
 
-> FileVM adminReportFoldersPostFolder(subscriptionId, ownerId, folderId, folderVm)
+> FileVM adminReportFoldersPostFolder(subscriptionId, folderVm)
 
 Create a folder
 
@@ -468,12 +468,10 @@ public class Example {
         //JWT.setApiKeyPrefix("Token");
 
         AdminReportsApi apiInstance = new AdminReportsApi(defaultClient);
-        String subscriptionId = "subscriptionId_example"; // String | Identifier of subscription
-        String ownerId = "ownerId_example"; // String | User owner id
-        String folderId = "folderId_example"; // String | Folder to upload id
-        ReportFolderCreateVM folderVm = new ReportFolderCreateVM(); // ReportFolderCreateVM | folder create vm
+        String subscriptionId = "subscriptionId_example"; // String | 
+        AdminReportFolderCreateVM folderVm = new AdminReportFolderCreateVM(); // AdminReportFolderCreateVM | folder create vm
         try {
-            FileVM result = apiInstance.adminReportFoldersPostFolder(subscriptionId, ownerId, folderId, folderVm);
+            FileVM result = apiInstance.adminReportFoldersPostFolder(subscriptionId, folderVm);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminReportsApi#adminReportFoldersPostFolder");
@@ -491,10 +489,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscriptionId** | **String**| Identifier of subscription |
- **ownerId** | **String**| User owner id | [optional]
- **folderId** | **String**| Folder to upload id | [optional]
- **folderVm** | [**ReportFolderCreateVM**](ReportFolderCreateVM.md)| folder create vm | [optional]
+ **subscriptionId** | **String**|  |
+ **folderVm** | [**AdminReportFolderCreateVM**](AdminReportFolderCreateVM.md)| folder create vm | [optional]
 
 ### Return type
 

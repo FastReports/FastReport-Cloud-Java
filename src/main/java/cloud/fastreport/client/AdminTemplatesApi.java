@@ -2,6 +2,7 @@ package cloud.fastreport.client;
 
 import cloud.fastreport.ApiClient;
 
+import cloud.fastreport.model.AdminTemplateFolderCreateVM;
 import cloud.fastreport.model.FilePermissions;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileUpdateVM;
@@ -9,7 +10,6 @@ import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.FilesVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.TemplateCreateAdminVM;
-import cloud.fastreport.model.TemplateFolderCreateVM;
 import cloud.fastreport.model.TemplateVM;
 import cloud.fastreport.model.TemplatesVM;
 
@@ -540,15 +540,13 @@ public class AdminTemplatesApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - subscription not found
     * <p><b>500</b> - Exception caught while creating
-    * @param subscriptionId Identifier of subscription
-    * @param ownerId User owner id
-    * @param folderId Folder to upload id
+    * @param subscriptionId The subscriptionId parameter
     * @param folderVm folder create vm
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FileVM adminTemplateFoldersPostFolder(String subscriptionId, String ownerId, String folderId, TemplateFolderCreateVM folderVm) throws IOException {
-        HttpResponse response = adminTemplateFoldersPostFolderForHttpResponse(subscriptionId, ownerId, folderId, folderVm);
+    public FileVM adminTemplateFoldersPostFolder(String subscriptionId, AdminTemplateFolderCreateVM folderVm) throws IOException {
+        HttpResponse response = adminTemplateFoldersPostFolderForHttpResponse(subscriptionId, folderVm);
         TypeReference<FileVM> typeRef = new TypeReference<FileVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -561,18 +559,18 @@ public class AdminTemplatesApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - subscription not found
     * <p><b>500</b> - Exception caught while creating
-    * @param subscriptionId Identifier of subscription
+    * @param subscriptionId The subscriptionId parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FileVM adminTemplateFoldersPostFolder(TemplateFolderCreateVM folderVm, String subscriptionId, Map<String, Object> params) throws IOException {
+    public FileVM adminTemplateFoldersPostFolder(AdminTemplateFolderCreateVM folderVm, String subscriptionId, Map<String, Object> params) throws IOException {
         HttpResponse response = adminTemplateFoldersPostFolderForHttpResponse(folderVm, subscriptionId, params);
         TypeReference<FileVM> typeRef = new TypeReference<FileVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse adminTemplateFoldersPostFolderForHttpResponse(String subscriptionId, String ownerId, String folderId, TemplateFolderCreateVM folderVm) throws IOException {
+    public HttpResponse adminTemplateFoldersPostFolderForHttpResponse(String subscriptionId, AdminTemplateFolderCreateVM folderVm) throws IOException {
         // verify the required parameter 'subscriptionId' is set
         if (subscriptionId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling adminTemplateFoldersPostFolder");
@@ -581,27 +579,6 @@ public class AdminTemplatesApi {
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("subscriptionId", subscriptionId);
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders/{subscriptionId}");
-        if (ownerId != null) {
-            String key = "ownerId";
-            Object value = ownerId;
-            if (value instanceof Collection) {
-                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-            } else if (value instanceof Object[]) {
-                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-            } else {
-                uriBuilder = uriBuilder.queryParam(key, value);
-            }
-        }        if (folderId != null) {
-            String key = "folderId";
-            Object value = folderId;
-            if (value instanceof Collection) {
-                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-            } else if (value instanceof Object[]) {
-                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-            } else {
-                uriBuilder = uriBuilder.queryParam(key, value);
-            }
-        }
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -610,7 +587,7 @@ public class AdminTemplatesApi {
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse adminTemplateFoldersPostFolderForHttpResponse(String subscriptionId, String ownerId, String folderId, java.io.InputStream folderVm, String mediaType) throws IOException {
+      public HttpResponse adminTemplateFoldersPostFolderForHttpResponse(String subscriptionId, java.io.InputStream folderVm, String mediaType) throws IOException {
           // verify the required parameter 'subscriptionId' is set
               if (subscriptionId == null) {
               throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling adminTemplateFoldersPostFolder");
@@ -619,27 +596,6 @@ public class AdminTemplatesApi {
                   final Map<String, Object> uriVariables = new HashMap<String, Object>();
                       uriVariables.put("subscriptionId", subscriptionId);
               UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders/{subscriptionId}");
-              if (ownerId != null) {
-                  String key = "ownerId";
-                  Object value = ownerId;
-                  if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                  } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                  } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                  }
-              }              if (folderId != null) {
-                  String key = "folderId";
-                  Object value = folderId;
-                  if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                  } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                  } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                  }
-              }
 
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -650,7 +606,7 @@ public class AdminTemplatesApi {
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse adminTemplateFoldersPostFolderForHttpResponse(TemplateFolderCreateVM folderVm, String subscriptionId, Map<String, Object> params) throws IOException {
+    public HttpResponse adminTemplateFoldersPostFolderForHttpResponse(AdminTemplateFolderCreateVM folderVm, String subscriptionId, Map<String, Object> params) throws IOException {
         // verify the required parameter 'subscriptionId' is set
         if (subscriptionId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling adminTemplateFoldersPostFolder");

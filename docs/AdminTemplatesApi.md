@@ -434,7 +434,7 @@ Name | Type | Description  | Notes
 
 ## adminTemplateFoldersPostFolder
 
-> FileVM adminTemplateFoldersPostFolder(subscriptionId, ownerId, folderId, folderVm)
+> FileVM adminTemplateFoldersPostFolder(subscriptionId, folderVm)
 
 Create a folder
 
@@ -468,12 +468,10 @@ public class Example {
         //JWT.setApiKeyPrefix("Token");
 
         AdminTemplatesApi apiInstance = new AdminTemplatesApi(defaultClient);
-        String subscriptionId = "subscriptionId_example"; // String | Identifier of subscription
-        String ownerId = "ownerId_example"; // String | User owner id
-        String folderId = "folderId_example"; // String | Folder to upload id
-        TemplateFolderCreateVM folderVm = new TemplateFolderCreateVM(); // TemplateFolderCreateVM | folder create vm
+        String subscriptionId = "subscriptionId_example"; // String | 
+        AdminTemplateFolderCreateVM folderVm = new AdminTemplateFolderCreateVM(); // AdminTemplateFolderCreateVM | folder create vm
         try {
-            FileVM result = apiInstance.adminTemplateFoldersPostFolder(subscriptionId, ownerId, folderId, folderVm);
+            FileVM result = apiInstance.adminTemplateFoldersPostFolder(subscriptionId, folderVm);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminTemplatesApi#adminTemplateFoldersPostFolder");
@@ -491,10 +489,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscriptionId** | **String**| Identifier of subscription |
- **ownerId** | **String**| User owner id | [optional]
- **folderId** | **String**| Folder to upload id | [optional]
- **folderVm** | [**TemplateFolderCreateVM**](TemplateFolderCreateVM.md)| folder create vm | [optional]
+ **subscriptionId** | **String**|  |
+ **folderVm** | [**AdminTemplateFolderCreateVM**](AdminTemplateFolderCreateVM.md)| folder create vm | [optional]
 
 ### Return type
 

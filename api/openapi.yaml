@@ -2790,36 +2790,25 @@ paths:
       description: User with a Create File permisison can access this method.
       operationId: AdminExportFolders_PostFolder
       parameters:
-      - description: Identifier of subscription
-        in: path
+      - in: path
         name: subscriptionId
         required: true
-        schema:
-          type: string
-      - description: User owner id
-        in: query
-        name: ownerId
-        schema:
-          type: string
-      - description: Folder to upload id
-        in: query
-        name: folderId
         schema:
           type: string
       requestBody:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/ExportFolderCreateVM'
+              $ref: '#/components/schemas/AdminExportFolderCreateVM'
           application/json:
             schema:
-              $ref: '#/components/schemas/ExportFolderCreateVM'
+              $ref: '#/components/schemas/AdminExportFolderCreateVM'
           text/json:
             schema:
-              $ref: '#/components/schemas/ExportFolderCreateVM'
+              $ref: '#/components/schemas/AdminExportFolderCreateVM'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/ExportFolderCreateVM'
+              $ref: '#/components/schemas/AdminExportFolderCreateVM'
         description: folder create vm
         required: false
       responses:
@@ -4792,36 +4781,25 @@ paths:
       description: User with a Create File permisison can access this method.
       operationId: AdminReportFolders_PostFolder
       parameters:
-      - description: Identifier of subscription
-        in: path
+      - in: path
         name: subscriptionId
         required: true
-        schema:
-          type: string
-      - description: User owner id
-        in: query
-        name: ownerId
-        schema:
-          type: string
-      - description: Folder to upload id
-        in: query
-        name: folderId
         schema:
           type: string
       requestBody:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/ReportFolderCreateVM'
+              $ref: '#/components/schemas/AdminReportFolderCreateVM'
           application/json:
             schema:
-              $ref: '#/components/schemas/ReportFolderCreateVM'
+              $ref: '#/components/schemas/AdminReportFolderCreateVM'
           text/json:
             schema:
-              $ref: '#/components/schemas/ReportFolderCreateVM'
+              $ref: '#/components/schemas/AdminReportFolderCreateVM'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/ReportFolderCreateVM'
+              $ref: '#/components/schemas/AdminReportFolderCreateVM'
         description: folder create vm
         required: false
       responses:
@@ -7885,36 +7863,25 @@ paths:
       description: User with a Create File permisison can access this method.
       operationId: AdminTemplateFolders_PostFolder
       parameters:
-      - description: Identifier of subscription
-        in: path
+      - in: path
         name: subscriptionId
         required: true
-        schema:
-          type: string
-      - description: User owner id
-        in: query
-        name: ownerId
-        schema:
-          type: string
-      - description: Folder to upload id
-        in: query
-        name: folderId
         schema:
           type: string
       requestBody:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/TemplateFolderCreateVM'
+              $ref: '#/components/schemas/AdminTemplateFolderCreateVM'
           application/json:
             schema:
-              $ref: '#/components/schemas/TemplateFolderCreateVM'
+              $ref: '#/components/schemas/AdminTemplateFolderCreateVM'
           text/json:
             schema:
-              $ref: '#/components/schemas/TemplateFolderCreateVM'
+              $ref: '#/components/schemas/AdminTemplateFolderCreateVM'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/TemplateFolderCreateVM'
+              $ref: '#/components/schemas/AdminTemplateFolderCreateVM'
         description: folder create vm
         required: false
       responses:
@@ -9510,6 +9477,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "204":
@@ -9578,6 +9546,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -9800,6 +9769,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -9896,6 +9866,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -9991,6 +9962,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -10053,6 +10025,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -10146,6 +10119,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: how many to skip
         in: query
@@ -10226,6 +10200,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: Identifier of user
         in: path
@@ -10300,6 +10275,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: Identifier of user
         in: path
@@ -10375,6 +10351,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "204":
@@ -10443,6 +10420,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -10508,6 +10486,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -10576,6 +10555,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -10672,6 +10652,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: invite's token
         in: path
@@ -10747,6 +10728,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: access token of the subscription
         in: path
@@ -10812,6 +10794,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -10917,6 +10900,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -11027,6 +11011,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -11043,7 +11028,7 @@ paths:
             schema:
               $ref: '#/components/schemas/RenameSubscriptionVM'
         description: rename VM
-        required: false
+        required: true
       responses:
         "200":
           content:
@@ -11120,6 +11105,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -11136,7 +11122,7 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateSubscriptionLocaleVM'
         description: update VM
-        required: false
+        required: true
       responses:
         "200":
           content:
@@ -11213,6 +11199,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -11287,6 +11274,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -11303,7 +11291,7 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateDefaultPermissionsVM'
         description: update default permissions VM
-        required: false
+        required: true
       responses:
         "200":
           content:
@@ -11379,6 +11367,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -11394,7 +11383,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/SubscriptionPermissionsVM'
-        required: false
+        required: true
       responses:
         "200":
           content:
@@ -11472,6 +11461,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -11509,6 +11499,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -11524,7 +11515,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/SubscriptionPermissionsVM'
-        required: false
+        required: true
       responses:
         "200":
           content:
@@ -11601,6 +11592,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: Idenitifier of user
         in: path
@@ -11677,6 +11669,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: Idenitifier of user
         in: path
@@ -11754,6 +11747,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "204":
@@ -11811,6 +11805,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: How many entities skip
         in: query
@@ -11891,6 +11886,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: user id
         in: path
@@ -12076,6 +12072,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -12140,6 +12137,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: number of folder and files, that have to be skipped
         in: query
@@ -12217,6 +12215,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -12311,6 +12310,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -12373,6 +12373,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -12539,6 +12540,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -12603,6 +12605,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -12667,6 +12670,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: number of files, that have to be skipped
         in: query
@@ -12745,6 +12749,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -12846,6 +12851,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: destination folder id
         in: path
@@ -12929,6 +12935,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: destination folder id
         in: path
@@ -13011,6 +13018,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -13104,6 +13112,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -13197,6 +13206,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -13290,6 +13300,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -13383,6 +13394,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "204":
@@ -13452,6 +13464,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -13519,6 +13532,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -13586,6 +13600,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: number of files, that have to be skipped
         in: query
@@ -13667,12 +13682,14 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: folder id
         in: path
         name: folderId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -13751,12 +13768,14 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: folder id
         in: path
         name: folderId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -13835,6 +13854,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -13930,6 +13950,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -14025,6 +14046,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -14119,6 +14141,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -14215,6 +14238,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -14276,6 +14300,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -14383,6 +14408,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -14447,6 +14473,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: number of folder and files, that have to be skipped
         in: query
@@ -14524,6 +14551,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -14618,6 +14646,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -14680,6 +14709,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -14846,6 +14876,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -14910,6 +14941,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -14974,6 +15006,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: number of files, that have to be skipped
         in: query
@@ -15052,6 +15085,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -15153,6 +15187,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: destination folder id
         in: path
@@ -15236,6 +15271,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: destination folder id
         in: path
@@ -15318,6 +15354,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -15411,6 +15448,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -15504,6 +15542,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -15597,6 +15636,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -15691,6 +15731,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -15784,6 +15825,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -15878,6 +15920,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "204":
@@ -15947,6 +15990,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -16014,6 +16058,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -16081,6 +16126,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: number of files, that have to be skipped
         in: query
@@ -16162,12 +16208,14 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: folder id
         in: path
         name: folderId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -16246,12 +16294,14 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: folder id
         in: path
         name: folderId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -16330,6 +16380,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -16425,6 +16476,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -16520,6 +16572,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -16614,6 +16667,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -16710,6 +16764,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -16771,6 +16826,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -16867,6 +16923,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -16931,6 +16988,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: number of folder and files, that have to be skipped
         in: query
@@ -17008,6 +17066,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -17102,6 +17161,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -17164,6 +17224,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -17330,6 +17391,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -17394,6 +17456,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -17458,6 +17521,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: number of files, that have to be skipped
         in: query
@@ -17536,6 +17600,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -17637,6 +17702,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: destination folder id
         in: path
@@ -17720,6 +17786,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: destination folder id
         in: path
@@ -17802,6 +17869,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -17895,6 +17963,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -17988,6 +18057,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -18081,6 +18151,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -18175,6 +18246,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -18270,6 +18342,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -18364,6 +18437,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -18458,6 +18532,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "204":
@@ -18527,6 +18602,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -18594,6 +18670,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -18661,6 +18738,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: number of files, that have to be skipped
         in: query
@@ -18742,12 +18820,14 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: folder id
         in: path
         name: folderId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -18826,12 +18906,14 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       - description: folder id
         in: path
         name: folderId
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -18910,6 +18992,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -19005,6 +19088,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -19100,6 +19184,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -19194,6 +19279,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -19290,6 +19376,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       responses:
         "200":
@@ -19351,6 +19438,7 @@ paths:
         name: id
         required: true
         schema:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       requestBody:
         content:
@@ -20000,14 +20088,21 @@ components:
           format: int32
           type: integer
       type: object
-    ExportFolderCreateVM:
+    AdminExportFolderCreateVM:
       example:
         name: name
         icon: icon
+        ownerId: ownerId
+        parentId: parentId
         tags:
         - tags
         - tags
       properties:
+        parentId:
+          pattern: ^[A-Fa-f0-9]{24}$
+          type: string
+        ownerId:
+          type: string
         name:
           type: string
         tags:
@@ -20402,10 +20497,10 @@ components:
         name:
           type: string
         subscriptionId:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       required:
       - name
-      - subscriptionId
       type: object
     GroupVM:
       example:
@@ -20631,14 +20726,21 @@ components:
         anon:
           $ref: '#/components/schemas/GroupPermission'
       type: object
-    ReportFolderCreateVM:
+    AdminReportFolderCreateVM:
       example:
         name: name
         icon: icon
+        ownerId: ownerId
+        parentId: parentId
         tags:
         - tags
         - tags
       properties:
+        parentId:
+          pattern: ^[A-Fa-f0-9]{24}$
+          type: string
+        ownerId:
+          type: string
         name:
           type: string
         tags:
@@ -22500,14 +22602,21 @@ components:
         ownerId:
           type: string
       type: object
-    TemplateFolderCreateVM:
+    AdminTemplateFolderCreateVM:
       example:
         name: name
         icon: icon
+        ownerId: ownerId
+        parentId: parentId
         tags:
         - tags
         - tags
       properties:
+        parentId:
+          pattern: ^[A-Fa-f0-9]{24}$
+          type: string
+        ownerId:
+          type: string
         name:
           type: string
         tags:
@@ -23060,10 +23169,10 @@ components:
         name:
           type: string
         subscriptionId:
+          pattern: ^[A-Fa-f0-9]{24}$
           type: string
       required:
       - name
-      - subscriptionId
       type: object
     RenameGroupVM:
       example:
@@ -23303,7 +23412,10 @@ components:
         locale: locale
       properties:
         locale:
+          pattern: ^[a-z]{2}-[A-Z]{2}$
           type: string
+      required:
+      - locale
       type: object
     UpdateDefaultPermissionsVM:
       example:
@@ -23629,6 +23741,23 @@ components:
         name:
           type: string
       type: object
+    ExportFolderCreateVM:
+      example:
+        name: name
+        icon: icon
+        tags:
+        - tags
+        - tags
+      properties:
+        name:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        icon:
+          type: string
+      type: object
     FolderRenameVM:
       example:
         name: name
@@ -23678,6 +23807,23 @@ components:
           items:
             type: string
           type: array
+      type: object
+    ReportFolderCreateVM:
+      example:
+        name: name
+        icon: icon
+        tags:
+        - tags
+        - tags
+      properties:
+        name:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        icon:
+          type: string
       type: object
     ExportReportTaskVM:
       example:
@@ -23751,6 +23897,23 @@ components:
         icon:
           type: string
         content:
+          type: string
+      type: object
+    TemplateFolderCreateVM:
+      example:
+        name: name
+        icon: icon
+        tags:
+        - tags
+        - tags
+      properties:
+        name:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        icon:
           type: string
       type: object
     ExportTemplateTaskVM:

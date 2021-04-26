@@ -76,12 +76,13 @@ public class SubscriptionsApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - Subscription is not found
     * @param id The id parameter
+    * @param permissionsVM The permissionsVM parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return SubscriptionPermissions
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public SubscriptionPermissions subscriptionsAddPermission(SubscriptionPermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = subscriptionsAddPermissionForHttpResponse(permissionsVM, id, params);
+    public SubscriptionPermissions subscriptionsAddPermission(String id, SubscriptionPermissionsVM permissionsVM, Map<String, Object> params) throws IOException {
+        HttpResponse response = subscriptionsAddPermissionForHttpResponse(id, permissionsVM, params);
         TypeReference<SubscriptionPermissions> typeRef = new TypeReference<SubscriptionPermissions>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -90,6 +91,9 @@ public class SubscriptionsApi {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsAddPermission");
+        }// verify the required parameter 'permissionsVM' is set
+        if (permissionsVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsAddPermission");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -107,6 +111,9 @@ public class SubscriptionsApi {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsAddPermission");
+              }// verify the required parameter 'permissionsVM' is set
+              if (permissionsVM == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsAddPermission");
               }
                   // create a map of path variables
                   final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -122,10 +129,13 @@ public class SubscriptionsApi {
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse subscriptionsAddPermissionForHttpResponse(SubscriptionPermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse subscriptionsAddPermissionForHttpResponse(String id, SubscriptionPermissionsVM permissionsVM, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsAddPermission");
+        }// verify the required parameter 'permissionsVM' is set
+        if (permissionsVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsAddPermission");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -531,12 +541,13 @@ public class SubscriptionsApi {
     * <p><b>403</b> - Not enough permissions
     * <p><b>404</b> - there is no subscription with such id (or user have no permission)
     * @param subscriptionId id
+    * @param renameSubscriptionVM rename VM
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return SubscriptionVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public SubscriptionVM subscriptionsRenameSubscription(RenameSubscriptionVM renameSubscriptionVM, String subscriptionId, Map<String, Object> params) throws IOException {
-        HttpResponse response = subscriptionsRenameSubscriptionForHttpResponse(renameSubscriptionVM, subscriptionId, params);
+    public SubscriptionVM subscriptionsRenameSubscription(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM, Map<String, Object> params) throws IOException {
+        HttpResponse response = subscriptionsRenameSubscriptionForHttpResponse(subscriptionId, renameSubscriptionVM, params);
         TypeReference<SubscriptionVM> typeRef = new TypeReference<SubscriptionVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -545,6 +556,9 @@ public class SubscriptionsApi {
         // verify the required parameter 'subscriptionId' is set
         if (subscriptionId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionsRenameSubscription");
+        }// verify the required parameter 'renameSubscriptionVM' is set
+        if (renameSubscriptionVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'renameSubscriptionVM' when calling subscriptionsRenameSubscription");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -562,6 +576,9 @@ public class SubscriptionsApi {
           // verify the required parameter 'subscriptionId' is set
               if (subscriptionId == null) {
               throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionsRenameSubscription");
+              }// verify the required parameter 'renameSubscriptionVM' is set
+              if (renameSubscriptionVM == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'renameSubscriptionVM' when calling subscriptionsRenameSubscription");
               }
                   // create a map of path variables
                   final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -577,10 +594,13 @@ public class SubscriptionsApi {
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse subscriptionsRenameSubscriptionForHttpResponse(RenameSubscriptionVM renameSubscriptionVM, String subscriptionId, Map<String, Object> params) throws IOException {
+    public HttpResponse subscriptionsRenameSubscriptionForHttpResponse(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM, Map<String, Object> params) throws IOException {
         // verify the required parameter 'subscriptionId' is set
         if (subscriptionId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionsRenameSubscription");
+        }// verify the required parameter 'renameSubscriptionVM' is set
+        if (renameSubscriptionVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'renameSubscriptionVM' when calling subscriptionsRenameSubscription");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -641,12 +661,13 @@ public class SubscriptionsApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - Subscription is not found
     * @param id The id parameter
+    * @param permissionsVM The permissionsVM parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return SubscriptionPermissions
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public SubscriptionPermissions subscriptionsRevokePermission(SubscriptionPermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = subscriptionsRevokePermissionForHttpResponse(permissionsVM, id, params);
+    public SubscriptionPermissions subscriptionsRevokePermission(String id, SubscriptionPermissionsVM permissionsVM, Map<String, Object> params) throws IOException {
+        HttpResponse response = subscriptionsRevokePermissionForHttpResponse(id, permissionsVM, params);
         TypeReference<SubscriptionPermissions> typeRef = new TypeReference<SubscriptionPermissions>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -655,6 +676,9 @@ public class SubscriptionsApi {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsRevokePermission");
+        }// verify the required parameter 'permissionsVM' is set
+        if (permissionsVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsRevokePermission");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -672,6 +696,9 @@ public class SubscriptionsApi {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsRevokePermission");
+              }// verify the required parameter 'permissionsVM' is set
+              if (permissionsVM == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsRevokePermission");
               }
                   // create a map of path variables
                   final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -687,10 +714,13 @@ public class SubscriptionsApi {
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
       }
 
-    public HttpResponse subscriptionsRevokePermissionForHttpResponse(SubscriptionPermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse subscriptionsRevokePermissionForHttpResponse(String id, SubscriptionPermissionsVM permissionsVM, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsRevokePermission");
+        }// verify the required parameter 'permissionsVM' is set
+        if (permissionsVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsRevokePermission");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -749,12 +779,13 @@ public class SubscriptionsApi {
     * <p><b>403</b> - Not enough permissions
     * <p><b>404</b> - there is no subscription with such id
     * @param subscriptionId id
+    * @param permissionsVM update default permissions VM
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return DefaultPermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public DefaultPermissionsVM subscriptionsUpdateDefaultPermissions(UpdateDefaultPermissionsVM permissionsVM, String subscriptionId, Map<String, Object> params) throws IOException {
-        HttpResponse response = subscriptionsUpdateDefaultPermissionsForHttpResponse(permissionsVM, subscriptionId, params);
+    public DefaultPermissionsVM subscriptionsUpdateDefaultPermissions(String subscriptionId, UpdateDefaultPermissionsVM permissionsVM, Map<String, Object> params) throws IOException {
+        HttpResponse response = subscriptionsUpdateDefaultPermissionsForHttpResponse(subscriptionId, permissionsVM, params);
         TypeReference<DefaultPermissionsVM> typeRef = new TypeReference<DefaultPermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -763,6 +794,9 @@ public class SubscriptionsApi {
         // verify the required parameter 'subscriptionId' is set
         if (subscriptionId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionsUpdateDefaultPermissions");
+        }// verify the required parameter 'permissionsVM' is set
+        if (permissionsVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsUpdateDefaultPermissions");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -780,6 +814,9 @@ public class SubscriptionsApi {
           // verify the required parameter 'subscriptionId' is set
               if (subscriptionId == null) {
               throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionsUpdateDefaultPermissions");
+              }// verify the required parameter 'permissionsVM' is set
+              if (permissionsVM == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsUpdateDefaultPermissions");
               }
                   // create a map of path variables
                   final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -795,10 +832,13 @@ public class SubscriptionsApi {
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse subscriptionsUpdateDefaultPermissionsForHttpResponse(UpdateDefaultPermissionsVM permissionsVM, String subscriptionId, Map<String, Object> params) throws IOException {
+    public HttpResponse subscriptionsUpdateDefaultPermissionsForHttpResponse(String subscriptionId, UpdateDefaultPermissionsVM permissionsVM, Map<String, Object> params) throws IOException {
         // verify the required parameter 'subscriptionId' is set
         if (subscriptionId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionsUpdateDefaultPermissions");
+        }// verify the required parameter 'permissionsVM' is set
+        if (permissionsVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsUpdateDefaultPermissions");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -857,12 +897,13 @@ public class SubscriptionsApi {
     * <p><b>403</b> - Not enough permissions
     * <p><b>404</b> - there is no subscription with such id (or user have no permission)
     * @param subscriptionId id
+    * @param updateModel update VM
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return SubscriptionVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public SubscriptionVM subscriptionsUpdateLocale(UpdateSubscriptionLocaleVM updateModel, String subscriptionId, Map<String, Object> params) throws IOException {
-        HttpResponse response = subscriptionsUpdateLocaleForHttpResponse(updateModel, subscriptionId, params);
+    public SubscriptionVM subscriptionsUpdateLocale(String subscriptionId, UpdateSubscriptionLocaleVM updateModel, Map<String, Object> params) throws IOException {
+        HttpResponse response = subscriptionsUpdateLocaleForHttpResponse(subscriptionId, updateModel, params);
         TypeReference<SubscriptionVM> typeRef = new TypeReference<SubscriptionVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -871,6 +912,9 @@ public class SubscriptionsApi {
         // verify the required parameter 'subscriptionId' is set
         if (subscriptionId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionsUpdateLocale");
+        }// verify the required parameter 'updateModel' is set
+        if (updateModel == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'updateModel' when calling subscriptionsUpdateLocale");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -888,6 +932,9 @@ public class SubscriptionsApi {
           // verify the required parameter 'subscriptionId' is set
               if (subscriptionId == null) {
               throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionsUpdateLocale");
+              }// verify the required parameter 'updateModel' is set
+              if (updateModel == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'updateModel' when calling subscriptionsUpdateLocale");
               }
                   // create a map of path variables
                   final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -903,10 +950,13 @@ public class SubscriptionsApi {
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse subscriptionsUpdateLocaleForHttpResponse(UpdateSubscriptionLocaleVM updateModel, String subscriptionId, Map<String, Object> params) throws IOException {
+    public HttpResponse subscriptionsUpdateLocaleForHttpResponse(String subscriptionId, UpdateSubscriptionLocaleVM updateModel, Map<String, Object> params) throws IOException {
         // verify the required parameter 'subscriptionId' is set
         if (subscriptionId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionsUpdateLocale");
+        }// verify the required parameter 'updateModel' is set
+        if (updateModel == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'updateModel' when calling subscriptionsUpdateLocale");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();

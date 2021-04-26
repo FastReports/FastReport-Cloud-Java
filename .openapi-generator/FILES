@@ -9,10 +9,12 @@ build.gradle
 build.sbt
 docs/AdminApiKeysApi.md
 docs/AdminDataSourceApi.md
+docs/AdminExportFolderCreateVM.md
 docs/AdminExportsApi.md
 docs/AdminGroupsApi.md
 docs/AdminHealthCheckApi.md
 docs/AdminPermission.md
+docs/AdminReportFolderCreateVM.md
 docs/AdminReportsApi.md
 docs/AdminSubscriptionAnalyticsApi.md
 docs/AdminSubscriptionInvitesApi.md
@@ -22,6 +24,7 @@ docs/AdminSubscriptionProblemSolvingApi.md
 docs/AdminSubscriptionVM.md
 docs/AdminSubscriptionsApi.md
 docs/AdminSubscriptionsVM.md
+docs/AdminTemplateFolderCreateVM.md
 docs/AdminTemplatesApi.md
 docs/AdminUsersApi.md
 docs/AnalysisResultVM.md
@@ -176,9 +179,12 @@ src/main/java/cloud/fastreport/client/SubscriptionUsersApi.java
 src/main/java/cloud/fastreport/client/SubscriptionsApi.java
 src/main/java/cloud/fastreport/client/TemplatesApi.java
 src/main/java/cloud/fastreport/client/UserProfileApi.java
+src/main/java/cloud/fastreport/model/AdminExportFolderCreateVM.java
 src/main/java/cloud/fastreport/model/AdminPermission.java
+src/main/java/cloud/fastreport/model/AdminReportFolderCreateVM.java
 src/main/java/cloud/fastreport/model/AdminSubscriptionVM.java
 src/main/java/cloud/fastreport/model/AdminSubscriptionsVM.java
+src/main/java/cloud/fastreport/model/AdminTemplateFolderCreateVM.java
 src/main/java/cloud/fastreport/model/AnalysisResultVM.java
 src/main/java/cloud/fastreport/model/AnalysisResultsVM.java
 src/main/java/cloud/fastreport/model/ApiKeyVM.java
@@ -301,9 +307,12 @@ src/test/java/cloud/fastreport/client/SubscriptionUsersApiTest.java
 src/test/java/cloud/fastreport/client/SubscriptionsApiTest.java
 src/test/java/cloud/fastreport/client/TemplatesApiTest.java
 src/test/java/cloud/fastreport/client/UserProfileApiTest.java
+src/test/java/cloud/fastreport/model/AdminExportFolderCreateVMTest.java
 src/test/java/cloud/fastreport/model/AdminPermissionTest.java
+src/test/java/cloud/fastreport/model/AdminReportFolderCreateVMTest.java
 src/test/java/cloud/fastreport/model/AdminSubscriptionVMTest.java
 src/test/java/cloud/fastreport/model/AdminSubscriptionsVMTest.java
+src/test/java/cloud/fastreport/model/AdminTemplateFolderCreateVMTest.java
 src/test/java/cloud/fastreport/model/AnalysisResultVMTest.java
 src/test/java/cloud/fastreport/model/AnalysisResultsVMTest.java
 src/test/java/cloud/fastreport/model/ApiKeyVMTest.java

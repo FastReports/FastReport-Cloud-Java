@@ -72,7 +72,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **permissionsVM** | [**SubscriptionPermissionsVM**](SubscriptionPermissionsVM.md)|  | [optional]
+ **permissionsVM** | [**SubscriptionPermissionsVM**](SubscriptionPermissionsVM.md)|  |
 
 ### Return type
 
@@ -469,7 +469,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subscriptionId** | **String**| id |
- **renameSubscriptionVM** | [**RenameSubscriptionVM**](RenameSubscriptionVM.md)| rename VM | [optional]
+ **renameSubscriptionVM** | [**RenameSubscriptionVM**](RenameSubscriptionVM.md)| rename VM |
 
 ### Return type
 
@@ -551,7 +551,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **permissionsVM** | [**SubscriptionPermissionsVM**](SubscriptionPermissionsVM.md)|  | [optional]
+ **permissionsVM** | [**SubscriptionPermissionsVM**](SubscriptionPermissionsVM.md)|  |
 
 ### Return type
 
@@ -634,7 +634,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subscriptionId** | **String**| id |
- **permissionsVM** | [**UpdateDefaultPermissionsVM**](UpdateDefaultPermissionsVM.md)| update default permissions VM | [optional]
+ **permissionsVM** | [**UpdateDefaultPermissionsVM**](UpdateDefaultPermissionsVM.md)| update default permissions VM |
 
 ### Return type
 
@@ -716,7 +716,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subscriptionId** | **String**| id |
- **updateModel** | [**UpdateSubscriptionLocaleVM**](UpdateSubscriptionLocaleVM.md)| update VM | [optional]
+ **updateModel** | [**UpdateSubscriptionLocaleVM**](UpdateSubscriptionLocaleVM.md)| update VM |
 
 ### Return type
 

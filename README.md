@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>cloud.fastreport.sdk</groupId>
   <artifactId>fastreport-cloud-sdk</artifactId>
-  <version>2021.1.24</version>
+  <version>2021.1.25</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2021.1.24"
+compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2021.1.25"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/fastreport-cloud-sdk-2021.1.24.jar`
+- `target/fastreport-cloud-sdk-2021.1.25.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -386,9 +386,12 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AdminExportFolderCreateVM](docs/AdminExportFolderCreateVM.md)
  - [AdminPermission](docs/AdminPermission.md)
+ - [AdminReportFolderCreateVM](docs/AdminReportFolderCreateVM.md)
  - [AdminSubscriptionVM](docs/AdminSubscriptionVM.md)
  - [AdminSubscriptionsVM](docs/AdminSubscriptionsVM.md)
+ - [AdminTemplateFolderCreateVM](docs/AdminTemplateFolderCreateVM.md)
  - [AnalysisResultVM](docs/AnalysisResultVM.md)
  - [AnalysisResultsVM](docs/AnalysisResultsVM.md)
  - [ApiKeyVM](docs/ApiKeyVM.md)

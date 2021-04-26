@@ -104,9 +104,10 @@ public class CreateGroupAdminVM {
    * Get subscriptionId
    * @return subscriptionId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getSubscriptionId() {
     return subscriptionId;

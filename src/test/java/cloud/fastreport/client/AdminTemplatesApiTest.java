@@ -13,6 +13,7 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.model.AdminTemplateFolderCreateVM;
 import cloud.fastreport.model.FilePermissions;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileUpdateVM;
@@ -20,7 +21,6 @@ import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.FilesVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.TemplateCreateAdminVM;
-import cloud.fastreport.model.TemplateFolderCreateVM;
 import cloud.fastreport.model.TemplateVM;
 import cloud.fastreport.model.TemplatesVM;
 import org.junit.Test;
@@ -136,10 +136,8 @@ public class AdminTemplatesApiTest {
     @Test
     public void adminTemplateFoldersPostFolderTest() throws IOException {
         String subscriptionId = null;
-        String ownerId = null;
-        String folderId = null;
-        TemplateFolderCreateVM folderVm = null;
-        FileVM response = api.adminTemplateFoldersPostFolder(subscriptionId, ownerId, folderId, folderVm);
+        AdminTemplateFolderCreateVM folderVm = null;
+        FileVM response = api.adminTemplateFoldersPostFolder(subscriptionId, folderVm);
 
         // TODO: test validations
     }

@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  | 
-**subscriptionId** | **String** |  | 
+**subscriptionId** | **String** |  |  [optional]
 
 
 

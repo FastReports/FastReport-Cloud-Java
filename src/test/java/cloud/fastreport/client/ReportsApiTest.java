@@ -18,7 +18,6 @@ import cloud.fastreport.model.CountVM;
 import cloud.fastreport.model.ExportReportTaskVM;
 import cloud.fastreport.model.ExportVM;
 import cloud.fastreport.model.FileIconVM;
-import cloud.fastreport.model.FilePermissions;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileRenameVM;
 import cloud.fastreport.model.FileTagsUpdateVM;
@@ -32,6 +31,7 @@ import cloud.fastreport.model.ReportCreateVM;
 import cloud.fastreport.model.ReportFolderCreateVM;
 import cloud.fastreport.model.ReportVM;
 import cloud.fastreport.model.ReportsVM;
+import cloud.fastreport.model.UpdateFilePermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -80,23 +80,6 @@ public class ReportsApiTest {
         Integer skip = null;
         Integer take = null;
         FilesVM response = api.reportFolderAndFileGetFoldersAndFiles(id, skip, take);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Add folder permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void reportFoldersAddPermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.reportFoldersAddPermission(id, permissionsVM);
 
         // TODO: test validations
     }
@@ -212,7 +195,7 @@ public class ReportsApiTest {
     @Test
     public void reportFoldersGetPermissionsTest() throws IOException {
         String id = null;
-        FilePermissions response = api.reportFoldersGetPermissions(id);
+        FilePermissionsVM response = api.reportFoldersGetPermissions(id);
 
         // TODO: test validations
     }
@@ -285,23 +268,6 @@ public class ReportsApiTest {
     }
     
     /**
-     * Revoke folder permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void reportFoldersRevokePermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.reportFoldersRevokePermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Update a folder&#39;s icon
      *
      * User with a Update Icon permission can access this method.
@@ -319,6 +285,23 @@ public class ReportsApiTest {
     }
     
     /**
+     * Update permissions
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void reportFoldersUpdatePermissionsTest() throws IOException {
+        String id = null;
+        UpdateFilePermissionsVM permissionsVM = null;
+        api.reportFoldersUpdatePermissions(id, permissionsVM);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Update tags
      *
      * User with a Update Tags permission can access this method.
@@ -331,23 +314,6 @@ public class ReportsApiTest {
         String id = null;
         FolderTagsUpdateVM tagsModel = null;
         FileVM response = api.reportFoldersUpdateTags(id, tagsModel);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Add permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void reportsAddPermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.reportsAddPermission(id, permissionsVM);
 
         // TODO: test validations
     }
@@ -463,7 +429,7 @@ public class ReportsApiTest {
     @Test
     public void reportsGetPermissionsTest() throws IOException {
         String id = null;
-        FilePermissions response = api.reportsGetPermissions(id);
+        FilePermissionsVM response = api.reportsGetPermissions(id);
 
         // TODO: test validations
     }
@@ -503,23 +469,6 @@ public class ReportsApiTest {
     }
     
     /**
-     * Revoke permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void reportsRevokePermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.reportsRevokePermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Update a files&#39;s icon
      *
      * User with Update Icon permission can access this method.
@@ -532,6 +481,23 @@ public class ReportsApiTest {
         String id = null;
         FileIconVM iconModel = null;
         ReportVM response = api.reportsUpdateIcon(id, iconModel);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Update permissions
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void reportsUpdatePermissionsTest() throws IOException {
+        String id = null;
+        UpdateFilePermissionsVM permissionsVM = null;
+        api.reportsUpdatePermissions(id, permissionsVM);
 
         // TODO: test validations
     }

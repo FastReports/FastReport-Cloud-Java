@@ -14,11 +14,11 @@
 package cloud.fastreport.client;
 
 import cloud.fastreport.model.CreateGroupAdminVM;
-import cloud.fastreport.model.GroupPermissions;
 import cloud.fastreport.model.GroupPermissionsVM;
 import cloud.fastreport.model.GroupVM;
 import cloud.fastreport.model.GroupsVM;
 import cloud.fastreport.model.ProblemDetails;
+import cloud.fastreport.model.UpdateGroupPermissionsVM;
 import cloud.fastreport.model.UpdateGroupVM;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -37,23 +37,6 @@ public class AdminGroupsApiTest {
 
     private final AdminGroupsApi api = new AdminGroupsApi();
 
-    
-    /**
-     * Add permissions to user group
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminGroupsAddPermissionTest() throws IOException {
-        String id = null;
-        GroupPermissionsVM viewModel = null;
-        GroupPermissions response = api.adminGroupsAddPermission(id, viewModel);
-
-        // TODO: test validations
-    }
     
     /**
      * Create a new group, returns a new model
@@ -115,7 +98,8 @@ public class AdminGroupsApiTest {
     public void adminGroupsGetGroupsTest() throws IOException {
         Integer skip = null;
         Integer take = null;
-        GroupsVM response = api.adminGroupsGetGroups(skip, take);
+        String subscriptionId = null;
+        GroupsVM response = api.adminGroupsGetGroups(skip, take, subscriptionId);
 
         // TODO: test validations
     }
@@ -131,24 +115,7 @@ public class AdminGroupsApiTest {
     @Test
     public void adminGroupsGetPermissionsTest() throws IOException {
         String id = null;
-        GroupPermissions response = api.adminGroupsGetPermissions(id);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Remove (revoke) permissions in user group by identifier
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminGroupsRevokePermissionTest() throws IOException {
-        String id = null;
-        GroupPermissionsVM viewModel = null;
-        GroupPermissions response = api.adminGroupsRevokePermission(id, viewModel);
+        GroupPermissionsVM response = api.adminGroupsGetPermissions(id);
 
         // TODO: test validations
     }
@@ -180,9 +147,9 @@ public class AdminGroupsApiTest {
      */
     @Test
     public void adminGroupsUpdatePermissionsTest() throws IOException {
-        String groupId = null;
-        GroupPermissions newPermissions = null;
-        GroupPermissions response = api.adminGroupsUpdatePermissions(groupId, newPermissions);
+        String id = null;
+        UpdateGroupPermissionsVM newPermissions = null;
+        api.adminGroupsUpdatePermissions(id, newPermissions);
 
         // TODO: test validations
     }

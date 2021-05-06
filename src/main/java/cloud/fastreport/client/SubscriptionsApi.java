@@ -6,12 +6,12 @@ import cloud.fastreport.model.DefaultPermissions;
 import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.RenameSubscriptionVM;
-import cloud.fastreport.model.SubscriptionPermissions;
 import cloud.fastreport.model.SubscriptionPermissionsVM;
 import cloud.fastreport.model.SubscriptionVM;
 import cloud.fastreport.model.SubscriptionsVM;
 import cloud.fastreport.model.UpdateDefaultPermissionsVM;
 import cloud.fastreport.model.UpdateSubscriptionLocaleVM;
+import cloud.fastreport.model.UpdateSubscriptionPermissionsVM;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.api.client.http.EmptyContent;
@@ -49,124 +49,6 @@ public class SubscriptionsApi {
     public void setApiClient(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
-
-  /**
-    * Add permissions for a subscription
-    * <p><b>200</b> - Succesfully added
-    * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - Subscription is outdated
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - Subscription is not found
-    * @param id The id parameter
-    * @param permissionsVM The permissionsVM parameter
-    * @return SubscriptionPermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public SubscriptionPermissions subscriptionsAddPermission(String id, SubscriptionPermissionsVM permissionsVM) throws IOException {
-        HttpResponse response = subscriptionsAddPermissionForHttpResponse(id, permissionsVM);
-        TypeReference<SubscriptionPermissions> typeRef = new TypeReference<SubscriptionPermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Add permissions for a subscription
-    * <p><b>200</b> - Succesfully added
-    * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - Subscription is outdated
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - Subscription is not found
-    * @param id The id parameter
-    * @param permissionsVM The permissionsVM parameter
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return SubscriptionPermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public SubscriptionPermissions subscriptionsAddPermission(String id, SubscriptionPermissionsVM permissionsVM, Map<String, Object> params) throws IOException {
-        HttpResponse response = subscriptionsAddPermissionForHttpResponse(id, permissionsVM, params);
-        TypeReference<SubscriptionPermissions> typeRef = new TypeReference<SubscriptionPermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse subscriptionsAddPermissionForHttpResponse(String id, SubscriptionPermissionsVM permissionsVM) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsAddPermission");
-        }// verify the required parameter 'permissionsVM' is set
-        if (permissionsVM == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
-      public HttpResponse subscriptionsAddPermissionForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsAddPermission");
-              }// verify the required parameter 'permissionsVM' is set
-              if (permissionsVM == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsAddPermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = permissionsVM == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-      }
-
-    public HttpResponse subscriptionsAddPermissionForHttpResponse(String id, SubscriptionPermissionsVM permissionsVM, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsAddPermission");
-        }// verify the required parameter 'permissionsVM' is set
-        if (permissionsVM == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
 
   /**
     * Get subscription&#39;s default permissions for new entities
@@ -261,12 +143,12 @@ public class SubscriptionsApi {
     * <p><b>200</b> - Succesfully returned
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * @param id The id parameter
-    * @return SubscriptionPermissions
+    * @return SubscriptionPermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public SubscriptionPermissions subscriptionsGetPermissions(String id) throws IOException {
+    public SubscriptionPermissionsVM subscriptionsGetPermissions(String id) throws IOException {
         HttpResponse response = subscriptionsGetPermissionsForHttpResponse(id);
-        TypeReference<SubscriptionPermissions> typeRef = new TypeReference<SubscriptionPermissions>() {};
+        TypeReference<SubscriptionPermissionsVM> typeRef = new TypeReference<SubscriptionPermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -276,12 +158,12 @@ public class SubscriptionsApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * @param id The id parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return SubscriptionPermissions
+    * @return SubscriptionPermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public SubscriptionPermissions subscriptionsGetPermissions(String id, Map<String, Object> params) throws IOException {
+    public SubscriptionPermissionsVM subscriptionsGetPermissions(String id, Map<String, Object> params) throws IOException {
         HttpResponse response = subscriptionsGetPermissionsForHttpResponse(id, params);
-        TypeReference<SubscriptionPermissions> typeRef = new TypeReference<SubscriptionPermissions>() {};
+        TypeReference<SubscriptionPermissionsVM> typeRef = new TypeReference<SubscriptionPermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -634,126 +516,6 @@ public class SubscriptionsApi {
 
 
   /**
-    * Remove permissions from a subscription
-    * <p><b>200</b> - Succesfully removed
-    * <p><b>204</b> - happens sometimes
-    * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription is outdated
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - Subscription is not found
-    * @param id The id parameter
-    * @param permissionsVM The permissionsVM parameter
-    * @return SubscriptionPermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public SubscriptionPermissions subscriptionsRevokePermission(String id, SubscriptionPermissionsVM permissionsVM) throws IOException {
-        HttpResponse response = subscriptionsRevokePermissionForHttpResponse(id, permissionsVM);
-        TypeReference<SubscriptionPermissions> typeRef = new TypeReference<SubscriptionPermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Remove permissions from a subscription
-    * <p><b>200</b> - Succesfully removed
-    * <p><b>204</b> - happens sometimes
-    * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription is outdated
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - Subscription is not found
-    * @param id The id parameter
-    * @param permissionsVM The permissionsVM parameter
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return SubscriptionPermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public SubscriptionPermissions subscriptionsRevokePermission(String id, SubscriptionPermissionsVM permissionsVM, Map<String, Object> params) throws IOException {
-        HttpResponse response = subscriptionsRevokePermissionForHttpResponse(id, permissionsVM, params);
-        TypeReference<SubscriptionPermissions> typeRef = new TypeReference<SubscriptionPermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse subscriptionsRevokePermissionForHttpResponse(String id, SubscriptionPermissionsVM permissionsVM) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsRevokePermission");
-        }// verify the required parameter 'permissionsVM' is set
-        if (permissionsVM == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-    }
-
-      public HttpResponse subscriptionsRevokePermissionForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsRevokePermission");
-              }// verify the required parameter 'permissionsVM' is set
-              if (permissionsVM == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsRevokePermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = permissionsVM == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-      }
-
-    public HttpResponse subscriptionsRevokePermissionForHttpResponse(String id, SubscriptionPermissionsVM permissionsVM, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsRevokePermission");
-        }// verify the required parameter 'permissionsVM' is set
-        if (permissionsVM == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'permissionsVM' when calling subscriptionsRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-    }
-
-
-  /**
     * Change subscription&#39;s default permissions for new entities
     * <p><b>200</b> - Successfully changed
     * <p><b>400</b> - Request is wrong
@@ -986,6 +748,110 @@ public class SubscriptionsApi {
 
         HttpContent content = apiClient.new JacksonJsonHttpContent(updateModel);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+    }
+
+
+  /**
+    * Update permissions
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>402</b> - Client Error
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id The id parameter
+    * @param permissionsVM The permissionsVM parameter
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void subscriptionsUpdatePermissions(String id, UpdateSubscriptionPermissionsVM permissionsVM) throws IOException {
+        subscriptionsUpdatePermissionsForHttpResponse(id, permissionsVM);
+    }
+
+  /**
+    * Update permissions
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>402</b> - Client Error
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id The id parameter
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void subscriptionsUpdatePermissions(UpdateSubscriptionPermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+        subscriptionsUpdatePermissionsForHttpResponse(permissionsVM, id, params);
+    }
+
+    public HttpResponse subscriptionsUpdatePermissionsForHttpResponse(String id, UpdateSubscriptionPermissionsVM permissionsVM) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsUpdatePermissions");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{id}/permissions");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+      public HttpResponse subscriptionsUpdatePermissionsForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
+          // verify the required parameter 'id' is set
+              if (id == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsUpdatePermissions");
+              }
+                  // create a map of path variables
+                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
+                      uriVariables.put("id", id);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{id}/permissions");
+
+              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+              HttpContent content = permissionsVM == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+      }
+
+    public HttpResponse subscriptionsUpdatePermissionsForHttpResponse(UpdateSubscriptionPermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionsUpdatePermissions");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{id}/permissions");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 

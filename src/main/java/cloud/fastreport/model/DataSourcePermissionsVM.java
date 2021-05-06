@@ -15,7 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.DataSourcePermission;
+import cloud.fastreport.model.DataSourcePermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -29,163 +29,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * DataSourcePermissionsVM
  */
 @JsonPropertyOrder({
-  DataSourcePermissionsVM.JSON_PROPERTY_PERMISSION_TYPE,
-  DataSourcePermissionsVM.JSON_PROPERTY_PERMISSION,
-  DataSourcePermissionsVM.JSON_PROPERTY_GROUP_ID,
-  DataSourcePermissionsVM.JSON_PROPERTY_OWNER_ID
+  DataSourcePermissionsVM.JSON_PROPERTY_PERMISSIONS
 })
 @JsonTypeName("DataSourcePermissionsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DataSourcePermissionsVM {
-  /**
-   * Gets or Sets permissionType
-   */
-  public enum PermissionTypeEnum {
-    OWNER("Owner"),
+  public static final String JSON_PROPERTY_PERMISSIONS = "permissions";
+  private DataSourcePermissions permissions;
+
+
+  public DataSourcePermissionsVM permissions(DataSourcePermissions permissions) {
     
-    GROUP("Group"),
-    
-    OTHER("Other"),
-    
-    ANON("Anon");
-
-    private String value;
-
-    PermissionTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static PermissionTypeEnum fromValue(String value) {
-      for (PermissionTypeEnum b : PermissionTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_PERMISSION_TYPE = "permissionType";
-  private PermissionTypeEnum permissionType;
-
-  public static final String JSON_PROPERTY_PERMISSION = "permission";
-  private DataSourcePermission permission;
-
-  public static final String JSON_PROPERTY_GROUP_ID = "groupId";
-  private String groupId;
-
-  public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
-  private String ownerId;
-
-
-  public DataSourcePermissionsVM permissionType(PermissionTypeEnum permissionType) {
-    
-    this.permissionType = permissionType;
+    this.permissions = permissions;
     return this;
   }
 
    /**
-   * Get permissionType
-   * @return permissionType
+   * Get permissions
+   * @return permissions
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PERMISSION_TYPE)
+  @JsonProperty(JSON_PROPERTY_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public PermissionTypeEnum getPermissionType() {
-    return permissionType;
+  public DataSourcePermissions getPermissions() {
+    return permissions;
   }
 
 
-  public void setPermissionType(PermissionTypeEnum permissionType) {
-    this.permissionType = permissionType;
-  }
-
-
-  public DataSourcePermissionsVM permission(DataSourcePermission permission) {
-    
-    this.permission = permission;
-    return this;
-  }
-
-   /**
-   * Get permission
-   * @return permission
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PERMISSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public DataSourcePermission getPermission() {
-    return permission;
-  }
-
-
-  public void setPermission(DataSourcePermission permission) {
-    this.permission = permission;
-  }
-
-
-  public DataSourcePermissionsVM groupId(String groupId) {
-    
-    this.groupId = groupId;
-    return this;
-  }
-
-   /**
-   * Get groupId
-   * @return groupId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_GROUP_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getGroupId() {
-    return groupId;
-  }
-
-
-  public void setGroupId(String groupId) {
-    this.groupId = groupId;
-  }
-
-
-  public DataSourcePermissionsVM ownerId(String ownerId) {
-    
-    this.ownerId = ownerId;
-    return this;
-  }
-
-   /**
-   * Get ownerId
-   * @return ownerId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_OWNER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getOwnerId() {
-    return ownerId;
-  }
-
-
-  public void setOwnerId(String ownerId) {
-    this.ownerId = ownerId;
+  public void setPermissions(DataSourcePermissions permissions) {
+    this.permissions = permissions;
   }
 
 
@@ -198,25 +72,19 @@ public class DataSourcePermissionsVM {
       return false;
     }
     DataSourcePermissionsVM dataSourcePermissionsVM = (DataSourcePermissionsVM) o;
-    return Objects.equals(this.permissionType, dataSourcePermissionsVM.permissionType) &&
-        Objects.equals(this.permission, dataSourcePermissionsVM.permission) &&
-        Objects.equals(this.groupId, dataSourcePermissionsVM.groupId) &&
-        Objects.equals(this.ownerId, dataSourcePermissionsVM.ownerId);
+    return Objects.equals(this.permissions, dataSourcePermissionsVM.permissions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(permissionType, permission, groupId, ownerId);
+    return Objects.hash(permissions);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DataSourcePermissionsVM {\n");
-    sb.append("    permissionType: ").append(toIndentedString(permissionType)).append("\n");
-    sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
-    sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
-    sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -13,7 +13,9 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.DefaultPermissions;
+import cloud.fastreport.model.DataSourcePermissions;
+import cloud.fastreport.model.FilePermissions;
+import cloud.fastreport.model.GroupPermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -41,11 +43,27 @@ public class DefaultPermissionsVMTest {
     }
 
     /**
-     * Test the property 'defaultPermissions'
+     * Test the property 'filePermissions'
      */
     @Test
-    public void defaultPermissionsTest() {
-        // TODO: test defaultPermissions
+    public void filePermissionsTest() {
+        // TODO: test filePermissions
+    }
+
+    /**
+     * Test the property 'dataSourcePermissions'
+     */
+    @Test
+    public void dataSourcePermissionsTest() {
+        // TODO: test dataSourcePermissions
+    }
+
+    /**
+     * Test the property 'groupPermissions'
+     */
+    @Test
+    public void groupPermissionsTest() {
+        // TODO: test groupPermissions
     }
 
 }

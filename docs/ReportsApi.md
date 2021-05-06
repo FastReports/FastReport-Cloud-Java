@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**reportFolderAndFileGetCount**](ReportsApi.md#reportFolderAndFileGetCount) | **GET** /api/rp/v1/Reports/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder
 [**reportFolderAndFileGetFoldersAndFiles**](ReportsApi.md#reportFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Reports/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder
-[**reportFoldersAddPermission**](ReportsApi.md#reportFoldersAddPermission) | **PUT** /api/rp/v1/Reports/Folder/{id}/permissions | Add folder permission
 [**reportFoldersCopyFolder**](ReportsApi.md#reportFoldersCopyFolder) | **POST** /api/rp/v1/Reports/Folder/{id}/Copy/{folderId} | Move folder to a specified folder
 [**reportFoldersDeleteFolder**](ReportsApi.md#reportFoldersDeleteFolder) | **DELETE** /api/rp/v1/Reports/Folder/{id} | Delete specified folder
 [**reportFoldersGetBreadcrumbs**](ReportsApi.md#reportFoldersGetBreadcrumbs) | **GET** /api/rp/v1/Reports/Folder/{id}/Breadcrumbs | Get specified folder breadcrumbs
@@ -18,10 +17,9 @@ Method | HTTP request | Description
 [**reportFoldersMoveFolder**](ReportsApi.md#reportFoldersMoveFolder) | **POST** /api/rp/v1/Reports/Folder/{id}/Move/{folderId} | Move folder to a specified folder
 [**reportFoldersPostFolder**](ReportsApi.md#reportFoldersPostFolder) | **POST** /api/rp/v1/Reports/Folder/{id}/Folder | Create folder
 [**reportFoldersRenameFolder**](ReportsApi.md#reportFoldersRenameFolder) | **PUT** /api/rp/v1/Reports/Folder/{id}/Rename | Rename a folder
-[**reportFoldersRevokePermission**](ReportsApi.md#reportFoldersRevokePermission) | **DELETE** /api/rp/v1/Reports/Folder/{id}/permissions | Revoke folder permission
 [**reportFoldersUpdateIcon**](ReportsApi.md#reportFoldersUpdateIcon) | **PUT** /api/rp/v1/Reports/Folder/{id}/Icon | Update a folder&#39;s icon
+[**reportFoldersUpdatePermissions**](ReportsApi.md#reportFoldersUpdatePermissions) | **POST** /api/rp/v1/Reports/{id}/permissions | Update permissions
 [**reportFoldersUpdateTags**](ReportsApi.md#reportFoldersUpdateTags) | **PUT** /api/rp/v1/Reports/Folder/{id}/UpdateTags | Update tags
-[**reportsAddPermission**](ReportsApi.md#reportsAddPermission) | **PUT** /api/rp/v1/Reports/File/{id}/permissions | Add permission
 [**reportsCopyFile**](ReportsApi.md#reportsCopyFile) | **POST** /api/rp/v1/Reports/File/{id}/Copy/{folderId} | Copy file to a specified folder
 [**reportsDeleteFile**](ReportsApi.md#reportsDeleteFile) | **DELETE** /api/rp/v1/Reports/File/{id} | Delete specified file
 [**reportsExport**](ReportsApi.md#reportsExport) | **POST** /api/rp/v1/Reports/File/{id}/Export | Export specified report to a specified format
@@ -31,8 +29,8 @@ Method | HTTP request | Description
 [**reportsGetPermissions**](ReportsApi.md#reportsGetPermissions) | **GET** /api/rp/v1/Reports/File/{id}/permissions | Get all file permissions
 [**reportsMoveFile**](ReportsApi.md#reportsMoveFile) | **POST** /api/rp/v1/Reports/File/{id}/Move/{folderId} | Move file to a specified folder
 [**reportsRenameFile**](ReportsApi.md#reportsRenameFile) | **PUT** /api/rp/v1/Reports/File/{id}/Rename | Rename a file
-[**reportsRevokePermission**](ReportsApi.md#reportsRevokePermission) | **DELETE** /api/rp/v1/Reports/File/{id}/permissions | Revoke permission
 [**reportsUpdateIcon**](ReportsApi.md#reportsUpdateIcon) | **PUT** /api/rp/v1/Reports/File/{id}/Icon | Update a files&#39;s icon
+[**reportsUpdatePermissions**](ReportsApi.md#reportsUpdatePermissions) | **POST** /api/rp/v1/Reports/File/{id}/permissions | Update permissions
 [**reportsUpdateTags**](ReportsApi.md#reportsUpdateTags) | **PUT** /api/rp/v1/Reports/File/{id}/UpdateTags | Update tags
 [**reportsUploadFile**](ReportsApi.md#reportsUploadFile) | **POST** /api/rp/v1/Reports/Folder/{id}/File | Allows to upload reports into specified folder
 
@@ -202,88 +200,6 @@ Name | Type | Description  | Notes
 | **400** | FolderId is null |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
-
-
-## reportFoldersAddPermission
-
-> FilePermissions reportFoldersAddPermission(id, permissionsVM)
-
-Add folder permission
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.ReportsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        ReportsApi apiInstance = new ReportsApi(defaultClient);
-        String id = "id_example"; // String | folder id
-        FilePermissionsVM permissionsVM = new FilePermissionsVM(); // FilePermissionsVM | filePermissions view model
-        try {
-            FilePermissions result = apiInstance.reportFoldersAddPermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ReportsApi#reportFoldersAddPermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| folder id |
- **permissionsVM** | [**FilePermissionsVM**](FilePermissionsVM.md)| filePermissions view model | [optional]
-
-### Return type
-
-[**FilePermissions**](FilePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Permissions added |  -  |
-| **400** | filePermissionsVM or id is not valid |  -  |
-| **402** | subscription is outdated |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | folder is not found |  -  |
 
 
 ## reportFoldersCopyFolder
@@ -783,7 +699,7 @@ Name | Type | Description  | Notes
 
 ## reportFoldersGetPermissions
 
-> FilePermissions reportFoldersGetPermissions(id)
+> FilePermissionsVM reportFoldersGetPermissions(id)
 
 Get all folder permissions
 
@@ -817,7 +733,7 @@ public class Example {
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            FilePermissions result = apiInstance.reportFoldersGetPermissions(id);
+            FilePermissionsVM result = apiInstance.reportFoldersGetPermissions(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportFoldersGetPermissions");
@@ -839,7 +755,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FilePermissions**](FilePermissions.md)
+[**FilePermissionsVM**](FilePermissionsVM.md)
 
 ### Authorization
 
@@ -1193,89 +1109,6 @@ Name | Type | Description  | Notes
 | **404** | Folder not found |  -  |
 
 
-## reportFoldersRevokePermission
-
-> FilePermissions reportFoldersRevokePermission(id, permissionsVM)
-
-Revoke folder permission
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.ReportsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        ReportsApi apiInstance = new ReportsApi(defaultClient);
-        String id = "id_example"; // String | folder id
-        FilePermissionsVM permissionsVM = new FilePermissionsVM(); // FilePermissionsVM | permisisons to revoke
-        try {
-            FilePermissions result = apiInstance.reportFoldersRevokePermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ReportsApi#reportFoldersRevokePermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| folder id |
- **permissionsVM** | [**FilePermissionsVM**](FilePermissionsVM.md)| permisisons to revoke | [optional]
-
-### Return type
-
-[**FilePermissions**](FilePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | permissions revoked |  -  |
-| **204** | happens sometimes |  -  |
-| **400** | filePermissionsVM or id is not valid |  -  |
-| **402** | subscription is outdated |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | folder is not found |  -  |
-
-
 ## reportFoldersUpdateIcon
 
 > FileVM reportFoldersUpdateIcon(id, iconModel)
@@ -1360,6 +1193,88 @@ Name | Type | Description  | Notes
 | **404** | Folder not found |  -  |
 
 
+## reportFoldersUpdatePermissions
+
+> reportFoldersUpdatePermissions(id, permissionsVM)
+
+Update permissions
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.ReportsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure API key authorization: JWT
+        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
+        JWT.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //JWT.setApiKeyPrefix("Token");
+
+        ReportsApi apiInstance = new ReportsApi(defaultClient);
+        String id = "id_example"; // String | 
+        UpdateFilePermissionsVM permissionsVM = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
+        try {
+            apiInstance.reportFoldersUpdatePermissions(id, permissionsVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ReportsApi#reportFoldersUpdatePermissions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  |
+ **permissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **402** | Client Error |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
+
+
 ## reportFoldersUpdateTags
 
 > FileVM reportFoldersUpdateTags(id, tagsModel)
@@ -1442,89 +1357,6 @@ Name | Type | Description  | Notes
 | **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Folder not found |  -  |
-
-
-## reportsAddPermission
-
-> FilePermissions reportsAddPermission(id, permissionsVM)
-
-Add permission
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.ReportsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        ReportsApi apiInstance = new ReportsApi(defaultClient);
-        String id = "id_example"; // String | 
-        FilePermissionsVM permissionsVM = new FilePermissionsVM(); // FilePermissionsVM | 
-        try {
-            FilePermissions result = apiInstance.reportsAddPermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ReportsApi#reportsAddPermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
- **permissionsVM** | [**FilePermissionsVM**](FilePermissionsVM.md)|  | [optional]
-
-### Return type
-
-[**FilePermissions**](FilePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | permissions added |  -  |
-| **400** | filePermissionsVM or id is not valid |  -  |
-| **402** | subscription is outdated |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File is not found |  -  |
-| **500** | Exception thrown |  -  |
 
 
 ## reportsCopyFile
@@ -2028,7 +1860,7 @@ Name | Type | Description  | Notes
 
 ## reportsGetPermissions
 
-> FilePermissions reportsGetPermissions(id)
+> FilePermissionsVM reportsGetPermissions(id)
 
 Get all file permissions
 
@@ -2062,7 +1894,7 @@ public class Example {
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            FilePermissions result = apiInstance.reportsGetPermissions(id);
+            FilePermissionsVM result = apiInstance.reportsGetPermissions(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportsGetPermissions");
@@ -2084,7 +1916,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FilePermissions**](FilePermissions.md)
+[**FilePermissionsVM**](FilePermissionsVM.md)
 
 ### Authorization
 
@@ -2275,90 +2107,6 @@ Name | Type | Description  | Notes
 | **500** | Exception thrown |  -  |
 
 
-## reportsRevokePermission
-
-> FilePermissions reportsRevokePermission(id, permissionsVM)
-
-Revoke permission
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.ReportsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        ReportsApi apiInstance = new ReportsApi(defaultClient);
-        String id = "id_example"; // String | 
-        FilePermissionsVM permissionsVM = new FilePermissionsVM(); // FilePermissionsVM | 
-        try {
-            FilePermissions result = apiInstance.reportsRevokePermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ReportsApi#reportsRevokePermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
- **permissionsVM** | [**FilePermissionsVM**](FilePermissionsVM.md)|  | [optional]
-
-### Return type
-
-[**FilePermissions**](FilePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | permissions revoked |  -  |
-| **204** | happens sometimes |  -  |
-| **400** | filePermissionsVM or id is not valid |  -  |
-| **402** | subscription is outdated |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | file is not found |  -  |
-| **500** | Exception thrown |  -  |
-
-
 ## reportsUpdateIcon
 
 > ReportVM reportsUpdateIcon(id, iconModel)
@@ -2442,6 +2190,88 @@ Name | Type | Description  | Notes
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File not found |  -  |
 | **500** | Exception thrown |  -  |
+
+
+## reportsUpdatePermissions
+
+> reportsUpdatePermissions(id, permissionsVM)
+
+Update permissions
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.ReportsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure API key authorization: JWT
+        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
+        JWT.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //JWT.setApiKeyPrefix("Token");
+
+        ReportsApi apiInstance = new ReportsApi(defaultClient);
+        String id = "id_example"; // String | 
+        UpdateFilePermissionsVM permissionsVM = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
+        try {
+            apiInstance.reportsUpdatePermissions(id, permissionsVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ReportsApi#reportsUpdatePermissions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  |
+ **permissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **402** | Client Error |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
 
 
 ## reportsUpdateTags

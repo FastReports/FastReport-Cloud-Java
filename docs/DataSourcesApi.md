@@ -4,7 +4,6 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**dataSourcesAddPermission**](DataSourcesApi.md#dataSourcesAddPermission) | **PUT** /api/data/v1/DataSources/{id}/permissions | Add Permission
 [**dataSourcesCreateDataSource**](DataSourcesApi.md#dataSourcesCreateDataSource) | **POST** /api/data/v1/DataSources | Create new data source
 [**dataSourcesDeleteDataSource**](DataSourcesApi.md#dataSourcesDeleteDataSource) | **DELETE** /api/data/v1/DataSources/{id} | Delete data source by id
 [**dataSourcesFetchData**](DataSourcesApi.md#dataSourcesFetchData) | **GET** /api/data/v1/DataSources/{id}/fetch | This should connect to a database and set data structure
@@ -12,93 +11,10 @@ Method | HTTP request | Description
 [**dataSourcesGetDataSource**](DataSourcesApi.md#dataSourcesGetDataSource) | **GET** /api/data/v1/DataSources/{id} | Get data source by id
 [**dataSourcesGetPermissions**](DataSourcesApi.md#dataSourcesGetPermissions) | **GET** /api/data/v1/DataSources/{id}/permissions | Get all Data source permissions
 [**dataSourcesRenameDataSource**](DataSourcesApi.md#dataSourcesRenameDataSource) | **PUT** /api/data/v1/DataSources/{id}/rename | Rename data source by id
-[**dataSourcesRevokePermission**](DataSourcesApi.md#dataSourcesRevokePermission) | **DELETE** /api/data/v1/DataSources/{id}/permissions | 
 [**dataSourcesUpdateConnectionString**](DataSourcesApi.md#dataSourcesUpdateConnectionString) | **PUT** /api/data/v1/DataSources/{id}/ConnectionString | Update data source&#39;s connection string by id
+[**dataSourcesUpdatePermissions**](DataSourcesApi.md#dataSourcesUpdatePermissions) | **POST** /api/data/v1/DataSources/{id}/permissions | Update permissions
 [**dataSourcesUpdateSubscriptionDataSource**](DataSourcesApi.md#dataSourcesUpdateSubscriptionDataSource) | **PUT** /api/data/v1/DataSources/{id}/updateSubscription | Update data source&#39;s subscription
 
-
-
-## dataSourcesAddPermission
-
-> DataSourcePermissions dataSourcesAddPermission(id, permissionsVM)
-
-Add Permission
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.DataSourcesApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
-        String id = "id_example"; // String | data source id
-        DataSourcePermissionsVM permissionsVM = new DataSourcePermissionsVM(); // DataSourcePermissionsVM | 
-        try {
-            DataSourcePermissions result = apiInstance.dataSourcesAddPermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DataSourcesApi#dataSourcesAddPermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| data source id |
- **permissionsVM** | [**DataSourcePermissionsVM**](DataSourcePermissionsVM.md)|  | [optional]
-
-### Return type
-
-[**DataSourcePermissions**](DataSourcePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
 
 
 ## dataSourcesCreateDataSource
@@ -509,7 +425,7 @@ Name | Type | Description  | Notes
 
 ## dataSourcesGetPermissions
 
-> DataSourcePermissions dataSourcesGetPermissions(id)
+> DataSourcePermissionsVM dataSourcesGetPermissions(id)
 
 Get all Data source permissions
 
@@ -543,7 +459,7 @@ public class Example {
         DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
         String id = "id_example"; // String | data source id
         try {
-            DataSourcePermissions result = apiInstance.dataSourcesGetPermissions(id);
+            DataSourcePermissionsVM result = apiInstance.dataSourcesGetPermissions(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DataSourcesApi#dataSourcesGetPermissions");
@@ -565,7 +481,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DataSourcePermissions**](DataSourcePermissions.md)
+[**DataSourcePermissionsVM**](DataSourcePermissionsVM.md)
 
 ### Authorization
 
@@ -671,89 +587,6 @@ Name | Type | Description  | Notes
 | **500** | Server Error |  -  |
 
 
-## dataSourcesRevokePermission
-
-> DataSourcePermissions dataSourcesRevokePermission(id, permissionsVM)
-
-
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.DataSourcesApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
-        String id = "id_example"; // String | 
-        DataSourcePermissionsVM permissionsVM = new DataSourcePermissionsVM(); // DataSourcePermissionsVM | 
-        try {
-            DataSourcePermissions result = apiInstance.dataSourcesRevokePermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DataSourcesApi#dataSourcesRevokePermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
- **permissionsVM** | [**DataSourcePermissionsVM**](DataSourcePermissionsVM.md)|  | [optional]
-
-### Return type
-
-[**DataSourcePermissions**](DataSourcePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
-
-
 ## dataSourcesUpdateConnectionString
 
 > DataSourceVM dataSourcesUpdateConnectionString(id, updateModel)
@@ -815,6 +648,88 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DataSourceVM**](DataSourceVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **402** | Client Error |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
+
+
+## dataSourcesUpdatePermissions
+
+> dataSourcesUpdatePermissions(id, permissionsVM)
+
+Update permissions
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.DataSourcesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure API key authorization: JWT
+        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
+        JWT.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //JWT.setApiKeyPrefix("Token");
+
+        DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
+        String id = "id_example"; // String | 
+        UpdateDataSourcePermissionsVM permissionsVM = new UpdateDataSourcePermissionsVM(); // UpdateDataSourcePermissionsVM | 
+        try {
+            apiInstance.dataSourcesUpdatePermissions(id, permissionsVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DataSourcesApi#dataSourcesUpdatePermissions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  |
+ **permissionsVM** | [**UpdateDataSourcePermissionsVM**](UpdateDataSourcePermissionsVM.md)|  | [optional]
+
+### Return type
+
+null (empty response body)
 
 ### Authorization
 

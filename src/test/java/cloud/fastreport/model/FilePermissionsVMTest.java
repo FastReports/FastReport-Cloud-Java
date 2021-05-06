@@ -13,7 +13,7 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.FilePermission;
+import cloud.fastreport.model.FilePermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -41,35 +41,11 @@ public class FilePermissionsVMTest {
     }
 
     /**
-     * Test the property 'permission'
+     * Test the property 'permissions'
      */
     @Test
-    public void permissionTest() {
-        // TODO: test permission
-    }
-
-    /**
-     * Test the property 'permissionType'
-     */
-    @Test
-    public void permissionTypeTest() {
-        // TODO: test permissionType
-    }
-
-    /**
-     * Test the property 'groupId'
-     */
-    @Test
-    public void groupIdTest() {
-        // TODO: test groupId
-    }
-
-    /**
-     * Test the property 'ownerId'
-     */
-    @Test
-    public void ownerIdTest() {
-        // TODO: test ownerId
+    public void permissionsTest() {
+        // TODO: test permissions
     }
 
 }

@@ -13,7 +13,7 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.SubscriptionPermissions;
+import cloud.fastreport.model.FilePermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -27,25 +27,33 @@ import org.junit.Test;
 
 
 /**
- * Model tests for SubscriptionPermissionsVM
+ * Model tests for UpdateFilePermissionsVM
  */
-public class SubscriptionPermissionsVMTest {
-    private final SubscriptionPermissionsVM model = new SubscriptionPermissionsVM();
+public class UpdateFilePermissionsVMTest {
+    private final UpdateFilePermissionsVM model = new UpdateFilePermissionsVM();
 
     /**
-     * Model tests for SubscriptionPermissionsVM
+     * Model tests for UpdateFilePermissionsVM
      */
     @Test
-    public void testSubscriptionPermissionsVM() {
-        // TODO: test SubscriptionPermissionsVM
+    public void testUpdateFilePermissionsVM() {
+        // TODO: test UpdateFilePermissionsVM
     }
 
     /**
-     * Test the property 'permissions'
+     * Test the property 'newPermissions'
      */
     @Test
-    public void permissionsTest() {
-        // TODO: test permissions
+    public void newPermissionsTest() {
+        // TODO: test newPermissions
+    }
+
+    /**
+     * Test the property 'administrate'
+     */
+    @Test
+    public void administrateTest() {
+        // TODO: test administrate
     }
 
 }

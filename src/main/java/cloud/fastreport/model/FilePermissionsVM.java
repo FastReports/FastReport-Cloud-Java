@@ -15,7 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.FilePermission;
+import cloud.fastreport.model.FilePermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -29,163 +29,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * FilePermissionsVM
  */
 @JsonPropertyOrder({
-  FilePermissionsVM.JSON_PROPERTY_PERMISSION,
-  FilePermissionsVM.JSON_PROPERTY_PERMISSION_TYPE,
-  FilePermissionsVM.JSON_PROPERTY_GROUP_ID,
-  FilePermissionsVM.JSON_PROPERTY_OWNER_ID
+  FilePermissionsVM.JSON_PROPERTY_PERMISSIONS
 })
 @JsonTypeName("FilePermissionsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FilePermissionsVM {
-  public static final String JSON_PROPERTY_PERMISSION = "permission";
-  private FilePermission permission;
+  public static final String JSON_PROPERTY_PERMISSIONS = "permissions";
+  private FilePermissions permissions;
 
-  /**
-   * Gets or Sets permissionType
-   */
-  public enum PermissionTypeEnum {
-    OWNER("Owner"),
+
+  public FilePermissionsVM permissions(FilePermissions permissions) {
     
-    GROUP("Group"),
-    
-    OTHER("Other"),
-    
-    ANON("Anon");
-
-    private String value;
-
-    PermissionTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static PermissionTypeEnum fromValue(String value) {
-      for (PermissionTypeEnum b : PermissionTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_PERMISSION_TYPE = "permissionType";
-  private PermissionTypeEnum permissionType;
-
-  public static final String JSON_PROPERTY_GROUP_ID = "groupId";
-  private String groupId;
-
-  public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
-  private String ownerId;
-
-
-  public FilePermissionsVM permission(FilePermission permission) {
-    
-    this.permission = permission;
+    this.permissions = permissions;
     return this;
   }
 
    /**
-   * Get permission
-   * @return permission
+   * Get permissions
+   * @return permissions
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PERMISSION)
+  @JsonProperty(JSON_PROPERTY_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public FilePermission getPermission() {
-    return permission;
+  public FilePermissions getPermissions() {
+    return permissions;
   }
 
 
-  public void setPermission(FilePermission permission) {
-    this.permission = permission;
-  }
-
-
-  public FilePermissionsVM permissionType(PermissionTypeEnum permissionType) {
-    
-    this.permissionType = permissionType;
-    return this;
-  }
-
-   /**
-   * Get permissionType
-   * @return permissionType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PERMISSION_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public PermissionTypeEnum getPermissionType() {
-    return permissionType;
-  }
-
-
-  public void setPermissionType(PermissionTypeEnum permissionType) {
-    this.permissionType = permissionType;
-  }
-
-
-  public FilePermissionsVM groupId(String groupId) {
-    
-    this.groupId = groupId;
-    return this;
-  }
-
-   /**
-   * Get groupId
-   * @return groupId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_GROUP_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getGroupId() {
-    return groupId;
-  }
-
-
-  public void setGroupId(String groupId) {
-    this.groupId = groupId;
-  }
-
-
-  public FilePermissionsVM ownerId(String ownerId) {
-    
-    this.ownerId = ownerId;
-    return this;
-  }
-
-   /**
-   * Get ownerId
-   * @return ownerId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_OWNER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getOwnerId() {
-    return ownerId;
-  }
-
-
-  public void setOwnerId(String ownerId) {
-    this.ownerId = ownerId;
+  public void setPermissions(FilePermissions permissions) {
+    this.permissions = permissions;
   }
 
 
@@ -198,25 +72,19 @@ public class FilePermissionsVM {
       return false;
     }
     FilePermissionsVM filePermissionsVM = (FilePermissionsVM) o;
-    return Objects.equals(this.permission, filePermissionsVM.permission) &&
-        Objects.equals(this.permissionType, filePermissionsVM.permissionType) &&
-        Objects.equals(this.groupId, filePermissionsVM.groupId) &&
-        Objects.equals(this.ownerId, filePermissionsVM.ownerId);
+    return Objects.equals(this.permissions, filePermissionsVM.permissions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(permission, permissionType, groupId, ownerId);
+    return Objects.hash(permissions);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FilePermissionsVM {\n");
-    sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
-    sb.append("    permissionType: ").append(toIndentedString(permissionType)).append("\n");
-    sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
-    sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

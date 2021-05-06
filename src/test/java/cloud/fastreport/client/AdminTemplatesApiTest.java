@@ -14,7 +14,6 @@
 package cloud.fastreport.client;
 
 import cloud.fastreport.model.AdminTemplateFolderCreateVM;
-import cloud.fastreport.model.FilePermissions;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileUpdateVM;
 import cloud.fastreport.model.FileVM;
@@ -23,6 +22,7 @@ import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.TemplateCreateAdminVM;
 import cloud.fastreport.model.TemplateVM;
 import cloud.fastreport.model.TemplatesVM;
+import cloud.fastreport.model.UpdateFilePermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -40,23 +40,6 @@ public class AdminTemplatesApiTest {
 
     private final AdminTemplatesApi api = new AdminTemplatesApi();
 
-    
-    /**
-     * Add permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminTemplateFoldersAddPermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.adminTemplateFoldersAddPermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
     
     /**
      * Delete specified folder
@@ -120,7 +103,7 @@ public class AdminTemplatesApiTest {
     @Test
     public void adminTemplateFoldersGetPermissionsTest() throws IOException {
         String id = null;
-        FilePermissions response = api.adminTemplateFoldersGetPermissions(id);
+        FilePermissionsVM response = api.adminTemplateFoldersGetPermissions(id);
 
         // TODO: test validations
     }
@@ -135,26 +118,8 @@ public class AdminTemplatesApiTest {
      */
     @Test
     public void adminTemplateFoldersPostFolderTest() throws IOException {
-        String subscriptionId = null;
         AdminTemplateFolderCreateVM folderVm = null;
-        FileVM response = api.adminTemplateFoldersPostFolder(subscriptionId, folderVm);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Revoke permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminTemplateFoldersRevokePermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.adminTemplateFoldersRevokePermission(id, permissionsVM);
+        FileVM response = api.adminTemplateFoldersPostFolder(folderVm);
 
         // TODO: test validations
     }
@@ -187,25 +152,8 @@ public class AdminTemplatesApiTest {
     @Test
     public void adminTemplateFoldersUpdatePermissionsTest() throws IOException {
         String id = null;
-        FilePermissions newPermissions = null;
-        FilePermissions response = api.adminTemplateFoldersUpdatePermissions(id, newPermissions);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Add file permissions
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminTemplatesAddPermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.adminTemplatesAddPermission(id, permissionsVM);
+        UpdateFilePermissionsVM newPermissions = null;
+        api.adminTemplateFoldersUpdatePermissions(id, newPermissions);
 
         // TODO: test validations
     }
@@ -271,24 +219,7 @@ public class AdminTemplatesApiTest {
     @Test
     public void adminTemplatesGetPermissionsTest() throws IOException {
         String id = null;
-        FilePermissions response = api.adminTemplatesGetPermissions(id);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Revoke (remove) file permissions
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminTemplatesRevokePermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.adminTemplatesRevokePermission(id, permissionsVM);
+        FilePermissionsVM response = api.adminTemplatesGetPermissions(id);
 
         // TODO: test validations
     }
@@ -311,7 +242,7 @@ public class AdminTemplatesApiTest {
     }
     
     /**
-     * Update file permissions
+     * Update permissions to file
      *
      * 
      *
@@ -320,9 +251,9 @@ public class AdminTemplatesApiTest {
      */
     @Test
     public void adminTemplatesUpdatePermissionsTest() throws IOException {
-        String fileId = null;
-        FilePermissions newPermissions = null;
-        FilePermissions response = api.adminTemplatesUpdatePermissions(fileId, newPermissions);
+        String id = null;
+        UpdateFilePermissionsVM newPermissions = null;
+        api.adminTemplatesUpdatePermissions(id, newPermissions);
 
         // TODO: test validations
     }

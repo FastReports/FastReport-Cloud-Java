@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**templateFolderAndFileGetCount**](TemplatesApi.md#templateFolderAndFileGetCount) | **GET** /api/rp/v1/Templates/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder
 [**templateFolderAndFileGetFoldersAndFiles**](TemplatesApi.md#templateFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder
-[**templateFoldersAddPermission**](TemplatesApi.md#templateFoldersAddPermission) | **PUT** /api/rp/v1/Templates/Folder/{id}/permissions | Add folder permission
 [**templateFoldersCopyFolder**](TemplatesApi.md#templateFoldersCopyFolder) | **POST** /api/rp/v1/Templates/Folder/{id}/Copy/{folderId} | Move folder to a specified folder
 [**templateFoldersDeleteFolder**](TemplatesApi.md#templateFoldersDeleteFolder) | **DELETE** /api/rp/v1/Templates/Folder/{id} | Delete specified folder
 [**templateFoldersGetBreadcrumbs**](TemplatesApi.md#templateFoldersGetBreadcrumbs) | **GET** /api/rp/v1/Templates/Folder/{id}/Breadcrumbs | Get specified folder breadcrumbs
@@ -18,10 +17,9 @@ Method | HTTP request | Description
 [**templateFoldersMoveFolder**](TemplatesApi.md#templateFoldersMoveFolder) | **POST** /api/rp/v1/Templates/Folder/{id}/Move/{folderId} | Move folder to a specified folder
 [**templateFoldersPostFolder**](TemplatesApi.md#templateFoldersPostFolder) | **POST** /api/rp/v1/Templates/Folder/{id}/Folder | Create folder
 [**templateFoldersRenameFolder**](TemplatesApi.md#templateFoldersRenameFolder) | **PUT** /api/rp/v1/Templates/Folder/{id}/Rename | Rename a folder
-[**templateFoldersRevokePermission**](TemplatesApi.md#templateFoldersRevokePermission) | **DELETE** /api/rp/v1/Templates/Folder/{id}/permissions | Revoke folder permission
 [**templateFoldersUpdateIcon**](TemplatesApi.md#templateFoldersUpdateIcon) | **PUT** /api/rp/v1/Templates/Folder/{id}/Icon | Update a folder&#39;s icon
+[**templateFoldersUpdatePermissions**](TemplatesApi.md#templateFoldersUpdatePermissions) | **POST** /api/rp/v1/Templates/{id}/permissions | Update permissions
 [**templateFoldersUpdateTags**](TemplatesApi.md#templateFoldersUpdateTags) | **PUT** /api/rp/v1/Templates/Folder/{id}/UpdateTags | Update tags
-[**templatesAddPermission**](TemplatesApi.md#templatesAddPermission) | **PUT** /api/rp/v1/Templates/File/{id}/permissions | Add permission
 [**templatesCopyFile**](TemplatesApi.md#templatesCopyFile) | **POST** /api/rp/v1/Templates/File/{id}/Copy/{folderId} | Copy file to a specified folder
 [**templatesDeleteFile**](TemplatesApi.md#templatesDeleteFile) | **DELETE** /api/rp/v1/Templates/File/{id} | Delete specified file
 [**templatesExport**](TemplatesApi.md#templatesExport) | **POST** /api/rp/v1/Templates/File/{id}/Export | Export specified report template to a specified format
@@ -32,8 +30,8 @@ Method | HTTP request | Description
 [**templatesMoveFile**](TemplatesApi.md#templatesMoveFile) | **POST** /api/rp/v1/Templates/File/{id}/Move/{folderId} | Move file to a specified folder
 [**templatesPrepare**](TemplatesApi.md#templatesPrepare) | **POST** /api/rp/v1/Templates/File/{id}/Prepare | Prepare specified template to report
 [**templatesRenameFile**](TemplatesApi.md#templatesRenameFile) | **PUT** /api/rp/v1/Templates/File/{id}/Rename | Rename a file
-[**templatesRevokePermission**](TemplatesApi.md#templatesRevokePermission) | **DELETE** /api/rp/v1/Templates/File/{id}/permissions | Revoke permission
 [**templatesUpdateIcon**](TemplatesApi.md#templatesUpdateIcon) | **PUT** /api/rp/v1/Templates/File/{id}/Icon | Update a files&#39;s icon
+[**templatesUpdatePermissions**](TemplatesApi.md#templatesUpdatePermissions) | **POST** /api/rp/v1/Templates/File/{id}/permissions | Update permissions
 [**templatesUpdateTags**](TemplatesApi.md#templatesUpdateTags) | **PUT** /api/rp/v1/Templates/File/{id}/UpdateTags | Update tags
 [**templatesUploadFile**](TemplatesApi.md#templatesUploadFile) | **POST** /api/rp/v1/Templates/Folder/{id}/File | Upload a file to the specified folder  !
 
@@ -203,88 +201,6 @@ Name | Type | Description  | Notes
 | **400** | FolderId is null |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
-
-
-## templateFoldersAddPermission
-
-> FilePermissions templateFoldersAddPermission(id, permissionsVM)
-
-Add folder permission
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.TemplatesApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        TemplatesApi apiInstance = new TemplatesApi(defaultClient);
-        String id = "id_example"; // String | folder id
-        FilePermissionsVM permissionsVM = new FilePermissionsVM(); // FilePermissionsVM | filePermissions view model
-        try {
-            FilePermissions result = apiInstance.templateFoldersAddPermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling TemplatesApi#templateFoldersAddPermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| folder id |
- **permissionsVM** | [**FilePermissionsVM**](FilePermissionsVM.md)| filePermissions view model | [optional]
-
-### Return type
-
-[**FilePermissions**](FilePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Permissions added |  -  |
-| **400** | filePermissionsVM or id is not valid |  -  |
-| **402** | subscription is outdated |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | folder is not found |  -  |
 
 
 ## templateFoldersCopyFolder
@@ -784,7 +700,7 @@ Name | Type | Description  | Notes
 
 ## templateFoldersGetPermissions
 
-> FilePermissions templateFoldersGetPermissions(id)
+> FilePermissionsVM templateFoldersGetPermissions(id)
 
 Get all folder permissions
 
@@ -818,7 +734,7 @@ public class Example {
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            FilePermissions result = apiInstance.templateFoldersGetPermissions(id);
+            FilePermissionsVM result = apiInstance.templateFoldersGetPermissions(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templateFoldersGetPermissions");
@@ -840,7 +756,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FilePermissions**](FilePermissions.md)
+[**FilePermissionsVM**](FilePermissionsVM.md)
 
 ### Authorization
 
@@ -1194,89 +1110,6 @@ Name | Type | Description  | Notes
 | **404** | Folder not found |  -  |
 
 
-## templateFoldersRevokePermission
-
-> FilePermissions templateFoldersRevokePermission(id, permissionsVM)
-
-Revoke folder permission
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.TemplatesApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        TemplatesApi apiInstance = new TemplatesApi(defaultClient);
-        String id = "id_example"; // String | folder id
-        FilePermissionsVM permissionsVM = new FilePermissionsVM(); // FilePermissionsVM | permisisons to revoke
-        try {
-            FilePermissions result = apiInstance.templateFoldersRevokePermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling TemplatesApi#templateFoldersRevokePermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| folder id |
- **permissionsVM** | [**FilePermissionsVM**](FilePermissionsVM.md)| permisisons to revoke | [optional]
-
-### Return type
-
-[**FilePermissions**](FilePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | permissions revoked |  -  |
-| **204** | happens sometimes |  -  |
-| **400** | filePermissionsVM or id is not valid |  -  |
-| **402** | subscription is outdated |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | folder is not found |  -  |
-
-
 ## templateFoldersUpdateIcon
 
 > FileVM templateFoldersUpdateIcon(id, iconModel)
@@ -1361,6 +1194,88 @@ Name | Type | Description  | Notes
 | **404** | Folder not found |  -  |
 
 
+## templateFoldersUpdatePermissions
+
+> templateFoldersUpdatePermissions(id, permissionsVM)
+
+Update permissions
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.TemplatesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure API key authorization: JWT
+        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
+        JWT.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //JWT.setApiKeyPrefix("Token");
+
+        TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+        String id = "id_example"; // String | 
+        UpdateFilePermissionsVM permissionsVM = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
+        try {
+            apiInstance.templateFoldersUpdatePermissions(id, permissionsVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TemplatesApi#templateFoldersUpdatePermissions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  |
+ **permissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **402** | Client Error |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
+
+
 ## templateFoldersUpdateTags
 
 > FileVM templateFoldersUpdateTags(id, tagsModel)
@@ -1443,89 +1358,6 @@ Name | Type | Description  | Notes
 | **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Folder not found |  -  |
-
-
-## templatesAddPermission
-
-> FilePermissions templatesAddPermission(id, permissionsVM)
-
-Add permission
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.TemplatesApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        TemplatesApi apiInstance = new TemplatesApi(defaultClient);
-        String id = "id_example"; // String | 
-        FilePermissionsVM permissionsVM = new FilePermissionsVM(); // FilePermissionsVM | 
-        try {
-            FilePermissions result = apiInstance.templatesAddPermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling TemplatesApi#templatesAddPermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
- **permissionsVM** | [**FilePermissionsVM**](FilePermissionsVM.md)|  | [optional]
-
-### Return type
-
-[**FilePermissions**](FilePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | permissions added |  -  |
-| **400** | filePermissionsVM or id is not valid |  -  |
-| **402** | subscription is outdated |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File is not found |  -  |
-| **500** | Exception thrown |  -  |
 
 
 ## templatesCopyFile
@@ -2029,7 +1861,7 @@ Name | Type | Description  | Notes
 
 ## templatesGetPermissions
 
-> FilePermissions templatesGetPermissions(id)
+> FilePermissionsVM templatesGetPermissions(id)
 
 Get all file permissions
 
@@ -2063,7 +1895,7 @@ public class Example {
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            FilePermissions result = apiInstance.templatesGetPermissions(id);
+            FilePermissionsVM result = apiInstance.templatesGetPermissions(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templatesGetPermissions");
@@ -2085,7 +1917,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FilePermissions**](FilePermissions.md)
+[**FilePermissionsVM**](FilePermissionsVM.md)
 
 ### Authorization
 
@@ -2360,90 +2192,6 @@ Name | Type | Description  | Notes
 | **500** | Exception thrown |  -  |
 
 
-## templatesRevokePermission
-
-> FilePermissions templatesRevokePermission(id, permissionsVM)
-
-Revoke permission
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.TemplatesApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        TemplatesApi apiInstance = new TemplatesApi(defaultClient);
-        String id = "id_example"; // String | 
-        FilePermissionsVM permissionsVM = new FilePermissionsVM(); // FilePermissionsVM | 
-        try {
-            FilePermissions result = apiInstance.templatesRevokePermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling TemplatesApi#templatesRevokePermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
- **permissionsVM** | [**FilePermissionsVM**](FilePermissionsVM.md)|  | [optional]
-
-### Return type
-
-[**FilePermissions**](FilePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | permissions revoked |  -  |
-| **204** | happens sometimes |  -  |
-| **400** | filePermissionsVM or id is not valid |  -  |
-| **402** | subscription is outdated |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | file is not found |  -  |
-| **500** | Exception thrown |  -  |
-
-
 ## templatesUpdateIcon
 
 > TemplateVM templatesUpdateIcon(id, iconModel)
@@ -2527,6 +2275,88 @@ Name | Type | Description  | Notes
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File not found |  -  |
 | **500** | Exception thrown |  -  |
+
+
+## templatesUpdatePermissions
+
+> templatesUpdatePermissions(id, permissionsVM)
+
+Update permissions
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.TemplatesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure API key authorization: JWT
+        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
+        JWT.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //JWT.setApiKeyPrefix("Token");
+
+        TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+        String id = "id_example"; // String | 
+        UpdateFilePermissionsVM permissionsVM = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
+        try {
+            apiInstance.templatesUpdatePermissions(id, permissionsVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TemplatesApi#templatesUpdatePermissions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  |
+ **permissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **402** | Client Error |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
 
 
 ## templatesUpdateTags

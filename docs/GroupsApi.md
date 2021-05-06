@@ -4,97 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**groupsAddPermission**](GroupsApi.md#groupsAddPermission) | **PUT** /api/manage/v1/Groups/{id}/permissions | Add permissions to user group
 [**groupsCreateGroup**](GroupsApi.md#groupsCreateGroup) | **POST** /api/manage/v1/Groups | Create a new user group
 [**groupsDeleteGroup**](GroupsApi.md#groupsDeleteGroup) | **DELETE** /api/manage/v1/Groups/{id} | Delete group by identifier
 [**groupsGetGroup**](GroupsApi.md#groupsGetGroup) | **GET** /api/manage/v1/Groups/{id} | Gets group by identifier
 [**groupsGetGroupList**](GroupsApi.md#groupsGetGroupList) | **GET** /api/manage/v1/Groups | Gets list of user groups
 [**groupsGetPermissions**](GroupsApi.md#groupsGetPermissions) | **GET** /api/manage/v1/Groups/{id}/permissions | Gets group permissions by identifier
 [**groupsRenameGroup**](GroupsApi.md#groupsRenameGroup) | **PUT** /api/manage/v1/Groups/{id}/rename | Rename group by identifier
-[**groupsRevokePermission**](GroupsApi.md#groupsRevokePermission) | **DELETE** /api/manage/v1/Groups/{id}/permissions | Remove (revoke) permissions in user group by identifier
+[**groupsUpdatePermissions**](GroupsApi.md#groupsUpdatePermissions) | **POST** /api/manage/v1/Groups/{id}/permissions | Update permissions
 
-
-
-## groupsAddPermission
-
-> GroupPermissions groupsAddPermission(id, viewModel)
-
-Add permissions to user group
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.GroupsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String id = "id_example"; // String | Identifier of group
-        GroupPermissionsVM viewModel = new GroupPermissionsVM(); // GroupPermissionsVM | Model of permission
-        try {
-            GroupPermissions result = apiInstance.groupsAddPermission(id, viewModel);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsAddPermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Identifier of group |
- **viewModel** | [**GroupPermissionsVM**](GroupPermissionsVM.md)| Model of permission | [optional]
-
-### Return type
-
-[**GroupPermissions**](GroupPermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Succesfully added |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **402** | subscription is outdated |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Group with this identifier is not found |  -  |
 
 
 ## groupsCreateGroup
@@ -420,7 +337,7 @@ Name | Type | Description  | Notes
 
 ## groupsGetPermissions
 
-> GroupPermissions groupsGetPermissions(id)
+> GroupPermissionsVM groupsGetPermissions(id)
 
 Gets group permissions by identifier
 
@@ -454,7 +371,7 @@ public class Example {
         GroupsApi apiInstance = new GroupsApi(defaultClient);
         String id = "id_example"; // String | Identifier of group
         try {
-            GroupPermissions result = apiInstance.groupsGetPermissions(id);
+            GroupPermissionsVM result = apiInstance.groupsGetPermissions(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GroupsApi#groupsGetPermissions");
@@ -476,7 +393,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GroupPermissions**](GroupPermissions.md)
+[**GroupPermissionsVM**](GroupPermissionsVM.md)
 
 ### Authorization
 
@@ -580,11 +497,11 @@ Name | Type | Description  | Notes
 | **500** | Exception thrown |  -  |
 
 
-## groupsRevokePermission
+## groupsUpdatePermissions
 
-> GroupPermissions groupsRevokePermission(id, viewModel)
+> groupsUpdatePermissions(id, permissionsVM)
 
-Remove (revoke) permissions in user group by identifier
+Update permissions
 
 ### Example
 
@@ -614,13 +531,12 @@ public class Example {
         //JWT.setApiKeyPrefix("Token");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String id = "id_example"; // String | Identifier of group
-        GroupPermissionsVM viewModel = new GroupPermissionsVM(); // GroupPermissionsVM | Model with permissions
+        String id = "id_example"; // String | 
+        UpdateGroupPermissionsVM permissionsVM = new UpdateGroupPermissionsVM(); // UpdateGroupPermissionsVM | 
         try {
-            GroupPermissions result = apiInstance.groupsRevokePermission(id, viewModel);
-            System.out.println(result);
+            apiInstance.groupsUpdatePermissions(id, permissionsVM);
         } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsRevokePermission");
+            System.err.println("Exception when calling GroupsApi#groupsUpdatePermissions");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -635,12 +551,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| Identifier of group |
- **viewModel** | [**GroupPermissionsVM**](GroupPermissionsVM.md)| Model with permissions |
+ **id** | **String**|  |
+ **permissionsVM** | [**UpdateGroupPermissionsVM**](UpdateGroupPermissionsVM.md)|  | [optional]
 
 ### Return type
 
-[**GroupPermissions**](GroupPermissions.md)
+null (empty response body)
 
 ### Authorization
 
@@ -655,10 +571,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Succesfully retured |  -  |
-| **204** | happens sometimes |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **402** | subscription is outdated |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Group with this identifier is not found |  -  |
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **402** | Client Error |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
 

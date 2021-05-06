@@ -27,25 +27,33 @@ import org.junit.Test;
 
 
 /**
- * Model tests for SubscriptionPermissionsVM
+ * Model tests for UpdateSubscriptionPermissionsVM
  */
-public class SubscriptionPermissionsVMTest {
-    private final SubscriptionPermissionsVM model = new SubscriptionPermissionsVM();
+public class UpdateSubscriptionPermissionsVMTest {
+    private final UpdateSubscriptionPermissionsVM model = new UpdateSubscriptionPermissionsVM();
 
     /**
-     * Model tests for SubscriptionPermissionsVM
+     * Model tests for UpdateSubscriptionPermissionsVM
      */
     @Test
-    public void testSubscriptionPermissionsVM() {
-        // TODO: test SubscriptionPermissionsVM
+    public void testUpdateSubscriptionPermissionsVM() {
+        // TODO: test UpdateSubscriptionPermissionsVM
     }
 
     /**
-     * Test the property 'permissions'
+     * Test the property 'newPermissions'
      */
     @Test
-    public void permissionsTest() {
-        // TODO: test permissions
+    public void newPermissionsTest() {
+        // TODO: test newPermissions
+    }
+
+    /**
+     * Test the property 'administrate'
+     */
+    @Test
+    public void administrateTest() {
+        // TODO: test administrate
     }
 
 }

@@ -14,12 +14,12 @@
 package cloud.fastreport.client;
 
 import cloud.fastreport.model.CreateGroupVM;
-import cloud.fastreport.model.GroupPermissions;
 import cloud.fastreport.model.GroupPermissionsVM;
 import cloud.fastreport.model.GroupVM;
 import cloud.fastreport.model.GroupsVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.RenameGroupVM;
+import cloud.fastreport.model.UpdateGroupPermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -37,23 +37,6 @@ public class GroupsApiTest {
 
     private final GroupsApi api = new GroupsApi();
 
-    
-    /**
-     * Add permissions to user group
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void groupsAddPermissionTest() throws IOException {
-        String id = null;
-        GroupPermissionsVM viewModel = null;
-        GroupPermissions response = api.groupsAddPermission(id, viewModel);
-
-        // TODO: test validations
-    }
     
     /**
      * Create a new user group
@@ -131,7 +114,7 @@ public class GroupsApiTest {
     @Test
     public void groupsGetPermissionsTest() throws IOException {
         String id = null;
-        GroupPermissions response = api.groupsGetPermissions(id);
+        GroupPermissionsVM response = api.groupsGetPermissions(id);
 
         // TODO: test validations
     }
@@ -154,7 +137,7 @@ public class GroupsApiTest {
     }
     
     /**
-     * Remove (revoke) permissions in user group by identifier
+     * Update permissions
      *
      * 
      *
@@ -162,10 +145,10 @@ public class GroupsApiTest {
      *          if the Api call fails
      */
     @Test
-    public void groupsRevokePermissionTest() throws IOException {
+    public void groupsUpdatePermissionsTest() throws IOException {
         String id = null;
-        GroupPermissionsVM viewModel = null;
-        GroupPermissions response = api.groupsRevokePermission(id, viewModel);
+        UpdateGroupPermissionsVM permissionsVM = null;
+        api.groupsUpdatePermissions(id, permissionsVM);
 
         // TODO: test validations
     }

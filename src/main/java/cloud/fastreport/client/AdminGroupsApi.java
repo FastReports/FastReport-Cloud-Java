@@ -3,11 +3,11 @@ package cloud.fastreport.client;
 import cloud.fastreport.ApiClient;
 
 import cloud.fastreport.model.CreateGroupAdminVM;
-import cloud.fastreport.model.GroupPermissions;
 import cloud.fastreport.model.GroupPermissionsVM;
 import cloud.fastreport.model.GroupVM;
 import cloud.fastreport.model.GroupsVM;
 import cloud.fastreport.model.ProblemDetails;
+import cloud.fastreport.model.UpdateGroupPermissionsVM;
 import cloud.fastreport.model.UpdateGroupVM;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -46,112 +46,6 @@ public class AdminGroupsApi {
     public void setApiClient(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
-
-  /**
-    * Add permissions to user group
-    * <p><b>200</b> - Succesfully added
-    * <p><b>400</b> - The request is wrong
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - Group with this identifier is not found
-    * @param id Identifier of group
-    * @param viewModel Model of permission
-    * @return GroupPermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public GroupPermissions adminGroupsAddPermission(String id, GroupPermissionsVM viewModel) throws IOException {
-        HttpResponse response = adminGroupsAddPermissionForHttpResponse(id, viewModel);
-        TypeReference<GroupPermissions> typeRef = new TypeReference<GroupPermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Add permissions to user group
-    * <p><b>200</b> - Succesfully added
-    * <p><b>400</b> - The request is wrong
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - Group with this identifier is not found
-    * @param id Identifier of group
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return GroupPermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public GroupPermissions adminGroupsAddPermission(GroupPermissionsVM viewModel, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = adminGroupsAddPermissionForHttpResponse(viewModel, id, params);
-        TypeReference<GroupPermissions> typeRef = new TypeReference<GroupPermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse adminGroupsAddPermissionForHttpResponse(String id, GroupPermissionsVM viewModel) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminGroupsAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(viewModel);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
-      public HttpResponse adminGroupsAddPermissionForHttpResponse(String id, java.io.InputStream viewModel, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminGroupsAddPermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = viewModel == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, viewModel);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-      }
-
-    public HttpResponse adminGroupsAddPermissionForHttpResponse(GroupPermissionsVM viewModel, String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminGroupsAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(viewModel);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
 
   /**
     * Create a new group, returns a new model
@@ -413,11 +307,12 @@ public class AdminGroupsApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * @param skip Variable for pagination, defautl value is 0
     * @param take Variable for pagination, default value is 10
+    * @param subscriptionId Allow to filter by subscription id
     * @return GroupsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public GroupsVM adminGroupsGetGroups(Integer skip, Integer take) throws IOException {
-        HttpResponse response = adminGroupsGetGroupsForHttpResponse(skip, take);
+    public GroupsVM adminGroupsGetGroups(Integer skip, Integer take, String subscriptionId) throws IOException {
+        HttpResponse response = adminGroupsGetGroupsForHttpResponse(skip, take, subscriptionId);
         TypeReference<GroupsVM> typeRef = new TypeReference<GroupsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -438,7 +333,7 @@ public class AdminGroupsApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse adminGroupsGetGroupsForHttpResponse(Integer skip, Integer take) throws IOException {
+    public HttpResponse adminGroupsGetGroupsForHttpResponse(Integer skip, Integer take, String subscriptionId) throws IOException {
         
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups");
         if (skip != null) {
@@ -454,6 +349,16 @@ public class AdminGroupsApi {
         }        if (take != null) {
             String key = "take";
             Object value = take;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (subscriptionId != null) {
+            String key = "subscriptionId";
+            Object value = subscriptionId;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {
@@ -507,12 +412,12 @@ public class AdminGroupsApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - Group with this identifier is not found
     * @param id Identifier of group
-    * @return GroupPermissions
+    * @return GroupPermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public GroupPermissions adminGroupsGetPermissions(String id) throws IOException {
+    public GroupPermissionsVM adminGroupsGetPermissions(String id) throws IOException {
         HttpResponse response = adminGroupsGetPermissionsForHttpResponse(id);
-        TypeReference<GroupPermissions> typeRef = new TypeReference<GroupPermissions>() {};
+        TypeReference<GroupPermissionsVM> typeRef = new TypeReference<GroupPermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -524,12 +429,12 @@ public class AdminGroupsApi {
     * <p><b>404</b> - Group with this identifier is not found
     * @param id Identifier of group
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return GroupPermissions
+    * @return GroupPermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public GroupPermissions adminGroupsGetPermissions(String id, Map<String, Object> params) throws IOException {
+    public GroupPermissionsVM adminGroupsGetPermissions(String id, Map<String, Object> params) throws IOException {
         HttpResponse response = adminGroupsGetPermissionsForHttpResponse(id, params);
-        TypeReference<GroupPermissions> typeRef = new TypeReference<GroupPermissions>() {};
+        TypeReference<GroupPermissionsVM> typeRef = new TypeReference<GroupPermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -583,114 +488,6 @@ public class AdminGroupsApi {
 
         HttpContent content = null;
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
-    }
-
-
-  /**
-    * Remove (revoke) permissions in user group by identifier
-    * <p><b>200</b> - Succesfully revoked
-    * <p><b>204</b> - happens sometimes
-    * <p><b>400</b> - The request is wrong
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - Group with this identifier is not found
-    * @param id Identifier of group
-    * @param viewModel Model with permissions
-    * @return GroupPermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public GroupPermissions adminGroupsRevokePermission(String id, GroupPermissionsVM viewModel) throws IOException {
-        HttpResponse response = adminGroupsRevokePermissionForHttpResponse(id, viewModel);
-        TypeReference<GroupPermissions> typeRef = new TypeReference<GroupPermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Remove (revoke) permissions in user group by identifier
-    * <p><b>200</b> - Succesfully revoked
-    * <p><b>204</b> - happens sometimes
-    * <p><b>400</b> - The request is wrong
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - Group with this identifier is not found
-    * @param id Identifier of group
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return GroupPermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public GroupPermissions adminGroupsRevokePermission(GroupPermissionsVM viewModel, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = adminGroupsRevokePermissionForHttpResponse(viewModel, id, params);
-        TypeReference<GroupPermissions> typeRef = new TypeReference<GroupPermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse adminGroupsRevokePermissionForHttpResponse(String id, GroupPermissionsVM viewModel) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminGroupsRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-    }
-
-      public HttpResponse adminGroupsRevokePermissionForHttpResponse(String id, java.io.InputStream viewModel, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminGroupsRevokePermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = viewModel == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, viewModel);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-      }
-
-    public HttpResponse adminGroupsRevokePermissionForHttpResponse(GroupPermissionsVM viewModel, String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminGroupsRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
 
@@ -806,15 +603,12 @@ public class AdminGroupsApi {
     * <p><b>400</b> - The request is wrong
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - Group with this identifier is not found
-    * @param groupId Identifier of group
+    * @param id Identifier of group
     * @param newPermissions Model with new permissions
-    * @return GroupPermissions
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public GroupPermissions adminGroupsUpdatePermissions(String groupId, GroupPermissions newPermissions) throws IOException {
-        HttpResponse response = adminGroupsUpdatePermissionsForHttpResponse(groupId, newPermissions);
-        TypeReference<GroupPermissions> typeRef = new TypeReference<GroupPermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    public void adminGroupsUpdatePermissions(String id, UpdateGroupPermissionsVM newPermissions) throws IOException {
+        adminGroupsUpdatePermissionsForHttpResponse(id, newPermissions);
     }
 
   /**
@@ -823,26 +617,23 @@ public class AdminGroupsApi {
     * <p><b>400</b> - The request is wrong
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - Group with this identifier is not found
-    * @param groupId Identifier of group
+    * @param id Identifier of group
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return GroupPermissions
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public GroupPermissions adminGroupsUpdatePermissions(GroupPermissions newPermissions, String groupId, Map<String, Object> params) throws IOException {
-        HttpResponse response = adminGroupsUpdatePermissionsForHttpResponse(newPermissions, groupId, params);
-        TypeReference<GroupPermissions> typeRef = new TypeReference<GroupPermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    public void adminGroupsUpdatePermissions(UpdateGroupPermissionsVM newPermissions, String id, Map<String, Object> params) throws IOException {
+        adminGroupsUpdatePermissionsForHttpResponse(newPermissions, id, params);
     }
 
-    public HttpResponse adminGroupsUpdatePermissionsForHttpResponse(String groupId, GroupPermissions newPermissions) throws IOException {
-        // verify the required parameter 'groupId' is set
-        if (groupId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'groupId' when calling adminGroupsUpdatePermissions");
+    public HttpResponse adminGroupsUpdatePermissionsForHttpResponse(String id, UpdateGroupPermissionsVM newPermissions) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminGroupsUpdatePermissions");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("groupId", groupId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups/{groupId}/permissions");
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups/{id}/permissions");
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -851,15 +642,15 @@ public class AdminGroupsApi {
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse adminGroupsUpdatePermissionsForHttpResponse(String groupId, java.io.InputStream newPermissions, String mediaType) throws IOException {
-          // verify the required parameter 'groupId' is set
-              if (groupId == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'groupId' when calling adminGroupsUpdatePermissions");
+      public HttpResponse adminGroupsUpdatePermissionsForHttpResponse(String id, java.io.InputStream newPermissions, String mediaType) throws IOException {
+          // verify the required parameter 'id' is set
+              if (id == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminGroupsUpdatePermissions");
               }
                   // create a map of path variables
                   final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("groupId", groupId);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups/{groupId}/permissions");
+                      uriVariables.put("id", id);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups/{id}/permissions");
 
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -870,15 +661,15 @@ public class AdminGroupsApi {
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse adminGroupsUpdatePermissionsForHttpResponse(GroupPermissions newPermissions, String groupId, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'groupId' is set
-        if (groupId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'groupId' when calling adminGroupsUpdatePermissions");
+    public HttpResponse adminGroupsUpdatePermissionsForHttpResponse(UpdateGroupPermissionsVM newPermissions, String id, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminGroupsUpdatePermissions");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("groupId", groupId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups/{groupId}/permissions");
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Groups/{id}/permissions");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);

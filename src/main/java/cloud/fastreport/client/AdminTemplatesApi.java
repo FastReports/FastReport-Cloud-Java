@@ -3,7 +3,6 @@ package cloud.fastreport.client;
 import cloud.fastreport.ApiClient;
 
 import cloud.fastreport.model.AdminTemplateFolderCreateVM;
-import cloud.fastreport.model.FilePermissions;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileUpdateVM;
 import cloud.fastreport.model.FileVM;
@@ -12,6 +11,7 @@ import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.TemplateCreateAdminVM;
 import cloud.fastreport.model.TemplateVM;
 import cloud.fastreport.model.TemplatesVM;
+import cloud.fastreport.model.UpdateFilePermissionsVM;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.api.client.http.EmptyContent;
@@ -49,114 +49,6 @@ public class AdminTemplatesApi {
     public void setApiClient(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
-
-  /**
-    * Add permission
-    * <p><b>200</b> - succesfully added
-    * <p><b>400</b> - Id is null
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File not found
-    * <p><b>500</b> - Caught exception
-    * @param id folder id
-    * @param permissionsVM File permissions vm
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions adminTemplateFoldersAddPermission(String id, FilePermissionsVM permissionsVM) throws IOException {
-        HttpResponse response = adminTemplateFoldersAddPermissionForHttpResponse(id, permissionsVM);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Add permission
-    * <p><b>200</b> - succesfully added
-    * <p><b>400</b> - Id is null
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File not found
-    * <p><b>500</b> - Caught exception
-    * @param id folder id
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions adminTemplateFoldersAddPermission(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = adminTemplateFoldersAddPermissionForHttpResponse(permissionsVM, id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse adminTemplateFoldersAddPermissionForHttpResponse(String id, FilePermissionsVM permissionsVM) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplateFoldersAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
-      public HttpResponse adminTemplateFoldersAddPermissionForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplateFoldersAddPermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = permissionsVM == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-      }
-
-    public HttpResponse adminTemplateFoldersAddPermissionForHttpResponse(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplateFoldersAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
 
   /**
     * Delete specified folder
@@ -348,7 +240,7 @@ public class AdminTemplatesApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * @param skip Variable for pagination, defautl value is 0
     * @param take Variable for pagination, default value is 10
-    * @param subscriptionId Subscription Id
+    * @param subscriptionId Allows to filter by subscriptions ID
     * @return FilesVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -453,12 +345,12 @@ public class AdminTemplatesApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File not found
     * @param id folder id
-    * @return FilePermissions
+    * @return FilePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilePermissions adminTemplateFoldersGetPermissions(String id) throws IOException {
+    public FilePermissionsVM adminTemplateFoldersGetPermissions(String id) throws IOException {
         HttpResponse response = adminTemplateFoldersGetPermissionsForHttpResponse(id);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
+        TypeReference<FilePermissionsVM> typeRef = new TypeReference<FilePermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -470,12 +362,12 @@ public class AdminTemplatesApi {
     * <p><b>404</b> - File not found
     * @param id folder id
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
+    * @return FilePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilePermissions adminTemplateFoldersGetPermissions(String id, Map<String, Object> params) throws IOException {
+    public FilePermissionsVM adminTemplateFoldersGetPermissions(String id, Map<String, Object> params) throws IOException {
         HttpResponse response = adminTemplateFoldersGetPermissionsForHttpResponse(id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
+        TypeReference<FilePermissionsVM> typeRef = new TypeReference<FilePermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -540,13 +432,12 @@ public class AdminTemplatesApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - subscription not found
     * <p><b>500</b> - Exception caught while creating
-    * @param subscriptionId The subscriptionId parameter
     * @param folderVm folder create vm
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FileVM adminTemplateFoldersPostFolder(String subscriptionId, AdminTemplateFolderCreateVM folderVm) throws IOException {
-        HttpResponse response = adminTemplateFoldersPostFolderForHttpResponse(subscriptionId, folderVm);
+    public FileVM adminTemplateFoldersPostFolder(AdminTemplateFolderCreateVM folderVm) throws IOException {
+        HttpResponse response = adminTemplateFoldersPostFolderForHttpResponse(folderVm);
         TypeReference<FileVM> typeRef = new TypeReference<FileVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -559,45 +450,32 @@ public class AdminTemplatesApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - subscription not found
     * <p><b>500</b> - Exception caught while creating
-    * @param subscriptionId The subscriptionId parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FileVM adminTemplateFoldersPostFolder(AdminTemplateFolderCreateVM folderVm, String subscriptionId, Map<String, Object> params) throws IOException {
-        HttpResponse response = adminTemplateFoldersPostFolderForHttpResponse(folderVm, subscriptionId, params);
+    public FileVM adminTemplateFoldersPostFolder(AdminTemplateFolderCreateVM folderVm, Map<String, Object> params) throws IOException {
+        HttpResponse response = adminTemplateFoldersPostFolderForHttpResponse(folderVm, params);
         TypeReference<FileVM> typeRef = new TypeReference<FileVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse adminTemplateFoldersPostFolderForHttpResponse(String subscriptionId, AdminTemplateFolderCreateVM folderVm) throws IOException {
-        // verify the required parameter 'subscriptionId' is set
-        if (subscriptionId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling adminTemplateFoldersPostFolder");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("subscriptionId", subscriptionId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders/{subscriptionId}");
+    public HttpResponse adminTemplateFoldersPostFolderForHttpResponse(AdminTemplateFolderCreateVM folderVm) throws IOException {
+        
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders");
 
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
         HttpContent content = apiClient.new JacksonJsonHttpContent(folderVm);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse adminTemplateFoldersPostFolderForHttpResponse(String subscriptionId, java.io.InputStream folderVm, String mediaType) throws IOException {
-          // verify the required parameter 'subscriptionId' is set
-              if (subscriptionId == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling adminTemplateFoldersPostFolder");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("subscriptionId", subscriptionId);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders/{subscriptionId}");
+      public HttpResponse adminTemplateFoldersPostFolderForHttpResponse(java.io.InputStream folderVm, String mediaType) throws IOException {
+          
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders");
 
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
               HttpContent content = folderVm == null ?
@@ -606,15 +484,9 @@ public class AdminTemplatesApi {
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse adminTemplateFoldersPostFolderForHttpResponse(AdminTemplateFolderCreateVM folderVm, String subscriptionId, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'subscriptionId' is set
-        if (subscriptionId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling adminTemplateFoldersPostFolder");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("subscriptionId", subscriptionId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders/{subscriptionId}");
+    public HttpResponse adminTemplateFoldersPostFolderForHttpResponse(AdminTemplateFolderCreateVM folderVm, Map<String, Object> params) throws IOException {
+        
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -634,121 +506,11 @@ public class AdminTemplatesApi {
             }
         }
 
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
         HttpContent content = apiClient.new JacksonJsonHttpContent(folderVm);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
-    }
-
-
-  /**
-    * Revoke permission
-    * <p><b>200</b> - succesfully revoked
-    * <p><b>204</b> - happens sometimes
-    * <p><b>400</b> - Id is null
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File not found
-    * <p><b>500</b> - Exception caught
-    * @param id folder id
-    * @param permissionsVM File permissions vm
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions adminTemplateFoldersRevokePermission(String id, FilePermissionsVM permissionsVM) throws IOException {
-        HttpResponse response = adminTemplateFoldersRevokePermissionForHttpResponse(id, permissionsVM);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Revoke permission
-    * <p><b>200</b> - succesfully revoked
-    * <p><b>204</b> - happens sometimes
-    * <p><b>400</b> - Id is null
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File not found
-    * <p><b>500</b> - Exception caught
-    * @param id folder id
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions adminTemplateFoldersRevokePermission(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = adminTemplateFoldersRevokePermissionForHttpResponse(permissionsVM, id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse adminTemplateFoldersRevokePermissionForHttpResponse(String id, FilePermissionsVM permissionsVM) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplateFoldersRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-    }
-
-      public HttpResponse adminTemplateFoldersRevokePermissionForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplateFoldersRevokePermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = permissionsVM == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-      }
-
-    public HttpResponse adminTemplateFoldersRevokePermissionForHttpResponse(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplateFoldersRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/TemplateFolders/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
 
@@ -869,13 +631,10 @@ public class AdminTemplatesApi {
     * <p><b>500</b> - Exception caught
     * @param id folder id
     * @param newPermissions The newPermissions parameter
-    * @return FilePermissions
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilePermissions adminTemplateFoldersUpdatePermissions(String id, FilePermissions newPermissions) throws IOException {
-        HttpResponse response = adminTemplateFoldersUpdatePermissionsForHttpResponse(id, newPermissions);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    public void adminTemplateFoldersUpdatePermissions(String id, UpdateFilePermissionsVM newPermissions) throws IOException {
+        adminTemplateFoldersUpdatePermissionsForHttpResponse(id, newPermissions);
     }
 
   /**
@@ -887,16 +646,13 @@ public class AdminTemplatesApi {
     * <p><b>500</b> - Exception caught
     * @param id folder id
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilePermissions adminTemplateFoldersUpdatePermissions(FilePermissions newPermissions, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = adminTemplateFoldersUpdatePermissionsForHttpResponse(newPermissions, id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    public void adminTemplateFoldersUpdatePermissions(UpdateFilePermissionsVM newPermissions, String id, Map<String, Object> params) throws IOException {
+        adminTemplateFoldersUpdatePermissionsForHttpResponse(newPermissions, id, params);
     }
 
-    public HttpResponse adminTemplateFoldersUpdatePermissionsForHttpResponse(String id, FilePermissions newPermissions) throws IOException {
+    public HttpResponse adminTemplateFoldersUpdatePermissionsForHttpResponse(String id, UpdateFilePermissionsVM newPermissions) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplateFoldersUpdatePermissions");
@@ -932,7 +688,7 @@ public class AdminTemplatesApi {
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse adminTemplateFoldersUpdatePermissionsForHttpResponse(FilePermissions newPermissions, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse adminTemplateFoldersUpdatePermissionsForHttpResponse(UpdateFilePermissionsVM newPermissions, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplateFoldersUpdatePermissions");
@@ -965,112 +721,6 @@ public class AdminTemplatesApi {
 
         HttpContent content = apiClient.new JacksonJsonHttpContent(newPermissions);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
-    }
-
-
-  /**
-    * Add file permissions
-    * <p><b>200</b> - succesfully added
-    * <p><b>400</b> - Id is null
-    * <p><b>401</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File not found
-    * @param id The id parameter
-    * @param permissionsVM permissions to add
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions adminTemplatesAddPermission(String id, FilePermissionsVM permissionsVM) throws IOException {
-        HttpResponse response = adminTemplatesAddPermissionForHttpResponse(id, permissionsVM);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Add file permissions
-    * <p><b>200</b> - succesfully added
-    * <p><b>400</b> - Id is null
-    * <p><b>401</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File not found
-    * @param id The id parameter
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions adminTemplatesAddPermission(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = adminTemplatesAddPermissionForHttpResponse(permissionsVM, id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse adminTemplatesAddPermissionForHttpResponse(String id, FilePermissionsVM permissionsVM) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplatesAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
-      public HttpResponse adminTemplatesAddPermissionForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplatesAddPermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = permissionsVM == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-      }
-
-    public HttpResponse adminTemplatesAddPermissionForHttpResponse(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplatesAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
 
@@ -1357,12 +1007,12 @@ public class AdminTemplatesApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File not found
     * @param id The id parameter
-    * @return FilePermissions
+    * @return FilePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilePermissions adminTemplatesGetPermissions(String id) throws IOException {
+    public FilePermissionsVM adminTemplatesGetPermissions(String id) throws IOException {
         HttpResponse response = adminTemplatesGetPermissionsForHttpResponse(id);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
+        TypeReference<FilePermissionsVM> typeRef = new TypeReference<FilePermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -1374,12 +1024,12 @@ public class AdminTemplatesApi {
     * <p><b>404</b> - File not found
     * @param id The id parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
+    * @return FilePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilePermissions adminTemplatesGetPermissions(String id, Map<String, Object> params) throws IOException {
+    public FilePermissionsVM adminTemplatesGetPermissions(String id, Map<String, Object> params) throws IOException {
         HttpResponse response = adminTemplatesGetPermissionsForHttpResponse(id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
+        TypeReference<FilePermissionsVM> typeRef = new TypeReference<FilePermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -1437,116 +1087,6 @@ public class AdminTemplatesApi {
 
 
   /**
-    * Revoke (remove) file permissions
-    * <p><b>200</b> - succesfully revoked
-    * <p><b>204</b> - happens sometimes
-    * <p><b>400</b> - Id is null
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File not found
-    * <p><b>500</b> - Exception caught
-    * @param id file id
-    * @param permissionsVM permissions to revoke
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions adminTemplatesRevokePermission(String id, FilePermissionsVM permissionsVM) throws IOException {
-        HttpResponse response = adminTemplatesRevokePermissionForHttpResponse(id, permissionsVM);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Revoke (remove) file permissions
-    * <p><b>200</b> - succesfully revoked
-    * <p><b>204</b> - happens sometimes
-    * <p><b>400</b> - Id is null
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File not found
-    * <p><b>500</b> - Exception caught
-    * @param id file id
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions adminTemplatesRevokePermission(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = adminTemplatesRevokePermissionForHttpResponse(permissionsVM, id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse adminTemplatesRevokePermissionForHttpResponse(String id, FilePermissionsVM permissionsVM) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplatesRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-    }
-
-      public HttpResponse adminTemplatesRevokePermissionForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplatesRevokePermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = permissionsVM == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-      }
-
-    public HttpResponse adminTemplatesRevokePermissionForHttpResponse(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplatesRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-    }
-
-
-  /**
     * Update a file
     * User with Create Entity permission can access this method.
     * <p><b>200</b> - File has been uploaded
@@ -1590,7 +1130,7 @@ public class AdminTemplatesApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}/File");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}");
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -1607,7 +1147,7 @@ public class AdminTemplatesApi {
                   // create a map of path variables
                   final Map<String, Object> uriVariables = new HashMap<String, Object>();
                       uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}/File");
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}");
 
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -1626,7 +1166,7 @@ public class AdminTemplatesApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}/File");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -1655,50 +1195,42 @@ public class AdminTemplatesApi {
 
 
   /**
-    * Update file permissions
-    * <p><b>200</b> - succesfully updated
-    * <p><b>400</b> - Id is null
+    * Update permissions to file
+    * <p><b>200</b> - Succesfully updated
+    * <p><b>400</b> - The reqeust is wrong
     * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File not found
-    * <p><b>500</b> - Caught exception while upddating
-    * @param fileId The fileId parameter
-    * @param newPermissions permissions model
-    * @return FilePermissions
+    * <p><b>404</b> - Datasource is not found
+    * @param id The id parameter
+    * @param newPermissions The newPermissions parameter
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilePermissions adminTemplatesUpdatePermissions(String fileId, FilePermissions newPermissions) throws IOException {
-        HttpResponse response = adminTemplatesUpdatePermissionsForHttpResponse(fileId, newPermissions);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    public void adminTemplatesUpdatePermissions(String id, UpdateFilePermissionsVM newPermissions) throws IOException {
+        adminTemplatesUpdatePermissionsForHttpResponse(id, newPermissions);
     }
 
   /**
-    * Update file permissions
-    * <p><b>200</b> - succesfully updated
-    * <p><b>400</b> - Id is null
+    * Update permissions to file
+    * <p><b>200</b> - Succesfully updated
+    * <p><b>400</b> - The reqeust is wrong
     * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File not found
-    * <p><b>500</b> - Caught exception while upddating
-    * @param fileId The fileId parameter
+    * <p><b>404</b> - Datasource is not found
+    * @param id The id parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilePermissions adminTemplatesUpdatePermissions(FilePermissions newPermissions, String fileId, Map<String, Object> params) throws IOException {
-        HttpResponse response = adminTemplatesUpdatePermissionsForHttpResponse(newPermissions, fileId, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    public void adminTemplatesUpdatePermissions(UpdateFilePermissionsVM newPermissions, String id, Map<String, Object> params) throws IOException {
+        adminTemplatesUpdatePermissionsForHttpResponse(newPermissions, id, params);
     }
 
-    public HttpResponse adminTemplatesUpdatePermissionsForHttpResponse(String fileId, FilePermissions newPermissions) throws IOException {
-        // verify the required parameter 'fileId' is set
-        if (fileId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'fileId' when calling adminTemplatesUpdatePermissions");
+    public HttpResponse adminTemplatesUpdatePermissionsForHttpResponse(String id, UpdateFilePermissionsVM newPermissions) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplatesUpdatePermissions");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("fileId", fileId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{fileId}/permissions");
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}/permissions");
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -1707,15 +1239,15 @@ public class AdminTemplatesApi {
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse adminTemplatesUpdatePermissionsForHttpResponse(String fileId, java.io.InputStream newPermissions, String mediaType) throws IOException {
-          // verify the required parameter 'fileId' is set
-              if (fileId == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'fileId' when calling adminTemplatesUpdatePermissions");
+      public HttpResponse adminTemplatesUpdatePermissionsForHttpResponse(String id, java.io.InputStream newPermissions, String mediaType) throws IOException {
+          // verify the required parameter 'id' is set
+              if (id == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplatesUpdatePermissions");
               }
                   // create a map of path variables
                   final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("fileId", fileId);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{fileId}/permissions");
+                      uriVariables.put("id", id);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}/permissions");
 
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -1726,15 +1258,15 @@ public class AdminTemplatesApi {
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse adminTemplatesUpdatePermissionsForHttpResponse(FilePermissions newPermissions, String fileId, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'fileId' is set
-        if (fileId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'fileId' when calling adminTemplatesUpdatePermissions");
+    public HttpResponse adminTemplatesUpdatePermissionsForHttpResponse(UpdateFilePermissionsVM newPermissions, String id, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling adminTemplatesUpdatePermissions");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("fileId", fileId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{fileId}/permissions");
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/admin/v1/Templates/{id}/permissions");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);

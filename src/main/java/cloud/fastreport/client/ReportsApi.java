@@ -7,7 +7,6 @@ import cloud.fastreport.model.CountVM;
 import cloud.fastreport.model.ExportReportTaskVM;
 import cloud.fastreport.model.ExportVM;
 import cloud.fastreport.model.FileIconVM;
-import cloud.fastreport.model.FilePermissions;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileRenameVM;
 import cloud.fastreport.model.FileTagsUpdateVM;
@@ -21,6 +20,7 @@ import cloud.fastreport.model.ReportCreateVM;
 import cloud.fastreport.model.ReportFolderCreateVM;
 import cloud.fastreport.model.ReportVM;
 import cloud.fastreport.model.ReportsVM;
+import cloud.fastreport.model.UpdateFilePermissionsVM;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.api.client.http.EmptyContent;
@@ -255,114 +255,6 @@ public class ReportsApi {
 
         HttpContent content = null;
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
-    }
-
-
-  /**
-    * Add folder permission
-    * <p><b>200</b> - Permissions added
-    * <p><b>400</b> - filePermissionsVM or id is not valid
-    * <p><b>402</b> - subscription is outdated
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - folder is not found
-    * @param id folder id
-    * @param permissionsVM filePermissions view model
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions reportFoldersAddPermission(String id, FilePermissionsVM permissionsVM) throws IOException {
-        HttpResponse response = reportFoldersAddPermissionForHttpResponse(id, permissionsVM);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Add folder permission
-    * <p><b>200</b> - Permissions added
-    * <p><b>400</b> - filePermissionsVM or id is not valid
-    * <p><b>402</b> - subscription is outdated
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - folder is not found
-    * @param id folder id
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions reportFoldersAddPermission(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = reportFoldersAddPermissionForHttpResponse(permissionsVM, id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse reportFoldersAddPermissionForHttpResponse(String id, FilePermissionsVM permissionsVM) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportFoldersAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/Folder/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
-      public HttpResponse reportFoldersAddPermissionForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportFoldersAddPermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/Folder/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = permissionsVM == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-      }
-
-    public HttpResponse reportFoldersAddPermissionForHttpResponse(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportFoldersAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/Folder/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
 
@@ -944,12 +836,12 @@ public class ReportsApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - folder is not found
     * @param id The id parameter
-    * @return FilePermissions
+    * @return FilePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilePermissions reportFoldersGetPermissions(String id) throws IOException {
+    public FilePermissionsVM reportFoldersGetPermissions(String id) throws IOException {
         HttpResponse response = reportFoldersGetPermissionsForHttpResponse(id);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
+        TypeReference<FilePermissionsVM> typeRef = new TypeReference<FilePermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -961,12 +853,12 @@ public class ReportsApi {
     * <p><b>404</b> - folder is not found
     * @param id The id parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
+    * @return FilePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilePermissions reportFoldersGetPermissions(String id, Map<String, Object> params) throws IOException {
+    public FilePermissionsVM reportFoldersGetPermissions(String id, Map<String, Object> params) throws IOException {
         HttpResponse response = reportFoldersGetPermissionsForHttpResponse(id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
+        TypeReference<FilePermissionsVM> typeRef = new TypeReference<FilePermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -1430,116 +1322,6 @@ public class ReportsApi {
 
 
   /**
-    * Revoke folder permission
-    * <p><b>200</b> - permissions revoked
-    * <p><b>204</b> - happens sometimes
-    * <p><b>400</b> - filePermissionsVM or id is not valid
-    * <p><b>402</b> - subscription is outdated
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - folder is not found
-    * @param id folder id
-    * @param permissionsVM permisisons to revoke
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions reportFoldersRevokePermission(String id, FilePermissionsVM permissionsVM) throws IOException {
-        HttpResponse response = reportFoldersRevokePermissionForHttpResponse(id, permissionsVM);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Revoke folder permission
-    * <p><b>200</b> - permissions revoked
-    * <p><b>204</b> - happens sometimes
-    * <p><b>400</b> - filePermissionsVM or id is not valid
-    * <p><b>402</b> - subscription is outdated
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - folder is not found
-    * @param id folder id
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions reportFoldersRevokePermission(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = reportFoldersRevokePermissionForHttpResponse(permissionsVM, id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse reportFoldersRevokePermissionForHttpResponse(String id, FilePermissionsVM permissionsVM) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportFoldersRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/Folder/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-    }
-
-      public HttpResponse reportFoldersRevokePermissionForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportFoldersRevokePermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/Folder/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = permissionsVM == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-      }
-
-    public HttpResponse reportFoldersRevokePermissionForHttpResponse(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportFoldersRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/Folder/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-    }
-
-
-  /**
     * Update a folder&#39;s icon
     * User with a Update Icon permission can access this method.
     * <p><b>200</b> - Folder&#39;s icon has been updated
@@ -1650,6 +1432,110 @@ public class ReportsApi {
 
 
   /**
+    * Update permissions
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>402</b> - Client Error
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id The id parameter
+    * @param permissionsVM The permissionsVM parameter
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void reportFoldersUpdatePermissions(String id, UpdateFilePermissionsVM permissionsVM) throws IOException {
+        reportFoldersUpdatePermissionsForHttpResponse(id, permissionsVM);
+    }
+
+  /**
+    * Update permissions
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>402</b> - Client Error
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id The id parameter
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void reportFoldersUpdatePermissions(UpdateFilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+        reportFoldersUpdatePermissionsForHttpResponse(permissionsVM, id, params);
+    }
+
+    public HttpResponse reportFoldersUpdatePermissionsForHttpResponse(String id, UpdateFilePermissionsVM permissionsVM) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportFoldersUpdatePermissions");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/{id}/permissions");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+      public HttpResponse reportFoldersUpdatePermissionsForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
+          // verify the required parameter 'id' is set
+              if (id == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportFoldersUpdatePermissions");
+              }
+                  // create a map of path variables
+                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
+                      uriVariables.put("id", id);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/{id}/permissions");
+
+              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+              HttpContent content = permissionsVM == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+      }
+
+    public HttpResponse reportFoldersUpdatePermissionsForHttpResponse(UpdateFilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportFoldersUpdatePermissions");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/{id}/permissions");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+
+  /**
     * Update tags
     * User with a Update Tags permission can access this method.
     * <p><b>200</b> - Tags has been updated
@@ -1755,116 +1641,6 @@ public class ReportsApi {
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
         HttpContent content = apiClient.new JacksonJsonHttpContent(tagsModel);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
-
-  /**
-    * Add permission
-    * <p><b>200</b> - permissions added
-    * <p><b>400</b> - filePermissionsVM or id is not valid
-    * <p><b>402</b> - subscription is outdated
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File is not found
-    * <p><b>500</b> - Exception thrown
-    * @param id The id parameter
-    * @param permissionsVM The permissionsVM parameter
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions reportsAddPermission(String id, FilePermissionsVM permissionsVM) throws IOException {
-        HttpResponse response = reportsAddPermissionForHttpResponse(id, permissionsVM);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Add permission
-    * <p><b>200</b> - permissions added
-    * <p><b>400</b> - filePermissionsVM or id is not valid
-    * <p><b>402</b> - subscription is outdated
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File is not found
-    * <p><b>500</b> - Exception thrown
-    * @param id The id parameter
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions reportsAddPermission(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = reportsAddPermissionForHttpResponse(permissionsVM, id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse reportsAddPermissionForHttpResponse(String id, FilePermissionsVM permissionsVM) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportsAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/File/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
-      public HttpResponse reportsAddPermissionForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportsAddPermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/File/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = permissionsVM == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-      }
-
-    public HttpResponse reportsAddPermissionForHttpResponse(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportsAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/File/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
@@ -2465,12 +2241,12 @@ public class ReportsApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - file is not found
     * @param id The id parameter
-    * @return FilePermissions
+    * @return FilePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilePermissions reportsGetPermissions(String id) throws IOException {
+    public FilePermissionsVM reportsGetPermissions(String id) throws IOException {
         HttpResponse response = reportsGetPermissionsForHttpResponse(id);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
+        TypeReference<FilePermissionsVM> typeRef = new TypeReference<FilePermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -2482,12 +2258,12 @@ public class ReportsApi {
     * <p><b>404</b> - file is not found
     * @param id The id parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
+    * @return FilePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilePermissions reportsGetPermissions(String id, Map<String, Object> params) throws IOException {
+    public FilePermissionsVM reportsGetPermissions(String id, Map<String, Object> params) throws IOException {
         HttpResponse response = reportsGetPermissionsForHttpResponse(id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
+        TypeReference<FilePermissionsVM> typeRef = new TypeReference<FilePermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -2759,118 +2535,6 @@ public class ReportsApi {
 
 
   /**
-    * Revoke permission
-    * <p><b>200</b> - permissions revoked
-    * <p><b>204</b> - happens sometimes
-    * <p><b>400</b> - filePermissionsVM or id is not valid
-    * <p><b>402</b> - subscription is outdated
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - file is not found
-    * <p><b>500</b> - Exception thrown
-    * @param id The id parameter
-    * @param permissionsVM The permissionsVM parameter
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions reportsRevokePermission(String id, FilePermissionsVM permissionsVM) throws IOException {
-        HttpResponse response = reportsRevokePermissionForHttpResponse(id, permissionsVM);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Revoke permission
-    * <p><b>200</b> - permissions revoked
-    * <p><b>204</b> - happens sometimes
-    * <p><b>400</b> - filePermissionsVM or id is not valid
-    * <p><b>402</b> - subscription is outdated
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - file is not found
-    * <p><b>500</b> - Exception thrown
-    * @param id The id parameter
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return FilePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public FilePermissions reportsRevokePermission(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = reportsRevokePermissionForHttpResponse(permissionsVM, id, params);
-        TypeReference<FilePermissions> typeRef = new TypeReference<FilePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse reportsRevokePermissionForHttpResponse(String id, FilePermissionsVM permissionsVM) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportsRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/File/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-    }
-
-      public HttpResponse reportsRevokePermissionForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportsRevokePermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/File/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = permissionsVM == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-      }
-
-    public HttpResponse reportsRevokePermissionForHttpResponse(FilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportsRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/File/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-    }
-
-
-  /**
     * Update a files&#39;s icon
     * User with Update Icon permission can access this method.
     * <p><b>200</b> - File&#39;s icon has been updated
@@ -2979,6 +2643,110 @@ public class ReportsApi {
 
         HttpContent content = apiClient.new JacksonJsonHttpContent(iconModel);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+    }
+
+
+  /**
+    * Update permissions
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>402</b> - Client Error
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id The id parameter
+    * @param permissionsVM The permissionsVM parameter
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void reportsUpdatePermissions(String id, UpdateFilePermissionsVM permissionsVM) throws IOException {
+        reportsUpdatePermissionsForHttpResponse(id, permissionsVM);
+    }
+
+  /**
+    * Update permissions
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>402</b> - Client Error
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id The id parameter
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void reportsUpdatePermissions(UpdateFilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+        reportsUpdatePermissionsForHttpResponse(permissionsVM, id, params);
+    }
+
+    public HttpResponse reportsUpdatePermissionsForHttpResponse(String id, UpdateFilePermissionsVM permissionsVM) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportsUpdatePermissions");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/File/{id}/permissions");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+      public HttpResponse reportsUpdatePermissionsForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
+          // verify the required parameter 'id' is set
+              if (id == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportsUpdatePermissions");
+              }
+                  // create a map of path variables
+                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
+                      uriVariables.put("id", id);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/File/{id}/permissions");
+
+              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+              HttpContent content = permissionsVM == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+      }
+
+    public HttpResponse reportsUpdatePermissionsForHttpResponse(UpdateFilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportsUpdatePermissions");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/File/{id}/permissions");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 

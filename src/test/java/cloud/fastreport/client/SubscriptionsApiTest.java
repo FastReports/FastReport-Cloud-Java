@@ -17,12 +17,12 @@ import cloud.fastreport.model.DefaultPermissions;
 import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.RenameSubscriptionVM;
-import cloud.fastreport.model.SubscriptionPermissions;
 import cloud.fastreport.model.SubscriptionPermissionsVM;
 import cloud.fastreport.model.SubscriptionVM;
 import cloud.fastreport.model.SubscriptionsVM;
 import cloud.fastreport.model.UpdateDefaultPermissionsVM;
 import cloud.fastreport.model.UpdateSubscriptionLocaleVM;
+import cloud.fastreport.model.UpdateSubscriptionPermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -40,23 +40,6 @@ public class SubscriptionsApiTest {
 
     private final SubscriptionsApi api = new SubscriptionsApi();
 
-    
-    /**
-     * Add permissions for a subscription
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void subscriptionsAddPermissionTest() throws IOException {
-        String id = null;
-        SubscriptionPermissionsVM permissionsVM = null;
-        SubscriptionPermissions response = api.subscriptionsAddPermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
     
     /**
      * Get subscription&#39;s default permissions for new entities
@@ -85,7 +68,7 @@ public class SubscriptionsApiTest {
     @Test
     public void subscriptionsGetPermissionsTest() throws IOException {
         String id = null;
-        SubscriptionPermissions response = api.subscriptionsGetPermissions(id);
+        SubscriptionPermissionsVM response = api.subscriptionsGetPermissions(id);
 
         // TODO: test validations
     }
@@ -141,23 +124,6 @@ public class SubscriptionsApiTest {
     }
     
     /**
-     * Remove permissions from a subscription
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void subscriptionsRevokePermissionTest() throws IOException {
-        String id = null;
-        SubscriptionPermissionsVM permissionsVM = null;
-        SubscriptionPermissions response = api.subscriptionsRevokePermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Change subscription&#39;s default permissions for new entities
      *
      * 
@@ -187,6 +153,23 @@ public class SubscriptionsApiTest {
         String subscriptionId = null;
         UpdateSubscriptionLocaleVM updateModel = null;
         SubscriptionVM response = api.subscriptionsUpdateLocale(subscriptionId, updateModel);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Update permissions
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void subscriptionsUpdatePermissionsTest() throws IOException {
+        String id = null;
+        UpdateSubscriptionPermissionsVM permissionsVM = null;
+        api.subscriptionsUpdatePermissions(id, permissionsVM);
 
         // TODO: test validations
     }

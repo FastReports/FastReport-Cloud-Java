@@ -18,8 +18,8 @@ import cloud.fastreport.model.AdminSubscriptionsVM;
 import cloud.fastreport.model.CreateSubscriptionVM;
 import org.threeten.bp.OffsetDateTime;
 import cloud.fastreport.model.ProblemDetails;
-import cloud.fastreport.model.SubscriptionPermissions;
 import cloud.fastreport.model.SubscriptionPermissionsVM;
+import cloud.fastreport.model.UpdateSubscriptionPermissionsVM;
 import cloud.fastreport.model.UpdateSubscriptionVM;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -38,23 +38,6 @@ public class AdminSubscriptionsApiTest {
 
     private final AdminSubscriptionsApi api = new AdminSubscriptionsApi();
 
-    
-    /**
-     * Add permissions to subscription
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminSubscriptionsAddPermissionTest() throws IOException {
-        String id = null;
-        SubscriptionPermissionsVM permissionsVM = null;
-        SubscriptionPermissions response = api.adminSubscriptionsAddPermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
     
     /**
      * Create a new subscription based on some plan
@@ -116,7 +99,7 @@ public class AdminSubscriptionsApiTest {
     @Test
     public void adminSubscriptionsGetPermissionsTest() throws IOException {
         String id = null;
-        SubscriptionPermissions response = api.adminSubscriptionsGetPermissions(id);
+        SubscriptionPermissionsVM response = api.adminSubscriptionsGetPermissions(id);
 
         // TODO: test validations
     }
@@ -155,7 +138,7 @@ public class AdminSubscriptionsApiTest {
     }
     
     /**
-     * Recount subscription&#39;s files and folders size
+     * Recount subscription&#39;s files and folders sizes.
      *
      * 
      *
@@ -165,25 +148,7 @@ public class AdminSubscriptionsApiTest {
     @Test
     public void adminSubscriptionsReCountSubscriptionTest() throws IOException {
         String id = null;
-        String collectionNames = null;
-        Map<String, Long> response = api.adminSubscriptionsReCountSubscription(id, collectionNames);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Revoke permissions to subscription
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminSubscriptionsRevokePermissionTest() throws IOException {
-        String id = null;
-        SubscriptionPermissionsVM permissionsVM = null;
-        SubscriptionPermissions response = api.adminSubscriptionsRevokePermission(id, permissionsVM);
+        api.adminSubscriptionsReCountSubscription(id);
 
         // TODO: test validations
     }
@@ -199,8 +164,8 @@ public class AdminSubscriptionsApiTest {
     @Test
     public void adminSubscriptionsUpdatePermissionsTest() throws IOException {
         String id = null;
-        SubscriptionPermissions permissionsVM = null;
-        SubscriptionPermissions response = api.adminSubscriptionsUpdatePermissions(id, permissionsVM);
+        UpdateSubscriptionPermissionsVM permissionsVM = null;
+        api.adminSubscriptionsUpdatePermissions(id, permissionsVM);
 
         // TODO: test validations
     }

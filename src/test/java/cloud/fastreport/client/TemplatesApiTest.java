@@ -18,7 +18,6 @@ import cloud.fastreport.model.CountVM;
 import cloud.fastreport.model.ExportTemplateTaskVM;
 import cloud.fastreport.model.ExportVM;
 import cloud.fastreport.model.FileIconVM;
-import cloud.fastreport.model.FilePermissions;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileRenameVM;
 import cloud.fastreport.model.FileTagsUpdateVM;
@@ -34,6 +33,7 @@ import cloud.fastreport.model.TemplateCreateVM;
 import cloud.fastreport.model.TemplateFolderCreateVM;
 import cloud.fastreport.model.TemplateVM;
 import cloud.fastreport.model.TemplatesVM;
+import cloud.fastreport.model.UpdateFilePermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -82,23 +82,6 @@ public class TemplatesApiTest {
         Integer skip = null;
         Integer take = null;
         FilesVM response = api.templateFolderAndFileGetFoldersAndFiles(id, skip, take);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Add folder permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void templateFoldersAddPermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.templateFoldersAddPermission(id, permissionsVM);
 
         // TODO: test validations
     }
@@ -214,7 +197,7 @@ public class TemplatesApiTest {
     @Test
     public void templateFoldersGetPermissionsTest() throws IOException {
         String id = null;
-        FilePermissions response = api.templateFoldersGetPermissions(id);
+        FilePermissionsVM response = api.templateFoldersGetPermissions(id);
 
         // TODO: test validations
     }
@@ -287,23 +270,6 @@ public class TemplatesApiTest {
     }
     
     /**
-     * Revoke folder permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void templateFoldersRevokePermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.templateFoldersRevokePermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Update a folder&#39;s icon
      *
      * User with a Update Icon permission can access this method.
@@ -321,6 +287,23 @@ public class TemplatesApiTest {
     }
     
     /**
+     * Update permissions
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void templateFoldersUpdatePermissionsTest() throws IOException {
+        String id = null;
+        UpdateFilePermissionsVM permissionsVM = null;
+        api.templateFoldersUpdatePermissions(id, permissionsVM);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Update tags
      *
      * User with a Update Tags permission can access this method.
@@ -333,23 +316,6 @@ public class TemplatesApiTest {
         String id = null;
         FolderTagsUpdateVM tagsModel = null;
         FileVM response = api.templateFoldersUpdateTags(id, tagsModel);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Add permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void templatesAddPermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.templatesAddPermission(id, permissionsVM);
 
         // TODO: test validations
     }
@@ -465,7 +431,7 @@ public class TemplatesApiTest {
     @Test
     public void templatesGetPermissionsTest() throws IOException {
         String id = null;
-        FilePermissions response = api.templatesGetPermissions(id);
+        FilePermissionsVM response = api.templatesGetPermissions(id);
 
         // TODO: test validations
     }
@@ -522,23 +488,6 @@ public class TemplatesApiTest {
     }
     
     /**
-     * Revoke permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void templatesRevokePermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.templatesRevokePermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Update a files&#39;s icon
      *
      * User with Update Icon permission can access this method.
@@ -551,6 +500,23 @@ public class TemplatesApiTest {
         String id = null;
         FileIconVM iconModel = null;
         TemplateVM response = api.templatesUpdateIcon(id, iconModel);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Update permissions
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void templatesUpdatePermissionsTest() throws IOException {
+        String id = null;
+        UpdateFilePermissionsVM permissionsVM = null;
+        api.templatesUpdatePermissions(id, permissionsVM);
 
         // TODO: test validations
     }

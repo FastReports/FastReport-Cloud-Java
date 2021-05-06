@@ -14,13 +14,13 @@
 package cloud.fastreport.client;
 
 import cloud.fastreport.model.CreateDataSourceVM;
-import cloud.fastreport.model.DataSourcePermissions;
 import cloud.fastreport.model.DataSourcePermissionsVM;
 import cloud.fastreport.model.DataSourceVM;
 import cloud.fastreport.model.DataSourcesVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.RenameDataSourceVM;
 import cloud.fastreport.model.UpdateDataSourceConnectionStringVM;
+import cloud.fastreport.model.UpdateDataSourcePermissionsVM;
 import cloud.fastreport.model.UpdateDataSourceSubscriptionVM;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -39,23 +39,6 @@ public class DataSourcesApiTest {
 
     private final DataSourcesApi api = new DataSourcesApi();
 
-    
-    /**
-     * Add Permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void dataSourcesAddPermissionTest() throws IOException {
-        String id = null;
-        DataSourcePermissionsVM permissionsVM = null;
-        DataSourcePermissions response = api.dataSourcesAddPermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
     
     /**
      * Create new data source
@@ -150,7 +133,7 @@ public class DataSourcesApiTest {
     @Test
     public void dataSourcesGetPermissionsTest() throws IOException {
         String id = null;
-        DataSourcePermissions response = api.dataSourcesGetPermissions(id);
+        DataSourcePermissionsVM response = api.dataSourcesGetPermissions(id);
 
         // TODO: test validations
     }
@@ -173,23 +156,6 @@ public class DataSourcesApiTest {
     }
     
     /**
-     * 
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void dataSourcesRevokePermissionTest() throws IOException {
-        String id = null;
-        DataSourcePermissionsVM permissionsVM = null;
-        DataSourcePermissions response = api.dataSourcesRevokePermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Update data source&#39;s connection string by id
      *
      * 
@@ -202,6 +168,23 @@ public class DataSourcesApiTest {
         String id = null;
         UpdateDataSourceConnectionStringVM updateModel = null;
         DataSourceVM response = api.dataSourcesUpdateConnectionString(id, updateModel);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Update permissions
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void dataSourcesUpdatePermissionsTest() throws IOException {
+        String id = null;
+        UpdateDataSourcePermissionsVM permissionsVM = null;
+        api.dataSourcesUpdatePermissions(id, permissionsVM);
 
         // TODO: test validations
     }

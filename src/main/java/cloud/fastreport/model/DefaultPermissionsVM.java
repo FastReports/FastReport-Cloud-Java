@@ -15,7 +15,9 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.DefaultPermissions;
+import cloud.fastreport.model.DataSourcePermissions;
+import cloud.fastreport.model.FilePermissions;
+import cloud.fastreport.model.GroupPermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -29,37 +31,95 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * DefaultPermissionsVM
  */
 @JsonPropertyOrder({
-  DefaultPermissionsVM.JSON_PROPERTY_DEFAULT_PERMISSIONS
+  DefaultPermissionsVM.JSON_PROPERTY_FILE_PERMISSIONS,
+  DefaultPermissionsVM.JSON_PROPERTY_DATA_SOURCE_PERMISSIONS,
+  DefaultPermissionsVM.JSON_PROPERTY_GROUP_PERMISSIONS
 })
 @JsonTypeName("DefaultPermissionsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DefaultPermissionsVM {
-  public static final String JSON_PROPERTY_DEFAULT_PERMISSIONS = "defaultPermissions";
-  private DefaultPermissions defaultPermissions;
+  public static final String JSON_PROPERTY_FILE_PERMISSIONS = "filePermissions";
+  private FilePermissions filePermissions;
+
+  public static final String JSON_PROPERTY_DATA_SOURCE_PERMISSIONS = "dataSourcePermissions";
+  private DataSourcePermissions dataSourcePermissions;
+
+  public static final String JSON_PROPERTY_GROUP_PERMISSIONS = "groupPermissions";
+  private GroupPermissions groupPermissions;
 
 
-  public DefaultPermissionsVM defaultPermissions(DefaultPermissions defaultPermissions) {
+  public DefaultPermissionsVM filePermissions(FilePermissions filePermissions) {
     
-    this.defaultPermissions = defaultPermissions;
+    this.filePermissions = filePermissions;
     return this;
   }
 
    /**
-   * Get defaultPermissions
-   * @return defaultPermissions
+   * Get filePermissions
+   * @return filePermissions
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DEFAULT_PERMISSIONS)
+  @JsonProperty(JSON_PROPERTY_FILE_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DefaultPermissions getDefaultPermissions() {
-    return defaultPermissions;
+  public FilePermissions getFilePermissions() {
+    return filePermissions;
   }
 
 
-  public void setDefaultPermissions(DefaultPermissions defaultPermissions) {
-    this.defaultPermissions = defaultPermissions;
+  public void setFilePermissions(FilePermissions filePermissions) {
+    this.filePermissions = filePermissions;
+  }
+
+
+  public DefaultPermissionsVM dataSourcePermissions(DataSourcePermissions dataSourcePermissions) {
+    
+    this.dataSourcePermissions = dataSourcePermissions;
+    return this;
+  }
+
+   /**
+   * Get dataSourcePermissions
+   * @return dataSourcePermissions
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATA_SOURCE_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public DataSourcePermissions getDataSourcePermissions() {
+    return dataSourcePermissions;
+  }
+
+
+  public void setDataSourcePermissions(DataSourcePermissions dataSourcePermissions) {
+    this.dataSourcePermissions = dataSourcePermissions;
+  }
+
+
+  public DefaultPermissionsVM groupPermissions(GroupPermissions groupPermissions) {
+    
+    this.groupPermissions = groupPermissions;
+    return this;
+  }
+
+   /**
+   * Get groupPermissions
+   * @return groupPermissions
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_GROUP_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public GroupPermissions getGroupPermissions() {
+    return groupPermissions;
+  }
+
+
+  public void setGroupPermissions(GroupPermissions groupPermissions) {
+    this.groupPermissions = groupPermissions;
   }
 
 
@@ -72,19 +132,23 @@ public class DefaultPermissionsVM {
       return false;
     }
     DefaultPermissionsVM defaultPermissionsVM = (DefaultPermissionsVM) o;
-    return Objects.equals(this.defaultPermissions, defaultPermissionsVM.defaultPermissions);
+    return Objects.equals(this.filePermissions, defaultPermissionsVM.filePermissions) &&
+        Objects.equals(this.dataSourcePermissions, defaultPermissionsVM.dataSourcePermissions) &&
+        Objects.equals(this.groupPermissions, defaultPermissionsVM.groupPermissions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultPermissions);
+    return Objects.hash(filePermissions, dataSourcePermissions, groupPermissions);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DefaultPermissionsVM {\n");
-    sb.append("    defaultPermissions: ").append(toIndentedString(defaultPermissions)).append("\n");
+    sb.append("    filePermissions: ").append(toIndentedString(filePermissions)).append("\n");
+    sb.append("    dataSourcePermissions: ").append(toIndentedString(dataSourcePermissions)).append("\n");
+    sb.append("    groupPermissions: ").append(toIndentedString(groupPermissions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -4,107 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**adminExportFoldersAddPermission**](AdminExportsApi.md#adminExportFoldersAddPermission) | **PUT** /api/admin/v1/ExportFolders/{id}/permissions | Add permission
 [**adminExportFoldersDeleteFolder**](AdminExportsApi.md#adminExportFoldersDeleteFolder) | **DELETE** /api/admin/v1/ExportFolders/{id} | Delete specified folder
 [**adminExportFoldersGetFolder**](AdminExportsApi.md#adminExportFoldersGetFolder) | **GET** /api/admin/v1/ExportFolders/{id} | Returns a folder by id
 [**adminExportFoldersGetFolders**](AdminExportsApi.md#adminExportFoldersGetFolders) | **GET** /api/admin/v1/ExportFolders | Returns a list of folders
 [**adminExportFoldersGetPermissions**](AdminExportsApi.md#adminExportFoldersGetPermissions) | **GET** /api/admin/v1/ExportFolders/{id}/permissions | Get all folder permissions
-[**adminExportFoldersPostFolder**](AdminExportsApi.md#adminExportFoldersPostFolder) | **POST** /api/admin/v1/ExportFolders/{subscriptionId} | Create a folder
-[**adminExportFoldersRevokePermission**](AdminExportsApi.md#adminExportFoldersRevokePermission) | **DELETE** /api/admin/v1/ExportFolders/{id}/permissions | Revoke permission
+[**adminExportFoldersPostFolder**](AdminExportsApi.md#adminExportFoldersPostFolder) | **POST** /api/admin/v1/ExportFolders | Create a folder
 [**adminExportFoldersUpdateFolder**](AdminExportsApi.md#adminExportFoldersUpdateFolder) | **PUT** /api/admin/v1/ExportFolders/{id} | Update a folder
 [**adminExportFoldersUpdatePermissions**](AdminExportsApi.md#adminExportFoldersUpdatePermissions) | **POST** /api/admin/v1/ExportFolders/{id}/permissions | Revoke permission
-[**adminExportsAddPermission**](AdminExportsApi.md#adminExportsAddPermission) | **PUT** /api/admin/v1/Exports/{id}/permissions | Add file permissions
 [**adminExportsDeleteFile**](AdminExportsApi.md#adminExportsDeleteFile) | **DELETE** /api/admin/v1/Exports/{id} | Delete specified file
 [**adminExportsGetFile**](AdminExportsApi.md#adminExportsGetFile) | **GET** /api/admin/v1/Exports/{id} | Returns a file by id
 [**adminExportsGetFiles**](AdminExportsApi.md#adminExportsGetFiles) | **GET** /api/admin/v1/Exports | Returns a list of files
 [**adminExportsGetPermissions**](AdminExportsApi.md#adminExportsGetPermissions) | **GET** /api/admin/v1/Exports/{id}/permissions | Get all file permissions
-[**adminExportsRevokePermission**](AdminExportsApi.md#adminExportsRevokePermission) | **DELETE** /api/admin/v1/Exports/{id}/permissions | Revoke (remove) file permissions
-[**adminExportsUpdateFile**](AdminExportsApi.md#adminExportsUpdateFile) | **PUT** /api/admin/v1/Exports/{id}/File | Update a file
-[**adminExportsUpdatePermissions**](AdminExportsApi.md#adminExportsUpdatePermissions) | **POST** /api/admin/v1/Exports/{fileId}/permissions | Update file permissions
+[**adminExportsUpdateFile**](AdminExportsApi.md#adminExportsUpdateFile) | **PUT** /api/admin/v1/Exports/{id} | Update a file
+[**adminExportsUpdatePermissions**](AdminExportsApi.md#adminExportsUpdatePermissions) | **POST** /api/admin/v1/Exports/{id}/permissions | Update permissions to file
 [**adminExportsUploadFile**](AdminExportsApi.md#adminExportsUploadFile) | **POST** /api/admin/v1/Exports | Upload a file to the specified folder
 
-
-
-## adminExportFoldersAddPermission
-
-> FilePermissions adminExportFoldersAddPermission(id, permissionsVM)
-
-Add permission
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.AdminExportsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        AdminExportsApi apiInstance = new AdminExportsApi(defaultClient);
-        String id = "id_example"; // String | folder id
-        FilePermissionsVM permissionsVM = new FilePermissionsVM(); // FilePermissionsVM | File permissions vm
-        try {
-            FilePermissions result = apiInstance.adminExportFoldersAddPermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AdminExportsApi#adminExportFoldersAddPermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| folder id |
- **permissionsVM** | [**FilePermissionsVM**](FilePermissionsVM.md)| File permissions vm | [optional]
-
-### Return type
-
-[**FilePermissions**](FilePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | succesfully added |  -  |
-| **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File not found |  -  |
-| **500** | Caught exception |  -  |
 
 
 ## adminExportFoldersDeleteFolder
@@ -307,7 +221,7 @@ public class Example {
         AdminExportsApi apiInstance = new AdminExportsApi(defaultClient);
         Integer skip = 0; // Integer | Variable for pagination, defautl value is 0
         Integer take = 10; // Integer | Variable for pagination, default value is 10
-        String subscriptionId = "subscriptionId_example"; // String | Subscription Id
+        String subscriptionId = "subscriptionId_example"; // String | Allows to filter by subscriptions ID
         try {
             FilesVM result = apiInstance.adminExportFoldersGetFolders(skip, take, subscriptionId);
             System.out.println(result);
@@ -329,7 +243,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **skip** | **Integer**| Variable for pagination, defautl value is 0 | [optional] [default to 0]
  **take** | **Integer**| Variable for pagination, default value is 10 | [optional] [default to 10]
- **subscriptionId** | **String**| Subscription Id | [optional]
+ **subscriptionId** | **String**| Allows to filter by subscriptions ID | [optional]
 
 ### Return type
 
@@ -355,7 +269,7 @@ Name | Type | Description  | Notes
 
 ## adminExportFoldersGetPermissions
 
-> FilePermissions adminExportFoldersGetPermissions(id)
+> FilePermissionsVM adminExportFoldersGetPermissions(id)
 
 Get all folder permissions
 
@@ -389,7 +303,7 @@ public class Example {
         AdminExportsApi apiInstance = new AdminExportsApi(defaultClient);
         String id = "id_example"; // String | folder id
         try {
-            FilePermissions result = apiInstance.adminExportFoldersGetPermissions(id);
+            FilePermissionsVM result = apiInstance.adminExportFoldersGetPermissions(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminExportsApi#adminExportFoldersGetPermissions");
@@ -411,7 +325,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FilePermissions**](FilePermissions.md)
+[**FilePermissionsVM**](FilePermissionsVM.md)
 
 ### Authorization
 
@@ -434,7 +348,7 @@ Name | Type | Description  | Notes
 
 ## adminExportFoldersPostFolder
 
-> FileVM adminExportFoldersPostFolder(subscriptionId, folderVm)
+> FileVM adminExportFoldersPostFolder(folderVm)
 
 Create a folder
 
@@ -468,10 +382,9 @@ public class Example {
         //JWT.setApiKeyPrefix("Token");
 
         AdminExportsApi apiInstance = new AdminExportsApi(defaultClient);
-        String subscriptionId = "subscriptionId_example"; // String | 
         AdminExportFolderCreateVM folderVm = new AdminExportFolderCreateVM(); // AdminExportFolderCreateVM | folder create vm
         try {
-            FileVM result = apiInstance.adminExportFoldersPostFolder(subscriptionId, folderVm);
+            FileVM result = apiInstance.adminExportFoldersPostFolder(folderVm);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminExportsApi#adminExportFoldersPostFolder");
@@ -489,7 +402,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscriptionId** | **String**|  |
  **folderVm** | [**AdminExportFolderCreateVM**](AdminExportFolderCreateVM.md)| folder create vm | [optional]
 
 ### Return type
@@ -514,89 +426,6 @@ Name | Type | Description  | Notes
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | subscription not found |  -  |
 | **500** | Exception caught while creating |  -  |
-
-
-## adminExportFoldersRevokePermission
-
-> FilePermissions adminExportFoldersRevokePermission(id, permissionsVM)
-
-Revoke permission
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.AdminExportsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        AdminExportsApi apiInstance = new AdminExportsApi(defaultClient);
-        String id = "id_example"; // String | folder id
-        FilePermissionsVM permissionsVM = new FilePermissionsVM(); // FilePermissionsVM | File permissions vm
-        try {
-            FilePermissions result = apiInstance.adminExportFoldersRevokePermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AdminExportsApi#adminExportFoldersRevokePermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| folder id |
- **permissionsVM** | [**FilePermissionsVM**](FilePermissionsVM.md)| File permissions vm | [optional]
-
-### Return type
-
-[**FilePermissions**](FilePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | succesfully revoked |  -  |
-| **204** | happens sometimes |  -  |
-| **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File not found |  -  |
-| **500** | Exception caught |  -  |
 
 
 ## adminExportFoldersUpdateFolder
@@ -684,7 +513,7 @@ Name | Type | Description  | Notes
 
 ## adminExportFoldersUpdatePermissions
 
-> FilePermissions adminExportFoldersUpdatePermissions(id, newPermissions)
+> adminExportFoldersUpdatePermissions(id, newPermissions)
 
 Revoke permission
 
@@ -717,10 +546,9 @@ public class Example {
 
         AdminExportsApi apiInstance = new AdminExportsApi(defaultClient);
         String id = "id_example"; // String | folder id
-        FilePermissions newPermissions = new FilePermissions(); // FilePermissions | 
+        UpdateFilePermissionsVM newPermissions = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
         try {
-            FilePermissions result = apiInstance.adminExportFoldersUpdatePermissions(id, newPermissions);
-            System.out.println(result);
+            apiInstance.adminExportFoldersUpdatePermissions(id, newPermissions);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminExportsApi#adminExportFoldersUpdatePermissions");
             System.err.println("Status code: " + e.getCode());
@@ -738,11 +566,11 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| folder id |
- **newPermissions** | [**FilePermissions**](FilePermissions.md)|  | [optional]
+ **newPermissions** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
 
 ### Return type
 
-[**FilePermissions**](FilePermissions.md)
+null (empty response body)
 
 ### Authorization
 
@@ -762,87 +590,6 @@ Name | Type | Description  | Notes
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File not found |  -  |
 | **500** | Exception caught |  -  |
-
-
-## adminExportsAddPermission
-
-> FilePermissions adminExportsAddPermission(id, permissionsVM)
-
-Add file permissions
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.AdminExportsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        AdminExportsApi apiInstance = new AdminExportsApi(defaultClient);
-        String id = "id_example"; // String | 
-        FilePermissionsVM permissionsVM = new FilePermissionsVM(); // FilePermissionsVM | permissions to add
-        try {
-            FilePermissions result = apiInstance.adminExportsAddPermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AdminExportsApi#adminExportsAddPermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
- **permissionsVM** | [**FilePermissionsVM**](FilePermissionsVM.md)| permissions to add | [optional]
-
-### Return type
-
-[**FilePermissions**](FilePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | succesfully added |  -  |
-| **400** | Id is null |  -  |
-| **401** | You don&#39;t have rights for the operation |  -  |
-| **404** | File not found |  -  |
 
 
 ## adminExportsDeleteFile
@@ -1091,7 +838,7 @@ Name | Type | Description  | Notes
 
 ## adminExportsGetPermissions
 
-> FilePermissions adminExportsGetPermissions(id)
+> FilePermissionsVM adminExportsGetPermissions(id)
 
 Get all file permissions
 
@@ -1125,7 +872,7 @@ public class Example {
         AdminExportsApi apiInstance = new AdminExportsApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            FilePermissions result = apiInstance.adminExportsGetPermissions(id);
+            FilePermissionsVM result = apiInstance.adminExportsGetPermissions(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminExportsApi#adminExportsGetPermissions");
@@ -1147,7 +894,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FilePermissions**](FilePermissions.md)
+[**FilePermissionsVM**](FilePermissionsVM.md)
 
 ### Authorization
 
@@ -1166,89 +913,6 @@ Name | Type | Description  | Notes
 | **400** | Id is null or not hex24 |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File not found |  -  |
-
-
-## adminExportsRevokePermission
-
-> FilePermissions adminExportsRevokePermission(id, permissionsVM)
-
-Revoke (remove) file permissions
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.AdminExportsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        AdminExportsApi apiInstance = new AdminExportsApi(defaultClient);
-        String id = "id_example"; // String | file id
-        FilePermissionsVM permissionsVM = new FilePermissionsVM(); // FilePermissionsVM | permissions to revoke
-        try {
-            FilePermissions result = apiInstance.adminExportsRevokePermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AdminExportsApi#adminExportsRevokePermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| file id |
- **permissionsVM** | [**FilePermissionsVM**](FilePermissionsVM.md)| permissions to revoke | [optional]
-
-### Return type
-
-[**FilePermissions**](FilePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | succesfully revoked |  -  |
-| **204** | happens sometimes |  -  |
-| **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File not found |  -  |
-| **500** | Exception caught |  -  |
 
 
 ## adminExportsUpdateFile
@@ -1336,9 +1000,9 @@ Name | Type | Description  | Notes
 
 ## adminExportsUpdatePermissions
 
-> FilePermissions adminExportsUpdatePermissions(fileId, newPermissions)
+> adminExportsUpdatePermissions(id, newPermissions)
 
-Update file permissions
+Update permissions to file
 
 ### Example
 
@@ -1368,11 +1032,10 @@ public class Example {
         //JWT.setApiKeyPrefix("Token");
 
         AdminExportsApi apiInstance = new AdminExportsApi(defaultClient);
-        String fileId = "fileId_example"; // String | 
-        FilePermissions newPermissions = new FilePermissions(); // FilePermissions | permissions model
+        String id = "id_example"; // String | 
+        UpdateFilePermissionsVM newPermissions = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
         try {
-            FilePermissions result = apiInstance.adminExportsUpdatePermissions(fileId, newPermissions);
-            System.out.println(result);
+            apiInstance.adminExportsUpdatePermissions(id, newPermissions);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminExportsApi#adminExportsUpdatePermissions");
             System.err.println("Status code: " + e.getCode());
@@ -1389,12 +1052,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fileId** | **String**|  |
- **newPermissions** | [**FilePermissions**](FilePermissions.md)| permissions model | [optional]
+ **id** | **String**|  |
+ **newPermissions** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
 
 ### Return type
 
-[**FilePermissions**](FilePermissions.md)
+null (empty response body)
 
 ### Authorization
 
@@ -1409,11 +1072,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | succesfully updated |  -  |
-| **400** | Id is null |  -  |
+| **200** | Succesfully updated |  -  |
+| **400** | The reqeust is wrong |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File not found |  -  |
-| **500** | Caught exception while upddating |  -  |
+| **404** | Datasource is not found |  -  |
 
 
 ## adminExportsUploadFile

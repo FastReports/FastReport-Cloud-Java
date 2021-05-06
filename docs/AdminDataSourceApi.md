@@ -4,98 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**adminDataSourceAddPermission**](AdminDataSourceApi.md#adminDataSourceAddPermission) | **PUT** /api/admin/v1/DataSource/{id}/permissions | Add Permission to datasource
 [**adminDataSourceCreateDataSource**](AdminDataSourceApi.md#adminDataSourceCreateDataSource) | **POST** /api/admin/v1/DataSource | Create new data source
 [**adminDataSourceDeleteDataSource**](AdminDataSourceApi.md#adminDataSourceDeleteDataSource) | **DELETE** /api/admin/v1/DataSource/{id} | Delete datasource by id
 [**adminDataSourceFetchData**](AdminDataSourceApi.md#adminDataSourceFetchData) | **GET** /api/admin/v1/DataSource/{id}/fetch | This should connect to a database and set data structure
 [**adminDataSourceGetDataSource**](AdminDataSourceApi.md#adminDataSourceGetDataSource) | **GET** /api/admin/v1/DataSource/{id} | Get datasource by id
 [**adminDataSourceGetDataSources**](AdminDataSourceApi.md#adminDataSourceGetDataSources) | **GET** /api/admin/v1/DataSource | Get list of datasources from database
 [**adminDataSourceGetPermissions**](AdminDataSourceApi.md#adminDataSourceGetPermissions) | **GET** /api/admin/v1/DataSource/{id}/permissions | Get all Data source permissions
-[**adminDataSourceRevokePermission**](AdminDataSourceApi.md#adminDataSourceRevokePermission) | **DELETE** /api/admin/v1/DataSource/{id}/permissions | Revoke permissions to datasource
 [**adminDataSourceUpdateDataSource**](AdminDataSourceApi.md#adminDataSourceUpdateDataSource) | **PUT** /api/admin/v1/DataSource/{id} | Update datasource with update VM
 [**adminDataSourceUpdatePermissions**](AdminDataSourceApi.md#adminDataSourceUpdatePermissions) | **POST** /api/admin/v1/DataSource/{dataSourceId}/permissions | Update permissions to datasource
 
-
-
-## adminDataSourceAddPermission
-
-> DataSourcePermissions adminDataSourceAddPermission(id, permissionsVM)
-
-Add Permission to datasource
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.AdminDataSourceApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        AdminDataSourceApi apiInstance = new AdminDataSourceApi(defaultClient);
-        String id = "id_example"; // String | data source id
-        DataSourcePermissionsVM permissionsVM = new DataSourcePermissionsVM(); // DataSourcePermissionsVM | 
-        try {
-            DataSourcePermissions result = apiInstance.adminDataSourceAddPermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AdminDataSourceApi#adminDataSourceAddPermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| data source id |
- **permissionsVM** | [**DataSourcePermissionsVM**](DataSourcePermissionsVM.md)|  | [optional]
-
-### Return type
-
-[**DataSourcePermissions**](DataSourcePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Succesfully added |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Datasource is not found |  -  |
 
 
 ## adminDataSourceCreateDataSource
@@ -450,7 +367,7 @@ public class Example {
         AdminDataSourceApi apiInstance = new AdminDataSourceApi(defaultClient);
         Integer skip = 56; // Integer | how many datasources will be skiped
         Integer take = 56; // Integer | how many datasources will be taken
-        String subscriptionId = "subscriptionId_example"; // String | Subscription Id
+        String subscriptionId = "subscriptionId_example"; // String | Allow filters by subscription ID
         try {
             DataSourcesVM result = apiInstance.adminDataSourceGetDataSources(skip, take, subscriptionId);
             System.out.println(result);
@@ -472,7 +389,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **skip** | **Integer**| how many datasources will be skiped | [optional]
  **take** | **Integer**| how many datasources will be taken | [optional]
- **subscriptionId** | **String**| Subscription Id | [optional]
+ **subscriptionId** | **String**| Allow filters by subscription ID | [optional]
 
 ### Return type
 
@@ -498,7 +415,7 @@ Name | Type | Description  | Notes
 
 ## adminDataSourceGetPermissions
 
-> DataSourcePermissions adminDataSourceGetPermissions(id)
+> DataSourcePermissionsVM adminDataSourceGetPermissions(id)
 
 Get all Data source permissions
 
@@ -532,7 +449,7 @@ public class Example {
         AdminDataSourceApi apiInstance = new AdminDataSourceApi(defaultClient);
         String id = "id_example"; // String | data source id
         try {
-            DataSourcePermissions result = apiInstance.adminDataSourceGetPermissions(id);
+            DataSourcePermissionsVM result = apiInstance.adminDataSourceGetPermissions(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminDataSourceApi#adminDataSourceGetPermissions");
@@ -554,7 +471,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DataSourcePermissions**](DataSourcePermissions.md)
+[**DataSourcePermissionsVM**](DataSourcePermissionsVM.md)
 
 ### Authorization
 
@@ -570,88 +487,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Succesfully retured |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Datasource is not found |  -  |
-
-
-## adminDataSourceRevokePermission
-
-> DataSourcePermissions adminDataSourceRevokePermission(id, permissionsVM)
-
-Revoke permissions to datasource
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.AdminDataSourceApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        AdminDataSourceApi apiInstance = new AdminDataSourceApi(defaultClient);
-        String id = "id_example"; // String | 
-        DataSourcePermissionsVM permissionsVM = new DataSourcePermissionsVM(); // DataSourcePermissionsVM | 
-        try {
-            DataSourcePermissions result = apiInstance.adminDataSourceRevokePermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AdminDataSourceApi#adminDataSourceRevokePermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
- **permissionsVM** | [**DataSourcePermissionsVM**](DataSourcePermissionsVM.md)|  | [optional]
-
-### Return type
-
-[**DataSourcePermissions**](DataSourcePermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Succesfully revoked |  -  |
-| **204** | happens sometimes |  -  |
 | **400** | The reqeust is wrong |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Datasource is not found |  -  |
@@ -740,7 +575,7 @@ Name | Type | Description  | Notes
 
 ## adminDataSourceUpdatePermissions
 
-> DataSourcePermissions adminDataSourceUpdatePermissions(dataSourceId, newPermissions)
+> adminDataSourceUpdatePermissions(dataSourceId, newPermissions)
 
 Update permissions to datasource
 
@@ -773,10 +608,9 @@ public class Example {
 
         AdminDataSourceApi apiInstance = new AdminDataSourceApi(defaultClient);
         String dataSourceId = "dataSourceId_example"; // String | 
-        DataSourcePermissions newPermissions = new DataSourcePermissions(); // DataSourcePermissions | 
+        UpdateDataSourcePermissionsVM newPermissions = new UpdateDataSourcePermissionsVM(); // UpdateDataSourcePermissionsVM | 
         try {
-            DataSourcePermissions result = apiInstance.adminDataSourceUpdatePermissions(dataSourceId, newPermissions);
-            System.out.println(result);
+            apiInstance.adminDataSourceUpdatePermissions(dataSourceId, newPermissions);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminDataSourceApi#adminDataSourceUpdatePermissions");
             System.err.println("Status code: " + e.getCode());
@@ -794,11 +628,11 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **dataSourceId** | **String**|  |
- **newPermissions** | [**DataSourcePermissions**](DataSourcePermissions.md)|  | [optional]
+ **newPermissions** | [**UpdateDataSourcePermissionsVM**](UpdateDataSourcePermissionsVM.md)|  | [optional]
 
 ### Return type
 
-[**DataSourcePermissions**](DataSourcePermissions.md)
+null (empty response body)
 
 ### Authorization
 

@@ -14,11 +14,11 @@
 package cloud.fastreport.client;
 
 import cloud.fastreport.model.CreateDataSourceAdminVM;
-import cloud.fastreport.model.DataSourcePermissions;
 import cloud.fastreport.model.DataSourcePermissionsVM;
 import cloud.fastreport.model.DataSourceVM;
 import cloud.fastreport.model.DataSourcesVM;
 import cloud.fastreport.model.ProblemDetails;
+import cloud.fastreport.model.UpdateDataSourcePermissionsVM;
 import cloud.fastreport.model.UpdateDataSourceVM;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -37,23 +37,6 @@ public class AdminDataSourceApiTest {
 
     private final AdminDataSourceApi api = new AdminDataSourceApi();
 
-    
-    /**
-     * Add Permission to datasource
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminDataSourceAddPermissionTest() throws IOException {
-        String id = null;
-        DataSourcePermissionsVM permissionsVM = null;
-        DataSourcePermissions response = api.adminDataSourceAddPermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
     
     /**
      * Create new data source
@@ -148,24 +131,7 @@ public class AdminDataSourceApiTest {
     @Test
     public void adminDataSourceGetPermissionsTest() throws IOException {
         String id = null;
-        DataSourcePermissions response = api.adminDataSourceGetPermissions(id);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Revoke permissions to datasource
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminDataSourceRevokePermissionTest() throws IOException {
-        String id = null;
-        DataSourcePermissionsVM permissionsVM = null;
-        DataSourcePermissions response = api.adminDataSourceRevokePermission(id, permissionsVM);
+        DataSourcePermissionsVM response = api.adminDataSourceGetPermissions(id);
 
         // TODO: test validations
     }
@@ -198,8 +164,8 @@ public class AdminDataSourceApiTest {
     @Test
     public void adminDataSourceUpdatePermissionsTest() throws IOException {
         String dataSourceId = null;
-        DataSourcePermissions newPermissions = null;
-        DataSourcePermissions response = api.adminDataSourceUpdatePermissions(dataSourceId, newPermissions);
+        UpdateDataSourcePermissionsVM newPermissions = null;
+        api.adminDataSourceUpdatePermissions(dataSourceId, newPermissions);
 
         // TODO: test validations
     }

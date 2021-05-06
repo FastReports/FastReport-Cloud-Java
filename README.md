@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>cloud.fastreport.sdk</groupId>
   <artifactId>fastreport-cloud-sdk</artifactId>
-  <version>2021.1.25</version>
+  <version>2021.1.32</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2021.1.25"
+compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2021.1.32"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/fastreport-cloud-sdk-2021.1.25.jar`
+- `target/fastreport-cloud-sdk-2021.1.32.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -121,61 +121,49 @@ Class | Method | HTTP request | Description
 *AdminApiKeysApi* | [**adminApiKeysCreateApiKey**](docs/AdminApiKeysApi.md#adminApiKeysCreateApiKey) | **POST** /api/admin/v1/ApiKeys/{userId} | Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
 *AdminApiKeysApi* | [**adminApiKeysDeleteApiKey**](docs/AdminApiKeysApi.md#adminApiKeysDeleteApiKey) | **DELETE** /api/admin/v1/ApiKeys/{userId} | Delete an apikey
 *AdminApiKeysApi* | [**adminApiKeysGetApiKeys**](docs/AdminApiKeysApi.md#adminApiKeysGetApiKeys) | **GET** /api/admin/v1/ApiKeys/{userId} | Returns list with all api keys of a specified user
-*AdminDataSourceApi* | [**adminDataSourceAddPermission**](docs/AdminDataSourceApi.md#adminDataSourceAddPermission) | **PUT** /api/admin/v1/DataSource/{id}/permissions | Add Permission to datasource
 *AdminDataSourceApi* | [**adminDataSourceCreateDataSource**](docs/AdminDataSourceApi.md#adminDataSourceCreateDataSource) | **POST** /api/admin/v1/DataSource | Create new data source
 *AdminDataSourceApi* | [**adminDataSourceDeleteDataSource**](docs/AdminDataSourceApi.md#adminDataSourceDeleteDataSource) | **DELETE** /api/admin/v1/DataSource/{id} | Delete datasource by id
 *AdminDataSourceApi* | [**adminDataSourceFetchData**](docs/AdminDataSourceApi.md#adminDataSourceFetchData) | **GET** /api/admin/v1/DataSource/{id}/fetch | This should connect to a database and set data structure
 *AdminDataSourceApi* | [**adminDataSourceGetDataSource**](docs/AdminDataSourceApi.md#adminDataSourceGetDataSource) | **GET** /api/admin/v1/DataSource/{id} | Get datasource by id
 *AdminDataSourceApi* | [**adminDataSourceGetDataSources**](docs/AdminDataSourceApi.md#adminDataSourceGetDataSources) | **GET** /api/admin/v1/DataSource | Get list of datasources from database
 *AdminDataSourceApi* | [**adminDataSourceGetPermissions**](docs/AdminDataSourceApi.md#adminDataSourceGetPermissions) | **GET** /api/admin/v1/DataSource/{id}/permissions | Get all Data source permissions
-*AdminDataSourceApi* | [**adminDataSourceRevokePermission**](docs/AdminDataSourceApi.md#adminDataSourceRevokePermission) | **DELETE** /api/admin/v1/DataSource/{id}/permissions | Revoke permissions to datasource
 *AdminDataSourceApi* | [**adminDataSourceUpdateDataSource**](docs/AdminDataSourceApi.md#adminDataSourceUpdateDataSource) | **PUT** /api/admin/v1/DataSource/{id} | Update datasource with update VM
 *AdminDataSourceApi* | [**adminDataSourceUpdatePermissions**](docs/AdminDataSourceApi.md#adminDataSourceUpdatePermissions) | **POST** /api/admin/v1/DataSource/{dataSourceId}/permissions | Update permissions to datasource
-*AdminExportsApi* | [**adminExportFoldersAddPermission**](docs/AdminExportsApi.md#adminExportFoldersAddPermission) | **PUT** /api/admin/v1/ExportFolders/{id}/permissions | Add permission
 *AdminExportsApi* | [**adminExportFoldersDeleteFolder**](docs/AdminExportsApi.md#adminExportFoldersDeleteFolder) | **DELETE** /api/admin/v1/ExportFolders/{id} | Delete specified folder
 *AdminExportsApi* | [**adminExportFoldersGetFolder**](docs/AdminExportsApi.md#adminExportFoldersGetFolder) | **GET** /api/admin/v1/ExportFolders/{id} | Returns a folder by id
 *AdminExportsApi* | [**adminExportFoldersGetFolders**](docs/AdminExportsApi.md#adminExportFoldersGetFolders) | **GET** /api/admin/v1/ExportFolders | Returns a list of folders
 *AdminExportsApi* | [**adminExportFoldersGetPermissions**](docs/AdminExportsApi.md#adminExportFoldersGetPermissions) | **GET** /api/admin/v1/ExportFolders/{id}/permissions | Get all folder permissions
-*AdminExportsApi* | [**adminExportFoldersPostFolder**](docs/AdminExportsApi.md#adminExportFoldersPostFolder) | **POST** /api/admin/v1/ExportFolders/{subscriptionId} | Create a folder
-*AdminExportsApi* | [**adminExportFoldersRevokePermission**](docs/AdminExportsApi.md#adminExportFoldersRevokePermission) | **DELETE** /api/admin/v1/ExportFolders/{id}/permissions | Revoke permission
+*AdminExportsApi* | [**adminExportFoldersPostFolder**](docs/AdminExportsApi.md#adminExportFoldersPostFolder) | **POST** /api/admin/v1/ExportFolders | Create a folder
 *AdminExportsApi* | [**adminExportFoldersUpdateFolder**](docs/AdminExportsApi.md#adminExportFoldersUpdateFolder) | **PUT** /api/admin/v1/ExportFolders/{id} | Update a folder
 *AdminExportsApi* | [**adminExportFoldersUpdatePermissions**](docs/AdminExportsApi.md#adminExportFoldersUpdatePermissions) | **POST** /api/admin/v1/ExportFolders/{id}/permissions | Revoke permission
-*AdminExportsApi* | [**adminExportsAddPermission**](docs/AdminExportsApi.md#adminExportsAddPermission) | **PUT** /api/admin/v1/Exports/{id}/permissions | Add file permissions
 *AdminExportsApi* | [**adminExportsDeleteFile**](docs/AdminExportsApi.md#adminExportsDeleteFile) | **DELETE** /api/admin/v1/Exports/{id} | Delete specified file
 *AdminExportsApi* | [**adminExportsGetFile**](docs/AdminExportsApi.md#adminExportsGetFile) | **GET** /api/admin/v1/Exports/{id} | Returns a file by id
 *AdminExportsApi* | [**adminExportsGetFiles**](docs/AdminExportsApi.md#adminExportsGetFiles) | **GET** /api/admin/v1/Exports | Returns a list of files
 *AdminExportsApi* | [**adminExportsGetPermissions**](docs/AdminExportsApi.md#adminExportsGetPermissions) | **GET** /api/admin/v1/Exports/{id}/permissions | Get all file permissions
-*AdminExportsApi* | [**adminExportsRevokePermission**](docs/AdminExportsApi.md#adminExportsRevokePermission) | **DELETE** /api/admin/v1/Exports/{id}/permissions | Revoke (remove) file permissions
-*AdminExportsApi* | [**adminExportsUpdateFile**](docs/AdminExportsApi.md#adminExportsUpdateFile) | **PUT** /api/admin/v1/Exports/{id}/File | Update a file
-*AdminExportsApi* | [**adminExportsUpdatePermissions**](docs/AdminExportsApi.md#adminExportsUpdatePermissions) | **POST** /api/admin/v1/Exports/{fileId}/permissions | Update file permissions
+*AdminExportsApi* | [**adminExportsUpdateFile**](docs/AdminExportsApi.md#adminExportsUpdateFile) | **PUT** /api/admin/v1/Exports/{id} | Update a file
+*AdminExportsApi* | [**adminExportsUpdatePermissions**](docs/AdminExportsApi.md#adminExportsUpdatePermissions) | **POST** /api/admin/v1/Exports/{id}/permissions | Update permissions to file
 *AdminExportsApi* | [**adminExportsUploadFile**](docs/AdminExportsApi.md#adminExportsUploadFile) | **POST** /api/admin/v1/Exports | Upload a file to the specified folder
-*AdminGroupsApi* | [**adminGroupsAddPermission**](docs/AdminGroupsApi.md#adminGroupsAddPermission) | **PUT** /api/admin/v1/Groups/{id}/permissions | Add permissions to user group
 *AdminGroupsApi* | [**adminGroupsCreateGroup**](docs/AdminGroupsApi.md#adminGroupsCreateGroup) | **POST** /api/admin/v1/Groups | Create a new group, returns a new model
 *AdminGroupsApi* | [**adminGroupsDeleteGroup**](docs/AdminGroupsApi.md#adminGroupsDeleteGroup) | **DELETE** /api/admin/v1/Groups/{id} | Delete a group by id
 *AdminGroupsApi* | [**adminGroupsGetGroup**](docs/AdminGroupsApi.md#adminGroupsGetGroup) | **GET** /api/admin/v1/Groups/{id} | Returns a group by id
 *AdminGroupsApi* | [**adminGroupsGetGroups**](docs/AdminGroupsApi.md#adminGroupsGetGroups) | **GET** /api/admin/v1/Groups | Returns a list of groups
 *AdminGroupsApi* | [**adminGroupsGetPermissions**](docs/AdminGroupsApi.md#adminGroupsGetPermissions) | **GET** /api/admin/v1/Groups/{id}/permissions | Gets group permissions by identifier
-*AdminGroupsApi* | [**adminGroupsRevokePermission**](docs/AdminGroupsApi.md#adminGroupsRevokePermission) | **DELETE** /api/admin/v1/Groups/{id}/permissions | Remove (revoke) permissions in user group by identifier
 *AdminGroupsApi* | [**adminGroupsUpdateGroup**](docs/AdminGroupsApi.md#adminGroupsUpdateGroup) | **PUT** /api/admin/v1/Groups/{id} | Update a group by id
-*AdminGroupsApi* | [**adminGroupsUpdatePermissions**](docs/AdminGroupsApi.md#adminGroupsUpdatePermissions) | **POST** /api/admin/v1/Groups/{groupId}/permissions | Update permissions in user group by identifier
+*AdminGroupsApi* | [**adminGroupsUpdatePermissions**](docs/AdminGroupsApi.md#adminGroupsUpdatePermissions) | **POST** /api/admin/v1/Groups/{id}/permissions | Update permissions in user group by identifier
 *AdminHealthCheckApi* | [**adminHealthCheckAdminGet**](docs/AdminHealthCheckApi.md#adminHealthCheckAdminGet) | **GET** /api/admin/v1/HealthCheck | healthcheck
-*AdminReportsApi* | [**adminReportFoldersAddPermission**](docs/AdminReportsApi.md#adminReportFoldersAddPermission) | **PUT** /api/admin/v1/ReportFolders/{id}/permissions | Add permission
 *AdminReportsApi* | [**adminReportFoldersDeleteFolder**](docs/AdminReportsApi.md#adminReportFoldersDeleteFolder) | **DELETE** /api/admin/v1/ReportFolders/{id} | Delete specified folder
 *AdminReportsApi* | [**adminReportFoldersGetFolder**](docs/AdminReportsApi.md#adminReportFoldersGetFolder) | **GET** /api/admin/v1/ReportFolders/{id} | Returns a folder by id
 *AdminReportsApi* | [**adminReportFoldersGetFolders**](docs/AdminReportsApi.md#adminReportFoldersGetFolders) | **GET** /api/admin/v1/ReportFolders | Returns a list of folders
 *AdminReportsApi* | [**adminReportFoldersGetPermissions**](docs/AdminReportsApi.md#adminReportFoldersGetPermissions) | **GET** /api/admin/v1/ReportFolders/{id}/permissions | Get all folder permissions
-*AdminReportsApi* | [**adminReportFoldersPostFolder**](docs/AdminReportsApi.md#adminReportFoldersPostFolder) | **POST** /api/admin/v1/ReportFolders/{subscriptionId} | Create a folder
-*AdminReportsApi* | [**adminReportFoldersRevokePermission**](docs/AdminReportsApi.md#adminReportFoldersRevokePermission) | **DELETE** /api/admin/v1/ReportFolders/{id}/permissions | Revoke permission
+*AdminReportsApi* | [**adminReportFoldersPostFolder**](docs/AdminReportsApi.md#adminReportFoldersPostFolder) | **POST** /api/admin/v1/ReportFolders | Create a folder
 *AdminReportsApi* | [**adminReportFoldersUpdateFolder**](docs/AdminReportsApi.md#adminReportFoldersUpdateFolder) | **PUT** /api/admin/v1/ReportFolders/{id} | Update a folder
 *AdminReportsApi* | [**adminReportFoldersUpdatePermissions**](docs/AdminReportsApi.md#adminReportFoldersUpdatePermissions) | **POST** /api/admin/v1/ReportFolders/{id}/permissions | Revoke permission
-*AdminReportsApi* | [**adminReportsAddPermission**](docs/AdminReportsApi.md#adminReportsAddPermission) | **PUT** /api/admin/v1/Reports/{id}/permissions | Add file permissions
 *AdminReportsApi* | [**adminReportsDeleteFile**](docs/AdminReportsApi.md#adminReportsDeleteFile) | **DELETE** /api/admin/v1/Reports/{id} | Delete specified file
 *AdminReportsApi* | [**adminReportsGetFile**](docs/AdminReportsApi.md#adminReportsGetFile) | **GET** /api/admin/v1/Reports/{id} | Returns a file by id
 *AdminReportsApi* | [**adminReportsGetFiles**](docs/AdminReportsApi.md#adminReportsGetFiles) | **GET** /api/admin/v1/Reports | Returns a list of files
 *AdminReportsApi* | [**adminReportsGetPermissions**](docs/AdminReportsApi.md#adminReportsGetPermissions) | **GET** /api/admin/v1/Reports/{id}/permissions | Get all file permissions
-*AdminReportsApi* | [**adminReportsRevokePermission**](docs/AdminReportsApi.md#adminReportsRevokePermission) | **DELETE** /api/admin/v1/Reports/{id}/permissions | Revoke (remove) file permissions
-*AdminReportsApi* | [**adminReportsUpdateFile**](docs/AdminReportsApi.md#adminReportsUpdateFile) | **PUT** /api/admin/v1/Reports/{id}/File | Update a file
-*AdminReportsApi* | [**adminReportsUpdatePermissions**](docs/AdminReportsApi.md#adminReportsUpdatePermissions) | **POST** /api/admin/v1/Reports/{fileId}/permissions | Update file permissions
+*AdminReportsApi* | [**adminReportsUpdateFile**](docs/AdminReportsApi.md#adminReportsUpdateFile) | **PUT** /api/admin/v1/Reports/{id} | Update a file
+*AdminReportsApi* | [**adminReportsUpdatePermissions**](docs/AdminReportsApi.md#adminReportsUpdatePermissions) | **POST** /api/admin/v1/Reports/{id}/permissions | Update permissions to file
 *AdminReportsApi* | [**adminReportsUploadFile**](docs/AdminReportsApi.md#adminReportsUploadFile) | **POST** /api/admin/v1/Reports | Upload a file to the specified folder
 *AdminSubscriptionAnalyticsApi* | [**adminSubscriptionAnalyticsCheckAnonPermissions**](docs/AdminSubscriptionAnalyticsApi.md#adminSubscriptionAnalyticsCheckAnonPermissions) | **GET** /api/admin/v1/Analytics/Subscriptions/{subscriptionId}/AnonCheck | This will check if there are any files, related to subscription that available for anonymous users
 *AdminSubscriptionAnalyticsApi* | [**adminSubscriptionAnalyticsCheckOtherPermissions**](docs/AdminSubscriptionAnalyticsApi.md#adminSubscriptionAnalyticsCheckOtherPermissions) | **GET** /api/admin/v1/Analytics/Subscriptions/{subscriptionId}/OtherCheck | This will check if there are any files, related to subscription that not available for subscription users
@@ -193,34 +181,28 @@ Class | Method | HTTP request | Description
 *AdminSubscriptionPlansApi* | [**adminSubscriptionPlansGetSubscriptionPlans**](docs/AdminSubscriptionPlansApi.md#adminSubscriptionPlansGetSubscriptionPlans) | **GET** /api/admin/v1/SubscriptionPlans | Returns a list of active subscription plans that can be issued to the user.
 *AdminSubscriptionPlansApi* | [**adminSubscriptionPlansUpdateSubscriptionPlan**](docs/AdminSubscriptionPlansApi.md#adminSubscriptionPlansUpdateSubscriptionPlan) | **PUT** /api/admin/v1/SubscriptionPlans/{id} | Update a subscription plan.
 *AdminSubscriptionProblemSolvingApi* | [**adminSubscriptionProblemSolvingSolveProblems**](docs/AdminSubscriptionProblemSolvingApi.md#adminSubscriptionProblemSolvingSolveProblems) | **POST** /api/admin/v1/Analytics/Solve | Solve problems provided by FastReport.Cloud.Admin.Controllers.SubscriptionAnalyticsController
-*AdminSubscriptionsApi* | [**adminSubscriptionsAddPermission**](docs/AdminSubscriptionsApi.md#adminSubscriptionsAddPermission) | **PUT** /api/admin/v1/Subscriptions/{id}/permissions | Add permissions to subscription
 *AdminSubscriptionsApi* | [**adminSubscriptionsCreateSubscription**](docs/AdminSubscriptionsApi.md#adminSubscriptionsCreateSubscription) | **POST** /api/admin/v1/Subscriptions | Create a new subscription based on some plan
 *AdminSubscriptionsApi* | [**adminSubscriptionsDeleteSubscription**](docs/AdminSubscriptionsApi.md#adminSubscriptionsDeleteSubscription) | **DELETE** /api/admin/v1/Subscriptions/{id} | Delete the subscription by id
 *AdminSubscriptionsApi* | [**adminSubscriptionsGetNewSibscriptionsPerMonth**](docs/AdminSubscriptionsApi.md#adminSubscriptionsGetNewSibscriptionsPerMonth) | **GET** /api/admin/v1/Subscriptions/stat/new/{from}/{to} | Returns a key-value pair of new(renew) subscriptions count per month for a specified time span: (month, number of new subscriptions)
 *AdminSubscriptionsApi* | [**adminSubscriptionsGetPermissions**](docs/AdminSubscriptionsApi.md#adminSubscriptionsGetPermissions) | **GET** /api/admin/v1/Subscriptions/{id}/permissions | Get all subscription permissions
 *AdminSubscriptionsApi* | [**adminSubscriptionsGetSubscription**](docs/AdminSubscriptionsApi.md#adminSubscriptionsGetSubscription) | **GET** /api/admin/v1/Subscriptions/{id} | Returns the subscription by id
 *AdminSubscriptionsApi* | [**adminSubscriptionsGetSubscriptions**](docs/AdminSubscriptionsApi.md#adminSubscriptionsGetSubscriptions) | **GET** /api/admin/v1/Subscriptions | Returns a list of all subscriptions
-*AdminSubscriptionsApi* | [**adminSubscriptionsReCountSubscription**](docs/AdminSubscriptionsApi.md#adminSubscriptionsReCountSubscription) | **GET** /api/admin/v1/Subscriptions/{id}/recount | Recount subscription&#39;s files and folders size
-*AdminSubscriptionsApi* | [**adminSubscriptionsRevokePermission**](docs/AdminSubscriptionsApi.md#adminSubscriptionsRevokePermission) | **DELETE** /api/admin/v1/Subscriptions/{id}/permissions | Revoke permissions to subscription
+*AdminSubscriptionsApi* | [**adminSubscriptionsReCountSubscription**](docs/AdminSubscriptionsApi.md#adminSubscriptionsReCountSubscription) | **GET** /api/admin/v1/Subscriptions/{id}/recount | Recount subscription&#39;s files and folders sizes.
 *AdminSubscriptionsApi* | [**adminSubscriptionsUpdatePermissions**](docs/AdminSubscriptionsApi.md#adminSubscriptionsUpdatePermissions) | **POST** /api/admin/v1/Subscriptions/{id}/permissions | Update permissions to subscription
 *AdminSubscriptionsApi* | [**adminSubscriptionsUpdateSubscription**](docs/AdminSubscriptionsApi.md#adminSubscriptionsUpdateSubscription) | **PUT** /api/admin/v1/Subscriptions/{id} | Update the subscription by id
-*AdminTemplatesApi* | [**adminTemplateFoldersAddPermission**](docs/AdminTemplatesApi.md#adminTemplateFoldersAddPermission) | **PUT** /api/admin/v1/TemplateFolders/{id}/permissions | Add permission
 *AdminTemplatesApi* | [**adminTemplateFoldersDeleteFolder**](docs/AdminTemplatesApi.md#adminTemplateFoldersDeleteFolder) | **DELETE** /api/admin/v1/TemplateFolders/{id} | Delete specified folder
 *AdminTemplatesApi* | [**adminTemplateFoldersGetFolder**](docs/AdminTemplatesApi.md#adminTemplateFoldersGetFolder) | **GET** /api/admin/v1/TemplateFolders/{id} | Returns a folder by id
 *AdminTemplatesApi* | [**adminTemplateFoldersGetFolders**](docs/AdminTemplatesApi.md#adminTemplateFoldersGetFolders) | **GET** /api/admin/v1/TemplateFolders | Returns a list of folders
 *AdminTemplatesApi* | [**adminTemplateFoldersGetPermissions**](docs/AdminTemplatesApi.md#adminTemplateFoldersGetPermissions) | **GET** /api/admin/v1/TemplateFolders/{id}/permissions | Get all folder permissions
-*AdminTemplatesApi* | [**adminTemplateFoldersPostFolder**](docs/AdminTemplatesApi.md#adminTemplateFoldersPostFolder) | **POST** /api/admin/v1/TemplateFolders/{subscriptionId} | Create a folder
-*AdminTemplatesApi* | [**adminTemplateFoldersRevokePermission**](docs/AdminTemplatesApi.md#adminTemplateFoldersRevokePermission) | **DELETE** /api/admin/v1/TemplateFolders/{id}/permissions | Revoke permission
+*AdminTemplatesApi* | [**adminTemplateFoldersPostFolder**](docs/AdminTemplatesApi.md#adminTemplateFoldersPostFolder) | **POST** /api/admin/v1/TemplateFolders | Create a folder
 *AdminTemplatesApi* | [**adminTemplateFoldersUpdateFolder**](docs/AdminTemplatesApi.md#adminTemplateFoldersUpdateFolder) | **PUT** /api/admin/v1/TemplateFolders/{id} | Update a folder
 *AdminTemplatesApi* | [**adminTemplateFoldersUpdatePermissions**](docs/AdminTemplatesApi.md#adminTemplateFoldersUpdatePermissions) | **POST** /api/admin/v1/TemplateFolders/{id}/permissions | Revoke permission
-*AdminTemplatesApi* | [**adminTemplatesAddPermission**](docs/AdminTemplatesApi.md#adminTemplatesAddPermission) | **PUT** /api/admin/v1/Templates/{id}/permissions | Add file permissions
 *AdminTemplatesApi* | [**adminTemplatesDeleteFile**](docs/AdminTemplatesApi.md#adminTemplatesDeleteFile) | **DELETE** /api/admin/v1/Templates/{id} | Delete specified file
 *AdminTemplatesApi* | [**adminTemplatesGetFile**](docs/AdminTemplatesApi.md#adminTemplatesGetFile) | **GET** /api/admin/v1/Templates/{id} | Returns a file by id
 *AdminTemplatesApi* | [**adminTemplatesGetFiles**](docs/AdminTemplatesApi.md#adminTemplatesGetFiles) | **GET** /api/admin/v1/Templates | Returns a list of files
 *AdminTemplatesApi* | [**adminTemplatesGetPermissions**](docs/AdminTemplatesApi.md#adminTemplatesGetPermissions) | **GET** /api/admin/v1/Templates/{id}/permissions | Get all file permissions
-*AdminTemplatesApi* | [**adminTemplatesRevokePermission**](docs/AdminTemplatesApi.md#adminTemplatesRevokePermission) | **DELETE** /api/admin/v1/Templates/{id}/permissions | Revoke (remove) file permissions
-*AdminTemplatesApi* | [**adminTemplatesUpdateFile**](docs/AdminTemplatesApi.md#adminTemplatesUpdateFile) | **PUT** /api/admin/v1/Templates/{id}/File | Update a file
-*AdminTemplatesApi* | [**adminTemplatesUpdatePermissions**](docs/AdminTemplatesApi.md#adminTemplatesUpdatePermissions) | **POST** /api/admin/v1/Templates/{fileId}/permissions | Update file permissions
+*AdminTemplatesApi* | [**adminTemplatesUpdateFile**](docs/AdminTemplatesApi.md#adminTemplatesUpdateFile) | **PUT** /api/admin/v1/Templates/{id} | Update a file
+*AdminTemplatesApi* | [**adminTemplatesUpdatePermissions**](docs/AdminTemplatesApi.md#adminTemplatesUpdatePermissions) | **POST** /api/admin/v1/Templates/{id}/permissions | Update permissions to file
 *AdminTemplatesApi* | [**adminTemplatesUploadFile**](docs/AdminTemplatesApi.md#adminTemplatesUploadFile) | **POST** /api/admin/v1/Templates | Upload a file to the specified folder
 *AdminUsersApi* | [**adminUsersDeleteUser**](docs/AdminUsersApi.md#adminUsersDeleteUser) | **DELETE** /api/admin/v1/Users/{id} | Delete a user from cloud database by id
 *AdminUsersApi* | [**adminUsersGetNewUsersPerMonth**](docs/AdminUsersApi.md#adminUsersGetNewUsersPerMonth) | **GET** /api/admin/v1/Users/stat/new/{from}/{to} | Returns a key-value pair of new users count per month for a specified time span: (month, number of new users)
@@ -231,7 +213,6 @@ Class | Method | HTTP request | Description
 *ApiKeysApi* | [**apiKeysCreateApiKey**](docs/ApiKeysApi.md#apiKeysCreateApiKey) | **POST** /api/manage/v1/ApiKeys | Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
 *ApiKeysApi* | [**apiKeysDeleteApiKey**](docs/ApiKeysApi.md#apiKeysDeleteApiKey) | **DELETE** /api/manage/v1/ApiKeys | Delete an apikey
 *ApiKeysApi* | [**apiKeysGetApiKeys**](docs/ApiKeysApi.md#apiKeysGetApiKeys) | **GET** /api/manage/v1/ApiKeys | Returns list with all api keys of current user
-*DataSourcesApi* | [**dataSourcesAddPermission**](docs/DataSourcesApi.md#dataSourcesAddPermission) | **PUT** /api/data/v1/DataSources/{id}/permissions | Add Permission
 *DataSourcesApi* | [**dataSourcesCreateDataSource**](docs/DataSourcesApi.md#dataSourcesCreateDataSource) | **POST** /api/data/v1/DataSources | Create new data source
 *DataSourcesApi* | [**dataSourcesDeleteDataSource**](docs/DataSourcesApi.md#dataSourcesDeleteDataSource) | **DELETE** /api/data/v1/DataSources/{id} | Delete data source by id
 *DataSourcesApi* | [**dataSourcesFetchData**](docs/DataSourcesApi.md#dataSourcesFetchData) | **GET** /api/data/v1/DataSources/{id}/fetch | This should connect to a database and set data structure
@@ -239,8 +220,8 @@ Class | Method | HTTP request | Description
 *DataSourcesApi* | [**dataSourcesGetDataSource**](docs/DataSourcesApi.md#dataSourcesGetDataSource) | **GET** /api/data/v1/DataSources/{id} | Get data source by id
 *DataSourcesApi* | [**dataSourcesGetPermissions**](docs/DataSourcesApi.md#dataSourcesGetPermissions) | **GET** /api/data/v1/DataSources/{id}/permissions | Get all Data source permissions
 *DataSourcesApi* | [**dataSourcesRenameDataSource**](docs/DataSourcesApi.md#dataSourcesRenameDataSource) | **PUT** /api/data/v1/DataSources/{id}/rename | Rename data source by id
-*DataSourcesApi* | [**dataSourcesRevokePermission**](docs/DataSourcesApi.md#dataSourcesRevokePermission) | **DELETE** /api/data/v1/DataSources/{id}/permissions | 
 *DataSourcesApi* | [**dataSourcesUpdateConnectionString**](docs/DataSourcesApi.md#dataSourcesUpdateConnectionString) | **PUT** /api/data/v1/DataSources/{id}/ConnectionString | Update data source&#39;s connection string by id
+*DataSourcesApi* | [**dataSourcesUpdatePermissions**](docs/DataSourcesApi.md#dataSourcesUpdatePermissions) | **POST** /api/data/v1/DataSources/{id}/permissions | Update permissions
 *DataSourcesApi* | [**dataSourcesUpdateSubscriptionDataSource**](docs/DataSourcesApi.md#dataSourcesUpdateSubscriptionDataSource) | **PUT** /api/data/v1/DataSources/{id}/updateSubscription | Update data source&#39;s subscription
 *DownloadApi* | [**downloadGetExport**](docs/DownloadApi.md#downloadGetExport) | **GET** /download/e/{id} | Returns a export file with specified id
 *DownloadApi* | [**downloadGetExportThumbnail**](docs/DownloadApi.md#downloadGetExportThumbnail) | **GET** /download/e/{id}/thumbnail | Returns export&#39;s thumbnail
@@ -252,7 +233,6 @@ Class | Method | HTTP request | Description
 *DownloadApi* | [**downloadGetTemplates**](docs/DownloadApi.md#downloadGetTemplates) | **GET** /download/ts/{archiveName} | Returns a zip archive with selected files
 *ExportsApi* | [**exportFolderAndFileGetCount**](docs/ExportsApi.md#exportFolderAndFileGetCount) | **GET** /api/rp/v1/Exports/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder
 *ExportsApi* | [**exportFolderAndFileGetFoldersAndFiles**](docs/ExportsApi.md#exportFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Exports/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder
-*ExportsApi* | [**exportFoldersAddPermission**](docs/ExportsApi.md#exportFoldersAddPermission) | **PUT** /api/rp/v1/Exports/Folder/{id}/permissions | Add folder permission
 *ExportsApi* | [**exportFoldersCopyFolder**](docs/ExportsApi.md#exportFoldersCopyFolder) | **POST** /api/rp/v1/Exports/Folder/{id}/Copy/{folderId} | Move folder to a specified folder
 *ExportsApi* | [**exportFoldersDeleteFolder**](docs/ExportsApi.md#exportFoldersDeleteFolder) | **DELETE** /api/rp/v1/Exports/Folder/{id} | Delete specified folder
 *ExportsApi* | [**exportFoldersGetBreadcrumbs**](docs/ExportsApi.md#exportFoldersGetBreadcrumbs) | **GET** /api/rp/v1/Exports/Folder/{id}/Breadcrumbs | Get specified folder breadcrumbs
@@ -264,10 +244,9 @@ Class | Method | HTTP request | Description
 *ExportsApi* | [**exportFoldersMoveFolder**](docs/ExportsApi.md#exportFoldersMoveFolder) | **POST** /api/rp/v1/Exports/Folder/{id}/Move/{folderId} | Move folder to a specified folder
 *ExportsApi* | [**exportFoldersPostFolder**](docs/ExportsApi.md#exportFoldersPostFolder) | **POST** /api/rp/v1/Exports/Folder/{id}/Folder | Create folder
 *ExportsApi* | [**exportFoldersRenameFolder**](docs/ExportsApi.md#exportFoldersRenameFolder) | **PUT** /api/rp/v1/Exports/Folder/{id}/Rename | Rename a folder
-*ExportsApi* | [**exportFoldersRevokePermission**](docs/ExportsApi.md#exportFoldersRevokePermission) | **DELETE** /api/rp/v1/Exports/Folder/{id}/permissions | Revoke folder permission
 *ExportsApi* | [**exportFoldersUpdateIcon**](docs/ExportsApi.md#exportFoldersUpdateIcon) | **PUT** /api/rp/v1/Exports/Folder/{id}/Icon | Update a folder&#39;s icon
+*ExportsApi* | [**exportFoldersUpdatePermissions**](docs/ExportsApi.md#exportFoldersUpdatePermissions) | **POST** /api/rp/v1/Exports/{id}/permissions | Update permissions
 *ExportsApi* | [**exportFoldersUpdateTags**](docs/ExportsApi.md#exportFoldersUpdateTags) | **PUT** /api/rp/v1/Exports/Folder/{id}/UpdateTags | Update tags
-*ExportsApi* | [**exportsAddPermission**](docs/ExportsApi.md#exportsAddPermission) | **PUT** /api/rp/v1/Exports/File/{id}/permissions | Add permission
 *ExportsApi* | [**exportsCopyFile**](docs/ExportsApi.md#exportsCopyFile) | **POST** /api/rp/v1/Exports/File/{id}/Copy/{folderId} | Copy file to a specified folder
 *ExportsApi* | [**exportsDeleteFile**](docs/ExportsApi.md#exportsDeleteFile) | **DELETE** /api/rp/v1/Exports/File/{id} | Delete specified file
 *ExportsApi* | [**exportsGetFile**](docs/ExportsApi.md#exportsGetFile) | **GET** /api/rp/v1/Exports/File/{id} | Get specified file
@@ -276,28 +255,26 @@ Class | Method | HTTP request | Description
 *ExportsApi* | [**exportsGetPermissions**](docs/ExportsApi.md#exportsGetPermissions) | **GET** /api/rp/v1/Exports/File/{id}/permissions | Get all file permissions
 *ExportsApi* | [**exportsMoveFile**](docs/ExportsApi.md#exportsMoveFile) | **POST** /api/rp/v1/Exports/File/{id}/Move/{folderId} | Move file to a specified folder
 *ExportsApi* | [**exportsRenameFile**](docs/ExportsApi.md#exportsRenameFile) | **PUT** /api/rp/v1/Exports/File/{id}/Rename | Rename a file
-*ExportsApi* | [**exportsRevokePermission**](docs/ExportsApi.md#exportsRevokePermission) | **DELETE** /api/rp/v1/Exports/File/{id}/permissions | Revoke permission
 *ExportsApi* | [**exportsUpdateIcon**](docs/ExportsApi.md#exportsUpdateIcon) | **PUT** /api/rp/v1/Exports/File/{id}/Icon | Update a files&#39;s icon
+*ExportsApi* | [**exportsUpdatePermissions**](docs/ExportsApi.md#exportsUpdatePermissions) | **POST** /api/rp/v1/Exports/File/{id}/permissions | Update permissions
 *ExportsApi* | [**exportsUpdateTags**](docs/ExportsApi.md#exportsUpdateTags) | **PUT** /api/rp/v1/Exports/File/{id}/UpdateTags | Update tags
 *GroupUsersApi* | [**groupUsersAddUserToGroup**](docs/GroupUsersApi.md#groupUsersAddUserToGroup) | **PUT** /api/manage/v1/Groups/{id}/Users/{userId} | Add user to the group by identifier
 *GroupUsersApi* | [**groupUsersGetUsersInGroup**](docs/GroupUsersApi.md#groupUsersGetUsersInGroup) | **GET** /api/manage/v1/Groups/{id}/Users | Returns users in the group by identifier
 *GroupUsersApi* | [**groupUsersLeaveFromGroup**](docs/GroupUsersApi.md#groupUsersLeaveFromGroup) | **DELETE** /api/manage/v1/Groups/{id}/leave | Leave from the group
 *GroupUsersApi* | [**groupUsersRemoveFromGroup**](docs/GroupUsersApi.md#groupUsersRemoveFromGroup) | **DELETE** /api/manage/v1/Groups/{id}/Users/{userId} | Remove user from the group by identifier
-*GroupsApi* | [**groupsAddPermission**](docs/GroupsApi.md#groupsAddPermission) | **PUT** /api/manage/v1/Groups/{id}/permissions | Add permissions to user group
 *GroupsApi* | [**groupsCreateGroup**](docs/GroupsApi.md#groupsCreateGroup) | **POST** /api/manage/v1/Groups | Create a new user group
 *GroupsApi* | [**groupsDeleteGroup**](docs/GroupsApi.md#groupsDeleteGroup) | **DELETE** /api/manage/v1/Groups/{id} | Delete group by identifier
 *GroupsApi* | [**groupsGetGroup**](docs/GroupsApi.md#groupsGetGroup) | **GET** /api/manage/v1/Groups/{id} | Gets group by identifier
 *GroupsApi* | [**groupsGetGroupList**](docs/GroupsApi.md#groupsGetGroupList) | **GET** /api/manage/v1/Groups | Gets list of user groups
 *GroupsApi* | [**groupsGetPermissions**](docs/GroupsApi.md#groupsGetPermissions) | **GET** /api/manage/v1/Groups/{id}/permissions | Gets group permissions by identifier
 *GroupsApi* | [**groupsRenameGroup**](docs/GroupsApi.md#groupsRenameGroup) | **PUT** /api/manage/v1/Groups/{id}/rename | Rename group by identifier
-*GroupsApi* | [**groupsRevokePermission**](docs/GroupsApi.md#groupsRevokePermission) | **DELETE** /api/manage/v1/Groups/{id}/permissions | Remove (revoke) permissions in user group by identifier
+*GroupsApi* | [**groupsUpdatePermissions**](docs/GroupsApi.md#groupsUpdatePermissions) | **POST** /api/manage/v1/Groups/{id}/permissions | Update permissions
 *HealthCheckApi* | [**healthCheckDataGet**](docs/HealthCheckApi.md#healthCheckDataGet) | **GET** /api/data/v1/HealthCheck | healthcheck
 *HealthCheckApi* | [**healthCheckManagementGet**](docs/HealthCheckApi.md#healthCheckManagementGet) | **GET** /api/manage/v1/HealthCheck | healthcheck
 *HealthCheckApi* | [**healthCheckReportProcessorGet**](docs/HealthCheckApi.md#healthCheckReportProcessorGet) | **GET** /api/rp/v1/HealthCheck | healthcheck
 *HealthCheckApi* | [**healthCheckResultsProviderGet**](docs/HealthCheckApi.md#healthCheckResultsProviderGet) | **GET** /download/v{version}/HealthCheck | Returns Ok
 *ReportsApi* | [**reportFolderAndFileGetCount**](docs/ReportsApi.md#reportFolderAndFileGetCount) | **GET** /api/rp/v1/Reports/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder
 *ReportsApi* | [**reportFolderAndFileGetFoldersAndFiles**](docs/ReportsApi.md#reportFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Reports/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder
-*ReportsApi* | [**reportFoldersAddPermission**](docs/ReportsApi.md#reportFoldersAddPermission) | **PUT** /api/rp/v1/Reports/Folder/{id}/permissions | Add folder permission
 *ReportsApi* | [**reportFoldersCopyFolder**](docs/ReportsApi.md#reportFoldersCopyFolder) | **POST** /api/rp/v1/Reports/Folder/{id}/Copy/{folderId} | Move folder to a specified folder
 *ReportsApi* | [**reportFoldersDeleteFolder**](docs/ReportsApi.md#reportFoldersDeleteFolder) | **DELETE** /api/rp/v1/Reports/Folder/{id} | Delete specified folder
 *ReportsApi* | [**reportFoldersGetBreadcrumbs**](docs/ReportsApi.md#reportFoldersGetBreadcrumbs) | **GET** /api/rp/v1/Reports/Folder/{id}/Breadcrumbs | Get specified folder breadcrumbs
@@ -309,10 +286,9 @@ Class | Method | HTTP request | Description
 *ReportsApi* | [**reportFoldersMoveFolder**](docs/ReportsApi.md#reportFoldersMoveFolder) | **POST** /api/rp/v1/Reports/Folder/{id}/Move/{folderId} | Move folder to a specified folder
 *ReportsApi* | [**reportFoldersPostFolder**](docs/ReportsApi.md#reportFoldersPostFolder) | **POST** /api/rp/v1/Reports/Folder/{id}/Folder | Create folder
 *ReportsApi* | [**reportFoldersRenameFolder**](docs/ReportsApi.md#reportFoldersRenameFolder) | **PUT** /api/rp/v1/Reports/Folder/{id}/Rename | Rename a folder
-*ReportsApi* | [**reportFoldersRevokePermission**](docs/ReportsApi.md#reportFoldersRevokePermission) | **DELETE** /api/rp/v1/Reports/Folder/{id}/permissions | Revoke folder permission
 *ReportsApi* | [**reportFoldersUpdateIcon**](docs/ReportsApi.md#reportFoldersUpdateIcon) | **PUT** /api/rp/v1/Reports/Folder/{id}/Icon | Update a folder&#39;s icon
+*ReportsApi* | [**reportFoldersUpdatePermissions**](docs/ReportsApi.md#reportFoldersUpdatePermissions) | **POST** /api/rp/v1/Reports/{id}/permissions | Update permissions
 *ReportsApi* | [**reportFoldersUpdateTags**](docs/ReportsApi.md#reportFoldersUpdateTags) | **PUT** /api/rp/v1/Reports/Folder/{id}/UpdateTags | Update tags
-*ReportsApi* | [**reportsAddPermission**](docs/ReportsApi.md#reportsAddPermission) | **PUT** /api/rp/v1/Reports/File/{id}/permissions | Add permission
 *ReportsApi* | [**reportsCopyFile**](docs/ReportsApi.md#reportsCopyFile) | **POST** /api/rp/v1/Reports/File/{id}/Copy/{folderId} | Copy file to a specified folder
 *ReportsApi* | [**reportsDeleteFile**](docs/ReportsApi.md#reportsDeleteFile) | **DELETE** /api/rp/v1/Reports/File/{id} | Delete specified file
 *ReportsApi* | [**reportsExport**](docs/ReportsApi.md#reportsExport) | **POST** /api/rp/v1/Reports/File/{id}/Export | Export specified report to a specified format
@@ -322,8 +298,8 @@ Class | Method | HTTP request | Description
 *ReportsApi* | [**reportsGetPermissions**](docs/ReportsApi.md#reportsGetPermissions) | **GET** /api/rp/v1/Reports/File/{id}/permissions | Get all file permissions
 *ReportsApi* | [**reportsMoveFile**](docs/ReportsApi.md#reportsMoveFile) | **POST** /api/rp/v1/Reports/File/{id}/Move/{folderId} | Move file to a specified folder
 *ReportsApi* | [**reportsRenameFile**](docs/ReportsApi.md#reportsRenameFile) | **PUT** /api/rp/v1/Reports/File/{id}/Rename | Rename a file
-*ReportsApi* | [**reportsRevokePermission**](docs/ReportsApi.md#reportsRevokePermission) | **DELETE** /api/rp/v1/Reports/File/{id}/permissions | Revoke permission
 *ReportsApi* | [**reportsUpdateIcon**](docs/ReportsApi.md#reportsUpdateIcon) | **PUT** /api/rp/v1/Reports/File/{id}/Icon | Update a files&#39;s icon
+*ReportsApi* | [**reportsUpdatePermissions**](docs/ReportsApi.md#reportsUpdatePermissions) | **POST** /api/rp/v1/Reports/File/{id}/permissions | Update permissions
 *ReportsApi* | [**reportsUpdateTags**](docs/ReportsApi.md#reportsUpdateTags) | **PUT** /api/rp/v1/Reports/File/{id}/UpdateTags | Update tags
 *ReportsApi* | [**reportsUploadFile**](docs/ReportsApi.md#reportsUploadFile) | **POST** /api/rp/v1/Reports/Folder/{id}/File | Allows to upload reports into specified folder
 *SubscriptionGroupsApi* | [**subscriptionGroupsGetGroupList**](docs/SubscriptionGroupsApi.md#subscriptionGroupsGetGroupList) | **GET** /api/manage/v1/Subscriptions/{id}/groups | returns list of groups in the subscription
@@ -338,18 +314,16 @@ Class | Method | HTTP request | Description
 *SubscriptionUsersApi* | [**subscriptionUsersGetUsers**](docs/SubscriptionUsersApi.md#subscriptionUsersGetUsers) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/users | Returns all users of subscription
 *SubscriptionUsersApi* | [**subscriptionUsersLeaveSubscripiton**](docs/SubscriptionUsersApi.md#subscriptionUsersLeaveSubscripiton) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/leave | Allows user to leave subscription,.
 *SubscriptionUsersApi* | [**subscriptionUsersRemoveUser**](docs/SubscriptionUsersApi.md#subscriptionUsersRemoveUser) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/users/{userId} | Delete a user from the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
-*SubscriptionsApi* | [**subscriptionsAddPermission**](docs/SubscriptionsApi.md#subscriptionsAddPermission) | **PUT** /api/manage/v1/Subscriptions/{id}/permissions | Add permissions for a subscription
 *SubscriptionsApi* | [**subscriptionsGetDefaultPermissions**](docs/SubscriptionsApi.md#subscriptionsGetDefaultPermissions) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions | Get subscription&#39;s default permissions for new entities
 *SubscriptionsApi* | [**subscriptionsGetPermissions**](docs/SubscriptionsApi.md#subscriptionsGetPermissions) | **GET** /api/manage/v1/Subscriptions/{id}/permissions | Get permissions for a subscription by id
 *SubscriptionsApi* | [**subscriptionsGetSubscription**](docs/SubscriptionsApi.md#subscriptionsGetSubscription) | **GET** /api/manage/v1/Subscriptions/{id} | Returns the subscription by id
 *SubscriptionsApi* | [**subscriptionsGetSubscriptions**](docs/SubscriptionsApi.md#subscriptionsGetSubscriptions) | **GET** /api/manage/v1/Subscriptions | Returns a list of all subscriptions of current user
 *SubscriptionsApi* | [**subscriptionsRenameSubscription**](docs/SubscriptionsApi.md#subscriptionsRenameSubscription) | **PUT** /api/manage/v1/Subscriptions/{subscriptionId}/rename | Rename subscription
-*SubscriptionsApi* | [**subscriptionsRevokePermission**](docs/SubscriptionsApi.md#subscriptionsRevokePermission) | **DELETE** /api/manage/v1/Subscriptions/{id}/permissions | Remove permissions from a subscription
 *SubscriptionsApi* | [**subscriptionsUpdateDefaultPermissions**](docs/SubscriptionsApi.md#subscriptionsUpdateDefaultPermissions) | **PUT** /api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions | Change subscription&#39;s default permissions for new entities
 *SubscriptionsApi* | [**subscriptionsUpdateLocale**](docs/SubscriptionsApi.md#subscriptionsUpdateLocale) | **PUT** /api/manage/v1/Subscriptions/{subscriptionId}/Locale | Update subscription&#39;s default locale
+*SubscriptionsApi* | [**subscriptionsUpdatePermissions**](docs/SubscriptionsApi.md#subscriptionsUpdatePermissions) | **POST** /api/manage/v1/Subscriptions/{id}/permissions | Update permissions
 *TemplatesApi* | [**templateFolderAndFileGetCount**](docs/TemplatesApi.md#templateFolderAndFileGetCount) | **GET** /api/rp/v1/Templates/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder
 *TemplatesApi* | [**templateFolderAndFileGetFoldersAndFiles**](docs/TemplatesApi.md#templateFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder
-*TemplatesApi* | [**templateFoldersAddPermission**](docs/TemplatesApi.md#templateFoldersAddPermission) | **PUT** /api/rp/v1/Templates/Folder/{id}/permissions | Add folder permission
 *TemplatesApi* | [**templateFoldersCopyFolder**](docs/TemplatesApi.md#templateFoldersCopyFolder) | **POST** /api/rp/v1/Templates/Folder/{id}/Copy/{folderId} | Move folder to a specified folder
 *TemplatesApi* | [**templateFoldersDeleteFolder**](docs/TemplatesApi.md#templateFoldersDeleteFolder) | **DELETE** /api/rp/v1/Templates/Folder/{id} | Delete specified folder
 *TemplatesApi* | [**templateFoldersGetBreadcrumbs**](docs/TemplatesApi.md#templateFoldersGetBreadcrumbs) | **GET** /api/rp/v1/Templates/Folder/{id}/Breadcrumbs | Get specified folder breadcrumbs
@@ -361,10 +335,9 @@ Class | Method | HTTP request | Description
 *TemplatesApi* | [**templateFoldersMoveFolder**](docs/TemplatesApi.md#templateFoldersMoveFolder) | **POST** /api/rp/v1/Templates/Folder/{id}/Move/{folderId} | Move folder to a specified folder
 *TemplatesApi* | [**templateFoldersPostFolder**](docs/TemplatesApi.md#templateFoldersPostFolder) | **POST** /api/rp/v1/Templates/Folder/{id}/Folder | Create folder
 *TemplatesApi* | [**templateFoldersRenameFolder**](docs/TemplatesApi.md#templateFoldersRenameFolder) | **PUT** /api/rp/v1/Templates/Folder/{id}/Rename | Rename a folder
-*TemplatesApi* | [**templateFoldersRevokePermission**](docs/TemplatesApi.md#templateFoldersRevokePermission) | **DELETE** /api/rp/v1/Templates/Folder/{id}/permissions | Revoke folder permission
 *TemplatesApi* | [**templateFoldersUpdateIcon**](docs/TemplatesApi.md#templateFoldersUpdateIcon) | **PUT** /api/rp/v1/Templates/Folder/{id}/Icon | Update a folder&#39;s icon
+*TemplatesApi* | [**templateFoldersUpdatePermissions**](docs/TemplatesApi.md#templateFoldersUpdatePermissions) | **POST** /api/rp/v1/Templates/{id}/permissions | Update permissions
 *TemplatesApi* | [**templateFoldersUpdateTags**](docs/TemplatesApi.md#templateFoldersUpdateTags) | **PUT** /api/rp/v1/Templates/Folder/{id}/UpdateTags | Update tags
-*TemplatesApi* | [**templatesAddPermission**](docs/TemplatesApi.md#templatesAddPermission) | **PUT** /api/rp/v1/Templates/File/{id}/permissions | Add permission
 *TemplatesApi* | [**templatesCopyFile**](docs/TemplatesApi.md#templatesCopyFile) | **POST** /api/rp/v1/Templates/File/{id}/Copy/{folderId} | Copy file to a specified folder
 *TemplatesApi* | [**templatesDeleteFile**](docs/TemplatesApi.md#templatesDeleteFile) | **DELETE** /api/rp/v1/Templates/File/{id} | Delete specified file
 *TemplatesApi* | [**templatesExport**](docs/TemplatesApi.md#templatesExport) | **POST** /api/rp/v1/Templates/File/{id}/Export | Export specified report template to a specified format
@@ -375,8 +348,8 @@ Class | Method | HTTP request | Description
 *TemplatesApi* | [**templatesMoveFile**](docs/TemplatesApi.md#templatesMoveFile) | **POST** /api/rp/v1/Templates/File/{id}/Move/{folderId} | Move file to a specified folder
 *TemplatesApi* | [**templatesPrepare**](docs/TemplatesApi.md#templatesPrepare) | **POST** /api/rp/v1/Templates/File/{id}/Prepare | Prepare specified template to report
 *TemplatesApi* | [**templatesRenameFile**](docs/TemplatesApi.md#templatesRenameFile) | **PUT** /api/rp/v1/Templates/File/{id}/Rename | Rename a file
-*TemplatesApi* | [**templatesRevokePermission**](docs/TemplatesApi.md#templatesRevokePermission) | **DELETE** /api/rp/v1/Templates/File/{id}/permissions | Revoke permission
 *TemplatesApi* | [**templatesUpdateIcon**](docs/TemplatesApi.md#templatesUpdateIcon) | **PUT** /api/rp/v1/Templates/File/{id}/Icon | Update a files&#39;s icon
+*TemplatesApi* | [**templatesUpdatePermissions**](docs/TemplatesApi.md#templatesUpdatePermissions) | **POST** /api/rp/v1/Templates/File/{id}/permissions | Update permissions
 *TemplatesApi* | [**templatesUpdateTags**](docs/TemplatesApi.md#templatesUpdateTags) | **PUT** /api/rp/v1/Templates/File/{id}/UpdateTags | Update tags
 *TemplatesApi* | [**templatesUploadFile**](docs/TemplatesApi.md#templatesUploadFile) | **POST** /api/rp/v1/Templates/Folder/{id}/File | Upload a file to the specified folder  !
 *UserProfileApi* | [**userProfileGetMyProfile**](docs/UserProfileApi.md#userProfileGetMyProfile) | **GET** /api/manage/v1/UserProfile | Return current profile of the current user
@@ -473,11 +446,15 @@ Class | Method | HTTP request | Description
  - [TemplateVM](docs/TemplateVM.md)
  - [TemplatesVM](docs/TemplatesVM.md)
  - [UpdateDataSourceConnectionStringVM](docs/UpdateDataSourceConnectionStringVM.md)
+ - [UpdateDataSourcePermissionsVM](docs/UpdateDataSourcePermissionsVM.md)
  - [UpdateDataSourceSubscriptionVM](docs/UpdateDataSourceSubscriptionVM.md)
  - [UpdateDataSourceVM](docs/UpdateDataSourceVM.md)
  - [UpdateDefaultPermissionsVM](docs/UpdateDefaultPermissionsVM.md)
+ - [UpdateFilePermissionsVM](docs/UpdateFilePermissionsVM.md)
+ - [UpdateGroupPermissionsVM](docs/UpdateGroupPermissionsVM.md)
  - [UpdateGroupVM](docs/UpdateGroupVM.md)
  - [UpdateSubscriptionLocaleVM](docs/UpdateSubscriptionLocaleVM.md)
+ - [UpdateSubscriptionPermissionsVM](docs/UpdateSubscriptionPermissionsVM.md)
  - [UpdateSubscriptionPlanVM](docs/UpdateSubscriptionPlanVM.md)
  - [UpdateSubscriptionVM](docs/UpdateSubscriptionVM.md)
  - [UpdateUserVM](docs/UpdateUserVM.md)

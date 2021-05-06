@@ -3,13 +3,13 @@ package cloud.fastreport.client;
 import cloud.fastreport.ApiClient;
 
 import cloud.fastreport.model.CreateDataSourceVM;
-import cloud.fastreport.model.DataSourcePermissions;
 import cloud.fastreport.model.DataSourcePermissionsVM;
 import cloud.fastreport.model.DataSourceVM;
 import cloud.fastreport.model.DataSourcesVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.RenameDataSourceVM;
 import cloud.fastreport.model.UpdateDataSourceConnectionStringVM;
+import cloud.fastreport.model.UpdateDataSourcePermissionsVM;
 import cloud.fastreport.model.UpdateDataSourceSubscriptionVM;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -48,116 +48,6 @@ public class DataSourcesApi {
     public void setApiClient(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
-
-  /**
-    * Add Permission
-    * <p><b>200</b> - Success
-    * <p><b>400</b> - Bad Request
-    * <p><b>402</b> - Client Error
-    * <p><b>403</b> - Forbidden
-    * <p><b>404</b> - Not Found
-    * <p><b>500</b> - Server Error
-    * @param id data source id
-    * @param permissionsVM The permissionsVM parameter
-    * @return DataSourcePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public DataSourcePermissions dataSourcesAddPermission(String id, DataSourcePermissionsVM permissionsVM) throws IOException {
-        HttpResponse response = dataSourcesAddPermissionForHttpResponse(id, permissionsVM);
-        TypeReference<DataSourcePermissions> typeRef = new TypeReference<DataSourcePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Add Permission
-    * <p><b>200</b> - Success
-    * <p><b>400</b> - Bad Request
-    * <p><b>402</b> - Client Error
-    * <p><b>403</b> - Forbidden
-    * <p><b>404</b> - Not Found
-    * <p><b>500</b> - Server Error
-    * @param id data source id
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return DataSourcePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public DataSourcePermissions dataSourcesAddPermission(DataSourcePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = dataSourcesAddPermissionForHttpResponse(permissionsVM, id, params);
-        TypeReference<DataSourcePermissions> typeRef = new TypeReference<DataSourcePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse dataSourcesAddPermissionForHttpResponse(String id, DataSourcePermissionsVM permissionsVM) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
-      public HttpResponse dataSourcesAddPermissionForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesAddPermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = permissionsVM == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-      }
-
-    public HttpResponse dataSourcesAddPermissionForHttpResponse(DataSourcePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesAddPermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
 
   /**
     * Create new data source
@@ -624,12 +514,12 @@ public class DataSourcesApi {
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
     * @param id data source id
-    * @return DataSourcePermissions
+    * @return DataSourcePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public DataSourcePermissions dataSourcesGetPermissions(String id) throws IOException {
+    public DataSourcePermissionsVM dataSourcesGetPermissions(String id) throws IOException {
         HttpResponse response = dataSourcesGetPermissionsForHttpResponse(id);
-        TypeReference<DataSourcePermissions> typeRef = new TypeReference<DataSourcePermissions>() {};
+        TypeReference<DataSourcePermissionsVM> typeRef = new TypeReference<DataSourcePermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -643,12 +533,12 @@ public class DataSourcesApi {
     * <p><b>500</b> - Server Error
     * @param id data source id
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return DataSourcePermissions
+    * @return DataSourcePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public DataSourcePermissions dataSourcesGetPermissions(String id, Map<String, Object> params) throws IOException {
+    public DataSourcePermissionsVM dataSourcesGetPermissions(String id, Map<String, Object> params) throws IOException {
         HttpResponse response = dataSourcesGetPermissionsForHttpResponse(id, params);
-        TypeReference<DataSourcePermissions> typeRef = new TypeReference<DataSourcePermissions>() {};
+        TypeReference<DataSourcePermissionsVM> typeRef = new TypeReference<DataSourcePermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -816,114 +706,6 @@ public class DataSourcesApi {
 
 
   /**
-    * <p><b>200</b> - Success
-    * <p><b>400</b> - Bad Request
-    * <p><b>402</b> - Client Error
-    * <p><b>403</b> - Forbidden
-    * <p><b>404</b> - Not Found
-    * <p><b>500</b> - Server Error
-    * @param id The id parameter
-    * @param permissionsVM The permissionsVM parameter
-    * @return DataSourcePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public DataSourcePermissions dataSourcesRevokePermission(String id, DataSourcePermissionsVM permissionsVM) throws IOException {
-        HttpResponse response = dataSourcesRevokePermissionForHttpResponse(id, permissionsVM);
-        TypeReference<DataSourcePermissions> typeRef = new TypeReference<DataSourcePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * <p><b>200</b> - Success
-    * <p><b>400</b> - Bad Request
-    * <p><b>402</b> - Client Error
-    * <p><b>403</b> - Forbidden
-    * <p><b>404</b> - Not Found
-    * <p><b>500</b> - Server Error
-    * @param id The id parameter
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return DataSourcePermissions
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public DataSourcePermissions dataSourcesRevokePermission(DataSourcePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = dataSourcesRevokePermissionForHttpResponse(permissionsVM, id, params);
-        TypeReference<DataSourcePermissions> typeRef = new TypeReference<DataSourcePermissions>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse dataSourcesRevokePermissionForHttpResponse(String id, DataSourcePermissionsVM permissionsVM) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources/{id}/permissions");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-    }
-
-      public HttpResponse dataSourcesRevokePermissionForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
-          // verify the required parameter 'id' is set
-              if (id == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesRevokePermission");
-              }
-                  // create a map of path variables
-                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
-                      uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources/{id}/permissions");
-
-              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-              GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-              HttpContent content = permissionsVM == null ?
-                apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-      }
-
-    public HttpResponse dataSourcesRevokePermissionForHttpResponse(DataSourcePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesRevokePermission");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources/{id}/permissions");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
-    }
-
-
-  /**
     * Update data source&#39;s connection string by id
     * <p><b>200</b> - Success
     * <p><b>400</b> - Bad Request
@@ -1030,6 +812,110 @@ public class DataSourcesApi {
 
         HttpContent content = apiClient.new JacksonJsonHttpContent(updateModel);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+    }
+
+
+  /**
+    * Update permissions
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>402</b> - Client Error
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id The id parameter
+    * @param permissionsVM The permissionsVM parameter
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void dataSourcesUpdatePermissions(String id, UpdateDataSourcePermissionsVM permissionsVM) throws IOException {
+        dataSourcesUpdatePermissionsForHttpResponse(id, permissionsVM);
+    }
+
+  /**
+    * Update permissions
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>402</b> - Client Error
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id The id parameter
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void dataSourcesUpdatePermissions(UpdateDataSourcePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+        dataSourcesUpdatePermissionsForHttpResponse(permissionsVM, id, params);
+    }
+
+    public HttpResponse dataSourcesUpdatePermissionsForHttpResponse(String id, UpdateDataSourcePermissionsVM permissionsVM) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesUpdatePermissions");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources/{id}/permissions");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+      public HttpResponse dataSourcesUpdatePermissionsForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
+          // verify the required parameter 'id' is set
+              if (id == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesUpdatePermissions");
+              }
+                  // create a map of path variables
+                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
+                      uriVariables.put("id", id);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources/{id}/permissions");
+
+              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+              HttpContent content = permissionsVM == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+      }
+
+    public HttpResponse dataSourcesUpdatePermissionsForHttpResponse(UpdateDataSourcePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesUpdatePermissions");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources/{id}/permissions");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 

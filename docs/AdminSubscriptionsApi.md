@@ -4,100 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**adminSubscriptionsAddPermission**](AdminSubscriptionsApi.md#adminSubscriptionsAddPermission) | **PUT** /api/admin/v1/Subscriptions/{id}/permissions | Add permissions to subscription
 [**adminSubscriptionsCreateSubscription**](AdminSubscriptionsApi.md#adminSubscriptionsCreateSubscription) | **POST** /api/admin/v1/Subscriptions | Create a new subscription based on some plan
 [**adminSubscriptionsDeleteSubscription**](AdminSubscriptionsApi.md#adminSubscriptionsDeleteSubscription) | **DELETE** /api/admin/v1/Subscriptions/{id} | Delete the subscription by id
 [**adminSubscriptionsGetNewSibscriptionsPerMonth**](AdminSubscriptionsApi.md#adminSubscriptionsGetNewSibscriptionsPerMonth) | **GET** /api/admin/v1/Subscriptions/stat/new/{from}/{to} | Returns a key-value pair of new(renew) subscriptions count per month for a specified time span: (month, number of new subscriptions)
 [**adminSubscriptionsGetPermissions**](AdminSubscriptionsApi.md#adminSubscriptionsGetPermissions) | **GET** /api/admin/v1/Subscriptions/{id}/permissions | Get all subscription permissions
 [**adminSubscriptionsGetSubscription**](AdminSubscriptionsApi.md#adminSubscriptionsGetSubscription) | **GET** /api/admin/v1/Subscriptions/{id} | Returns the subscription by id
 [**adminSubscriptionsGetSubscriptions**](AdminSubscriptionsApi.md#adminSubscriptionsGetSubscriptions) | **GET** /api/admin/v1/Subscriptions | Returns a list of all subscriptions
-[**adminSubscriptionsReCountSubscription**](AdminSubscriptionsApi.md#adminSubscriptionsReCountSubscription) | **GET** /api/admin/v1/Subscriptions/{id}/recount | Recount subscription&#39;s files and folders size
-[**adminSubscriptionsRevokePermission**](AdminSubscriptionsApi.md#adminSubscriptionsRevokePermission) | **DELETE** /api/admin/v1/Subscriptions/{id}/permissions | Revoke permissions to subscription
+[**adminSubscriptionsReCountSubscription**](AdminSubscriptionsApi.md#adminSubscriptionsReCountSubscription) | **GET** /api/admin/v1/Subscriptions/{id}/recount | Recount subscription&#39;s files and folders sizes.
 [**adminSubscriptionsUpdatePermissions**](AdminSubscriptionsApi.md#adminSubscriptionsUpdatePermissions) | **POST** /api/admin/v1/Subscriptions/{id}/permissions | Update permissions to subscription
 [**adminSubscriptionsUpdateSubscription**](AdminSubscriptionsApi.md#adminSubscriptionsUpdateSubscription) | **PUT** /api/admin/v1/Subscriptions/{id} | Update the subscription by id
 
-
-
-## adminSubscriptionsAddPermission
-
-> SubscriptionPermissions adminSubscriptionsAddPermission(id, permissionsVM)
-
-Add permissions to subscription
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.AdminSubscriptionsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        AdminSubscriptionsApi apiInstance = new AdminSubscriptionsApi(defaultClient);
-        String id = "id_example"; // String | subscription id
-        SubscriptionPermissionsVM permissionsVM = new SubscriptionPermissionsVM(); // SubscriptionPermissionsVM | permissions VM
-        try {
-            SubscriptionPermissions result = apiInstance.adminSubscriptionsAddPermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AdminSubscriptionsApi#adminSubscriptionsAddPermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| subscription id |
- **permissionsVM** | [**SubscriptionPermissionsVM**](SubscriptionPermissionsVM.md)| permissions VM | [optional]
-
-### Return type
-
-[**SubscriptionPermissions**](SubscriptionPermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
 
 
 ## adminSubscriptionsCreateSubscription
@@ -341,7 +257,7 @@ Name | Type | Description  | Notes
 
 ## adminSubscriptionsGetPermissions
 
-> SubscriptionPermissions adminSubscriptionsGetPermissions(id)
+> SubscriptionPermissionsVM adminSubscriptionsGetPermissions(id)
 
 Get all subscription permissions
 
@@ -375,7 +291,7 @@ public class Example {
         AdminSubscriptionsApi apiInstance = new AdminSubscriptionsApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            SubscriptionPermissions result = apiInstance.adminSubscriptionsGetPermissions(id);
+            SubscriptionPermissionsVM result = apiInstance.adminSubscriptionsGetPermissions(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminSubscriptionsApi#adminSubscriptionsGetPermissions");
@@ -397,7 +313,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionPermissions**](SubscriptionPermissions.md)
+[**SubscriptionPermissionsVM**](SubscriptionPermissionsVM.md)
 
 ### Authorization
 
@@ -580,9 +496,9 @@ Name | Type | Description  | Notes
 
 ## adminSubscriptionsReCountSubscription
 
-> Map&lt;String, Long&gt; adminSubscriptionsReCountSubscription(id, collectionNames)
+> adminSubscriptionsReCountSubscription(id)
 
-Recount subscription&#39;s files and folders size
+Recount subscription&#39;s files and folders sizes.
 
 ### Example
 
@@ -613,10 +529,8 @@ public class Example {
 
         AdminSubscriptionsApi apiInstance = new AdminSubscriptionsApi(defaultClient);
         String id = "id_example"; // String | Identifier of subscription
-        String collectionNames = "collectionNames_example"; // String | collection names to recount listed through ',' sign
         try {
-            Map<String, Long> result = apiInstance.adminSubscriptionsReCountSubscription(id, collectionNames);
-            System.out.println(result);
+            apiInstance.adminSubscriptionsReCountSubscription(id);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminSubscriptionsApi#adminSubscriptionsReCountSubscription");
             System.err.println("Status code: " + e.getCode());
@@ -634,11 +548,10 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Identifier of subscription |
- **collectionNames** | **String**| collection names to recount listed through &#39;,&#39; sign | [optional]
 
 ### Return type
 
-**Map&lt;String, Long&gt;**
+null (empty response body)
 
 ### Authorization
 
@@ -660,92 +573,9 @@ Name | Type | Description  | Notes
 | **500** | exception caught |  -  |
 
 
-## adminSubscriptionsRevokePermission
-
-> SubscriptionPermissions adminSubscriptionsRevokePermission(id, permissionsVM)
-
-Revoke permissions to subscription
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.AdminSubscriptionsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        AdminSubscriptionsApi apiInstance = new AdminSubscriptionsApi(defaultClient);
-        String id = "id_example"; // String | subscription id
-        SubscriptionPermissionsVM permissionsVM = new SubscriptionPermissionsVM(); // SubscriptionPermissionsVM | permissions VM
-        try {
-            SubscriptionPermissions result = apiInstance.adminSubscriptionsRevokePermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AdminSubscriptionsApi#adminSubscriptionsRevokePermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| subscription id |
- **permissionsVM** | [**SubscriptionPermissionsVM**](SubscriptionPermissionsVM.md)| permissions VM | [optional]
-
-### Return type
-
-[**SubscriptionPermissions**](SubscriptionPermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **204** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
-
-
 ## adminSubscriptionsUpdatePermissions
 
-> SubscriptionPermissions adminSubscriptionsUpdatePermissions(id, permissionsVM)
+> adminSubscriptionsUpdatePermissions(id, permissionsVM)
 
 Update permissions to subscription
 
@@ -778,10 +608,9 @@ public class Example {
 
         AdminSubscriptionsApi apiInstance = new AdminSubscriptionsApi(defaultClient);
         String id = "id_example"; // String | subscription id
-        SubscriptionPermissions permissionsVM = new SubscriptionPermissions(); // SubscriptionPermissions | permissions VM
+        UpdateSubscriptionPermissionsVM permissionsVM = new UpdateSubscriptionPermissionsVM(); // UpdateSubscriptionPermissionsVM | permissions VM
         try {
-            SubscriptionPermissions result = apiInstance.adminSubscriptionsUpdatePermissions(id, permissionsVM);
-            System.out.println(result);
+            apiInstance.adminSubscriptionsUpdatePermissions(id, permissionsVM);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminSubscriptionsApi#adminSubscriptionsUpdatePermissions");
             System.err.println("Status code: " + e.getCode());
@@ -799,11 +628,11 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| subscription id |
- **permissionsVM** | [**SubscriptionPermissions**](SubscriptionPermissions.md)| permissions VM | [optional]
+ **permissionsVM** | [**UpdateSubscriptionPermissionsVM**](UpdateSubscriptionPermissionsVM.md)| permissions VM | [optional]
 
 ### Return type
 
-[**SubscriptionPermissions**](SubscriptionPermissions.md)
+null (empty response body)
 
 ### Authorization
 

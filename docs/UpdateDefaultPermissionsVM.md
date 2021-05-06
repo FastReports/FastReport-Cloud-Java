@@ -7,7 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**defaultPermissions** | [**DefaultPermissions**](DefaultPermissions.md) |  |  [optional]
+**filePermissions** | [**FilePermissions**](FilePermissions.md) |  |  [optional]
+**groupPermissions** | [**GroupPermissions**](GroupPermissions.md) |  |  [optional]
+**dataSourcePermissions** | [**DataSourcePermissions**](DataSourcePermissions.md) |  |  [optional]
 
 
 

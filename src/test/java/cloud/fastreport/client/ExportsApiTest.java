@@ -19,7 +19,6 @@ import cloud.fastreport.model.ExportFolderCreateVM;
 import cloud.fastreport.model.ExportVM;
 import cloud.fastreport.model.ExportsVM;
 import cloud.fastreport.model.FileIconVM;
-import cloud.fastreport.model.FilePermissions;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileRenameVM;
 import cloud.fastreport.model.FileTagsUpdateVM;
@@ -29,6 +28,7 @@ import cloud.fastreport.model.FolderIconVM;
 import cloud.fastreport.model.FolderRenameVM;
 import cloud.fastreport.model.FolderTagsUpdateVM;
 import cloud.fastreport.model.ProblemDetails;
+import cloud.fastreport.model.UpdateFilePermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -77,23 +77,6 @@ public class ExportsApiTest {
         Integer skip = null;
         Integer take = null;
         FilesVM response = api.exportFolderAndFileGetFoldersAndFiles(id, skip, take);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Add folder permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void exportFoldersAddPermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.exportFoldersAddPermission(id, permissionsVM);
 
         // TODO: test validations
     }
@@ -209,7 +192,7 @@ public class ExportsApiTest {
     @Test
     public void exportFoldersGetPermissionsTest() throws IOException {
         String id = null;
-        FilePermissions response = api.exportFoldersGetPermissions(id);
+        FilePermissionsVM response = api.exportFoldersGetPermissions(id);
 
         // TODO: test validations
     }
@@ -282,23 +265,6 @@ public class ExportsApiTest {
     }
     
     /**
-     * Revoke folder permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void exportFoldersRevokePermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.exportFoldersRevokePermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Update a folder&#39;s icon
      *
      * User with a Update Icon permission can access this method.
@@ -316,6 +282,23 @@ public class ExportsApiTest {
     }
     
     /**
+     * Update permissions
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void exportFoldersUpdatePermissionsTest() throws IOException {
+        String id = null;
+        UpdateFilePermissionsVM permissionsVM = null;
+        api.exportFoldersUpdatePermissions(id, permissionsVM);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Update tags
      *
      * User with a Update Tags permission can access this method.
@@ -328,23 +311,6 @@ public class ExportsApiTest {
         String id = null;
         FolderTagsUpdateVM tagsModel = null;
         FileVM response = api.exportFoldersUpdateTags(id, tagsModel);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Add permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void exportsAddPermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.exportsAddPermission(id, permissionsVM);
 
         // TODO: test validations
     }
@@ -443,7 +409,7 @@ public class ExportsApiTest {
     @Test
     public void exportsGetPermissionsTest() throws IOException {
         String id = null;
-        FilePermissions response = api.exportsGetPermissions(id);
+        FilePermissionsVM response = api.exportsGetPermissions(id);
 
         // TODO: test validations
     }
@@ -483,23 +449,6 @@ public class ExportsApiTest {
     }
     
     /**
-     * Revoke permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void exportsRevokePermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.exportsRevokePermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Update a files&#39;s icon
      *
      * User with Update Icon permission can access this method.
@@ -512,6 +461,23 @@ public class ExportsApiTest {
         String id = null;
         FileIconVM iconModel = null;
         ExportVM response = api.exportsUpdateIcon(id, iconModel);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Update permissions
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void exportsUpdatePermissionsTest() throws IOException {
+        String id = null;
+        UpdateFilePermissionsVM permissionsVM = null;
+        api.exportsUpdatePermissions(id, permissionsVM);
 
         // TODO: test validations
     }

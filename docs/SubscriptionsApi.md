@@ -4,98 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**subscriptionsAddPermission**](SubscriptionsApi.md#subscriptionsAddPermission) | **PUT** /api/manage/v1/Subscriptions/{id}/permissions | Add permissions for a subscription
 [**subscriptionsGetDefaultPermissions**](SubscriptionsApi.md#subscriptionsGetDefaultPermissions) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions | Get subscription&#39;s default permissions for new entities
 [**subscriptionsGetPermissions**](SubscriptionsApi.md#subscriptionsGetPermissions) | **GET** /api/manage/v1/Subscriptions/{id}/permissions | Get permissions for a subscription by id
 [**subscriptionsGetSubscription**](SubscriptionsApi.md#subscriptionsGetSubscription) | **GET** /api/manage/v1/Subscriptions/{id} | Returns the subscription by id
 [**subscriptionsGetSubscriptions**](SubscriptionsApi.md#subscriptionsGetSubscriptions) | **GET** /api/manage/v1/Subscriptions | Returns a list of all subscriptions of current user
 [**subscriptionsRenameSubscription**](SubscriptionsApi.md#subscriptionsRenameSubscription) | **PUT** /api/manage/v1/Subscriptions/{subscriptionId}/rename | Rename subscription
-[**subscriptionsRevokePermission**](SubscriptionsApi.md#subscriptionsRevokePermission) | **DELETE** /api/manage/v1/Subscriptions/{id}/permissions | Remove permissions from a subscription
 [**subscriptionsUpdateDefaultPermissions**](SubscriptionsApi.md#subscriptionsUpdateDefaultPermissions) | **PUT** /api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions | Change subscription&#39;s default permissions for new entities
 [**subscriptionsUpdateLocale**](SubscriptionsApi.md#subscriptionsUpdateLocale) | **PUT** /api/manage/v1/Subscriptions/{subscriptionId}/Locale | Update subscription&#39;s default locale
+[**subscriptionsUpdatePermissions**](SubscriptionsApi.md#subscriptionsUpdatePermissions) | **POST** /api/manage/v1/Subscriptions/{id}/permissions | Update permissions
 
-
-
-## subscriptionsAddPermission
-
-> SubscriptionPermissions subscriptionsAddPermission(id, permissionsVM)
-
-Add permissions for a subscription
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.SubscriptionsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
-        String id = "id_example"; // String | 
-        SubscriptionPermissionsVM permissionsVM = new SubscriptionPermissionsVM(); // SubscriptionPermissionsVM | 
-        try {
-            SubscriptionPermissions result = apiInstance.subscriptionsAddPermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling SubscriptionsApi#subscriptionsAddPermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
- **permissionsVM** | [**SubscriptionPermissionsVM**](SubscriptionPermissionsVM.md)|  |
-
-### Return type
-
-[**SubscriptionPermissions**](SubscriptionPermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Succesfully added |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **402** | Subscription is outdated |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Subscription is not found |  -  |
 
 
 ## subscriptionsGetDefaultPermissions
@@ -180,7 +97,7 @@ Name | Type | Description  | Notes
 
 ## subscriptionsGetPermissions
 
-> SubscriptionPermissions subscriptionsGetPermissions(id)
+> SubscriptionPermissionsVM subscriptionsGetPermissions(id)
 
 Get permissions for a subscription by id
 
@@ -214,7 +131,7 @@ public class Example {
         SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            SubscriptionPermissions result = apiInstance.subscriptionsGetPermissions(id);
+            SubscriptionPermissionsVM result = apiInstance.subscriptionsGetPermissions(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SubscriptionsApi#subscriptionsGetPermissions");
@@ -236,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionPermissions**](SubscriptionPermissions.md)
+[**SubscriptionPermissionsVM**](SubscriptionPermissionsVM.md)
 
 ### Authorization
 
@@ -495,89 +412,6 @@ Name | Type | Description  | Notes
 | **404** | there is no subscription with such id (or user have no permission) |  -  |
 
 
-## subscriptionsRevokePermission
-
-> SubscriptionPermissions subscriptionsRevokePermission(id, permissionsVM)
-
-Remove permissions from a subscription
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.SubscriptionsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
-
-        SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
-        String id = "id_example"; // String | 
-        SubscriptionPermissionsVM permissionsVM = new SubscriptionPermissionsVM(); // SubscriptionPermissionsVM | 
-        try {
-            SubscriptionPermissions result = apiInstance.subscriptionsRevokePermission(id, permissionsVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling SubscriptionsApi#subscriptionsRevokePermission");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
- **permissionsVM** | [**SubscriptionPermissionsVM**](SubscriptionPermissionsVM.md)|  |
-
-### Return type
-
-[**SubscriptionPermissions**](SubscriptionPermissions.md)
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Succesfully removed |  -  |
-| **204** | happens sometimes |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **402** | subscription is outdated |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Subscription is not found |  -  |
-
-
 ## subscriptionsUpdateDefaultPermissions
 
 > DefaultPermissionsVM subscriptionsUpdateDefaultPermissions(subscriptionId, permissionsVM)
@@ -740,4 +574,86 @@ Name | Type | Description  | Notes
 | **402** | Subscription is outdated |  -  |
 | **403** | Not enough permissions |  -  |
 | **404** | there is no subscription with such id (or user have no permission) |  -  |
+
+
+## subscriptionsUpdatePermissions
+
+> subscriptionsUpdatePermissions(id, permissionsVM)
+
+Update permissions
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.SubscriptionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure API key authorization: JWT
+        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
+        JWT.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //JWT.setApiKeyPrefix("Token");
+
+        SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
+        String id = "id_example"; // String | 
+        UpdateSubscriptionPermissionsVM permissionsVM = new UpdateSubscriptionPermissionsVM(); // UpdateSubscriptionPermissionsVM | 
+        try {
+            apiInstance.subscriptionsUpdatePermissions(id, permissionsVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SubscriptionsApi#subscriptionsUpdatePermissions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  |
+ **permissionsVM** | [**UpdateSubscriptionPermissionsVM**](UpdateSubscriptionPermissionsVM.md)|  | [optional]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **402** | Client Error |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
 

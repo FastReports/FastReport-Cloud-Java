@@ -17,12 +17,12 @@ import cloud.fastreport.model.AdminExportFolderCreateVM;
 import cloud.fastreport.model.ExportCreateAdminVM;
 import cloud.fastreport.model.ExportVM;
 import cloud.fastreport.model.ExportsVM;
-import cloud.fastreport.model.FilePermissions;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileUpdateVM;
 import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.FilesVM;
 import cloud.fastreport.model.ProblemDetails;
+import cloud.fastreport.model.UpdateFilePermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -40,23 +40,6 @@ public class AdminExportsApiTest {
 
     private final AdminExportsApi api = new AdminExportsApi();
 
-    
-    /**
-     * Add permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminExportFoldersAddPermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.adminExportFoldersAddPermission(id, permissionsVM);
-
-        // TODO: test validations
-    }
     
     /**
      * Delete specified folder
@@ -120,7 +103,7 @@ public class AdminExportsApiTest {
     @Test
     public void adminExportFoldersGetPermissionsTest() throws IOException {
         String id = null;
-        FilePermissions response = api.adminExportFoldersGetPermissions(id);
+        FilePermissionsVM response = api.adminExportFoldersGetPermissions(id);
 
         // TODO: test validations
     }
@@ -135,26 +118,8 @@ public class AdminExportsApiTest {
      */
     @Test
     public void adminExportFoldersPostFolderTest() throws IOException {
-        String subscriptionId = null;
         AdminExportFolderCreateVM folderVm = null;
-        FileVM response = api.adminExportFoldersPostFolder(subscriptionId, folderVm);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Revoke permission
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminExportFoldersRevokePermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.adminExportFoldersRevokePermission(id, permissionsVM);
+        FileVM response = api.adminExportFoldersPostFolder(folderVm);
 
         // TODO: test validations
     }
@@ -187,25 +152,8 @@ public class AdminExportsApiTest {
     @Test
     public void adminExportFoldersUpdatePermissionsTest() throws IOException {
         String id = null;
-        FilePermissions newPermissions = null;
-        FilePermissions response = api.adminExportFoldersUpdatePermissions(id, newPermissions);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Add file permissions
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminExportsAddPermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.adminExportsAddPermission(id, permissionsVM);
+        UpdateFilePermissionsVM newPermissions = null;
+        api.adminExportFoldersUpdatePermissions(id, newPermissions);
 
         // TODO: test validations
     }
@@ -271,24 +219,7 @@ public class AdminExportsApiTest {
     @Test
     public void adminExportsGetPermissionsTest() throws IOException {
         String id = null;
-        FilePermissions response = api.adminExportsGetPermissions(id);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Revoke (remove) file permissions
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void adminExportsRevokePermissionTest() throws IOException {
-        String id = null;
-        FilePermissionsVM permissionsVM = null;
-        FilePermissions response = api.adminExportsRevokePermission(id, permissionsVM);
+        FilePermissionsVM response = api.adminExportsGetPermissions(id);
 
         // TODO: test validations
     }
@@ -311,7 +242,7 @@ public class AdminExportsApiTest {
     }
     
     /**
-     * Update file permissions
+     * Update permissions to file
      *
      * 
      *
@@ -320,9 +251,9 @@ public class AdminExportsApiTest {
      */
     @Test
     public void adminExportsUpdatePermissionsTest() throws IOException {
-        String fileId = null;
-        FilePermissions newPermissions = null;
-        FilePermissions response = api.adminExportsUpdatePermissions(fileId, newPermissions);
+        String id = null;
+        UpdateFilePermissionsVM newPermissions = null;
+        api.adminExportsUpdatePermissions(id, newPermissions);
 
         // TODO: test validations
     }

@@ -2,7 +2,6 @@ package cloud.fastreport.client;
 
 import cloud.fastreport.ApiClient;
 
-import cloud.fastreport.model.GroupsVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.SubscriptionUsersVM;
 
@@ -134,104 +133,6 @@ public class SubscriptionUsersApi {
 
         HttpContent content = new EmptyContent();
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
-    }
-
-
-  /**
-    * Returns all users of subscription
-    * <p><b>200</b> - Succesfully returned
-    * <p><b>400</b> - The reqeust is wrong
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - Subscription is not found
-    * <p><b>500</b> - Exception thrown
-    * @param subscriptionId Idenitifier of subscription
-    * @param userId user id
-    * @return GroupsVM
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public GroupsVM subscriptionUsersGetUserGroups(String subscriptionId, String userId) throws IOException {
-        HttpResponse response = subscriptionUsersGetUserGroupsForHttpResponse(subscriptionId, userId);
-        TypeReference<GroupsVM> typeRef = new TypeReference<GroupsVM>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Returns all users of subscription
-    * <p><b>200</b> - Succesfully returned
-    * <p><b>400</b> - The reqeust is wrong
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - Subscription is not found
-    * <p><b>500</b> - Exception thrown
-    * @param subscriptionId Idenitifier of subscription
-    * @param userId user id
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return GroupsVM
-    * @throws IOException if an error occurs while attempting to invoke the API
-    **/
-    public GroupsVM subscriptionUsersGetUserGroups(String subscriptionId, String userId, Map<String, Object> params) throws IOException {
-        HttpResponse response = subscriptionUsersGetUserGroupsForHttpResponse(subscriptionId, userId, params);
-        TypeReference<GroupsVM> typeRef = new TypeReference<GroupsVM>() {};
-        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse subscriptionUsersGetUserGroupsForHttpResponse(String subscriptionId, String userId) throws IOException {
-        // verify the required parameter 'subscriptionId' is set
-        if (subscriptionId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionUsersGetUserGroups");
-        }// verify the required parameter 'userId' is set
-        if (userId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'userId' when calling subscriptionUsersGetUserGroups");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("subscriptionId", subscriptionId);
-        uriVariables.put("userId", userId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{subscriptionId}/user/{userId}/groups");
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
-    }
-
-    public HttpResponse subscriptionUsersGetUserGroupsForHttpResponse(String subscriptionId, String userId, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'subscriptionId' is set
-        if (subscriptionId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionUsersGetUserGroups");
-        }// verify the required parameter 'userId' is set
-        if (userId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'userId' when calling subscriptionUsersGetUserGroups");
-        }
-        // create a map of path variables
-        final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("subscriptionId", subscriptionId);
-        uriVariables.put("userId", userId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{subscriptionId}/user/{userId}/groups");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-
-        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
-        GenericUrl genericUrl = new GenericUrl(localVarUrl);
-
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 

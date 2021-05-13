@@ -187,10 +187,6 @@ public class CustomInstantDeserializer<T extends Temporal>
         if (string.endsWith("+0000")) {
           string = string.substring(0, string.length() - 5) + "Z";
         }
-        if(!(string.contains("+") || string.contains("Z")))
-        {
-            string = string + "Z";
-        }
         T value;
         try {
           TemporalAccessor acc = _formatter.parse(string);

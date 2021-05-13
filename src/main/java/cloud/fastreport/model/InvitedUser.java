@@ -62,6 +62,8 @@ public class InvitedUser {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_USER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUserId(String userId) {
     this.userId = userId;
   }
@@ -87,6 +89,8 @@ public class InvitedUser {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INVITED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInvitedAt(OffsetDateTime invitedAt) {
     this.invitedAt = invitedAt;
   }

@@ -80,6 +80,8 @@ public class ReportsVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FILES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFiles(List<ReportVM> files) {
     this.files = files;
   }
@@ -105,6 +107,8 @@ public class ReportsVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCount(Long count) {
     this.count = count;
   }
@@ -130,6 +134,8 @@ public class ReportsVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SKIP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSkip(Integer skip) {
     this.skip = skip;
   }
@@ -155,6 +161,8 @@ public class ReportsVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TAKE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTake(Integer take) {
     this.take = take;
   }

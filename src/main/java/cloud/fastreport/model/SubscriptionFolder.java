@@ -61,6 +61,8 @@ public class SubscriptionFolder {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFolderId(String folderId) {
     this.folderId = folderId;
   }
@@ -86,6 +88,8 @@ public class SubscriptionFolder {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BYTES_USED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBytesUsed(Long bytesUsed) {
     this.bytesUsed = bytesUsed;
   }

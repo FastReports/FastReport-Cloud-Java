@@ -235,6 +235,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -260,6 +262,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PARENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setParentId(String parentId) {
     this.parentId = parentId;
   }
@@ -293,6 +297,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TAGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTags(List<String> tags) {
     this.tags = tags;
   }
@@ -318,6 +324,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ICON)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIcon(byte[] icon) {
     this.icon = icon;
   }
@@ -343,6 +351,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -368,6 +378,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSize(Long size) {
     this.size = size;
   }
@@ -393,6 +405,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubscriptionId(String subscriptionId) {
     this.subscriptionId = subscriptionId;
   }
@@ -418,6 +432,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -443,6 +459,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STATUS_REASON)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatusReason(StatusReasonEnum statusReason) {
     this.statusReason = statusReason;
   }
@@ -468,6 +486,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -493,6 +513,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedTime(OffsetDateTime createdTime) {
     this.createdTime = createdTime;
   }
@@ -518,6 +540,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatorUserId(String creatorUserId) {
     this.creatorUserId = creatorUserId;
   }
@@ -543,6 +567,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EDITED_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEditedTime(OffsetDateTime editedTime) {
     this.editedTime = editedTime;
   }
@@ -568,6 +594,8 @@ public class FileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEditorUserId(String editorUserId) {
     this.editorUserId = editorUserId;
   }

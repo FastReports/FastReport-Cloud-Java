@@ -65,6 +65,8 @@ public class CreateSubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PLAN_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPlanId(String planId) {
     this.planId = planId;
   }
@@ -90,6 +92,8 @@ public class CreateSubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -115,6 +119,8 @@ public class CreateSubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_USER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUserId(String userId) {
     this.userId = userId;
   }

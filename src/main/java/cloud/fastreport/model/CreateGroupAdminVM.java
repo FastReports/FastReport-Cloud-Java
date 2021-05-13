@@ -65,6 +65,8 @@ public class CreateGroupAdminVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OWNER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOwnerId(String ownerId) {
     this.ownerId = ownerId;
   }
@@ -89,6 +91,8 @@ public class CreateGroupAdminVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
   }
@@ -114,6 +118,8 @@ public class CreateGroupAdminVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubscriptionId(String subscriptionId) {
     this.subscriptionId = subscriptionId;
   }

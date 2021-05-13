@@ -58,6 +58,8 @@ public class SubscriptionPermissionsVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPermissions(SubscriptionPermissions permissions) {
     this.permissions = permissions;
   }

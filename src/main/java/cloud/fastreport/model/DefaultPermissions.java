@@ -68,6 +68,8 @@ public class DefaultPermissions {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FILE_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFilePermissions(FilePermissions filePermissions) {
     this.filePermissions = filePermissions;
   }
@@ -93,6 +95,8 @@ public class DefaultPermissions {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_GROUP_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGroupPermissions(GroupPermissions groupPermissions) {
     this.groupPermissions = groupPermissions;
   }
@@ -118,6 +122,8 @@ public class DefaultPermissions {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATA_SOURCE_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDataSourcePermissions(DataSourcePermissions dataSourcePermissions) {
     this.dataSourcePermissions = dataSourcePermissions;
   }

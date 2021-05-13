@@ -83,6 +83,8 @@ public class ExportCreateAdminVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OWNER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOwnerId(String ownerId) {
     this.ownerId = ownerId;
   }
@@ -108,6 +110,8 @@ public class ExportCreateAdminVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PARENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setParentId(String parentId) {
     this.parentId = parentId;
   }
@@ -133,6 +137,8 @@ public class ExportCreateAdminVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTemplateId(String templateId) {
     this.templateId = templateId;
   }
@@ -158,6 +164,8 @@ public class ExportCreateAdminVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -191,6 +199,8 @@ public class ExportCreateAdminVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TAGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTags(List<String> tags) {
     this.tags = tags;
   }
@@ -216,6 +226,8 @@ public class ExportCreateAdminVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ICON)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIcon(String icon) {
     this.icon = icon;
   }
@@ -241,6 +253,8 @@ public class ExportCreateAdminVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONTENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContent(String content) {
     this.content = content;
   }

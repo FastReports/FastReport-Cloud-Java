@@ -73,6 +73,8 @@ public class UserProfileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -98,6 +100,8 @@ public class UserProfileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -123,6 +127,8 @@ public class UserProfileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_USERNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsername(String username) {
     this.username = username;
   }
@@ -148,6 +154,8 @@ public class UserProfileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEmail(String email) {
     this.email = email;
   }
@@ -173,6 +181,8 @@ public class UserProfileVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IS_READ_ONLY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsReadOnly(Boolean isReadOnly) {
     this.isReadOnly = isReadOnly;
   }

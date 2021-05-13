@@ -75,6 +75,8 @@ public class ProblemDetails extends HashMap<String, Object> {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(String type) {
     this.type = type;
   }
@@ -100,6 +102,8 @@ public class ProblemDetails extends HashMap<String, Object> {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TITLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTitle(String title) {
     this.title = title;
   }
@@ -125,6 +129,8 @@ public class ProblemDetails extends HashMap<String, Object> {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(Integer status) {
     this.status = status;
   }
@@ -150,6 +156,8 @@ public class ProblemDetails extends HashMap<String, Object> {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DETAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDetail(String detail) {
     this.detail = detail;
   }
@@ -175,6 +183,8 @@ public class ProblemDetails extends HashMap<String, Object> {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INSTANCE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInstance(String instance) {
     this.instance = instance;
   }

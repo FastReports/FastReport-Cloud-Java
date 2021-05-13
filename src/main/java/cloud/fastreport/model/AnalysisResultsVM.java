@@ -68,6 +68,8 @@ public class AnalysisResultsVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_RESULTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResults(List<AnalysisResultVM> results) {
     this.results = results;
   }

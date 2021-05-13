@@ -13,7 +13,6 @@
 
 package cloud.fastreport.client;
 
-import cloud.fastreport.model.GroupsVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.SubscriptionUsersVM;
 import org.junit.Test;
@@ -47,23 +46,6 @@ public class SubscriptionUsersApiTest {
         String subscriptionId = null;
         String userId = null;
         api.subscriptionUsersAddUser(subscriptionId, userId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Returns all users of subscription
-     *
-     * 
-     *
-     * @throws IOException
-     *          if the Api call fails
-     */
-    @Test
-    public void subscriptionUsersGetUserGroupsTest() throws IOException {
-        String subscriptionId = null;
-        String userId = null;
-        GroupsVM response = api.subscriptionUsersGetUserGroups(subscriptionId, userId);
 
         // TODO: test validations
     }

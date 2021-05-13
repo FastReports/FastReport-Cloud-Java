@@ -66,6 +66,8 @@ public class ApiKeyVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_VALUE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setValue(String value) {
     this.value = value;
   }
@@ -91,6 +93,8 @@ public class ApiKeyVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(String description) {
     this.description = description;
   }
@@ -116,6 +120,8 @@ public class ApiKeyVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EXPIRED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExpired(OffsetDateTime expired) {
     this.expired = expired;
   }

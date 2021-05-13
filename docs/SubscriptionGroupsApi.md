@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**subscriptionGroupsGetGroupList**](SubscriptionGroupsApi.md#subscriptionGroupsGetGroupList) | **GET** /api/manage/v1/Subscriptions/{id}/groups | returns list of groups in the subscription
+[**subscriptionGroupsGetGroupsList**](SubscriptionGroupsApi.md#subscriptionGroupsGetGroupsList) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/groups | returns groups of the subscription or subscription user
 
 
 
-## subscriptionGroupsGetGroupList
+## subscriptionGroupsGetGroupsList
 
-> GroupsVM subscriptionGroupsGetGroupList(id)
+> GroupsVM subscriptionGroupsGetGroupsList(subscriptionId, userId)
 
-returns list of groups in the subscription
+returns groups of the subscription or subscription user
 
 ### Example
 
@@ -42,12 +42,13 @@ public class Example {
         //JWT.setApiKeyPrefix("Token");
 
         SubscriptionGroupsApi apiInstance = new SubscriptionGroupsApi(defaultClient);
-        String id = "id_example"; // String | subscripiton id
+        String subscriptionId = "subscriptionId_example"; // String | subscripiton id
+        String userId = "userId_example"; // String | user Id (optional)
         try {
-            GroupsVM result = apiInstance.subscriptionGroupsGetGroupList(id);
+            GroupsVM result = apiInstance.subscriptionGroupsGetGroupsList(subscriptionId, userId);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling SubscriptionGroupsApi#subscriptionGroupsGetGroupList");
+            System.err.println("Exception when calling SubscriptionGroupsApi#subscriptionGroupsGetGroupsList");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -62,7 +63,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| subscripiton id |
+ **subscriptionId** | **String**| subscripiton id |
+ **userId** | **String**| user Id (optional) | [optional]
 
 ### Return type
 

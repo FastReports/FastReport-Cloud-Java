@@ -96,6 +96,8 @@ public class RegisterUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -129,6 +131,8 @@ public class RegisterUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubscriptions(List<String> subscriptions) {
     this.subscriptions = subscriptions;
   }
@@ -162,6 +166,8 @@ public class RegisterUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_GROUPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGroups(List<String> groups) {
     this.groups = groups;
   }
@@ -187,6 +193,8 @@ public class RegisterUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ADMIN_PERMISSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAdminPermission(AdminPermission adminPermission) {
     this.adminPermission = adminPermission;
   }
@@ -212,6 +220,8 @@ public class RegisterUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -237,6 +247,8 @@ public class RegisterUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_USERNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsername(String username) {
     this.username = username;
   }
@@ -262,6 +274,8 @@ public class RegisterUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEmail(String email) {
     this.email = email;
   }
@@ -287,6 +301,8 @@ public class RegisterUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PASSWORD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPassword(String password) {
     this.password = password;
   }
@@ -312,6 +328,8 @@ public class RegisterUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IS_ADMIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsAdmin(Boolean isAdmin) {
     this.isAdmin = isAdmin;
   }
@@ -337,6 +355,8 @@ public class RegisterUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PROVIDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProvider(String provider) {
     this.provider = provider;
   }

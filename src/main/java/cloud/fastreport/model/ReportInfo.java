@@ -147,6 +147,8 @@ public class ReportInfo {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_AUTHOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAuthor(String author) {
     this.author = author;
   }
@@ -172,6 +174,8 @@ public class ReportInfo {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreated(OffsetDateTime created) {
     this.created = created;
   }
@@ -197,6 +201,8 @@ public class ReportInfo {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATOR_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatorVersion(String creatorVersion) {
     this.creatorVersion = creatorVersion;
   }
@@ -222,6 +228,8 @@ public class ReportInfo {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(String description) {
     this.description = description;
   }
@@ -247,6 +255,8 @@ public class ReportInfo {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_MODIFIED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setModified(OffsetDateTime modified) {
     this.modified = modified;
   }
@@ -272,6 +282,8 @@ public class ReportInfo {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -297,6 +309,8 @@ public class ReportInfo {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PICTURE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPicture(byte[] picture) {
     this.picture = picture;
   }
@@ -322,6 +336,8 @@ public class ReportInfo {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PREVIEW_PICTURE_RATIO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPreviewPictureRatio(Float previewPictureRatio) {
     this.previewPictureRatio = previewPictureRatio;
   }
@@ -347,6 +363,8 @@ public class ReportInfo {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SAVE_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSaveMode(SaveModeEnum saveMode) {
     this.saveMode = saveMode;
   }
@@ -372,6 +390,8 @@ public class ReportInfo {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SAVE_PREVIEW_PICTURE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSavePreviewPicture(Boolean savePreviewPicture) {
     this.savePreviewPicture = savePreviewPicture;
   }
@@ -397,6 +417,8 @@ public class ReportInfo {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TAG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTag(String tag) {
     this.tag = tag;
   }
@@ -422,6 +444,8 @@ public class ReportInfo {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVersion(String version) {
     this.version = version;
   }

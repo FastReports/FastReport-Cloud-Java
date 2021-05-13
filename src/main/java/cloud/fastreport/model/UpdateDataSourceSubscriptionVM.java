@@ -57,6 +57,8 @@ public class UpdateDataSourceSubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubscriptionId(String subscriptionId) {
     this.subscriptionId = subscriptionId;
   }

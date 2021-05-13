@@ -167,6 +167,8 @@ public class AnalysisResultVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_LEVEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLevel(LevelEnum level) {
     this.level = level;
   }
@@ -192,6 +194,8 @@ public class AnalysisResultVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DETAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDetail(String detail) {
     this.detail = detail;
   }
@@ -217,6 +221,8 @@ public class AnalysisResultVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -242,6 +248,8 @@ public class AnalysisResultVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubscriptionId(String subscriptionId) {
     this.subscriptionId = subscriptionId;
   }
@@ -267,6 +275,8 @@ public class AnalysisResultVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FILE_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFileId(String fileId) {
     this.fileId = fileId;
   }
@@ -292,6 +302,8 @@ public class AnalysisResultVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COLLECTION_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCollectionName(String collectionName) {
     this.collectionName = collectionName;
   }
@@ -317,6 +329,8 @@ public class AnalysisResultVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -342,6 +356,8 @@ public class AnalysisResultVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SIGNATURE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSignature(String signature) {
     this.signature = signature;
   }

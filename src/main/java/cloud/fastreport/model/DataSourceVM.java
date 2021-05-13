@@ -141,6 +141,8 @@ public class DataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -166,6 +168,8 @@ public class DataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -191,6 +195,8 @@ public class DataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConnectionType(ConnectionTypeEnum connectionType) {
     this.connectionType = connectionType;
   }
@@ -216,6 +222,8 @@ public class DataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConnectionString(String connectionString) {
     this.connectionString = connectionString;
   }
@@ -241,6 +249,8 @@ public class DataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATA_STRUCTURE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDataStructure(String dataStructure) {
     this.dataStructure = dataStructure;
   }
@@ -266,6 +276,8 @@ public class DataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubscriptionId(String subscriptionId) {
     this.subscriptionId = subscriptionId;
   }
@@ -291,6 +303,8 @@ public class DataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EDITED_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEditedTime(OffsetDateTime editedTime) {
     this.editedTime = editedTime;
   }
@@ -316,6 +330,8 @@ public class DataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEditorUserId(String editorUserId) {
     this.editorUserId = editorUserId;
   }
@@ -341,6 +357,8 @@ public class DataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedTime(OffsetDateTime createdTime) {
     this.createdTime = createdTime;
   }
@@ -366,6 +384,8 @@ public class DataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatorUserId(String creatorUserId) {
     this.creatorUserId = creatorUserId;
   }
@@ -391,6 +411,8 @@ public class DataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IS_CONNECTED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsConnected(Boolean isConnected) {
     this.isConnected = isConnected;
   }

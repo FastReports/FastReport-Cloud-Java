@@ -365,6 +365,8 @@ public class AdminPermission {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreate(CreateEnum create) {
     this.create = create;
   }
@@ -390,6 +392,8 @@ public class AdminPermission {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DELETE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDelete(DeleteEnum delete) {
     this.delete = delete;
   }
@@ -415,6 +419,8 @@ public class AdminPermission {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EXECUTE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExecute(ExecuteEnum execute) {
     this.execute = execute;
   }
@@ -440,6 +446,8 @@ public class AdminPermission {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_GET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGet(GetEnum get) {
     this.get = get;
   }
@@ -465,6 +473,8 @@ public class AdminPermission {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUpdate(UpdateEnum update) {
     this.update = update;
   }
@@ -490,6 +500,8 @@ public class AdminPermission {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAdministrate(AdministrateEnum administrate) {
     this.administrate = administrate;
   }

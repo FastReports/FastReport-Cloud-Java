@@ -68,6 +68,8 @@ public class BreadcrumbsVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BREADCRUMBS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBreadcrumbs(List<BreadcrumbsModel> breadcrumbs) {
     this.breadcrumbs = breadcrumbs;
   }

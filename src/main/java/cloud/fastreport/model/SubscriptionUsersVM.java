@@ -80,6 +80,8 @@ public class SubscriptionUsersVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_USERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsers(List<SubscriptionUserVM> users) {
     this.users = users;
   }
@@ -105,6 +107,8 @@ public class SubscriptionUsersVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCount(Long count) {
     this.count = count;
   }
@@ -130,6 +134,8 @@ public class SubscriptionUsersVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TAKE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTake(Integer take) {
     this.take = take;
   }
@@ -155,6 +161,8 @@ public class SubscriptionUsersVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SKIP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSkip(Integer skip) {
     this.skip = skip;
   }

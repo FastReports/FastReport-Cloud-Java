@@ -57,6 +57,8 @@ public class CreateSubscriptionPeriodVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PLAN_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPlanId(String planId) {
     this.planId = planId;
   }

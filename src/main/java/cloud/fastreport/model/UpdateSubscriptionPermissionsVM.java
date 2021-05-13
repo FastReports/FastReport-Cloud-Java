@@ -104,6 +104,8 @@ public class UpdateSubscriptionPermissionsVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NEW_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNewPermissions(SubscriptionPermissions newPermissions) {
     this.newPermissions = newPermissions;
   }
@@ -128,6 +130,8 @@ public class UpdateSubscriptionPermissionsVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAdministrate(AdministrateEnum administrate) {
     this.administrate = administrate;
   }

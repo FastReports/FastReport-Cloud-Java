@@ -56,6 +56,8 @@ public class UpdateSubscriptionLocaleVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_LOCALE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLocale(String locale) {
     this.locale = locale;
   }

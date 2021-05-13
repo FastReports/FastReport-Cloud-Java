@@ -89,6 +89,8 @@ public class SubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -114,6 +116,8 @@ public class SubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -139,6 +143,8 @@ public class SubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_LOCALE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocale(String locale) {
     this.locale = locale;
   }
@@ -164,6 +170,8 @@ public class SubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CURRENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrent(SubscriptionPeriodVM current) {
     this.current = current;
   }
@@ -197,6 +205,8 @@ public class SubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OLD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOld(List<SubscriptionPeriodVM> old) {
     this.old = old;
   }
@@ -222,6 +232,8 @@ public class SubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TEMPLATES_FOLDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTemplatesFolder(SubscriptionFolder templatesFolder) {
     this.templatesFolder = templatesFolder;
   }
@@ -247,6 +259,8 @@ public class SubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REPORTS_FOLDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReportsFolder(SubscriptionFolder reportsFolder) {
     this.reportsFolder = reportsFolder;
   }
@@ -272,6 +286,8 @@ public class SubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EXPORTS_FOLDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExportsFolder(SubscriptionFolder exportsFolder) {
     this.exportsFolder = exportsFolder;
   }

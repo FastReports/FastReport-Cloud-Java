@@ -64,6 +64,8 @@ public class SubscriptionUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_USER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUserId(String userId) {
     this.userId = userId;
   }
@@ -97,6 +99,8 @@ public class SubscriptionUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_GROUPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGroups(List<GroupVM> groups) {
     this.groups = groups;
   }

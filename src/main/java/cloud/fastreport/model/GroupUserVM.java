@@ -57,6 +57,8 @@ public class GroupUserVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_USER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUserId(String userId) {
     this.userId = userId;
   }

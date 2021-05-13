@@ -67,6 +67,8 @@ public class SubscriptionPeriodVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_START_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartTime(OffsetDateTime startTime) {
     this.startTime = startTime;
   }
@@ -92,6 +94,8 @@ public class SubscriptionPeriodVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_END_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEndTime(OffsetDateTime endTime) {
     this.endTime = endTime;
   }
@@ -117,6 +121,8 @@ public class SubscriptionPeriodVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PLAN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPlan(SubscriptionPlanVM plan) {
     this.plan = plan;
   }

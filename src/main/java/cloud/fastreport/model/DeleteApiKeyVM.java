@@ -56,6 +56,8 @@ public class DeleteApiKeyVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_API_KEY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setApiKey(String apiKey) {
     this.apiKey = apiKey;
   }

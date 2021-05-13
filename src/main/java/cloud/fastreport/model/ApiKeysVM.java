@@ -72,6 +72,8 @@ public class ApiKeysVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_API_KEYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setApiKeys(List<ApiKeyVM> apiKeys) {
     this.apiKeys = apiKeys;
   }
@@ -97,6 +99,8 @@ public class ApiKeysVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCount(Long count) {
     this.count = count;
   }

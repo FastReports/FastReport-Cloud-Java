@@ -76,6 +76,8 @@ public class PrepareTemplateTaskVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -101,6 +103,8 @@ public class PrepareTemplateTaskVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_LOCALE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocale(String locale) {
     this.locale = locale;
   }
@@ -126,6 +130,8 @@ public class PrepareTemplateTaskVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PARENT_FOLDER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setParentFolderId(String parentFolderId) {
     this.parentFolderId = parentFolderId;
   }
@@ -151,6 +157,8 @@ public class PrepareTemplateTaskVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PAGES_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPagesCount(Integer pagesCount) {
     this.pagesCount = pagesCount;
   }
@@ -184,6 +192,8 @@ public class PrepareTemplateTaskVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReportParameters(Map<String, String> reportParameters) {
     this.reportParameters = reportParameters;
   }

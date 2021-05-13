@@ -34,7 +34,7 @@ public class SubscriptionGroupsApiTest {
 
     
     /**
-     * returns list of groups in the subscription
+     * returns groups of the subscription or subscription user
      *
      * 
      *
@@ -42,9 +42,10 @@ public class SubscriptionGroupsApiTest {
      *          if the Api call fails
      */
     @Test
-    public void subscriptionGroupsGetGroupListTest() throws IOException {
-        String id = null;
-        GroupsVM response = api.subscriptionGroupsGetGroupList(id);
+    public void subscriptionGroupsGetGroupsListTest() throws IOException {
+        String subscriptionId = null;
+        String userId = null;
+        GroupsVM response = api.subscriptionGroupsGetGroupsList(subscriptionId, userId);
 
         // TODO: test validations
     }

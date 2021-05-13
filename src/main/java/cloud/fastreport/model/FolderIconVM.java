@@ -57,6 +57,8 @@ public class FolderIconVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ICON)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIcon(String icon) {
     this.icon = icon;
   }

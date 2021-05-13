@@ -157,6 +157,8 @@ public class ExportReportTaskVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FILE_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFileName(String fileName) {
     this.fileName = fileName;
   }
@@ -182,6 +184,8 @@ public class ExportReportTaskVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFolderId(String folderId) {
     this.folderId = folderId;
   }
@@ -207,6 +211,8 @@ public class ExportReportTaskVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_LOCALE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocale(String locale) {
     this.locale = locale;
   }
@@ -232,6 +238,8 @@ public class ExportReportTaskVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PAGES_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPagesCount(Integer pagesCount) {
     this.pagesCount = pagesCount;
   }
@@ -257,6 +265,8 @@ public class ExportReportTaskVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FORMAT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFormat(FormatEnum format) {
     this.format = format;
   }
@@ -290,6 +300,8 @@ public class ExportReportTaskVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EXPORT_PARAMETERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExportParameters(Map<String, Object> exportParameters) {
     this.exportParameters = exportParameters;
   }

@@ -66,6 +66,8 @@ public class UpdateSubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -91,6 +93,8 @@ public class UpdateSubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_LOCALE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocale(String locale) {
     this.locale = locale;
   }
@@ -116,6 +120,8 @@ public class UpdateSubscriptionVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DEFAULT_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDefaultPermissions(DefaultPermissions defaultPermissions) {
     this.defaultPermissions = defaultPermissions;
   }

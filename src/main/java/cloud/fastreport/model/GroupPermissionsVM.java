@@ -58,6 +58,8 @@ public class GroupPermissionsVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPermissions(GroupPermissions permissions) {
     this.permissions = permissions;
   }

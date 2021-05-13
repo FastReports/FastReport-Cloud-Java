@@ -2,7 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 
 group = 'cloud.fastreport.sdk'
-version = '2021.1.32'
+version = '2021.1.35'
 
 buildscript {
     repositories {

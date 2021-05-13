@@ -57,6 +57,8 @@ public class UpdateDataSourceConnectionStringVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConnectionString(String connectionString) {
     this.connectionString = connectionString;
   }

@@ -166,6 +166,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IS_ACTIVE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsActive(Boolean isActive) {
     this.isActive = isActive;
   }
@@ -191,6 +193,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
@@ -216,6 +220,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TIME_PERIOD_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTimePeriodType(TimePeriodTypeEnum timePeriodType) {
     this.timePeriodType = timePeriodType;
   }
@@ -241,6 +247,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TIME_PERIOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTimePeriod(Integer timePeriod) {
     this.timePeriod = timePeriod;
   }
@@ -266,6 +274,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TEMPLATES_SPACE_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTemplatesSpaceLimit(Long templatesSpaceLimit) {
     this.templatesSpaceLimit = templatesSpaceLimit;
   }
@@ -291,6 +301,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REPORTS_SPACE_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReportsSpaceLimit(Long reportsSpaceLimit) {
     this.reportsSpaceLimit = reportsSpaceLimit;
   }
@@ -316,6 +328,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EXPORTS_SPACE_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExportsSpaceLimit(Long exportsSpaceLimit) {
     this.exportsSpaceLimit = exportsSpaceLimit;
   }
@@ -341,6 +355,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FILE_UPLOAD_SIZE_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFileUploadSizeLimit(Long fileUploadSizeLimit) {
     this.fileUploadSizeLimit = fileUploadSizeLimit;
   }
@@ -366,6 +382,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DATA_SOURCE_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDataSourceLimit(Integer dataSourceLimit) {
     this.dataSourceLimit = dataSourceLimit;
   }
@@ -391,6 +409,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_MAX_USERS_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMaxUsersCount(Integer maxUsersCount) {
     this.maxUsersCount = maxUsersCount;
   }
@@ -416,6 +436,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_HAS_SPACE_OVERDRAFT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHasSpaceOverdraft(Boolean hasSpaceOverdraft) {
     this.hasSpaceOverdraft = hasSpaceOverdraft;
   }
@@ -441,6 +463,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_GROUP_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGroupLimit(Integer groupLimit) {
     this.groupLimit = groupLimit;
   }
@@ -466,6 +490,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ONLINE_DESIGNER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOnlineDesigner(Boolean onlineDesigner) {
     this.onlineDesigner = onlineDesigner;
   }
@@ -491,6 +517,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IS_DEMO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsDemo(Boolean isDemo) {
     this.isDemo = isDemo;
   }
@@ -516,6 +544,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_URL_TO_BUY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUrlToBuy(String urlToBuy) {
     this.urlToBuy = urlToBuy;
   }
@@ -541,6 +571,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UNLIMITED_PAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUnlimitedPage(Boolean unlimitedPage) {
     this.unlimitedPage = unlimitedPage;
   }
@@ -566,6 +598,8 @@ public class CreateSubscriptionPlanVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PAGE_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPageLimit(Integer pageLimit) {
     this.pageLimit = pageLimit;
   }

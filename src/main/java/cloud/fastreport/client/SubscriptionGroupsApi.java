@@ -43,47 +43,59 @@ public class SubscriptionGroupsApi {
     }
 
   /**
-    * returns list of groups in the subscription
+    * returns groups of the subscription or subscription user
     * <p><b>200</b> - Everything is all right (list of groups may be empty)
     * <p><b>400</b> - id is not hex24
     * <p><b>403</b> - You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription)
     * <p><b>404</b> - there is no subscription with provided id found, or user don&#39;t even have a subscription
-    * @param id subscripiton id
+    * @param subscriptionId subscripiton id
+    * @param userId user Id (optional)
     * @return GroupsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public GroupsVM subscriptionGroupsGetGroupList(String id) throws IOException {
-        HttpResponse response = subscriptionGroupsGetGroupListForHttpResponse(id);
+    public GroupsVM subscriptionGroupsGetGroupsList(String subscriptionId, String userId) throws IOException {
+        HttpResponse response = subscriptionGroupsGetGroupsListForHttpResponse(subscriptionId, userId);
         TypeReference<GroupsVM> typeRef = new TypeReference<GroupsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
   /**
-    * returns list of groups in the subscription
+    * returns groups of the subscription or subscription user
     * <p><b>200</b> - Everything is all right (list of groups may be empty)
     * <p><b>400</b> - id is not hex24
     * <p><b>403</b> - You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription)
     * <p><b>404</b> - there is no subscription with provided id found, or user don&#39;t even have a subscription
-    * @param id subscripiton id
+    * @param subscriptionId subscripiton id
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return GroupsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public GroupsVM subscriptionGroupsGetGroupList(String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = subscriptionGroupsGetGroupListForHttpResponse(id, params);
+    public GroupsVM subscriptionGroupsGetGroupsList(String subscriptionId, Map<String, Object> params) throws IOException {
+        HttpResponse response = subscriptionGroupsGetGroupsListForHttpResponse(subscriptionId, params);
         TypeReference<GroupsVM> typeRef = new TypeReference<GroupsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse subscriptionGroupsGetGroupListForHttpResponse(String id) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionGroupsGetGroupList");
+    public HttpResponse subscriptionGroupsGetGroupsListForHttpResponse(String subscriptionId, String userId) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionGroupsGetGroupsList");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{id}/groups");
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{subscriptionId}/groups");
+        if (userId != null) {
+            String key = "userId";
+            Object value = userId;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -92,15 +104,15 @@ public class SubscriptionGroupsApi {
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
-    public HttpResponse subscriptionGroupsGetGroupListForHttpResponse(String id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling subscriptionGroupsGetGroupList");
+    public HttpResponse subscriptionGroupsGetGroupsListForHttpResponse(String subscriptionId, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionGroupsGetGroupsList");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
-        uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{id}/groups");
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Subscriptions/{subscriptionId}/groups");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);

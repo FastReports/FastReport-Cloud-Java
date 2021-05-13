@@ -77,6 +77,8 @@ public class GroupPermissions {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OWNER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOwnerId(String ownerId) {
     this.ownerId = ownerId;
   }
@@ -102,6 +104,8 @@ public class GroupPermissions {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OWNER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOwner(GroupPermission owner) {
     this.owner = owner;
   }
@@ -135,6 +139,8 @@ public class GroupPermissions {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_GROUPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGroups(Map<String, GroupPermission> groups) {
     this.groups = groups;
   }
@@ -160,6 +166,8 @@ public class GroupPermissions {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OTHER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOther(GroupPermission other) {
     this.other = other;
   }
@@ -185,6 +193,8 @@ public class GroupPermissions {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ANON)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAnon(GroupPermission anon) {
     this.anon = anon;
   }

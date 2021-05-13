@@ -8578,16 +8578,21 @@ paths:
       tags:
       - HealthCheck
       x-accepts: application/json
-  /api/manage/v1/Subscriptions/{id}/groups:
+  /api/manage/v1/Subscriptions/{subscriptionId}/groups:
     get:
-      operationId: SubscriptionGroups_GetGroupList
+      operationId: SubscriptionGroups_GetGroupsList
       parameters:
       - description: subscripiton id
         in: path
-        name: id
+        name: subscriptionId
         required: true
         schema:
           pattern: ^[A-Fa-f0-9]{24}$
+          type: string
+      - description: user Id (optional)
+        in: query
+        name: userId
+        schema:
           type: string
       responses:
         "200":
@@ -8640,7 +8645,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: there is no subscription with provided id found, or user don't
             even have a subscription
-      summary: returns list of groups in the subscription
+      summary: returns groups of the subscription or subscription user
       tags:
       - SubscriptionGroups
       x-accepts: application/json
@@ -9900,79 +9905,6 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/SubscriptionUsersVM'
-          description: Succesfully returned
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: The reqeust is wrong
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: You don't have rights for the operation
-        "404":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Subscription is not found
-        "500":
-          content: {}
-          description: Exception thrown
-      summary: Returns all users of subscription
-      tags:
-      - SubscriptionUsers
-      x-accepts: application/json
-  /api/manage/v1/Subscriptions/{subscriptionId}/user/{userId}/groups:
-    get:
-      operationId: SubscriptionUsers_GetUserGroups
-      parameters:
-      - description: Idenitifier of subscription
-        in: path
-        name: subscriptionId
-        required: true
-        schema:
-          pattern: ^[A-Fa-f0-9]{24}$
-          type: string
-      - description: user id
-        in: path
-        name: userId
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/GroupsVM'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GroupsVM'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/GroupsVM'
           description: Succesfully returned
         "400":
           content:

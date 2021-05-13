@@ -58,6 +58,8 @@ public class DataSourcePermissionsVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPermissions(DataSourcePermissions permissions) {
     this.permissions = permissions;
   }

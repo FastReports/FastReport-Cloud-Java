@@ -81,6 +81,8 @@ public class SubscriptionInviteVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_USAGES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsages(Long usages) {
     this.usages = usages;
   }
@@ -106,6 +108,8 @@ public class SubscriptionInviteVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DURABLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDurable(Boolean durable) {
     this.durable = durable;
   }
@@ -131,6 +135,8 @@ public class SubscriptionInviteVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ACCESS_TOKEN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccessToken(String accessToken) {
     this.accessToken = accessToken;
   }
@@ -156,6 +162,8 @@ public class SubscriptionInviteVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EXPIRED_DATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExpiredDate(OffsetDateTime expiredDate) {
     this.expiredDate = expiredDate;
   }
@@ -189,6 +197,8 @@ public class SubscriptionInviteVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ADDED_USERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAddedUsers(List<InvitedUser> addedUsers) {
     this.addedUsers = addedUsers;
   }
@@ -214,6 +224,8 @@ public class SubscriptionInviteVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatorUserId(String creatorUserId) {
     this.creatorUserId = creatorUserId;
   }

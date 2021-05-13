@@ -58,6 +58,8 @@ public class FilePermissionsVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPermissions(FilePermissions permissions) {
     this.permissions = permissions;
   }

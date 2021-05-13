@@ -21,16 +21,10 @@ Building the API client library requires:
 To install the API client library to your local Maven repository, simply execute:
 
 ```shell
+git clone https://github.com/FastReports/FastReport-Cloud-Java.git
+cd FastReport-Cloud-Java
 mvn clean install
 ```
-
-To deploy it to a remote Maven repository instead, configure the settings of the repository and execute:
-
-```shell
-mvn clean deploy
-```
-
-Refer to the [OSSRH Guide](http://central.sonatype.org/pages/ossrh-guide.html) for more information.
 
 ### Maven users
 
@@ -40,7 +34,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>cloud.fastreport.sdk</groupId>
   <artifactId>fastreport-cloud-sdk</artifactId>
-  <version>2021.1.32</version>
+  <version>2021.1.35</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +44,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2021.1.32"
+compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2021.1.35"
 ```
 
 ### Others
@@ -63,7 +57,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/fastreport-cloud-sdk-2021.1.32.jar`
+- `target/fastreport-cloud-sdk-2021.1.35.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -71,37 +65,28 @@ Then manually install the following JARs:
 Please follow the [installation](#installation) instruction and execute the following Java code:
 
 ```java
-
 import cloud.fastreport.*;
 import cloud.fastreport.auth.*;
 import cloud.fastreport.model.*;
-import cloud.fastreport.client.AdminApiKeysApi;
+import cloud.fastreport.client.UserProfileApi;
 
-public class AdminApiKeysApiExample {
+public class AppExample {
 
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        ApiClient defaultClient = new ApiClient(
+                "https://fastreport.cloud",
+                null,
+                new BasicAuthentication("apikey", "***PUT YOUR API KEY HERE***"),
+                null
+        );
 
-        AdminApiKeysApi apiInstance = new AdminApiKeysApi(defaultClient);
-        String userId = "userId_example"; // String | 
-        CreateApiKeyVM model = new CreateApiKeyVM(); // CreateApiKeyVM | 
+        UserProfileApi apiInstance = new UserProfileApi(defaultClient);
         try {
-            ApiKeyVM result = apiInstance.adminApiKeysCreateApiKey(userId, model);
+            UserProfileVM result = apiInstance.userProfileGetMyProfile();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AdminApiKeysApi#adminApiKeysCreateApiKey");
+            System.err.println("Exception when calling UserProfileApi#userProfileGetMyProfile");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -109,7 +94,6 @@ public class AdminApiKeysApiExample {
         }
     }
 }
-
 ```
 
 ## Documentation for API Endpoints
@@ -302,7 +286,7 @@ Class | Method | HTTP request | Description
 *ReportsApi* | [**reportsUpdatePermissions**](docs/ReportsApi.md#reportsUpdatePermissions) | **POST** /api/rp/v1/Reports/File/{id}/permissions | Update permissions
 *ReportsApi* | [**reportsUpdateTags**](docs/ReportsApi.md#reportsUpdateTags) | **PUT** /api/rp/v1/Reports/File/{id}/UpdateTags | Update tags
 *ReportsApi* | [**reportsUploadFile**](docs/ReportsApi.md#reportsUploadFile) | **POST** /api/rp/v1/Reports/Folder/{id}/File | Allows to upload reports into specified folder
-*SubscriptionGroupsApi* | [**subscriptionGroupsGetGroupList**](docs/SubscriptionGroupsApi.md#subscriptionGroupsGetGroupList) | **GET** /api/manage/v1/Subscriptions/{id}/groups | returns list of groups in the subscription
+*SubscriptionGroupsApi* | [**subscriptionGroupsGetGroupsList**](docs/SubscriptionGroupsApi.md#subscriptionGroupsGetGroupsList) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/groups | returns groups of the subscription or subscription user
 *SubscriptionInvitesApi* | [**subscriptionInvitesAcceptInvite**](docs/SubscriptionInvitesApi.md#subscriptionInvitesAcceptInvite) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/invite/{accessToken}/accept | Add a user to the subscription using invite,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
 *SubscriptionInvitesApi* | [**subscriptionInvitesCreateInvite**](docs/SubscriptionInvitesApi.md#subscriptionInvitesCreateInvite) | **POST** /api/manage/v1/Subscriptions/{subscriptionId}/invite | Create invite to subscription
 *SubscriptionInvitesApi* | [**subscriptionInvitesDeleteInvite**](docs/SubscriptionInvitesApi.md#subscriptionInvitesDeleteInvite) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/invite/{accesstoken} | Rename subscription
@@ -310,7 +294,6 @@ Class | Method | HTTP request | Description
 *SubscriptionPlansApi* | [**subscriptionPlansGetSubscriptionPlan**](docs/SubscriptionPlansApi.md#subscriptionPlansGetSubscriptionPlan) | **GET** /api/manage/v1/SubscriptionPlans/{id} | Returns a subscription plan. Not all subscriptions can be issued for customer.
 *SubscriptionPlansApi* | [**subscriptionPlansGetSubscriptionPlans**](docs/SubscriptionPlansApi.md#subscriptionPlansGetSubscriptionPlans) | **GET** /api/manage/v1/SubscriptionPlans | Returns a list of active subscription plans that can be issued to the user.
 *SubscriptionUsersApi* | [**subscriptionUsersAddUser**](docs/SubscriptionUsersApi.md#subscriptionUsersAddUser) | **PUT** /api/manage/v1/Subscriptions/{subscriptionId}/users/{userId} | Add a user to the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
-*SubscriptionUsersApi* | [**subscriptionUsersGetUserGroups**](docs/SubscriptionUsersApi.md#subscriptionUsersGetUserGroups) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/user/{userId}/groups | Returns all users of subscription
 *SubscriptionUsersApi* | [**subscriptionUsersGetUsers**](docs/SubscriptionUsersApi.md#subscriptionUsersGetUsers) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/users | Returns all users of subscription
 *SubscriptionUsersApi* | [**subscriptionUsersLeaveSubscripiton**](docs/SubscriptionUsersApi.md#subscriptionUsersLeaveSubscripiton) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/leave | Allows user to leave subscription,.
 *SubscriptionUsersApi* | [**subscriptionUsersRemoveUser**](docs/SubscriptionUsersApi.md#subscriptionUsersRemoveUser) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/users/{userId} | Delete a user from the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
@@ -486,5 +469,4 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 
 ## Author
 
-
-
+https://www.fast-report.com/en/

@@ -112,6 +112,8 @@ public class CreateDataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -137,6 +139,8 @@ public class CreateDataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConnectionString(String connectionString) {
     this.connectionString = connectionString;
   }
@@ -162,6 +166,8 @@ public class CreateDataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubscriptionId(String subscriptionId) {
     this.subscriptionId = subscriptionId;
   }
@@ -187,6 +193,8 @@ public class CreateDataSourceVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConnectionType(ConnectionTypeEnum connectionType) {
     this.connectionType = connectionType;
   }

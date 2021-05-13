@@ -73,6 +73,8 @@ public class UserProfileUpdateVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -98,6 +100,8 @@ public class UserProfileUpdateVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_USERNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsername(String username) {
     this.username = username;
   }
@@ -123,6 +127,8 @@ public class UserProfileUpdateVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEmail(String email) {
     this.email = email;
   }
@@ -148,6 +154,8 @@ public class UserProfileUpdateVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PASSWORD_NEW)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPasswordNew(String passwordNew) {
     this.passwordNew = passwordNew;
   }
@@ -173,6 +181,8 @@ public class UserProfileUpdateVM {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PASSWORD_NEW2)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPasswordNew2(String passwordNew2) {
     this.passwordNew2 = passwordNew2;
   }

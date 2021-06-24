@@ -134,7 +134,7 @@ public class ExportReportTaskVM {
   private FormatEnum format;
 
   public static final String JSON_PROPERTY_EXPORT_PARAMETERS = "exportParameters";
-  private Map<String, Object> exportParameters = null;
+  private Map<String, String> exportParameters = null;
 
 
   public ExportReportTaskVM fileName(String fileName) {
@@ -226,6 +226,8 @@ public class ExportReportTaskVM {
 
    /**
    * Get pagesCount
+   * minimum: 0
+   * maximum: 2147483647
    * @return pagesCount
   **/
   @javax.annotation.Nullable
@@ -272,13 +274,13 @@ public class ExportReportTaskVM {
   }
 
 
-  public ExportReportTaskVM exportParameters(Map<String, Object> exportParameters) {
+  public ExportReportTaskVM exportParameters(Map<String, String> exportParameters) {
     
     this.exportParameters = exportParameters;
     return this;
   }
 
-  public ExportReportTaskVM putExportParametersItem(String key, Object exportParametersItem) {
+  public ExportReportTaskVM putExportParametersItem(String key, String exportParametersItem) {
     if (this.exportParameters == null) {
       this.exportParameters = new HashMap<>();
     }
@@ -295,14 +297,14 @@ public class ExportReportTaskVM {
   @JsonProperty(JSON_PROPERTY_EXPORT_PARAMETERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, Object> getExportParameters() {
+  public Map<String, String> getExportParameters() {
     return exportParameters;
   }
 
 
   @JsonProperty(JSON_PROPERTY_EXPORT_PARAMETERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExportParameters(Map<String, Object> exportParameters) {
+  public void setExportParameters(Map<String, String> exportParameters) {
     this.exportParameters = exportParameters;
   }
 

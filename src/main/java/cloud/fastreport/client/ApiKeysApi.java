@@ -49,6 +49,7 @@ public class ApiKeysApi {
     * Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
     * <p><b>200</b> - Succesfully created
     * <p><b>400</b> - wrong model provided or exception thrown (user&#39;s attempts to create sixth key for example throwns an exception)
+    * <p><b>401</b> - User is not authorized
     * @param model The model parameter
     * @return ApiKeyVM
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -63,6 +64,7 @@ public class ApiKeysApi {
     * Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
     * <p><b>200</b> - Succesfully created
     * <p><b>400</b> - wrong model provided or exception thrown (user&#39;s attempts to create sixth key for example throwns an exception)
+    * <p><b>401</b> - User is not authorized
     * @param model The model parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return ApiKeyVM
@@ -141,6 +143,7 @@ public class ApiKeysApi {
     * Delete an apikey
     * <p><b>204</b> - Succesfully deleted
     * <p><b>400</b> - The request is wrong
+    * <p><b>401</b> - User is not authorized
     * <p><b>404</b> - No such apikey found
     * <p><b>500</b> - exception thrown
     * @param model The model parameter
@@ -154,6 +157,7 @@ public class ApiKeysApi {
     * Delete an apikey
     * <p><b>204</b> - Succesfully deleted
     * <p><b>400</b> - The request is wrong
+    * <p><b>401</b> - User is not authorized
     * <p><b>404</b> - No such apikey found
     * <p><b>500</b> - exception thrown
     * @param model The model parameter
@@ -229,8 +233,9 @@ public class ApiKeysApi {
 
   /**
     * Returns list with all api keys of current user
-    * Always work, it should make only 200 response.
+    * Always work, it should make only 200 response (except if user is not authorized).
     * <p><b>200</b> - Succesfully retured
+    * <p><b>401</b> - User is not authorized
     * <p><b>500</b> - Exception somehow thrown (barely possible)
     * @return ApiKeysVM
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -243,8 +248,9 @@ public class ApiKeysApi {
 
   /**
     * Returns list with all api keys of current user
-    * Always work, it should make only 200 response.
+    * Always work, it should make only 200 response (except if user is not authorized).
     * <p><b>200</b> - Succesfully retured
+    * <p><b>401</b> - User is not authorized
     * <p><b>500</b> - Exception somehow thrown (barely possible)
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return ApiKeysVM

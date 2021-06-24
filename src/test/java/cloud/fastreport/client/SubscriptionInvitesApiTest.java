@@ -15,8 +15,8 @@ package cloud.fastreport.client;
 
 import cloud.fastreport.model.CreateSubscriptionInviteVM;
 import cloud.fastreport.model.ProblemDetails;
+import cloud.fastreport.model.SubscriptionInviteVM;
 import cloud.fastreport.model.SubscriptionInvitesVM;
-import cloud.fastreport.model.SubscriptionVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -64,7 +64,7 @@ public class SubscriptionInvitesApiTest {
     public void subscriptionInvitesCreateInviteTest() throws IOException {
         String subscriptionId = null;
         CreateSubscriptionInviteVM createInviteVM = null;
-        SubscriptionVM response = api.subscriptionInvitesCreateInvite(subscriptionId, createInviteVM);
+        SubscriptionInviteVM response = api.subscriptionInvitesCreateInvite(subscriptionId, createInviteVM);
 
         // TODO: test validations
     }

@@ -176,7 +176,9 @@ public class ReportVM {
     
     EXPORTSTARTED("ExportStarted"),
     
-    PREPARATIONSTARTED("PreparationStarted");
+    PREPARATIONSTARTED("PreparationStarted"),
+    
+    CRASHLOOP("CrashLoop");
 
     private String value;
 

@@ -71,7 +71,7 @@ public class ApiKeysApiTest {
     /**
      * Returns list with all api keys of current user
      *
-     * Always work, it should make only 200 response.
+     * Always work, it should make only 200 response (except if user is not authorized).
      *
      * @throws IOException
      *          if the Api call fails

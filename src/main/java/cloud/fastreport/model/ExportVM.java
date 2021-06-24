@@ -252,7 +252,9 @@ public class ExportVM {
     
     EXPORTSTARTED("ExportStarted"),
     
-    PREPARATIONSTARTED("PreparationStarted");
+    PREPARATIONSTARTED("PreparationStarted"),
+    
+    CRASHLOOP("CrashLoop");
 
     private String value;
 

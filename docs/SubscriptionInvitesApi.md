@@ -79,7 +79,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 
 ### HTTP response details
@@ -94,7 +94,7 @@ null (empty response body)
 
 ## subscriptionInvitesCreateInvite
 
-> SubscriptionVM subscriptionInvitesCreateInvite(subscriptionId, createInviteVM)
+> SubscriptionInviteVM subscriptionInvitesCreateInvite(subscriptionId, createInviteVM)
 
 Create invite to subscription
 
@@ -129,7 +129,7 @@ public class Example {
         String subscriptionId = "subscriptionId_example"; // String | id
         CreateSubscriptionInviteVM createInviteVM = new CreateSubscriptionInviteVM(); // CreateSubscriptionInviteVM | create VM
         try {
-            SubscriptionVM result = apiInstance.subscriptionInvitesCreateInvite(subscriptionId, createInviteVM);
+            SubscriptionInviteVM result = apiInstance.subscriptionInvitesCreateInvite(subscriptionId, createInviteVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SubscriptionInvitesApi#subscriptionInvitesCreateInvite");
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionVM**](SubscriptionVM.md)
+[**SubscriptionInviteVM**](SubscriptionInviteVM.md)
 
 ### Authorization
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 
 ### HTTP response details
@@ -243,7 +243,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 
 ### HTTP response details
@@ -324,7 +324,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 
 ### HTTP response details

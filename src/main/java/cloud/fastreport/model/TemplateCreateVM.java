@@ -45,10 +45,10 @@ public class TemplateCreateVM {
   private List<String> tags = null;
 
   public static final String JSON_PROPERTY_ICON = "icon";
-  private String icon;
+  private byte[] icon;
 
   public static final String JSON_PROPERTY_CONTENT = "content";
-  private String content;
+  private byte[] content;
 
 
   public TemplateCreateVM name(String name) {
@@ -113,7 +113,7 @@ public class TemplateCreateVM {
   }
 
 
-  public TemplateCreateVM icon(String icon) {
+  public TemplateCreateVM icon(byte[] icon) {
     
     this.icon = icon;
     return this;
@@ -128,19 +128,19 @@ public class TemplateCreateVM {
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getIcon() {
+  public byte[] getIcon() {
     return icon;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIcon(String icon) {
+  public void setIcon(byte[] icon) {
     this.icon = icon;
   }
 
 
-  public TemplateCreateVM content(String content) {
+  public TemplateCreateVM content(byte[] content) {
     
     this.content = content;
     return this;
@@ -155,14 +155,14 @@ public class TemplateCreateVM {
   @JsonProperty(JSON_PROPERTY_CONTENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getContent() {
+  public byte[] getContent() {
     return content;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CONTENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContent(String content) {
+  public void setContent(byte[] content) {
     this.content = content;
   }
 
@@ -178,13 +178,13 @@ public class TemplateCreateVM {
     TemplateCreateVM templateCreateVM = (TemplateCreateVM) o;
     return Objects.equals(this.name, templateCreateVM.name) &&
         Objects.equals(this.tags, templateCreateVM.tags) &&
-        Objects.equals(this.icon, templateCreateVM.icon) &&
-        Objects.equals(this.content, templateCreateVM.content);
+        Arrays.equals(this.icon, templateCreateVM.icon) &&
+        Arrays.equals(this.content, templateCreateVM.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, tags, icon, content);
+    return Objects.hash(name, tags, Arrays.hashCode(icon), Arrays.hashCode(content));
   }
 
   @Override

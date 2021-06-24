@@ -1,19 +1,19 @@
-# SubscriptionPlansApi
+# UserSettingsApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**subscriptionPlansGetSubscriptionPlan**](SubscriptionPlansApi.md#subscriptionPlansGetSubscriptionPlan) | **GET** /api/manage/v1/SubscriptionPlans/{id} | Returns a subscription plan. Not all subscriptions can be issued for customer.
-[**subscriptionPlansGetSubscriptionPlans**](SubscriptionPlansApi.md#subscriptionPlansGetSubscriptionPlans) | **GET** /api/manage/v1/SubscriptionPlans | Returns a list of active subscription plans that can be issued to the user.
+[**userSettingsGetCurrentUserSettings**](UserSettingsApi.md#userSettingsGetCurrentUserSettings) | **GET** /api/manage/v1/UserSettings | Return current user settings.
+[**userSettingsUpdateMySettings**](UserSettingsApi.md#userSettingsUpdateMySettings) | **PUT** /api/manage/v1/UserSettings | Update settings of the current user
 
 
 
-## subscriptionPlansGetSubscriptionPlan
+## userSettingsGetCurrentUserSettings
 
-> SubscriptionPlanVM subscriptionPlansGetSubscriptionPlan(id)
+> UserSettingsVM userSettingsGetCurrentUserSettings()
 
-Returns a subscription plan. Not all subscriptions can be issued for customer.
+Return current user settings.
 
 ### Example
 
@@ -24,7 +24,7 @@ import cloud.fastreport.ApiException;
 import cloud.fastreport.Configuration;
 import cloud.fastreport.auth.*;
 import cloud.fastreport.models.*;
-import cloud.fastreport.client.SubscriptionPlansApi;
+import cloud.fastreport.client.UserSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -42,13 +42,12 @@ public class Example {
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //JWT.setApiKeyPrefix("Token");
 
-        SubscriptionPlansApi apiInstance = new SubscriptionPlansApi(defaultClient);
-        String id = "id_example"; // String | Identifier of subsctiption plan
+        UserSettingsApi apiInstance = new UserSettingsApi(defaultClient);
         try {
-            SubscriptionPlanVM result = apiInstance.subscriptionPlansGetSubscriptionPlan(id);
+            UserSettingsVM result = apiInstance.userSettingsGetCurrentUserSettings();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling SubscriptionPlansApi#subscriptionPlansGetSubscriptionPlan");
+            System.err.println("Exception when calling UserSettingsApi#userSettingsGetCurrentUserSettings");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -60,14 +59,11 @@ public class Example {
 
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Identifier of subsctiption plan |
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**SubscriptionPlanVM**](SubscriptionPlanVM.md)
+[**UserSettingsVM**](UserSettingsVM.md)
 
 ### Authorization
 
@@ -83,18 +79,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Succesfully returned |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **404** | Subscription plan with this id is not found |  -  |
-| **500** | Exception thrown |  -  |
+| **404** | User not found |  -  |
 
 
-## subscriptionPlansGetSubscriptionPlans
+## userSettingsUpdateMySettings
 
-> SubscriptionPlansVM subscriptionPlansGetSubscriptionPlans(skip, take)
+> UserSettingsVM userSettingsUpdateMySettings(model)
 
-Returns a list of active subscription plans that can be issued to the user.
-
-If no active subscription plans, then the endpoint will return empty list
+Update settings of the current user
 
 ### Example
 
@@ -105,7 +97,7 @@ import cloud.fastreport.ApiException;
 import cloud.fastreport.Configuration;
 import cloud.fastreport.auth.*;
 import cloud.fastreport.models.*;
-import cloud.fastreport.client.SubscriptionPlansApi;
+import cloud.fastreport.client.UserSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -123,14 +115,13 @@ public class Example {
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //JWT.setApiKeyPrefix("Token");
 
-        SubscriptionPlansApi apiInstance = new SubscriptionPlansApi(defaultClient);
-        Integer skip = 0; // Integer | Variable for pagination, defautl value is 0
-        Integer take = 10; // Integer | Variable for pagination, default value is 10
+        UserSettingsApi apiInstance = new UserSettingsApi(defaultClient);
+        UpdateUserSettingsVM model = new UpdateUserSettingsVM(); // UpdateUserSettingsVM | 
         try {
-            SubscriptionPlansVM result = apiInstance.subscriptionPlansGetSubscriptionPlans(skip, take);
+            UserSettingsVM result = apiInstance.userSettingsUpdateMySettings(model);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling SubscriptionPlansApi#subscriptionPlansGetSubscriptionPlans");
+            System.err.println("Exception when calling UserSettingsApi#userSettingsUpdateMySettings");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -145,12 +136,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **skip** | **Integer**| Variable for pagination, defautl value is 0 | [optional] [default to 0]
- **take** | **Integer**| Variable for pagination, default value is 10 | [optional] [default to 10]
+ **model** | [**UpdateUserSettingsVM**](UpdateUserSettingsVM.md)|  | [optional]
 
 ### Return type
 
-[**SubscriptionPlansVM**](SubscriptionPlansVM.md)
+[**UserSettingsVM**](UserSettingsVM.md)
 
 ### Authorization
 
@@ -158,13 +148,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
 - **Accept**: application/json, text/json, text/plain
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Succesfully returned |  -  |
+| **200** | Succesfully updated |  -  |
 | **400** | The reqeust is wrong |  -  |
+| **403** | Forbidden |  -  |
 

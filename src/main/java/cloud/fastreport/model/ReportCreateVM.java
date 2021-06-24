@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.ReportInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -31,6 +32,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   ReportCreateVM.JSON_PROPERTY_TEMPLATE_ID,
+  ReportCreateVM.JSON_PROPERTY_REPORT_INFO,
   ReportCreateVM.JSON_PROPERTY_NAME,
   ReportCreateVM.JSON_PROPERTY_TAGS,
   ReportCreateVM.JSON_PROPERTY_ICON,
@@ -42,6 +44,9 @@ public class ReportCreateVM {
   public static final String JSON_PROPERTY_TEMPLATE_ID = "templateId";
   private String templateId;
 
+  public static final String JSON_PROPERTY_REPORT_INFO = "reportInfo";
+  private ReportInfo reportInfo;
+
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
@@ -49,10 +54,10 @@ public class ReportCreateVM {
   private List<String> tags = null;
 
   public static final String JSON_PROPERTY_ICON = "icon";
-  private String icon;
+  private byte[] icon;
 
   public static final String JSON_PROPERTY_CONTENT = "content";
-  private String content;
+  private byte[] content;
 
 
   public ReportCreateVM templateId(String templateId) {
@@ -79,6 +84,33 @@ public class ReportCreateVM {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTemplateId(String templateId) {
     this.templateId = templateId;
+  }
+
+
+  public ReportCreateVM reportInfo(ReportInfo reportInfo) {
+    
+    this.reportInfo = reportInfo;
+    return this;
+  }
+
+   /**
+   * Get reportInfo
+   * @return reportInfo
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REPORT_INFO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public ReportInfo getReportInfo() {
+    return reportInfo;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REPORT_INFO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReportInfo(ReportInfo reportInfo) {
+    this.reportInfo = reportInfo;
   }
 
 
@@ -144,7 +176,7 @@ public class ReportCreateVM {
   }
 
 
-  public ReportCreateVM icon(String icon) {
+  public ReportCreateVM icon(byte[] icon) {
     
     this.icon = icon;
     return this;
@@ -159,19 +191,19 @@ public class ReportCreateVM {
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getIcon() {
+  public byte[] getIcon() {
     return icon;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIcon(String icon) {
+  public void setIcon(byte[] icon) {
     this.icon = icon;
   }
 
 
-  public ReportCreateVM content(String content) {
+  public ReportCreateVM content(byte[] content) {
     
     this.content = content;
     return this;
@@ -186,14 +218,14 @@ public class ReportCreateVM {
   @JsonProperty(JSON_PROPERTY_CONTENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getContent() {
+  public byte[] getContent() {
     return content;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CONTENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContent(String content) {
+  public void setContent(byte[] content) {
     this.content = content;
   }
 
@@ -208,15 +240,16 @@ public class ReportCreateVM {
     }
     ReportCreateVM reportCreateVM = (ReportCreateVM) o;
     return Objects.equals(this.templateId, reportCreateVM.templateId) &&
+        Objects.equals(this.reportInfo, reportCreateVM.reportInfo) &&
         Objects.equals(this.name, reportCreateVM.name) &&
         Objects.equals(this.tags, reportCreateVM.tags) &&
-        Objects.equals(this.icon, reportCreateVM.icon) &&
-        Objects.equals(this.content, reportCreateVM.content);
+        Arrays.equals(this.icon, reportCreateVM.icon) &&
+        Arrays.equals(this.content, reportCreateVM.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateId, name, tags, icon, content);
+    return Objects.hash(templateId, reportInfo, name, tags, Arrays.hashCode(icon), Arrays.hashCode(content));
   }
 
   @Override
@@ -224,6 +257,7 @@ public class ReportCreateVM {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReportCreateVM {\n");
     sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
+    sb.append("    reportInfo: ").append(toIndentedString(reportInfo)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");

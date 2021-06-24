@@ -13,7 +13,6 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.ReportInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -21,41 +20,23 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for ReportCreateVM
+ * Model tests for UpdateUserProfileVM
  */
-public class ReportCreateVMTest {
-    private final ReportCreateVM model = new ReportCreateVM();
+public class UpdateUserProfileVMTest {
+    private final UpdateUserProfileVM model = new UpdateUserProfileVM();
 
     /**
-     * Model tests for ReportCreateVM
+     * Model tests for UpdateUserProfileVM
      */
     @Test
-    public void testReportCreateVM() {
-        // TODO: test ReportCreateVM
-    }
-
-    /**
-     * Test the property 'templateId'
-     */
-    @Test
-    public void templateIdTest() {
-        // TODO: test templateId
-    }
-
-    /**
-     * Test the property 'reportInfo'
-     */
-    @Test
-    public void reportInfoTest() {
-        // TODO: test reportInfo
+    public void testUpdateUserProfileVM() {
+        // TODO: test UpdateUserProfileVM
     }
 
     /**
@@ -67,27 +48,35 @@ public class ReportCreateVMTest {
     }
 
     /**
-     * Test the property 'tags'
+     * Test the property 'username'
      */
     @Test
-    public void tagsTest() {
-        // TODO: test tags
+    public void usernameTest() {
+        // TODO: test username
     }
 
     /**
-     * Test the property 'icon'
+     * Test the property 'email'
      */
     @Test
-    public void iconTest() {
-        // TODO: test icon
+    public void emailTest() {
+        // TODO: test email
     }
 
     /**
-     * Test the property 'content'
+     * Test the property 'passwordNew'
      */
     @Test
-    public void contentTest() {
-        // TODO: test content
+    public void passwordNewTest() {
+        // TODO: test passwordNew
+    }
+
+    /**
+     * Test the property 'passwordNew2'
+     */
+    @Test
+    public void passwordNew2Test() {
+        // TODO: test passwordNew2
     }
 
 }

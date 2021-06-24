@@ -44,7 +44,7 @@ public class TemplateFolderCreateVM {
   private List<String> tags = null;
 
   public static final String JSON_PROPERTY_ICON = "icon";
-  private String icon;
+  private byte[] icon;
 
 
   public TemplateFolderCreateVM name(String name) {
@@ -109,7 +109,7 @@ public class TemplateFolderCreateVM {
   }
 
 
-  public TemplateFolderCreateVM icon(String icon) {
+  public TemplateFolderCreateVM icon(byte[] icon) {
     
     this.icon = icon;
     return this;
@@ -124,14 +124,14 @@ public class TemplateFolderCreateVM {
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getIcon() {
+  public byte[] getIcon() {
     return icon;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIcon(String icon) {
+  public void setIcon(byte[] icon) {
     this.icon = icon;
   }
 
@@ -147,12 +147,12 @@ public class TemplateFolderCreateVM {
     TemplateFolderCreateVM templateFolderCreateVM = (TemplateFolderCreateVM) o;
     return Objects.equals(this.name, templateFolderCreateVM.name) &&
         Objects.equals(this.tags, templateFolderCreateVM.tags) &&
-        Objects.equals(this.icon, templateFolderCreateVM.icon);
+        Arrays.equals(this.icon, templateFolderCreateVM.icon);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, tags, icon);
+    return Objects.hash(name, tags, Arrays.hashCode(icon));
   }
 
   @Override

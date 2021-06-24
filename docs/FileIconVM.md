@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**icon** | **String** |  |  [optional]
+**icon** | **byte[]** |  |  [optional]
 
 
 

@@ -167,7 +167,9 @@ public class FileVM {
     
     EXPORTSTARTED("ExportStarted"),
     
-    PREPARATIONSTARTED("PreparationStarted");
+    PREPARATIONSTARTED("PreparationStarted"),
+    
+    CRASHLOOP("CrashLoop");
 
     private String value;
 

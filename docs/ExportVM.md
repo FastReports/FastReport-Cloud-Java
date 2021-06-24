@@ -89,6 +89,7 @@ NOTFOUND | &quot;NotFound&quot;
 NOTENOUGHSPACE | &quot;NotEnoughSpace&quot;
 EXPORTSTARTED | &quot;ExportStarted&quot;
 PREPARATIONSTARTED | &quot;PreparationStarted&quot;
+CRASHLOOP | &quot;CrashLoop&quot;
 
 
 

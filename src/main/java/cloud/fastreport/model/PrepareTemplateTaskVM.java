@@ -145,6 +145,8 @@ public class PrepareTemplateTaskVM {
 
    /**
    * Get pagesCount
+   * minimum: 0
+   * maximum: 2147483647
    * @return pagesCount
   **/
   @javax.annotation.Nullable

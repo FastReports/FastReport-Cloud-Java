@@ -135,10 +135,10 @@ public class ExportTemplateTaskVM {
   private FormatEnum format;
 
   public static final String JSON_PROPERTY_EXPORT_PARAMETERS = "exportParameters";
-  private Map<String, Object> exportParameters = null;
+  private Map<String, String> exportParameters = null;
 
   public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
-  private Map<String, Object> reportParameters = null;
+  private Map<String, String> reportParameters = null;
 
 
   public ExportTemplateTaskVM fileName(String fileName) {
@@ -230,6 +230,8 @@ public class ExportTemplateTaskVM {
 
    /**
    * Get pagesCount
+   * minimum: 0
+   * maximum: 2147483647
    * @return pagesCount
   **/
   @javax.annotation.Nullable
@@ -276,13 +278,13 @@ public class ExportTemplateTaskVM {
   }
 
 
-  public ExportTemplateTaskVM exportParameters(Map<String, Object> exportParameters) {
+  public ExportTemplateTaskVM exportParameters(Map<String, String> exportParameters) {
     
     this.exportParameters = exportParameters;
     return this;
   }
 
-  public ExportTemplateTaskVM putExportParametersItem(String key, Object exportParametersItem) {
+  public ExportTemplateTaskVM putExportParametersItem(String key, String exportParametersItem) {
     if (this.exportParameters == null) {
       this.exportParameters = new HashMap<>();
     }
@@ -299,25 +301,25 @@ public class ExportTemplateTaskVM {
   @JsonProperty(JSON_PROPERTY_EXPORT_PARAMETERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, Object> getExportParameters() {
+  public Map<String, String> getExportParameters() {
     return exportParameters;
   }
 
 
   @JsonProperty(JSON_PROPERTY_EXPORT_PARAMETERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExportParameters(Map<String, Object> exportParameters) {
+  public void setExportParameters(Map<String, String> exportParameters) {
     this.exportParameters = exportParameters;
   }
 
 
-  public ExportTemplateTaskVM reportParameters(Map<String, Object> reportParameters) {
+  public ExportTemplateTaskVM reportParameters(Map<String, String> reportParameters) {
     
     this.reportParameters = reportParameters;
     return this;
   }
 
-  public ExportTemplateTaskVM putReportParametersItem(String key, Object reportParametersItem) {
+  public ExportTemplateTaskVM putReportParametersItem(String key, String reportParametersItem) {
     if (this.reportParameters == null) {
       this.reportParameters = new HashMap<>();
     }
@@ -334,14 +336,14 @@ public class ExportTemplateTaskVM {
   @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, Object> getReportParameters() {
+  public Map<String, String> getReportParameters() {
     return reportParameters;
   }
 
 
   @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReportParameters(Map<String, Object> reportParameters) {
+  public void setReportParameters(Map<String, String> reportParameters) {
     this.reportParameters = reportParameters;
   }
 

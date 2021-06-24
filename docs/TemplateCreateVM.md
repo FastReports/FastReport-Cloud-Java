@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  |  [optional]
 **tags** | **List&lt;String&gt;** |  |  [optional]
-**icon** | **String** |  |  [optional]
-**content** | **String** |  |  [optional]
+**icon** | **byte[]** |  |  [optional]
+**content** | **byte[]** |  |  [optional]
 
 
 

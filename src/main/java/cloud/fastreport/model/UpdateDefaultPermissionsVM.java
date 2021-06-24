@@ -15,9 +15,9 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.DataSourcePermissions;
-import cloud.fastreport.model.FilePermissions;
-import cloud.fastreport.model.GroupPermissions;
+import cloud.fastreport.model.UpdateDataSourcePermissionsVM;
+import cloud.fastreport.model.UpdateFilePermissionsVM;
+import cloud.fastreport.model.UpdateGroupPermissionsVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -39,16 +39,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateDefaultPermissionsVM {
   public static final String JSON_PROPERTY_FILE_PERMISSIONS = "filePermissions";
-  private FilePermissions filePermissions;
+  private UpdateFilePermissionsVM filePermissions;
 
   public static final String JSON_PROPERTY_GROUP_PERMISSIONS = "groupPermissions";
-  private GroupPermissions groupPermissions;
+  private UpdateGroupPermissionsVM groupPermissions;
 
   public static final String JSON_PROPERTY_DATA_SOURCE_PERMISSIONS = "dataSourcePermissions";
-  private DataSourcePermissions dataSourcePermissions;
+  private UpdateDataSourcePermissionsVM dataSourcePermissions;
 
 
-  public UpdateDefaultPermissionsVM filePermissions(FilePermissions filePermissions) {
+  public UpdateDefaultPermissionsVM filePermissions(UpdateFilePermissionsVM filePermissions) {
     
     this.filePermissions = filePermissions;
     return this;
@@ -63,19 +63,19 @@ public class UpdateDefaultPermissionsVM {
   @JsonProperty(JSON_PROPERTY_FILE_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public FilePermissions getFilePermissions() {
+  public UpdateFilePermissionsVM getFilePermissions() {
     return filePermissions;
   }
 
 
   @JsonProperty(JSON_PROPERTY_FILE_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFilePermissions(FilePermissions filePermissions) {
+  public void setFilePermissions(UpdateFilePermissionsVM filePermissions) {
     this.filePermissions = filePermissions;
   }
 
 
-  public UpdateDefaultPermissionsVM groupPermissions(GroupPermissions groupPermissions) {
+  public UpdateDefaultPermissionsVM groupPermissions(UpdateGroupPermissionsVM groupPermissions) {
     
     this.groupPermissions = groupPermissions;
     return this;
@@ -90,19 +90,19 @@ public class UpdateDefaultPermissionsVM {
   @JsonProperty(JSON_PROPERTY_GROUP_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public GroupPermissions getGroupPermissions() {
+  public UpdateGroupPermissionsVM getGroupPermissions() {
     return groupPermissions;
   }
 
 
   @JsonProperty(JSON_PROPERTY_GROUP_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGroupPermissions(GroupPermissions groupPermissions) {
+  public void setGroupPermissions(UpdateGroupPermissionsVM groupPermissions) {
     this.groupPermissions = groupPermissions;
   }
 
 
-  public UpdateDefaultPermissionsVM dataSourcePermissions(DataSourcePermissions dataSourcePermissions) {
+  public UpdateDefaultPermissionsVM dataSourcePermissions(UpdateDataSourcePermissionsVM dataSourcePermissions) {
     
     this.dataSourcePermissions = dataSourcePermissions;
     return this;
@@ -117,14 +117,14 @@ public class UpdateDefaultPermissionsVM {
   @JsonProperty(JSON_PROPERTY_DATA_SOURCE_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DataSourcePermissions getDataSourcePermissions() {
+  public UpdateDataSourcePermissionsVM getDataSourcePermissions() {
     return dataSourcePermissions;
   }
 
 
   @JsonProperty(JSON_PROPERTY_DATA_SOURCE_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDataSourcePermissions(DataSourcePermissions dataSourcePermissions) {
+  public void setDataSourcePermissions(UpdateDataSourcePermissionsVM dataSourcePermissions) {
     this.dataSourcePermissions = dataSourcePermissions;
   }
 

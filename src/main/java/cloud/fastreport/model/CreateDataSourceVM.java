@@ -129,10 +129,9 @@ public class CreateDataSourceVM {
    * Get connectionString
    * @return connectionString
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getConnectionString() {
     return connectionString;
@@ -140,7 +139,7 @@ public class CreateDataSourceVM {
 
 
   @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setConnectionString(String connectionString) {
     this.connectionString = connectionString;
   }
@@ -156,10 +155,9 @@ public class CreateDataSourceVM {
    * Get subscriptionId
    * @return subscriptionId
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getSubscriptionId() {
     return subscriptionId;
@@ -167,7 +165,7 @@ public class CreateDataSourceVM {
 
 
   @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSubscriptionId(String subscriptionId) {
     this.subscriptionId = subscriptionId;
   }

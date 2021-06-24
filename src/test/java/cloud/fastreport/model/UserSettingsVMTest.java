@@ -13,9 +13,6 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.UpdateDataSourcePermissionsVM;
-import cloud.fastreport.model.UpdateFilePermissionsVM;
-import cloud.fastreport.model.UpdateGroupPermissionsVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -29,41 +26,33 @@ import org.junit.Test;
 
 
 /**
- * Model tests for UpdateDefaultPermissionsVM
+ * Model tests for UserSettingsVM
  */
-public class UpdateDefaultPermissionsVMTest {
-    private final UpdateDefaultPermissionsVM model = new UpdateDefaultPermissionsVM();
+public class UserSettingsVMTest {
+    private final UserSettingsVM model = new UserSettingsVM();
 
     /**
-     * Model tests for UpdateDefaultPermissionsVM
+     * Model tests for UserSettingsVM
      */
     @Test
-    public void testUpdateDefaultPermissionsVM() {
-        // TODO: test UpdateDefaultPermissionsVM
+    public void testUserSettingsVM() {
+        // TODO: test UserSettingsVM
     }
 
     /**
-     * Test the property 'filePermissions'
+     * Test the property 'profileVisibility'
      */
     @Test
-    public void filePermissionsTest() {
-        // TODO: test filePermissions
+    public void profileVisibilityTest() {
+        // TODO: test profileVisibility
     }
 
     /**
-     * Test the property 'groupPermissions'
+     * Test the property 'defaultSubscription'
      */
     @Test
-    public void groupPermissionsTest() {
-        // TODO: test groupPermissions
-    }
-
-    /**
-     * Test the property 'dataSourcePermissions'
-     */
-    @Test
-    public void dataSourcePermissionsTest() {
-        // TODO: test dataSourcePermissions
+    public void defaultSubscriptionTest() {
+        // TODO: test defaultSubscription
     }
 
 }

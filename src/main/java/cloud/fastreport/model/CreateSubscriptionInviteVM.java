@@ -54,6 +54,8 @@ public class CreateSubscriptionInviteVM {
 
    /**
    * Get usages
+   * minimum: 0
+   * maximum: 2147483647
    * @return usages
   **/
   @javax.annotation.Nullable

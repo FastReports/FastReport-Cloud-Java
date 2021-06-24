@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **locale** | **String** |  |  [optional]
 **pagesCount** | **Integer** |  |  [optional]
 **format** | [**FormatEnum**](#FormatEnum) |  |  [optional]
-**exportParameters** | **Map&lt;String, Object&gt;** |  |  [optional]
-**reportParameters** | **Map&lt;String, Object&gt;** |  |  [optional]
+**exportParameters** | **Map&lt;String, String&gt;** |  |  [optional]
+**reportParameters** | **Map&lt;String, String&gt;** |  |  [optional]
 
 
 

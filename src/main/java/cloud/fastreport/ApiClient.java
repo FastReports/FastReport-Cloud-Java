@@ -89,62 +89,6 @@ public class ApiClient {
 
     // Builder pattern to get API instances for this client.
     
-    public AdminApiKeysApi adminApiKeysApi() {
-        return new AdminApiKeysApi(this);
-    }
-    
-    public AdminDataSourceApi adminDataSourceApi() {
-        return new AdminDataSourceApi(this);
-    }
-    
-    public AdminExportsApi adminExportsApi() {
-        return new AdminExportsApi(this);
-    }
-    
-    public AdminGroupsApi adminGroupsApi() {
-        return new AdminGroupsApi(this);
-    }
-    
-    public AdminHealthCheckApi adminHealthCheckApi() {
-        return new AdminHealthCheckApi(this);
-    }
-    
-    public AdminReportsApi adminReportsApi() {
-        return new AdminReportsApi(this);
-    }
-    
-    public AdminSubscriptionAnalyticsApi adminSubscriptionAnalyticsApi() {
-        return new AdminSubscriptionAnalyticsApi(this);
-    }
-    
-    public AdminSubscriptionInvitesApi adminSubscriptionInvitesApi() {
-        return new AdminSubscriptionInvitesApi(this);
-    }
-    
-    public AdminSubscriptionPeriodApi adminSubscriptionPeriodApi() {
-        return new AdminSubscriptionPeriodApi(this);
-    }
-    
-    public AdminSubscriptionPlansApi adminSubscriptionPlansApi() {
-        return new AdminSubscriptionPlansApi(this);
-    }
-    
-    public AdminSubscriptionProblemSolvingApi adminSubscriptionProblemSolvingApi() {
-        return new AdminSubscriptionProblemSolvingApi(this);
-    }
-    
-    public AdminSubscriptionsApi adminSubscriptionsApi() {
-        return new AdminSubscriptionsApi(this);
-    }
-    
-    public AdminTemplatesApi adminTemplatesApi() {
-        return new AdminTemplatesApi(this);
-    }
-    
-    public AdminUsersApi adminUsersApi() {
-        return new AdminUsersApi(this);
-    }
-    
     public ApiKeysApi apiKeysApi() {
         return new ApiKeysApi(this);
     }
@@ -203,6 +147,10 @@ public class ApiClient {
     
     public UserProfileApi userProfileApi() {
         return new UserProfileApi(this);
+    }
+    
+    public UserSettingsApi userSettingsApi() {
+        return new UserSettingsApi(this);
     }
     
 }

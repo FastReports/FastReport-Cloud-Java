@@ -14,7 +14,7 @@
 package cloud.fastreport.client;
 
 import cloud.fastreport.model.ProblemDetails;
-import cloud.fastreport.model.UserProfileUpdateVM;
+import cloud.fastreport.model.UpdateUserProfileVM;
 import cloud.fastreport.model.UserProfileVM;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -75,7 +75,7 @@ public class UserProfileApiTest {
      */
     @Test
     public void userProfileUpdateMyProfileTest() throws IOException {
-        UserProfileUpdateVM model = null;
+        UpdateUserProfileVM model = null;
         api.userProfileUpdateMyProfile(model);
 
         // TODO: test validations

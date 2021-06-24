@@ -34,10 +34,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FileIconVM {
   public static final String JSON_PROPERTY_ICON = "icon";
-  private String icon;
+  private byte[] icon;
 
 
-  public FileIconVM icon(String icon) {
+  public FileIconVM icon(byte[] icon) {
     
     this.icon = icon;
     return this;
@@ -52,14 +52,14 @@ public class FileIconVM {
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getIcon() {
+  public byte[] getIcon() {
     return icon;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIcon(String icon) {
+  public void setIcon(byte[] icon) {
     this.icon = icon;
   }
 
@@ -73,12 +73,12 @@ public class FileIconVM {
       return false;
     }
     FileIconVM fileIconVM = (FileIconVM) o;
-    return Objects.equals(this.icon, fileIconVM.icon);
+    return Arrays.equals(this.icon, fileIconVM.icon);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(icon);
+    return Objects.hash(Arrays.hashCode(icon));
   }
 
   @Override

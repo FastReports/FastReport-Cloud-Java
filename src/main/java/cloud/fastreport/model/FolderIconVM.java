@@ -34,10 +34,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FolderIconVM {
   public static final String JSON_PROPERTY_ICON = "icon";
-  private String icon;
+  private byte[] icon;
 
 
-  public FolderIconVM icon(String icon) {
+  public FolderIconVM icon(byte[] icon) {
     
     this.icon = icon;
     return this;
@@ -47,19 +47,18 @@ public class FolderIconVM {
    * Get icon
    * @return icon
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ICON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getIcon() {
+  public byte[] getIcon() {
     return icon;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ICON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIcon(String icon) {
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setIcon(byte[] icon) {
     this.icon = icon;
   }
 
@@ -73,12 +72,12 @@ public class FolderIconVM {
       return false;
     }
     FolderIconVM folderIconVM = (FolderIconVM) o;
-    return Objects.equals(this.icon, folderIconVM.icon);
+    return Arrays.equals(this.icon, folderIconVM.icon);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(icon);
+    return Objects.hash(Arrays.hashCode(icon));
   }
 
   @Override

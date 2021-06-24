@@ -47,10 +47,9 @@ public class UpdateDataSourceConnectionStringVM {
    * Get connectionString
    * @return connectionString
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getConnectionString() {
     return connectionString;
@@ -58,7 +57,7 @@ public class UpdateDataSourceConnectionStringVM {
 
 
   @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setConnectionString(String connectionString) {
     this.connectionString = connectionString;
   }

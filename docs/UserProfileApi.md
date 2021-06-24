@@ -73,7 +73,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 
 ### HTTP response details
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 
 ### HTTP response details
@@ -196,7 +196,7 @@ public class Example {
         //JWT.setApiKeyPrefix("Token");
 
         UserProfileApi apiInstance = new UserProfileApi(defaultClient);
-        UserProfileUpdateVM model = new UserProfileUpdateVM(); // UserProfileUpdateVM | 
+        UpdateUserProfileVM model = new UpdateUserProfileVM(); // UpdateUserProfileVM | 
         try {
             apiInstance.userProfileUpdateMyProfile(model);
         } catch (ApiException e) {
@@ -215,7 +215,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model** | [**UserProfileUpdateVM**](UserProfileUpdateVM.md)|  | [optional]
+ **model** | [**UpdateUserProfileVM**](UpdateUserProfileVM.md)|  | [optional]
 
 ### Return type
 
@@ -228,7 +228,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 
 ### HTTP response details

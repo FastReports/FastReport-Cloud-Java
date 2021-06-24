@@ -3,7 +3,7 @@ package cloud.fastreport.client;
 import cloud.fastreport.ApiClient;
 
 import cloud.fastreport.model.ProblemDetails;
-import cloud.fastreport.model.UserProfileUpdateVM;
+import cloud.fastreport.model.UpdateUserProfileVM;
 import cloud.fastreport.model.UserProfileVM;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -201,7 +201,7 @@ public class UserProfileApi {
     * @param model The model parameter
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void userProfileUpdateMyProfile(UserProfileUpdateVM model) throws IOException {
+    public void userProfileUpdateMyProfile(UpdateUserProfileVM model) throws IOException {
         userProfileUpdateMyProfileForHttpResponse(model);
     }
 
@@ -213,11 +213,11 @@ public class UserProfileApi {
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void userProfileUpdateMyProfile(UserProfileUpdateVM model, Map<String, Object> params) throws IOException {
+    public void userProfileUpdateMyProfile(UpdateUserProfileVM model, Map<String, Object> params) throws IOException {
         userProfileUpdateMyProfileForHttpResponse(model, params);
     }
 
-    public HttpResponse userProfileUpdateMyProfileForHttpResponse(UserProfileUpdateVM model) throws IOException {
+    public HttpResponse userProfileUpdateMyProfileForHttpResponse(UpdateUserProfileVM model) throws IOException {
         
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/UserProfile");
 
@@ -241,7 +241,7 @@ public class UserProfileApi {
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse userProfileUpdateMyProfileForHttpResponse(UserProfileUpdateVM model, Map<String, Object> params) throws IOException {
+    public HttpResponse userProfileUpdateMyProfileForHttpResponse(UpdateUserProfileVM model, Map<String, Object> params) throws IOException {
         
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/UserProfile");
 

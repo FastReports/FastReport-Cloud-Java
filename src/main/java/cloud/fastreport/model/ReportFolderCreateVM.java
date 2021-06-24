@@ -44,7 +44,7 @@ public class ReportFolderCreateVM {
   private List<String> tags = null;
 
   public static final String JSON_PROPERTY_ICON = "icon";
-  private String icon;
+  private byte[] icon;
 
 
   public ReportFolderCreateVM name(String name) {
@@ -109,7 +109,7 @@ public class ReportFolderCreateVM {
   }
 
 
-  public ReportFolderCreateVM icon(String icon) {
+  public ReportFolderCreateVM icon(byte[] icon) {
     
     this.icon = icon;
     return this;
@@ -124,14 +124,14 @@ public class ReportFolderCreateVM {
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getIcon() {
+  public byte[] getIcon() {
     return icon;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIcon(String icon) {
+  public void setIcon(byte[] icon) {
     this.icon = icon;
   }
 
@@ -147,12 +147,12 @@ public class ReportFolderCreateVM {
     ReportFolderCreateVM reportFolderCreateVM = (ReportFolderCreateVM) o;
     return Objects.equals(this.name, reportFolderCreateVM.name) &&
         Objects.equals(this.tags, reportFolderCreateVM.tags) &&
-        Objects.equals(this.icon, reportFolderCreateVM.icon);
+        Arrays.equals(this.icon, reportFolderCreateVM.icon);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, tags, icon);
+    return Objects.hash(name, tags, Arrays.hashCode(icon));
   }
 
   @Override

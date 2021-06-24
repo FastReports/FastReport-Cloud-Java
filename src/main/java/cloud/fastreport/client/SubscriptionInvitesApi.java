@@ -4,8 +4,8 @@ import cloud.fastreport.ApiClient;
 
 import cloud.fastreport.model.CreateSubscriptionInviteVM;
 import cloud.fastreport.model.ProblemDetails;
+import cloud.fastreport.model.SubscriptionInviteVM;
 import cloud.fastreport.model.SubscriptionInvitesVM;
-import cloud.fastreport.model.SubscriptionVM;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.api.client.http.EmptyContent;
@@ -146,12 +146,12 @@ public class SubscriptionInvitesApi {
     * <p><b>500</b> - exception caught
     * @param subscriptionId id
     * @param createInviteVM create VM
-    * @return SubscriptionVM
+    * @return SubscriptionInviteVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public SubscriptionVM subscriptionInvitesCreateInvite(String subscriptionId, CreateSubscriptionInviteVM createInviteVM) throws IOException {
+    public SubscriptionInviteVM subscriptionInvitesCreateInvite(String subscriptionId, CreateSubscriptionInviteVM createInviteVM) throws IOException {
         HttpResponse response = subscriptionInvitesCreateInviteForHttpResponse(subscriptionId, createInviteVM);
-        TypeReference<SubscriptionVM> typeRef = new TypeReference<SubscriptionVM>() {};
+        TypeReference<SubscriptionInviteVM> typeRef = new TypeReference<SubscriptionInviteVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -165,12 +165,12 @@ public class SubscriptionInvitesApi {
     * <p><b>500</b> - exception caught
     * @param subscriptionId id
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return SubscriptionVM
+    * @return SubscriptionInviteVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public SubscriptionVM subscriptionInvitesCreateInvite(CreateSubscriptionInviteVM createInviteVM, String subscriptionId, Map<String, Object> params) throws IOException {
+    public SubscriptionInviteVM subscriptionInvitesCreateInvite(CreateSubscriptionInviteVM createInviteVM, String subscriptionId, Map<String, Object> params) throws IOException {
         HttpResponse response = subscriptionInvitesCreateInviteForHttpResponse(createInviteVM, subscriptionId, params);
-        TypeReference<SubscriptionVM> typeRef = new TypeReference<SubscriptionVM>() {};
+        TypeReference<SubscriptionInviteVM> typeRef = new TypeReference<SubscriptionInviteVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 

@@ -4,6 +4,7 @@ import cloud.fastreport.ApiClient;
 
 import cloud.fastreport.model.CreateDataSourceVM;
 import cloud.fastreport.model.DataSourcePermissionsVM;
+import cloud.fastreport.model.DataSourceSorting;
 import cloud.fastreport.model.DataSourceVM;
 import cloud.fastreport.model.DataSourcesVM;
 import cloud.fastreport.model.ProblemDetails;
@@ -57,12 +58,12 @@ public class DataSourcesApi {
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
-    * @param viewModel create viewmodel
+    * @param createDataSourceVM create viewmodel
     * @return DataSourceVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public DataSourceVM dataSourcesCreateDataSource(CreateDataSourceVM viewModel) throws IOException {
-        HttpResponse response = dataSourcesCreateDataSourceForHttpResponse(viewModel);
+    public DataSourceVM dataSourcesCreateDataSource(CreateDataSourceVM createDataSourceVM) throws IOException {
+        HttpResponse response = dataSourcesCreateDataSourceForHttpResponse(createDataSourceVM);
         TypeReference<DataSourceVM> typeRef = new TypeReference<DataSourceVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -79,37 +80,37 @@ public class DataSourcesApi {
     * @return DataSourceVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public DataSourceVM dataSourcesCreateDataSource(CreateDataSourceVM viewModel, Map<String, Object> params) throws IOException {
-        HttpResponse response = dataSourcesCreateDataSourceForHttpResponse(viewModel, params);
+    public DataSourceVM dataSourcesCreateDataSource(CreateDataSourceVM createDataSourceVM, Map<String, Object> params) throws IOException {
+        HttpResponse response = dataSourcesCreateDataSourceForHttpResponse(createDataSourceVM, params);
         TypeReference<DataSourceVM> typeRef = new TypeReference<DataSourceVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse dataSourcesCreateDataSourceForHttpResponse(CreateDataSourceVM viewModel) throws IOException {
+    public HttpResponse dataSourcesCreateDataSourceForHttpResponse(CreateDataSourceVM createDataSourceVM) throws IOException {
         
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources");
 
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(viewModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(createDataSourceVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse dataSourcesCreateDataSourceForHttpResponse(java.io.InputStream viewModel, String mediaType) throws IOException {
+      public HttpResponse dataSourcesCreateDataSourceForHttpResponse(java.io.InputStream createDataSourceVM, String mediaType) throws IOException {
           
               UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources");
 
               String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = viewModel == null ?
+              HttpContent content = createDataSourceVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, viewModel);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, createDataSourceVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse dataSourcesCreateDataSourceForHttpResponse(CreateDataSourceVM viewModel, Map<String, Object> params) throws IOException {
+    public HttpResponse dataSourcesCreateDataSourceForHttpResponse(CreateDataSourceVM createDataSourceVM, Map<String, Object> params) throws IOException {
         
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources");
 
@@ -134,7 +135,7 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(viewModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(createDataSourceVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
@@ -308,7 +309,7 @@ public class DataSourcesApi {
 
 
   /**
-    * Returns all of the data sources, that current user have permission for in a subscription  if subscription id is null, returns all data sources, that current user have permission for
+    * Returns all of the data sources, that current user have permission for in a subscription &lt;br /&gt;  The method will return minimal infomration about the datasources: &lt;br /&gt;  id, name, editedTime, status.
     * <p><b>200</b> - Success
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
@@ -317,17 +318,19 @@ public class DataSourcesApi {
     * @param subscriptionId subscription id
     * @param skip how many data sources will be skipped
     * @param take how many data sources will be taken
+    * @param orderBy field to order by
+    * @param desc descending sort
     * @return DataSourcesVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public DataSourcesVM dataSourcesGetAvailableDataSources(String subscriptionId, Integer skip, Integer take) throws IOException {
-        HttpResponse response = dataSourcesGetAvailableDataSourcesForHttpResponse(subscriptionId, skip, take);
+    public DataSourcesVM dataSourcesGetAvailableDataSources(String subscriptionId, Integer skip, Integer take, DataSourceSorting orderBy, Boolean desc) throws IOException {
+        HttpResponse response = dataSourcesGetAvailableDataSourcesForHttpResponse(subscriptionId, skip, take, orderBy, desc);
         TypeReference<DataSourcesVM> typeRef = new TypeReference<DataSourcesVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
   /**
-    * Returns all of the data sources, that current user have permission for in a subscription  if subscription id is null, returns all data sources, that current user have permission for
+    * Returns all of the data sources, that current user have permission for in a subscription &lt;br /&gt;  The method will return minimal infomration about the datasources: &lt;br /&gt;  id, name, editedTime, status.
     * <p><b>200</b> - Success
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
@@ -343,7 +346,7 @@ public class DataSourcesApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse dataSourcesGetAvailableDataSourcesForHttpResponse(String subscriptionId, Integer skip, Integer take) throws IOException {
+    public HttpResponse dataSourcesGetAvailableDataSourcesForHttpResponse(String subscriptionId, Integer skip, Integer take, DataSourceSorting orderBy, Boolean desc) throws IOException {
         
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/data/v1/DataSources");
         if (subscriptionId != null) {
@@ -369,6 +372,26 @@ public class DataSourcesApi {
         }        if (take != null) {
             String key = "take";
             Object value = take;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (orderBy != null) {
+            String key = "orderBy";
+            Object value = orderBy;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (desc != null) {
+            String key = "desc";
+            Object value = desc;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {
@@ -604,12 +627,12 @@ public class DataSourcesApi {
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
     * @param id data source id
-    * @param renameModel rename viewmodel
+    * @param renameDataSourceVM rename viewmodel
     * @return DataSourceVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public DataSourceVM dataSourcesRenameDataSource(String id, RenameDataSourceVM renameModel) throws IOException {
-        HttpResponse response = dataSourcesRenameDataSourceForHttpResponse(id, renameModel);
+    public DataSourceVM dataSourcesRenameDataSource(String id, RenameDataSourceVM renameDataSourceVM) throws IOException {
+        HttpResponse response = dataSourcesRenameDataSourceForHttpResponse(id, renameDataSourceVM);
         TypeReference<DataSourceVM> typeRef = new TypeReference<DataSourceVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -627,13 +650,13 @@ public class DataSourcesApi {
     * @return DataSourceVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public DataSourceVM dataSourcesRenameDataSource(RenameDataSourceVM renameModel, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = dataSourcesRenameDataSourceForHttpResponse(renameModel, id, params);
+    public DataSourceVM dataSourcesRenameDataSource(RenameDataSourceVM renameDataSourceVM, String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = dataSourcesRenameDataSourceForHttpResponse(renameDataSourceVM, id, params);
         TypeReference<DataSourceVM> typeRef = new TypeReference<DataSourceVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse dataSourcesRenameDataSourceForHttpResponse(String id, RenameDataSourceVM renameModel) throws IOException {
+    public HttpResponse dataSourcesRenameDataSourceForHttpResponse(String id, RenameDataSourceVM renameDataSourceVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesRenameDataSource");
@@ -646,11 +669,11 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(renameModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(renameDataSourceVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-      public HttpResponse dataSourcesRenameDataSourceForHttpResponse(String id, java.io.InputStream renameModel, String mediaType) throws IOException {
+      public HttpResponse dataSourcesRenameDataSourceForHttpResponse(String id, java.io.InputStream renameDataSourceVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesRenameDataSource");
@@ -663,13 +686,13 @@ public class DataSourcesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = renameModel == null ?
+              HttpContent content = renameDataSourceVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, renameModel);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, renameDataSourceVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse dataSourcesRenameDataSourceForHttpResponse(RenameDataSourceVM renameModel, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse dataSourcesRenameDataSourceForHttpResponse(RenameDataSourceVM renameDataSourceVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesRenameDataSource");
@@ -700,7 +723,7 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(renameModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(renameDataSourceVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
@@ -714,12 +737,12 @@ public class DataSourcesApi {
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
     * @param id data source id
-    * @param updateModel update viewmodel
+    * @param updateDataSourceConnectionStringVM update viewmodel
     * @return DataSourceVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public DataSourceVM dataSourcesUpdateConnectionString(String id, UpdateDataSourceConnectionStringVM updateModel) throws IOException {
-        HttpResponse response = dataSourcesUpdateConnectionStringForHttpResponse(id, updateModel);
+    public DataSourceVM dataSourcesUpdateConnectionString(String id, UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM) throws IOException {
+        HttpResponse response = dataSourcesUpdateConnectionStringForHttpResponse(id, updateDataSourceConnectionStringVM);
         TypeReference<DataSourceVM> typeRef = new TypeReference<DataSourceVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -737,13 +760,13 @@ public class DataSourcesApi {
     * @return DataSourceVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public DataSourceVM dataSourcesUpdateConnectionString(UpdateDataSourceConnectionStringVM updateModel, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = dataSourcesUpdateConnectionStringForHttpResponse(updateModel, id, params);
+    public DataSourceVM dataSourcesUpdateConnectionString(UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM, String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = dataSourcesUpdateConnectionStringForHttpResponse(updateDataSourceConnectionStringVM, id, params);
         TypeReference<DataSourceVM> typeRef = new TypeReference<DataSourceVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse dataSourcesUpdateConnectionStringForHttpResponse(String id, UpdateDataSourceConnectionStringVM updateModel) throws IOException {
+    public HttpResponse dataSourcesUpdateConnectionStringForHttpResponse(String id, UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesUpdateConnectionString");
@@ -756,11 +779,11 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(updateModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateDataSourceConnectionStringVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-      public HttpResponse dataSourcesUpdateConnectionStringForHttpResponse(String id, java.io.InputStream updateModel, String mediaType) throws IOException {
+      public HttpResponse dataSourcesUpdateConnectionStringForHttpResponse(String id, java.io.InputStream updateDataSourceConnectionStringVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesUpdateConnectionString");
@@ -773,13 +796,13 @@ public class DataSourcesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = updateModel == null ?
+              HttpContent content = updateDataSourceConnectionStringVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateModel);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateDataSourceConnectionStringVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse dataSourcesUpdateConnectionStringForHttpResponse(UpdateDataSourceConnectionStringVM updateModel, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse dataSourcesUpdateConnectionStringForHttpResponse(UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesUpdateConnectionString");
@@ -810,7 +833,7 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(updateModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateDataSourceConnectionStringVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
@@ -824,11 +847,11 @@ public class DataSourcesApi {
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
     * @param id The id parameter
-    * @param permissionsVM The permissionsVM parameter
+    * @param updateDataSourcePermissionsVM The updateDataSourcePermissionsVM parameter
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void dataSourcesUpdatePermissions(String id, UpdateDataSourcePermissionsVM permissionsVM) throws IOException {
-        dataSourcesUpdatePermissionsForHttpResponse(id, permissionsVM);
+    public void dataSourcesUpdatePermissions(String id, UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM) throws IOException {
+        dataSourcesUpdatePermissionsForHttpResponse(id, updateDataSourcePermissionsVM);
     }
 
   /**
@@ -843,11 +866,11 @@ public class DataSourcesApi {
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void dataSourcesUpdatePermissions(UpdateDataSourcePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        dataSourcesUpdatePermissionsForHttpResponse(permissionsVM, id, params);
+    public void dataSourcesUpdatePermissions(UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM, String id, Map<String, Object> params) throws IOException {
+        dataSourcesUpdatePermissionsForHttpResponse(updateDataSourcePermissionsVM, id, params);
     }
 
-    public HttpResponse dataSourcesUpdatePermissionsForHttpResponse(String id, UpdateDataSourcePermissionsVM permissionsVM) throws IOException {
+    public HttpResponse dataSourcesUpdatePermissionsForHttpResponse(String id, UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesUpdatePermissions");
@@ -860,11 +883,11 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateDataSourcePermissionsVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse dataSourcesUpdatePermissionsForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
+      public HttpResponse dataSourcesUpdatePermissionsForHttpResponse(String id, java.io.InputStream updateDataSourcePermissionsVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesUpdatePermissions");
@@ -877,13 +900,13 @@ public class DataSourcesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = permissionsVM == null ?
+              HttpContent content = updateDataSourcePermissionsVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateDataSourcePermissionsVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse dataSourcesUpdatePermissionsForHttpResponse(UpdateDataSourcePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse dataSourcesUpdatePermissionsForHttpResponse(UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesUpdatePermissions");
@@ -914,7 +937,7 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateDataSourcePermissionsVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
@@ -928,11 +951,11 @@ public class DataSourcesApi {
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
     * @param id data source id
-    * @param updatesubscriptionModel update subscription viewmodel
+    * @param updateDataSourceSubscriptionVM update subscription viewmodel
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void dataSourcesUpdateSubscriptionDataSource(String id, UpdateDataSourceSubscriptionVM updatesubscriptionModel) throws IOException {
-        dataSourcesUpdateSubscriptionDataSourceForHttpResponse(id, updatesubscriptionModel);
+    public void dataSourcesUpdateSubscriptionDataSource(String id, UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM) throws IOException {
+        dataSourcesUpdateSubscriptionDataSourceForHttpResponse(id, updateDataSourceSubscriptionVM);
     }
 
   /**
@@ -947,11 +970,11 @@ public class DataSourcesApi {
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void dataSourcesUpdateSubscriptionDataSource(UpdateDataSourceSubscriptionVM updatesubscriptionModel, String id, Map<String, Object> params) throws IOException {
-        dataSourcesUpdateSubscriptionDataSourceForHttpResponse(updatesubscriptionModel, id, params);
+    public void dataSourcesUpdateSubscriptionDataSource(UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM, String id, Map<String, Object> params) throws IOException {
+        dataSourcesUpdateSubscriptionDataSourceForHttpResponse(updateDataSourceSubscriptionVM, id, params);
     }
 
-    public HttpResponse dataSourcesUpdateSubscriptionDataSourceForHttpResponse(String id, UpdateDataSourceSubscriptionVM updatesubscriptionModel) throws IOException {
+    public HttpResponse dataSourcesUpdateSubscriptionDataSourceForHttpResponse(String id, UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesUpdateSubscriptionDataSource");
@@ -964,11 +987,11 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(updatesubscriptionModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateDataSourceSubscriptionVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-      public HttpResponse dataSourcesUpdateSubscriptionDataSourceForHttpResponse(String id, java.io.InputStream updatesubscriptionModel, String mediaType) throws IOException {
+      public HttpResponse dataSourcesUpdateSubscriptionDataSourceForHttpResponse(String id, java.io.InputStream updateDataSourceSubscriptionVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesUpdateSubscriptionDataSource");
@@ -981,13 +1004,13 @@ public class DataSourcesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = updatesubscriptionModel == null ?
+              HttpContent content = updateDataSourceSubscriptionVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updatesubscriptionModel);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateDataSourceSubscriptionVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse dataSourcesUpdateSubscriptionDataSourceForHttpResponse(UpdateDataSourceSubscriptionVM updatesubscriptionModel, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse dataSourcesUpdateSubscriptionDataSourceForHttpResponse(UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling dataSourcesUpdateSubscriptionDataSource");
@@ -1018,7 +1041,7 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(updatesubscriptionModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateDataSourceSubscriptionVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 

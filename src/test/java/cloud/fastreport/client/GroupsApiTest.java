@@ -48,8 +48,8 @@ public class GroupsApiTest {
      */
     @Test
     public void groupsCreateGroupTest() throws IOException {
-        CreateGroupVM viewModel = null;
-        GroupVM response = api.groupsCreateGroup(viewModel);
+        CreateGroupVM createGroupVM = null;
+        GroupVM response = api.groupsCreateGroup(createGroupVM);
 
         // TODO: test validations
     }
@@ -130,8 +130,8 @@ public class GroupsApiTest {
     @Test
     public void groupsRenameGroupTest() throws IOException {
         String id = null;
-        RenameGroupVM viewModel = null;
-        GroupVM response = api.groupsRenameGroup(id, viewModel);
+        RenameGroupVM renameGroupVM = null;
+        GroupVM response = api.groupsRenameGroup(id, renameGroupVM);
 
         // TODO: test validations
     }
@@ -147,8 +147,8 @@ public class GroupsApiTest {
     @Test
     public void groupsUpdatePermissionsTest() throws IOException {
         String id = null;
-        UpdateGroupPermissionsVM permissionsVM = null;
-        api.groupsUpdatePermissions(id, permissionsVM);
+        UpdateGroupPermissionsVM updateGroupPermissionsVM = null;
+        api.groupsUpdatePermissions(id, updateGroupPermissionsVM);
 
         // TODO: test validations
     }

@@ -22,6 +22,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -34,12 +37,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FileRenameVM {
   public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
 
   public FileRenameVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
     
-    this.name = name;
     return this;
   }
 
@@ -49,18 +52,26 @@ public class FileRenameVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getName() {
-    return name;
+        return name.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
     this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
   }
 
 

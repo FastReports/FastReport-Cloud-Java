@@ -15,6 +15,7 @@ package cloud.fastreport.client;
 
 import cloud.fastreport.model.CreateDataSourceVM;
 import cloud.fastreport.model.DataSourcePermissionsVM;
+import cloud.fastreport.model.DataSourceSorting;
 import cloud.fastreport.model.DataSourceVM;
 import cloud.fastreport.model.DataSourcesVM;
 import cloud.fastreport.model.ProblemDetails;
@@ -50,8 +51,8 @@ public class DataSourcesApiTest {
      */
     @Test
     public void dataSourcesCreateDataSourceTest() throws IOException {
-        CreateDataSourceVM viewModel = null;
-        DataSourceVM response = api.dataSourcesCreateDataSource(viewModel);
+        CreateDataSourceVM createDataSourceVM = null;
+        DataSourceVM response = api.dataSourcesCreateDataSource(createDataSourceVM);
 
         // TODO: test validations
     }
@@ -89,7 +90,7 @@ public class DataSourcesApiTest {
     }
     
     /**
-     * Returns all of the data sources, that current user have permission for in a subscription  if subscription id is null, returns all data sources, that current user have permission for
+     * Returns all of the data sources, that current user have permission for in a subscription &lt;br /&gt;  The method will return minimal infomration about the datasources: &lt;br /&gt;  id, name, editedTime, status.
      *
      * 
      *
@@ -101,7 +102,9 @@ public class DataSourcesApiTest {
         String subscriptionId = null;
         Integer skip = null;
         Integer take = null;
-        DataSourcesVM response = api.dataSourcesGetAvailableDataSources(subscriptionId, skip, take);
+        DataSourceSorting orderBy = null;
+        Boolean desc = null;
+        DataSourcesVM response = api.dataSourcesGetAvailableDataSources(subscriptionId, skip, take, orderBy, desc);
 
         // TODO: test validations
     }
@@ -149,8 +152,8 @@ public class DataSourcesApiTest {
     @Test
     public void dataSourcesRenameDataSourceTest() throws IOException {
         String id = null;
-        RenameDataSourceVM renameModel = null;
-        DataSourceVM response = api.dataSourcesRenameDataSource(id, renameModel);
+        RenameDataSourceVM renameDataSourceVM = null;
+        DataSourceVM response = api.dataSourcesRenameDataSource(id, renameDataSourceVM);
 
         // TODO: test validations
     }
@@ -166,8 +169,8 @@ public class DataSourcesApiTest {
     @Test
     public void dataSourcesUpdateConnectionStringTest() throws IOException {
         String id = null;
-        UpdateDataSourceConnectionStringVM updateModel = null;
-        DataSourceVM response = api.dataSourcesUpdateConnectionString(id, updateModel);
+        UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM = null;
+        DataSourceVM response = api.dataSourcesUpdateConnectionString(id, updateDataSourceConnectionStringVM);
 
         // TODO: test validations
     }
@@ -183,8 +186,8 @@ public class DataSourcesApiTest {
     @Test
     public void dataSourcesUpdatePermissionsTest() throws IOException {
         String id = null;
-        UpdateDataSourcePermissionsVM permissionsVM = null;
-        api.dataSourcesUpdatePermissions(id, permissionsVM);
+        UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM = null;
+        api.dataSourcesUpdatePermissions(id, updateDataSourcePermissionsVM);
 
         // TODO: test validations
     }
@@ -200,8 +203,8 @@ public class DataSourcesApiTest {
     @Test
     public void dataSourcesUpdateSubscriptionDataSourceTest() throws IOException {
         String id = null;
-        UpdateDataSourceSubscriptionVM updatesubscriptionModel = null;
-        api.dataSourcesUpdateSubscriptionDataSource(id, updatesubscriptionModel);
+        UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM = null;
+        api.dataSourcesUpdateSubscriptionDataSource(id, updateDataSourceSubscriptionVM);
 
         // TODO: test validations
     }

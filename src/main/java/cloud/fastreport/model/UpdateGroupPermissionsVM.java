@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.GroupAdministrate;
 import cloud.fastreport.model.GroupPermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,51 +39,8 @@ public class UpdateGroupPermissionsVM {
   public static final String JSON_PROPERTY_NEW_PERMISSIONS = "newPermissions";
   private GroupPermissions newPermissions;
 
-  /**
-   * Gets or Sets administrate
-   */
-  public enum AdministrateEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_4(4),
-    
-    NUMBER_8(8),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    AdministrateEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static AdministrateEnum fromValue(Integer value) {
-      for (AdministrateEnum b : AdministrateEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
-  private AdministrateEnum administrate;
+  private GroupAdministrate administrate;
 
 
   public UpdateGroupPermissionsVM newPermissions(GroupPermissions newPermissions) {
@@ -111,7 +69,7 @@ public class UpdateGroupPermissionsVM {
   }
 
 
-  public UpdateGroupPermissionsVM administrate(AdministrateEnum administrate) {
+  public UpdateGroupPermissionsVM administrate(GroupAdministrate administrate) {
     
     this.administrate = administrate;
     return this;
@@ -125,14 +83,14 @@ public class UpdateGroupPermissionsVM {
   @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public AdministrateEnum getAdministrate() {
+  public GroupAdministrate getAdministrate() {
     return administrate;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAdministrate(AdministrateEnum administrate) {
+  public void setAdministrate(GroupAdministrate administrate) {
     this.administrate = administrate;
   }
 

@@ -22,6 +22,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -38,24 +41,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateUserProfileVM {
   public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_USERNAME = "username";
-  private String username;
+  private JsonNullable<String> username = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EMAIL = "email";
-  private String email;
+  private JsonNullable<String> email = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PASSWORD_NEW = "passwordNew";
-  private String passwordNew;
+  private JsonNullable<String> passwordNew = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PASSWORD_NEW2 = "passwordNew2";
-  private String passwordNew2;
+  private JsonNullable<String> passwordNew2 = JsonNullable.<String>undefined();
 
 
   public UpdateUserProfileVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
     
-    this.name = name;
     return this;
   }
 
@@ -65,24 +68,32 @@ public class UpdateUserProfileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getName() {
-    return name;
+        return name.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
     this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
   }
 
 
   public UpdateUserProfileVM username(String username) {
+    this.username = JsonNullable.<String>of(username);
     
-    this.username = username;
     return this;
   }
 
@@ -92,24 +103,32 @@ public class UpdateUserProfileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_USERNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getUsername() {
-    return username;
+        return username.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_USERNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsername(String username) {
+
+  public JsonNullable<String> getUsername_JsonNullable() {
+    return username;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USERNAME)
+  public void setUsername_JsonNullable(JsonNullable<String> username) {
     this.username = username;
+  }
+
+  public void setUsername(String username) {
+    this.username = JsonNullable.<String>of(username);
   }
 
 
   public UpdateUserProfileVM email(String email) {
+    this.email = JsonNullable.<String>of(email);
     
-    this.email = email;
     return this;
   }
 
@@ -119,24 +138,32 @@ public class UpdateUserProfileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_EMAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getEmail() {
-    return email;
+        return email.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_EMAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEmail(String email) {
+
+  public JsonNullable<String> getEmail_JsonNullable() {
+    return email;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  public void setEmail_JsonNullable(JsonNullable<String> email) {
     this.email = email;
+  }
+
+  public void setEmail(String email) {
+    this.email = JsonNullable.<String>of(email);
   }
 
 
   public UpdateUserProfileVM passwordNew(String passwordNew) {
+    this.passwordNew = JsonNullable.<String>of(passwordNew);
     
-    this.passwordNew = passwordNew;
     return this;
   }
 
@@ -146,24 +173,32 @@ public class UpdateUserProfileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PASSWORD_NEW)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getPasswordNew() {
-    return passwordNew;
+        return passwordNew.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_PASSWORD_NEW)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswordNew(String passwordNew) {
+
+  public JsonNullable<String> getPasswordNew_JsonNullable() {
+    return passwordNew;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PASSWORD_NEW)
+  public void setPasswordNew_JsonNullable(JsonNullable<String> passwordNew) {
     this.passwordNew = passwordNew;
+  }
+
+  public void setPasswordNew(String passwordNew) {
+    this.passwordNew = JsonNullable.<String>of(passwordNew);
   }
 
 
   public UpdateUserProfileVM passwordNew2(String passwordNew2) {
+    this.passwordNew2 = JsonNullable.<String>of(passwordNew2);
     
-    this.passwordNew2 = passwordNew2;
     return this;
   }
 
@@ -173,18 +208,26 @@ public class UpdateUserProfileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PASSWORD_NEW2)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getPasswordNew2() {
-    return passwordNew2;
+        return passwordNew2.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_PASSWORD_NEW2)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswordNew2(String passwordNew2) {
+
+  public JsonNullable<String> getPasswordNew2_JsonNullable() {
+    return passwordNew2;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PASSWORD_NEW2)
+  public void setPasswordNew2_JsonNullable(JsonNullable<String> passwordNew2) {
     this.passwordNew2 = passwordNew2;
+  }
+
+  public void setPasswordNew2(String passwordNew2) {
+    this.passwordNew2 = JsonNullable.<String>of(passwordNew2);
   }
 
 

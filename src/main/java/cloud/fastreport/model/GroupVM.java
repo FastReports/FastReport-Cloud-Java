@@ -22,6 +22,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -36,18 +39,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GroupVM {
   public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  private JsonNullable<String> id = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private String subscriptionId;
+  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
 
 
   public GroupVM id(String id) {
+    this.id = JsonNullable.<String>of(id);
     
-    this.id = id;
     return this;
   }
 
@@ -57,24 +60,32 @@ public class GroupVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getId() {
-    return id;
+        return id.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
+
+  public JsonNullable<String> getId_JsonNullable() {
+    return id;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ID)
+  public void setId_JsonNullable(JsonNullable<String> id) {
     this.id = id;
+  }
+
+  public void setId(String id) {
+    this.id = JsonNullable.<String>of(id);
   }
 
 
   public GroupVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
     
-    this.name = name;
     return this;
   }
 
@@ -84,24 +95,32 @@ public class GroupVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getName() {
-    return name;
+        return name.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
     this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
   }
 
 
   public GroupVM subscriptionId(String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
     
-    this.subscriptionId = subscriptionId;
     return this;
   }
 
@@ -111,18 +130,26 @@ public class GroupVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getSubscriptionId() {
-    return subscriptionId;
+        return subscriptionId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubscriptionId(String subscriptionId) {
+
+  public JsonNullable<String> getSubscriptionId_JsonNullable() {
+    return subscriptionId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
     this.subscriptionId = subscriptionId;
+  }
+
+  public void setSubscriptionId(String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
   }
 
 

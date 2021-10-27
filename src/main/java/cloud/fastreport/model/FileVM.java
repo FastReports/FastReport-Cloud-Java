@@ -15,6 +15,10 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.EntityVM;
+import cloud.fastreport.model.FileStatus;
+import cloud.fastreport.model.FileStatusReason;
+import cloud.fastreport.model.FileType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -25,6 +29,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.threeten.bp.OffsetDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -50,176 +57,51 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FileVM {
   public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PARENT_ID = "parentId";
-  private String parentId;
+  private JsonNullable<String> parentId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TAGS = "tags";
-  private List<String> tags = null;
+  private JsonNullable<List<String>> tags = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_ICON = "icon";
-  private byte[] icon;
-
-  /**
-   * Gets or Sets type
-   */
-  public enum TypeEnum {
-    FILE("File"),
-    
-    FOLDER("Folder");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private JsonNullable<byte[]> icon = JsonNullable.<byte[]>undefined();
 
   public static final String JSON_PROPERTY_TYPE = "type";
-  private TypeEnum type;
+  private FileType type;
 
   public static final String JSON_PROPERTY_SIZE = "size";
   private Long size;
 
   public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private String subscriptionId;
-
-  /**
-   * Gets or Sets status
-   */
-  public enum StatusEnum {
-    NONE("None"),
-    
-    INQUEUE("InQueue"),
-    
-    INPROCESS("InProcess"),
-    
-    SUCCESS("Success"),
-    
-    FAILED("Failed");
-
-    private String value;
-
-    StatusEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STATUS = "status";
-  private StatusEnum status;
-
-  /**
-   * Gets or Sets statusReason
-   */
-  public enum StatusReasonEnum {
-    NONE("None"),
-    
-    ALLRIGHT("AllRight"),
-    
-    HANG("Hang"),
-    
-    ERROR("Error"),
-    
-    NOTFOUND("NotFound"),
-    
-    NOTENOUGHSPACE("NotEnoughSpace"),
-    
-    EXPORTSTARTED("ExportStarted"),
-    
-    PREPARATIONSTARTED("PreparationStarted"),
-    
-    CRASHLOOP("CrashLoop");
-
-    private String value;
-
-    StatusReasonEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static StatusReasonEnum fromValue(String value) {
-      for (StatusReasonEnum b : StatusReasonEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private FileStatus status;
 
   public static final String JSON_PROPERTY_STATUS_REASON = "statusReason";
-  private StatusReasonEnum statusReason;
+  private FileStatusReason statusReason;
 
   public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  private JsonNullable<String> id = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED_TIME = "createdTime";
   private OffsetDateTime createdTime;
 
   public static final String JSON_PROPERTY_CREATOR_USER_ID = "creatorUserId";
-  private String creatorUserId;
+  private JsonNullable<String> creatorUserId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EDITED_TIME = "editedTime";
   private OffsetDateTime editedTime;
 
   public static final String JSON_PROPERTY_EDITOR_USER_ID = "editorUserId";
-  private String editorUserId;
+  private JsonNullable<String> editorUserId = JsonNullable.<String>undefined();
 
 
   public FileVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
     
-    this.name = name;
     return this;
   }
 
@@ -229,24 +111,32 @@ public class FileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getName() {
-    return name;
+        return name.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
     this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
   }
 
 
   public FileVM parentId(String parentId) {
+    this.parentId = JsonNullable.<String>of(parentId);
     
-    this.parentId = parentId;
     return this;
   }
 
@@ -256,32 +146,44 @@ public class FileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PARENT_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getParentId() {
-    return parentId;
+        return parentId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_PARENT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParentId(String parentId) {
+
+  public JsonNullable<String> getParentId_JsonNullable() {
+    return parentId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PARENT_ID)
+  public void setParentId_JsonNullable(JsonNullable<String> parentId) {
     this.parentId = parentId;
+  }
+
+  public void setParentId(String parentId) {
+    this.parentId = JsonNullable.<String>of(parentId);
   }
 
 
   public FileVM tags(List<String> tags) {
+    this.tags = JsonNullable.<List<String>>of(tags);
     
-    this.tags = tags;
     return this;
   }
 
   public FileVM addTagsItem(String tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<>();
+    if (this.tags == null || !this.tags.isPresent()) {
+      this.tags = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.tags.add(tagsItem);
+    try {
+      this.tags.get().add(tagsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -291,24 +193,32 @@ public class FileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<String> getTags() {
-    return tags;
+        return tags.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_TAGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTags(List<String> tags) {
+
+  public JsonNullable<List<String>> getTags_JsonNullable() {
+    return tags;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAGS)
+  public void setTags_JsonNullable(JsonNullable<List<String>> tags) {
     this.tags = tags;
+  }
+
+  public void setTags(List<String> tags) {
+    this.tags = JsonNullable.<List<String>>of(tags);
   }
 
 
   public FileVM icon(byte[] icon) {
+    this.icon = JsonNullable.<byte[]>of(icon);
     
-    this.icon = icon;
     return this;
   }
 
@@ -318,22 +228,30 @@ public class FileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ICON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public byte[] getIcon() {
-    return icon;
+        return icon.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIcon(byte[] icon) {
+
+  public JsonNullable<byte[]> getIcon_JsonNullable() {
+    return icon;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ICON)
+  public void setIcon_JsonNullable(JsonNullable<byte[]> icon) {
     this.icon = icon;
   }
 
+  public void setIcon(byte[] icon) {
+    this.icon = JsonNullable.<byte[]>of(icon);
+  }
 
-  public FileVM type(TypeEnum type) {
+
+  public FileVM type(FileType type) {
     
     this.type = type;
     return this;
@@ -348,14 +266,14 @@ public class FileVM {
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TypeEnum getType() {
+  public FileType getType() {
     return type;
   }
 
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TypeEnum type) {
+  public void setType(FileType type) {
     this.type = type;
   }
 
@@ -388,8 +306,8 @@ public class FileVM {
 
 
   public FileVM subscriptionId(String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
     
-    this.subscriptionId = subscriptionId;
     return this;
   }
 
@@ -399,22 +317,30 @@ public class FileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getSubscriptionId() {
-    return subscriptionId;
+        return subscriptionId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubscriptionId(String subscriptionId) {
+
+  public JsonNullable<String> getSubscriptionId_JsonNullable() {
+    return subscriptionId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
     this.subscriptionId = subscriptionId;
   }
 
+  public void setSubscriptionId(String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
+  }
 
-  public FileVM status(StatusEnum status) {
+
+  public FileVM status(FileStatus status) {
     
     this.status = status;
     return this;
@@ -429,19 +355,19 @@ public class FileVM {
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StatusEnum getStatus() {
+  public FileStatus getStatus() {
     return status;
   }
 
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(StatusEnum status) {
+  public void setStatus(FileStatus status) {
     this.status = status;
   }
 
 
-  public FileVM statusReason(StatusReasonEnum statusReason) {
+  public FileVM statusReason(FileStatusReason statusReason) {
     
     this.statusReason = statusReason;
     return this;
@@ -456,21 +382,21 @@ public class FileVM {
   @JsonProperty(JSON_PROPERTY_STATUS_REASON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StatusReasonEnum getStatusReason() {
+  public FileStatusReason getStatusReason() {
     return statusReason;
   }
 
 
   @JsonProperty(JSON_PROPERTY_STATUS_REASON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatusReason(StatusReasonEnum statusReason) {
+  public void setStatusReason(FileStatusReason statusReason) {
     this.statusReason = statusReason;
   }
 
 
   public FileVM id(String id) {
+    this.id = JsonNullable.<String>of(id);
     
-    this.id = id;
     return this;
   }
 
@@ -480,18 +406,26 @@ public class FileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getId() {
-    return id;
+        return id.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
+
+  public JsonNullable<String> getId_JsonNullable() {
+    return id;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ID)
+  public void setId_JsonNullable(JsonNullable<String> id) {
     this.id = id;
+  }
+
+  public void setId(String id) {
+    this.id = JsonNullable.<String>of(id);
   }
 
 
@@ -523,8 +457,8 @@ public class FileVM {
 
 
   public FileVM creatorUserId(String creatorUserId) {
+    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
     
-    this.creatorUserId = creatorUserId;
     return this;
   }
 
@@ -534,18 +468,26 @@ public class FileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getCreatorUserId() {
-    return creatorUserId;
+        return creatorUserId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatorUserId(String creatorUserId) {
+
+  public JsonNullable<String> getCreatorUserId_JsonNullable() {
+    return creatorUserId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
+  public void setCreatorUserId_JsonNullable(JsonNullable<String> creatorUserId) {
     this.creatorUserId = creatorUserId;
+  }
+
+  public void setCreatorUserId(String creatorUserId) {
+    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
   }
 
 
@@ -577,8 +519,8 @@ public class FileVM {
 
 
   public FileVM editorUserId(String editorUserId) {
+    this.editorUserId = JsonNullable.<String>of(editorUserId);
     
-    this.editorUserId = editorUserId;
     return this;
   }
 
@@ -588,18 +530,26 @@ public class FileVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getEditorUserId() {
-    return editorUserId;
+        return editorUserId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEditorUserId(String editorUserId) {
+
+  public JsonNullable<String> getEditorUserId_JsonNullable() {
+    return editorUserId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
+  public void setEditorUserId_JsonNullable(JsonNullable<String> editorUserId) {
     this.editorUserId = editorUserId;
+  }
+
+  public void setEditorUserId(String editorUserId) {
+    this.editorUserId = JsonNullable.<String>of(editorUserId);
   }
 
 

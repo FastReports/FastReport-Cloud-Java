@@ -15,6 +15,8 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.ExportFormat;
+import cloud.fastreport.model.FileVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -22,9 +24,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import org.threeten.bp.OffsetDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -33,15 +36,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   ExportVM.JSON_PROPERTY_FORMAT,
   ExportVM.JSON_PROPERTY_REPORT_ID,
-  ExportVM.JSON_PROPERTY_NAME,
-  ExportVM.JSON_PROPERTY_PARENT_ID,
-  ExportVM.JSON_PROPERTY_TAGS,
-  ExportVM.JSON_PROPERTY_ICON,
-  ExportVM.JSON_PROPERTY_TYPE,
-  ExportVM.JSON_PROPERTY_SIZE,
-  ExportVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  ExportVM.JSON_PROPERTY_STATUS,
-  ExportVM.JSON_PROPERTY_STATUS_REASON,
   ExportVM.JSON_PROPERTY_ID,
   ExportVM.JSON_PROPERTY_CREATED_TIME,
   ExportVM.JSON_PROPERTY_CREATOR_USER_ID,
@@ -51,258 +45,29 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonTypeName("ExportVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ExportVM {
-  /**
-   * Gets or Sets format
-   */
-  public enum FormatEnum {
-    PDF("Pdf"),
-    
-    HTML("Html"),
-    
-    MHT("Mht"),
-    
-    IMAGE("Image"),
-    
-    BIFF8("Biff8"),
-    
-    CSV("Csv"),
-    
-    DBF("Dbf"),
-    
-    JSON("Json"),
-    
-    LATEX("LaTeX"),
-    
-    ODT("Odt"),
-    
-    ODS("Ods"),
-    
-    DOCX("Docx"),
-    
-    PPTX("Pptx"),
-    
-    XLSX("Xlsx"),
-    
-    XPS("Xps"),
-    
-    PPML("Ppml"),
-    
-    PS("PS"),
-    
-    RICHTEXT("Richtext"),
-    
-    SVG("Svg"),
-    
-    TEXT("Text"),
-    
-    XAML("Xaml"),
-    
-    XML("Xml"),
-    
-    ZPL("Zpl");
-
-    private String value;
-
-    FormatEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static FormatEnum fromValue(String value) {
-      for (FormatEnum b : FormatEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_FORMAT = "format";
-  private FormatEnum format;
+  private ExportFormat format;
 
   public static final String JSON_PROPERTY_REPORT_ID = "reportId";
-  private String reportId;
-
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
-
-  public static final String JSON_PROPERTY_PARENT_ID = "parentId";
-  private String parentId;
-
-  public static final String JSON_PROPERTY_TAGS = "tags";
-  private List<String> tags = null;
-
-  public static final String JSON_PROPERTY_ICON = "icon";
-  private byte[] icon;
-
-  /**
-   * Gets or Sets type
-   */
-  public enum TypeEnum {
-    FILE("File"),
-    
-    FOLDER("Folder");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TypeEnum type;
-
-  public static final String JSON_PROPERTY_SIZE = "size";
-  private Long size;
-
-  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private String subscriptionId;
-
-  /**
-   * Gets or Sets status
-   */
-  public enum StatusEnum {
-    NONE("None"),
-    
-    INQUEUE("InQueue"),
-    
-    INPROCESS("InProcess"),
-    
-    SUCCESS("Success"),
-    
-    FAILED("Failed");
-
-    private String value;
-
-    StatusEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_STATUS = "status";
-  private StatusEnum status;
-
-  /**
-   * Gets or Sets statusReason
-   */
-  public enum StatusReasonEnum {
-    NONE("None"),
-    
-    ALLRIGHT("AllRight"),
-    
-    HANG("Hang"),
-    
-    ERROR("Error"),
-    
-    NOTFOUND("NotFound"),
-    
-    NOTENOUGHSPACE("NotEnoughSpace"),
-    
-    EXPORTSTARTED("ExportStarted"),
-    
-    PREPARATIONSTARTED("PreparationStarted"),
-    
-    CRASHLOOP("CrashLoop");
-
-    private String value;
-
-    StatusReasonEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static StatusReasonEnum fromValue(String value) {
-      for (StatusReasonEnum b : StatusReasonEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_STATUS_REASON = "statusReason";
-  private StatusReasonEnum statusReason;
+  private JsonNullable<String> reportId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  private JsonNullable<String> id = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED_TIME = "createdTime";
   private OffsetDateTime createdTime;
 
   public static final String JSON_PROPERTY_CREATOR_USER_ID = "creatorUserId";
-  private String creatorUserId;
+  private JsonNullable<String> creatorUserId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EDITED_TIME = "editedTime";
   private OffsetDateTime editedTime;
 
   public static final String JSON_PROPERTY_EDITOR_USER_ID = "editorUserId";
-  private String editorUserId;
+  private JsonNullable<String> editorUserId = JsonNullable.<String>undefined();
 
 
-  public ExportVM format(FormatEnum format) {
+  public ExportVM format(ExportFormat format) {
     
     this.format = format;
     return this;
@@ -317,21 +82,21 @@ public class ExportVM {
   @JsonProperty(JSON_PROPERTY_FORMAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public FormatEnum getFormat() {
+  public ExportFormat getFormat() {
     return format;
   }
 
 
   @JsonProperty(JSON_PROPERTY_FORMAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFormat(FormatEnum format) {
+  public void setFormat(ExportFormat format) {
     this.format = format;
   }
 
 
   public ExportVM reportId(String reportId) {
+    this.reportId = JsonNullable.<String>of(reportId);
     
-    this.reportId = reportId;
     return this;
   }
 
@@ -341,275 +106,32 @@ public class ExportVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REPORT_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getReportId() {
-    return reportId;
+        return reportId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_REPORT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReportId(String reportId) {
+
+  public JsonNullable<String> getReportId_JsonNullable() {
+    return reportId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REPORT_ID)
+  public void setReportId_JsonNullable(JsonNullable<String> reportId) {
     this.reportId = reportId;
   }
 
-
-  public ExportVM name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public ExportVM parentId(String parentId) {
-    
-    this.parentId = parentId;
-    return this;
-  }
-
-   /**
-   * Get parentId
-   * @return parentId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PARENT_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getParentId() {
-    return parentId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PARENT_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParentId(String parentId) {
-    this.parentId = parentId;
-  }
-
-
-  public ExportVM tags(List<String> tags) {
-    
-    this.tags = tags;
-    return this;
-  }
-
-  public ExportVM addTagsItem(String tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<>();
-    }
-    this.tags.add(tagsItem);
-    return this;
-  }
-
-   /**
-   * Get tags
-   * @return tags
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getTags() {
-    return tags;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTags(List<String> tags) {
-    this.tags = tags;
-  }
-
-
-  public ExportVM icon(byte[] icon) {
-    
-    this.icon = icon;
-    return this;
-  }
-
-   /**
-   * Get icon
-   * @return icon
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ICON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public byte[] getIcon() {
-    return icon;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ICON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIcon(byte[] icon) {
-    this.icon = icon;
-  }
-
-
-  public ExportVM type(TypeEnum type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
-
-
-  public ExportVM size(Long size) {
-    
-    this.size = size;
-    return this;
-  }
-
-   /**
-   * Get size
-   * @return size
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getSize() {
-    return size;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSize(Long size) {
-    this.size = size;
-  }
-
-
-  public ExportVM subscriptionId(String subscriptionId) {
-    
-    this.subscriptionId = subscriptionId;
-    return this;
-  }
-
-   /**
-   * Get subscriptionId
-   * @return subscriptionId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getSubscriptionId() {
-    return subscriptionId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = subscriptionId;
-  }
-
-
-  public ExportVM status(StatusEnum status) {
-    
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * Get status
-   * @return status
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public StatusEnum getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(StatusEnum status) {
-    this.status = status;
-  }
-
-
-  public ExportVM statusReason(StatusReasonEnum statusReason) {
-    
-    this.statusReason = statusReason;
-    return this;
-  }
-
-   /**
-   * Get statusReason
-   * @return statusReason
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_STATUS_REASON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public StatusReasonEnum getStatusReason() {
-    return statusReason;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS_REASON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatusReason(StatusReasonEnum statusReason) {
-    this.statusReason = statusReason;
+  public void setReportId(String reportId) {
+    this.reportId = JsonNullable.<String>of(reportId);
   }
 
 
   public ExportVM id(String id) {
+    this.id = JsonNullable.<String>of(id);
     
-    this.id = id;
     return this;
   }
 
@@ -619,18 +141,26 @@ public class ExportVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getId() {
-    return id;
+        return id.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
+
+  public JsonNullable<String> getId_JsonNullable() {
+    return id;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ID)
+  public void setId_JsonNullable(JsonNullable<String> id) {
     this.id = id;
+  }
+
+  public void setId(String id) {
+    this.id = JsonNullable.<String>of(id);
   }
 
 
@@ -662,8 +192,8 @@ public class ExportVM {
 
 
   public ExportVM creatorUserId(String creatorUserId) {
+    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
     
-    this.creatorUserId = creatorUserId;
     return this;
   }
 
@@ -673,18 +203,26 @@ public class ExportVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getCreatorUserId() {
-    return creatorUserId;
+        return creatorUserId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatorUserId(String creatorUserId) {
+
+  public JsonNullable<String> getCreatorUserId_JsonNullable() {
+    return creatorUserId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
+  public void setCreatorUserId_JsonNullable(JsonNullable<String> creatorUserId) {
     this.creatorUserId = creatorUserId;
+  }
+
+  public void setCreatorUserId(String creatorUserId) {
+    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
   }
 
 
@@ -716,8 +254,8 @@ public class ExportVM {
 
 
   public ExportVM editorUserId(String editorUserId) {
+    this.editorUserId = JsonNullable.<String>of(editorUserId);
     
-    this.editorUserId = editorUserId;
     return this;
   }
 
@@ -727,18 +265,26 @@ public class ExportVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getEditorUserId() {
-    return editorUserId;
+        return editorUserId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEditorUserId(String editorUserId) {
+
+  public JsonNullable<String> getEditorUserId_JsonNullable() {
+    return editorUserId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
+  public void setEditorUserId_JsonNullable(JsonNullable<String> editorUserId) {
     this.editorUserId = editorUserId;
+  }
+
+  public void setEditorUserId(String editorUserId) {
+    this.editorUserId = JsonNullable.<String>of(editorUserId);
   }
 
 
@@ -753,15 +299,6 @@ public class ExportVM {
     ExportVM exportVM = (ExportVM) o;
     return Objects.equals(this.format, exportVM.format) &&
         Objects.equals(this.reportId, exportVM.reportId) &&
-        Objects.equals(this.name, exportVM.name) &&
-        Objects.equals(this.parentId, exportVM.parentId) &&
-        Objects.equals(this.tags, exportVM.tags) &&
-        Arrays.equals(this.icon, exportVM.icon) &&
-        Objects.equals(this.type, exportVM.type) &&
-        Objects.equals(this.size, exportVM.size) &&
-        Objects.equals(this.subscriptionId, exportVM.subscriptionId) &&
-        Objects.equals(this.status, exportVM.status) &&
-        Objects.equals(this.statusReason, exportVM.statusReason) &&
         Objects.equals(this.id, exportVM.id) &&
         Objects.equals(this.createdTime, exportVM.createdTime) &&
         Objects.equals(this.creatorUserId, exportVM.creatorUserId) &&
@@ -771,7 +308,7 @@ public class ExportVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(format, reportId, name, parentId, tags, Arrays.hashCode(icon), type, size, subscriptionId, status, statusReason, id, createdTime, creatorUserId, editedTime, editorUserId);
+    return Objects.hash(format, reportId, id, createdTime, creatorUserId, editedTime, editorUserId);
   }
 
   @Override
@@ -780,15 +317,6 @@ public class ExportVM {
     sb.append("class ExportVM {\n");
     sb.append("    format: ").append(toIndentedString(format)).append("\n");
     sb.append("    reportId: ").append(toIndentedString(reportId)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
-    sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    statusReason: ").append(toIndentedString(statusReason)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
     sb.append("    creatorUserId: ").append(toIndentedString(creatorUserId)).append("\n");

@@ -4,18 +4,19 @@ import cloud.fastreport.ApiClient;
 
 import cloud.fastreport.model.BreadcrumbsVM;
 import cloud.fastreport.model.CountVM;
-import cloud.fastreport.model.ExportTemplateTaskVM;
+import cloud.fastreport.model.ExportTemplateVM;
 import cloud.fastreport.model.ExportVM;
 import cloud.fastreport.model.FileIconVM;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileRenameVM;
+import cloud.fastreport.model.FileSorting;
 import cloud.fastreport.model.FileTagsUpdateVM;
 import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.FilesVM;
 import cloud.fastreport.model.FolderIconVM;
 import cloud.fastreport.model.FolderRenameVM;
 import cloud.fastreport.model.FolderTagsUpdateVM;
-import cloud.fastreport.model.PrepareTemplateTaskVM;
+import cloud.fastreport.model.PrepareTemplateVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.ReportVM;
 import cloud.fastreport.model.TemplateCreateVM;
@@ -159,11 +160,14 @@ public class TemplatesApi {
     * @param id folder id
     * @param skip number of folder and files, that have to be skipped
     * @param take number of folder and files, that have to be returned
+    * @param orderBy indicates a field to sort by
+    * @param desc indicates if sorting is descending
+    * @param searchPattern The searchPattern parameter
     * @return FilesVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilesVM templateFolderAndFileGetFoldersAndFiles(String id, Integer skip, Integer take) throws IOException {
-        HttpResponse response = templateFolderAndFileGetFoldersAndFilesForHttpResponse(id, skip, take);
+    public FilesVM templateFolderAndFileGetFoldersAndFiles(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern) throws IOException {
+        HttpResponse response = templateFolderAndFileGetFoldersAndFilesForHttpResponse(id, skip, take, orderBy, desc, searchPattern);
         TypeReference<FilesVM> typeRef = new TypeReference<FilesVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -186,7 +190,7 @@ public class TemplatesApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templateFolderAndFileGetFoldersAndFilesForHttpResponse(String id, Integer skip, Integer take) throws IOException {
+    public HttpResponse templateFolderAndFileGetFoldersAndFilesForHttpResponse(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFolderAndFileGetFoldersAndFiles");
@@ -208,6 +212,36 @@ public class TemplatesApi {
         }        if (take != null) {
             String key = "take";
             Object value = take;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (orderBy != null) {
+            String key = "orderBy";
+            Object value = orderBy;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (desc != null) {
+            String key = "desc";
+            Object value = desc;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (searchPattern != null) {
+            String key = "searchPattern";
+            Object value = searchPattern;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {
@@ -265,8 +299,8 @@ public class TemplatesApi {
     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
     * <p><b>200</b> - Folder has been moved to a specified folder
     * <p><b>400</b> - folderId or parentFolderId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id moving folder id
     * @param folderId destination folder id
@@ -284,8 +318,8 @@ public class TemplatesApi {
     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
     * <p><b>200</b> - Folder has been moved to a specified folder
     * <p><b>400</b> - folderId or parentFolderId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id moving folder id
     * @param folderId destination folder id
@@ -365,8 +399,8 @@ public class TemplatesApi {
     * User with a Delete Entity permission can access this method.
     * <p><b>204</b> - Folder succesfully deleted
     * <p><b>400</b> - Id is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id folder id
     * @param recursive delete all childs
@@ -381,8 +415,8 @@ public class TemplatesApi {
     * User with a Delete Entity permission can access this method.
     * <p><b>204</b> - Folder succesfully deleted
     * <p><b>400</b> - Id is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id folder id
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
@@ -919,11 +953,11 @@ public class TemplatesApi {
 
   /**
     * Get user&#39;s root folder (without parents)
-    * &amp;gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
+    * &gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
     * <p><b>200</b> - Gets user&#39;s root folder (without parents)
     * <p><b>400</b> - Error with the request.
-    * <p><b>403</b> - No permissions to get root folder
     * <p><b>404</b> - Not found subscription
+    * <p><b>403</b> - No permissions to get root folder
     * @param subscriptionId The subscriptionId parameter
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -936,11 +970,11 @@ public class TemplatesApi {
 
   /**
     * Get user&#39;s root folder (without parents)
-    * &amp;gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
+    * &gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
     * <p><b>200</b> - Gets user&#39;s root folder (without parents)
     * <p><b>400</b> - Error with the request.
-    * <p><b>403</b> - No permissions to get root folder
     * <p><b>404</b> - Not found subscription
+    * <p><b>403</b> - No permissions to get root folder
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -1008,8 +1042,8 @@ public class TemplatesApi {
     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
     * <p><b>200</b> - Folder has been moved to a specified folder
     * <p><b>400</b> - folderId or parentFolderId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id moving folder id
     * @param folderId destination folder id
@@ -1027,8 +1061,8 @@ public class TemplatesApi {
     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
     * <p><b>200</b> - Folder has been moved to a specified folder
     * <p><b>400</b> - folderId or parentFolderId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id moving folder id
     * @param folderId destination folder id
@@ -1108,16 +1142,16 @@ public class TemplatesApi {
     * User with a Create Entity permisison can access this method.
     * <p><b>200</b> - New folder has been created)
     * <p><b>400</b> - Parent folder id is null
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - parent folder/subscription not found
     * @param id Identifier of parent folder id
-    * @param folderVm create VM
+    * @param templateFolderCreateVM create VM
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FileVM templateFoldersPostFolder(String id, TemplateFolderCreateVM folderVm) throws IOException {
-        HttpResponse response = templateFoldersPostFolderForHttpResponse(id, folderVm);
+    public FileVM templateFoldersPostFolder(String id, TemplateFolderCreateVM templateFolderCreateVM) throws IOException {
+        HttpResponse response = templateFoldersPostFolderForHttpResponse(id, templateFolderCreateVM);
         TypeReference<FileVM> typeRef = new TypeReference<FileVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -1127,21 +1161,21 @@ public class TemplatesApi {
     * User with a Create Entity permisison can access this method.
     * <p><b>200</b> - New folder has been created)
     * <p><b>400</b> - Parent folder id is null
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - parent folder/subscription not found
     * @param id Identifier of parent folder id
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FileVM templateFoldersPostFolder(TemplateFolderCreateVM folderVm, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = templateFoldersPostFolderForHttpResponse(folderVm, id, params);
+    public FileVM templateFoldersPostFolder(TemplateFolderCreateVM templateFolderCreateVM, String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = templateFoldersPostFolderForHttpResponse(templateFolderCreateVM, id, params);
         TypeReference<FileVM> typeRef = new TypeReference<FileVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templateFoldersPostFolderForHttpResponse(String id, TemplateFolderCreateVM folderVm) throws IOException {
+    public HttpResponse templateFoldersPostFolderForHttpResponse(String id, TemplateFolderCreateVM templateFolderCreateVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersPostFolder");
@@ -1154,11 +1188,11 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(folderVm);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(templateFolderCreateVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse templateFoldersPostFolderForHttpResponse(String id, java.io.InputStream folderVm, String mediaType) throws IOException {
+      public HttpResponse templateFoldersPostFolderForHttpResponse(String id, java.io.InputStream templateFolderCreateVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersPostFolder");
@@ -1171,13 +1205,13 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = folderVm == null ?
+              HttpContent content = templateFolderCreateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, folderVm);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, templateFolderCreateVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse templateFoldersPostFolderForHttpResponse(TemplateFolderCreateVM folderVm, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse templateFoldersPostFolderForHttpResponse(TemplateFolderCreateVM templateFolderCreateVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersPostFolder");
@@ -1208,7 +1242,7 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(folderVm);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(templateFolderCreateVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
@@ -1218,16 +1252,16 @@ public class TemplatesApi {
     * User with a Update Name permision can access this method.
     * <p><b>200</b> - Folder name has been updated
     * <p><b>400</b> - folderId is null
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id The id parameter
-    * @param nameModel The nameModel parameter
+    * @param folderRenameVM The folderRenameVM parameter
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FileVM templateFoldersRenameFolder(String id, FolderRenameVM nameModel) throws IOException {
-        HttpResponse response = templateFoldersRenameFolderForHttpResponse(id, nameModel);
+    public FileVM templateFoldersRenameFolder(String id, FolderRenameVM folderRenameVM) throws IOException {
+        HttpResponse response = templateFoldersRenameFolderForHttpResponse(id, folderRenameVM);
         TypeReference<FileVM> typeRef = new TypeReference<FileVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -1237,21 +1271,21 @@ public class TemplatesApi {
     * User with a Update Name permision can access this method.
     * <p><b>200</b> - Folder name has been updated
     * <p><b>400</b> - folderId is null
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id The id parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FileVM templateFoldersRenameFolder(FolderRenameVM nameModel, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = templateFoldersRenameFolderForHttpResponse(nameModel, id, params);
+    public FileVM templateFoldersRenameFolder(FolderRenameVM folderRenameVM, String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = templateFoldersRenameFolderForHttpResponse(folderRenameVM, id, params);
         TypeReference<FileVM> typeRef = new TypeReference<FileVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templateFoldersRenameFolderForHttpResponse(String id, FolderRenameVM nameModel) throws IOException {
+    public HttpResponse templateFoldersRenameFolderForHttpResponse(String id, FolderRenameVM folderRenameVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersRenameFolder");
@@ -1264,11 +1298,11 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(nameModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(folderRenameVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-      public HttpResponse templateFoldersRenameFolderForHttpResponse(String id, java.io.InputStream nameModel, String mediaType) throws IOException {
+      public HttpResponse templateFoldersRenameFolderForHttpResponse(String id, java.io.InputStream folderRenameVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersRenameFolder");
@@ -1281,13 +1315,13 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = nameModel == null ?
+              HttpContent content = folderRenameVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, nameModel);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, folderRenameVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse templateFoldersRenameFolderForHttpResponse(FolderRenameVM nameModel, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse templateFoldersRenameFolderForHttpResponse(FolderRenameVM folderRenameVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersRenameFolder");
@@ -1318,7 +1352,7 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(nameModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(folderRenameVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
@@ -1328,16 +1362,16 @@ public class TemplatesApi {
     * User with a Update Icon permission can access this method.
     * <p><b>200</b> - Folder&#39;s icon has been updated
     * <p><b>400</b> - folderId is null
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id Identifier of folder
-    * @param iconModel Update icon model
+    * @param folderIconVM Update icon model
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FileVM templateFoldersUpdateIcon(String id, FolderIconVM iconModel) throws IOException {
-        HttpResponse response = templateFoldersUpdateIconForHttpResponse(id, iconModel);
+    public FileVM templateFoldersUpdateIcon(String id, FolderIconVM folderIconVM) throws IOException {
+        HttpResponse response = templateFoldersUpdateIconForHttpResponse(id, folderIconVM);
         TypeReference<FileVM> typeRef = new TypeReference<FileVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -1347,21 +1381,21 @@ public class TemplatesApi {
     * User with a Update Icon permission can access this method.
     * <p><b>200</b> - Folder&#39;s icon has been updated
     * <p><b>400</b> - folderId is null
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id Identifier of folder
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FileVM templateFoldersUpdateIcon(FolderIconVM iconModel, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = templateFoldersUpdateIconForHttpResponse(iconModel, id, params);
+    public FileVM templateFoldersUpdateIcon(FolderIconVM folderIconVM, String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = templateFoldersUpdateIconForHttpResponse(folderIconVM, id, params);
         TypeReference<FileVM> typeRef = new TypeReference<FileVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templateFoldersUpdateIconForHttpResponse(String id, FolderIconVM iconModel) throws IOException {
+    public HttpResponse templateFoldersUpdateIconForHttpResponse(String id, FolderIconVM folderIconVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersUpdateIcon");
@@ -1374,11 +1408,11 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(iconModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(folderIconVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-      public HttpResponse templateFoldersUpdateIconForHttpResponse(String id, java.io.InputStream iconModel, String mediaType) throws IOException {
+      public HttpResponse templateFoldersUpdateIconForHttpResponse(String id, java.io.InputStream folderIconVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersUpdateIcon");
@@ -1391,13 +1425,13 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = iconModel == null ?
+              HttpContent content = folderIconVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, iconModel);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, folderIconVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse templateFoldersUpdateIconForHttpResponse(FolderIconVM iconModel, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse templateFoldersUpdateIconForHttpResponse(FolderIconVM folderIconVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersUpdateIcon");
@@ -1428,7 +1462,7 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(iconModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(folderIconVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
@@ -1442,11 +1476,11 @@ public class TemplatesApi {
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
     * @param id The id parameter
-    * @param permissionsVM The permissionsVM parameter
+    * @param updateFilePermissionsVM The updateFilePermissionsVM parameter
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void templateFoldersUpdatePermissions(String id, UpdateFilePermissionsVM permissionsVM) throws IOException {
-        templateFoldersUpdatePermissionsForHttpResponse(id, permissionsVM);
+    public void templateFoldersUpdatePermissions(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws IOException {
+        templateFoldersUpdatePermissionsForHttpResponse(id, updateFilePermissionsVM);
     }
 
   /**
@@ -1461,11 +1495,11 @@ public class TemplatesApi {
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void templateFoldersUpdatePermissions(UpdateFilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        templateFoldersUpdatePermissionsForHttpResponse(permissionsVM, id, params);
+    public void templateFoldersUpdatePermissions(UpdateFilePermissionsVM updateFilePermissionsVM, String id, Map<String, Object> params) throws IOException {
+        templateFoldersUpdatePermissionsForHttpResponse(updateFilePermissionsVM, id, params);
     }
 
-    public HttpResponse templateFoldersUpdatePermissionsForHttpResponse(String id, UpdateFilePermissionsVM permissionsVM) throws IOException {
+    public HttpResponse templateFoldersUpdatePermissionsForHttpResponse(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersUpdatePermissions");
@@ -1478,11 +1512,11 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateFilePermissionsVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse templateFoldersUpdatePermissionsForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
+      public HttpResponse templateFoldersUpdatePermissionsForHttpResponse(String id, java.io.InputStream updateFilePermissionsVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersUpdatePermissions");
@@ -1495,13 +1529,13 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = permissionsVM == null ?
+              HttpContent content = updateFilePermissionsVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateFilePermissionsVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse templateFoldersUpdatePermissionsForHttpResponse(UpdateFilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse templateFoldersUpdatePermissionsForHttpResponse(UpdateFilePermissionsVM updateFilePermissionsVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersUpdatePermissions");
@@ -1532,7 +1566,7 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateFilePermissionsVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
@@ -1542,16 +1576,16 @@ public class TemplatesApi {
     * User with a Update Tags permission can access this method.
     * <p><b>200</b> - Tags has been updated
     * <p><b>400</b> - folderId or Tags is null
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id The id parameter
-    * @param tagsModel The tagsModel parameter
+    * @param folderTagsUpdateVM The folderTagsUpdateVM parameter
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FileVM templateFoldersUpdateTags(String id, FolderTagsUpdateVM tagsModel) throws IOException {
-        HttpResponse response = templateFoldersUpdateTagsForHttpResponse(id, tagsModel);
+    public FileVM templateFoldersUpdateTags(String id, FolderTagsUpdateVM folderTagsUpdateVM) throws IOException {
+        HttpResponse response = templateFoldersUpdateTagsForHttpResponse(id, folderTagsUpdateVM);
         TypeReference<FileVM> typeRef = new TypeReference<FileVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -1561,21 +1595,21 @@ public class TemplatesApi {
     * User with a Update Tags permission can access this method.
     * <p><b>200</b> - Tags has been updated
     * <p><b>400</b> - folderId or Tags is null
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id The id parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return FileVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FileVM templateFoldersUpdateTags(FolderTagsUpdateVM tagsModel, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = templateFoldersUpdateTagsForHttpResponse(tagsModel, id, params);
+    public FileVM templateFoldersUpdateTags(FolderTagsUpdateVM folderTagsUpdateVM, String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = templateFoldersUpdateTagsForHttpResponse(folderTagsUpdateVM, id, params);
         TypeReference<FileVM> typeRef = new TypeReference<FileVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templateFoldersUpdateTagsForHttpResponse(String id, FolderTagsUpdateVM tagsModel) throws IOException {
+    public HttpResponse templateFoldersUpdateTagsForHttpResponse(String id, FolderTagsUpdateVM folderTagsUpdateVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersUpdateTags");
@@ -1588,11 +1622,11 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(tagsModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(folderTagsUpdateVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-      public HttpResponse templateFoldersUpdateTagsForHttpResponse(String id, java.io.InputStream tagsModel, String mediaType) throws IOException {
+      public HttpResponse templateFoldersUpdateTagsForHttpResponse(String id, java.io.InputStream folderTagsUpdateVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersUpdateTags");
@@ -1605,13 +1639,13 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = tagsModel == null ?
+              HttpContent content = folderTagsUpdateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, tagsModel);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, folderTagsUpdateVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse templateFoldersUpdateTagsForHttpResponse(FolderTagsUpdateVM tagsModel, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse templateFoldersUpdateTagsForHttpResponse(FolderTagsUpdateVM folderTagsUpdateVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFoldersUpdateTags");
@@ -1642,7 +1676,7 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(tagsModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(folderTagsUpdateVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
@@ -1651,8 +1685,8 @@ public class TemplatesApi {
     * Copy file to a specified folder
     * <p><b>200</b> - File has been copied
     * <p><b>400</b> - fileId or folderId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - File or folder not found
     * <p><b>500</b> - Exception thrown
     * @param id file id
@@ -1670,8 +1704,8 @@ public class TemplatesApi {
     * Copy file to a specified folder
     * <p><b>200</b> - File has been copied
     * <p><b>400</b> - fileId or folderId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - File or folder not found
     * <p><b>500</b> - Exception thrown
     * @param id file id
@@ -1752,8 +1786,8 @@ public class TemplatesApi {
     * User with Delete permission can access the method.
     * <p><b>204</b> - File succesfully deleted
     * <p><b>400</b> - Id is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - File not found
     * <p><b>500</b> - Exception thrown
     * @param id file id
@@ -1768,8 +1802,8 @@ public class TemplatesApi {
     * User with Delete permission can access the method.
     * <p><b>204</b> - File succesfully deleted
     * <p><b>400</b> - Id is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - File not found
     * <p><b>500</b> - Exception thrown
     * @param id file id
@@ -1838,16 +1872,16 @@ public class TemplatesApi {
     * User with Execute Export permission on prepared report and  Create Entity on an export folder can access this method.
     * <p><b>200</b> - Specified report has been exported
     * <p><b>400</b> - Report Id is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - Exports folder not found
     * @param id report id
-    * @param exportTask export parameters (string only)
+    * @param exportTemplateVM export parameters (string only)
     * @return ExportVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public ExportVM templatesExport(String id, ExportTemplateTaskVM exportTask) throws IOException {
-        HttpResponse response = templatesExportForHttpResponse(id, exportTask);
+    public ExportVM templatesExport(String id, ExportTemplateVM exportTemplateVM) throws IOException {
+        HttpResponse response = templatesExportForHttpResponse(id, exportTemplateVM);
         TypeReference<ExportVM> typeRef = new TypeReference<ExportVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -1857,21 +1891,21 @@ public class TemplatesApi {
     * User with Execute Export permission on prepared report and  Create Entity on an export folder can access this method.
     * <p><b>200</b> - Specified report has been exported
     * <p><b>400</b> - Report Id is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - Exports folder not found
     * @param id report id
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return ExportVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public ExportVM templatesExport(ExportTemplateTaskVM exportTask, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = templatesExportForHttpResponse(exportTask, id, params);
+    public ExportVM templatesExport(ExportTemplateVM exportTemplateVM, String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = templatesExportForHttpResponse(exportTemplateVM, id, params);
         TypeReference<ExportVM> typeRef = new TypeReference<ExportVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templatesExportForHttpResponse(String id, ExportTemplateTaskVM exportTask) throws IOException {
+    public HttpResponse templatesExportForHttpResponse(String id, ExportTemplateVM exportTemplateVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesExport");
@@ -1884,11 +1918,11 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(exportTask);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(exportTemplateVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse templatesExportForHttpResponse(String id, java.io.InputStream exportTask, String mediaType) throws IOException {
+      public HttpResponse templatesExportForHttpResponse(String id, java.io.InputStream exportTemplateVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesExport");
@@ -1901,13 +1935,13 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = exportTask == null ?
+              HttpContent content = exportTemplateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, exportTask);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, exportTemplateVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse templatesExportForHttpResponse(ExportTemplateTaskVM exportTask, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse templatesExportForHttpResponse(ExportTemplateVM exportTemplateVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesExport");
@@ -1938,7 +1972,7 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(exportTask);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(exportTemplateVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
@@ -2124,8 +2158,7 @@ public class TemplatesApi {
 
 
   /**
-    * Get all files from specified folder
-    * User with Get Entity permission can access this method.
+    * Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
     * <p><b>200</b> - Returns list of the files from a specified folder
     * <p><b>400</b> - FolderId is null
     * <p><b>403</b> - You don&#39;t have rights for the operation
@@ -2144,8 +2177,7 @@ public class TemplatesApi {
     }
 
   /**
-    * Get all files from specified folder
-    * User with Get Entity permission can access this method.
+    * Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
     * <p><b>200</b> - Returns list of the files from a specified folder
     * <p><b>400</b> - FolderId is null
     * <p><b>403</b> - You don&#39;t have rights for the operation
@@ -2327,8 +2359,8 @@ public class TemplatesApi {
     * User with Update Place permission can access this method.
     * <p><b>200</b> - File has been moved
     * <p><b>400</b> - fileId or folderId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - File or folder not found
     * <p><b>500</b> - Exception thrown
     * @param id file id
@@ -2347,8 +2379,8 @@ public class TemplatesApi {
     * User with Update Place permission can access this method.
     * <p><b>200</b> - File has been moved
     * <p><b>400</b> - fileId or folderId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - File or folder not found
     * <p><b>500</b> - Exception thrown
     * @param id file id
@@ -2426,43 +2458,43 @@ public class TemplatesApi {
 
   /**
     * Prepare specified template to report
-    * User with Execute Prepare permission on report and   Create Entity on a prepared report folder can access this method.
+    * User with Execute Prepare permission on report and  Create Entity on a prepared report folder can access this method.
     * <p><b>200</b> - Specified template has been prepared
     * <p><b>400</b> - Report Id is null
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Template or folder not found
     * @param id template id
-    * @param prepareTask Template prepare view model
+    * @param prepareTemplateVM Template prepare view model
     * @return ReportVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public ReportVM templatesPrepare(String id, PrepareTemplateTaskVM prepareTask) throws IOException {
-        HttpResponse response = templatesPrepareForHttpResponse(id, prepareTask);
+    public ReportVM templatesPrepare(String id, PrepareTemplateVM prepareTemplateVM) throws IOException {
+        HttpResponse response = templatesPrepareForHttpResponse(id, prepareTemplateVM);
         TypeReference<ReportVM> typeRef = new TypeReference<ReportVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
   /**
     * Prepare specified template to report
-    * User with Execute Prepare permission on report and   Create Entity on a prepared report folder can access this method.
+    * User with Execute Prepare permission on report and  Create Entity on a prepared report folder can access this method.
     * <p><b>200</b> - Specified template has been prepared
     * <p><b>400</b> - Report Id is null
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Template or folder not found
     * @param id template id
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return ReportVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public ReportVM templatesPrepare(PrepareTemplateTaskVM prepareTask, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = templatesPrepareForHttpResponse(prepareTask, id, params);
+    public ReportVM templatesPrepare(PrepareTemplateVM prepareTemplateVM, String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = templatesPrepareForHttpResponse(prepareTemplateVM, id, params);
         TypeReference<ReportVM> typeRef = new TypeReference<ReportVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templatesPrepareForHttpResponse(String id, PrepareTemplateTaskVM prepareTask) throws IOException {
+    public HttpResponse templatesPrepareForHttpResponse(String id, PrepareTemplateVM prepareTemplateVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesPrepare");
@@ -2475,11 +2507,11 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(prepareTask);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(prepareTemplateVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse templatesPrepareForHttpResponse(String id, java.io.InputStream prepareTask, String mediaType) throws IOException {
+      public HttpResponse templatesPrepareForHttpResponse(String id, java.io.InputStream prepareTemplateVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesPrepare");
@@ -2492,13 +2524,13 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = prepareTask == null ?
+              HttpContent content = prepareTemplateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, prepareTask);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, prepareTemplateVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse templatesPrepareForHttpResponse(PrepareTemplateTaskVM prepareTask, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse templatesPrepareForHttpResponse(PrepareTemplateVM prepareTemplateVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesPrepare");
@@ -2529,7 +2561,7 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(prepareTask);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(prepareTemplateVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
@@ -2539,17 +2571,17 @@ public class TemplatesApi {
     * User with Update Name permission can access this method.
     * <p><b>200</b> - File name has been updated
     * <p><b>400</b> - FileId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - File not found
     * <p><b>500</b> - Exception thrown
     * @param id The id parameter
-    * @param nameModel The nameModel parameter
+    * @param fileRenameVM The fileRenameVM parameter
     * @return TemplateVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public TemplateVM templatesRenameFile(String id, FileRenameVM nameModel) throws IOException {
-        HttpResponse response = templatesRenameFileForHttpResponse(id, nameModel);
+    public TemplateVM templatesRenameFile(String id, FileRenameVM fileRenameVM) throws IOException {
+        HttpResponse response = templatesRenameFileForHttpResponse(id, fileRenameVM);
         TypeReference<TemplateVM> typeRef = new TypeReference<TemplateVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -2559,8 +2591,8 @@ public class TemplatesApi {
     * User with Update Name permission can access this method.
     * <p><b>200</b> - File name has been updated
     * <p><b>400</b> - FileId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - File not found
     * <p><b>500</b> - Exception thrown
     * @param id The id parameter
@@ -2568,13 +2600,13 @@ public class TemplatesApi {
     * @return TemplateVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public TemplateVM templatesRenameFile(FileRenameVM nameModel, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = templatesRenameFileForHttpResponse(nameModel, id, params);
+    public TemplateVM templatesRenameFile(FileRenameVM fileRenameVM, String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = templatesRenameFileForHttpResponse(fileRenameVM, id, params);
         TypeReference<TemplateVM> typeRef = new TypeReference<TemplateVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templatesRenameFileForHttpResponse(String id, FileRenameVM nameModel) throws IOException {
+    public HttpResponse templatesRenameFileForHttpResponse(String id, FileRenameVM fileRenameVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesRenameFile");
@@ -2587,11 +2619,11 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(nameModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(fileRenameVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-      public HttpResponse templatesRenameFileForHttpResponse(String id, java.io.InputStream nameModel, String mediaType) throws IOException {
+      public HttpResponse templatesRenameFileForHttpResponse(String id, java.io.InputStream fileRenameVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesRenameFile");
@@ -2604,13 +2636,13 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = nameModel == null ?
+              HttpContent content = fileRenameVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, nameModel);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, fileRenameVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse templatesRenameFileForHttpResponse(FileRenameVM nameModel, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse templatesRenameFileForHttpResponse(FileRenameVM fileRenameVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesRenameFile");
@@ -2641,7 +2673,7 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(nameModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(fileRenameVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
@@ -2651,17 +2683,17 @@ public class TemplatesApi {
     * User with Update Icon permission can access this method.
     * <p><b>200</b> - File&#39;s icon has been updated
     * <p><b>400</b> - FileId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - File not found
     * <p><b>500</b> - Exception thrown
     * @param id The id parameter
-    * @param iconModel The iconModel parameter
+    * @param fileIconVM The fileIconVM parameter
     * @return TemplateVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public TemplateVM templatesUpdateIcon(String id, FileIconVM iconModel) throws IOException {
-        HttpResponse response = templatesUpdateIconForHttpResponse(id, iconModel);
+    public TemplateVM templatesUpdateIcon(String id, FileIconVM fileIconVM) throws IOException {
+        HttpResponse response = templatesUpdateIconForHttpResponse(id, fileIconVM);
         TypeReference<TemplateVM> typeRef = new TypeReference<TemplateVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -2671,8 +2703,8 @@ public class TemplatesApi {
     * User with Update Icon permission can access this method.
     * <p><b>200</b> - File&#39;s icon has been updated
     * <p><b>400</b> - FileId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - File not found
     * <p><b>500</b> - Exception thrown
     * @param id The id parameter
@@ -2680,13 +2712,13 @@ public class TemplatesApi {
     * @return TemplateVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public TemplateVM templatesUpdateIcon(FileIconVM iconModel, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = templatesUpdateIconForHttpResponse(iconModel, id, params);
+    public TemplateVM templatesUpdateIcon(FileIconVM fileIconVM, String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = templatesUpdateIconForHttpResponse(fileIconVM, id, params);
         TypeReference<TemplateVM> typeRef = new TypeReference<TemplateVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templatesUpdateIconForHttpResponse(String id, FileIconVM iconModel) throws IOException {
+    public HttpResponse templatesUpdateIconForHttpResponse(String id, FileIconVM fileIconVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUpdateIcon");
@@ -2699,11 +2731,11 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(iconModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(fileIconVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-      public HttpResponse templatesUpdateIconForHttpResponse(String id, java.io.InputStream iconModel, String mediaType) throws IOException {
+      public HttpResponse templatesUpdateIconForHttpResponse(String id, java.io.InputStream fileIconVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUpdateIcon");
@@ -2716,13 +2748,13 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = iconModel == null ?
+              HttpContent content = fileIconVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, iconModel);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, fileIconVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse templatesUpdateIconForHttpResponse(FileIconVM iconModel, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse templatesUpdateIconForHttpResponse(FileIconVM fileIconVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUpdateIcon");
@@ -2753,7 +2785,7 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(iconModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(fileIconVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
@@ -2767,11 +2799,11 @@ public class TemplatesApi {
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
     * @param id The id parameter
-    * @param permissionsVM The permissionsVM parameter
+    * @param updateFilePermissionsVM The updateFilePermissionsVM parameter
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void templatesUpdatePermissions(String id, UpdateFilePermissionsVM permissionsVM) throws IOException {
-        templatesUpdatePermissionsForHttpResponse(id, permissionsVM);
+    public void templatesUpdatePermissions(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws IOException {
+        templatesUpdatePermissionsForHttpResponse(id, updateFilePermissionsVM);
     }
 
   /**
@@ -2786,11 +2818,11 @@ public class TemplatesApi {
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void templatesUpdatePermissions(UpdateFilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        templatesUpdatePermissionsForHttpResponse(permissionsVM, id, params);
+    public void templatesUpdatePermissions(UpdateFilePermissionsVM updateFilePermissionsVM, String id, Map<String, Object> params) throws IOException {
+        templatesUpdatePermissionsForHttpResponse(updateFilePermissionsVM, id, params);
     }
 
-    public HttpResponse templatesUpdatePermissionsForHttpResponse(String id, UpdateFilePermissionsVM permissionsVM) throws IOException {
+    public HttpResponse templatesUpdatePermissionsForHttpResponse(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUpdatePermissions");
@@ -2803,11 +2835,11 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateFilePermissionsVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse templatesUpdatePermissionsForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
+      public HttpResponse templatesUpdatePermissionsForHttpResponse(String id, java.io.InputStream updateFilePermissionsVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUpdatePermissions");
@@ -2820,13 +2852,13 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = permissionsVM == null ?
+              HttpContent content = updateFilePermissionsVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateFilePermissionsVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse templatesUpdatePermissionsForHttpResponse(UpdateFilePermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse templatesUpdatePermissionsForHttpResponse(UpdateFilePermissionsVM updateFilePermissionsVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUpdatePermissions");
@@ -2857,7 +2889,7 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateFilePermissionsVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
@@ -2867,17 +2899,17 @@ public class TemplatesApi {
     * User with Update Tags permission can access this method.
     * <p><b>200</b> - Tags has been updated
     * <p><b>400</b> - FileId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - File not found
     * <p><b>500</b> - Exception thrown
     * @param id The id parameter
-    * @param tagsModel The tagsModel parameter
+    * @param fileTagsUpdateVM The fileTagsUpdateVM parameter
     * @return TemplateVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public TemplateVM templatesUpdateTags(String id, FileTagsUpdateVM tagsModel) throws IOException {
-        HttpResponse response = templatesUpdateTagsForHttpResponse(id, tagsModel);
+    public TemplateVM templatesUpdateTags(String id, FileTagsUpdateVM fileTagsUpdateVM) throws IOException {
+        HttpResponse response = templatesUpdateTagsForHttpResponse(id, fileTagsUpdateVM);
         TypeReference<TemplateVM> typeRef = new TypeReference<TemplateVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -2887,8 +2919,8 @@ public class TemplatesApi {
     * User with Update Tags permission can access this method.
     * <p><b>200</b> - Tags has been updated
     * <p><b>400</b> - FileId is null
-    * <p><b>402</b> - Subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - File not found
     * <p><b>500</b> - Exception thrown
     * @param id The id parameter
@@ -2896,13 +2928,13 @@ public class TemplatesApi {
     * @return TemplateVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public TemplateVM templatesUpdateTags(FileTagsUpdateVM tagsModel, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = templatesUpdateTagsForHttpResponse(tagsModel, id, params);
+    public TemplateVM templatesUpdateTags(FileTagsUpdateVM fileTagsUpdateVM, String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = templatesUpdateTagsForHttpResponse(fileTagsUpdateVM, id, params);
         TypeReference<TemplateVM> typeRef = new TypeReference<TemplateVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templatesUpdateTagsForHttpResponse(String id, FileTagsUpdateVM tagsModel) throws IOException {
+    public HttpResponse templatesUpdateTagsForHttpResponse(String id, FileTagsUpdateVM fileTagsUpdateVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUpdateTags");
@@ -2915,11 +2947,11 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(tagsModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(fileTagsUpdateVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-      public HttpResponse templatesUpdateTagsForHttpResponse(String id, java.io.InputStream tagsModel, String mediaType) throws IOException {
+      public HttpResponse templatesUpdateTagsForHttpResponse(String id, java.io.InputStream fileTagsUpdateVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUpdateTags");
@@ -2932,13 +2964,13 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = tagsModel == null ?
+              HttpContent content = fileTagsUpdateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, tagsModel);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, fileTagsUpdateVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse templatesUpdateTagsForHttpResponse(FileTagsUpdateVM tagsModel, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse templatesUpdateTagsForHttpResponse(FileTagsUpdateVM fileTagsUpdateVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUpdateTags");
@@ -2969,7 +3001,7 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(tagsModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(fileTagsUpdateVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
@@ -2979,16 +3011,16 @@ public class TemplatesApi {
     * User with Create Entity permission can access this method.
     * <p><b>200</b> - File has been uploaded
     * <p><b>400</b> - fileVM view model is not valid
-    * <p><b>402</b> - Client Error
     * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - Not Found
+    * <p><b>402</b> - subscription is outdated
+    * <p><b>404</b> - folder/subscription is not found
     * @param id Identifier of folder
-    * @param fileVM file&#39;s view model
+    * @param templateCreateVM file&#39;s view model
     * @return TemplateVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public TemplateVM templatesUploadFile(String id, TemplateCreateVM fileVM) throws IOException {
-        HttpResponse response = templatesUploadFileForHttpResponse(id, fileVM);
+    public TemplateVM templatesUploadFile(String id, TemplateCreateVM templateCreateVM) throws IOException {
+        HttpResponse response = templatesUploadFileForHttpResponse(id, templateCreateVM);
         TypeReference<TemplateVM> typeRef = new TypeReference<TemplateVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -2998,21 +3030,21 @@ public class TemplatesApi {
     * User with Create Entity permission can access this method.
     * <p><b>200</b> - File has been uploaded
     * <p><b>400</b> - fileVM view model is not valid
-    * <p><b>402</b> - Client Error
     * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - Not Found
+    * <p><b>402</b> - subscription is outdated
+    * <p><b>404</b> - folder/subscription is not found
     * @param id Identifier of folder
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return TemplateVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public TemplateVM templatesUploadFile(TemplateCreateVM fileVM, String id, Map<String, Object> params) throws IOException {
-        HttpResponse response = templatesUploadFileForHttpResponse(fileVM, id, params);
+    public TemplateVM templatesUploadFile(TemplateCreateVM templateCreateVM, String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = templatesUploadFileForHttpResponse(templateCreateVM, id, params);
         TypeReference<TemplateVM> typeRef = new TypeReference<TemplateVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templatesUploadFileForHttpResponse(String id, TemplateCreateVM fileVM) throws IOException {
+    public HttpResponse templatesUploadFileForHttpResponse(String id, TemplateCreateVM templateCreateVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUploadFile");
@@ -3025,11 +3057,11 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(fileVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(templateCreateVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse templatesUploadFileForHttpResponse(String id, java.io.InputStream fileVM, String mediaType) throws IOException {
+      public HttpResponse templatesUploadFileForHttpResponse(String id, java.io.InputStream templateCreateVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUploadFile");
@@ -3042,13 +3074,13 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = fileVM == null ?
+              HttpContent content = templateCreateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, fileVM);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, templateCreateVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse templatesUploadFileForHttpResponse(TemplateCreateVM fileVM, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse templatesUploadFileForHttpResponse(TemplateCreateVM templateCreateVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUploadFile");
@@ -3079,7 +3111,7 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(fileVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(templateCreateVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 

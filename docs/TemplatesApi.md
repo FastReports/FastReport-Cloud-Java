@@ -25,7 +25,7 @@ Method | HTTP request | Description
 [**templatesExport**](TemplatesApi.md#templatesExport) | **POST** /api/rp/v1/Templates/File/{id}/Export | Export specified report template to a specified format
 [**templatesGetFile**](TemplatesApi.md#templatesGetFile) | **GET** /api/rp/v1/Templates/File/{id} | Get specified file
 [**templatesGetFilesCount**](TemplatesApi.md#templatesGetFilesCount) | **GET** /api/rp/v1/Templates/Folder/{id}/CountFiles | Get count of files what contains in a specified folder
-[**templatesGetFilesList**](TemplatesApi.md#templatesGetFilesList) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFiles | Get all files from specified folder
+[**templatesGetFilesList**](TemplatesApi.md#templatesGetFilesList) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
 [**templatesGetPermissions**](TemplatesApi.md#templatesGetPermissions) | **GET** /api/rp/v1/Templates/File/{id}/permissions | Get all file permissions
 [**templatesMoveFile**](TemplatesApi.md#templatesMoveFile) | **POST** /api/rp/v1/Templates/File/{id}/Move/{folderId} | Move file to a specified folder
 [**templatesPrepare**](TemplatesApi.md#templatesPrepare) | **POST** /api/rp/v1/Templates/File/{id}/Prepare | Prepare specified template to report
@@ -66,11 +66,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -106,7 +104,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -120,7 +118,7 @@ Name | Type | Description  | Notes
 
 ## templateFolderAndFileGetFoldersAndFiles
 
-> FilesVM templateFolderAndFileGetFoldersAndFiles(id, skip, take)
+> FilesVM templateFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern)
 
 Get all folders and files from specified folder
 
@@ -147,18 +145,19 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | folder id
         Integer skip = 0; // Integer | number of folder and files, that have to be skipped
         Integer take = 10; // Integer | number of folder and files, that have to be returned
+        FileSorting orderBy = FileSorting.fromValue("None"); // FileSorting | indicates a field to sort by
+        Boolean desc = false; // Boolean | indicates if sorting is descending
+        String searchPattern = ""; // String | 
         try {
-            FilesVM result = apiInstance.templateFolderAndFileGetFoldersAndFiles(id, skip, take);
+            FilesVM result = apiInstance.templateFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templateFolderAndFileGetFoldersAndFiles");
@@ -179,6 +178,9 @@ Name | Type | Description  | Notes
  **id** | **String**| folder id |
  **skip** | **Integer**| number of folder and files, that have to be skipped | [optional] [default to 0]
  **take** | **Integer**| number of folder and files, that have to be returned | [optional] [default to 10]
+ **orderBy** | [**FileSorting**](.md)| indicates a field to sort by | [optional] [enum: None, CreatedTime, EditedTime, Size, Name]
+ **desc** | **Boolean**| indicates if sorting is descending | [optional] [default to false]
+ **searchPattern** | **String**|  | [optional] [default to ]
 
 ### Return type
 
@@ -191,7 +193,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -232,11 +234,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | moving folder id
@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -282,8 +282,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Folder has been moved to a specified folder |  -  |
 | **400** | folderId or parentFolderId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | Folder not found |  -  |
 
 
@@ -316,11 +316,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -357,7 +355,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -365,8 +363,8 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Folder succesfully deleted |  -  |
 | **400** | Id is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | Folder not found |  -  |
 
 
@@ -399,11 +397,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -439,7 +435,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -480,11 +476,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -520,7 +514,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -561,11 +555,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -605,7 +597,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -646,11 +638,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -686,7 +676,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -725,11 +715,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | 
@@ -765,7 +753,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -783,7 +771,7 @@ Name | Type | Description  | Notes
 
 Get user&#39;s root folder (without parents)
 
-&amp;gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
+&gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
 
 ### Example
 
@@ -806,11 +794,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | 
@@ -846,7 +832,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -854,8 +840,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Gets user&#39;s root folder (without parents) |  -  |
 | **400** | Error with the request. |  -  |
-| **403** | No permissions to get root folder |  -  |
 | **404** | Not found subscription |  -  |
+| **403** | No permissions to get root folder |  -  |
 
 
 ## templateFoldersMoveFolder
@@ -887,11 +873,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | moving folder id
@@ -929,7 +913,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -937,14 +921,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Folder has been moved to a specified folder |  -  |
 | **400** | folderId or parentFolderId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | Folder not found |  -  |
 
 
 ## templateFoldersPostFolder
 
-> FileVM templateFoldersPostFolder(id, folderVm)
+> FileVM templateFoldersPostFolder(id, templateFolderCreateVM)
 
 Create folder
 
@@ -971,17 +955,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | Identifier of parent folder id
-        TemplateFolderCreateVM folderVm = new TemplateFolderCreateVM(); // TemplateFolderCreateVM | create VM
+        TemplateFolderCreateVM templateFolderCreateVM = new TemplateFolderCreateVM(); // TemplateFolderCreateVM | create VM
         try {
-            FileVM result = apiInstance.templateFoldersPostFolder(id, folderVm);
+            FileVM result = apiInstance.templateFoldersPostFolder(id, templateFolderCreateVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templateFoldersPostFolder");
@@ -1000,7 +982,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Identifier of parent folder id |
- **folderVm** | [**TemplateFolderCreateVM**](TemplateFolderCreateVM.md)| create VM | [optional]
+ **templateFolderCreateVM** | [**TemplateFolderCreateVM**](TemplateFolderCreateVM.md)| create VM | [optional]
 
 ### Return type
 
@@ -1012,8 +994,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1021,14 +1003,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | New folder has been created) |  -  |
 | **400** | Parent folder id is null |  -  |
-| **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
 | **404** | parent folder/subscription not found |  -  |
 
 
 ## templateFoldersRenameFolder
 
-> FileVM templateFoldersRenameFolder(id, nameModel)
+> FileVM templateFoldersRenameFolder(id, folderRenameVM)
 
 Rename a folder
 
@@ -1055,17 +1037,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | 
-        FolderRenameVM nameModel = new FolderRenameVM(); // FolderRenameVM | 
+        FolderRenameVM folderRenameVM = new FolderRenameVM(); // FolderRenameVM | 
         try {
-            FileVM result = apiInstance.templateFoldersRenameFolder(id, nameModel);
+            FileVM result = apiInstance.templateFoldersRenameFolder(id, folderRenameVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templateFoldersRenameFolder");
@@ -1084,7 +1064,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **nameModel** | [**FolderRenameVM**](FolderRenameVM.md)|  | [optional]
+ **folderRenameVM** | [**FolderRenameVM**](FolderRenameVM.md)|  | [optional]
 
 ### Return type
 
@@ -1096,8 +1076,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1105,14 +1085,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Folder name has been updated |  -  |
 | **400** | folderId is null |  -  |
-| **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
 | **404** | Folder not found |  -  |
 
 
 ## templateFoldersUpdateIcon
 
-> FileVM templateFoldersUpdateIcon(id, iconModel)
+> FileVM templateFoldersUpdateIcon(id, folderIconVM)
 
 Update a folder&#39;s icon
 
@@ -1139,17 +1119,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | Identifier of folder
-        FolderIconVM iconModel = new FolderIconVM(); // FolderIconVM | Update icon model
+        FolderIconVM folderIconVM = new FolderIconVM(); // FolderIconVM | Update icon model
         try {
-            FileVM result = apiInstance.templateFoldersUpdateIcon(id, iconModel);
+            FileVM result = apiInstance.templateFoldersUpdateIcon(id, folderIconVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templateFoldersUpdateIcon");
@@ -1168,7 +1146,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Identifier of folder |
- **iconModel** | [**FolderIconVM**](FolderIconVM.md)| Update icon model | [optional]
+ **folderIconVM** | [**FolderIconVM**](FolderIconVM.md)| Update icon model | [optional]
 
 ### Return type
 
@@ -1180,8 +1158,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1189,14 +1167,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Folder&#39;s icon has been updated |  -  |
 | **400** | folderId is null |  -  |
-| **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
 | **404** | Folder not found |  -  |
 
 
 ## templateFoldersUpdatePermissions
 
-> templateFoldersUpdatePermissions(id, permissionsVM)
+> templateFoldersUpdatePermissions(id, updateFilePermissionsVM)
 
 Update permissions
 
@@ -1221,17 +1199,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | 
-        UpdateFilePermissionsVM permissionsVM = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
+        UpdateFilePermissionsVM updateFilePermissionsVM = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
         try {
-            apiInstance.templateFoldersUpdatePermissions(id, permissionsVM);
+            apiInstance.templateFoldersUpdatePermissions(id, updateFilePermissionsVM);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templateFoldersUpdatePermissions");
             System.err.println("Status code: " + e.getCode());
@@ -1249,7 +1225,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **permissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
+ **updateFilePermissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
 
 ### Return type
 
@@ -1261,8 +1237,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1278,7 +1254,7 @@ null (empty response body)
 
 ## templateFoldersUpdateTags
 
-> FileVM templateFoldersUpdateTags(id, tagsModel)
+> FileVM templateFoldersUpdateTags(id, folderTagsUpdateVM)
 
 Update tags
 
@@ -1305,17 +1281,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | 
-        FolderTagsUpdateVM tagsModel = new FolderTagsUpdateVM(); // FolderTagsUpdateVM | 
+        FolderTagsUpdateVM folderTagsUpdateVM = new FolderTagsUpdateVM(); // FolderTagsUpdateVM | 
         try {
-            FileVM result = apiInstance.templateFoldersUpdateTags(id, tagsModel);
+            FileVM result = apiInstance.templateFoldersUpdateTags(id, folderTagsUpdateVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templateFoldersUpdateTags");
@@ -1334,7 +1308,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **tagsModel** | [**FolderTagsUpdateVM**](FolderTagsUpdateVM.md)|  | [optional]
+ **folderTagsUpdateVM** | [**FolderTagsUpdateVM**](FolderTagsUpdateVM.md)|  | [optional]
 
 ### Return type
 
@@ -1346,8 +1320,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1355,8 +1329,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Tags has been updated |  -  |
 | **400** | folderId or Tags is null |  -  |
-| **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
 | **404** | Folder not found |  -  |
 
 
@@ -1387,11 +1361,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | file id
@@ -1429,7 +1401,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1437,8 +1409,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | File has been copied |  -  |
 | **400** | fileId or folderId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | File or folder not found |  -  |
 | **500** | Exception thrown |  -  |
 
@@ -1472,11 +1444,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | file id
@@ -1511,7 +1481,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1519,15 +1489,15 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | File succesfully deleted |  -  |
 | **400** | Id is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | File not found |  -  |
 | **500** | Exception thrown |  -  |
 
 
 ## templatesExport
 
-> ExportVM templatesExport(id, exportTask)
+> ExportVM templatesExport(id, exportTemplateVM)
 
 Export specified report template to a specified format
 
@@ -1554,17 +1524,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | report id
-        ExportTemplateTaskVM exportTask = new ExportTemplateTaskVM(); // ExportTemplateTaskVM | export parameters (string only)
+        ExportTemplateVM exportTemplateVM = new ExportTemplateVM(); // ExportTemplateVM | export parameters (string only)
         try {
-            ExportVM result = apiInstance.templatesExport(id, exportTask);
+            ExportVM result = apiInstance.templatesExport(id, exportTemplateVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templatesExport");
@@ -1583,7 +1551,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| report id |
- **exportTask** | [**ExportTemplateTaskVM**](ExportTemplateTaskVM.md)| export parameters (string only) | [optional]
+ **exportTemplateVM** | [**ExportTemplateVM**](ExportTemplateVM.md)| export parameters (string only) | [optional]
 
 ### Return type
 
@@ -1595,8 +1563,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1604,8 +1572,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Specified report has been exported |  -  |
 | **400** | Report Id is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | Exports folder not found |  -  |
 
 
@@ -1638,11 +1606,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | file id
@@ -1678,7 +1644,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1720,11 +1686,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -1760,7 +1724,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1777,9 +1741,7 @@ Name | Type | Description  | Notes
 
 > TemplatesVM templatesGetFilesList(id, skip, take)
 
-Get all files from specified folder
-
-User with Get Entity permission can access this method.
+Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
 
 ### Example
 
@@ -1802,11 +1764,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -1846,7 +1806,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1886,11 +1846,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | 
@@ -1926,7 +1884,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1967,11 +1925,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | file id
@@ -2009,7 +1965,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -2017,19 +1973,19 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | File has been moved |  -  |
 | **400** | fileId or folderId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | File or folder not found |  -  |
 | **500** | Exception thrown |  -  |
 
 
 ## templatesPrepare
 
-> ReportVM templatesPrepare(id, prepareTask)
+> ReportVM templatesPrepare(id, prepareTemplateVM)
 
 Prepare specified template to report
 
-User with Execute Prepare permission on report and   Create Entity on a prepared report folder can access this method.
+User with Execute Prepare permission on report and  Create Entity on a prepared report folder can access this method.
 
 ### Example
 
@@ -2052,17 +2008,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | template id
-        PrepareTemplateTaskVM prepareTask = new PrepareTemplateTaskVM(); // PrepareTemplateTaskVM | Template prepare view model
+        PrepareTemplateVM prepareTemplateVM = new PrepareTemplateVM(); // PrepareTemplateVM | Template prepare view model
         try {
-            ReportVM result = apiInstance.templatesPrepare(id, prepareTask);
+            ReportVM result = apiInstance.templatesPrepare(id, prepareTemplateVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templatesPrepare");
@@ -2081,7 +2035,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| template id |
- **prepareTask** | [**PrepareTemplateTaskVM**](PrepareTemplateTaskVM.md)| Template prepare view model | [optional]
+ **prepareTemplateVM** | [**PrepareTemplateVM**](PrepareTemplateVM.md)| Template prepare view model | [optional]
 
 ### Return type
 
@@ -2093,8 +2047,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -2102,14 +2056,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Specified template has been prepared |  -  |
 | **400** | Report Id is null |  -  |
-| **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
 | **404** | Template or folder not found |  -  |
 
 
 ## templatesRenameFile
 
-> TemplateVM templatesRenameFile(id, nameModel)
+> TemplateVM templatesRenameFile(id, fileRenameVM)
 
 Rename a file
 
@@ -2136,17 +2090,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | 
-        FileRenameVM nameModel = new FileRenameVM(); // FileRenameVM | 
+        FileRenameVM fileRenameVM = new FileRenameVM(); // FileRenameVM | 
         try {
-            TemplateVM result = apiInstance.templatesRenameFile(id, nameModel);
+            TemplateVM result = apiInstance.templatesRenameFile(id, fileRenameVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templatesRenameFile");
@@ -2165,7 +2117,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **nameModel** | [**FileRenameVM**](FileRenameVM.md)|  | [optional]
+ **fileRenameVM** | [**FileRenameVM**](FileRenameVM.md)|  | [optional]
 
 ### Return type
 
@@ -2177,8 +2129,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -2186,15 +2138,15 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | File name has been updated |  -  |
 | **400** | FileId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | File not found |  -  |
 | **500** | Exception thrown |  -  |
 
 
 ## templatesUpdateIcon
 
-> TemplateVM templatesUpdateIcon(id, iconModel)
+> TemplateVM templatesUpdateIcon(id, fileIconVM)
 
 Update a files&#39;s icon
 
@@ -2221,17 +2173,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | 
-        FileIconVM iconModel = new FileIconVM(); // FileIconVM | 
+        FileIconVM fileIconVM = new FileIconVM(); // FileIconVM | 
         try {
-            TemplateVM result = apiInstance.templatesUpdateIcon(id, iconModel);
+            TemplateVM result = apiInstance.templatesUpdateIcon(id, fileIconVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templatesUpdateIcon");
@@ -2250,7 +2200,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **iconModel** | [**FileIconVM**](FileIconVM.md)|  | [optional]
+ **fileIconVM** | [**FileIconVM**](FileIconVM.md)|  | [optional]
 
 ### Return type
 
@@ -2262,8 +2212,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -2271,15 +2221,15 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | File&#39;s icon has been updated |  -  |
 | **400** | FileId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | File not found |  -  |
 | **500** | Exception thrown |  -  |
 
 
 ## templatesUpdatePermissions
 
-> templatesUpdatePermissions(id, permissionsVM)
+> templatesUpdatePermissions(id, updateFilePermissionsVM)
 
 Update permissions
 
@@ -2304,17 +2254,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | 
-        UpdateFilePermissionsVM permissionsVM = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
+        UpdateFilePermissionsVM updateFilePermissionsVM = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
         try {
-            apiInstance.templatesUpdatePermissions(id, permissionsVM);
+            apiInstance.templatesUpdatePermissions(id, updateFilePermissionsVM);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templatesUpdatePermissions");
             System.err.println("Status code: " + e.getCode());
@@ -2332,7 +2280,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **permissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
+ **updateFilePermissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
 
 ### Return type
 
@@ -2344,8 +2292,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -2361,7 +2309,7 @@ null (empty response body)
 
 ## templatesUpdateTags
 
-> TemplateVM templatesUpdateTags(id, tagsModel)
+> TemplateVM templatesUpdateTags(id, fileTagsUpdateVM)
 
 Update tags
 
@@ -2388,17 +2336,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | 
-        FileTagsUpdateVM tagsModel = new FileTagsUpdateVM(); // FileTagsUpdateVM | 
+        FileTagsUpdateVM fileTagsUpdateVM = new FileTagsUpdateVM(); // FileTagsUpdateVM | 
         try {
-            TemplateVM result = apiInstance.templatesUpdateTags(id, tagsModel);
+            TemplateVM result = apiInstance.templatesUpdateTags(id, fileTagsUpdateVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templatesUpdateTags");
@@ -2417,7 +2363,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **tagsModel** | [**FileTagsUpdateVM**](FileTagsUpdateVM.md)|  | [optional]
+ **fileTagsUpdateVM** | [**FileTagsUpdateVM**](FileTagsUpdateVM.md)|  | [optional]
 
 ### Return type
 
@@ -2429,8 +2375,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -2438,15 +2384,15 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Tags has been updated |  -  |
 | **400** | FileId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | File not found |  -  |
 | **500** | Exception thrown |  -  |
 
 
 ## templatesUploadFile
 
-> TemplateVM templatesUploadFile(id, fileVM)
+> TemplateVM templatesUploadFile(id, templateCreateVM)
 
 Upload a file to the specified folder  !
 
@@ -2473,17 +2419,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | Identifier of folder
-        TemplateCreateVM fileVM = new TemplateCreateVM(); // TemplateCreateVM | file's view model
+        TemplateCreateVM templateCreateVM = new TemplateCreateVM(); // TemplateCreateVM | file's view model
         try {
-            TemplateVM result = apiInstance.templatesUploadFile(id, fileVM);
+            TemplateVM result = apiInstance.templatesUploadFile(id, templateCreateVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templatesUploadFile");
@@ -2502,7 +2446,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Identifier of folder |
- **fileVM** | [**TemplateCreateVM**](TemplateCreateVM.md)| file&#39;s view model | [optional]
+ **templateCreateVM** | [**TemplateCreateVM**](TemplateCreateVM.md)| file&#39;s view model | [optional]
 
 ### Return type
 
@@ -2514,8 +2458,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -2523,7 +2467,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | File has been uploaded |  -  |
 | **400** | fileVM view model is not valid |  -  |
-| **402** | Client Error |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Not Found |  -  |
+| **402** | subscription is outdated |  -  |
+| **404** | folder/subscription is not found |  -  |
 

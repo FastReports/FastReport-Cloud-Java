@@ -51,15 +51,15 @@ public class GroupsApi {
     * Create a new user group
     * <p><b>200</b> - Succesfully created
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Information from view model is not found
-    * @param viewModel Model for creating
+    * @param createGroupVM Model for creating
     * @return GroupVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public GroupVM groupsCreateGroup(CreateGroupVM viewModel) throws IOException {
-        HttpResponse response = groupsCreateGroupForHttpResponse(viewModel);
+    public GroupVM groupsCreateGroup(CreateGroupVM createGroupVM) throws IOException {
+        HttpResponse response = groupsCreateGroupForHttpResponse(createGroupVM);
         TypeReference<GroupVM> typeRef = new TypeReference<GroupVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -68,44 +68,44 @@ public class GroupsApi {
     * Create a new user group
     * <p><b>200</b> - Succesfully created
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Information from view model is not found
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return GroupVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public GroupVM groupsCreateGroup(CreateGroupVM viewModel, Map<String, Object> params) throws IOException {
-        HttpResponse response = groupsCreateGroupForHttpResponse(viewModel, params);
+    public GroupVM groupsCreateGroup(CreateGroupVM createGroupVM, Map<String, Object> params) throws IOException {
+        HttpResponse response = groupsCreateGroupForHttpResponse(createGroupVM, params);
         TypeReference<GroupVM> typeRef = new TypeReference<GroupVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse groupsCreateGroupForHttpResponse(CreateGroupVM viewModel) throws IOException {
+    public HttpResponse groupsCreateGroupForHttpResponse(CreateGroupVM createGroupVM) throws IOException {
         
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Groups");
 
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(viewModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(createGroupVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse groupsCreateGroupForHttpResponse(java.io.InputStream viewModel, String mediaType) throws IOException {
+      public HttpResponse groupsCreateGroupForHttpResponse(java.io.InputStream createGroupVM, String mediaType) throws IOException {
           
               UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Groups");
 
               String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = viewModel == null ?
+              HttpContent content = createGroupVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, viewModel);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, createGroupVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse groupsCreateGroupForHttpResponse(CreateGroupVM viewModel, Map<String, Object> params) throws IOException {
+    public HttpResponse groupsCreateGroupForHttpResponse(CreateGroupVM createGroupVM, Map<String, Object> params) throws IOException {
         
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/Groups");
 
@@ -130,7 +130,7 @@ public class GroupsApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(viewModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(createGroupVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
@@ -139,8 +139,8 @@ public class GroupsApi {
     * Delete group by identifier
     * <p><b>204</b> - Succesfully delete
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscripiton is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscripiton is outdated
     * <p><b>404</b> - Group with this identifier is not found
     * <p><b>500</b> - Exception thrown
     * @param id Identifier of group
@@ -154,8 +154,8 @@ public class GroupsApi {
     * Delete group by identifier
     * <p><b>204</b> - Succesfully delete
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscripiton is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscripiton is outdated
     * <p><b>404</b> - Group with this identifier is not found
     * <p><b>500</b> - Exception thrown
     * @param id Identifier of group
@@ -492,17 +492,17 @@ public class GroupsApi {
     * Rename group by identifier
     * <p><b>200</b> - Succesfully renamed
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Group with this identifier is not found
     * <p><b>500</b> - Exception thrown
     * @param id Identifier of group
-    * @param viewModel Model for renaming
+    * @param renameGroupVM Model for renaming
     * @return GroupVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public GroupVM groupsRenameGroup(String id, RenameGroupVM viewModel) throws IOException {
-        HttpResponse response = groupsRenameGroupForHttpResponse(id, viewModel);
+    public GroupVM groupsRenameGroup(String id, RenameGroupVM renameGroupVM) throws IOException {
+        HttpResponse response = groupsRenameGroupForHttpResponse(id, renameGroupVM);
         TypeReference<GroupVM> typeRef = new TypeReference<GroupVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -511,29 +511,29 @@ public class GroupsApi {
     * Rename group by identifier
     * <p><b>200</b> - Succesfully renamed
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Group with this identifier is not found
     * <p><b>500</b> - Exception thrown
     * @param id Identifier of group
-    * @param viewModel Model for renaming
+    * @param renameGroupVM Model for renaming
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return GroupVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public GroupVM groupsRenameGroup(String id, RenameGroupVM viewModel, Map<String, Object> params) throws IOException {
-        HttpResponse response = groupsRenameGroupForHttpResponse(id, viewModel, params);
+    public GroupVM groupsRenameGroup(String id, RenameGroupVM renameGroupVM, Map<String, Object> params) throws IOException {
+        HttpResponse response = groupsRenameGroupForHttpResponse(id, renameGroupVM, params);
         TypeReference<GroupVM> typeRef = new TypeReference<GroupVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse groupsRenameGroupForHttpResponse(String id, RenameGroupVM viewModel) throws IOException {
+    public HttpResponse groupsRenameGroupForHttpResponse(String id, RenameGroupVM renameGroupVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling groupsRenameGroup");
-        }// verify the required parameter 'viewModel' is set
-        if (viewModel == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'viewModel' when calling groupsRenameGroup");
+        }// verify the required parameter 'renameGroupVM' is set
+        if (renameGroupVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'renameGroupVM' when calling groupsRenameGroup");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -543,17 +543,17 @@ public class GroupsApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(viewModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(renameGroupVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-      public HttpResponse groupsRenameGroupForHttpResponse(String id, java.io.InputStream viewModel, String mediaType) throws IOException {
+      public HttpResponse groupsRenameGroupForHttpResponse(String id, java.io.InputStream renameGroupVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling groupsRenameGroup");
-              }// verify the required parameter 'viewModel' is set
-              if (viewModel == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'viewModel' when calling groupsRenameGroup");
+              }// verify the required parameter 'renameGroupVM' is set
+              if (renameGroupVM == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'renameGroupVM' when calling groupsRenameGroup");
               }
                   // create a map of path variables
                   final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -563,19 +563,19 @@ public class GroupsApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = viewModel == null ?
+              HttpContent content = renameGroupVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, viewModel);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, renameGroupVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse groupsRenameGroupForHttpResponse(String id, RenameGroupVM viewModel, Map<String, Object> params) throws IOException {
+    public HttpResponse groupsRenameGroupForHttpResponse(String id, RenameGroupVM renameGroupVM, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling groupsRenameGroup");
-        }// verify the required parameter 'viewModel' is set
-        if (viewModel == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'viewModel' when calling groupsRenameGroup");
+        }// verify the required parameter 'renameGroupVM' is set
+        if (renameGroupVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'renameGroupVM' when calling groupsRenameGroup");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -603,7 +603,7 @@ public class GroupsApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(viewModel);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(renameGroupVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
@@ -617,11 +617,11 @@ public class GroupsApi {
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
     * @param id The id parameter
-    * @param permissionsVM The permissionsVM parameter
+    * @param updateGroupPermissionsVM The updateGroupPermissionsVM parameter
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void groupsUpdatePermissions(String id, UpdateGroupPermissionsVM permissionsVM) throws IOException {
-        groupsUpdatePermissionsForHttpResponse(id, permissionsVM);
+    public void groupsUpdatePermissions(String id, UpdateGroupPermissionsVM updateGroupPermissionsVM) throws IOException {
+        groupsUpdatePermissionsForHttpResponse(id, updateGroupPermissionsVM);
     }
 
   /**
@@ -636,11 +636,11 @@ public class GroupsApi {
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void groupsUpdatePermissions(UpdateGroupPermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
-        groupsUpdatePermissionsForHttpResponse(permissionsVM, id, params);
+    public void groupsUpdatePermissions(UpdateGroupPermissionsVM updateGroupPermissionsVM, String id, Map<String, Object> params) throws IOException {
+        groupsUpdatePermissionsForHttpResponse(updateGroupPermissionsVM, id, params);
     }
 
-    public HttpResponse groupsUpdatePermissionsForHttpResponse(String id, UpdateGroupPermissionsVM permissionsVM) throws IOException {
+    public HttpResponse groupsUpdatePermissionsForHttpResponse(String id, UpdateGroupPermissionsVM updateGroupPermissionsVM) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling groupsUpdatePermissions");
@@ -653,11 +653,11 @@ public class GroupsApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateGroupPermissionsVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse groupsUpdatePermissionsForHttpResponse(String id, java.io.InputStream permissionsVM, String mediaType) throws IOException {
+      public HttpResponse groupsUpdatePermissionsForHttpResponse(String id, java.io.InputStream updateGroupPermissionsVM, String mediaType) throws IOException {
           // verify the required parameter 'id' is set
               if (id == null) {
               throw new IllegalArgumentException("Missing the required parameter 'id' when calling groupsUpdatePermissions");
@@ -670,13 +670,13 @@ public class GroupsApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = permissionsVM == null ?
+              HttpContent content = updateGroupPermissionsVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, permissionsVM);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateGroupPermissionsVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse groupsUpdatePermissionsForHttpResponse(UpdateGroupPermissionsVM permissionsVM, String id, Map<String, Object> params) throws IOException {
+    public HttpResponse groupsUpdatePermissionsForHttpResponse(UpdateGroupPermissionsVM updateGroupPermissionsVM, String id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling groupsUpdatePermissions");
@@ -707,7 +707,7 @@ public class GroupsApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(permissionsVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateGroupPermissionsVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 

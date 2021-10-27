@@ -15,18 +15,19 @@ package cloud.fastreport.client;
 
 import cloud.fastreport.model.BreadcrumbsVM;
 import cloud.fastreport.model.CountVM;
-import cloud.fastreport.model.ExportTemplateTaskVM;
+import cloud.fastreport.model.ExportTemplateVM;
 import cloud.fastreport.model.ExportVM;
 import cloud.fastreport.model.FileIconVM;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileRenameVM;
+import cloud.fastreport.model.FileSorting;
 import cloud.fastreport.model.FileTagsUpdateVM;
 import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.FilesVM;
 import cloud.fastreport.model.FolderIconVM;
 import cloud.fastreport.model.FolderRenameVM;
 import cloud.fastreport.model.FolderTagsUpdateVM;
-import cloud.fastreport.model.PrepareTemplateTaskVM;
+import cloud.fastreport.model.PrepareTemplateVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.ReportVM;
 import cloud.fastreport.model.TemplateCreateVM;
@@ -81,7 +82,10 @@ public class TemplatesApiTest {
         String id = null;
         Integer skip = null;
         Integer take = null;
-        FilesVM response = api.templateFolderAndFileGetFoldersAndFiles(id, skip, take);
+        FileSorting orderBy = null;
+        Boolean desc = null;
+        String searchPattern = null;
+        FilesVM response = api.templateFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern);
 
         // TODO: test validations
     }
@@ -205,7 +209,7 @@ public class TemplatesApiTest {
     /**
      * Get user&#39;s root folder (without parents)
      *
-     * &amp;gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
+     * &gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
      *
      * @throws IOException
      *          if the Api call fails
@@ -246,8 +250,8 @@ public class TemplatesApiTest {
     @Test
     public void templateFoldersPostFolderTest() throws IOException {
         String id = null;
-        TemplateFolderCreateVM folderVm = null;
-        FileVM response = api.templateFoldersPostFolder(id, folderVm);
+        TemplateFolderCreateVM templateFolderCreateVM = null;
+        FileVM response = api.templateFoldersPostFolder(id, templateFolderCreateVM);
 
         // TODO: test validations
     }
@@ -263,8 +267,8 @@ public class TemplatesApiTest {
     @Test
     public void templateFoldersRenameFolderTest() throws IOException {
         String id = null;
-        FolderRenameVM nameModel = null;
-        FileVM response = api.templateFoldersRenameFolder(id, nameModel);
+        FolderRenameVM folderRenameVM = null;
+        FileVM response = api.templateFoldersRenameFolder(id, folderRenameVM);
 
         // TODO: test validations
     }
@@ -280,8 +284,8 @@ public class TemplatesApiTest {
     @Test
     public void templateFoldersUpdateIconTest() throws IOException {
         String id = null;
-        FolderIconVM iconModel = null;
-        FileVM response = api.templateFoldersUpdateIcon(id, iconModel);
+        FolderIconVM folderIconVM = null;
+        FileVM response = api.templateFoldersUpdateIcon(id, folderIconVM);
 
         // TODO: test validations
     }
@@ -297,8 +301,8 @@ public class TemplatesApiTest {
     @Test
     public void templateFoldersUpdatePermissionsTest() throws IOException {
         String id = null;
-        UpdateFilePermissionsVM permissionsVM = null;
-        api.templateFoldersUpdatePermissions(id, permissionsVM);
+        UpdateFilePermissionsVM updateFilePermissionsVM = null;
+        api.templateFoldersUpdatePermissions(id, updateFilePermissionsVM);
 
         // TODO: test validations
     }
@@ -314,8 +318,8 @@ public class TemplatesApiTest {
     @Test
     public void templateFoldersUpdateTagsTest() throws IOException {
         String id = null;
-        FolderTagsUpdateVM tagsModel = null;
-        FileVM response = api.templateFoldersUpdateTags(id, tagsModel);
+        FolderTagsUpdateVM folderTagsUpdateVM = null;
+        FileVM response = api.templateFoldersUpdateTags(id, folderTagsUpdateVM);
 
         // TODO: test validations
     }
@@ -364,8 +368,8 @@ public class TemplatesApiTest {
     @Test
     public void templatesExportTest() throws IOException {
         String id = null;
-        ExportTemplateTaskVM exportTask = null;
-        ExportVM response = api.templatesExport(id, exportTask);
+        ExportTemplateVM exportTemplateVM = null;
+        ExportVM response = api.templatesExport(id, exportTemplateVM);
 
         // TODO: test validations
     }
@@ -403,9 +407,9 @@ public class TemplatesApiTest {
     }
     
     /**
-     * Get all files from specified folder
+     * Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
      *
-     * User with Get Entity permission can access this method.
+     * 
      *
      * @throws IOException
      *          if the Api call fails
@@ -456,7 +460,7 @@ public class TemplatesApiTest {
     /**
      * Prepare specified template to report
      *
-     * User with Execute Prepare permission on report and   Create Entity on a prepared report folder can access this method.
+     * User with Execute Prepare permission on report and  Create Entity on a prepared report folder can access this method.
      *
      * @throws IOException
      *          if the Api call fails
@@ -464,8 +468,8 @@ public class TemplatesApiTest {
     @Test
     public void templatesPrepareTest() throws IOException {
         String id = null;
-        PrepareTemplateTaskVM prepareTask = null;
-        ReportVM response = api.templatesPrepare(id, prepareTask);
+        PrepareTemplateVM prepareTemplateVM = null;
+        ReportVM response = api.templatesPrepare(id, prepareTemplateVM);
 
         // TODO: test validations
     }
@@ -481,8 +485,8 @@ public class TemplatesApiTest {
     @Test
     public void templatesRenameFileTest() throws IOException {
         String id = null;
-        FileRenameVM nameModel = null;
-        TemplateVM response = api.templatesRenameFile(id, nameModel);
+        FileRenameVM fileRenameVM = null;
+        TemplateVM response = api.templatesRenameFile(id, fileRenameVM);
 
         // TODO: test validations
     }
@@ -498,8 +502,8 @@ public class TemplatesApiTest {
     @Test
     public void templatesUpdateIconTest() throws IOException {
         String id = null;
-        FileIconVM iconModel = null;
-        TemplateVM response = api.templatesUpdateIcon(id, iconModel);
+        FileIconVM fileIconVM = null;
+        TemplateVM response = api.templatesUpdateIcon(id, fileIconVM);
 
         // TODO: test validations
     }
@@ -515,8 +519,8 @@ public class TemplatesApiTest {
     @Test
     public void templatesUpdatePermissionsTest() throws IOException {
         String id = null;
-        UpdateFilePermissionsVM permissionsVM = null;
-        api.templatesUpdatePermissions(id, permissionsVM);
+        UpdateFilePermissionsVM updateFilePermissionsVM = null;
+        api.templatesUpdatePermissions(id, updateFilePermissionsVM);
 
         // TODO: test validations
     }
@@ -532,8 +536,8 @@ public class TemplatesApiTest {
     @Test
     public void templatesUpdateTagsTest() throws IOException {
         String id = null;
-        FileTagsUpdateVM tagsModel = null;
-        TemplateVM response = api.templatesUpdateTags(id, tagsModel);
+        FileTagsUpdateVM fileTagsUpdateVM = null;
+        TemplateVM response = api.templatesUpdateTags(id, fileTagsUpdateVM);
 
         // TODO: test validations
     }
@@ -549,8 +553,8 @@ public class TemplatesApiTest {
     @Test
     public void templatesUploadFileTest() throws IOException {
         String id = null;
-        TemplateCreateVM fileVM = null;
-        TemplateVM response = api.templatesUploadFile(id, fileVM);
+        TemplateCreateVM templateCreateVM = null;
+        TemplateVM response = api.templatesUploadFile(id, templateCreateVM);
 
         // TODO: test validations
     }

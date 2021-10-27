@@ -23,6 +23,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.threeten.bp.OffsetDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -37,18 +40,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiKeyVM {
   public static final String JSON_PROPERTY_VALUE = "value";
-  private String value;
+  private JsonNullable<String> value = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
+  private JsonNullable<String> description = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EXPIRED = "expired";
   private OffsetDateTime expired;
 
 
   public ApiKeyVM value(String value) {
+    this.value = JsonNullable.<String>of(value);
     
-    this.value = value;
     return this;
   }
 
@@ -58,24 +61,32 @@ public class ApiKeyVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_VALUE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getValue() {
-    return value;
+        return value.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_VALUE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setValue(String value) {
+
+  public JsonNullable<String> getValue_JsonNullable() {
+    return value;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_VALUE)
+  public void setValue_JsonNullable(JsonNullable<String> value) {
     this.value = value;
+  }
+
+  public void setValue(String value) {
+    this.value = JsonNullable.<String>of(value);
   }
 
 
   public ApiKeyVM description(String description) {
+    this.description = JsonNullable.<String>of(description);
     
-    this.description = description;
     return this;
   }
 
@@ -85,18 +96,26 @@ public class ApiKeyVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getDescription() {
-    return description;
+        return description.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
+
+  public JsonNullable<String> getDescription_JsonNullable() {
+    return description;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  public void setDescription_JsonNullable(JsonNullable<String> description) {
     this.description = description;
+  }
+
+  public void setDescription(String description) {
+    this.description = JsonNullable.<String>of(description);
   }
 
 

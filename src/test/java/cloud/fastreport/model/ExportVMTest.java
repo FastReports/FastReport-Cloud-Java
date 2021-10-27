@@ -13,6 +13,8 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.ExportFormat;
+import cloud.fastreport.model.FileVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -20,9 +22,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import org.threeten.bp.OffsetDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -40,94 +43,6 @@ public class ExportVMTest {
     @Test
     public void testExportVM() {
         // TODO: test ExportVM
-    }
-
-    /**
-     * Test the property 'format'
-     */
-    @Test
-    public void formatTest() {
-        // TODO: test format
-    }
-
-    /**
-     * Test the property 'reportId'
-     */
-    @Test
-    public void reportIdTest() {
-        // TODO: test reportId
-    }
-
-    /**
-     * Test the property 'name'
-     */
-    @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
-     * Test the property 'parentId'
-     */
-    @Test
-    public void parentIdTest() {
-        // TODO: test parentId
-    }
-
-    /**
-     * Test the property 'tags'
-     */
-    @Test
-    public void tagsTest() {
-        // TODO: test tags
-    }
-
-    /**
-     * Test the property 'icon'
-     */
-    @Test
-    public void iconTest() {
-        // TODO: test icon
-    }
-
-    /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
-    }
-
-    /**
-     * Test the property 'size'
-     */
-    @Test
-    public void sizeTest() {
-        // TODO: test size
-    }
-
-    /**
-     * Test the property 'subscriptionId'
-     */
-    @Test
-    public void subscriptionIdTest() {
-        // TODO: test subscriptionId
-    }
-
-    /**
-     * Test the property 'status'
-     */
-    @Test
-    public void statusTest() {
-        // TODO: test status
-    }
-
-    /**
-     * Test the property 'statusReason'
-     */
-    @Test
-    public void statusReasonTest() {
-        // TODO: test statusReason
     }
 
     /**

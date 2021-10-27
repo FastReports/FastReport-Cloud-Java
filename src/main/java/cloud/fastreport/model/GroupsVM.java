@@ -25,6 +25,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -40,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GroupsVM {
   public static final String JSON_PROPERTY_GROUPS = "groups";
-  private List<GroupVM> groups = null;
+  private JsonNullable<List<GroupVM>> groups = JsonNullable.<List<GroupVM>>undefined();
 
   public static final String JSON_PROPERTY_COUNT = "count";
   private Long count;
@@ -53,16 +56,20 @@ public class GroupsVM {
 
 
   public GroupsVM groups(List<GroupVM> groups) {
+    this.groups = JsonNullable.<List<GroupVM>>of(groups);
     
-    this.groups = groups;
     return this;
   }
 
   public GroupsVM addGroupsItem(GroupVM groupsItem) {
-    if (this.groups == null) {
-      this.groups = new ArrayList<>();
+    if (this.groups == null || !this.groups.isPresent()) {
+      this.groups = JsonNullable.<List<GroupVM>>of(new ArrayList<>());
     }
-    this.groups.add(groupsItem);
+    try {
+      this.groups.get().add(groupsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -72,18 +79,26 @@ public class GroupsVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<GroupVM> getGroups() {
-    return groups;
+        return groups.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_GROUPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGroups(List<GroupVM> groups) {
+
+  public JsonNullable<List<GroupVM>> getGroups_JsonNullable() {
+    return groups;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GROUPS)
+  public void setGroups_JsonNullable(JsonNullable<List<GroupVM>> groups) {
     this.groups = groups;
+  }
+
+  public void setGroups(List<GroupVM> groups) {
+    this.groups = JsonNullable.<List<GroupVM>>of(groups);
   }
 
 

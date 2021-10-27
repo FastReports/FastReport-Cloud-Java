@@ -16,6 +16,7 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.ReportVM;
+import cloud.fastreport.model.ReportVMFilesVMBase;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -25,6 +26,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -40,7 +44,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportsVM {
   public static final String JSON_PROPERTY_FILES = "files";
-  private List<ReportVM> files = null;
+  private JsonNullable<List<ReportVM>> files = JsonNullable.<List<ReportVM>>undefined();
 
   public static final String JSON_PROPERTY_COUNT = "count";
   private Long count;
@@ -53,16 +57,20 @@ public class ReportsVM {
 
 
   public ReportsVM files(List<ReportVM> files) {
+    this.files = JsonNullable.<List<ReportVM>>of(files);
     
-    this.files = files;
     return this;
   }
 
   public ReportsVM addFilesItem(ReportVM filesItem) {
-    if (this.files == null) {
-      this.files = new ArrayList<>();
+    if (this.files == null || !this.files.isPresent()) {
+      this.files = JsonNullable.<List<ReportVM>>of(new ArrayList<>());
     }
-    this.files.add(filesItem);
+    try {
+      this.files.get().add(filesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -72,18 +80,26 @@ public class ReportsVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FILES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<ReportVM> getFiles() {
-    return files;
+        return files.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_FILES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFiles(List<ReportVM> files) {
+
+  public JsonNullable<List<ReportVM>> getFiles_JsonNullable() {
+    return files;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FILES)
+  public void setFiles_JsonNullable(JsonNullable<List<ReportVM>> files) {
     this.files = files;
+  }
+
+  public void setFiles(List<ReportVM> files) {
+    this.files = JsonNullable.<List<ReportVM>>of(files);
   }
 
 

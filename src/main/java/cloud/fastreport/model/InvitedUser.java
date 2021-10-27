@@ -23,6 +23,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.threeten.bp.OffsetDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -36,15 +39,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InvitedUser {
   public static final String JSON_PROPERTY_USER_ID = "userId";
-  private String userId;
+  private JsonNullable<String> userId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INVITED_AT = "invitedAt";
   private OffsetDateTime invitedAt;
 
 
   public InvitedUser userId(String userId) {
+    this.userId = JsonNullable.<String>of(userId);
     
-    this.userId = userId;
     return this;
   }
 
@@ -54,18 +57,26 @@ public class InvitedUser {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getUserId() {
-    return userId;
+        return userId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_USER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUserId(String userId) {
+
+  public JsonNullable<String> getUserId_JsonNullable() {
+    return userId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USER_ID)
+  public void setUserId_JsonNullable(JsonNullable<String> userId) {
     this.userId = userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = JsonNullable.<String>of(userId);
   }
 
 

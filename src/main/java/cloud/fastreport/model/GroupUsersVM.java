@@ -25,6 +25,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -40,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GroupUsersVM {
   public static final String JSON_PROPERTY_USERS = "users";
-  private List<GroupUserVM> users = null;
+  private JsonNullable<List<GroupUserVM>> users = JsonNullable.<List<GroupUserVM>>undefined();
 
   public static final String JSON_PROPERTY_COUNT = "count";
   private Long count;
@@ -53,16 +56,20 @@ public class GroupUsersVM {
 
 
   public GroupUsersVM users(List<GroupUserVM> users) {
+    this.users = JsonNullable.<List<GroupUserVM>>of(users);
     
-    this.users = users;
     return this;
   }
 
   public GroupUsersVM addUsersItem(GroupUserVM usersItem) {
-    if (this.users == null) {
-      this.users = new ArrayList<>();
+    if (this.users == null || !this.users.isPresent()) {
+      this.users = JsonNullable.<List<GroupUserVM>>of(new ArrayList<>());
     }
-    this.users.add(usersItem);
+    try {
+      this.users.get().add(usersItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -72,18 +79,26 @@ public class GroupUsersVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_USERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<GroupUserVM> getUsers() {
-    return users;
+        return users.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_USERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsers(List<GroupUserVM> users) {
+
+  public JsonNullable<List<GroupUserVM>> getUsers_JsonNullable() {
+    return users;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USERS)
+  public void setUsers_JsonNullable(JsonNullable<List<GroupUserVM>> users) {
     this.users = users;
+  }
+
+  public void setUsers(List<GroupUserVM> users) {
+    this.users = JsonNullable.<List<GroupUserVM>>of(users);
   }
 
 

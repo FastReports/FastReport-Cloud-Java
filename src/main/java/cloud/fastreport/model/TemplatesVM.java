@@ -16,6 +16,7 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.TemplateVM;
+import cloud.fastreport.model.TemplateVMFilesVMBase;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -25,6 +26,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -40,7 +44,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TemplatesVM {
   public static final String JSON_PROPERTY_FILES = "files";
-  private List<TemplateVM> files = null;
+  private JsonNullable<List<TemplateVM>> files = JsonNullable.<List<TemplateVM>>undefined();
 
   public static final String JSON_PROPERTY_COUNT = "count";
   private Long count;
@@ -53,16 +57,20 @@ public class TemplatesVM {
 
 
   public TemplatesVM files(List<TemplateVM> files) {
+    this.files = JsonNullable.<List<TemplateVM>>of(files);
     
-    this.files = files;
     return this;
   }
 
   public TemplatesVM addFilesItem(TemplateVM filesItem) {
-    if (this.files == null) {
-      this.files = new ArrayList<>();
+    if (this.files == null || !this.files.isPresent()) {
+      this.files = JsonNullable.<List<TemplateVM>>of(new ArrayList<>());
     }
-    this.files.add(filesItem);
+    try {
+      this.files.get().add(filesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -72,18 +80,26 @@ public class TemplatesVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FILES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<TemplateVM> getFiles() {
-    return files;
+        return files.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_FILES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFiles(List<TemplateVM> files) {
+
+  public JsonNullable<List<TemplateVM>> getFiles_JsonNullable() {
+    return files;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FILES)
+  public void setFiles_JsonNullable(JsonNullable<List<TemplateVM>> files) {
     this.files = files;
+  }
+
+  public void setFiles(List<TemplateVM> files) {
+    this.files = JsonNullable.<List<TemplateVM>>of(files);
   }
 
 

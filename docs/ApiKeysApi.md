@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## apiKeysCreateApiKey
 
-> ApiKeyVM apiKeysCreateApiKey(model)
+> ApiKeyVM apiKeysCreateApiKey(createApiKeyVM)
 
 Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
 
@@ -37,16 +37,14 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
-        CreateApiKeyVM model = new CreateApiKeyVM(); // CreateApiKeyVM | 
+        CreateApiKeyVM createApiKeyVM = new CreateApiKeyVM(); // CreateApiKeyVM | 
         try {
-            ApiKeyVM result = apiInstance.apiKeysCreateApiKey(model);
+            ApiKeyVM result = apiInstance.apiKeysCreateApiKey(createApiKeyVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ApiKeysApi#apiKeysCreateApiKey");
@@ -64,7 +62,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model** | [**CreateApiKeyVM**](CreateApiKeyVM.md)|  |
+ **createApiKeyVM** | [**CreateApiKeyVM**](CreateApiKeyVM.md)|  |
 
 ### Return type
 
@@ -76,8 +74,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -90,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## apiKeysDeleteApiKey
 
-> apiKeysDeleteApiKey(model)
+> apiKeysDeleteApiKey(deleteApiKeyVM)
 
 Delete an apikey
 
@@ -115,16 +113,14 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
-        DeleteApiKeyVM model = new DeleteApiKeyVM(); // DeleteApiKeyVM | 
+        DeleteApiKeyVM deleteApiKeyVM = new DeleteApiKeyVM(); // DeleteApiKeyVM | 
         try {
-            apiInstance.apiKeysDeleteApiKey(model);
+            apiInstance.apiKeysDeleteApiKey(deleteApiKeyVM);
         } catch (ApiException e) {
             System.err.println("Exception when calling ApiKeysApi#apiKeysDeleteApiKey");
             System.err.println("Status code: " + e.getCode());
@@ -141,7 +137,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model** | [**DeleteApiKeyVM**](DeleteApiKeyVM.md)|  |
+ **deleteApiKeyVM** | [**DeleteApiKeyVM**](DeleteApiKeyVM.md)|  |
 
 ### Return type
 
@@ -153,8 +149,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -196,11 +192,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
         try {
@@ -232,7 +226,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details

@@ -7,11 +7,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **String** |  |  [optional]
-**locale** | **String** |  |  [optional]
-**parentFolderId** | **String** |  |  [optional]
+**exports** | [**List&lt;ExportReportTaskVM&gt;**](ExportReportTaskVM.md) |  |  [optional]
 **pagesCount** | **Integer** |  |  [optional]
 **reportParameters** | **Map&lt;String, String&gt;** |  |  [optional]
+**name** | **String** |  |  [optional]
+**subscriptionId** | **String** |  |  [optional]
+**type** | **TaskType** |  |  [optional]
 
 
 

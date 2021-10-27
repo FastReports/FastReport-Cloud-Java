@@ -25,6 +25,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -38,23 +41,27 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiKeysVM {
   public static final String JSON_PROPERTY_API_KEYS = "apiKeys";
-  private List<ApiKeyVM> apiKeys = null;
+  private JsonNullable<List<ApiKeyVM>> apiKeys = JsonNullable.<List<ApiKeyVM>>undefined();
 
   public static final String JSON_PROPERTY_COUNT = "count";
   private Long count;
 
 
   public ApiKeysVM apiKeys(List<ApiKeyVM> apiKeys) {
+    this.apiKeys = JsonNullable.<List<ApiKeyVM>>of(apiKeys);
     
-    this.apiKeys = apiKeys;
     return this;
   }
 
   public ApiKeysVM addApiKeysItem(ApiKeyVM apiKeysItem) {
-    if (this.apiKeys == null) {
-      this.apiKeys = new ArrayList<>();
+    if (this.apiKeys == null || !this.apiKeys.isPresent()) {
+      this.apiKeys = JsonNullable.<List<ApiKeyVM>>of(new ArrayList<>());
     }
-    this.apiKeys.add(apiKeysItem);
+    try {
+      this.apiKeys.get().add(apiKeysItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -64,18 +71,26 @@ public class ApiKeysVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_API_KEYS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<ApiKeyVM> getApiKeys() {
-    return apiKeys;
+        return apiKeys.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_API_KEYS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setApiKeys(List<ApiKeyVM> apiKeys) {
+
+  public JsonNullable<List<ApiKeyVM>> getApiKeys_JsonNullable() {
+    return apiKeys;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_API_KEYS)
+  public void setApiKeys_JsonNullable(JsonNullable<List<ApiKeyVM>> apiKeys) {
     this.apiKeys = apiKeys;
+  }
+
+  public void setApiKeys(List<ApiKeyVM> apiKeys) {
+    this.apiKeys = JsonNullable.<List<ApiKeyVM>>of(apiKeys);
   }
 
 

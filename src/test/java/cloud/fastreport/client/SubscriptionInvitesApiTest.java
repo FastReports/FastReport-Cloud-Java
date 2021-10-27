@@ -63,8 +63,8 @@ public class SubscriptionInvitesApiTest {
     @Test
     public void subscriptionInvitesCreateInviteTest() throws IOException {
         String subscriptionId = null;
-        CreateSubscriptionInviteVM createInviteVM = null;
-        SubscriptionInviteVM response = api.subscriptionInvitesCreateInvite(subscriptionId, createInviteVM);
+        CreateSubscriptionInviteVM createSubscriptionInviteVM = null;
+        SubscriptionInviteVM response = api.subscriptionInvitesCreateInvite(subscriptionId, createSubscriptionInviteVM);
 
         // TODO: test validations
     }

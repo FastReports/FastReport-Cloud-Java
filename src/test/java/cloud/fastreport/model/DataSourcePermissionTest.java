@@ -13,6 +13,13 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.DataSourceAdministrate;
+import cloud.fastreport.model.DataSourceCreate;
+import cloud.fastreport.model.DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission;
+import cloud.fastreport.model.DataSourceDelete;
+import cloud.fastreport.model.DataSourceExecute;
+import cloud.fastreport.model.DataSourceGet;
+import cloud.fastreport.model.DataSourceUpdate;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;

@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.SaveMode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,6 +24,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.threeten.bp.OffsetDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -46,90 +50,45 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportInfo {
   public static final String JSON_PROPERTY_AUTHOR = "author";
-  private String author;
+  private JsonNullable<String> author = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED = "created";
   private OffsetDateTime created;
 
   public static final String JSON_PROPERTY_CREATOR_VERSION = "creatorVersion";
-  private String creatorVersion;
+  private JsonNullable<String> creatorVersion = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
+  private JsonNullable<String> description = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_MODIFIED = "modified";
   private OffsetDateTime modified;
 
   public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PICTURE = "picture";
-  private byte[] picture;
+  private JsonNullable<byte[]> picture = JsonNullable.<byte[]>undefined();
 
   public static final String JSON_PROPERTY_PREVIEW_PICTURE_RATIO = "previewPictureRatio";
   private Float previewPictureRatio;
 
-  /**
-   * Gets or Sets saveMode
-   */
-  public enum SaveModeEnum {
-    ALL("All"),
-    
-    ORIGINAL("Original"),
-    
-    USER("User"),
-    
-    ROLE("Role"),
-    
-    SECURITY("Security"),
-    
-    DENY("Deny"),
-    
-    CUSTOM("Custom");
-
-    private String value;
-
-    SaveModeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static SaveModeEnum fromValue(String value) {
-      for (SaveModeEnum b : SaveModeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_SAVE_MODE = "saveMode";
-  private SaveModeEnum saveMode;
+  private SaveMode saveMode;
 
   public static final String JSON_PROPERTY_SAVE_PREVIEW_PICTURE = "savePreviewPicture";
   private Boolean savePreviewPicture;
 
   public static final String JSON_PROPERTY_TAG = "tag";
-  private String tag;
+  private JsonNullable<String> tag = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_VERSION = "version";
-  private String version;
+  private JsonNullable<String> version = JsonNullable.<String>undefined();
 
 
   public ReportInfo author(String author) {
+    this.author = JsonNullable.<String>of(author);
     
-    this.author = author;
     return this;
   }
 
@@ -139,18 +98,26 @@ public class ReportInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_AUTHOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getAuthor() {
-    return author;
+        return author.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_AUTHOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAuthor(String author) {
+
+  public JsonNullable<String> getAuthor_JsonNullable() {
+    return author;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AUTHOR)
+  public void setAuthor_JsonNullable(JsonNullable<String> author) {
     this.author = author;
+  }
+
+  public void setAuthor(String author) {
+    this.author = JsonNullable.<String>of(author);
   }
 
 
@@ -182,8 +149,8 @@ public class ReportInfo {
 
 
   public ReportInfo creatorVersion(String creatorVersion) {
+    this.creatorVersion = JsonNullable.<String>of(creatorVersion);
     
-    this.creatorVersion = creatorVersion;
     return this;
   }
 
@@ -193,24 +160,32 @@ public class ReportInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CREATOR_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getCreatorVersion() {
-    return creatorVersion;
+        return creatorVersion.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_CREATOR_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatorVersion(String creatorVersion) {
+
+  public JsonNullable<String> getCreatorVersion_JsonNullable() {
+    return creatorVersion;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATOR_VERSION)
+  public void setCreatorVersion_JsonNullable(JsonNullable<String> creatorVersion) {
     this.creatorVersion = creatorVersion;
+  }
+
+  public void setCreatorVersion(String creatorVersion) {
+    this.creatorVersion = JsonNullable.<String>of(creatorVersion);
   }
 
 
   public ReportInfo description(String description) {
+    this.description = JsonNullable.<String>of(description);
     
-    this.description = description;
     return this;
   }
 
@@ -220,18 +195,26 @@ public class ReportInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getDescription() {
-    return description;
+        return description.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
+
+  public JsonNullable<String> getDescription_JsonNullable() {
+    return description;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  public void setDescription_JsonNullable(JsonNullable<String> description) {
     this.description = description;
+  }
+
+  public void setDescription(String description) {
+    this.description = JsonNullable.<String>of(description);
   }
 
 
@@ -263,8 +246,8 @@ public class ReportInfo {
 
 
   public ReportInfo name(String name) {
+    this.name = JsonNullable.<String>of(name);
     
-    this.name = name;
     return this;
   }
 
@@ -274,24 +257,32 @@ public class ReportInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getName() {
-    return name;
+        return name.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
     this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
   }
 
 
   public ReportInfo picture(byte[] picture) {
+    this.picture = JsonNullable.<byte[]>of(picture);
     
-    this.picture = picture;
     return this;
   }
 
@@ -301,18 +292,26 @@ public class ReportInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PICTURE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public byte[] getPicture() {
-    return picture;
+        return picture.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_PICTURE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPicture(byte[] picture) {
+
+  public JsonNullable<byte[]> getPicture_JsonNullable() {
+    return picture;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PICTURE)
+  public void setPicture_JsonNullable(JsonNullable<byte[]> picture) {
     this.picture = picture;
+  }
+
+  public void setPicture(byte[] picture) {
+    this.picture = JsonNullable.<byte[]>of(picture);
   }
 
 
@@ -343,7 +342,7 @@ public class ReportInfo {
   }
 
 
-  public ReportInfo saveMode(SaveModeEnum saveMode) {
+  public ReportInfo saveMode(SaveMode saveMode) {
     
     this.saveMode = saveMode;
     return this;
@@ -358,14 +357,14 @@ public class ReportInfo {
   @JsonProperty(JSON_PROPERTY_SAVE_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public SaveModeEnum getSaveMode() {
+  public SaveMode getSaveMode() {
     return saveMode;
   }
 
 
   @JsonProperty(JSON_PROPERTY_SAVE_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSaveMode(SaveModeEnum saveMode) {
+  public void setSaveMode(SaveMode saveMode) {
     this.saveMode = saveMode;
   }
 
@@ -398,8 +397,8 @@ public class ReportInfo {
 
 
   public ReportInfo tag(String tag) {
+    this.tag = JsonNullable.<String>of(tag);
     
-    this.tag = tag;
     return this;
   }
 
@@ -409,24 +408,32 @@ public class ReportInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TAG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getTag() {
-    return tag;
+        return tag.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_TAG)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTag(String tag) {
+
+  public JsonNullable<String> getTag_JsonNullable() {
+    return tag;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAG)
+  public void setTag_JsonNullable(JsonNullable<String> tag) {
     this.tag = tag;
+  }
+
+  public void setTag(String tag) {
+    this.tag = JsonNullable.<String>of(tag);
   }
 
 
   public ReportInfo version(String version) {
+    this.version = JsonNullable.<String>of(version);
     
-    this.version = version;
     return this;
   }
 
@@ -436,18 +443,26 @@ public class ReportInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getVersion() {
-    return version;
+        return version.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVersion(String version) {
+
+  public JsonNullable<String> getVersion_JsonNullable() {
+    return version;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_VERSION)
+  public void setVersion_JsonNullable(JsonNullable<String> version) {
     this.version = version;
+  }
+
+  public void setVersion(String version) {
+    this.version = JsonNullable.<String>of(version);
   }
 
 

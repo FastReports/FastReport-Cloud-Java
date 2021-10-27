@@ -13,6 +13,13 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.SubscriptionAdministrate;
+import cloud.fastreport.model.SubscriptionCreate;
+import cloud.fastreport.model.SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission;
+import cloud.fastreport.model.SubscriptionDelete;
+import cloud.fastreport.model.SubscriptionExecute;
+import cloud.fastreport.model.SubscriptionGet;
+import cloud.fastreport.model.SubscriptionUpdate;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;

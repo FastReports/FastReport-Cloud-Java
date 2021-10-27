@@ -25,14 +25,14 @@ Method | HTTP request | Description
 [**reportsExport**](ReportsApi.md#reportsExport) | **POST** /api/rp/v1/Reports/File/{id}/Export | Export specified report to a specified format
 [**reportsGetFile**](ReportsApi.md#reportsGetFile) | **GET** /api/rp/v1/Reports/File/{id} | Get specified file
 [**reportsGetFilesCount**](ReportsApi.md#reportsGetFilesCount) | **GET** /api/rp/v1/Reports/Folder/{id}/CountFiles | Get count of files what contains in a specified folder
-[**reportsGetFilesList**](ReportsApi.md#reportsGetFilesList) | **GET** /api/rp/v1/Reports/Folder/{id}/ListFiles | Get all files from specified folder
+[**reportsGetFilesList**](ReportsApi.md#reportsGetFilesList) | **GET** /api/rp/v1/Reports/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
 [**reportsGetPermissions**](ReportsApi.md#reportsGetPermissions) | **GET** /api/rp/v1/Reports/File/{id}/permissions | Get all file permissions
 [**reportsMoveFile**](ReportsApi.md#reportsMoveFile) | **POST** /api/rp/v1/Reports/File/{id}/Move/{folderId} | Move file to a specified folder
 [**reportsRenameFile**](ReportsApi.md#reportsRenameFile) | **PUT** /api/rp/v1/Reports/File/{id}/Rename | Rename a file
 [**reportsUpdateIcon**](ReportsApi.md#reportsUpdateIcon) | **PUT** /api/rp/v1/Reports/File/{id}/Icon | Update a files&#39;s icon
 [**reportsUpdatePermissions**](ReportsApi.md#reportsUpdatePermissions) | **POST** /api/rp/v1/Reports/File/{id}/permissions | Update permissions
 [**reportsUpdateTags**](ReportsApi.md#reportsUpdateTags) | **PUT** /api/rp/v1/Reports/File/{id}/UpdateTags | Update tags
-[**reportsUploadFile**](ReportsApi.md#reportsUploadFile) | **POST** /api/rp/v1/Reports/Folder/{id}/File | Allows to upload reports into specified folder
+[**reportsUploadFile**](ReportsApi.md#reportsUploadFile) | **POST** /api/rp/v1/Reports/Folder/{id}/File | Upload a file to the specified folder  !
 
 
 
@@ -65,11 +65,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -105,7 +103,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -119,7 +117,7 @@ Name | Type | Description  | Notes
 
 ## reportFolderAndFileGetFoldersAndFiles
 
-> FilesVM reportFolderAndFileGetFoldersAndFiles(id, skip, take)
+> FilesVM reportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern)
 
 Get all folders and files from specified folder
 
@@ -146,18 +144,19 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | folder id
         Integer skip = 0; // Integer | number of folder and files, that have to be skipped
         Integer take = 10; // Integer | number of folder and files, that have to be returned
+        FileSorting orderBy = FileSorting.fromValue("None"); // FileSorting | indicates a field to sort by
+        Boolean desc = false; // Boolean | indicates if sorting is descending
+        String searchPattern = ""; // String | 
         try {
-            FilesVM result = apiInstance.reportFolderAndFileGetFoldersAndFiles(id, skip, take);
+            FilesVM result = apiInstance.reportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportFolderAndFileGetFoldersAndFiles");
@@ -178,6 +177,9 @@ Name | Type | Description  | Notes
  **id** | **String**| folder id |
  **skip** | **Integer**| number of folder and files, that have to be skipped | [optional] [default to 0]
  **take** | **Integer**| number of folder and files, that have to be returned | [optional] [default to 10]
+ **orderBy** | [**FileSorting**](.md)| indicates a field to sort by | [optional] [enum: None, CreatedTime, EditedTime, Size, Name]
+ **desc** | **Boolean**| indicates if sorting is descending | [optional] [default to false]
+ **searchPattern** | **String**|  | [optional] [default to ]
 
 ### Return type
 
@@ -190,7 +192,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -231,11 +233,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | moving folder id
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -281,8 +281,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Folder has been moved to a specified folder |  -  |
 | **400** | folderId or parentFolderId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | Folder not found |  -  |
 
 
@@ -315,11 +315,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -356,7 +354,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -364,8 +362,8 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Folder succesfully deleted |  -  |
 | **400** | Id is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | Folder not found |  -  |
 
 
@@ -398,11 +396,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -438,7 +434,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -479,11 +475,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -519,7 +513,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -560,11 +554,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -604,7 +596,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -645,11 +637,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -685,7 +675,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -724,11 +714,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | 
@@ -764,7 +752,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -782,7 +770,7 @@ Name | Type | Description  | Notes
 
 Get user&#39;s root folder (without parents)
 
-&amp;gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
+&gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
 
 ### Example
 
@@ -805,11 +793,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | 
@@ -845,7 +831,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -853,8 +839,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Gets user&#39;s root folder (without parents) |  -  |
 | **400** | Error with the request. |  -  |
-| **403** | No permissions to get root folder |  -  |
 | **404** | Not found subscription |  -  |
+| **403** | No permissions to get root folder |  -  |
 
 
 ## reportFoldersMoveFolder
@@ -886,11 +872,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | moving folder id
@@ -928,7 +912,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -936,14 +920,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Folder has been moved to a specified folder |  -  |
 | **400** | folderId or parentFolderId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | Folder not found |  -  |
 
 
 ## reportFoldersPostFolder
 
-> FileVM reportFoldersPostFolder(id, folderVm)
+> FileVM reportFoldersPostFolder(id, reportFolderCreateVM)
 
 Create folder
 
@@ -970,17 +954,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | Identifier of parent folder id
-        ReportFolderCreateVM folderVm = new ReportFolderCreateVM(); // ReportFolderCreateVM | create VM
+        ReportFolderCreateVM reportFolderCreateVM = new ReportFolderCreateVM(); // ReportFolderCreateVM | create VM
         try {
-            FileVM result = apiInstance.reportFoldersPostFolder(id, folderVm);
+            FileVM result = apiInstance.reportFoldersPostFolder(id, reportFolderCreateVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportFoldersPostFolder");
@@ -999,7 +981,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Identifier of parent folder id |
- **folderVm** | [**ReportFolderCreateVM**](ReportFolderCreateVM.md)| create VM | [optional]
+ **reportFolderCreateVM** | [**ReportFolderCreateVM**](ReportFolderCreateVM.md)| create VM | [optional]
 
 ### Return type
 
@@ -1011,8 +993,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1020,14 +1002,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | New folder has been created) |  -  |
 | **400** | Parent folder id is null |  -  |
-| **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
 | **404** | parent folder/subscription not found |  -  |
 
 
 ## reportFoldersRenameFolder
 
-> FileVM reportFoldersRenameFolder(id, nameModel)
+> FileVM reportFoldersRenameFolder(id, folderRenameVM)
 
 Rename a folder
 
@@ -1054,17 +1036,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | 
-        FolderRenameVM nameModel = new FolderRenameVM(); // FolderRenameVM | 
+        FolderRenameVM folderRenameVM = new FolderRenameVM(); // FolderRenameVM | 
         try {
-            FileVM result = apiInstance.reportFoldersRenameFolder(id, nameModel);
+            FileVM result = apiInstance.reportFoldersRenameFolder(id, folderRenameVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportFoldersRenameFolder");
@@ -1083,7 +1063,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **nameModel** | [**FolderRenameVM**](FolderRenameVM.md)|  | [optional]
+ **folderRenameVM** | [**FolderRenameVM**](FolderRenameVM.md)|  | [optional]
 
 ### Return type
 
@@ -1095,8 +1075,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1104,14 +1084,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Folder name has been updated |  -  |
 | **400** | folderId is null |  -  |
-| **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
 | **404** | Folder not found |  -  |
 
 
 ## reportFoldersUpdateIcon
 
-> FileVM reportFoldersUpdateIcon(id, iconModel)
+> FileVM reportFoldersUpdateIcon(id, folderIconVM)
 
 Update a folder&#39;s icon
 
@@ -1138,17 +1118,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | Identifier of folder
-        FolderIconVM iconModel = new FolderIconVM(); // FolderIconVM | Update icon model
+        FolderIconVM folderIconVM = new FolderIconVM(); // FolderIconVM | Update icon model
         try {
-            FileVM result = apiInstance.reportFoldersUpdateIcon(id, iconModel);
+            FileVM result = apiInstance.reportFoldersUpdateIcon(id, folderIconVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportFoldersUpdateIcon");
@@ -1167,7 +1145,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Identifier of folder |
- **iconModel** | [**FolderIconVM**](FolderIconVM.md)| Update icon model | [optional]
+ **folderIconVM** | [**FolderIconVM**](FolderIconVM.md)| Update icon model | [optional]
 
 ### Return type
 
@@ -1179,8 +1157,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1188,14 +1166,14 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Folder&#39;s icon has been updated |  -  |
 | **400** | folderId is null |  -  |
-| **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
 | **404** | Folder not found |  -  |
 
 
 ## reportFoldersUpdatePermissions
 
-> reportFoldersUpdatePermissions(id, permissionsVM)
+> reportFoldersUpdatePermissions(id, updateFilePermissionsVM)
 
 Update permissions
 
@@ -1220,17 +1198,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | 
-        UpdateFilePermissionsVM permissionsVM = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
+        UpdateFilePermissionsVM updateFilePermissionsVM = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
         try {
-            apiInstance.reportFoldersUpdatePermissions(id, permissionsVM);
+            apiInstance.reportFoldersUpdatePermissions(id, updateFilePermissionsVM);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportFoldersUpdatePermissions");
             System.err.println("Status code: " + e.getCode());
@@ -1248,7 +1224,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **permissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
+ **updateFilePermissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
 
 ### Return type
 
@@ -1260,8 +1236,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1277,7 +1253,7 @@ null (empty response body)
 
 ## reportFoldersUpdateTags
 
-> FileVM reportFoldersUpdateTags(id, tagsModel)
+> FileVM reportFoldersUpdateTags(id, folderTagsUpdateVM)
 
 Update tags
 
@@ -1304,17 +1280,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | 
-        FolderTagsUpdateVM tagsModel = new FolderTagsUpdateVM(); // FolderTagsUpdateVM | 
+        FolderTagsUpdateVM folderTagsUpdateVM = new FolderTagsUpdateVM(); // FolderTagsUpdateVM | 
         try {
-            FileVM result = apiInstance.reportFoldersUpdateTags(id, tagsModel);
+            FileVM result = apiInstance.reportFoldersUpdateTags(id, folderTagsUpdateVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportFoldersUpdateTags");
@@ -1333,7 +1307,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **tagsModel** | [**FolderTagsUpdateVM**](FolderTagsUpdateVM.md)|  | [optional]
+ **folderTagsUpdateVM** | [**FolderTagsUpdateVM**](FolderTagsUpdateVM.md)|  | [optional]
 
 ### Return type
 
@@ -1345,8 +1319,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1354,8 +1328,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Tags has been updated |  -  |
 | **400** | folderId or Tags is null |  -  |
-| **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
 | **404** | Folder not found |  -  |
 
 
@@ -1386,11 +1360,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | file id
@@ -1428,7 +1400,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1436,8 +1408,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | File has been copied |  -  |
 | **400** | fileId or folderId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | File or folder not found |  -  |
 | **500** | Exception thrown |  -  |
 
@@ -1471,11 +1443,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | file id
@@ -1510,7 +1480,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1518,15 +1488,15 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | File succesfully deleted |  -  |
 | **400** | Id is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | File not found |  -  |
 | **500** | Exception thrown |  -  |
 
 
 ## reportsExport
 
-> ExportVM reportsExport(id, exportTask)
+> ExportVM reportsExport(id, exportReportVM)
 
 Export specified report to a specified format
 
@@ -1553,17 +1523,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | report id
-        ExportReportTaskVM exportTask = new ExportReportTaskVM(); // ExportReportTaskVM | export parameters
+        ExportReportVM exportReportVM = new ExportReportVM(); // ExportReportVM | export parameters
         try {
-            ExportVM result = apiInstance.reportsExport(id, exportTask);
+            ExportVM result = apiInstance.reportsExport(id, exportReportVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportsExport");
@@ -1582,7 +1550,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| report id |
- **exportTask** | [**ExportReportTaskVM**](ExportReportTaskVM.md)| export parameters | [optional]
+ **exportReportVM** | [**ExportReportVM**](ExportReportVM.md)| export parameters | [optional]
 
 ### Return type
 
@@ -1594,8 +1562,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1603,8 +1571,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Specified report has been exported |  -  |
 | **400** | Report Id is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | Exports folder not found |  -  |
 
 
@@ -1637,11 +1605,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | file id
@@ -1677,7 +1643,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1719,11 +1685,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -1759,7 +1723,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1776,9 +1740,7 @@ Name | Type | Description  | Notes
 
 > ReportsVM reportsGetFilesList(id, skip, take)
 
-Get all files from specified folder
-
-User with Get Entity permission can access this method.
+Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
 
 ### Example
 
@@ -1801,11 +1763,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | folder id
@@ -1845,7 +1805,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1885,11 +1845,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | 
@@ -1925,7 +1883,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -1966,11 +1924,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | file id
@@ -2008,7 +1964,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -2016,15 +1972,15 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | File has been moved |  -  |
 | **400** | fileId or folderId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | File or folder not found |  -  |
 | **500** | Exception thrown |  -  |
 
 
 ## reportsRenameFile
 
-> ReportVM reportsRenameFile(id, nameModel)
+> ReportVM reportsRenameFile(id, fileRenameVM)
 
 Rename a file
 
@@ -2051,17 +2007,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | 
-        FileRenameVM nameModel = new FileRenameVM(); // FileRenameVM | 
+        FileRenameVM fileRenameVM = new FileRenameVM(); // FileRenameVM | 
         try {
-            ReportVM result = apiInstance.reportsRenameFile(id, nameModel);
+            ReportVM result = apiInstance.reportsRenameFile(id, fileRenameVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportsRenameFile");
@@ -2080,7 +2034,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **nameModel** | [**FileRenameVM**](FileRenameVM.md)|  | [optional]
+ **fileRenameVM** | [**FileRenameVM**](FileRenameVM.md)|  | [optional]
 
 ### Return type
 
@@ -2092,8 +2046,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -2101,15 +2055,15 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | File name has been updated |  -  |
 | **400** | FileId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | File not found |  -  |
 | **500** | Exception thrown |  -  |
 
 
 ## reportsUpdateIcon
 
-> ReportVM reportsUpdateIcon(id, iconModel)
+> ReportVM reportsUpdateIcon(id, fileIconVM)
 
 Update a files&#39;s icon
 
@@ -2136,17 +2090,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | 
-        FileIconVM iconModel = new FileIconVM(); // FileIconVM | 
+        FileIconVM fileIconVM = new FileIconVM(); // FileIconVM | 
         try {
-            ReportVM result = apiInstance.reportsUpdateIcon(id, iconModel);
+            ReportVM result = apiInstance.reportsUpdateIcon(id, fileIconVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportsUpdateIcon");
@@ -2165,7 +2117,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **iconModel** | [**FileIconVM**](FileIconVM.md)|  | [optional]
+ **fileIconVM** | [**FileIconVM**](FileIconVM.md)|  | [optional]
 
 ### Return type
 
@@ -2177,8 +2129,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -2186,15 +2138,15 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | File&#39;s icon has been updated |  -  |
 | **400** | FileId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | File not found |  -  |
 | **500** | Exception thrown |  -  |
 
 
 ## reportsUpdatePermissions
 
-> reportsUpdatePermissions(id, permissionsVM)
+> reportsUpdatePermissions(id, updateFilePermissionsVM)
 
 Update permissions
 
@@ -2219,17 +2171,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | 
-        UpdateFilePermissionsVM permissionsVM = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
+        UpdateFilePermissionsVM updateFilePermissionsVM = new UpdateFilePermissionsVM(); // UpdateFilePermissionsVM | 
         try {
-            apiInstance.reportsUpdatePermissions(id, permissionsVM);
+            apiInstance.reportsUpdatePermissions(id, updateFilePermissionsVM);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportsUpdatePermissions");
             System.err.println("Status code: " + e.getCode());
@@ -2247,7 +2197,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **permissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
+ **updateFilePermissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md)|  | [optional]
 
 ### Return type
 
@@ -2259,8 +2209,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -2276,7 +2226,7 @@ null (empty response body)
 
 ## reportsUpdateTags
 
-> ReportVM reportsUpdateTags(id, tagsModel)
+> ReportVM reportsUpdateTags(id, fileTagsUpdateVM)
 
 Update tags
 
@@ -2303,17 +2253,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | 
-        FileTagsUpdateVM tagsModel = new FileTagsUpdateVM(); // FileTagsUpdateVM | 
+        FileTagsUpdateVM fileTagsUpdateVM = new FileTagsUpdateVM(); // FileTagsUpdateVM | 
         try {
-            ReportVM result = apiInstance.reportsUpdateTags(id, tagsModel);
+            ReportVM result = apiInstance.reportsUpdateTags(id, fileTagsUpdateVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportsUpdateTags");
@@ -2332,7 +2280,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **tagsModel** | [**FileTagsUpdateVM**](FileTagsUpdateVM.md)|  | [optional]
+ **fileTagsUpdateVM** | [**FileTagsUpdateVM**](FileTagsUpdateVM.md)|  | [optional]
 
 ### Return type
 
@@ -2344,8 +2292,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -2353,17 +2301,19 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Tags has been updated |  -  |
 | **400** | FileId is null |  -  |
-| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | Subscription is outdated |  -  |
 | **404** | File not found |  -  |
 | **500** | Exception thrown |  -  |
 
 
 ## reportsUploadFile
 
-> ReportVM reportsUploadFile(id, fileVM)
+> ReportVM reportsUploadFile(id, reportCreateVM)
 
-Allows to upload reports into specified folder
+Upload a file to the specified folder  !
+
+User with Create Entity permission can access this method.
 
 ### Example
 
@@ -2386,17 +2336,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
-        String id = "id_example"; // String | folder id
-        ReportCreateVM fileVM = new ReportCreateVM(); // ReportCreateVM | create VM
+        String id = "id_example"; // String | Identifier of folder
+        ReportCreateVM reportCreateVM = new ReportCreateVM(); // ReportCreateVM | file's view model
         try {
-            ReportVM result = apiInstance.reportsUploadFile(id, fileVM);
+            ReportVM result = apiInstance.reportsUploadFile(id, reportCreateVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportsUploadFile");
@@ -2414,8 +2362,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| folder id |
- **fileVM** | [**ReportCreateVM**](ReportCreateVM.md)| create VM | [optional]
+ **id** | **String**| Identifier of folder |
+ **reportCreateVM** | [**ReportCreateVM**](ReportCreateVM.md)| file&#39;s view model | [optional]
 
 ### Return type
 
@@ -2427,16 +2375,16 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **200** | File has been uploaded |  -  |
+| **400** | fileVM view model is not valid |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
+| **404** | folder/subscription is not found |  -  |
 

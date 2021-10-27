@@ -25,6 +25,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -38,23 +41,27 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionInvitesVM {
   public static final String JSON_PROPERTY_INVITES = "invites";
-  private List<SubscriptionInviteVM> invites = null;
+  private JsonNullable<List<SubscriptionInviteVM>> invites = JsonNullable.<List<SubscriptionInviteVM>>undefined();
 
   public static final String JSON_PROPERTY_COUNT = "count";
   private Long count;
 
 
   public SubscriptionInvitesVM invites(List<SubscriptionInviteVM> invites) {
+    this.invites = JsonNullable.<List<SubscriptionInviteVM>>of(invites);
     
-    this.invites = invites;
     return this;
   }
 
   public SubscriptionInvitesVM addInvitesItem(SubscriptionInviteVM invitesItem) {
-    if (this.invites == null) {
-      this.invites = new ArrayList<>();
+    if (this.invites == null || !this.invites.isPresent()) {
+      this.invites = JsonNullable.<List<SubscriptionInviteVM>>of(new ArrayList<>());
     }
-    this.invites.add(invitesItem);
+    try {
+      this.invites.get().add(invitesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -64,18 +71,26 @@ public class SubscriptionInvitesVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_INVITES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<SubscriptionInviteVM> getInvites() {
-    return invites;
+        return invites.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_INVITES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInvites(List<SubscriptionInviteVM> invites) {
+
+  public JsonNullable<List<SubscriptionInviteVM>> getInvites_JsonNullable() {
+    return invites;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INVITES)
+  public void setInvites_JsonNullable(JsonNullable<List<SubscriptionInviteVM>> invites) {
     this.invites = invites;
+  }
+
+  public void setInvites(List<SubscriptionInviteVM> invites) {
+    this.invites = JsonNullable.<List<SubscriptionInviteVM>>of(invites);
   }
 
 

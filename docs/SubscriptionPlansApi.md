@@ -36,11 +36,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionPlansApi apiInstance = new SubscriptionPlansApi(defaultClient);
         String id = "id_example"; // String | Identifier of subsctiption plan
@@ -76,7 +74,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -117,11 +115,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionPlansApi apiInstance = new SubscriptionPlansApi(defaultClient);
         Integer skip = 0; // Integer | Variable for pagination, defautl value is 0
@@ -159,7 +155,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details

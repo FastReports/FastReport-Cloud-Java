@@ -15,6 +15,13 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.GroupAdministrate;
+import cloud.fastreport.model.GroupCreate;
+import cloud.fastreport.model.GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission;
+import cloud.fastreport.model.GroupDelete;
+import cloud.fastreport.model.GroupExecute;
+import cloud.fastreport.model.GroupGet;
+import cloud.fastreport.model.GroupUpdate;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -38,258 +45,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonTypeName("GroupPermission")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GroupPermission {
-  /**
-   * Gets or Sets create
-   */
-  public enum CreateEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    CreateEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static CreateEnum fromValue(Integer value) {
-      for (CreateEnum b : CreateEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_CREATE = "create";
-  private CreateEnum create;
-
-  /**
-   * Gets or Sets delete
-   */
-  public enum DeleteEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    DeleteEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static DeleteEnum fromValue(Integer value) {
-      for (DeleteEnum b : DeleteEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private GroupCreate create;
 
   public static final String JSON_PROPERTY_DELETE = "delete";
-  private DeleteEnum delete;
-
-  /**
-   * Gets or Sets execute
-   */
-  public enum ExecuteEnum {
-    NUMBER_0(0),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    ExecuteEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ExecuteEnum fromValue(Integer value) {
-      for (ExecuteEnum b : ExecuteEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private GroupDelete delete;
 
   public static final String JSON_PROPERTY_EXECUTE = "execute";
-  private ExecuteEnum execute;
-
-  /**
-   * Gets or Sets get
-   */
-  public enum GetEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_4(4),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    GetEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static GetEnum fromValue(Integer value) {
-      for (GetEnum b : GetEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private GroupExecute execute;
 
   public static final String JSON_PROPERTY_GET = "get";
-  private GetEnum get;
-
-  /**
-   * Gets or Sets update
-   */
-  public enum UpdateEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    UpdateEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static UpdateEnum fromValue(Integer value) {
-      for (UpdateEnum b : UpdateEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private GroupGet get;
 
   public static final String JSON_PROPERTY_UPDATE = "update";
-  private UpdateEnum update;
-
-  /**
-   * Gets or Sets administrate
-   */
-  public enum AdministrateEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_4(4),
-    
-    NUMBER_8(8),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    AdministrateEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static AdministrateEnum fromValue(Integer value) {
-      for (AdministrateEnum b : AdministrateEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private GroupUpdate update;
 
   public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
-  private AdministrateEnum administrate;
+  private GroupAdministrate administrate;
 
 
-  public GroupPermission create(CreateEnum create) {
+  public GroupPermission create(GroupCreate create) {
     
     this.create = create;
     return this;
@@ -304,19 +79,19 @@ public class GroupPermission {
   @JsonProperty(JSON_PROPERTY_CREATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public CreateEnum getCreate() {
+  public GroupCreate getCreate() {
     return create;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CREATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreate(CreateEnum create) {
+  public void setCreate(GroupCreate create) {
     this.create = create;
   }
 
 
-  public GroupPermission delete(DeleteEnum delete) {
+  public GroupPermission delete(GroupDelete delete) {
     
     this.delete = delete;
     return this;
@@ -331,19 +106,19 @@ public class GroupPermission {
   @JsonProperty(JSON_PROPERTY_DELETE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DeleteEnum getDelete() {
+  public GroupDelete getDelete() {
     return delete;
   }
 
 
   @JsonProperty(JSON_PROPERTY_DELETE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDelete(DeleteEnum delete) {
+  public void setDelete(GroupDelete delete) {
     this.delete = delete;
   }
 
 
-  public GroupPermission execute(ExecuteEnum execute) {
+  public GroupPermission execute(GroupExecute execute) {
     
     this.execute = execute;
     return this;
@@ -358,19 +133,19 @@ public class GroupPermission {
   @JsonProperty(JSON_PROPERTY_EXECUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ExecuteEnum getExecute() {
+  public GroupExecute getExecute() {
     return execute;
   }
 
 
   @JsonProperty(JSON_PROPERTY_EXECUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExecute(ExecuteEnum execute) {
+  public void setExecute(GroupExecute execute) {
     this.execute = execute;
   }
 
 
-  public GroupPermission get(GetEnum get) {
+  public GroupPermission get(GroupGet get) {
     
     this.get = get;
     return this;
@@ -385,19 +160,19 @@ public class GroupPermission {
   @JsonProperty(JSON_PROPERTY_GET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public GetEnum getGet() {
+  public GroupGet getGet() {
     return get;
   }
 
 
   @JsonProperty(JSON_PROPERTY_GET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGet(GetEnum get) {
+  public void setGet(GroupGet get) {
     this.get = get;
   }
 
 
-  public GroupPermission update(UpdateEnum update) {
+  public GroupPermission update(GroupUpdate update) {
     
     this.update = update;
     return this;
@@ -412,19 +187,19 @@ public class GroupPermission {
   @JsonProperty(JSON_PROPERTY_UPDATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public UpdateEnum getUpdate() {
+  public GroupUpdate getUpdate() {
     return update;
   }
 
 
   @JsonProperty(JSON_PROPERTY_UPDATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUpdate(UpdateEnum update) {
+  public void setUpdate(GroupUpdate update) {
     this.update = update;
   }
 
 
-  public GroupPermission administrate(AdministrateEnum administrate) {
+  public GroupPermission administrate(GroupAdministrate administrate) {
     
     this.administrate = administrate;
     return this;
@@ -439,14 +214,14 @@ public class GroupPermission {
   @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public AdministrateEnum getAdministrate() {
+  public GroupAdministrate getAdministrate() {
     return administrate;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdministrate(AdministrateEnum administrate) {
+  public void setAdministrate(GroupAdministrate administrate) {
     this.administrate = administrate;
   }
 

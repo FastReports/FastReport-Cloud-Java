@@ -145,12 +145,12 @@ public class SubscriptionInvitesApi {
     * <p><b>404</b> - there is no subscription with such id
     * <p><b>500</b> - exception caught
     * @param subscriptionId id
-    * @param createInviteVM create VM
+    * @param createSubscriptionInviteVM create VM
     * @return SubscriptionInviteVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public SubscriptionInviteVM subscriptionInvitesCreateInvite(String subscriptionId, CreateSubscriptionInviteVM createInviteVM) throws IOException {
-        HttpResponse response = subscriptionInvitesCreateInviteForHttpResponse(subscriptionId, createInviteVM);
+    public SubscriptionInviteVM subscriptionInvitesCreateInvite(String subscriptionId, CreateSubscriptionInviteVM createSubscriptionInviteVM) throws IOException {
+        HttpResponse response = subscriptionInvitesCreateInviteForHttpResponse(subscriptionId, createSubscriptionInviteVM);
         TypeReference<SubscriptionInviteVM> typeRef = new TypeReference<SubscriptionInviteVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -168,13 +168,13 @@ public class SubscriptionInvitesApi {
     * @return SubscriptionInviteVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public SubscriptionInviteVM subscriptionInvitesCreateInvite(CreateSubscriptionInviteVM createInviteVM, String subscriptionId, Map<String, Object> params) throws IOException {
-        HttpResponse response = subscriptionInvitesCreateInviteForHttpResponse(createInviteVM, subscriptionId, params);
+    public SubscriptionInviteVM subscriptionInvitesCreateInvite(CreateSubscriptionInviteVM createSubscriptionInviteVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        HttpResponse response = subscriptionInvitesCreateInviteForHttpResponse(createSubscriptionInviteVM, subscriptionId, params);
         TypeReference<SubscriptionInviteVM> typeRef = new TypeReference<SubscriptionInviteVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse subscriptionInvitesCreateInviteForHttpResponse(String subscriptionId, CreateSubscriptionInviteVM createInviteVM) throws IOException {
+    public HttpResponse subscriptionInvitesCreateInviteForHttpResponse(String subscriptionId, CreateSubscriptionInviteVM createSubscriptionInviteVM) throws IOException {
         // verify the required parameter 'subscriptionId' is set
         if (subscriptionId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionInvitesCreateInvite");
@@ -187,11 +187,11 @@ public class SubscriptionInvitesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(createInviteVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(createSubscriptionInviteVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse subscriptionInvitesCreateInviteForHttpResponse(String subscriptionId, java.io.InputStream createInviteVM, String mediaType) throws IOException {
+      public HttpResponse subscriptionInvitesCreateInviteForHttpResponse(String subscriptionId, java.io.InputStream createSubscriptionInviteVM, String mediaType) throws IOException {
           // verify the required parameter 'subscriptionId' is set
               if (subscriptionId == null) {
               throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionInvitesCreateInvite");
@@ -204,13 +204,13 @@ public class SubscriptionInvitesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = createInviteVM == null ?
+              HttpContent content = createSubscriptionInviteVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, createInviteVM);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, createSubscriptionInviteVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse subscriptionInvitesCreateInviteForHttpResponse(CreateSubscriptionInviteVM createInviteVM, String subscriptionId, Map<String, Object> params) throws IOException {
+    public HttpResponse subscriptionInvitesCreateInviteForHttpResponse(CreateSubscriptionInviteVM createSubscriptionInviteVM, String subscriptionId, Map<String, Object> params) throws IOException {
         // verify the required parameter 'subscriptionId' is set
         if (subscriptionId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling subscriptionInvitesCreateInvite");
@@ -241,7 +241,7 @@ public class SubscriptionInvitesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(createInviteVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(createSubscriptionInviteVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 

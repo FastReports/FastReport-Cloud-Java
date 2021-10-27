@@ -198,11 +198,11 @@ public class UserProfileApi {
     * This method is only allowed for local sign in via intranet
     * <p><b>200</b> - Succesfully updated
     * <p><b>400</b> - The reqeust is wrong
-    * @param model The model parameter
+    * @param updateUserProfileVM The updateUserProfileVM parameter
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void userProfileUpdateMyProfile(UpdateUserProfileVM model) throws IOException {
-        userProfileUpdateMyProfileForHttpResponse(model);
+    public void userProfileUpdateMyProfile(UpdateUserProfileVM updateUserProfileVM) throws IOException {
+        userProfileUpdateMyProfileForHttpResponse(updateUserProfileVM);
     }
 
   /**
@@ -213,35 +213,35 @@ public class UserProfileApi {
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void userProfileUpdateMyProfile(UpdateUserProfileVM model, Map<String, Object> params) throws IOException {
-        userProfileUpdateMyProfileForHttpResponse(model, params);
+    public void userProfileUpdateMyProfile(UpdateUserProfileVM updateUserProfileVM, Map<String, Object> params) throws IOException {
+        userProfileUpdateMyProfileForHttpResponse(updateUserProfileVM, params);
     }
 
-    public HttpResponse userProfileUpdateMyProfileForHttpResponse(UpdateUserProfileVM model) throws IOException {
+    public HttpResponse userProfileUpdateMyProfileForHttpResponse(UpdateUserProfileVM updateUserProfileVM) throws IOException {
         
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/UserProfile");
 
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(model);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateUserProfileVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-      public HttpResponse userProfileUpdateMyProfileForHttpResponse(java.io.InputStream model, String mediaType) throws IOException {
+      public HttpResponse userProfileUpdateMyProfileForHttpResponse(java.io.InputStream updateUserProfileVM, String mediaType) throws IOException {
           
               UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/UserProfile");
 
               String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = model == null ?
+              HttpContent content = updateUserProfileVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, model);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateUserProfileVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse userProfileUpdateMyProfileForHttpResponse(UpdateUserProfileVM model, Map<String, Object> params) throws IOException {
+    public HttpResponse userProfileUpdateMyProfileForHttpResponse(UpdateUserProfileVM updateUserProfileVM, Map<String, Object> params) throws IOException {
         
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/UserProfile");
 
@@ -266,7 +266,7 @@ public class UserProfileApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(model);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateUserProfileVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 

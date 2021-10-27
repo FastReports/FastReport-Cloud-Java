@@ -15,6 +15,13 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.SubscriptionAdministrate;
+import cloud.fastreport.model.SubscriptionCreate;
+import cloud.fastreport.model.SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission;
+import cloud.fastreport.model.SubscriptionDelete;
+import cloud.fastreport.model.SubscriptionExecute;
+import cloud.fastreport.model.SubscriptionGet;
+import cloud.fastreport.model.SubscriptionUpdate;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -38,278 +45,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonTypeName("SubscriptionPermission")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionPermission {
-  /**
-   * Gets or Sets create
-   */
-  public enum CreateEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_4(4),
-    
-    NUMBER_8(8),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    CreateEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static CreateEnum fromValue(Integer value) {
-      for (CreateEnum b : CreateEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_CREATE = "create";
-  private CreateEnum create;
-
-  /**
-   * Gets or Sets delete
-   */
-  public enum DeleteEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    DeleteEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static DeleteEnum fromValue(Integer value) {
-      for (DeleteEnum b : DeleteEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private SubscriptionCreate create;
 
   public static final String JSON_PROPERTY_DELETE = "delete";
-  private DeleteEnum delete;
-
-  /**
-   * Gets or Sets execute
-   */
-  public enum ExecuteEnum {
-    NUMBER_0(0),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    ExecuteEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ExecuteEnum fromValue(Integer value) {
-      for (ExecuteEnum b : ExecuteEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private SubscriptionDelete delete;
 
   public static final String JSON_PROPERTY_EXECUTE = "execute";
-  private ExecuteEnum execute;
-
-  /**
-   * Gets or Sets get
-   */
-  public enum GetEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_4(4),
-    
-    NUMBER_8(8),
-    
-    NUMBER_16(16),
-    
-    NUMBER_32(32),
-    
-    NUMBER_64(64),
-    
-    NUMBER_128(128),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    GetEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static GetEnum fromValue(Integer value) {
-      for (GetEnum b : GetEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private SubscriptionExecute execute;
 
   public static final String JSON_PROPERTY_GET = "get";
-  private GetEnum get;
-
-  /**
-   * Gets or Sets update
-   */
-  public enum UpdateEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_4(4),
-    
-    NUMBER_8(8),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    UpdateEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static UpdateEnum fromValue(Integer value) {
-      for (UpdateEnum b : UpdateEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private SubscriptionGet get;
 
   public static final String JSON_PROPERTY_UPDATE = "update";
-  private UpdateEnum update;
-
-  /**
-   * Gets or Sets administrate
-   */
-  public enum AdministrateEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_4(4),
-    
-    NUMBER_8(8),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    AdministrateEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static AdministrateEnum fromValue(Integer value) {
-      for (AdministrateEnum b : AdministrateEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private SubscriptionUpdate update;
 
   public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
-  private AdministrateEnum administrate;
+  private SubscriptionAdministrate administrate;
 
 
-  public SubscriptionPermission create(CreateEnum create) {
+  public SubscriptionPermission create(SubscriptionCreate create) {
     
     this.create = create;
     return this;
@@ -324,19 +79,19 @@ public class SubscriptionPermission {
   @JsonProperty(JSON_PROPERTY_CREATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public CreateEnum getCreate() {
+  public SubscriptionCreate getCreate() {
     return create;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CREATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreate(CreateEnum create) {
+  public void setCreate(SubscriptionCreate create) {
     this.create = create;
   }
 
 
-  public SubscriptionPermission delete(DeleteEnum delete) {
+  public SubscriptionPermission delete(SubscriptionDelete delete) {
     
     this.delete = delete;
     return this;
@@ -351,19 +106,19 @@ public class SubscriptionPermission {
   @JsonProperty(JSON_PROPERTY_DELETE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DeleteEnum getDelete() {
+  public SubscriptionDelete getDelete() {
     return delete;
   }
 
 
   @JsonProperty(JSON_PROPERTY_DELETE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDelete(DeleteEnum delete) {
+  public void setDelete(SubscriptionDelete delete) {
     this.delete = delete;
   }
 
 
-  public SubscriptionPermission execute(ExecuteEnum execute) {
+  public SubscriptionPermission execute(SubscriptionExecute execute) {
     
     this.execute = execute;
     return this;
@@ -378,19 +133,19 @@ public class SubscriptionPermission {
   @JsonProperty(JSON_PROPERTY_EXECUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ExecuteEnum getExecute() {
+  public SubscriptionExecute getExecute() {
     return execute;
   }
 
 
   @JsonProperty(JSON_PROPERTY_EXECUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExecute(ExecuteEnum execute) {
+  public void setExecute(SubscriptionExecute execute) {
     this.execute = execute;
   }
 
 
-  public SubscriptionPermission get(GetEnum get) {
+  public SubscriptionPermission get(SubscriptionGet get) {
     
     this.get = get;
     return this;
@@ -405,19 +160,19 @@ public class SubscriptionPermission {
   @JsonProperty(JSON_PROPERTY_GET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public GetEnum getGet() {
+  public SubscriptionGet getGet() {
     return get;
   }
 
 
   @JsonProperty(JSON_PROPERTY_GET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGet(GetEnum get) {
+  public void setGet(SubscriptionGet get) {
     this.get = get;
   }
 
 
-  public SubscriptionPermission update(UpdateEnum update) {
+  public SubscriptionPermission update(SubscriptionUpdate update) {
     
     this.update = update;
     return this;
@@ -432,19 +187,19 @@ public class SubscriptionPermission {
   @JsonProperty(JSON_PROPERTY_UPDATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public UpdateEnum getUpdate() {
+  public SubscriptionUpdate getUpdate() {
     return update;
   }
 
 
   @JsonProperty(JSON_PROPERTY_UPDATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUpdate(UpdateEnum update) {
+  public void setUpdate(SubscriptionUpdate update) {
     this.update = update;
   }
 
 
-  public SubscriptionPermission administrate(AdministrateEnum administrate) {
+  public SubscriptionPermission administrate(SubscriptionAdministrate administrate) {
     
     this.administrate = administrate;
     return this;
@@ -459,14 +214,14 @@ public class SubscriptionPermission {
   @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public AdministrateEnum getAdministrate() {
+  public SubscriptionAdministrate getAdministrate() {
     return administrate;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdministrate(AdministrateEnum administrate) {
+  public void setAdministrate(SubscriptionAdministrate administrate) {
     this.administrate = administrate;
   }
 

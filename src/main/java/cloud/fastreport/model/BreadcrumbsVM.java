@@ -25,6 +25,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -37,20 +40,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class BreadcrumbsVM {
   public static final String JSON_PROPERTY_BREADCRUMBS = "breadcrumbs";
-  private List<BreadcrumbsModel> breadcrumbs = null;
+  private JsonNullable<List<BreadcrumbsModel>> breadcrumbs = JsonNullable.<List<BreadcrumbsModel>>undefined();
 
 
   public BreadcrumbsVM breadcrumbs(List<BreadcrumbsModel> breadcrumbs) {
+    this.breadcrumbs = JsonNullable.<List<BreadcrumbsModel>>of(breadcrumbs);
     
-    this.breadcrumbs = breadcrumbs;
     return this;
   }
 
   public BreadcrumbsVM addBreadcrumbsItem(BreadcrumbsModel breadcrumbsItem) {
-    if (this.breadcrumbs == null) {
-      this.breadcrumbs = new ArrayList<>();
+    if (this.breadcrumbs == null || !this.breadcrumbs.isPresent()) {
+      this.breadcrumbs = JsonNullable.<List<BreadcrumbsModel>>of(new ArrayList<>());
     }
-    this.breadcrumbs.add(breadcrumbsItem);
+    try {
+      this.breadcrumbs.get().add(breadcrumbsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -60,18 +67,26 @@ public class BreadcrumbsVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_BREADCRUMBS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<BreadcrumbsModel> getBreadcrumbs() {
-    return breadcrumbs;
+        return breadcrumbs.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_BREADCRUMBS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBreadcrumbs(List<BreadcrumbsModel> breadcrumbs) {
+
+  public JsonNullable<List<BreadcrumbsModel>> getBreadcrumbs_JsonNullable() {
+    return breadcrumbs;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BREADCRUMBS)
+  public void setBreadcrumbs_JsonNullable(JsonNullable<List<BreadcrumbsModel>> breadcrumbs) {
     this.breadcrumbs = breadcrumbs;
+  }
+
+  public void setBreadcrumbs(List<BreadcrumbsModel> breadcrumbs) {
+    this.breadcrumbs = JsonNullable.<List<BreadcrumbsModel>>of(breadcrumbs);
   }
 
 

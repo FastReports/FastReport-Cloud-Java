@@ -15,11 +15,12 @@ package cloud.fastreport.client;
 
 import cloud.fastreport.model.BreadcrumbsVM;
 import cloud.fastreport.model.CountVM;
-import cloud.fastreport.model.ExportReportTaskVM;
+import cloud.fastreport.model.ExportReportVM;
 import cloud.fastreport.model.ExportVM;
 import cloud.fastreport.model.FileIconVM;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileRenameVM;
+import cloud.fastreport.model.FileSorting;
 import cloud.fastreport.model.FileTagsUpdateVM;
 import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.FilesVM;
@@ -79,7 +80,10 @@ public class ReportsApiTest {
         String id = null;
         Integer skip = null;
         Integer take = null;
-        FilesVM response = api.reportFolderAndFileGetFoldersAndFiles(id, skip, take);
+        FileSorting orderBy = null;
+        Boolean desc = null;
+        String searchPattern = null;
+        FilesVM response = api.reportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern);
 
         // TODO: test validations
     }
@@ -203,7 +207,7 @@ public class ReportsApiTest {
     /**
      * Get user&#39;s root folder (without parents)
      *
-     * &amp;gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
+     * &gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
      *
      * @throws IOException
      *          if the Api call fails
@@ -244,8 +248,8 @@ public class ReportsApiTest {
     @Test
     public void reportFoldersPostFolderTest() throws IOException {
         String id = null;
-        ReportFolderCreateVM folderVm = null;
-        FileVM response = api.reportFoldersPostFolder(id, folderVm);
+        ReportFolderCreateVM reportFolderCreateVM = null;
+        FileVM response = api.reportFoldersPostFolder(id, reportFolderCreateVM);
 
         // TODO: test validations
     }
@@ -261,8 +265,8 @@ public class ReportsApiTest {
     @Test
     public void reportFoldersRenameFolderTest() throws IOException {
         String id = null;
-        FolderRenameVM nameModel = null;
-        FileVM response = api.reportFoldersRenameFolder(id, nameModel);
+        FolderRenameVM folderRenameVM = null;
+        FileVM response = api.reportFoldersRenameFolder(id, folderRenameVM);
 
         // TODO: test validations
     }
@@ -278,8 +282,8 @@ public class ReportsApiTest {
     @Test
     public void reportFoldersUpdateIconTest() throws IOException {
         String id = null;
-        FolderIconVM iconModel = null;
-        FileVM response = api.reportFoldersUpdateIcon(id, iconModel);
+        FolderIconVM folderIconVM = null;
+        FileVM response = api.reportFoldersUpdateIcon(id, folderIconVM);
 
         // TODO: test validations
     }
@@ -295,8 +299,8 @@ public class ReportsApiTest {
     @Test
     public void reportFoldersUpdatePermissionsTest() throws IOException {
         String id = null;
-        UpdateFilePermissionsVM permissionsVM = null;
-        api.reportFoldersUpdatePermissions(id, permissionsVM);
+        UpdateFilePermissionsVM updateFilePermissionsVM = null;
+        api.reportFoldersUpdatePermissions(id, updateFilePermissionsVM);
 
         // TODO: test validations
     }
@@ -312,8 +316,8 @@ public class ReportsApiTest {
     @Test
     public void reportFoldersUpdateTagsTest() throws IOException {
         String id = null;
-        FolderTagsUpdateVM tagsModel = null;
-        FileVM response = api.reportFoldersUpdateTags(id, tagsModel);
+        FolderTagsUpdateVM folderTagsUpdateVM = null;
+        FileVM response = api.reportFoldersUpdateTags(id, folderTagsUpdateVM);
 
         // TODO: test validations
     }
@@ -362,8 +366,8 @@ public class ReportsApiTest {
     @Test
     public void reportsExportTest() throws IOException {
         String id = null;
-        ExportReportTaskVM exportTask = null;
-        ExportVM response = api.reportsExport(id, exportTask);
+        ExportReportVM exportReportVM = null;
+        ExportVM response = api.reportsExport(id, exportReportVM);
 
         // TODO: test validations
     }
@@ -401,9 +405,9 @@ public class ReportsApiTest {
     }
     
     /**
-     * Get all files from specified folder
+     * Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
      *
-     * User with Get Entity permission can access this method.
+     * 
      *
      * @throws IOException
      *          if the Api call fails
@@ -462,8 +466,8 @@ public class ReportsApiTest {
     @Test
     public void reportsRenameFileTest() throws IOException {
         String id = null;
-        FileRenameVM nameModel = null;
-        ReportVM response = api.reportsRenameFile(id, nameModel);
+        FileRenameVM fileRenameVM = null;
+        ReportVM response = api.reportsRenameFile(id, fileRenameVM);
 
         // TODO: test validations
     }
@@ -479,8 +483,8 @@ public class ReportsApiTest {
     @Test
     public void reportsUpdateIconTest() throws IOException {
         String id = null;
-        FileIconVM iconModel = null;
-        ReportVM response = api.reportsUpdateIcon(id, iconModel);
+        FileIconVM fileIconVM = null;
+        ReportVM response = api.reportsUpdateIcon(id, fileIconVM);
 
         // TODO: test validations
     }
@@ -496,8 +500,8 @@ public class ReportsApiTest {
     @Test
     public void reportsUpdatePermissionsTest() throws IOException {
         String id = null;
-        UpdateFilePermissionsVM permissionsVM = null;
-        api.reportsUpdatePermissions(id, permissionsVM);
+        UpdateFilePermissionsVM updateFilePermissionsVM = null;
+        api.reportsUpdatePermissions(id, updateFilePermissionsVM);
 
         // TODO: test validations
     }
@@ -513,16 +517,16 @@ public class ReportsApiTest {
     @Test
     public void reportsUpdateTagsTest() throws IOException {
         String id = null;
-        FileTagsUpdateVM tagsModel = null;
-        ReportVM response = api.reportsUpdateTags(id, tagsModel);
+        FileTagsUpdateVM fileTagsUpdateVM = null;
+        ReportVM response = api.reportsUpdateTags(id, fileTagsUpdateVM);
 
         // TODO: test validations
     }
     
     /**
-     * Allows to upload reports into specified folder
+     * Upload a file to the specified folder  !
      *
-     * 
+     * User with Create Entity permission can access this method.
      *
      * @throws IOException
      *          if the Api call fails
@@ -530,8 +534,8 @@ public class ReportsApiTest {
     @Test
     public void reportsUploadFileTest() throws IOException {
         String id = null;
-        ReportCreateVM fileVM = null;
-        ReportVM response = api.reportsUploadFile(id, fileVM);
+        ReportCreateVM reportCreateVM = null;
+        ReportVM response = api.reportsUploadFile(id, reportCreateVM);
 
         // TODO: test validations
     }

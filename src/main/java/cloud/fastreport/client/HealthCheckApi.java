@@ -42,7 +42,7 @@ public class HealthCheckApi {
 
   /**
     * healthcheck
-    * <p><b>200</b> - Report processor is alive!
+    * <p><b>200</b> - Our backend is alive!
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
     public void healthCheckDataGet() throws IOException {
@@ -51,7 +51,7 @@ public class HealthCheckApi {
 
   /**
     * healthcheck
-    * <p><b>200</b> - Report processor is alive!
+    * <p><b>200</b> - Our backend is alive!
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/

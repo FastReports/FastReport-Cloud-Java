@@ -46,8 +46,8 @@ public class ApiKeysApiTest {
      */
     @Test
     public void apiKeysCreateApiKeyTest() throws IOException {
-        CreateApiKeyVM model = null;
-        ApiKeyVM response = api.apiKeysCreateApiKey(model);
+        CreateApiKeyVM createApiKeyVM = null;
+        ApiKeyVM response = api.apiKeysCreateApiKey(createApiKeyVM);
 
         // TODO: test validations
     }
@@ -62,8 +62,8 @@ public class ApiKeysApiTest {
      */
     @Test
     public void apiKeysDeleteApiKeyTest() throws IOException {
-        DeleteApiKeyVM model = null;
-        api.apiKeysDeleteApiKey(model);
+        DeleteApiKeyVM deleteApiKeyVM = null;
+        api.apiKeysDeleteApiKey(deleteApiKeyVM);
 
         // TODO: test validations
     }

@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.SubscriptionAdministrate;
 import cloud.fastreport.model.SubscriptionPermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

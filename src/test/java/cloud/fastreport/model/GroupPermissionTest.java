@@ -13,6 +13,13 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.GroupAdministrate;
+import cloud.fastreport.model.GroupCreate;
+import cloud.fastreport.model.GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission;
+import cloud.fastreport.model.GroupDelete;
+import cloud.fastreport.model.GroupExecute;
+import cloud.fastreport.model.GroupGet;
+import cloud.fastreport.model.GroupUpdate;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;

@@ -42,11 +42,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DownloadApi apiInstance = new DownloadApi(defaultClient);
         String id = "id_example"; // String | 
@@ -82,17 +80,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream
+- **Accept**: application/octet-stream, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified file was found |  -  |
+| **404** | Specified file was not found or user do not has access to the file |  -  |
 | **400** | Bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions for the operation |  -  |
-| **404** | Specified file was not found or user do not has access to the file |  -  |
 
 
 ## downloadGetExportThumbnail
@@ -122,11 +120,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DownloadApi apiInstance = new DownloadApi(defaultClient);
         String id = "id_example"; // String | 
@@ -162,17 +158,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream
+- **Accept**: image/jpeg, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified thumbnail was found |  -  |
+| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
 | **400** | Bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions for the operation |  -  |
-| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
 
 
 ## downloadGetExports
@@ -202,11 +198,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DownloadApi apiInstance = new DownloadApi(defaultClient);
         String archiveName = "archiveName_example"; // String | name of the created archive
@@ -244,7 +238,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream
+- **Accept**: application/zip, application/json
 
 
 ### HTTP response details
@@ -284,11 +278,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DownloadApi apiInstance = new DownloadApi(defaultClient);
         String id = "id_example"; // String | 
@@ -324,17 +316,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream
+- **Accept**: application/octet-stream, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified file was found |  -  |
+| **404** | Specified file was not found or user do not has access to the file |  -  |
 | **400** | bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions |  -  |
-| **404** | Specified file was not found or user do not has access to the file |  -  |
 
 
 ## downloadGetReportThumbnail
@@ -364,11 +356,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DownloadApi apiInstance = new DownloadApi(defaultClient);
         String id = "id_example"; // String | 
@@ -404,17 +394,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream
+- **Accept**: image/jpeg, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified thumbnail was found |  -  |
+| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
 | **400** | Bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions for the operation |  -  |
-| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
 
 
 ## downloadGetReports
@@ -444,11 +434,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DownloadApi apiInstance = new DownloadApi(defaultClient);
         String archiveName = "archiveName_example"; // String | name of the created archive
@@ -486,17 +474,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream
+- **Accept**: application/zip, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | File has been downloaded |  -  |
+| **404** | files is not found |  -  |
 | **400** | wrong parameters provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | files is not found |  -  |
 
 
 ## downloadGetTemplate
@@ -526,11 +514,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DownloadApi apiInstance = new DownloadApi(defaultClient);
         String id = "id_example"; // String | template id
@@ -566,17 +552,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream
+- **Accept**: application/octet-stream, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified file was found |  -  |
+| **404** | Specified file was not found or user do not has access to the file |  -  |
 | **400** | bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions |  -  |
-| **404** | Specified file was not found or user do not has access to the file |  -  |
 
 
 ## downloadGetTemplates
@@ -606,11 +592,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DownloadApi apiInstance = new DownloadApi(defaultClient);
         String archiveName = "archiveName_example"; // String | name of the created archive
@@ -648,7 +632,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream
+- **Accept**: application/zip, application/json
 
 
 ### HTTP response details

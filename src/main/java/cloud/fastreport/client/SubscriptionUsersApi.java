@@ -46,8 +46,8 @@ public class SubscriptionUsersApi {
     * Add a user to the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
     * <p><b>200</b> - Succesfully added
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Subscription or user is not found
     * <p><b>500</b> - Exception thrown
     * @param subscriptionId Idenitifier of subscription
@@ -62,8 +62,8 @@ public class SubscriptionUsersApi {
     * Add a user to the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
     * <p><b>200</b> - Succesfully added
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Subscription or user is not found
     * <p><b>500</b> - Exception thrown
     * @param subscriptionId Idenitifier of subscription
@@ -333,8 +333,8 @@ public class SubscriptionUsersApi {
     * Delete a user from the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
     * <p><b>204</b> - Succesfully deleted
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription id outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription id outdated
     * <p><b>404</b> - Subscription or user is not found
     * <p><b>500</b> - Exception thrown
     * @param subscriptionId Idenitifier of subscription
@@ -349,8 +349,8 @@ public class SubscriptionUsersApi {
     * Delete a user from the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
     * <p><b>204</b> - Succesfully deleted
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription id outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription id outdated
     * <p><b>404</b> - Subscription or user is not found
     * <p><b>500</b> - Exception thrown
     * @param subscriptionId Idenitifier of subscription

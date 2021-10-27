@@ -38,11 +38,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionInvitesApi apiInstance = new SubscriptionInvitesApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | Idenitifier of subscription
@@ -79,7 +77,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -94,7 +92,7 @@ null (empty response body)
 
 ## subscriptionInvitesCreateInvite
 
-> SubscriptionInviteVM subscriptionInvitesCreateInvite(subscriptionId, createInviteVM)
+> SubscriptionInviteVM subscriptionInvitesCreateInvite(subscriptionId, createSubscriptionInviteVM)
 
 Create invite to subscription
 
@@ -119,17 +117,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionInvitesApi apiInstance = new SubscriptionInvitesApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | id
-        CreateSubscriptionInviteVM createInviteVM = new CreateSubscriptionInviteVM(); // CreateSubscriptionInviteVM | create VM
+        CreateSubscriptionInviteVM createSubscriptionInviteVM = new CreateSubscriptionInviteVM(); // CreateSubscriptionInviteVM | create VM
         try {
-            SubscriptionInviteVM result = apiInstance.subscriptionInvitesCreateInvite(subscriptionId, createInviteVM);
+            SubscriptionInviteVM result = apiInstance.subscriptionInvitesCreateInvite(subscriptionId, createSubscriptionInviteVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SubscriptionInvitesApi#subscriptionInvitesCreateInvite");
@@ -148,7 +144,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subscriptionId** | **String**| id |
- **createInviteVM** | [**CreateSubscriptionInviteVM**](CreateSubscriptionInviteVM.md)| create VM | [optional]
+ **createSubscriptionInviteVM** | [**CreateSubscriptionInviteVM**](CreateSubscriptionInviteVM.md)| create VM | [optional]
 
 ### Return type
 
@@ -160,8 +156,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -202,11 +198,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionInvitesApi apiInstance = new SubscriptionInvitesApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | id
@@ -243,7 +237,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -284,11 +278,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionInvitesApi apiInstance = new SubscriptionInvitesApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | Idenitifier of subscription
@@ -324,7 +316,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details

@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.ProfileVisibility;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -22,6 +23,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -34,53 +38,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonTypeName("UserSettingsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UserSettingsVM {
-  /**
-   * Gets or Sets profileVisibility
-   */
-  public enum ProfileVisibilityEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_4(4);
-
-    private Integer value;
-
-    ProfileVisibilityEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ProfileVisibilityEnum fromValue(Integer value) {
-      for (ProfileVisibilityEnum b : ProfileVisibilityEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_PROFILE_VISIBILITY = "profileVisibility";
-  private ProfileVisibilityEnum profileVisibility;
+  private ProfileVisibility profileVisibility;
 
   public static final String JSON_PROPERTY_DEFAULT_SUBSCRIPTION = "defaultSubscription";
-  private String defaultSubscription;
+  private JsonNullable<String> defaultSubscription = JsonNullable.<String>undefined();
 
 
-  public UserSettingsVM profileVisibility(ProfileVisibilityEnum profileVisibility) {
+  public UserSettingsVM profileVisibility(ProfileVisibility profileVisibility) {
     
     this.profileVisibility = profileVisibility;
     return this;
@@ -95,21 +60,21 @@ public class UserSettingsVM {
   @JsonProperty(JSON_PROPERTY_PROFILE_VISIBILITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ProfileVisibilityEnum getProfileVisibility() {
+  public ProfileVisibility getProfileVisibility() {
     return profileVisibility;
   }
 
 
   @JsonProperty(JSON_PROPERTY_PROFILE_VISIBILITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProfileVisibility(ProfileVisibilityEnum profileVisibility) {
+  public void setProfileVisibility(ProfileVisibility profileVisibility) {
     this.profileVisibility = profileVisibility;
   }
 
 
   public UserSettingsVM defaultSubscription(String defaultSubscription) {
+    this.defaultSubscription = JsonNullable.<String>of(defaultSubscription);
     
-    this.defaultSubscription = defaultSubscription;
     return this;
   }
 
@@ -119,18 +84,26 @@ public class UserSettingsVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DEFAULT_SUBSCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getDefaultSubscription() {
-    return defaultSubscription;
+        return defaultSubscription.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_DEFAULT_SUBSCRIPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDefaultSubscription(String defaultSubscription) {
+
+  public JsonNullable<String> getDefaultSubscription_JsonNullable() {
+    return defaultSubscription;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DEFAULT_SUBSCRIPTION)
+  public void setDefaultSubscription_JsonNullable(JsonNullable<String> defaultSubscription) {
     this.defaultSubscription = defaultSubscription;
+  }
+
+  public void setDefaultSubscription(String defaultSubscription) {
+    this.defaultSubscription = JsonNullable.<String>of(defaultSubscription);
   }
 
 

@@ -15,6 +15,8 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.TaskSettingsVM;
+import cloud.fastreport.model.TimePeriodType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -22,6 +24,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -47,154 +52,65 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SubscriptionPlanVM.JSON_PROPERTY_IS_DEMO,
   SubscriptionPlanVM.JSON_PROPERTY_URL_TO_BUY,
   SubscriptionPlanVM.JSON_PROPERTY_UNLIMITED_PAGE,
-  SubscriptionPlanVM.JSON_PROPERTY_PAGE_LIMIT
+  SubscriptionPlanVM.JSON_PROPERTY_PAGE_LIMIT,
+  SubscriptionPlanVM.JSON_PROPERTY_TASKS
 })
 @JsonTypeName("SubscriptionPlanVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionPlanVM {
   public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  private JsonNullable<String> id = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_IS_ACTIVE = "isActive";
-  private Boolean isActive;
+  private JsonNullable<Boolean> isActive = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
-  private String displayName;
-
-  /**
-   * Gets or Sets timePeriodType
-   */
-  public enum TimePeriodTypeEnum {
-    SECOND("Second"),
-    
-    MINUTE("Minute"),
-    
-    HOUR("Hour"),
-    
-    DAY("Day"),
-    
-    WEEK("Week"),
-    
-    MONTH("Month"),
-    
-    YEAR("Year");
-
-    private String value;
-
-    TimePeriodTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TimePeriodTypeEnum fromValue(String value) {
-      for (TimePeriodTypeEnum b : TimePeriodTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private JsonNullable<String> displayName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TIME_PERIOD_TYPE = "timePeriodType";
-  private TimePeriodTypeEnum timePeriodType;
+  private TimePeriodType timePeriodType;
 
   public static final String JSON_PROPERTY_TIME_PERIOD = "timePeriod";
-  private Integer timePeriod;
-
-  /**
-   * Gets or Sets readonlyTimeLimitType
-   */
-  public enum ReadonlyTimeLimitTypeEnum {
-    SECOND("Second"),
-    
-    MINUTE("Minute"),
-    
-    HOUR("Hour"),
-    
-    DAY("Day"),
-    
-    WEEK("Week"),
-    
-    MONTH("Month"),
-    
-    YEAR("Year");
-
-    private String value;
-
-    ReadonlyTimeLimitTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ReadonlyTimeLimitTypeEnum fromValue(String value) {
-      for (ReadonlyTimeLimitTypeEnum b : ReadonlyTimeLimitTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private JsonNullable<Integer> timePeriod = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_READONLY_TIME_LIMIT_TYPE = "readonlyTimeLimitType";
-  private ReadonlyTimeLimitTypeEnum readonlyTimeLimitType;
+  private TimePeriodType readonlyTimeLimitType;
 
   public static final String JSON_PROPERTY_READONLY_TIME_LIMIT = "readonlyTimeLimit";
   private Integer readonlyTimeLimit;
 
   public static final String JSON_PROPERTY_TEMPLATES_SPACE_LIMIT = "templatesSpaceLimit";
-  private Long templatesSpaceLimit;
+  private JsonNullable<Long> templatesSpaceLimit = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_REPORTS_SPACE_LIMIT = "reportsSpaceLimit";
-  private Long reportsSpaceLimit;
+  private JsonNullable<Long> reportsSpaceLimit = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_EXPORTS_SPACE_LIMIT = "exportsSpaceLimit";
-  private Long exportsSpaceLimit;
+  private JsonNullable<Long> exportsSpaceLimit = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_FILE_UPLOAD_SIZE_LIMIT = "fileUploadSizeLimit";
-  private Long fileUploadSizeLimit;
+  private JsonNullable<Long> fileUploadSizeLimit = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_DATA_SOURCE_LIMIT = "dataSourceLimit";
-  private Integer dataSourceLimit;
+  private JsonNullable<Integer> dataSourceLimit = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_MAX_USERS_COUNT = "maxUsersCount";
-  private Integer maxUsersCount;
+  private JsonNullable<Integer> maxUsersCount = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_HAS_SPACE_OVERDRAFT = "hasSpaceOverdraft";
-  private Boolean hasSpaceOverdraft;
+  private JsonNullable<Boolean> hasSpaceOverdraft = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_GROUP_LIMIT = "groupLimit";
-  private Integer groupLimit;
+  private JsonNullable<Integer> groupLimit = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_ONLINE_DESIGNER = "onlineDesigner";
-  private Boolean onlineDesigner;
+  private JsonNullable<Boolean> onlineDesigner = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_IS_DEMO = "isDemo";
-  private Boolean isDemo;
+  private JsonNullable<Boolean> isDemo = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_URL_TO_BUY = "urlToBuy";
-  private String urlToBuy;
+  private JsonNullable<String> urlToBuy = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_UNLIMITED_PAGE = "unlimitedPage";
   private Boolean unlimitedPage;
@@ -202,10 +118,13 @@ public class SubscriptionPlanVM {
   public static final String JSON_PROPERTY_PAGE_LIMIT = "pageLimit";
   private Integer pageLimit;
 
+  public static final String JSON_PROPERTY_TASKS = "tasks";
+  private TaskSettingsVM tasks;
+
 
   public SubscriptionPlanVM id(String id) {
+    this.id = JsonNullable.<String>of(id);
     
-    this.id = id;
     return this;
   }
 
@@ -215,24 +134,32 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getId() {
-    return id;
+        return id.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
+
+  public JsonNullable<String> getId_JsonNullable() {
+    return id;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ID)
+  public void setId_JsonNullable(JsonNullable<String> id) {
     this.id = id;
+  }
+
+  public void setId(String id) {
+    this.id = JsonNullable.<String>of(id);
   }
 
 
   public SubscriptionPlanVM isActive(Boolean isActive) {
+    this.isActive = JsonNullable.<Boolean>of(isActive);
     
-    this.isActive = isActive;
     return this;
   }
 
@@ -242,24 +169,32 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_IS_ACTIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Boolean getIsActive() {
-    return isActive;
+        return isActive.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_IS_ACTIVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsActive(Boolean isActive) {
+
+  public JsonNullable<Boolean> getIsActive_JsonNullable() {
+    return isActive;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IS_ACTIVE)
+  public void setIsActive_JsonNullable(JsonNullable<Boolean> isActive) {
     this.isActive = isActive;
+  }
+
+  public void setIsActive(Boolean isActive) {
+    this.isActive = JsonNullable.<Boolean>of(isActive);
   }
 
 
   public SubscriptionPlanVM displayName(String displayName) {
+    this.displayName = JsonNullable.<String>of(displayName);
     
-    this.displayName = displayName;
     return this;
   }
 
@@ -269,22 +204,30 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getDisplayName() {
-    return displayName;
+        return displayName.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDisplayName(String displayName) {
+
+  public JsonNullable<String> getDisplayName_JsonNullable() {
+    return displayName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
+  public void setDisplayName_JsonNullable(JsonNullable<String> displayName) {
     this.displayName = displayName;
   }
 
+  public void setDisplayName(String displayName) {
+    this.displayName = JsonNullable.<String>of(displayName);
+  }
 
-  public SubscriptionPlanVM timePeriodType(TimePeriodTypeEnum timePeriodType) {
+
+  public SubscriptionPlanVM timePeriodType(TimePeriodType timePeriodType) {
     
     this.timePeriodType = timePeriodType;
     return this;
@@ -299,21 +242,21 @@ public class SubscriptionPlanVM {
   @JsonProperty(JSON_PROPERTY_TIME_PERIOD_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TimePeriodTypeEnum getTimePeriodType() {
+  public TimePeriodType getTimePeriodType() {
     return timePeriodType;
   }
 
 
   @JsonProperty(JSON_PROPERTY_TIME_PERIOD_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimePeriodType(TimePeriodTypeEnum timePeriodType) {
+  public void setTimePeriodType(TimePeriodType timePeriodType) {
     this.timePeriodType = timePeriodType;
   }
 
 
   public SubscriptionPlanVM timePeriod(Integer timePeriod) {
+    this.timePeriod = JsonNullable.<Integer>of(timePeriod);
     
-    this.timePeriod = timePeriod;
     return this;
   }
 
@@ -323,22 +266,30 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TIME_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Integer getTimePeriod() {
-    return timePeriod;
+        return timePeriod.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_TIME_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimePeriod(Integer timePeriod) {
+
+  public JsonNullable<Integer> getTimePeriod_JsonNullable() {
+    return timePeriod;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TIME_PERIOD)
+  public void setTimePeriod_JsonNullable(JsonNullable<Integer> timePeriod) {
     this.timePeriod = timePeriod;
   }
 
+  public void setTimePeriod(Integer timePeriod) {
+    this.timePeriod = JsonNullable.<Integer>of(timePeriod);
+  }
 
-  public SubscriptionPlanVM readonlyTimeLimitType(ReadonlyTimeLimitTypeEnum readonlyTimeLimitType) {
+
+  public SubscriptionPlanVM readonlyTimeLimitType(TimePeriodType readonlyTimeLimitType) {
     
     this.readonlyTimeLimitType = readonlyTimeLimitType;
     return this;
@@ -353,14 +304,14 @@ public class SubscriptionPlanVM {
   @JsonProperty(JSON_PROPERTY_READONLY_TIME_LIMIT_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ReadonlyTimeLimitTypeEnum getReadonlyTimeLimitType() {
+  public TimePeriodType getReadonlyTimeLimitType() {
     return readonlyTimeLimitType;
   }
 
 
   @JsonProperty(JSON_PROPERTY_READONLY_TIME_LIMIT_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReadonlyTimeLimitType(ReadonlyTimeLimitTypeEnum readonlyTimeLimitType) {
+  public void setReadonlyTimeLimitType(TimePeriodType readonlyTimeLimitType) {
     this.readonlyTimeLimitType = readonlyTimeLimitType;
   }
 
@@ -393,8 +344,8 @@ public class SubscriptionPlanVM {
 
 
   public SubscriptionPlanVM templatesSpaceLimit(Long templatesSpaceLimit) {
+    this.templatesSpaceLimit = JsonNullable.<Long>of(templatesSpaceLimit);
     
-    this.templatesSpaceLimit = templatesSpaceLimit;
     return this;
   }
 
@@ -404,24 +355,32 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TEMPLATES_SPACE_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Long getTemplatesSpaceLimit() {
-    return templatesSpaceLimit;
+        return templatesSpaceLimit.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_TEMPLATES_SPACE_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTemplatesSpaceLimit(Long templatesSpaceLimit) {
+
+  public JsonNullable<Long> getTemplatesSpaceLimit_JsonNullable() {
+    return templatesSpaceLimit;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TEMPLATES_SPACE_LIMIT)
+  public void setTemplatesSpaceLimit_JsonNullable(JsonNullable<Long> templatesSpaceLimit) {
     this.templatesSpaceLimit = templatesSpaceLimit;
+  }
+
+  public void setTemplatesSpaceLimit(Long templatesSpaceLimit) {
+    this.templatesSpaceLimit = JsonNullable.<Long>of(templatesSpaceLimit);
   }
 
 
   public SubscriptionPlanVM reportsSpaceLimit(Long reportsSpaceLimit) {
+    this.reportsSpaceLimit = JsonNullable.<Long>of(reportsSpaceLimit);
     
-    this.reportsSpaceLimit = reportsSpaceLimit;
     return this;
   }
 
@@ -431,24 +390,32 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REPORTS_SPACE_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Long getReportsSpaceLimit() {
-    return reportsSpaceLimit;
+        return reportsSpaceLimit.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_REPORTS_SPACE_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReportsSpaceLimit(Long reportsSpaceLimit) {
+
+  public JsonNullable<Long> getReportsSpaceLimit_JsonNullable() {
+    return reportsSpaceLimit;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REPORTS_SPACE_LIMIT)
+  public void setReportsSpaceLimit_JsonNullable(JsonNullable<Long> reportsSpaceLimit) {
     this.reportsSpaceLimit = reportsSpaceLimit;
+  }
+
+  public void setReportsSpaceLimit(Long reportsSpaceLimit) {
+    this.reportsSpaceLimit = JsonNullable.<Long>of(reportsSpaceLimit);
   }
 
 
   public SubscriptionPlanVM exportsSpaceLimit(Long exportsSpaceLimit) {
+    this.exportsSpaceLimit = JsonNullable.<Long>of(exportsSpaceLimit);
     
-    this.exportsSpaceLimit = exportsSpaceLimit;
     return this;
   }
 
@@ -458,24 +425,32 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_EXPORTS_SPACE_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Long getExportsSpaceLimit() {
-    return exportsSpaceLimit;
+        return exportsSpaceLimit.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_EXPORTS_SPACE_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExportsSpaceLimit(Long exportsSpaceLimit) {
+
+  public JsonNullable<Long> getExportsSpaceLimit_JsonNullable() {
+    return exportsSpaceLimit;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXPORTS_SPACE_LIMIT)
+  public void setExportsSpaceLimit_JsonNullable(JsonNullable<Long> exportsSpaceLimit) {
     this.exportsSpaceLimit = exportsSpaceLimit;
+  }
+
+  public void setExportsSpaceLimit(Long exportsSpaceLimit) {
+    this.exportsSpaceLimit = JsonNullable.<Long>of(exportsSpaceLimit);
   }
 
 
   public SubscriptionPlanVM fileUploadSizeLimit(Long fileUploadSizeLimit) {
+    this.fileUploadSizeLimit = JsonNullable.<Long>of(fileUploadSizeLimit);
     
-    this.fileUploadSizeLimit = fileUploadSizeLimit;
     return this;
   }
 
@@ -485,24 +460,32 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FILE_UPLOAD_SIZE_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Long getFileUploadSizeLimit() {
-    return fileUploadSizeLimit;
+        return fileUploadSizeLimit.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_FILE_UPLOAD_SIZE_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFileUploadSizeLimit(Long fileUploadSizeLimit) {
+
+  public JsonNullable<Long> getFileUploadSizeLimit_JsonNullable() {
+    return fileUploadSizeLimit;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FILE_UPLOAD_SIZE_LIMIT)
+  public void setFileUploadSizeLimit_JsonNullable(JsonNullable<Long> fileUploadSizeLimit) {
     this.fileUploadSizeLimit = fileUploadSizeLimit;
+  }
+
+  public void setFileUploadSizeLimit(Long fileUploadSizeLimit) {
+    this.fileUploadSizeLimit = JsonNullable.<Long>of(fileUploadSizeLimit);
   }
 
 
   public SubscriptionPlanVM dataSourceLimit(Integer dataSourceLimit) {
+    this.dataSourceLimit = JsonNullable.<Integer>of(dataSourceLimit);
     
-    this.dataSourceLimit = dataSourceLimit;
     return this;
   }
 
@@ -512,24 +495,32 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DATA_SOURCE_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Integer getDataSourceLimit() {
-    return dataSourceLimit;
+        return dataSourceLimit.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_DATA_SOURCE_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDataSourceLimit(Integer dataSourceLimit) {
+
+  public JsonNullable<Integer> getDataSourceLimit_JsonNullable() {
+    return dataSourceLimit;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DATA_SOURCE_LIMIT)
+  public void setDataSourceLimit_JsonNullable(JsonNullable<Integer> dataSourceLimit) {
     this.dataSourceLimit = dataSourceLimit;
+  }
+
+  public void setDataSourceLimit(Integer dataSourceLimit) {
+    this.dataSourceLimit = JsonNullable.<Integer>of(dataSourceLimit);
   }
 
 
   public SubscriptionPlanVM maxUsersCount(Integer maxUsersCount) {
+    this.maxUsersCount = JsonNullable.<Integer>of(maxUsersCount);
     
-    this.maxUsersCount = maxUsersCount;
     return this;
   }
 
@@ -539,24 +530,32 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_MAX_USERS_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Integer getMaxUsersCount() {
-    return maxUsersCount;
+        return maxUsersCount.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_MAX_USERS_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaxUsersCount(Integer maxUsersCount) {
+
+  public JsonNullable<Integer> getMaxUsersCount_JsonNullable() {
+    return maxUsersCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MAX_USERS_COUNT)
+  public void setMaxUsersCount_JsonNullable(JsonNullable<Integer> maxUsersCount) {
     this.maxUsersCount = maxUsersCount;
+  }
+
+  public void setMaxUsersCount(Integer maxUsersCount) {
+    this.maxUsersCount = JsonNullable.<Integer>of(maxUsersCount);
   }
 
 
   public SubscriptionPlanVM hasSpaceOverdraft(Boolean hasSpaceOverdraft) {
+    this.hasSpaceOverdraft = JsonNullable.<Boolean>of(hasSpaceOverdraft);
     
-    this.hasSpaceOverdraft = hasSpaceOverdraft;
     return this;
   }
 
@@ -566,24 +565,32 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_HAS_SPACE_OVERDRAFT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Boolean getHasSpaceOverdraft() {
-    return hasSpaceOverdraft;
+        return hasSpaceOverdraft.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_HAS_SPACE_OVERDRAFT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHasSpaceOverdraft(Boolean hasSpaceOverdraft) {
+
+  public JsonNullable<Boolean> getHasSpaceOverdraft_JsonNullable() {
+    return hasSpaceOverdraft;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HAS_SPACE_OVERDRAFT)
+  public void setHasSpaceOverdraft_JsonNullable(JsonNullable<Boolean> hasSpaceOverdraft) {
     this.hasSpaceOverdraft = hasSpaceOverdraft;
+  }
+
+  public void setHasSpaceOverdraft(Boolean hasSpaceOverdraft) {
+    this.hasSpaceOverdraft = JsonNullable.<Boolean>of(hasSpaceOverdraft);
   }
 
 
   public SubscriptionPlanVM groupLimit(Integer groupLimit) {
+    this.groupLimit = JsonNullable.<Integer>of(groupLimit);
     
-    this.groupLimit = groupLimit;
     return this;
   }
 
@@ -593,24 +600,32 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_GROUP_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Integer getGroupLimit() {
-    return groupLimit;
+        return groupLimit.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_GROUP_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGroupLimit(Integer groupLimit) {
+
+  public JsonNullable<Integer> getGroupLimit_JsonNullable() {
+    return groupLimit;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GROUP_LIMIT)
+  public void setGroupLimit_JsonNullable(JsonNullable<Integer> groupLimit) {
     this.groupLimit = groupLimit;
+  }
+
+  public void setGroupLimit(Integer groupLimit) {
+    this.groupLimit = JsonNullable.<Integer>of(groupLimit);
   }
 
 
   public SubscriptionPlanVM onlineDesigner(Boolean onlineDesigner) {
+    this.onlineDesigner = JsonNullable.<Boolean>of(onlineDesigner);
     
-    this.onlineDesigner = onlineDesigner;
     return this;
   }
 
@@ -620,24 +635,32 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ONLINE_DESIGNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Boolean getOnlineDesigner() {
-    return onlineDesigner;
+        return onlineDesigner.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ONLINE_DESIGNER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOnlineDesigner(Boolean onlineDesigner) {
+
+  public JsonNullable<Boolean> getOnlineDesigner_JsonNullable() {
+    return onlineDesigner;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ONLINE_DESIGNER)
+  public void setOnlineDesigner_JsonNullable(JsonNullable<Boolean> onlineDesigner) {
     this.onlineDesigner = onlineDesigner;
+  }
+
+  public void setOnlineDesigner(Boolean onlineDesigner) {
+    this.onlineDesigner = JsonNullable.<Boolean>of(onlineDesigner);
   }
 
 
   public SubscriptionPlanVM isDemo(Boolean isDemo) {
+    this.isDemo = JsonNullable.<Boolean>of(isDemo);
     
-    this.isDemo = isDemo;
     return this;
   }
 
@@ -647,24 +670,32 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_IS_DEMO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Boolean getIsDemo() {
-    return isDemo;
+        return isDemo.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_IS_DEMO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsDemo(Boolean isDemo) {
+
+  public JsonNullable<Boolean> getIsDemo_JsonNullable() {
+    return isDemo;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IS_DEMO)
+  public void setIsDemo_JsonNullable(JsonNullable<Boolean> isDemo) {
     this.isDemo = isDemo;
+  }
+
+  public void setIsDemo(Boolean isDemo) {
+    this.isDemo = JsonNullable.<Boolean>of(isDemo);
   }
 
 
   public SubscriptionPlanVM urlToBuy(String urlToBuy) {
+    this.urlToBuy = JsonNullable.<String>of(urlToBuy);
     
-    this.urlToBuy = urlToBuy;
     return this;
   }
 
@@ -674,18 +705,26 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_URL_TO_BUY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getUrlToBuy() {
-    return urlToBuy;
+        return urlToBuy.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_URL_TO_BUY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUrlToBuy(String urlToBuy) {
+
+  public JsonNullable<String> getUrlToBuy_JsonNullable() {
+    return urlToBuy;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_URL_TO_BUY)
+  public void setUrlToBuy_JsonNullable(JsonNullable<String> urlToBuy) {
     this.urlToBuy = urlToBuy;
+  }
+
+  public void setUrlToBuy(String urlToBuy) {
+    this.urlToBuy = JsonNullable.<String>of(urlToBuy);
   }
 
 
@@ -743,6 +782,33 @@ public class SubscriptionPlanVM {
   }
 
 
+  public SubscriptionPlanVM tasks(TaskSettingsVM tasks) {
+    
+    this.tasks = tasks;
+    return this;
+  }
+
+   /**
+   * Get tasks
+   * @return tasks
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TASKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TaskSettingsVM getTasks() {
+    return tasks;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TASKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTasks(TaskSettingsVM tasks) {
+    this.tasks = tasks;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -771,12 +837,13 @@ public class SubscriptionPlanVM {
         Objects.equals(this.isDemo, subscriptionPlanVM.isDemo) &&
         Objects.equals(this.urlToBuy, subscriptionPlanVM.urlToBuy) &&
         Objects.equals(this.unlimitedPage, subscriptionPlanVM.unlimitedPage) &&
-        Objects.equals(this.pageLimit, subscriptionPlanVM.pageLimit);
+        Objects.equals(this.pageLimit, subscriptionPlanVM.pageLimit) &&
+        Objects.equals(this.tasks, subscriptionPlanVM.tasks);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, isActive, displayName, timePeriodType, timePeriod, readonlyTimeLimitType, readonlyTimeLimit, templatesSpaceLimit, reportsSpaceLimit, exportsSpaceLimit, fileUploadSizeLimit, dataSourceLimit, maxUsersCount, hasSpaceOverdraft, groupLimit, onlineDesigner, isDemo, urlToBuy, unlimitedPage, pageLimit);
+    return Objects.hash(id, isActive, displayName, timePeriodType, timePeriod, readonlyTimeLimitType, readonlyTimeLimit, templatesSpaceLimit, reportsSpaceLimit, exportsSpaceLimit, fileUploadSizeLimit, dataSourceLimit, maxUsersCount, hasSpaceOverdraft, groupLimit, onlineDesigner, isDemo, urlToBuy, unlimitedPage, pageLimit, tasks);
   }
 
   @Override
@@ -803,6 +870,7 @@ public class SubscriptionPlanVM {
     sb.append("    urlToBuy: ").append(toIndentedString(urlToBuy)).append("\n");
     sb.append("    unlimitedPage: ").append(toIndentedString(unlimitedPage)).append("\n");
     sb.append("    pageLimit: ").append(toIndentedString(pageLimit)).append("\n");
+    sb.append("    tasks: ").append(toIndentedString(tasks)).append("\n");
     sb.append("}");
     return sb.toString();
   }

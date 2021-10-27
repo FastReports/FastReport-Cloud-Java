@@ -46,8 +46,8 @@ public class GroupUsersApi {
     * Add user to the group by identifier
     * <p><b>200</b> - Succesfully retured
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Group with this identifier is not found
     * <p><b>500</b> - Exception thrown
     * @param id Identifier of group
@@ -62,8 +62,8 @@ public class GroupUsersApi {
     * Add user to the group by identifier
     * <p><b>200</b> - Succesfully retured
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Group with this identifier is not found
     * <p><b>500</b> - Exception thrown
     * @param id Identifier of group
@@ -333,8 +333,8 @@ public class GroupUsersApi {
     * Remove user from the group by identifier
     * <p><b>204</b> - Succesfully removed
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Group with this identifier is not found
     * <p><b>500</b> - Exception thrown
     * @param id Identifier of group
@@ -349,8 +349,8 @@ public class GroupUsersApi {
     * Remove user from the group by identifier
     * <p><b>204</b> - Succesfully removed
     * <p><b>400</b> - The reqeust is wrong
-    * <p><b>402</b> - subscription is outdated
     * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - Group with this identifier is not found
     * <p><b>500</b> - Exception thrown
     * @param id Identifier of group

@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.DataSourceAdministrate;
 import cloud.fastreport.model.DataSourcePermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

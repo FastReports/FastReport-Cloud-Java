@@ -16,6 +16,7 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.DataSourcePermission;
+import cloud.fastreport.model.DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -26,6 +27,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -42,13 +46,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DataSourcePermissions {
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
-  private String ownerId;
+  private JsonNullable<String> ownerId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_OWNER = "owner";
   private DataSourcePermission owner;
 
   public static final String JSON_PROPERTY_GROUPS = "groups";
-  private Map<String, DataSourcePermission> groups = null;
+  private JsonNullable<Map<String, DataSourcePermission>> groups = JsonNullable.<Map<String, DataSourcePermission>>undefined();
 
   public static final String JSON_PROPERTY_OTHER = "other";
   private DataSourcePermission other;
@@ -58,8 +62,8 @@ public class DataSourcePermissions {
 
 
   public DataSourcePermissions ownerId(String ownerId) {
+    this.ownerId = JsonNullable.<String>of(ownerId);
     
-    this.ownerId = ownerId;
     return this;
   }
 
@@ -69,18 +73,26 @@ public class DataSourcePermissions {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_OWNER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getOwnerId() {
-    return ownerId;
+        return ownerId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_OWNER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOwnerId(String ownerId) {
+
+  public JsonNullable<String> getOwnerId_JsonNullable() {
+    return ownerId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OWNER_ID)
+  public void setOwnerId_JsonNullable(JsonNullable<String> ownerId) {
     this.ownerId = ownerId;
+  }
+
+  public void setOwnerId(String ownerId) {
+    this.ownerId = JsonNullable.<String>of(ownerId);
   }
 
 
@@ -112,16 +124,20 @@ public class DataSourcePermissions {
 
 
   public DataSourcePermissions groups(Map<String, DataSourcePermission> groups) {
+    this.groups = JsonNullable.<Map<String, DataSourcePermission>>of(groups);
     
-    this.groups = groups;
     return this;
   }
 
   public DataSourcePermissions putGroupsItem(String key, DataSourcePermission groupsItem) {
-    if (this.groups == null) {
-      this.groups = new HashMap<>();
+    if (this.groups == null || !this.groups.isPresent()) {
+      this.groups = JsonNullable.<Map<String, DataSourcePermission>>of(new HashMap<>());
     }
-    this.groups.put(key, groupsItem);
+    try {
+      this.groups.get().put(key, groupsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -131,18 +147,26 @@ public class DataSourcePermissions {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Map<String, DataSourcePermission> getGroups() {
-    return groups;
+        return groups.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_GROUPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGroups(Map<String, DataSourcePermission> groups) {
+
+  public JsonNullable<Map<String, DataSourcePermission>> getGroups_JsonNullable() {
+    return groups;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GROUPS)
+  public void setGroups_JsonNullable(JsonNullable<Map<String, DataSourcePermission>> groups) {
     this.groups = groups;
+  }
+
+  public void setGroups(Map<String, DataSourcePermission> groups) {
+    this.groups = JsonNullable.<Map<String, DataSourcePermission>>of(groups);
   }
 
 

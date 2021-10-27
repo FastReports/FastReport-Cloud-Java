@@ -25,6 +25,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -40,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionPlansVM {
   public static final String JSON_PROPERTY_SUBSCRIPTION_PLANS = "subscriptionPlans";
-  private List<SubscriptionPlanVM> subscriptionPlans = null;
+  private JsonNullable<List<SubscriptionPlanVM>> subscriptionPlans = JsonNullable.<List<SubscriptionPlanVM>>undefined();
 
   public static final String JSON_PROPERTY_COUNT = "count";
   private Long count;
@@ -53,16 +56,20 @@ public class SubscriptionPlansVM {
 
 
   public SubscriptionPlansVM subscriptionPlans(List<SubscriptionPlanVM> subscriptionPlans) {
+    this.subscriptionPlans = JsonNullable.<List<SubscriptionPlanVM>>of(subscriptionPlans);
     
-    this.subscriptionPlans = subscriptionPlans;
     return this;
   }
 
   public SubscriptionPlansVM addSubscriptionPlansItem(SubscriptionPlanVM subscriptionPlansItem) {
-    if (this.subscriptionPlans == null) {
-      this.subscriptionPlans = new ArrayList<>();
+    if (this.subscriptionPlans == null || !this.subscriptionPlans.isPresent()) {
+      this.subscriptionPlans = JsonNullable.<List<SubscriptionPlanVM>>of(new ArrayList<>());
     }
-    this.subscriptionPlans.add(subscriptionPlansItem);
+    try {
+      this.subscriptionPlans.get().add(subscriptionPlansItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -72,18 +79,26 @@ public class SubscriptionPlansVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_PLANS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<SubscriptionPlanVM> getSubscriptionPlans() {
-    return subscriptionPlans;
+        return subscriptionPlans.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_PLANS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubscriptionPlans(List<SubscriptionPlanVM> subscriptionPlans) {
+
+  public JsonNullable<List<SubscriptionPlanVM>> getSubscriptionPlans_JsonNullable() {
+    return subscriptionPlans;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_PLANS)
+  public void setSubscriptionPlans_JsonNullable(JsonNullable<List<SubscriptionPlanVM>> subscriptionPlans) {
     this.subscriptionPlans = subscriptionPlans;
+  }
+
+  public void setSubscriptionPlans(List<SubscriptionPlanVM> subscriptionPlans) {
+    this.subscriptionPlans = JsonNullable.<List<SubscriptionPlanVM>>of(subscriptionPlans);
   }
 
 

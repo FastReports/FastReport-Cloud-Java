@@ -15,6 +15,7 @@ package cloud.fastreport.client;
 
 import cloud.fastreport.model.DefaultPermissions;
 import cloud.fastreport.model.DefaultPermissionsVM;
+import cloud.fastreport.model.MyPermissionsVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.RenameSubscriptionVM;
 import cloud.fastreport.model.SubscriptionPermissionsVM;
@@ -53,6 +54,22 @@ public class SubscriptionsApiTest {
     public void subscriptionsGetDefaultPermissionsTest() throws IOException {
         String subscriptionId = null;
         DefaultPermissions response = api.subscriptionsGetDefaultPermissions(subscriptionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get user&#39;s permissions for a subscription by id
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void subscriptionsGetMyPermissionsTest() throws IOException {
+        String subId = null;
+        MyPermissionsVM response = api.subscriptionsGetMyPermissions(subId);
 
         // TODO: test validations
     }
@@ -134,8 +151,8 @@ public class SubscriptionsApiTest {
     @Test
     public void subscriptionsUpdateDefaultPermissionsTest() throws IOException {
         String subscriptionId = null;
-        UpdateDefaultPermissionsVM permissionsVM = null;
-        DefaultPermissionsVM response = api.subscriptionsUpdateDefaultPermissions(subscriptionId, permissionsVM);
+        UpdateDefaultPermissionsVM updateDefaultPermissionsVM = null;
+        DefaultPermissionsVM response = api.subscriptionsUpdateDefaultPermissions(subscriptionId, updateDefaultPermissionsVM);
 
         // TODO: test validations
     }
@@ -151,8 +168,8 @@ public class SubscriptionsApiTest {
     @Test
     public void subscriptionsUpdateLocaleTest() throws IOException {
         String subscriptionId = null;
-        UpdateSubscriptionLocaleVM updateModel = null;
-        SubscriptionVM response = api.subscriptionsUpdateLocale(subscriptionId, updateModel);
+        UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM = null;
+        SubscriptionVM response = api.subscriptionsUpdateLocale(subscriptionId, updateSubscriptionLocaleVM);
 
         // TODO: test validations
     }
@@ -168,8 +185,8 @@ public class SubscriptionsApiTest {
     @Test
     public void subscriptionsUpdatePermissionsTest() throws IOException {
         String id = null;
-        UpdateSubscriptionPermissionsVM permissionsVM = null;
-        api.subscriptionsUpdatePermissions(id, permissionsVM);
+        UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM = null;
+        api.subscriptionsUpdatePermissions(id, updateSubscriptionPermissionsVM);
 
         // TODO: test validations
     }

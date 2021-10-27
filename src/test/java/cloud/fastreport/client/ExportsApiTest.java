@@ -21,6 +21,7 @@ import cloud.fastreport.model.ExportsVM;
 import cloud.fastreport.model.FileIconVM;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileRenameVM;
+import cloud.fastreport.model.FileSorting;
 import cloud.fastreport.model.FileTagsUpdateVM;
 import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.FilesVM;
@@ -76,7 +77,10 @@ public class ExportsApiTest {
         String id = null;
         Integer skip = null;
         Integer take = null;
-        FilesVM response = api.exportFolderAndFileGetFoldersAndFiles(id, skip, take);
+        FileSorting orderBy = null;
+        Boolean desc = null;
+        String searchPattern = null;
+        FilesVM response = api.exportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern);
 
         // TODO: test validations
     }
@@ -200,7 +204,7 @@ public class ExportsApiTest {
     /**
      * Get user&#39;s root folder (without parents)
      *
-     * &amp;gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
+     * &gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
      *
      * @throws IOException
      *          if the Api call fails
@@ -241,8 +245,8 @@ public class ExportsApiTest {
     @Test
     public void exportFoldersPostFolderTest() throws IOException {
         String id = null;
-        ExportFolderCreateVM folderVm = null;
-        FileVM response = api.exportFoldersPostFolder(id, folderVm);
+        ExportFolderCreateVM exportFolderCreateVM = null;
+        FileVM response = api.exportFoldersPostFolder(id, exportFolderCreateVM);
 
         // TODO: test validations
     }
@@ -258,8 +262,8 @@ public class ExportsApiTest {
     @Test
     public void exportFoldersRenameFolderTest() throws IOException {
         String id = null;
-        FolderRenameVM nameModel = null;
-        FileVM response = api.exportFoldersRenameFolder(id, nameModel);
+        FolderRenameVM folderRenameVM = null;
+        FileVM response = api.exportFoldersRenameFolder(id, folderRenameVM);
 
         // TODO: test validations
     }
@@ -275,8 +279,8 @@ public class ExportsApiTest {
     @Test
     public void exportFoldersUpdateIconTest() throws IOException {
         String id = null;
-        FolderIconVM iconModel = null;
-        FileVM response = api.exportFoldersUpdateIcon(id, iconModel);
+        FolderIconVM folderIconVM = null;
+        FileVM response = api.exportFoldersUpdateIcon(id, folderIconVM);
 
         // TODO: test validations
     }
@@ -292,8 +296,8 @@ public class ExportsApiTest {
     @Test
     public void exportFoldersUpdatePermissionsTest() throws IOException {
         String id = null;
-        UpdateFilePermissionsVM permissionsVM = null;
-        api.exportFoldersUpdatePermissions(id, permissionsVM);
+        UpdateFilePermissionsVM updateFilePermissionsVM = null;
+        api.exportFoldersUpdatePermissions(id, updateFilePermissionsVM);
 
         // TODO: test validations
     }
@@ -309,8 +313,8 @@ public class ExportsApiTest {
     @Test
     public void exportFoldersUpdateTagsTest() throws IOException {
         String id = null;
-        FolderTagsUpdateVM tagsModel = null;
-        FileVM response = api.exportFoldersUpdateTags(id, tagsModel);
+        FolderTagsUpdateVM folderTagsUpdateVM = null;
+        FileVM response = api.exportFoldersUpdateTags(id, folderTagsUpdateVM);
 
         // TODO: test validations
     }
@@ -381,9 +385,9 @@ public class ExportsApiTest {
     }
     
     /**
-     * Get all files from specified folder
+     * Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
      *
-     * User with Get Entity permission can access this method.
+     * 
      *
      * @throws IOException
      *          if the Api call fails
@@ -442,8 +446,8 @@ public class ExportsApiTest {
     @Test
     public void exportsRenameFileTest() throws IOException {
         String id = null;
-        FileRenameVM nameModel = null;
-        ExportVM response = api.exportsRenameFile(id, nameModel);
+        FileRenameVM fileRenameVM = null;
+        ExportVM response = api.exportsRenameFile(id, fileRenameVM);
 
         // TODO: test validations
     }
@@ -459,8 +463,8 @@ public class ExportsApiTest {
     @Test
     public void exportsUpdateIconTest() throws IOException {
         String id = null;
-        FileIconVM iconModel = null;
-        ExportVM response = api.exportsUpdateIcon(id, iconModel);
+        FileIconVM fileIconVM = null;
+        ExportVM response = api.exportsUpdateIcon(id, fileIconVM);
 
         // TODO: test validations
     }
@@ -476,8 +480,8 @@ public class ExportsApiTest {
     @Test
     public void exportsUpdatePermissionsTest() throws IOException {
         String id = null;
-        UpdateFilePermissionsVM permissionsVM = null;
-        api.exportsUpdatePermissions(id, permissionsVM);
+        UpdateFilePermissionsVM updateFilePermissionsVM = null;
+        api.exportsUpdatePermissions(id, updateFilePermissionsVM);
 
         // TODO: test validations
     }
@@ -493,8 +497,8 @@ public class ExportsApiTest {
     @Test
     public void exportsUpdateTagsTest() throws IOException {
         String id = null;
-        FileTagsUpdateVM tagsModel = null;
-        ExportVM response = api.exportsUpdateTags(id, tagsModel);
+        FileTagsUpdateVM fileTagsUpdateVM = null;
+        ExportVM response = api.exportsUpdateTags(id, fileTagsUpdateVM);
 
         // TODO: test validations
     }

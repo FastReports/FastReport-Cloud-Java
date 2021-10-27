@@ -75,8 +75,8 @@ public class UserProfileApiTest {
      */
     @Test
     public void userProfileUpdateMyProfileTest() throws IOException {
-        UpdateUserProfileVM model = null;
-        api.userProfileUpdateMyProfile(model);
+        UpdateUserProfileVM updateUserProfileVM = null;
+        api.userProfileUpdateMyProfile(updateUserProfileVM);
 
         // TODO: test validations
     }

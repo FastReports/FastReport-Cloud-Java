@@ -15,6 +15,13 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.DataSourceAdministrate;
+import cloud.fastreport.model.DataSourceCreate;
+import cloud.fastreport.model.DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission;
+import cloud.fastreport.model.DataSourceDelete;
+import cloud.fastreport.model.DataSourceExecute;
+import cloud.fastreport.model.DataSourceGet;
+import cloud.fastreport.model.DataSourceUpdate;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -38,258 +45,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonTypeName("DataSourcePermission")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DataSourcePermission {
-  /**
-   * Gets or Sets create
-   */
-  public enum CreateEnum {
-    NUMBER_0(0),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    CreateEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static CreateEnum fromValue(Integer value) {
-      for (CreateEnum b : CreateEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_CREATE = "create";
-  private CreateEnum create;
-
-  /**
-   * Gets or Sets delete
-   */
-  public enum DeleteEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    DeleteEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static DeleteEnum fromValue(Integer value) {
-      for (DeleteEnum b : DeleteEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private DataSourceCreate create;
 
   public static final String JSON_PROPERTY_DELETE = "delete";
-  private DeleteEnum delete;
-
-  /**
-   * Gets or Sets execute
-   */
-  public enum ExecuteEnum {
-    NUMBER_0(0),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    ExecuteEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ExecuteEnum fromValue(Integer value) {
-      for (ExecuteEnum b : ExecuteEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private DataSourceDelete delete;
 
   public static final String JSON_PROPERTY_EXECUTE = "execute";
-  private ExecuteEnum execute;
-
-  /**
-   * Gets or Sets get
-   */
-  public enum GetEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    GetEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static GetEnum fromValue(Integer value) {
-      for (GetEnum b : GetEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private DataSourceExecute execute;
 
   public static final String JSON_PROPERTY_GET = "get";
-  private GetEnum get;
-
-  /**
-   * Gets or Sets update
-   */
-  public enum UpdateEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_4(4),
-    
-    NUMBER_8(8),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    UpdateEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static UpdateEnum fromValue(Integer value) {
-      for (UpdateEnum b : UpdateEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private DataSourceGet get;
 
   public static final String JSON_PROPERTY_UPDATE = "update";
-  private UpdateEnum update;
-
-  /**
-   * Gets or Sets administrate
-   */
-  public enum AdministrateEnum {
-    NUMBER_0(0),
-    
-    NUMBER_1(1),
-    
-    NUMBER_2(2),
-    
-    NUMBER_4(4),
-    
-    NUMBER_8(8),
-    
-    NUMBER_MINUS_1(-1);
-
-    private Integer value;
-
-    AdministrateEnum(Integer value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Integer getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static AdministrateEnum fromValue(Integer value) {
-      for (AdministrateEnum b : AdministrateEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private DataSourceUpdate update;
 
   public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
-  private AdministrateEnum administrate;
+  private DataSourceAdministrate administrate;
 
 
-  public DataSourcePermission create(CreateEnum create) {
+  public DataSourcePermission create(DataSourceCreate create) {
     
     this.create = create;
     return this;
@@ -304,19 +79,19 @@ public class DataSourcePermission {
   @JsonProperty(JSON_PROPERTY_CREATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public CreateEnum getCreate() {
+  public DataSourceCreate getCreate() {
     return create;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CREATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreate(CreateEnum create) {
+  public void setCreate(DataSourceCreate create) {
     this.create = create;
   }
 
 
-  public DataSourcePermission delete(DeleteEnum delete) {
+  public DataSourcePermission delete(DataSourceDelete delete) {
     
     this.delete = delete;
     return this;
@@ -331,19 +106,19 @@ public class DataSourcePermission {
   @JsonProperty(JSON_PROPERTY_DELETE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DeleteEnum getDelete() {
+  public DataSourceDelete getDelete() {
     return delete;
   }
 
 
   @JsonProperty(JSON_PROPERTY_DELETE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDelete(DeleteEnum delete) {
+  public void setDelete(DataSourceDelete delete) {
     this.delete = delete;
   }
 
 
-  public DataSourcePermission execute(ExecuteEnum execute) {
+  public DataSourcePermission execute(DataSourceExecute execute) {
     
     this.execute = execute;
     return this;
@@ -358,19 +133,19 @@ public class DataSourcePermission {
   @JsonProperty(JSON_PROPERTY_EXECUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ExecuteEnum getExecute() {
+  public DataSourceExecute getExecute() {
     return execute;
   }
 
 
   @JsonProperty(JSON_PROPERTY_EXECUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExecute(ExecuteEnum execute) {
+  public void setExecute(DataSourceExecute execute) {
     this.execute = execute;
   }
 
 
-  public DataSourcePermission get(GetEnum get) {
+  public DataSourcePermission get(DataSourceGet get) {
     
     this.get = get;
     return this;
@@ -385,19 +160,19 @@ public class DataSourcePermission {
   @JsonProperty(JSON_PROPERTY_GET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public GetEnum getGet() {
+  public DataSourceGet getGet() {
     return get;
   }
 
 
   @JsonProperty(JSON_PROPERTY_GET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGet(GetEnum get) {
+  public void setGet(DataSourceGet get) {
     this.get = get;
   }
 
 
-  public DataSourcePermission update(UpdateEnum update) {
+  public DataSourcePermission update(DataSourceUpdate update) {
     
     this.update = update;
     return this;
@@ -412,19 +187,19 @@ public class DataSourcePermission {
   @JsonProperty(JSON_PROPERTY_UPDATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public UpdateEnum getUpdate() {
+  public DataSourceUpdate getUpdate() {
     return update;
   }
 
 
   @JsonProperty(JSON_PROPERTY_UPDATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUpdate(UpdateEnum update) {
+  public void setUpdate(DataSourceUpdate update) {
     this.update = update;
   }
 
 
-  public DataSourcePermission administrate(AdministrateEnum administrate) {
+  public DataSourcePermission administrate(DataSourceAdministrate administrate) {
     
     this.administrate = administrate;
     return this;
@@ -439,14 +214,14 @@ public class DataSourcePermission {
   @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public AdministrateEnum getAdministrate() {
+  public DataSourceAdministrate getAdministrate() {
     return administrate;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdministrate(AdministrateEnum administrate) {
+  public void setAdministrate(DataSourceAdministrate administrate) {
     this.administrate = administrate;
   }
 

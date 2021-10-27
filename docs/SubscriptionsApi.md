@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**subscriptionsGetDefaultPermissions**](SubscriptionsApi.md#subscriptionsGetDefaultPermissions) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions | Get subscription&#39;s default permissions for new entities
+[**subscriptionsGetMyPermissions**](SubscriptionsApi.md#subscriptionsGetMyPermissions) | **GET** /api/manage/v1/Subscriptions/{subId}/mypermissions | Get user&#39;s permissions for a subscription by id
 [**subscriptionsGetPermissions**](SubscriptionsApi.md#subscriptionsGetPermissions) | **GET** /api/manage/v1/Subscriptions/{id}/permissions | Get permissions for a subscription by id
 [**subscriptionsGetSubscription**](SubscriptionsApi.md#subscriptionsGetSubscription) | **GET** /api/manage/v1/Subscriptions/{id} | Returns the subscription by id
 [**subscriptionsGetSubscriptions**](SubscriptionsApi.md#subscriptionsGetSubscriptions) | **GET** /api/manage/v1/Subscriptions | Returns a list of all subscriptions of current user
@@ -42,11 +43,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | id
@@ -82,7 +81,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -93,6 +92,80 @@ Name | Type | Description  | Notes
 | **402** | subscription is outdated |  -  |
 | **403** | Not enough permissions |  -  |
 | **404** | there is no subscription with such id |  -  |
+
+
+## subscriptionsGetMyPermissions
+
+> MyPermissionsVM subscriptionsGetMyPermissions(subId)
+
+Get user&#39;s permissions for a subscription by id
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.SubscriptionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
+
+        SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
+        String subId = "subId_example"; // String | subscription id
+        try {
+            MyPermissionsVM result = apiInstance.subscriptionsGetMyPermissions(subId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SubscriptionsApi#subscriptionsGetMyPermissions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subId** | **String**| subscription id |
+
+### Return type
+
+[**MyPermissionsVM**](MyPermissionsVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Succesfully returned |  -  |
 
 
 ## subscriptionsGetPermissions
@@ -122,11 +195,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
         String id = "id_example"; // String | 
@@ -162,7 +233,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -199,11 +270,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
         String id = "id_example"; // String | Identifier of subscription
@@ -239,7 +308,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -278,11 +347,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
         Integer skip = 0; // Integer | Variable for pagination, defautl value is 0
@@ -320,7 +387,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -357,11 +424,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | id
@@ -398,8 +463,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -414,7 +479,7 @@ Name | Type | Description  | Notes
 
 ## subscriptionsUpdateDefaultPermissions
 
-> DefaultPermissionsVM subscriptionsUpdateDefaultPermissions(subscriptionId, permissionsVM)
+> DefaultPermissionsVM subscriptionsUpdateDefaultPermissions(subscriptionId, updateDefaultPermissionsVM)
 
 Change subscription&#39;s default permissions for new entities
 
@@ -439,17 +504,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | id
-        UpdateDefaultPermissionsVM permissionsVM = new UpdateDefaultPermissionsVM(); // UpdateDefaultPermissionsVM | update default permissions VM
+        UpdateDefaultPermissionsVM updateDefaultPermissionsVM = new UpdateDefaultPermissionsVM(); // UpdateDefaultPermissionsVM | update default permissions VM
         try {
-            DefaultPermissionsVM result = apiInstance.subscriptionsUpdateDefaultPermissions(subscriptionId, permissionsVM);
+            DefaultPermissionsVM result = apiInstance.subscriptionsUpdateDefaultPermissions(subscriptionId, updateDefaultPermissionsVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SubscriptionsApi#subscriptionsUpdateDefaultPermissions");
@@ -468,7 +531,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subscriptionId** | **String**| id |
- **permissionsVM** | [**UpdateDefaultPermissionsVM**](UpdateDefaultPermissionsVM.md)| update default permissions VM |
+ **updateDefaultPermissionsVM** | [**UpdateDefaultPermissionsVM**](UpdateDefaultPermissionsVM.md)| update default permissions VM |
 
 ### Return type
 
@@ -480,8 +543,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -496,7 +559,7 @@ Name | Type | Description  | Notes
 
 ## subscriptionsUpdateLocale
 
-> SubscriptionVM subscriptionsUpdateLocale(subscriptionId, updateModel)
+> SubscriptionVM subscriptionsUpdateLocale(subscriptionId, updateSubscriptionLocaleVM)
 
 Update subscription&#39;s default locale
 
@@ -521,17 +584,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | id
-        UpdateSubscriptionLocaleVM updateModel = new UpdateSubscriptionLocaleVM(); // UpdateSubscriptionLocaleVM | update VM
+        UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM = new UpdateSubscriptionLocaleVM(); // UpdateSubscriptionLocaleVM | update VM
         try {
-            SubscriptionVM result = apiInstance.subscriptionsUpdateLocale(subscriptionId, updateModel);
+            SubscriptionVM result = apiInstance.subscriptionsUpdateLocale(subscriptionId, updateSubscriptionLocaleVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SubscriptionsApi#subscriptionsUpdateLocale");
@@ -550,7 +611,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subscriptionId** | **String**| id |
- **updateModel** | [**UpdateSubscriptionLocaleVM**](UpdateSubscriptionLocaleVM.md)| update VM |
+ **updateSubscriptionLocaleVM** | [**UpdateSubscriptionLocaleVM**](UpdateSubscriptionLocaleVM.md)| update VM |
 
 ### Return type
 
@@ -562,8 +623,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -578,7 +639,7 @@ Name | Type | Description  | Notes
 
 ## subscriptionsUpdatePermissions
 
-> subscriptionsUpdatePermissions(id, permissionsVM)
+> subscriptionsUpdatePermissions(id, updateSubscriptionPermissionsVM)
 
 Update permissions
 
@@ -603,17 +664,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
         String id = "id_example"; // String | 
-        UpdateSubscriptionPermissionsVM permissionsVM = new UpdateSubscriptionPermissionsVM(); // UpdateSubscriptionPermissionsVM | 
+        UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM = new UpdateSubscriptionPermissionsVM(); // UpdateSubscriptionPermissionsVM | 
         try {
-            apiInstance.subscriptionsUpdatePermissions(id, permissionsVM);
+            apiInstance.subscriptionsUpdatePermissions(id, updateSubscriptionPermissionsVM);
         } catch (ApiException e) {
             System.err.println("Exception when calling SubscriptionsApi#subscriptionsUpdatePermissions");
             System.err.println("Status code: " + e.getCode());
@@ -631,7 +690,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **permissionsVM** | [**UpdateSubscriptionPermissionsVM**](UpdateSubscriptionPermissionsVM.md)|  | [optional]
+ **updateSubscriptionPermissionsVM** | [**UpdateSubscriptionPermissionsVM**](UpdateSubscriptionPermissionsVM.md)|  | [optional]
 
 ### Return type
 
@@ -643,8 +702,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details

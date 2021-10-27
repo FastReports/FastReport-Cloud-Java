@@ -116,12 +116,12 @@ public class UserSettingsApi {
     * <p><b>200</b> - Succesfully updated
     * <p><b>400</b> - The reqeust is wrong
     * <p><b>403</b> - Forbidden
-    * @param model The model parameter
+    * @param updateUserSettingsVM The updateUserSettingsVM parameter
     * @return UserSettingsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public UserSettingsVM userSettingsUpdateMySettings(UpdateUserSettingsVM model) throws IOException {
-        HttpResponse response = userSettingsUpdateMySettingsForHttpResponse(model);
+    public UserSettingsVM userSettingsUpdateMySettings(UpdateUserSettingsVM updateUserSettingsVM) throws IOException {
+        HttpResponse response = userSettingsUpdateMySettingsForHttpResponse(updateUserSettingsVM);
         TypeReference<UserSettingsVM> typeRef = new TypeReference<UserSettingsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -135,37 +135,37 @@ public class UserSettingsApi {
     * @return UserSettingsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public UserSettingsVM userSettingsUpdateMySettings(UpdateUserSettingsVM model, Map<String, Object> params) throws IOException {
-        HttpResponse response = userSettingsUpdateMySettingsForHttpResponse(model, params);
+    public UserSettingsVM userSettingsUpdateMySettings(UpdateUserSettingsVM updateUserSettingsVM, Map<String, Object> params) throws IOException {
+        HttpResponse response = userSettingsUpdateMySettingsForHttpResponse(updateUserSettingsVM, params);
         TypeReference<UserSettingsVM> typeRef = new TypeReference<UserSettingsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse userSettingsUpdateMySettingsForHttpResponse(UpdateUserSettingsVM model) throws IOException {
+    public HttpResponse userSettingsUpdateMySettingsForHttpResponse(UpdateUserSettingsVM updateUserSettingsVM) throws IOException {
         
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/UserSettings");
 
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(model);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateUserSettingsVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-      public HttpResponse userSettingsUpdateMySettingsForHttpResponse(java.io.InputStream model, String mediaType) throws IOException {
+      public HttpResponse userSettingsUpdateMySettingsForHttpResponse(java.io.InputStream updateUserSettingsVM, String mediaType) throws IOException {
           
               UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/UserSettings");
 
               String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = model == null ?
+              HttpContent content = updateUserSettingsVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, model);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateUserSettingsVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
-    public HttpResponse userSettingsUpdateMySettingsForHttpResponse(UpdateUserSettingsVM model, Map<String, Object> params) throws IOException {
+    public HttpResponse userSettingsUpdateMySettingsForHttpResponse(UpdateUserSettingsVM updateUserSettingsVM, Map<String, Object> params) throws IOException {
         
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/UserSettings");
 
@@ -190,7 +190,7 @@ public class UserSettingsApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(model);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateUserSettingsVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 

@@ -34,7 +34,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>cloud.fastreport.sdk</groupId>
   <artifactId>fastreport-cloud-sdk</artifactId>
-  <version>2021.2.13</version>
+  <version>2021.3.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -44,7 +44,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2021.2.13"
+compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2021.3.0"
 ```
 
 ### Others
@@ -57,7 +57,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/fastreport-cloud-sdk-2021.2.13.jar`
+- `target/fastreport-cloud-sdk-2021.3.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -105,10 +105,11 @@ Class | Method | HTTP request | Description
 *ApiKeysApi* | [**apiKeysCreateApiKey**](docs/ApiKeysApi.md#apiKeysCreateApiKey) | **POST** /api/manage/v1/ApiKeys | Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
 *ApiKeysApi* | [**apiKeysDeleteApiKey**](docs/ApiKeysApi.md#apiKeysDeleteApiKey) | **DELETE** /api/manage/v1/ApiKeys | Delete an apikey
 *ApiKeysApi* | [**apiKeysGetApiKeys**](docs/ApiKeysApi.md#apiKeysGetApiKeys) | **GET** /api/manage/v1/ApiKeys | Returns list with all api keys of current user
+*ConfigurationApi* | [**configurationGet**](docs/ConfigurationApi.md#configurationGet) | **GET** /api/v1/Configuration | returns information about server configuration
 *DataSourcesApi* | [**dataSourcesCreateDataSource**](docs/DataSourcesApi.md#dataSourcesCreateDataSource) | **POST** /api/data/v1/DataSources | Create new data source
 *DataSourcesApi* | [**dataSourcesDeleteDataSource**](docs/DataSourcesApi.md#dataSourcesDeleteDataSource) | **DELETE** /api/data/v1/DataSources/{id} | Delete data source by id
 *DataSourcesApi* | [**dataSourcesFetchData**](docs/DataSourcesApi.md#dataSourcesFetchData) | **GET** /api/data/v1/DataSources/{id}/fetch | This should connect to a database and set data structure
-*DataSourcesApi* | [**dataSourcesGetAvailableDataSources**](docs/DataSourcesApi.md#dataSourcesGetAvailableDataSources) | **GET** /api/data/v1/DataSources | Returns all of the data sources, that current user have permission for in a subscription  if subscription id is null, returns all data sources, that current user have permission for
+*DataSourcesApi* | [**dataSourcesGetAvailableDataSources**](docs/DataSourcesApi.md#dataSourcesGetAvailableDataSources) | **GET** /api/data/v1/DataSources | Returns all of the data sources, that current user have permission for in a subscription &lt;br /&gt;  The method will return minimal infomration about the datasources: &lt;br /&gt;  id, name, editedTime, status.
 *DataSourcesApi* | [**dataSourcesGetDataSource**](docs/DataSourcesApi.md#dataSourcesGetDataSource) | **GET** /api/data/v1/DataSources/{id} | Get data source by id
 *DataSourcesApi* | [**dataSourcesGetPermissions**](docs/DataSourcesApi.md#dataSourcesGetPermissions) | **GET** /api/data/v1/DataSources/{id}/permissions | Get all Data source permissions
 *DataSourcesApi* | [**dataSourcesRenameDataSource**](docs/DataSourcesApi.md#dataSourcesRenameDataSource) | **PUT** /api/data/v1/DataSources/{id}/rename | Rename data source by id
@@ -143,7 +144,7 @@ Class | Method | HTTP request | Description
 *ExportsApi* | [**exportsDeleteFile**](docs/ExportsApi.md#exportsDeleteFile) | **DELETE** /api/rp/v1/Exports/File/{id} | Delete specified file
 *ExportsApi* | [**exportsGetFile**](docs/ExportsApi.md#exportsGetFile) | **GET** /api/rp/v1/Exports/File/{id} | Get specified file
 *ExportsApi* | [**exportsGetFilesCount**](docs/ExportsApi.md#exportsGetFilesCount) | **GET** /api/rp/v1/Exports/Folder/{id}/CountFiles | Get count of files what contains in a specified folder
-*ExportsApi* | [**exportsGetFilesList**](docs/ExportsApi.md#exportsGetFilesList) | **GET** /api/rp/v1/Exports/Folder/{id}/ListFiles | Get all files from specified folder
+*ExportsApi* | [**exportsGetFilesList**](docs/ExportsApi.md#exportsGetFilesList) | **GET** /api/rp/v1/Exports/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
 *ExportsApi* | [**exportsGetPermissions**](docs/ExportsApi.md#exportsGetPermissions) | **GET** /api/rp/v1/Exports/File/{id}/permissions | Get all file permissions
 *ExportsApi* | [**exportsMoveFile**](docs/ExportsApi.md#exportsMoveFile) | **POST** /api/rp/v1/Exports/File/{id}/Move/{folderId} | Move file to a specified folder
 *ExportsApi* | [**exportsRenameFile**](docs/ExportsApi.md#exportsRenameFile) | **PUT** /api/rp/v1/Exports/File/{id}/Rename | Rename a file
@@ -183,14 +184,14 @@ Class | Method | HTTP request | Description
 *ReportsApi* | [**reportsExport**](docs/ReportsApi.md#reportsExport) | **POST** /api/rp/v1/Reports/File/{id}/Export | Export specified report to a specified format
 *ReportsApi* | [**reportsGetFile**](docs/ReportsApi.md#reportsGetFile) | **GET** /api/rp/v1/Reports/File/{id} | Get specified file
 *ReportsApi* | [**reportsGetFilesCount**](docs/ReportsApi.md#reportsGetFilesCount) | **GET** /api/rp/v1/Reports/Folder/{id}/CountFiles | Get count of files what contains in a specified folder
-*ReportsApi* | [**reportsGetFilesList**](docs/ReportsApi.md#reportsGetFilesList) | **GET** /api/rp/v1/Reports/Folder/{id}/ListFiles | Get all files from specified folder
+*ReportsApi* | [**reportsGetFilesList**](docs/ReportsApi.md#reportsGetFilesList) | **GET** /api/rp/v1/Reports/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
 *ReportsApi* | [**reportsGetPermissions**](docs/ReportsApi.md#reportsGetPermissions) | **GET** /api/rp/v1/Reports/File/{id}/permissions | Get all file permissions
 *ReportsApi* | [**reportsMoveFile**](docs/ReportsApi.md#reportsMoveFile) | **POST** /api/rp/v1/Reports/File/{id}/Move/{folderId} | Move file to a specified folder
 *ReportsApi* | [**reportsRenameFile**](docs/ReportsApi.md#reportsRenameFile) | **PUT** /api/rp/v1/Reports/File/{id}/Rename | Rename a file
 *ReportsApi* | [**reportsUpdateIcon**](docs/ReportsApi.md#reportsUpdateIcon) | **PUT** /api/rp/v1/Reports/File/{id}/Icon | Update a files&#39;s icon
 *ReportsApi* | [**reportsUpdatePermissions**](docs/ReportsApi.md#reportsUpdatePermissions) | **POST** /api/rp/v1/Reports/File/{id}/permissions | Update permissions
 *ReportsApi* | [**reportsUpdateTags**](docs/ReportsApi.md#reportsUpdateTags) | **PUT** /api/rp/v1/Reports/File/{id}/UpdateTags | Update tags
-*ReportsApi* | [**reportsUploadFile**](docs/ReportsApi.md#reportsUploadFile) | **POST** /api/rp/v1/Reports/Folder/{id}/File | Allows to upload reports into specified folder
+*ReportsApi* | [**reportsUploadFile**](docs/ReportsApi.md#reportsUploadFile) | **POST** /api/rp/v1/Reports/Folder/{id}/File | Upload a file to the specified folder  !
 *SubscriptionGroupsApi* | [**subscriptionGroupsGetGroupsList**](docs/SubscriptionGroupsApi.md#subscriptionGroupsGetGroupsList) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/groups | returns groups of the subscription or subscription user
 *SubscriptionInvitesApi* | [**subscriptionInvitesAcceptInvite**](docs/SubscriptionInvitesApi.md#subscriptionInvitesAcceptInvite) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/invite/{accessToken}/accept | Add a user to the subscription using invite,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
 *SubscriptionInvitesApi* | [**subscriptionInvitesCreateInvite**](docs/SubscriptionInvitesApi.md#subscriptionInvitesCreateInvite) | **POST** /api/manage/v1/Subscriptions/{subscriptionId}/invite | Create invite to subscription
@@ -203,6 +204,7 @@ Class | Method | HTTP request | Description
 *SubscriptionUsersApi* | [**subscriptionUsersLeaveSubscripiton**](docs/SubscriptionUsersApi.md#subscriptionUsersLeaveSubscripiton) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/leave | Allows user to leave subscription,.
 *SubscriptionUsersApi* | [**subscriptionUsersRemoveUser**](docs/SubscriptionUsersApi.md#subscriptionUsersRemoveUser) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/users/{userId} | Delete a user from the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
 *SubscriptionsApi* | [**subscriptionsGetDefaultPermissions**](docs/SubscriptionsApi.md#subscriptionsGetDefaultPermissions) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions | Get subscription&#39;s default permissions for new entities
+*SubscriptionsApi* | [**subscriptionsGetMyPermissions**](docs/SubscriptionsApi.md#subscriptionsGetMyPermissions) | **GET** /api/manage/v1/Subscriptions/{subId}/mypermissions | Get user&#39;s permissions for a subscription by id
 *SubscriptionsApi* | [**subscriptionsGetPermissions**](docs/SubscriptionsApi.md#subscriptionsGetPermissions) | **GET** /api/manage/v1/Subscriptions/{id}/permissions | Get permissions for a subscription by id
 *SubscriptionsApi* | [**subscriptionsGetSubscription**](docs/SubscriptionsApi.md#subscriptionsGetSubscription) | **GET** /api/manage/v1/Subscriptions/{id} | Returns the subscription by id
 *SubscriptionsApi* | [**subscriptionsGetSubscriptions**](docs/SubscriptionsApi.md#subscriptionsGetSubscriptions) | **GET** /api/manage/v1/Subscriptions | Returns a list of all subscriptions of current user
@@ -210,6 +212,12 @@ Class | Method | HTTP request | Description
 *SubscriptionsApi* | [**subscriptionsUpdateDefaultPermissions**](docs/SubscriptionsApi.md#subscriptionsUpdateDefaultPermissions) | **PUT** /api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions | Change subscription&#39;s default permissions for new entities
 *SubscriptionsApi* | [**subscriptionsUpdateLocale**](docs/SubscriptionsApi.md#subscriptionsUpdateLocale) | **PUT** /api/manage/v1/Subscriptions/{subscriptionId}/Locale | Update subscription&#39;s default locale
 *SubscriptionsApi* | [**subscriptionsUpdatePermissions**](docs/SubscriptionsApi.md#subscriptionsUpdatePermissions) | **POST** /api/manage/v1/Subscriptions/{id}/permissions | Update permissions
+*TasksApi* | [**tasksCreateTask**](docs/TasksApi.md#tasksCreateTask) | **POST** /api/tasks | Create a new task
+*TasksApi* | [**tasksDeleteTask**](docs/TasksApi.md#tasksDeleteTask) | **DELETE** /api/tasks/{taskId} | Delete a task from a storage
+*TasksApi* | [**tasksGet**](docs/TasksApi.md#tasksGet) | **GET** /api/tasks/{taskId} | Get a task by a specified id
+*TasksApi* | [**tasksGetList**](docs/TasksApi.md#tasksGetList) | **GET** /api/tasks | Get tasks list
+*TasksApi* | [**tasksRunTask**](docs/TasksApi.md#tasksRunTask) | **POST** /api/tasks/run | Run a task from request body
+*TasksApi* | [**tasksRunTaskById**](docs/TasksApi.md#tasksRunTaskById) | **POST** /api/tasks/{taskId}/run | Run a task by id
 *TemplatesApi* | [**templateFolderAndFileGetCount**](docs/TemplatesApi.md#templateFolderAndFileGetCount) | **GET** /api/rp/v1/Templates/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder
 *TemplatesApi* | [**templateFolderAndFileGetFoldersAndFiles**](docs/TemplatesApi.md#templateFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder
 *TemplatesApi* | [**templateFoldersCopyFolder**](docs/TemplatesApi.md#templateFoldersCopyFolder) | **POST** /api/rp/v1/Templates/Folder/{id}/Copy/{folderId} | Move folder to a specified folder
@@ -231,7 +239,7 @@ Class | Method | HTTP request | Description
 *TemplatesApi* | [**templatesExport**](docs/TemplatesApi.md#templatesExport) | **POST** /api/rp/v1/Templates/File/{id}/Export | Export specified report template to a specified format
 *TemplatesApi* | [**templatesGetFile**](docs/TemplatesApi.md#templatesGetFile) | **GET** /api/rp/v1/Templates/File/{id} | Get specified file
 *TemplatesApi* | [**templatesGetFilesCount**](docs/TemplatesApi.md#templatesGetFilesCount) | **GET** /api/rp/v1/Templates/Folder/{id}/CountFiles | Get count of files what contains in a specified folder
-*TemplatesApi* | [**templatesGetFilesList**](docs/TemplatesApi.md#templatesGetFilesList) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFiles | Get all files from specified folder
+*TemplatesApi* | [**templatesGetFilesList**](docs/TemplatesApi.md#templatesGetFilesList) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
 *TemplatesApi* | [**templatesGetPermissions**](docs/TemplatesApi.md#templatesGetPermissions) | **GET** /api/rp/v1/Templates/File/{id}/permissions | Get all file permissions
 *TemplatesApi* | [**templatesMoveFile**](docs/TemplatesApi.md#templatesMoveFile) | **POST** /api/rp/v1/Templates/File/{id}/Move/{folderId} | Move file to a specified folder
 *TemplatesApi* | [**templatesPrepare**](docs/TemplatesApi.md#templatesPrepare) | **POST** /api/rp/v1/Templates/File/{id}/Prepare | Prepare specified template to report
@@ -249,74 +257,174 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AdminExportFolderCreateVM](docs/AdminExportFolderCreateVM.md)
+ - [AdminFolderCreateVM](docs/AdminFolderCreateVM.md)
+ - [AdminReportFolderCreateVM](docs/AdminReportFolderCreateVM.md)
+ - [AdminSubscriptionVM](docs/AdminSubscriptionVM.md)
+ - [AdminTemplateFolderCreateVM](docs/AdminTemplateFolderCreateVM.md)
  - [ApiKeyVM](docs/ApiKeyVM.md)
  - [ApiKeysVM](docs/ApiKeysVM.md)
+ - [AppMixins](docs/AppMixins.md)
  - [BreadcrumbsModel](docs/BreadcrumbsModel.md)
  - [BreadcrumbsVM](docs/BreadcrumbsVM.md)
  - [CountVM](docs/CountVM.md)
  - [CreateApiKeyVM](docs/CreateApiKeyVM.md)
+ - [CreateDataSourceAdminVM](docs/CreateDataSourceAdminVM.md)
  - [CreateDataSourceVM](docs/CreateDataSourceVM.md)
+ - [CreateEmailTaskVM](docs/CreateEmailTaskVM.md)
+ - [CreateEndpointVM](docs/CreateEndpointVM.md)
+ - [CreateExportReportTaskVM](docs/CreateExportReportTaskVM.md)
+ - [CreateExportTemplateTaskVM](docs/CreateExportTemplateTaskVM.md)
+ - [CreateFetchTaskVM](docs/CreateFetchTaskVM.md)
+ - [CreateGroupAdminVM](docs/CreateGroupAdminVM.md)
  - [CreateGroupVM](docs/CreateGroupVM.md)
+ - [CreatePrepareTemplateTaskVM](docs/CreatePrepareTemplateTaskVM.md)
  - [CreateSubscriptionInviteVM](docs/CreateSubscriptionInviteVM.md)
+ - [CreateTaskBaseVM](docs/CreateTaskBaseVM.md)
+ - [CreateTransformTaskBaseVM](docs/CreateTransformTaskBaseVM.md)
+ - [CreateTransportTaskBaseVM](docs/CreateTransportTaskBaseVM.md)
+ - [CreateWebhookTaskVM](docs/CreateWebhookTaskVM.md)
+ - [DataSourceAdministrate](docs/DataSourceAdministrate.md)
+ - [DataSourceConnectionType](docs/DataSourceConnectionType.md)
+ - [DataSourceCreate](docs/DataSourceCreate.md)
+ - [DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission](docs/DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.md)
+ - [DataSourceDelete](docs/DataSourceDelete.md)
+ - [DataSourceExecute](docs/DataSourceExecute.md)
+ - [DataSourceGet](docs/DataSourceGet.md)
  - [DataSourcePermission](docs/DataSourcePermission.md)
+ - [DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions](docs/DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.md)
  - [DataSourcePermissions](docs/DataSourcePermissions.md)
  - [DataSourcePermissionsVM](docs/DataSourcePermissionsVM.md)
+ - [DataSourceSorting](docs/DataSourceSorting.md)
+ - [DataSourceStatus](docs/DataSourceStatus.md)
+ - [DataSourceUpdate](docs/DataSourceUpdate.md)
  - [DataSourceVM](docs/DataSourceVM.md)
  - [DataSourcesVM](docs/DataSourcesVM.md)
  - [DefaultPermissions](docs/DefaultPermissions.md)
  - [DefaultPermissionsVM](docs/DefaultPermissionsVM.md)
  - [DeleteApiKeyVM](docs/DeleteApiKeyVM.md)
+ - [EmailTaskVM](docs/EmailTaskVM.md)
+ - [EndpointVM](docs/EndpointVM.md)
+ - [EntityVM](docs/EntityVM.md)
+ - [ExportCreateAdminVM](docs/ExportCreateAdminVM.md)
+ - [ExportCreateVM](docs/ExportCreateVM.md)
  - [ExportFolderCreateVM](docs/ExportFolderCreateVM.md)
+ - [ExportFormat](docs/ExportFormat.md)
  - [ExportReportTaskVM](docs/ExportReportTaskVM.md)
+ - [ExportReportVM](docs/ExportReportVM.md)
  - [ExportTemplateTaskVM](docs/ExportTemplateTaskVM.md)
+ - [ExportTemplateVM](docs/ExportTemplateVM.md)
  - [ExportVM](docs/ExportVM.md)
+ - [ExportVMFilesVMBase](docs/ExportVMFilesVMBase.md)
  - [ExportsVM](docs/ExportsVM.md)
+ - [FetchTaskVM](docs/FetchTaskVM.md)
+ - [FileAdministrate](docs/FileAdministrate.md)
+ - [FileCreate](docs/FileCreate.md)
+ - [FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission](docs/FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.md)
+ - [FileCreateVM](docs/FileCreateVM.md)
+ - [FileDelete](docs/FileDelete.md)
+ - [FileExecute](docs/FileExecute.md)
+ - [FileGet](docs/FileGet.md)
  - [FileIconVM](docs/FileIconVM.md)
+ - [FileKind](docs/FileKind.md)
  - [FilePermission](docs/FilePermission.md)
+ - [FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions](docs/FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.md)
  - [FilePermissions](docs/FilePermissions.md)
  - [FilePermissionsVM](docs/FilePermissionsVM.md)
  - [FileRenameVM](docs/FileRenameVM.md)
+ - [FileSorting](docs/FileSorting.md)
+ - [FileStatus](docs/FileStatus.md)
+ - [FileStatusReason](docs/FileStatusReason.md)
  - [FileTagsUpdateVM](docs/FileTagsUpdateVM.md)
+ - [FileType](docs/FileType.md)
+ - [FileUpdate](docs/FileUpdate.md)
  - [FileVM](docs/FileVM.md)
+ - [FileVMFilesVMBase](docs/FileVMFilesVMBase.md)
  - [FilesVM](docs/FilesVM.md)
+ - [FolderCreateVM](docs/FolderCreateVM.md)
  - [FolderIconVM](docs/FolderIconVM.md)
  - [FolderRenameVM](docs/FolderRenameVM.md)
  - [FolderTagsUpdateVM](docs/FolderTagsUpdateVM.md)
+ - [GroupAdministrate](docs/GroupAdministrate.md)
+ - [GroupCreate](docs/GroupCreate.md)
+ - [GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission](docs/GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission.md)
+ - [GroupDelete](docs/GroupDelete.md)
+ - [GroupExecute](docs/GroupExecute.md)
+ - [GroupGet](docs/GroupGet.md)
  - [GroupPermission](docs/GroupPermission.md)
+ - [GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions](docs/GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.md)
  - [GroupPermissions](docs/GroupPermissions.md)
  - [GroupPermissionsVM](docs/GroupPermissionsVM.md)
+ - [GroupUpdate](docs/GroupUpdate.md)
  - [GroupUserVM](docs/GroupUserVM.md)
  - [GroupUsersVM](docs/GroupUsersVM.md)
  - [GroupVM](docs/GroupVM.md)
  - [GroupsVM](docs/GroupsVM.md)
+ - [InputFileVM](docs/InputFileVM.md)
  - [InvitedUser](docs/InvitedUser.md)
+ - [MyPermissionsVM](docs/MyPermissionsVM.md)
+ - [OutputFileVM](docs/OutputFileVM.md)
  - [PrepareTemplateTaskVM](docs/PrepareTemplateTaskVM.md)
+ - [PrepareTemplateVM](docs/PrepareTemplateVM.md)
  - [ProblemDetails](docs/ProblemDetails.md)
+ - [ProfileVisibility](docs/ProfileVisibility.md)
  - [RenameDataSourceVM](docs/RenameDataSourceVM.md)
  - [RenameGroupVM](docs/RenameGroupVM.md)
  - [RenameSubscriptionVM](docs/RenameSubscriptionVM.md)
+ - [ReportCreateAdminVM](docs/ReportCreateAdminVM.md)
  - [ReportCreateVM](docs/ReportCreateVM.md)
  - [ReportFolderCreateVM](docs/ReportFolderCreateVM.md)
  - [ReportInfo](docs/ReportInfo.md)
  - [ReportVM](docs/ReportVM.md)
+ - [ReportVMFilesVMBase](docs/ReportVMFilesVMBase.md)
  - [ReportsVM](docs/ReportsVM.md)
+ - [RunEmailTaskVM](docs/RunEmailTaskVM.md)
+ - [RunEndpointVM](docs/RunEndpointVM.md)
+ - [RunExportReportTaskVM](docs/RunExportReportTaskVM.md)
+ - [RunExportTemplateTaskVM](docs/RunExportTemplateTaskVM.md)
+ - [RunFetchTaskVM](docs/RunFetchTaskVM.md)
+ - [RunInputFileVM](docs/RunInputFileVM.md)
+ - [RunPrepareTemplateTaskVM](docs/RunPrepareTemplateTaskVM.md)
+ - [RunTaskBaseVM](docs/RunTaskBaseVM.md)
+ - [RunTransformTaskBaseVM](docs/RunTransformTaskBaseVM.md)
+ - [RunTransportTaskBaseVM](docs/RunTransportTaskBaseVM.md)
+ - [RunWebhookTaskVM](docs/RunWebhookTaskVM.md)
+ - [SaveMode](docs/SaveMode.md)
+ - [ServerConfigurationVM](docs/ServerConfigurationVM.md)
+ - [SubscriptionAdministrate](docs/SubscriptionAdministrate.md)
+ - [SubscriptionCreate](docs/SubscriptionCreate.md)
+ - [SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission](docs/SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission.md)
+ - [SubscriptionDelete](docs/SubscriptionDelete.md)
+ - [SubscriptionExecute](docs/SubscriptionExecute.md)
  - [SubscriptionFolder](docs/SubscriptionFolder.md)
+ - [SubscriptionGet](docs/SubscriptionGet.md)
  - [SubscriptionInviteVM](docs/SubscriptionInviteVM.md)
  - [SubscriptionInvitesVM](docs/SubscriptionInvitesVM.md)
  - [SubscriptionPeriodVM](docs/SubscriptionPeriodVM.md)
  - [SubscriptionPermission](docs/SubscriptionPermission.md)
+ - [SubscriptionPermissionSubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermissions](docs/SubscriptionPermissionSubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermissions.md)
  - [SubscriptionPermissions](docs/SubscriptionPermissions.md)
  - [SubscriptionPermissionsVM](docs/SubscriptionPermissionsVM.md)
  - [SubscriptionPlanVM](docs/SubscriptionPlanVM.md)
  - [SubscriptionPlansVM](docs/SubscriptionPlansVM.md)
+ - [SubscriptionUpdate](docs/SubscriptionUpdate.md)
  - [SubscriptionUserVM](docs/SubscriptionUserVM.md)
  - [SubscriptionUsersVM](docs/SubscriptionUsersVM.md)
  - [SubscriptionVM](docs/SubscriptionVM.md)
  - [SubscriptionsVM](docs/SubscriptionsVM.md)
+ - [TaskBaseVM](docs/TaskBaseVM.md)
+ - [TaskSettingsVM](docs/TaskSettingsVM.md)
+ - [TaskType](docs/TaskType.md)
+ - [TasksVM](docs/TasksVM.md)
+ - [TemplateCreateAdminVM](docs/TemplateCreateAdminVM.md)
  - [TemplateCreateVM](docs/TemplateCreateVM.md)
  - [TemplateFolderCreateVM](docs/TemplateFolderCreateVM.md)
  - [TemplateVM](docs/TemplateVM.md)
+ - [TemplateVMFilesVMBase](docs/TemplateVMFilesVMBase.md)
  - [TemplatesVM](docs/TemplatesVM.md)
+ - [TimePeriodType](docs/TimePeriodType.md)
+ - [TransformTaskBaseVM](docs/TransformTaskBaseVM.md)
+ - [TransportTaskBaseVM](docs/TransportTaskBaseVM.md)
  - [UpdateDataSourceConnectionStringVM](docs/UpdateDataSourceConnectionStringVM.md)
  - [UpdateDataSourcePermissionsVM](docs/UpdateDataSourcePermissionsVM.md)
  - [UpdateDataSourceSubscriptionVM](docs/UpdateDataSourceSubscriptionVM.md)
@@ -329,6 +437,8 @@ Class | Method | HTTP request | Description
  - [UpdateUserSettingsVM](docs/UpdateUserSettingsVM.md)
  - [UserProfileVM](docs/UserProfileVM.md)
  - [UserSettingsVM](docs/UserSettingsVM.md)
+ - [ValidationProblemDetails](docs/ValidationProblemDetails.md)
+ - [WebhookTaskVM](docs/WebhookTaskVM.md)
 
 
 ## Documentation for Authorization
@@ -342,9 +452,7 @@ Authentication schemes defined for the API:
 ### JWT
 
 
-- **Type**: API key
-- **API key parameter name**: Authorization
-- **Location**: HTTP header
+- **Type**: HTTP basic authentication
 
 
 ## Recommendation

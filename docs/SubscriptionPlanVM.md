@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **id** | **String** |  |  [optional]
 **isActive** | **Boolean** |  |  [optional]
 **displayName** | **String** |  |  [optional]
-**timePeriodType** | [**TimePeriodTypeEnum**](#TimePeriodTypeEnum) |  |  [optional]
+**timePeriodType** | **TimePeriodType** |  |  [optional]
 **timePeriod** | **Integer** |  |  [optional]
-**readonlyTimeLimitType** | [**ReadonlyTimeLimitTypeEnum**](#ReadonlyTimeLimitTypeEnum) |  |  [optional]
+**readonlyTimeLimitType** | **TimePeriodType** |  |  [optional]
 **readonlyTimeLimit** | **Integer** |  |  [optional]
 **templatesSpaceLimit** | **Long** |  |  [optional]
 **reportsSpaceLimit** | **Long** |  |  [optional]
@@ -27,34 +27,7 @@ Name | Type | Description | Notes
 **urlToBuy** | **String** |  |  [optional]
 **unlimitedPage** | **Boolean** |  |  [optional]
 **pageLimit** | **Integer** |  |  [optional]
-
-
-
-## Enum: TimePeriodTypeEnum
-
-Name | Value
----- | -----
-SECOND | &quot;Second&quot;
-MINUTE | &quot;Minute&quot;
-HOUR | &quot;Hour&quot;
-DAY | &quot;Day&quot;
-WEEK | &quot;Week&quot;
-MONTH | &quot;Month&quot;
-YEAR | &quot;Year&quot;
-
-
-
-## Enum: ReadonlyTimeLimitTypeEnum
-
-Name | Value
----- | -----
-SECOND | &quot;Second&quot;
-MINUTE | &quot;Minute&quot;
-HOUR | &quot;Hour&quot;
-DAY | &quot;Day&quot;
-WEEK | &quot;Week&quot;
-MONTH | &quot;Month&quot;
-YEAR | &quot;Year&quot;
+**tasks** | [**TaskSettingsVM**](TaskSettingsVM.md) |  |  [optional]
 
 
 

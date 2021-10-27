@@ -26,6 +26,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.threeten.bp.OffsetDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -49,16 +52,16 @@ public class SubscriptionInviteVM {
   private Boolean durable;
 
   public static final String JSON_PROPERTY_ACCESS_TOKEN = "accessToken";
-  private String accessToken;
+  private JsonNullable<String> accessToken = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EXPIRED_DATE = "expiredDate";
   private OffsetDateTime expiredDate;
 
   public static final String JSON_PROPERTY_ADDED_USERS = "addedUsers";
-  private List<InvitedUser> addedUsers = null;
+  private JsonNullable<List<InvitedUser>> addedUsers = JsonNullable.<List<InvitedUser>>undefined();
 
   public static final String JSON_PROPERTY_CREATOR_USER_ID = "creatorUserId";
-  private String creatorUserId;
+  private JsonNullable<String> creatorUserId = JsonNullable.<String>undefined();
 
 
   public SubscriptionInviteVM usages(Long usages) {
@@ -116,8 +119,8 @@ public class SubscriptionInviteVM {
 
 
   public SubscriptionInviteVM accessToken(String accessToken) {
+    this.accessToken = JsonNullable.<String>of(accessToken);
     
-    this.accessToken = accessToken;
     return this;
   }
 
@@ -127,18 +130,26 @@ public class SubscriptionInviteVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ACCESS_TOKEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getAccessToken() {
-    return accessToken;
+        return accessToken.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ACCESS_TOKEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccessToken(String accessToken) {
+
+  public JsonNullable<String> getAccessToken_JsonNullable() {
+    return accessToken;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ACCESS_TOKEN)
+  public void setAccessToken_JsonNullable(JsonNullable<String> accessToken) {
     this.accessToken = accessToken;
+  }
+
+  public void setAccessToken(String accessToken) {
+    this.accessToken = JsonNullable.<String>of(accessToken);
   }
 
 
@@ -170,16 +181,20 @@ public class SubscriptionInviteVM {
 
 
   public SubscriptionInviteVM addedUsers(List<InvitedUser> addedUsers) {
+    this.addedUsers = JsonNullable.<List<InvitedUser>>of(addedUsers);
     
-    this.addedUsers = addedUsers;
     return this;
   }
 
   public SubscriptionInviteVM addAddedUsersItem(InvitedUser addedUsersItem) {
-    if (this.addedUsers == null) {
-      this.addedUsers = new ArrayList<>();
+    if (this.addedUsers == null || !this.addedUsers.isPresent()) {
+      this.addedUsers = JsonNullable.<List<InvitedUser>>of(new ArrayList<>());
     }
-    this.addedUsers.add(addedUsersItem);
+    try {
+      this.addedUsers.get().add(addedUsersItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -189,24 +204,32 @@ public class SubscriptionInviteVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ADDED_USERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<InvitedUser> getAddedUsers() {
-    return addedUsers;
+        return addedUsers.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ADDED_USERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAddedUsers(List<InvitedUser> addedUsers) {
+
+  public JsonNullable<List<InvitedUser>> getAddedUsers_JsonNullable() {
+    return addedUsers;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ADDED_USERS)
+  public void setAddedUsers_JsonNullable(JsonNullable<List<InvitedUser>> addedUsers) {
     this.addedUsers = addedUsers;
+  }
+
+  public void setAddedUsers(List<InvitedUser> addedUsers) {
+    this.addedUsers = JsonNullable.<List<InvitedUser>>of(addedUsers);
   }
 
 
   public SubscriptionInviteVM creatorUserId(String creatorUserId) {
+    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
     
-    this.creatorUserId = creatorUserId;
     return this;
   }
 
@@ -216,18 +239,26 @@ public class SubscriptionInviteVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getCreatorUserId() {
-    return creatorUserId;
+        return creatorUserId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatorUserId(String creatorUserId) {
+
+  public JsonNullable<String> getCreatorUserId_JsonNullable() {
+    return creatorUserId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
+  public void setCreatorUserId_JsonNullable(JsonNullable<String> creatorUserId) {
     this.creatorUserId = creatorUserId;
+  }
+
+  public void setCreatorUserId(String creatorUserId) {
+    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
   }
 
 

@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**dataSourcesCreateDataSource**](DataSourcesApi.md#dataSourcesCreateDataSource) | **POST** /api/data/v1/DataSources | Create new data source
 [**dataSourcesDeleteDataSource**](DataSourcesApi.md#dataSourcesDeleteDataSource) | **DELETE** /api/data/v1/DataSources/{id} | Delete data source by id
 [**dataSourcesFetchData**](DataSourcesApi.md#dataSourcesFetchData) | **GET** /api/data/v1/DataSources/{id}/fetch | This should connect to a database and set data structure
-[**dataSourcesGetAvailableDataSources**](DataSourcesApi.md#dataSourcesGetAvailableDataSources) | **GET** /api/data/v1/DataSources | Returns all of the data sources, that current user have permission for in a subscription  if subscription id is null, returns all data sources, that current user have permission for
+[**dataSourcesGetAvailableDataSources**](DataSourcesApi.md#dataSourcesGetAvailableDataSources) | **GET** /api/data/v1/DataSources | Returns all of the data sources, that current user have permission for in a subscription &lt;br /&gt;  The method will return minimal infomration about the datasources: &lt;br /&gt;  id, name, editedTime, status.
 [**dataSourcesGetDataSource**](DataSourcesApi.md#dataSourcesGetDataSource) | **GET** /api/data/v1/DataSources/{id} | Get data source by id
 [**dataSourcesGetPermissions**](DataSourcesApi.md#dataSourcesGetPermissions) | **GET** /api/data/v1/DataSources/{id}/permissions | Get all Data source permissions
 [**dataSourcesRenameDataSource**](DataSourcesApi.md#dataSourcesRenameDataSource) | **PUT** /api/data/v1/DataSources/{id}/rename | Rename data source by id
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## dataSourcesCreateDataSource
 
-> DataSourceVM dataSourcesCreateDataSource(viewModel)
+> DataSourceVM dataSourcesCreateDataSource(createDataSourceVM)
 
 Create new data source
 
@@ -44,16 +44,14 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
-        CreateDataSourceVM viewModel = new CreateDataSourceVM(); // CreateDataSourceVM | create viewmodel
+        CreateDataSourceVM createDataSourceVM = new CreateDataSourceVM(); // CreateDataSourceVM | create viewmodel
         try {
-            DataSourceVM result = apiInstance.dataSourcesCreateDataSource(viewModel);
+            DataSourceVM result = apiInstance.dataSourcesCreateDataSource(createDataSourceVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DataSourcesApi#dataSourcesCreateDataSource");
@@ -71,7 +69,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **viewModel** | [**CreateDataSourceVM**](CreateDataSourceVM.md)| create viewmodel | [optional]
+ **createDataSourceVM** | [**CreateDataSourceVM**](CreateDataSourceVM.md)| create viewmodel | [optional]
 
 ### Return type
 
@@ -83,8 +81,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -125,11 +123,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
         String id = "id_example"; // String | data source id
@@ -164,7 +160,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -205,11 +201,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
         String id = "id_example"; // String | datasource's id
@@ -244,7 +238,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -260,9 +254,9 @@ null (empty response body)
 
 ## dataSourcesGetAvailableDataSources
 
-> DataSourcesVM dataSourcesGetAvailableDataSources(subscriptionId, skip, take)
+> DataSourcesVM dataSourcesGetAvailableDataSources(subscriptionId, skip, take, orderBy, desc)
 
-Returns all of the data sources, that current user have permission for in a subscription  if subscription id is null, returns all data sources, that current user have permission for
+Returns all of the data sources, that current user have permission for in a subscription &lt;br /&gt;  The method will return minimal infomration about the datasources: &lt;br /&gt;  id, name, editedTime, status.
 
 ### Example
 
@@ -285,18 +279,18 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | subscription id
         Integer skip = 0; // Integer | how many data sources will be skipped
         Integer take = 10; // Integer | how many data sources will be taken
+        DataSourceSorting orderBy = DataSourceSorting.fromValue("None"); // DataSourceSorting | field to order by
+        Boolean desc = false; // Boolean | descending sort
         try {
-            DataSourcesVM result = apiInstance.dataSourcesGetAvailableDataSources(subscriptionId, skip, take);
+            DataSourcesVM result = apiInstance.dataSourcesGetAvailableDataSources(subscriptionId, skip, take, orderBy, desc);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DataSourcesApi#dataSourcesGetAvailableDataSources");
@@ -317,6 +311,8 @@ Name | Type | Description  | Notes
  **subscriptionId** | **String**| subscription id | [optional]
  **skip** | **Integer**| how many data sources will be skipped | [optional] [default to 0]
  **take** | **Integer**| how many data sources will be taken | [optional] [default to 10]
+ **orderBy** | [**DataSourceSorting**](.md)| field to order by | [optional] [enum: None, CreatedTime, EditedTime, Name]
+ **desc** | **Boolean**| descending sort | [optional] [default to false]
 
 ### Return type
 
@@ -329,7 +325,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -369,11 +365,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
         String id = "id_example"; // String | data source id
@@ -409,7 +403,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -450,11 +444,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
         String id = "id_example"; // String | data source id
@@ -490,7 +482,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -506,7 +498,7 @@ Name | Type | Description  | Notes
 
 ## dataSourcesRenameDataSource
 
-> DataSourceVM dataSourcesRenameDataSource(id, renameModel)
+> DataSourceVM dataSourcesRenameDataSource(id, renameDataSourceVM)
 
 Rename data source by id
 
@@ -531,17 +523,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
         String id = "id_example"; // String | data source id
-        RenameDataSourceVM renameModel = new RenameDataSourceVM(); // RenameDataSourceVM | rename viewmodel
+        RenameDataSourceVM renameDataSourceVM = new RenameDataSourceVM(); // RenameDataSourceVM | rename viewmodel
         try {
-            DataSourceVM result = apiInstance.dataSourcesRenameDataSource(id, renameModel);
+            DataSourceVM result = apiInstance.dataSourcesRenameDataSource(id, renameDataSourceVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DataSourcesApi#dataSourcesRenameDataSource");
@@ -560,7 +550,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| data source id |
- **renameModel** | [**RenameDataSourceVM**](RenameDataSourceVM.md)| rename viewmodel | [optional]
+ **renameDataSourceVM** | [**RenameDataSourceVM**](RenameDataSourceVM.md)| rename viewmodel | [optional]
 
 ### Return type
 
@@ -572,8 +562,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -589,7 +579,7 @@ Name | Type | Description  | Notes
 
 ## dataSourcesUpdateConnectionString
 
-> DataSourceVM dataSourcesUpdateConnectionString(id, updateModel)
+> DataSourceVM dataSourcesUpdateConnectionString(id, updateDataSourceConnectionStringVM)
 
 Update data source&#39;s connection string by id
 
@@ -614,17 +604,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
         String id = "id_example"; // String | data source id
-        UpdateDataSourceConnectionStringVM updateModel = new UpdateDataSourceConnectionStringVM(); // UpdateDataSourceConnectionStringVM | update viewmodel
+        UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM = new UpdateDataSourceConnectionStringVM(); // UpdateDataSourceConnectionStringVM | update viewmodel
         try {
-            DataSourceVM result = apiInstance.dataSourcesUpdateConnectionString(id, updateModel);
+            DataSourceVM result = apiInstance.dataSourcesUpdateConnectionString(id, updateDataSourceConnectionStringVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DataSourcesApi#dataSourcesUpdateConnectionString");
@@ -643,7 +631,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| data source id |
- **updateModel** | [**UpdateDataSourceConnectionStringVM**](UpdateDataSourceConnectionStringVM.md)| update viewmodel | [optional]
+ **updateDataSourceConnectionStringVM** | [**UpdateDataSourceConnectionStringVM**](UpdateDataSourceConnectionStringVM.md)| update viewmodel | [optional]
 
 ### Return type
 
@@ -655,8 +643,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -672,7 +660,7 @@ Name | Type | Description  | Notes
 
 ## dataSourcesUpdatePermissions
 
-> dataSourcesUpdatePermissions(id, permissionsVM)
+> dataSourcesUpdatePermissions(id, updateDataSourcePermissionsVM)
 
 Update permissions
 
@@ -697,17 +685,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
         String id = "id_example"; // String | 
-        UpdateDataSourcePermissionsVM permissionsVM = new UpdateDataSourcePermissionsVM(); // UpdateDataSourcePermissionsVM | 
+        UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM = new UpdateDataSourcePermissionsVM(); // UpdateDataSourcePermissionsVM | 
         try {
-            apiInstance.dataSourcesUpdatePermissions(id, permissionsVM);
+            apiInstance.dataSourcesUpdatePermissions(id, updateDataSourcePermissionsVM);
         } catch (ApiException e) {
             System.err.println("Exception when calling DataSourcesApi#dataSourcesUpdatePermissions");
             System.err.println("Status code: " + e.getCode());
@@ -725,7 +711,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **permissionsVM** | [**UpdateDataSourcePermissionsVM**](UpdateDataSourcePermissionsVM.md)|  | [optional]
+ **updateDataSourcePermissionsVM** | [**UpdateDataSourcePermissionsVM**](UpdateDataSourcePermissionsVM.md)|  | [optional]
 
 ### Return type
 
@@ -737,8 +723,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -754,7 +740,7 @@ null (empty response body)
 
 ## dataSourcesUpdateSubscriptionDataSource
 
-> dataSourcesUpdateSubscriptionDataSource(id, updatesubscriptionModel)
+> dataSourcesUpdateSubscriptionDataSource(id, updateDataSourceSubscriptionVM)
 
 Update data source&#39;s subscription
 
@@ -779,17 +765,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
         String id = "id_example"; // String | data source id
-        UpdateDataSourceSubscriptionVM updatesubscriptionModel = new UpdateDataSourceSubscriptionVM(); // UpdateDataSourceSubscriptionVM | update subscription viewmodel
+        UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM = new UpdateDataSourceSubscriptionVM(); // UpdateDataSourceSubscriptionVM | update subscription viewmodel
         try {
-            apiInstance.dataSourcesUpdateSubscriptionDataSource(id, updatesubscriptionModel);
+            apiInstance.dataSourcesUpdateSubscriptionDataSource(id, updateDataSourceSubscriptionVM);
         } catch (ApiException e) {
             System.err.println("Exception when calling DataSourcesApi#dataSourcesUpdateSubscriptionDataSource");
             System.err.println("Status code: " + e.getCode());
@@ -807,7 +791,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| data source id |
- **updatesubscriptionModel** | [**UpdateDataSourceSubscriptionVM**](UpdateDataSourceSubscriptionVM.md)| update subscription viewmodel | [optional]
+ **updateDataSourceSubscriptionVM** | [**UpdateDataSourceSubscriptionVM**](UpdateDataSourceSubscriptionVM.md)| update subscription viewmodel | [optional]
 
 ### Return type
 
@@ -819,8 +803,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details

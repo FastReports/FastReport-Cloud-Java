@@ -26,6 +26,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -45,19 +48,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionVM {
   public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  private JsonNullable<String> id = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LOCALE = "locale";
-  private String locale;
+  private JsonNullable<String> locale = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CURRENT = "current";
   private SubscriptionPeriodVM current;
 
   public static final String JSON_PROPERTY_OLD = "old";
-  private List<SubscriptionPeriodVM> old = null;
+  private JsonNullable<List<SubscriptionPeriodVM>> old = JsonNullable.<List<SubscriptionPeriodVM>>undefined();
 
   public static final String JSON_PROPERTY_TEMPLATES_FOLDER = "templatesFolder";
   private SubscriptionFolder templatesFolder;
@@ -70,8 +73,8 @@ public class SubscriptionVM {
 
 
   public SubscriptionVM id(String id) {
+    this.id = JsonNullable.<String>of(id);
     
-    this.id = id;
     return this;
   }
 
@@ -81,24 +84,32 @@ public class SubscriptionVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getId() {
-    return id;
+        return id.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
+
+  public JsonNullable<String> getId_JsonNullable() {
+    return id;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ID)
+  public void setId_JsonNullable(JsonNullable<String> id) {
     this.id = id;
+  }
+
+  public void setId(String id) {
+    this.id = JsonNullable.<String>of(id);
   }
 
 
   public SubscriptionVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
     
-    this.name = name;
     return this;
   }
 
@@ -108,24 +119,32 @@ public class SubscriptionVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getName() {
-    return name;
+        return name.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
     this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
   }
 
 
   public SubscriptionVM locale(String locale) {
+    this.locale = JsonNullable.<String>of(locale);
     
-    this.locale = locale;
     return this;
   }
 
@@ -135,18 +154,26 @@ public class SubscriptionVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_LOCALE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getLocale() {
-    return locale;
+        return locale.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_LOCALE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocale(String locale) {
+
+  public JsonNullable<String> getLocale_JsonNullable() {
+    return locale;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LOCALE)
+  public void setLocale_JsonNullable(JsonNullable<String> locale) {
     this.locale = locale;
+  }
+
+  public void setLocale(String locale) {
+    this.locale = JsonNullable.<String>of(locale);
   }
 
 
@@ -178,16 +205,20 @@ public class SubscriptionVM {
 
 
   public SubscriptionVM old(List<SubscriptionPeriodVM> old) {
+    this.old = JsonNullable.<List<SubscriptionPeriodVM>>of(old);
     
-    this.old = old;
     return this;
   }
 
   public SubscriptionVM addOldItem(SubscriptionPeriodVM oldItem) {
-    if (this.old == null) {
-      this.old = new ArrayList<>();
+    if (this.old == null || !this.old.isPresent()) {
+      this.old = JsonNullable.<List<SubscriptionPeriodVM>>of(new ArrayList<>());
     }
-    this.old.add(oldItem);
+    try {
+      this.old.get().add(oldItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -197,18 +228,26 @@ public class SubscriptionVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_OLD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<SubscriptionPeriodVM> getOld() {
-    return old;
+        return old.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_OLD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOld(List<SubscriptionPeriodVM> old) {
+
+  public JsonNullable<List<SubscriptionPeriodVM>> getOld_JsonNullable() {
+    return old;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OLD)
+  public void setOld_JsonNullable(JsonNullable<List<SubscriptionPeriodVM>> old) {
     this.old = old;
+  }
+
+  public void setOld(List<SubscriptionPeriodVM> old) {
+    this.old = JsonNullable.<List<SubscriptionPeriodVM>>of(old);
   }
 
 

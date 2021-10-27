@@ -22,6 +22,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -34,12 +37,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FileIconVM {
   public static final String JSON_PROPERTY_ICON = "icon";
-  private byte[] icon;
+  private JsonNullable<byte[]> icon = JsonNullable.<byte[]>undefined();
 
 
   public FileIconVM icon(byte[] icon) {
+    this.icon = JsonNullable.<byte[]>of(icon);
     
-    this.icon = icon;
     return this;
   }
 
@@ -49,18 +52,26 @@ public class FileIconVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ICON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public byte[] getIcon() {
-    return icon;
+        return icon.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIcon(byte[] icon) {
+
+  public JsonNullable<byte[]> getIcon_JsonNullable() {
+    return icon;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ICON)
+  public void setIcon_JsonNullable(JsonNullable<byte[]> icon) {
     this.icon = icon;
+  }
+
+  public void setIcon(byte[] icon) {
+    this.icon = JsonNullable.<byte[]>of(icon);
   }
 
 

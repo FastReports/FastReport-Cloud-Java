@@ -15,6 +15,8 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.DataSourceConnectionType;
+import cloud.fastreport.model.DataSourceStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,6 +25,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.threeten.bp.OffsetDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -39,91 +44,48 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   DataSourceVM.JSON_PROPERTY_EDITOR_USER_ID,
   DataSourceVM.JSON_PROPERTY_CREATED_TIME,
   DataSourceVM.JSON_PROPERTY_CREATOR_USER_ID,
-  DataSourceVM.JSON_PROPERTY_IS_CONNECTED
+  DataSourceVM.JSON_PROPERTY_STATUS
 })
 @JsonTypeName("DataSourceVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DataSourceVM {
   public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  private JsonNullable<String> id = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
-
-  /**
-   * Gets or Sets connectionType
-   */
-  public enum ConnectionTypeEnum {
-    JSON("JSON"),
-    
-    MSSQL("MSSQL"),
-    
-    CSV("CSV"),
-    
-    XML("XML"),
-    
-    MYSQL("MySQL"),
-    
-    POSTGRES("Postgres");
-
-    private String value;
-
-    ConnectionTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ConnectionTypeEnum fromValue(String value) {
-      for (ConnectionTypeEnum b : ConnectionTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CONNECTION_TYPE = "connectionType";
-  private ConnectionTypeEnum connectionType;
+  private DataSourceConnectionType connectionType;
 
   public static final String JSON_PROPERTY_CONNECTION_STRING = "connectionString";
-  private String connectionString;
+  private JsonNullable<String> connectionString = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DATA_STRUCTURE = "dataStructure";
-  private String dataStructure;
+  private JsonNullable<String> dataStructure = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private String subscriptionId;
+  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EDITED_TIME = "editedTime";
   private OffsetDateTime editedTime;
 
   public static final String JSON_PROPERTY_EDITOR_USER_ID = "editorUserId";
-  private String editorUserId;
+  private JsonNullable<String> editorUserId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED_TIME = "createdTime";
   private OffsetDateTime createdTime;
 
   public static final String JSON_PROPERTY_CREATOR_USER_ID = "creatorUserId";
-  private String creatorUserId;
+  private JsonNullable<String> creatorUserId = JsonNullable.<String>undefined();
 
-  public static final String JSON_PROPERTY_IS_CONNECTED = "isConnected";
-  private Boolean isConnected;
+  public static final String JSON_PROPERTY_STATUS = "status";
+  private DataSourceStatus status;
 
 
   public DataSourceVM id(String id) {
+    this.id = JsonNullable.<String>of(id);
     
-    this.id = id;
     return this;
   }
 
@@ -133,24 +95,32 @@ public class DataSourceVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getId() {
-    return id;
+        return id.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
+
+  public JsonNullable<String> getId_JsonNullable() {
+    return id;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ID)
+  public void setId_JsonNullable(JsonNullable<String> id) {
     this.id = id;
+  }
+
+  public void setId(String id) {
+    this.id = JsonNullable.<String>of(id);
   }
 
 
   public DataSourceVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
     
-    this.name = name;
     return this;
   }
 
@@ -160,22 +130,30 @@ public class DataSourceVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getName() {
-    return name;
+        return name.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
     this.name = name;
   }
 
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
+  }
 
-  public DataSourceVM connectionType(ConnectionTypeEnum connectionType) {
+
+  public DataSourceVM connectionType(DataSourceConnectionType connectionType) {
     
     this.connectionType = connectionType;
     return this;
@@ -190,21 +168,21 @@ public class DataSourceVM {
   @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ConnectionTypeEnum getConnectionType() {
+  public DataSourceConnectionType getConnectionType() {
     return connectionType;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConnectionType(ConnectionTypeEnum connectionType) {
+  public void setConnectionType(DataSourceConnectionType connectionType) {
     this.connectionType = connectionType;
   }
 
 
   public DataSourceVM connectionString(String connectionString) {
+    this.connectionString = JsonNullable.<String>of(connectionString);
     
-    this.connectionString = connectionString;
     return this;
   }
 
@@ -214,24 +192,32 @@ public class DataSourceVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getConnectionString() {
-    return connectionString;
+        return connectionString.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConnectionString(String connectionString) {
+
+  public JsonNullable<String> getConnectionString_JsonNullable() {
+    return connectionString;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
+  public void setConnectionString_JsonNullable(JsonNullable<String> connectionString) {
     this.connectionString = connectionString;
+  }
+
+  public void setConnectionString(String connectionString) {
+    this.connectionString = JsonNullable.<String>of(connectionString);
   }
 
 
   public DataSourceVM dataStructure(String dataStructure) {
+    this.dataStructure = JsonNullable.<String>of(dataStructure);
     
-    this.dataStructure = dataStructure;
     return this;
   }
 
@@ -241,24 +227,32 @@ public class DataSourceVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DATA_STRUCTURE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getDataStructure() {
-    return dataStructure;
+        return dataStructure.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_DATA_STRUCTURE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDataStructure(String dataStructure) {
+
+  public JsonNullable<String> getDataStructure_JsonNullable() {
+    return dataStructure;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DATA_STRUCTURE)
+  public void setDataStructure_JsonNullable(JsonNullable<String> dataStructure) {
     this.dataStructure = dataStructure;
+  }
+
+  public void setDataStructure(String dataStructure) {
+    this.dataStructure = JsonNullable.<String>of(dataStructure);
   }
 
 
   public DataSourceVM subscriptionId(String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
     
-    this.subscriptionId = subscriptionId;
     return this;
   }
 
@@ -268,18 +262,26 @@ public class DataSourceVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getSubscriptionId() {
-    return subscriptionId;
+        return subscriptionId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubscriptionId(String subscriptionId) {
+
+  public JsonNullable<String> getSubscriptionId_JsonNullable() {
+    return subscriptionId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
     this.subscriptionId = subscriptionId;
+  }
+
+  public void setSubscriptionId(String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
   }
 
 
@@ -311,8 +313,8 @@ public class DataSourceVM {
 
 
   public DataSourceVM editorUserId(String editorUserId) {
+    this.editorUserId = JsonNullable.<String>of(editorUserId);
     
-    this.editorUserId = editorUserId;
     return this;
   }
 
@@ -322,18 +324,26 @@ public class DataSourceVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getEditorUserId() {
-    return editorUserId;
+        return editorUserId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEditorUserId(String editorUserId) {
+
+  public JsonNullable<String> getEditorUserId_JsonNullable() {
+    return editorUserId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
+  public void setEditorUserId_JsonNullable(JsonNullable<String> editorUserId) {
     this.editorUserId = editorUserId;
+  }
+
+  public void setEditorUserId(String editorUserId) {
+    this.editorUserId = JsonNullable.<String>of(editorUserId);
   }
 
 
@@ -365,8 +375,8 @@ public class DataSourceVM {
 
 
   public DataSourceVM creatorUserId(String creatorUserId) {
+    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
     
-    this.creatorUserId = creatorUserId;
     return this;
   }
 
@@ -376,45 +386,53 @@ public class DataSourceVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getCreatorUserId() {
-    return creatorUserId;
+        return creatorUserId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatorUserId(String creatorUserId) {
+
+  public JsonNullable<String> getCreatorUserId_JsonNullable() {
+    return creatorUserId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
+  public void setCreatorUserId_JsonNullable(JsonNullable<String> creatorUserId) {
     this.creatorUserId = creatorUserId;
   }
 
+  public void setCreatorUserId(String creatorUserId) {
+    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
+  }
 
-  public DataSourceVM isConnected(Boolean isConnected) {
+
+  public DataSourceVM status(DataSourceStatus status) {
     
-    this.isConnected = isConnected;
+    this.status = status;
     return this;
   }
 
    /**
-   * Get isConnected
-   * @return isConnected
+   * Get status
+   * @return status
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_IS_CONNECTED)
+  @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Boolean getIsConnected() {
-    return isConnected;
+  public DataSourceStatus getStatus() {
+    return status;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_CONNECTED)
+  @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsConnected(Boolean isConnected) {
-    this.isConnected = isConnected;
+  public void setStatus(DataSourceStatus status) {
+    this.status = status;
   }
 
 
@@ -437,12 +455,12 @@ public class DataSourceVM {
         Objects.equals(this.editorUserId, dataSourceVM.editorUserId) &&
         Objects.equals(this.createdTime, dataSourceVM.createdTime) &&
         Objects.equals(this.creatorUserId, dataSourceVM.creatorUserId) &&
-        Objects.equals(this.isConnected, dataSourceVM.isConnected);
+        Objects.equals(this.status, dataSourceVM.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, connectionType, connectionString, dataStructure, subscriptionId, editedTime, editorUserId, createdTime, creatorUserId, isConnected);
+    return Objects.hash(id, name, connectionType, connectionString, dataStructure, subscriptionId, editedTime, editorUserId, createdTime, creatorUserId, status);
   }
 
   @Override
@@ -459,7 +477,7 @@ public class DataSourceVM {
     sb.append("    editorUserId: ").append(toIndentedString(editorUserId)).append("\n");
     sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
     sb.append("    creatorUserId: ").append(toIndentedString(creatorUserId)).append("\n");
-    sb.append("    isConnected: ").append(toIndentedString(isConnected)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

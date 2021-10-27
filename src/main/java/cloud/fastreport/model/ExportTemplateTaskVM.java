@@ -15,6 +15,8 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.ExportReportTaskVM;
+import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -25,305 +27,51 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * ExportTemplateTaskVM
  */
 @JsonPropertyOrder({
-  ExportTemplateTaskVM.JSON_PROPERTY_FILE_NAME,
-  ExportTemplateTaskVM.JSON_PROPERTY_FOLDER_ID,
-  ExportTemplateTaskVM.JSON_PROPERTY_LOCALE,
-  ExportTemplateTaskVM.JSON_PROPERTY_PAGES_COUNT,
-  ExportTemplateTaskVM.JSON_PROPERTY_FORMAT,
-  ExportTemplateTaskVM.JSON_PROPERTY_EXPORT_PARAMETERS,
-  ExportTemplateTaskVM.JSON_PROPERTY_REPORT_PARAMETERS
+  ExportTemplateTaskVM.JSON_PROPERTY_REPORT_PARAMETERS,
+  ExportTemplateTaskVM.JSON_PROPERTY_NAME,
+  ExportTemplateTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
+  ExportTemplateTaskVM.JSON_PROPERTY_TYPE
 })
 @JsonTypeName("ExportTemplateTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ExportTemplateTaskVM {
-  public static final String JSON_PROPERTY_FILE_NAME = "fileName";
-  private String fileName;
-
-  public static final String JSON_PROPERTY_FOLDER_ID = "folderId";
-  private String folderId;
-
-  public static final String JSON_PROPERTY_LOCALE = "locale";
-  private String locale;
-
-  public static final String JSON_PROPERTY_PAGES_COUNT = "pagesCount";
-  private Integer pagesCount;
-
-  /**
-   * Gets or Sets format
-   */
-  public enum FormatEnum {
-    PDF("Pdf"),
-    
-    HTML("Html"),
-    
-    MHT("Mht"),
-    
-    IMAGE("Image"),
-    
-    BIFF8("Biff8"),
-    
-    CSV("Csv"),
-    
-    DBF("Dbf"),
-    
-    JSON("Json"),
-    
-    LATEX("LaTeX"),
-    
-    ODT("Odt"),
-    
-    ODS("Ods"),
-    
-    DOCX("Docx"),
-    
-    PPTX("Pptx"),
-    
-    XLSX("Xlsx"),
-    
-    XPS("Xps"),
-    
-    PPML("Ppml"),
-    
-    PS("PS"),
-    
-    RICHTEXT("Richtext"),
-    
-    SVG("Svg"),
-    
-    TEXT("Text"),
-    
-    XAML("Xaml"),
-    
-    XML("Xml"),
-    
-    ZPL("Zpl");
-
-    private String value;
-
-    FormatEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static FormatEnum fromValue(String value) {
-      for (FormatEnum b : FormatEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_FORMAT = "format";
-  private FormatEnum format;
-
-  public static final String JSON_PROPERTY_EXPORT_PARAMETERS = "exportParameters";
-  private Map<String, String> exportParameters = null;
-
   public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
-  private Map<String, String> reportParameters = null;
+  private JsonNullable<Map<String, String>> reportParameters = JsonNullable.<Map<String, String>>undefined();
 
+  public static final String JSON_PROPERTY_NAME = "name";
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
-  public ExportTemplateTaskVM fileName(String fileName) {
-    
-    this.fileName = fileName;
-    return this;
-  }
+  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
+  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
 
-   /**
-   * Get fileName
-   * @return fileName
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FILE_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getFileName() {
-    return fileName;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FILE_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFileName(String fileName) {
-    this.fileName = fileName;
-  }
-
-
-  public ExportTemplateTaskVM folderId(String folderId) {
-    
-    this.folderId = folderId;
-    return this;
-  }
-
-   /**
-   * Get folderId
-   * @return folderId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getFolderId() {
-    return folderId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFolderId(String folderId) {
-    this.folderId = folderId;
-  }
-
-
-  public ExportTemplateTaskVM locale(String locale) {
-    
-    this.locale = locale;
-    return this;
-  }
-
-   /**
-   * Get locale
-   * @return locale
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_LOCALE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getLocale() {
-    return locale;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LOCALE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocale(String locale) {
-    this.locale = locale;
-  }
-
-
-  public ExportTemplateTaskVM pagesCount(Integer pagesCount) {
-    
-    this.pagesCount = pagesCount;
-    return this;
-  }
-
-   /**
-   * Get pagesCount
-   * minimum: 0
-   * maximum: 2147483647
-   * @return pagesCount
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PAGES_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getPagesCount() {
-    return pagesCount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PAGES_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPagesCount(Integer pagesCount) {
-    this.pagesCount = pagesCount;
-  }
-
-
-  public ExportTemplateTaskVM format(FormatEnum format) {
-    
-    this.format = format;
-    return this;
-  }
-
-   /**
-   * Get format
-   * @return format
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FORMAT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public FormatEnum getFormat() {
-    return format;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FORMAT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFormat(FormatEnum format) {
-    this.format = format;
-  }
-
-
-  public ExportTemplateTaskVM exportParameters(Map<String, String> exportParameters) {
-    
-    this.exportParameters = exportParameters;
-    return this;
-  }
-
-  public ExportTemplateTaskVM putExportParametersItem(String key, String exportParametersItem) {
-    if (this.exportParameters == null) {
-      this.exportParameters = new HashMap<>();
-    }
-    this.exportParameters.put(key, exportParametersItem);
-    return this;
-  }
-
-   /**
-   * Get exportParameters
-   * @return exportParameters
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_EXPORT_PARAMETERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Map<String, String> getExportParameters() {
-    return exportParameters;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXPORT_PARAMETERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExportParameters(Map<String, String> exportParameters) {
-    this.exportParameters = exportParameters;
-  }
+  public static final String JSON_PROPERTY_TYPE = "type";
+  private TaskType type;
 
 
   public ExportTemplateTaskVM reportParameters(Map<String, String> reportParameters) {
+    this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
     
-    this.reportParameters = reportParameters;
     return this;
   }
 
   public ExportTemplateTaskVM putReportParametersItem(String key, String reportParametersItem) {
-    if (this.reportParameters == null) {
-      this.reportParameters = new HashMap<>();
+    if (this.reportParameters == null || !this.reportParameters.isPresent()) {
+      this.reportParameters = JsonNullable.<Map<String, String>>of(new HashMap<>());
     }
-    this.reportParameters.put(key, reportParametersItem);
+    try {
+      this.reportParameters.get().put(key, reportParametersItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -333,18 +81,123 @@ public class ExportTemplateTaskVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public Map<String, String> getReportParameters() {
+        return reportParameters.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, String> getReportParameters() {
+  public JsonNullable<Map<String, String>> getReportParameters_JsonNullable() {
     return reportParameters;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
+  public void setReportParameters_JsonNullable(JsonNullable<Map<String, String>> reportParameters) {
+    this.reportParameters = reportParameters;
+  }
+
+  public void setReportParameters(Map<String, String> reportParameters) {
+    this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
+  public ExportTemplateTaskVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
+    
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public String getName() {
+        return name.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReportParameters(Map<String, String> reportParameters) {
-    this.reportParameters = reportParameters;
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
+    this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
+  }
+
+
+  public ExportTemplateTaskVM subscriptionId(String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
+    
+    return this;
+  }
+
+   /**
+   * Get subscriptionId
+   * @return subscriptionId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public String getSubscriptionId() {
+        return subscriptionId.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getSubscriptionId_JsonNullable() {
+    return subscriptionId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
+    this.subscriptionId = subscriptionId;
+  }
+
+  public void setSubscriptionId(String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
+  }
+
+
+  public ExportTemplateTaskVM type(TaskType type) {
+    
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Get type
+   * @return type
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TaskType getType() {
+    return type;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setType(TaskType type) {
+    this.type = type;
   }
 
 
@@ -357,31 +210,25 @@ public class ExportTemplateTaskVM {
       return false;
     }
     ExportTemplateTaskVM exportTemplateTaskVM = (ExportTemplateTaskVM) o;
-    return Objects.equals(this.fileName, exportTemplateTaskVM.fileName) &&
-        Objects.equals(this.folderId, exportTemplateTaskVM.folderId) &&
-        Objects.equals(this.locale, exportTemplateTaskVM.locale) &&
-        Objects.equals(this.pagesCount, exportTemplateTaskVM.pagesCount) &&
-        Objects.equals(this.format, exportTemplateTaskVM.format) &&
-        Objects.equals(this.exportParameters, exportTemplateTaskVM.exportParameters) &&
-        Objects.equals(this.reportParameters, exportTemplateTaskVM.reportParameters);
+    return Objects.equals(this.reportParameters, exportTemplateTaskVM.reportParameters) &&
+        Objects.equals(this.name, exportTemplateTaskVM.name) &&
+        Objects.equals(this.subscriptionId, exportTemplateTaskVM.subscriptionId) &&
+        Objects.equals(this.type, exportTemplateTaskVM.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileName, folderId, locale, pagesCount, format, exportParameters, reportParameters);
+    return Objects.hash(reportParameters, name, subscriptionId, type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExportTemplateTaskVM {\n");
-    sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
-    sb.append("    folderId: ").append(toIndentedString(folderId)).append("\n");
-    sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
-    sb.append("    pagesCount: ").append(toIndentedString(pagesCount)).append("\n");
-    sb.append("    format: ").append(toIndentedString(format)).append("\n");
-    sb.append("    exportParameters: ").append(toIndentedString(exportParameters)).append("\n");
     sb.append("    reportParameters: ").append(toIndentedString(reportParameters)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -22,6 +22,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -35,15 +38,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionFolder {
   public static final String JSON_PROPERTY_FOLDER_ID = "folderId";
-  private String folderId;
+  private JsonNullable<String> folderId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BYTES_USED = "bytesUsed";
   private Long bytesUsed;
 
 
   public SubscriptionFolder folderId(String folderId) {
+    this.folderId = JsonNullable.<String>of(folderId);
     
-    this.folderId = folderId;
     return this;
   }
 
@@ -53,18 +56,26 @@ public class SubscriptionFolder {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getFolderId() {
-    return folderId;
+        return folderId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_FOLDER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFolderId(String folderId) {
+
+  public JsonNullable<String> getFolderId_JsonNullable() {
+    return folderId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
+  public void setFolderId_JsonNullable(JsonNullable<String> folderId) {
     this.folderId = folderId;
+  }
+
+  public void setFolderId(String folderId) {
+    this.folderId = JsonNullable.<String>of(folderId);
   }
 
 

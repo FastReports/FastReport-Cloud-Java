@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.DataSourceConnectionType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -22,6 +23,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -37,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateDataSourceVM {
   public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CONNECTION_STRING = "connectionString";
   private String connectionString;
@@ -45,56 +49,13 @@ public class CreateDataSourceVM {
   public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
   private String subscriptionId;
 
-  /**
-   * Gets or Sets connectionType
-   */
-  public enum ConnectionTypeEnum {
-    JSON("JSON"),
-    
-    MSSQL("MSSQL"),
-    
-    CSV("CSV"),
-    
-    XML("XML"),
-    
-    MYSQL("MySQL"),
-    
-    POSTGRES("Postgres");
-
-    private String value;
-
-    ConnectionTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ConnectionTypeEnum fromValue(String value) {
-      for (ConnectionTypeEnum b : ConnectionTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_CONNECTION_TYPE = "connectionType";
-  private ConnectionTypeEnum connectionType;
+  private DataSourceConnectionType connectionType;
 
 
   public CreateDataSourceVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
     
-    this.name = name;
     return this;
   }
 
@@ -104,18 +65,26 @@ public class CreateDataSourceVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getName() {
-    return name;
+        return name.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
     this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
   }
 
 
@@ -171,7 +140,7 @@ public class CreateDataSourceVM {
   }
 
 
-  public CreateDataSourceVM connectionType(ConnectionTypeEnum connectionType) {
+  public CreateDataSourceVM connectionType(DataSourceConnectionType connectionType) {
     
     this.connectionType = connectionType;
     return this;
@@ -186,14 +155,14 @@ public class CreateDataSourceVM {
   @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ConnectionTypeEnum getConnectionType() {
+  public DataSourceConnectionType getConnectionType() {
     return connectionType;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConnectionType(ConnectionTypeEnum connectionType) {
+  public void setConnectionType(DataSourceConnectionType connectionType) {
     this.connectionType = connectionType;
   }
 

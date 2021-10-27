@@ -93,6 +93,10 @@ public class ApiClient {
         return new ApiKeysApi(this);
     }
     
+    public ConfigurationApi _configurationApi() {
+        return new ConfigurationApi(this);
+    }
+    
     public DataSourcesApi dataSourcesApi() {
         return new DataSourcesApi(this);
     }
@@ -139,6 +143,10 @@ public class ApiClient {
     
     public SubscriptionsApi subscriptionsApi() {
         return new SubscriptionsApi(this);
+    }
+    
+    public TasksApi tasksApi() {
+        return new TasksApi(this);
     }
     
     public TemplatesApi templatesApi() {

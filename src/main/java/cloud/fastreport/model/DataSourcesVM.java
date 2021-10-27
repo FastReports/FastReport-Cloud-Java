@@ -25,6 +25,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -40,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DataSourcesVM {
   public static final String JSON_PROPERTY_DATA_SOURCES = "dataSources";
-  private List<DataSourceVM> dataSources = null;
+  private JsonNullable<List<DataSourceVM>> dataSources = JsonNullable.<List<DataSourceVM>>undefined();
 
   public static final String JSON_PROPERTY_COUNT = "count";
   private Long count;
@@ -53,16 +56,20 @@ public class DataSourcesVM {
 
 
   public DataSourcesVM dataSources(List<DataSourceVM> dataSources) {
+    this.dataSources = JsonNullable.<List<DataSourceVM>>of(dataSources);
     
-    this.dataSources = dataSources;
     return this;
   }
 
   public DataSourcesVM addDataSourcesItem(DataSourceVM dataSourcesItem) {
-    if (this.dataSources == null) {
-      this.dataSources = new ArrayList<>();
+    if (this.dataSources == null || !this.dataSources.isPresent()) {
+      this.dataSources = JsonNullable.<List<DataSourceVM>>of(new ArrayList<>());
     }
-    this.dataSources.add(dataSourcesItem);
+    try {
+      this.dataSources.get().add(dataSourcesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -72,18 +79,26 @@ public class DataSourcesVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DATA_SOURCES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<DataSourceVM> getDataSources() {
-    return dataSources;
+        return dataSources.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_DATA_SOURCES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDataSources(List<DataSourceVM> dataSources) {
+
+  public JsonNullable<List<DataSourceVM>> getDataSources_JsonNullable() {
+    return dataSources;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DATA_SOURCES)
+  public void setDataSources_JsonNullable(JsonNullable<List<DataSourceVM>> dataSources) {
     this.dataSources = dataSources;
+  }
+
+  public void setDataSources(List<DataSourceVM> dataSources) {
+    this.dataSources = JsonNullable.<List<DataSourceVM>>of(dataSources);
   }
 
 

@@ -13,6 +13,8 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.DataSourceConnectionType;
+import cloud.fastreport.model.DataSourceStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -21,6 +23,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.threeten.bp.OffsetDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -121,11 +126,11 @@ public class DataSourceVMTest {
     }
 
     /**
-     * Test the property 'isConnected'
+     * Test the property 'status'
      */
     @Test
-    public void isConnectedTest() {
-        // TODO: test isConnected
+    public void statusTest() {
+        // TODO: test status
     }
 
 }

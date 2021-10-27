@@ -50,12 +50,12 @@ public class ApiKeysApi {
     * <p><b>200</b> - Succesfully created
     * <p><b>400</b> - wrong model provided or exception thrown (user&#39;s attempts to create sixth key for example throwns an exception)
     * <p><b>401</b> - User is not authorized
-    * @param model The model parameter
+    * @param createApiKeyVM The createApiKeyVM parameter
     * @return ApiKeyVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public ApiKeyVM apiKeysCreateApiKey(CreateApiKeyVM model) throws IOException {
-        HttpResponse response = apiKeysCreateApiKeyForHttpResponse(model);
+    public ApiKeyVM apiKeysCreateApiKey(CreateApiKeyVM createApiKeyVM) throws IOException {
+        HttpResponse response = apiKeysCreateApiKeyForHttpResponse(createApiKeyVM);
         TypeReference<ApiKeyVM> typeRef = new TypeReference<ApiKeyVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -65,51 +65,51 @@ public class ApiKeysApi {
     * <p><b>200</b> - Succesfully created
     * <p><b>400</b> - wrong model provided or exception thrown (user&#39;s attempts to create sixth key for example throwns an exception)
     * <p><b>401</b> - User is not authorized
-    * @param model The model parameter
+    * @param createApiKeyVM The createApiKeyVM parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return ApiKeyVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public ApiKeyVM apiKeysCreateApiKey(CreateApiKeyVM model, Map<String, Object> params) throws IOException {
-        HttpResponse response = apiKeysCreateApiKeyForHttpResponse(model, params);
+    public ApiKeyVM apiKeysCreateApiKey(CreateApiKeyVM createApiKeyVM, Map<String, Object> params) throws IOException {
+        HttpResponse response = apiKeysCreateApiKeyForHttpResponse(createApiKeyVM, params);
         TypeReference<ApiKeyVM> typeRef = new TypeReference<ApiKeyVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse apiKeysCreateApiKeyForHttpResponse(CreateApiKeyVM model) throws IOException {
-        // verify the required parameter 'model' is set
-        if (model == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'model' when calling apiKeysCreateApiKey");
+    public HttpResponse apiKeysCreateApiKeyForHttpResponse(CreateApiKeyVM createApiKeyVM) throws IOException {
+        // verify the required parameter 'createApiKeyVM' is set
+        if (createApiKeyVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'createApiKeyVM' when calling apiKeysCreateApiKey");
         }
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/ApiKeys");
 
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(model);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(createApiKeyVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse apiKeysCreateApiKeyForHttpResponse(java.io.InputStream model, String mediaType) throws IOException {
-          // verify the required parameter 'model' is set
-              if (model == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'model' when calling apiKeysCreateApiKey");
+      public HttpResponse apiKeysCreateApiKeyForHttpResponse(java.io.InputStream createApiKeyVM, String mediaType) throws IOException {
+          // verify the required parameter 'createApiKeyVM' is set
+              if (createApiKeyVM == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'createApiKeyVM' when calling apiKeysCreateApiKey");
               }
               UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/ApiKeys");
 
               String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = model == null ?
+              HttpContent content = createApiKeyVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, model);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, createApiKeyVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse apiKeysCreateApiKeyForHttpResponse(CreateApiKeyVM model, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'model' is set
-        if (model == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'model' when calling apiKeysCreateApiKey");
+    public HttpResponse apiKeysCreateApiKeyForHttpResponse(CreateApiKeyVM createApiKeyVM, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'createApiKeyVM' is set
+        if (createApiKeyVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'createApiKeyVM' when calling apiKeysCreateApiKey");
         }
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/ApiKeys");
 
@@ -134,7 +134,7 @@ public class ApiKeysApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(model);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(createApiKeyVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
@@ -146,11 +146,11 @@ public class ApiKeysApi {
     * <p><b>401</b> - User is not authorized
     * <p><b>404</b> - No such apikey found
     * <p><b>500</b> - exception thrown
-    * @param model The model parameter
+    * @param deleteApiKeyVM The deleteApiKeyVM parameter
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void apiKeysDeleteApiKey(DeleteApiKeyVM model) throws IOException {
-        apiKeysDeleteApiKeyForHttpResponse(model);
+    public void apiKeysDeleteApiKey(DeleteApiKeyVM deleteApiKeyVM) throws IOException {
+        apiKeysDeleteApiKeyForHttpResponse(deleteApiKeyVM);
     }
 
   /**
@@ -160,18 +160,18 @@ public class ApiKeysApi {
     * <p><b>401</b> - User is not authorized
     * <p><b>404</b> - No such apikey found
     * <p><b>500</b> - exception thrown
-    * @param model The model parameter
+    * @param deleteApiKeyVM The deleteApiKeyVM parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void apiKeysDeleteApiKey(DeleteApiKeyVM model, Map<String, Object> params) throws IOException {
-        apiKeysDeleteApiKeyForHttpResponse(model, params);
+    public void apiKeysDeleteApiKey(DeleteApiKeyVM deleteApiKeyVM, Map<String, Object> params) throws IOException {
+        apiKeysDeleteApiKeyForHttpResponse(deleteApiKeyVM, params);
     }
 
-    public HttpResponse apiKeysDeleteApiKeyForHttpResponse(DeleteApiKeyVM model) throws IOException {
-        // verify the required parameter 'model' is set
-        if (model == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'model' when calling apiKeysDeleteApiKey");
+    public HttpResponse apiKeysDeleteApiKeyForHttpResponse(DeleteApiKeyVM deleteApiKeyVM) throws IOException {
+        // verify the required parameter 'deleteApiKeyVM' is set
+        if (deleteApiKeyVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'deleteApiKeyVM' when calling apiKeysDeleteApiKey");
         }
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/ApiKeys");
 
@@ -182,26 +182,26 @@ public class ApiKeysApi {
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
-      public HttpResponse apiKeysDeleteApiKeyForHttpResponse(java.io.InputStream model, String mediaType) throws IOException {
-          // verify the required parameter 'model' is set
-              if (model == null) {
-              throw new IllegalArgumentException("Missing the required parameter 'model' when calling apiKeysDeleteApiKey");
+      public HttpResponse apiKeysDeleteApiKeyForHttpResponse(java.io.InputStream deleteApiKeyVM, String mediaType) throws IOException {
+          // verify the required parameter 'deleteApiKeyVM' is set
+              if (deleteApiKeyVM == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'deleteApiKeyVM' when calling apiKeysDeleteApiKey");
               }
               UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/ApiKeys");
 
               String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = model == null ?
+              HttpContent content = deleteApiKeyVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, model);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, deleteApiKeyVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
       }
 
-    public HttpResponse apiKeysDeleteApiKeyForHttpResponse(DeleteApiKeyVM model, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'model' is set
-        if (model == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'model' when calling apiKeysDeleteApiKey");
+    public HttpResponse apiKeysDeleteApiKeyForHttpResponse(DeleteApiKeyVM deleteApiKeyVM, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'deleteApiKeyVM' is set
+        if (deleteApiKeyVM == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'deleteApiKeyVM' when calling apiKeysDeleteApiKey");
         }
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/manage/v1/ApiKeys");
 

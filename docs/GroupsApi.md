@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## groupsCreateGroup
 
-> GroupVM groupsCreateGroup(viewModel)
+> GroupVM groupsCreateGroup(createGroupVM)
 
 Create a new user group
 
@@ -41,16 +41,14 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
-        CreateGroupVM viewModel = new CreateGroupVM(); // CreateGroupVM | Model for creating
+        CreateGroupVM createGroupVM = new CreateGroupVM(); // CreateGroupVM | Model for creating
         try {
-            GroupVM result = apiInstance.groupsCreateGroup(viewModel);
+            GroupVM result = apiInstance.groupsCreateGroup(createGroupVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GroupsApi#groupsCreateGroup");
@@ -68,7 +66,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **viewModel** | [**CreateGroupVM**](CreateGroupVM.md)| Model for creating | [optional]
+ **createGroupVM** | [**CreateGroupVM**](CreateGroupVM.md)| Model for creating | [optional]
 
 ### Return type
 
@@ -80,8 +78,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -89,8 +87,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Succesfully created |  -  |
 | **400** | The reqeust is wrong |  -  |
-| **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
 | **404** | Information from view model is not found |  -  |
 
 
@@ -121,11 +119,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
         String id = "id_example"; // String | Identifier of group
@@ -160,7 +156,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -168,8 +164,8 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Succesfully delete |  -  |
 | **400** | The reqeust is wrong |  -  |
-| **402** | subscripiton is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscripiton is outdated |  -  |
 | **404** | Group with this identifier is not found |  -  |
 | **500** | Exception thrown |  -  |
 
@@ -201,11 +197,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
         String id = "id_example"; // String | Identifier of group
@@ -241,7 +235,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -281,11 +275,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
         Integer skip = 0; // Integer | How many groups need to skip
@@ -323,7 +315,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -362,11 +354,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
         String id = "id_example"; // String | Identifier of group
@@ -402,7 +392,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -416,7 +406,7 @@ Name | Type | Description  | Notes
 
 ## groupsRenameGroup
 
-> GroupVM groupsRenameGroup(id, viewModel)
+> GroupVM groupsRenameGroup(id, renameGroupVM)
 
 Rename group by identifier
 
@@ -441,17 +431,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
         String id = "id_example"; // String | Identifier of group
-        RenameGroupVM viewModel = new RenameGroupVM(); // RenameGroupVM | Model for renaming
+        RenameGroupVM renameGroupVM = new RenameGroupVM(); // RenameGroupVM | Model for renaming
         try {
-            GroupVM result = apiInstance.groupsRenameGroup(id, viewModel);
+            GroupVM result = apiInstance.groupsRenameGroup(id, renameGroupVM);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GroupsApi#groupsRenameGroup");
@@ -470,7 +458,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Identifier of group |
- **viewModel** | [**RenameGroupVM**](RenameGroupVM.md)| Model for renaming |
+ **renameGroupVM** | [**RenameGroupVM**](RenameGroupVM.md)| Model for renaming |
 
 ### Return type
 
@@ -482,8 +470,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -491,15 +479,15 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Succesfully renamed |  -  |
 | **400** | The reqeust is wrong |  -  |
-| **402** | subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
 | **404** | Group with this identifier is not found |  -  |
 | **500** | Exception thrown |  -  |
 
 
 ## groupsUpdatePermissions
 
-> groupsUpdatePermissions(id, permissionsVM)
+> groupsUpdatePermissions(id, updateGroupPermissionsVM)
 
 Update permissions
 
@@ -524,17 +512,15 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
         String id = "id_example"; // String | 
-        UpdateGroupPermissionsVM permissionsVM = new UpdateGroupPermissionsVM(); // UpdateGroupPermissionsVM | 
+        UpdateGroupPermissionsVM updateGroupPermissionsVM = new UpdateGroupPermissionsVM(); // UpdateGroupPermissionsVM | 
         try {
-            apiInstance.groupsUpdatePermissions(id, permissionsVM);
+            apiInstance.groupsUpdatePermissions(id, updateGroupPermissionsVM);
         } catch (ApiException e) {
             System.err.println("Exception when calling GroupsApi#groupsUpdatePermissions");
             System.err.println("Status code: " + e.getCode());
@@ -552,7 +538,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
- **permissionsVM** | [**UpdateGroupPermissionsVM**](UpdateGroupPermissionsVM.md)|  | [optional]
+ **updateGroupPermissionsVM** | [**UpdateGroupPermissionsVM**](UpdateGroupPermissionsVM.md)|  | [optional]
 
 ### Return type
 
@@ -564,8 +550,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details

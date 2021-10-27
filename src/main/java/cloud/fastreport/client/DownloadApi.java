@@ -45,10 +45,10 @@ public class DownloadApi {
   /**
     * Returns a export file with specified id
     * <p><b>200</b> - Specified file was found
+    * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * @param id The id parameter
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -62,10 +62,10 @@ public class DownloadApi {
   /**
     * Returns a export file with specified id
     * <p><b>200</b> - Specified file was found
+    * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * @param id The id parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File
@@ -133,10 +133,10 @@ public class DownloadApi {
   /**
     * Returns export&#39;s thumbnail
     * <p><b>200</b> - Specified thumbnail was found
+    * <p><b>404</b> - Specified thumbnail was not found or user do not has access to it
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * <p><b>404</b> - Specified thumbnail was not found or user do not has access to it
     * @param id The id parameter
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -150,10 +150,10 @@ public class DownloadApi {
   /**
     * Returns export&#39;s thumbnail
     * <p><b>200</b> - Specified thumbnail was found
+    * <p><b>404</b> - Specified thumbnail was not found or user do not has access to it
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * <p><b>404</b> - Specified thumbnail was not found or user do not has access to it
     * @param id The id parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File
@@ -321,10 +321,10 @@ public class DownloadApi {
   /**
     * Returns a prepared file with specified id
     * <p><b>200</b> - Specified file was found
+    * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * <p><b>400</b> - bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions
-    * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * @param id The id parameter
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -338,10 +338,10 @@ public class DownloadApi {
   /**
     * Returns a prepared file with specified id
     * <p><b>200</b> - Specified file was found
+    * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * <p><b>400</b> - bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions
-    * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * @param id The id parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File
@@ -409,10 +409,10 @@ public class DownloadApi {
   /**
     * Returns report&#39;s thumbnail
     * <p><b>200</b> - Specified thumbnail was found
+    * <p><b>404</b> - Specified thumbnail was not found or user do not has access to it
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * <p><b>404</b> - Specified thumbnail was not found or user do not has access to it
     * @param id The id parameter
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -426,10 +426,10 @@ public class DownloadApi {
   /**
     * Returns report&#39;s thumbnail
     * <p><b>200</b> - Specified thumbnail was found
+    * <p><b>404</b> - Specified thumbnail was not found or user do not has access to it
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * <p><b>404</b> - Specified thumbnail was not found or user do not has access to it
     * @param id The id parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File
@@ -497,10 +497,10 @@ public class DownloadApi {
   /**
     * Returns a zip archive with selected files
     * <p><b>200</b> - File has been downloaded
+    * <p><b>404</b> - files is not found
     * <p><b>400</b> - wrong parameters provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - files is not found
     * @param archiveName name of the created archive
     * @param ids ids separated with a &#39;,&#39; sign
     * @return File
@@ -515,10 +515,10 @@ public class DownloadApi {
   /**
     * Returns a zip archive with selected files
     * <p><b>200</b> - File has been downloaded
+    * <p><b>404</b> - files is not found
     * <p><b>400</b> - wrong parameters provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - files is not found
     * @param archiveName name of the created archive
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File
@@ -597,10 +597,10 @@ public class DownloadApi {
   /**
     * Returns a report file with specified id
     * <p><b>200</b> - Specified file was found
+    * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * <p><b>400</b> - bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions
-    * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * @param id template id
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -614,10 +614,10 @@ public class DownloadApi {
   /**
     * Returns a report file with specified id
     * <p><b>200</b> - Specified file was found
+    * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * <p><b>400</b> - bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions
-    * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * @param id template id
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File

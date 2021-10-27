@@ -59,8 +59,8 @@ public class UserSettingsApiTest {
      */
     @Test
     public void userSettingsUpdateMySettingsTest() throws IOException {
-        UpdateUserSettingsVM model = null;
-        UserSettingsVM response = api.userSettingsUpdateMySettings(model);
+        UpdateUserSettingsVM updateUserSettingsVM = null;
+        UserSettingsVM response = api.userSettingsUpdateMySettings(updateUserSettingsVM);
 
         // TODO: test validations
     }

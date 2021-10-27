@@ -13,6 +13,8 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.ExportReportTaskVM;
+import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,6 +25,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -43,59 +48,27 @@ public class ExportTemplateTaskVMTest {
     }
 
     /**
-     * Test the property 'fileName'
+     * Test the property 'name'
      */
     @Test
-    public void fileNameTest() {
-        // TODO: test fileName
+    public void nameTest() {
+        // TODO: test name
     }
 
     /**
-     * Test the property 'folderId'
+     * Test the property 'subscriptionId'
      */
     @Test
-    public void folderIdTest() {
-        // TODO: test folderId
+    public void subscriptionIdTest() {
+        // TODO: test subscriptionId
     }
 
     /**
-     * Test the property 'locale'
+     * Test the property 'type'
      */
     @Test
-    public void localeTest() {
-        // TODO: test locale
-    }
-
-    /**
-     * Test the property 'pagesCount'
-     */
-    @Test
-    public void pagesCountTest() {
-        // TODO: test pagesCount
-    }
-
-    /**
-     * Test the property 'format'
-     */
-    @Test
-    public void formatTest() {
-        // TODO: test format
-    }
-
-    /**
-     * Test the property 'exportParameters'
-     */
-    @Test
-    public void exportParametersTest() {
-        // TODO: test exportParameters
-    }
-
-    /**
-     * Test the property 'reportParameters'
-     */
-    @Test
-    public void reportParametersTest() {
-        // TODO: test reportParameters
+    public void typeTest() {
+        // TODO: test type
     }
 
 }

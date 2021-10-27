@@ -15,7 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.ReportInfo;
+import cloud.fastreport.model.FileCreateVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -25,6 +25,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -32,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   ReportCreateVM.JSON_PROPERTY_TEMPLATE_ID,
-  ReportCreateVM.JSON_PROPERTY_REPORT_INFO,
   ReportCreateVM.JSON_PROPERTY_NAME,
   ReportCreateVM.JSON_PROPERTY_TAGS,
   ReportCreateVM.JSON_PROPERTY_ICON,
@@ -42,27 +44,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportCreateVM {
   public static final String JSON_PROPERTY_TEMPLATE_ID = "templateId";
-  private String templateId;
-
-  public static final String JSON_PROPERTY_REPORT_INFO = "reportInfo";
-  private ReportInfo reportInfo;
+  private JsonNullable<String> templateId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TAGS = "tags";
-  private List<String> tags = null;
+  private JsonNullable<List<String>> tags = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_ICON = "icon";
-  private byte[] icon;
+  private JsonNullable<byte[]> icon = JsonNullable.<byte[]>undefined();
 
   public static final String JSON_PROPERTY_CONTENT = "content";
-  private byte[] content;
+  private JsonNullable<byte[]> content = JsonNullable.<byte[]>undefined();
 
 
   public ReportCreateVM templateId(String templateId) {
+    this.templateId = JsonNullable.<String>of(templateId);
     
-    this.templateId = templateId;
     return this;
   }
 
@@ -72,51 +71,32 @@ public class ReportCreateVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getTemplateId() {
-    return templateId;
+        return templateId.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTemplateId(String templateId) {
+
+  public JsonNullable<String> getTemplateId_JsonNullable() {
+    return templateId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
+  public void setTemplateId_JsonNullable(JsonNullable<String> templateId) {
     this.templateId = templateId;
   }
 
-
-  public ReportCreateVM reportInfo(ReportInfo reportInfo) {
-    
-    this.reportInfo = reportInfo;
-    return this;
-  }
-
-   /**
-   * Get reportInfo
-   * @return reportInfo
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REPORT_INFO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public ReportInfo getReportInfo() {
-    return reportInfo;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REPORT_INFO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReportInfo(ReportInfo reportInfo) {
-    this.reportInfo = reportInfo;
+  public void setTemplateId(String templateId) {
+    this.templateId = JsonNullable.<String>of(templateId);
   }
 
 
   public ReportCreateVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
     
-    this.name = name;
     return this;
   }
 
@@ -126,32 +106,44 @@ public class ReportCreateVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getName() {
-    return name;
+        return name.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
     this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
   }
 
 
   public ReportCreateVM tags(List<String> tags) {
+    this.tags = JsonNullable.<List<String>>of(tags);
     
-    this.tags = tags;
     return this;
   }
 
   public ReportCreateVM addTagsItem(String tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<>();
+    if (this.tags == null || !this.tags.isPresent()) {
+      this.tags = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.tags.add(tagsItem);
+    try {
+      this.tags.get().add(tagsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -161,24 +153,32 @@ public class ReportCreateVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<String> getTags() {
-    return tags;
+        return tags.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_TAGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTags(List<String> tags) {
+
+  public JsonNullable<List<String>> getTags_JsonNullable() {
+    return tags;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAGS)
+  public void setTags_JsonNullable(JsonNullable<List<String>> tags) {
     this.tags = tags;
+  }
+
+  public void setTags(List<String> tags) {
+    this.tags = JsonNullable.<List<String>>of(tags);
   }
 
 
   public ReportCreateVM icon(byte[] icon) {
+    this.icon = JsonNullable.<byte[]>of(icon);
     
-    this.icon = icon;
     return this;
   }
 
@@ -188,24 +188,32 @@ public class ReportCreateVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ICON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public byte[] getIcon() {
-    return icon;
+        return icon.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIcon(byte[] icon) {
+
+  public JsonNullable<byte[]> getIcon_JsonNullable() {
+    return icon;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ICON)
+  public void setIcon_JsonNullable(JsonNullable<byte[]> icon) {
     this.icon = icon;
+  }
+
+  public void setIcon(byte[] icon) {
+    this.icon = JsonNullable.<byte[]>of(icon);
   }
 
 
   public ReportCreateVM content(byte[] content) {
+    this.content = JsonNullable.<byte[]>of(content);
     
-    this.content = content;
     return this;
   }
 
@@ -215,18 +223,26 @@ public class ReportCreateVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CONTENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public byte[] getContent() {
-    return content;
+        return content.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_CONTENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContent(byte[] content) {
+
+  public JsonNullable<byte[]> getContent_JsonNullable() {
+    return content;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONTENT)
+  public void setContent_JsonNullable(JsonNullable<byte[]> content) {
     this.content = content;
+  }
+
+  public void setContent(byte[] content) {
+    this.content = JsonNullable.<byte[]>of(content);
   }
 
 
@@ -240,7 +256,6 @@ public class ReportCreateVM {
     }
     ReportCreateVM reportCreateVM = (ReportCreateVM) o;
     return Objects.equals(this.templateId, reportCreateVM.templateId) &&
-        Objects.equals(this.reportInfo, reportCreateVM.reportInfo) &&
         Objects.equals(this.name, reportCreateVM.name) &&
         Objects.equals(this.tags, reportCreateVM.tags) &&
         Arrays.equals(this.icon, reportCreateVM.icon) &&
@@ -249,7 +264,7 @@ public class ReportCreateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateId, reportInfo, name, tags, Arrays.hashCode(icon), Arrays.hashCode(content));
+    return Objects.hash(templateId, name, tags, Arrays.hashCode(icon), Arrays.hashCode(content));
   }
 
   @Override
@@ -257,7 +272,6 @@ public class ReportCreateVM {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReportCreateVM {\n");
     sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
-    sb.append("    reportInfo: ").append(toIndentedString(reportInfo)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");

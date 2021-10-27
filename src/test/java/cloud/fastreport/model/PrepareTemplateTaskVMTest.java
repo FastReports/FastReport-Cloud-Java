@@ -13,6 +13,9 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.ExportReportTaskVM;
+import cloud.fastreport.model.TaskType;
+import cloud.fastreport.model.TransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -20,9 +23,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -51,35 +58,19 @@ public class PrepareTemplateTaskVMTest {
     }
 
     /**
-     * Test the property 'locale'
+     * Test the property 'subscriptionId'
      */
     @Test
-    public void localeTest() {
-        // TODO: test locale
+    public void subscriptionIdTest() {
+        // TODO: test subscriptionId
     }
 
     /**
-     * Test the property 'parentFolderId'
+     * Test the property 'type'
      */
     @Test
-    public void parentFolderIdTest() {
-        // TODO: test parentFolderId
-    }
-
-    /**
-     * Test the property 'pagesCount'
-     */
-    @Test
-    public void pagesCountTest() {
-        // TODO: test pagesCount
-    }
-
-    /**
-     * Test the property 'reportParameters'
-     */
-    @Test
-    public void reportParametersTest() {
-        // TODO: test reportParameters
+    public void typeTest() {
+        // TODO: test type
     }
 
 }

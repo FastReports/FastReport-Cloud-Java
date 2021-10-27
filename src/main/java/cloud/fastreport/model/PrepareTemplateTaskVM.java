@@ -15,6 +15,9 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.ExportReportTaskVM;
+import cloud.fastreport.model.TaskType;
+import cloud.fastreport.model.TransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -22,124 +25,98 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * PrepareTemplateTaskVM
  */
 @JsonPropertyOrder({
-  PrepareTemplateTaskVM.JSON_PROPERTY_NAME,
-  PrepareTemplateTaskVM.JSON_PROPERTY_LOCALE,
-  PrepareTemplateTaskVM.JSON_PROPERTY_PARENT_FOLDER_ID,
+  PrepareTemplateTaskVM.JSON_PROPERTY_EXPORTS,
   PrepareTemplateTaskVM.JSON_PROPERTY_PAGES_COUNT,
-  PrepareTemplateTaskVM.JSON_PROPERTY_REPORT_PARAMETERS
+  PrepareTemplateTaskVM.JSON_PROPERTY_REPORT_PARAMETERS,
+  PrepareTemplateTaskVM.JSON_PROPERTY_NAME,
+  PrepareTemplateTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
+  PrepareTemplateTaskVM.JSON_PROPERTY_TYPE
 })
 @JsonTypeName("PrepareTemplateTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PrepareTemplateTaskVM {
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
-
-  public static final String JSON_PROPERTY_LOCALE = "locale";
-  private String locale;
-
-  public static final String JSON_PROPERTY_PARENT_FOLDER_ID = "parentFolderId";
-  private String parentFolderId;
+  public static final String JSON_PROPERTY_EXPORTS = "exports";
+  private JsonNullable<List<ExportReportTaskVM>> exports = JsonNullable.<List<ExportReportTaskVM>>undefined();
 
   public static final String JSON_PROPERTY_PAGES_COUNT = "pagesCount";
-  private Integer pagesCount;
+  private JsonNullable<Integer> pagesCount = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
-  private Map<String, String> reportParameters = null;
+  private JsonNullable<Map<String, String>> reportParameters = JsonNullable.<Map<String, String>>undefined();
+
+  public static final String JSON_PROPERTY_NAME = "name";
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
+  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_TYPE = "type";
+  private TaskType type;
 
 
-  public PrepareTemplateTaskVM name(String name) {
+  public PrepareTemplateTaskVM exports(List<ExportReportTaskVM> exports) {
+    this.exports = JsonNullable.<List<ExportReportTaskVM>>of(exports);
     
-    this.name = name;
+    return this;
+  }
+
+  public PrepareTemplateTaskVM addExportsItem(ExportReportTaskVM exportsItem) {
+    if (this.exports == null || !this.exports.isPresent()) {
+      this.exports = JsonNullable.<List<ExportReportTaskVM>>of(new ArrayList<>());
+    }
+    try {
+      this.exports.get().add(exportsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get exports
+   * @return exports
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonIgnore
+
+  public List<ExportReportTaskVM> getExports() {
+        return exports.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_EXPORTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getName() {
-    return name;
+  public JsonNullable<List<ExportReportTaskVM>> getExports_JsonNullable() {
+    return exports;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXPORTS)
+  public void setExports_JsonNullable(JsonNullable<List<ExportReportTaskVM>> exports) {
+    this.exports = exports;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public PrepareTemplateTaskVM locale(String locale) {
-    
-    this.locale = locale;
-    return this;
-  }
-
-   /**
-   * Get locale
-   * @return locale
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_LOCALE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getLocale() {
-    return locale;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LOCALE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocale(String locale) {
-    this.locale = locale;
-  }
-
-
-  public PrepareTemplateTaskVM parentFolderId(String parentFolderId) {
-    
-    this.parentFolderId = parentFolderId;
-    return this;
-  }
-
-   /**
-   * Get parentFolderId
-   * @return parentFolderId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PARENT_FOLDER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getParentFolderId() {
-    return parentFolderId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PARENT_FOLDER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParentFolderId(String parentFolderId) {
-    this.parentFolderId = parentFolderId;
+  public void setExports(List<ExportReportTaskVM> exports) {
+    this.exports = JsonNullable.<List<ExportReportTaskVM>>of(exports);
   }
 
 
   public PrepareTemplateTaskVM pagesCount(Integer pagesCount) {
+    this.pagesCount = JsonNullable.<Integer>of(pagesCount);
     
-    this.pagesCount = pagesCount;
     return this;
   }
 
@@ -151,32 +128,44 @@ public class PrepareTemplateTaskVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PAGES_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Integer getPagesCount() {
-    return pagesCount;
+        return pagesCount.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_PAGES_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPagesCount(Integer pagesCount) {
+
+  public JsonNullable<Integer> getPagesCount_JsonNullable() {
+    return pagesCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PAGES_COUNT)
+  public void setPagesCount_JsonNullable(JsonNullable<Integer> pagesCount) {
     this.pagesCount = pagesCount;
+  }
+
+  public void setPagesCount(Integer pagesCount) {
+    this.pagesCount = JsonNullable.<Integer>of(pagesCount);
   }
 
 
   public PrepareTemplateTaskVM reportParameters(Map<String, String> reportParameters) {
+    this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
     
-    this.reportParameters = reportParameters;
     return this;
   }
 
   public PrepareTemplateTaskVM putReportParametersItem(String key, String reportParametersItem) {
-    if (this.reportParameters == null) {
-      this.reportParameters = new HashMap<>();
+    if (this.reportParameters == null || !this.reportParameters.isPresent()) {
+      this.reportParameters = JsonNullable.<Map<String, String>>of(new HashMap<>());
     }
-    this.reportParameters.put(key, reportParametersItem);
+    try {
+      this.reportParameters.get().put(key, reportParametersItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -186,18 +175,123 @@ public class PrepareTemplateTaskVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public Map<String, String> getReportParameters() {
+        return reportParameters.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, String> getReportParameters() {
+  public JsonNullable<Map<String, String>> getReportParameters_JsonNullable() {
     return reportParameters;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
+  public void setReportParameters_JsonNullable(JsonNullable<Map<String, String>> reportParameters) {
+    this.reportParameters = reportParameters;
+  }
+
+  public void setReportParameters(Map<String, String> reportParameters) {
+    this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
+  public PrepareTemplateTaskVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
+    
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public String getName() {
+        return name.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReportParameters(Map<String, String> reportParameters) {
-    this.reportParameters = reportParameters;
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
+    this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
+  }
+
+
+  public PrepareTemplateTaskVM subscriptionId(String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
+    
+    return this;
+  }
+
+   /**
+   * Get subscriptionId
+   * @return subscriptionId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public String getSubscriptionId() {
+        return subscriptionId.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getSubscriptionId_JsonNullable() {
+    return subscriptionId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
+    this.subscriptionId = subscriptionId;
+  }
+
+  public void setSubscriptionId(String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
+  }
+
+
+  public PrepareTemplateTaskVM type(TaskType type) {
+    
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Get type
+   * @return type
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TaskType getType() {
+    return type;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setType(TaskType type) {
+    this.type = type;
   }
 
 
@@ -210,27 +304,29 @@ public class PrepareTemplateTaskVM {
       return false;
     }
     PrepareTemplateTaskVM prepareTemplateTaskVM = (PrepareTemplateTaskVM) o;
-    return Objects.equals(this.name, prepareTemplateTaskVM.name) &&
-        Objects.equals(this.locale, prepareTemplateTaskVM.locale) &&
-        Objects.equals(this.parentFolderId, prepareTemplateTaskVM.parentFolderId) &&
+    return Objects.equals(this.exports, prepareTemplateTaskVM.exports) &&
         Objects.equals(this.pagesCount, prepareTemplateTaskVM.pagesCount) &&
-        Objects.equals(this.reportParameters, prepareTemplateTaskVM.reportParameters);
+        Objects.equals(this.reportParameters, prepareTemplateTaskVM.reportParameters) &&
+        Objects.equals(this.name, prepareTemplateTaskVM.name) &&
+        Objects.equals(this.subscriptionId, prepareTemplateTaskVM.subscriptionId) &&
+        Objects.equals(this.type, prepareTemplateTaskVM.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, locale, parentFolderId, pagesCount, reportParameters);
+    return Objects.hash(exports, pagesCount, reportParameters, name, subscriptionId, type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PrepareTemplateTaskVM {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
-    sb.append("    parentFolderId: ").append(toIndentedString(parentFolderId)).append("\n");
+    sb.append("    exports: ").append(toIndentedString(exports)).append("\n");
     sb.append("    pagesCount: ").append(toIndentedString(pagesCount)).append("\n");
     sb.append("    reportParameters: ").append(toIndentedString(reportParameters)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

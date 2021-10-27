@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.FolderCreateVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,6 +25,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -38,18 +42,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TemplateFolderCreateVM {
   public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TAGS = "tags";
-  private List<String> tags = null;
+  private JsonNullable<List<String>> tags = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_ICON = "icon";
-  private byte[] icon;
+  private JsonNullable<byte[]> icon = JsonNullable.<byte[]>undefined();
 
 
   public TemplateFolderCreateVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
     
-    this.name = name;
     return this;
   }
 
@@ -59,32 +63,44 @@ public class TemplateFolderCreateVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getName() {
-    return name;
+        return name.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
     this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
   }
 
 
   public TemplateFolderCreateVM tags(List<String> tags) {
+    this.tags = JsonNullable.<List<String>>of(tags);
     
-    this.tags = tags;
     return this;
   }
 
   public TemplateFolderCreateVM addTagsItem(String tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<>();
+    if (this.tags == null || !this.tags.isPresent()) {
+      this.tags = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.tags.add(tagsItem);
+    try {
+      this.tags.get().add(tagsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -94,24 +110,32 @@ public class TemplateFolderCreateVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public List<String> getTags() {
-    return tags;
+        return tags.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_TAGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTags(List<String> tags) {
+
+  public JsonNullable<List<String>> getTags_JsonNullable() {
+    return tags;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAGS)
+  public void setTags_JsonNullable(JsonNullable<List<String>> tags) {
     this.tags = tags;
+  }
+
+  public void setTags(List<String> tags) {
+    this.tags = JsonNullable.<List<String>>of(tags);
   }
 
 
   public TemplateFolderCreateVM icon(byte[] icon) {
+    this.icon = JsonNullable.<byte[]>of(icon);
     
-    this.icon = icon;
     return this;
   }
 
@@ -121,18 +145,26 @@ public class TemplateFolderCreateVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ICON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public byte[] getIcon() {
-    return icon;
+        return icon.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIcon(byte[] icon) {
+
+  public JsonNullable<byte[]> getIcon_JsonNullable() {
+    return icon;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ICON)
+  public void setIcon_JsonNullable(JsonNullable<byte[]> icon) {
     this.icon = icon;
+  }
+
+  public void setIcon(byte[] icon) {
+    this.icon = JsonNullable.<byte[]>of(icon);
   }
 
 

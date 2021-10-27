@@ -24,6 +24,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -40,24 +43,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ProblemDetails extends HashMap<String, Object> {
   public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
+  private JsonNullable<String> type = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TITLE = "title";
-  private String title;
+  private JsonNullable<String> title = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STATUS = "status";
-  private Integer status;
+  private JsonNullable<Integer> status = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_DETAIL = "detail";
-  private String detail;
+  private JsonNullable<String> detail = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INSTANCE = "instance";
-  private String instance;
+  private JsonNullable<String> instance = JsonNullable.<String>undefined();
 
 
   public ProblemDetails type(String type) {
+    this.type = JsonNullable.<String>of(type);
     
-    this.type = type;
     return this;
   }
 
@@ -67,24 +70,32 @@ public class ProblemDetails extends HashMap<String, Object> {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getType() {
-    return type;
+        return type.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(String type) {
+
+  public JsonNullable<String> getType_JsonNullable() {
+    return type;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  public void setType_JsonNullable(JsonNullable<String> type) {
     this.type = type;
+  }
+
+  public void setType(String type) {
+    this.type = JsonNullable.<String>of(type);
   }
 
 
   public ProblemDetails title(String title) {
+    this.title = JsonNullable.<String>of(title);
     
-    this.title = title;
     return this;
   }
 
@@ -94,24 +105,32 @@ public class ProblemDetails extends HashMap<String, Object> {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TITLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getTitle() {
-    return title;
+        return title.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_TITLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTitle(String title) {
+
+  public JsonNullable<String> getTitle_JsonNullable() {
+    return title;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TITLE)
+  public void setTitle_JsonNullable(JsonNullable<String> title) {
     this.title = title;
+  }
+
+  public void setTitle(String title) {
+    this.title = JsonNullable.<String>of(title);
   }
 
 
   public ProblemDetails status(Integer status) {
+    this.status = JsonNullable.<Integer>of(status);
     
-    this.status = status;
     return this;
   }
 
@@ -121,24 +140,32 @@ public class ProblemDetails extends HashMap<String, Object> {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public Integer getStatus() {
-    return status;
+        return status.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(Integer status) {
+
+  public JsonNullable<Integer> getStatus_JsonNullable() {
+    return status;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  public void setStatus_JsonNullable(JsonNullable<Integer> status) {
     this.status = status;
+  }
+
+  public void setStatus(Integer status) {
+    this.status = JsonNullable.<Integer>of(status);
   }
 
 
   public ProblemDetails detail(String detail) {
+    this.detail = JsonNullable.<String>of(detail);
     
-    this.detail = detail;
     return this;
   }
 
@@ -148,24 +175,32 @@ public class ProblemDetails extends HashMap<String, Object> {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DETAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getDetail() {
-    return detail;
+        return detail.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_DETAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetail(String detail) {
+
+  public JsonNullable<String> getDetail_JsonNullable() {
+    return detail;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DETAIL)
+  public void setDetail_JsonNullable(JsonNullable<String> detail) {
     this.detail = detail;
+  }
+
+  public void setDetail(String detail) {
+    this.detail = JsonNullable.<String>of(detail);
   }
 
 
   public ProblemDetails instance(String instance) {
+    this.instance = JsonNullable.<String>of(instance);
     
-    this.instance = instance;
     return this;
   }
 
@@ -175,18 +210,26 @@ public class ProblemDetails extends HashMap<String, Object> {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_INSTANCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public String getInstance() {
-    return instance;
+        return instance.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_INSTANCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInstance(String instance) {
+
+  public JsonNullable<String> getInstance_JsonNullable() {
+    return instance;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INSTANCE)
+  public void setInstance_JsonNullable(JsonNullable<String> instance) {
     this.instance = instance;
+  }
+
+  public void setInstance(String instance) {
+    this.instance = JsonNullable.<String>of(instance);
   }
 
 

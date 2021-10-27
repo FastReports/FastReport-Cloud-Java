@@ -37,11 +37,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         UserProfileApi apiInstance = new UserProfileApi(defaultClient);
         try {
@@ -73,7 +71,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -110,11 +108,9 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         UserProfileApi apiInstance = new UserProfileApi(defaultClient);
         String userId = "userId_example"; // String | 
@@ -150,7 +146,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -162,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## userProfileUpdateMyProfile
 
-> userProfileUpdateMyProfile(model)
+> userProfileUpdateMyProfile(updateUserProfileVM)
 
 Update profile of the current user
 
@@ -189,16 +185,14 @@ public class Example {
         ApiKey.setUsername("YOUR USERNAME");
         ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure API key authorization: JWT
-        ApiKeyAuth JWT = (ApiKeyAuth) defaultClient.getAuthentication("JWT");
-        JWT.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //JWT.setApiKeyPrefix("Token");
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
 
         UserProfileApi apiInstance = new UserProfileApi(defaultClient);
-        UpdateUserProfileVM model = new UpdateUserProfileVM(); // UpdateUserProfileVM | 
+        UpdateUserProfileVM updateUserProfileVM = new UpdateUserProfileVM(); // UpdateUserProfileVM | 
         try {
-            apiInstance.userProfileUpdateMyProfile(model);
+            apiInstance.userProfileUpdateMyProfile(updateUserProfileVM);
         } catch (ApiException e) {
             System.err.println("Exception when calling UserProfileApi#userProfileUpdateMyProfile");
             System.err.println("Status code: " + e.getCode());
@@ -215,7 +209,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model** | [**UpdateUserProfileVM**](UpdateUserProfileVM.md)|  | [optional]
+ **updateUserProfileVM** | [**UpdateUserProfileVM**](UpdateUserProfileVM.md)|  | [optional]
 
 ### Return type
 
@@ -227,8 +221,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 
 ### HTTP response details

@@ -33,7 +33,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   UpdateUserSettingsVM.JSON_PROPERTY_PROFILE_VISIBILITY,
-  UpdateUserSettingsVM.JSON_PROPERTY_DEFAULT_SUBSCRIPTION
+  UpdateUserSettingsVM.JSON_PROPERTY_DEFAULT_SUBSCRIPTION,
+  UpdateUserSettingsVM.JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS
 })
 @JsonTypeName("UpdateUserSettingsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -43,6 +44,9 @@ public class UpdateUserSettingsVM {
 
   public static final String JSON_PROPERTY_DEFAULT_SUBSCRIPTION = "defaultSubscription";
   private JsonNullable<String> defaultSubscription = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS = "showHiddenFilesAndFolders";
+  private JsonNullable<Boolean> showHiddenFilesAndFolders = JsonNullable.<Boolean>undefined();
 
 
   public UpdateUserSettingsVM profileVisibility(ProfileVisibility profileVisibility) {
@@ -107,6 +111,41 @@ public class UpdateUserSettingsVM {
   }
 
 
+  public UpdateUserSettingsVM showHiddenFilesAndFolders(Boolean showHiddenFilesAndFolders) {
+    this.showHiddenFilesAndFolders = JsonNullable.<Boolean>of(showHiddenFilesAndFolders);
+    
+    return this;
+  }
+
+   /**
+   * Get showHiddenFilesAndFolders
+   * @return showHiddenFilesAndFolders
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public Boolean getShowHiddenFilesAndFolders() {
+        return showHiddenFilesAndFolders.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Boolean> getShowHiddenFilesAndFolders_JsonNullable() {
+    return showHiddenFilesAndFolders;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS)
+  public void setShowHiddenFilesAndFolders_JsonNullable(JsonNullable<Boolean> showHiddenFilesAndFolders) {
+    this.showHiddenFilesAndFolders = showHiddenFilesAndFolders;
+  }
+
+  public void setShowHiddenFilesAndFolders(Boolean showHiddenFilesAndFolders) {
+    this.showHiddenFilesAndFolders = JsonNullable.<Boolean>of(showHiddenFilesAndFolders);
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -117,12 +156,13 @@ public class UpdateUserSettingsVM {
     }
     UpdateUserSettingsVM updateUserSettingsVM = (UpdateUserSettingsVM) o;
     return Objects.equals(this.profileVisibility, updateUserSettingsVM.profileVisibility) &&
-        Objects.equals(this.defaultSubscription, updateUserSettingsVM.defaultSubscription);
+        Objects.equals(this.defaultSubscription, updateUserSettingsVM.defaultSubscription) &&
+        Objects.equals(this.showHiddenFilesAndFolders, updateUserSettingsVM.showHiddenFilesAndFolders);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileVisibility, defaultSubscription);
+    return Objects.hash(profileVisibility, defaultSubscription, showHiddenFilesAndFolders);
   }
 
   @Override
@@ -131,6 +171,7 @@ public class UpdateUserSettingsVM {
     sb.append("class UpdateUserSettingsVM {\n");
     sb.append("    profileVisibility: ").append(toIndentedString(profileVisibility)).append("\n");
     sb.append("    defaultSubscription: ").append(toIndentedString(defaultSubscription)).append("\n");
+    sb.append("    showHiddenFilesAndFolders: ").append(toIndentedString(showHiddenFilesAndFolders)).append("\n");
     sb.append("}");
     return sb.toString();
   }

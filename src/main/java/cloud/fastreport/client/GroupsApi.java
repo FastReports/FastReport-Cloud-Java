@@ -308,7 +308,7 @@ public class GroupsApi {
 
 
   /**
-    * Gets list of user groups
+    * Returns a list of current user&#39;s groups&lt;br /&gt;  This method will return following data about groups : &lt;br /&gt;  Id, Name, Created time (UTC), Edited time (UTC), creator id, &lt;br /&gt;  editor id, subscription id
     * <p><b>200</b> - Succesfully retured
     * <p><b>400</b> - The reqeust is wrong
     * <p><b>403</b> - You don&#39;t have rights for the operation
@@ -325,7 +325,7 @@ public class GroupsApi {
     }
 
   /**
-    * Gets list of user groups
+    * Returns a list of current user&#39;s groups&lt;br /&gt;  This method will return following data about groups : &lt;br /&gt;  Id, Name, Created time (UTC), Edited time (UTC), creator id, &lt;br /&gt;  editor id, subscription id
     * <p><b>200</b> - Succesfully retured
     * <p><b>400</b> - The reqeust is wrong
     * <p><b>403</b> - You don&#39;t have rights for the operation

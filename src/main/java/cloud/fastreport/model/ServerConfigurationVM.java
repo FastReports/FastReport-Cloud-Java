@@ -16,6 +16,7 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.AppMixins;
+import cloud.fastreport.model.AuthConfigVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -34,7 +35,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   ServerConfigurationVM.JSON_PROPERTY_TITLE,
   ServerConfigurationVM.JSON_PROPERTY_CORPORATE_SERVER_MODE,
-  ServerConfigurationVM.JSON_PROPERTY_APP_MIXINS
+  ServerConfigurationVM.JSON_PROPERTY_IS_DISABLED,
+  ServerConfigurationVM.JSON_PROPERTY_APP_MIXINS,
+  ServerConfigurationVM.JSON_PROPERTY_AUTH
 })
 @JsonTypeName("ServerConfigurationVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -45,8 +48,14 @@ public class ServerConfigurationVM {
   public static final String JSON_PROPERTY_CORPORATE_SERVER_MODE = "corporateServerMode";
   private Boolean corporateServerMode;
 
+  public static final String JSON_PROPERTY_IS_DISABLED = "isDisabled";
+  private Boolean isDisabled;
+
   public static final String JSON_PROPERTY_APP_MIXINS = "appMixins";
   private AppMixins appMixins;
+
+  public static final String JSON_PROPERTY_AUTH = "auth";
+  private AuthConfigVM auth;
 
 
   public ServerConfigurationVM title(String title) {
@@ -111,6 +120,33 @@ public class ServerConfigurationVM {
   }
 
 
+  public ServerConfigurationVM isDisabled(Boolean isDisabled) {
+    
+    this.isDisabled = isDisabled;
+    return this;
+  }
+
+   /**
+   * Get isDisabled
+   * @return isDisabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IS_DISABLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsDisabled() {
+    return isDisabled;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_DISABLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsDisabled(Boolean isDisabled) {
+    this.isDisabled = isDisabled;
+  }
+
+
   public ServerConfigurationVM appMixins(AppMixins appMixins) {
     
     this.appMixins = appMixins;
@@ -138,6 +174,33 @@ public class ServerConfigurationVM {
   }
 
 
+  public ServerConfigurationVM auth(AuthConfigVM auth) {
+    
+    this.auth = auth;
+    return this;
+  }
+
+   /**
+   * Get auth
+   * @return auth
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_AUTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public AuthConfigVM getAuth() {
+    return auth;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_AUTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAuth(AuthConfigVM auth) {
+    this.auth = auth;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -149,12 +212,14 @@ public class ServerConfigurationVM {
     ServerConfigurationVM serverConfigurationVM = (ServerConfigurationVM) o;
     return Objects.equals(this.title, serverConfigurationVM.title) &&
         Objects.equals(this.corporateServerMode, serverConfigurationVM.corporateServerMode) &&
-        Objects.equals(this.appMixins, serverConfigurationVM.appMixins);
+        Objects.equals(this.isDisabled, serverConfigurationVM.isDisabled) &&
+        Objects.equals(this.appMixins, serverConfigurationVM.appMixins) &&
+        Objects.equals(this.auth, serverConfigurationVM.auth);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, corporateServerMode, appMixins);
+    return Objects.hash(title, corporateServerMode, isDisabled, appMixins, auth);
   }
 
   @Override
@@ -163,7 +228,9 @@ public class ServerConfigurationVM {
     sb.append("class ServerConfigurationVM {\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    corporateServerMode: ").append(toIndentedString(corporateServerMode)).append("\n");
+    sb.append("    isDisabled: ").append(toIndentedString(isDisabled)).append("\n");
     sb.append("    appMixins: ").append(toIndentedString(appMixins)).append("\n");
+    sb.append("    auth: ").append(toIndentedString(auth)).append("\n");
     sb.append("}");
     return sb.toString();
   }

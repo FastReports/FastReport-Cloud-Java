@@ -15,7 +15,6 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.DataSourceConnectionType;
 import cloud.fastreport.model.TaskType;
 import cloud.fastreport.model.TransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,8 +33,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * FetchTaskVM
  */
 @JsonPropertyOrder({
-  FetchTaskVM.JSON_PROPERTY_CONNECTION_TYPE,
-  FetchTaskVM.JSON_PROPERTY_CONNECTION_STRING,
   FetchTaskVM.JSON_PROPERTY_NAME,
   FetchTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   FetchTaskVM.JSON_PROPERTY_TYPE
@@ -43,12 +40,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonTypeName("FetchTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FetchTaskVM {
-  public static final String JSON_PROPERTY_CONNECTION_TYPE = "connectionType";
-  private DataSourceConnectionType connectionType;
-
-  public static final String JSON_PROPERTY_CONNECTION_STRING = "connectionString";
-  private String connectionString;
-
   public static final String JSON_PROPERTY_NAME = "name";
   private JsonNullable<String> name = JsonNullable.<String>undefined();
 
@@ -57,59 +48,6 @@ public class FetchTaskVM {
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private TaskType type;
-
-
-  public FetchTaskVM connectionType(DataSourceConnectionType connectionType) {
-    
-    this.connectionType = connectionType;
-    return this;
-  }
-
-   /**
-   * Get connectionType
-   * @return connectionType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public DataSourceConnectionType getConnectionType() {
-    return connectionType;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConnectionType(DataSourceConnectionType connectionType) {
-    this.connectionType = connectionType;
-  }
-
-
-  public FetchTaskVM connectionString(String connectionString) {
-    
-    this.connectionString = connectionString;
-    return this;
-  }
-
-   /**
-   * Get connectionString
-   * @return connectionString
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getConnectionString() {
-    return connectionString;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setConnectionString(String connectionString) {
-    this.connectionString = connectionString;
-  }
 
 
   public FetchTaskVM name(String name) {
@@ -218,24 +156,20 @@ public class FetchTaskVM {
       return false;
     }
     FetchTaskVM fetchTaskVM = (FetchTaskVM) o;
-    return Objects.equals(this.connectionType, fetchTaskVM.connectionType) &&
-        Objects.equals(this.connectionString, fetchTaskVM.connectionString) &&
-        Objects.equals(this.name, fetchTaskVM.name) &&
+    return Objects.equals(this.name, fetchTaskVM.name) &&
         Objects.equals(this.subscriptionId, fetchTaskVM.subscriptionId) &&
         Objects.equals(this.type, fetchTaskVM.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(connectionType, connectionString, name, subscriptionId, type);
+    return Objects.hash(name, subscriptionId, type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FetchTaskVM {\n");
-    sb.append("    connectionType: ").append(toIndentedString(connectionType)).append("\n");
-    sb.append("    connectionString: ").append(toIndentedString(connectionString)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");

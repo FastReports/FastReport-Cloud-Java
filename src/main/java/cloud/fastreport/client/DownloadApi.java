@@ -50,11 +50,12 @@ public class DownloadApi {
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
     * @param id The id parameter
+    * @param preview The preview parameter
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public File downloadGetExport(String id) throws IOException {
-        HttpResponse response = downloadGetExportForHttpResponse(id);
+    public File downloadGetExport(String id, Boolean preview) throws IOException {
+        HttpResponse response = downloadGetExportForHttpResponse(id, preview);
         TypeReference<File> typeRef = new TypeReference<File>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -77,7 +78,7 @@ public class DownloadApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse downloadGetExportForHttpResponse(String id) throws IOException {
+    public HttpResponse downloadGetExportForHttpResponse(String id, Boolean preview) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling downloadGetExport");
@@ -86,6 +87,17 @@ public class DownloadApi {
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("id", id);
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/download/e/{id}");
+        if (preview != null) {
+            String key = "preview";
+            Object value = preview;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -595,7 +607,7 @@ public class DownloadApi {
 
 
   /**
-    * Returns a report file with specified id
+    * Returns a Template file with specified id
     * <p><b>200</b> - Specified file was found
     * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * <p><b>400</b> - bad id provided
@@ -612,7 +624,7 @@ public class DownloadApi {
     }
 
   /**
-    * Returns a report file with specified id
+    * Returns a Template file with specified id
     * <p><b>200</b> - Specified file was found
     * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * <p><b>400</b> - bad id provided
@@ -655,6 +667,94 @@ public class DownloadApi {
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("id", id);
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/download/t/{id}");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+    }
+
+
+  /**
+    * Returns template&#39;s thumbnail
+    * <p><b>200</b> - Specified thumbnail was found
+    * <p><b>404</b> - Specified thumbnail was not found or user do not has access to it
+    * <p><b>400</b> - Bad id provided
+    * <p><b>402</b> - Subscription is blocked
+    * <p><b>403</b> - Not enough permissions for the operation
+    * @param id The id parameter
+    * @return File
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public File downloadGetTemplateThumbnail(String id) throws IOException {
+        HttpResponse response = downloadGetTemplateThumbnailForHttpResponse(id);
+        TypeReference<File> typeRef = new TypeReference<File>() {};
+        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+  /**
+    * Returns template&#39;s thumbnail
+    * <p><b>200</b> - Specified thumbnail was found
+    * <p><b>404</b> - Specified thumbnail was not found or user do not has access to it
+    * <p><b>400</b> - Bad id provided
+    * <p><b>402</b> - Subscription is blocked
+    * <p><b>403</b> - Not enough permissions for the operation
+    * @param id The id parameter
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @return File
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public File downloadGetTemplateThumbnail(String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = downloadGetTemplateThumbnailForHttpResponse(id, params);
+        TypeReference<File> typeRef = new TypeReference<File>() {};
+        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+    public HttpResponse downloadGetTemplateThumbnailForHttpResponse(String id) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling downloadGetTemplateThumbnail");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/download/t/{id}/thumbnail");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+    }
+
+    public HttpResponse downloadGetTemplateThumbnailForHttpResponse(String id, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling downloadGetTemplateThumbnail");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/download/t/{id}/thumbnail");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);

@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.AppMixins;
+import cloud.fastreport.model.AuthConfigVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -60,11 +61,27 @@ public class ServerConfigurationVMTest {
     }
 
     /**
+     * Test the property 'isDisabled'
+     */
+    @Test
+    public void isDisabledTest() {
+        // TODO: test isDisabled
+    }
+
+    /**
      * Test the property 'appMixins'
      */
     @Test
     public void appMixinsTest() {
         // TODO: test appMixins
+    }
+
+    /**
+     * Test the property 'auth'
+     */
+    @Test
+    public void authTest() {
+        // TODO: test auth
     }
 
 }

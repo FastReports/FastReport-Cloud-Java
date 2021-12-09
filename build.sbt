@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "cloud.fastreport.sdk",
     name := "fastreport-cloud-sdk",
-    version := "2021.3.0",
+    version := "2022.1.3",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),

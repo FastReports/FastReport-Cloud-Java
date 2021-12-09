@@ -62,7 +62,8 @@ public class ReportsApiTest {
     @Test
     public void reportFolderAndFileGetCountTest() throws IOException {
         String id = null;
-        CountVM response = api.reportFolderAndFileGetCount(id);
+        String searchPattern = null;
+        CountVM response = api.reportFolderAndFileGetCount(id, searchPattern);
 
         // TODO: test validations
     }
@@ -417,7 +418,8 @@ public class ReportsApiTest {
         String id = null;
         Integer skip = null;
         Integer take = null;
-        ReportsVM response = api.reportsGetFilesList(id, skip, take);
+        String searchPattern = null;
+        ReportsVM response = api.reportsGetFilesList(id, skip, take, searchPattern);
 
         // TODO: test validations
     }

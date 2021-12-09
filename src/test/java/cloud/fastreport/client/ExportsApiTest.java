@@ -59,7 +59,8 @@ public class ExportsApiTest {
     @Test
     public void exportFolderAndFileGetCountTest() throws IOException {
         String id = null;
-        CountVM response = api.exportFolderAndFileGetCount(id);
+        String searchPattern = null;
+        CountVM response = api.exportFolderAndFileGetCount(id, searchPattern);
 
         // TODO: test validations
     }
@@ -397,7 +398,8 @@ public class ExportsApiTest {
         String id = null;
         Integer skip = null;
         Integer take = null;
-        ExportsVM response = api.exportsGetFilesList(id, skip, take);
+        String searchPattern = null;
+        ExportsVM response = api.exportsGetFilesList(id, skip, take, searchPattern);
 
         // TODO: test validations
     }

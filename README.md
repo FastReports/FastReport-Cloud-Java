@@ -34,7 +34,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>cloud.fastreport.sdk</groupId>
   <artifactId>fastreport-cloud-sdk</artifactId>
-  <version>2021.3.0</version>
+  <version>2022.1.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -44,7 +44,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2021.3.0"
+compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2022.1.3"
 ```
 
 ### Others
@@ -57,7 +57,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/fastreport-cloud-sdk-2021.3.0.jar`
+- `target/fastreport-cloud-sdk-2022.1.3.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -122,7 +122,8 @@ Class | Method | HTTP request | Description
 *DownloadApi* | [**downloadGetReport**](docs/DownloadApi.md#downloadGetReport) | **GET** /download/r/{id} | Returns a prepared file with specified id
 *DownloadApi* | [**downloadGetReportThumbnail**](docs/DownloadApi.md#downloadGetReportThumbnail) | **GET** /download/r/{id}/thumbnail | Returns report&#39;s thumbnail
 *DownloadApi* | [**downloadGetReports**](docs/DownloadApi.md#downloadGetReports) | **GET** /download/rs/{archiveName} | Returns a zip archive with selected files
-*DownloadApi* | [**downloadGetTemplate**](docs/DownloadApi.md#downloadGetTemplate) | **GET** /download/t/{id} | Returns a report file with specified id
+*DownloadApi* | [**downloadGetTemplate**](docs/DownloadApi.md#downloadGetTemplate) | **GET** /download/t/{id} | Returns a Template file with specified id
+*DownloadApi* | [**downloadGetTemplateThumbnail**](docs/DownloadApi.md#downloadGetTemplateThumbnail) | **GET** /download/t/{id}/thumbnail | Returns template&#39;s thumbnail
 *DownloadApi* | [**downloadGetTemplates**](docs/DownloadApi.md#downloadGetTemplates) | **GET** /download/ts/{archiveName} | Returns a zip archive with selected files
 *ExportsApi* | [**exportFolderAndFileGetCount**](docs/ExportsApi.md#exportFolderAndFileGetCount) | **GET** /api/rp/v1/Exports/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder
 *ExportsApi* | [**exportFolderAndFileGetFoldersAndFiles**](docs/ExportsApi.md#exportFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Exports/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder
@@ -158,7 +159,7 @@ Class | Method | HTTP request | Description
 *GroupsApi* | [**groupsCreateGroup**](docs/GroupsApi.md#groupsCreateGroup) | **POST** /api/manage/v1/Groups | Create a new user group
 *GroupsApi* | [**groupsDeleteGroup**](docs/GroupsApi.md#groupsDeleteGroup) | **DELETE** /api/manage/v1/Groups/{id} | Delete group by identifier
 *GroupsApi* | [**groupsGetGroup**](docs/GroupsApi.md#groupsGetGroup) | **GET** /api/manage/v1/Groups/{id} | Gets group by identifier
-*GroupsApi* | [**groupsGetGroupList**](docs/GroupsApi.md#groupsGetGroupList) | **GET** /api/manage/v1/Groups | Gets list of user groups
+*GroupsApi* | [**groupsGetGroupList**](docs/GroupsApi.md#groupsGetGroupList) | **GET** /api/manage/v1/Groups | Returns a list of current user&#39;s groups&lt;br /&gt;  This method will return following data about groups : &lt;br /&gt;  Id, Name, Created time (UTC), Edited time (UTC), creator id, &lt;br /&gt;  editor id, subscription id
 *GroupsApi* | [**groupsGetPermissions**](docs/GroupsApi.md#groupsGetPermissions) | **GET** /api/manage/v1/Groups/{id}/permissions | Gets group permissions by identifier
 *GroupsApi* | [**groupsRenameGroup**](docs/GroupsApi.md#groupsRenameGroup) | **PUT** /api/manage/v1/Groups/{id}/rename | Rename group by identifier
 *GroupsApi* | [**groupsUpdatePermissions**](docs/GroupsApi.md#groupsUpdatePermissions) | **POST** /api/manage/v1/Groups/{id}/permissions | Update permissions
@@ -265,6 +266,7 @@ Class | Method | HTTP request | Description
  - [ApiKeyVM](docs/ApiKeyVM.md)
  - [ApiKeysVM](docs/ApiKeysVM.md)
  - [AppMixins](docs/AppMixins.md)
+ - [AuthConfigVM](docs/AuthConfigVM.md)
  - [BreadcrumbsModel](docs/BreadcrumbsModel.md)
  - [BreadcrumbsVM](docs/BreadcrumbsVM.md)
  - [CountVM](docs/CountVM.md)
@@ -281,6 +283,8 @@ Class | Method | HTTP request | Description
  - [CreatePrepareTemplateTaskVM](docs/CreatePrepareTemplateTaskVM.md)
  - [CreateSubscriptionInviteVM](docs/CreateSubscriptionInviteVM.md)
  - [CreateTaskBaseVM](docs/CreateTaskBaseVM.md)
+ - [CreateThumbnailReportTaskVM](docs/CreateThumbnailReportTaskVM.md)
+ - [CreateThumbnailTemplateTaskVM](docs/CreateThumbnailTemplateTaskVM.md)
  - [CreateTransformTaskBaseVM](docs/CreateTransformTaskBaseVM.md)
  - [CreateTransportTaskBaseVM](docs/CreateTransportTaskBaseVM.md)
  - [CreateWebhookTaskVM](docs/CreateWebhookTaskVM.md)
@@ -386,6 +390,8 @@ Class | Method | HTTP request | Description
  - [RunInputFileVM](docs/RunInputFileVM.md)
  - [RunPrepareTemplateTaskVM](docs/RunPrepareTemplateTaskVM.md)
  - [RunTaskBaseVM](docs/RunTaskBaseVM.md)
+ - [RunThumbnailReportTaskVM](docs/RunThumbnailReportTaskVM.md)
+ - [RunThumbnailTemplateTaskVM](docs/RunThumbnailTemplateTaskVM.md)
  - [RunTransformTaskBaseVM](docs/RunTransformTaskBaseVM.md)
  - [RunTransportTaskBaseVM](docs/RunTransportTaskBaseVM.md)
  - [RunWebhookTaskVM](docs/RunWebhookTaskVM.md)
@@ -422,6 +428,8 @@ Class | Method | HTTP request | Description
  - [TemplateVM](docs/TemplateVM.md)
  - [TemplateVMFilesVMBase](docs/TemplateVMFilesVMBase.md)
  - [TemplatesVM](docs/TemplatesVM.md)
+ - [ThumbnailReportTaskVM](docs/ThumbnailReportTaskVM.md)
+ - [ThumbnailTemplateTaskVM](docs/ThumbnailTemplateTaskVM.md)
  - [TimePeriodType](docs/TimePeriodType.md)
  - [TransformTaskBaseVM](docs/TransformTaskBaseVM.md)
  - [TransportTaskBaseVM](docs/TransportTaskBaseVM.md)

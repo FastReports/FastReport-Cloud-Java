@@ -13,6 +13,8 @@
 
 * `NUMBER_4` (value: `4`)
 
+* `NUMBER_8` (value: `8`)
+
 * `NUMBER_MINUS_1` (value: `-1`)
 
 

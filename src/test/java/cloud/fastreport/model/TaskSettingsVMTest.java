@@ -90,4 +90,20 @@ public class TaskSettingsVMTest {
         // TODO: test fetchData
     }
 
+    /**
+     * Test the property 'thumbnailReport'
+     */
+    @Test
+    public void thumbnailReportTest() {
+        // TODO: test thumbnailReport
+    }
+
+    /**
+     * Test the property 'thumbnailTemplate'
+     */
+    @Test
+    public void thumbnailTemplateTest() {
+        // TODO: test thumbnailTemplate
+    }
+
 }

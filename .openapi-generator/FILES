@@ -16,6 +16,7 @@ docs/ApiKeyVM.md
 docs/ApiKeysApi.md
 docs/ApiKeysVM.md
 docs/AppMixins.md
+docs/AuthConfigVM.md
 docs/BreadcrumbsModel.md
 docs/BreadcrumbsVM.md
 docs/ConfigurationApi.md
@@ -33,6 +34,8 @@ docs/CreateGroupVM.md
 docs/CreatePrepareTemplateTaskVM.md
 docs/CreateSubscriptionInviteVM.md
 docs/CreateTaskBaseVM.md
+docs/CreateThumbnailReportTaskVM.md
+docs/CreateThumbnailTemplateTaskVM.md
 docs/CreateTransformTaskBaseVM.md
 docs/CreateTransportTaskBaseVM.md
 docs/CreateWebhookTaskVM.md
@@ -145,6 +148,8 @@ docs/RunFetchTaskVM.md
 docs/RunInputFileVM.md
 docs/RunPrepareTemplateTaskVM.md
 docs/RunTaskBaseVM.md
+docs/RunThumbnailReportTaskVM.md
+docs/RunThumbnailTemplateTaskVM.md
 docs/RunTransformTaskBaseVM.md
 docs/RunTransportTaskBaseVM.md
 docs/RunWebhookTaskVM.md
@@ -188,6 +193,8 @@ docs/TemplateVM.md
 docs/TemplateVMFilesVMBase.md
 docs/TemplatesApi.md
 docs/TemplatesVM.md
+docs/ThumbnailReportTaskVM.md
+docs/ThumbnailTemplateTaskVM.md
 docs/TimePeriodType.md
 docs/TransformTaskBaseVM.md
 docs/TransportTaskBaseVM.md
@@ -248,6 +255,7 @@ src/main/java/cloud/fastreport/model/AdminTemplateFolderCreateVM.java
 src/main/java/cloud/fastreport/model/ApiKeyVM.java
 src/main/java/cloud/fastreport/model/ApiKeysVM.java
 src/main/java/cloud/fastreport/model/AppMixins.java
+src/main/java/cloud/fastreport/model/AuthConfigVM.java
 src/main/java/cloud/fastreport/model/BreadcrumbsModel.java
 src/main/java/cloud/fastreport/model/BreadcrumbsVM.java
 src/main/java/cloud/fastreport/model/CountVM.java
@@ -264,6 +272,8 @@ src/main/java/cloud/fastreport/model/CreateGroupVM.java
 src/main/java/cloud/fastreport/model/CreatePrepareTemplateTaskVM.java
 src/main/java/cloud/fastreport/model/CreateSubscriptionInviteVM.java
 src/main/java/cloud/fastreport/model/CreateTaskBaseVM.java
+src/main/java/cloud/fastreport/model/CreateThumbnailReportTaskVM.java
+src/main/java/cloud/fastreport/model/CreateThumbnailTemplateTaskVM.java
 src/main/java/cloud/fastreport/model/CreateTransformTaskBaseVM.java
 src/main/java/cloud/fastreport/model/CreateTransportTaskBaseVM.java
 src/main/java/cloud/fastreport/model/CreateWebhookTaskVM.java
@@ -369,6 +379,8 @@ src/main/java/cloud/fastreport/model/RunFetchTaskVM.java
 src/main/java/cloud/fastreport/model/RunInputFileVM.java
 src/main/java/cloud/fastreport/model/RunPrepareTemplateTaskVM.java
 src/main/java/cloud/fastreport/model/RunTaskBaseVM.java
+src/main/java/cloud/fastreport/model/RunThumbnailReportTaskVM.java
+src/main/java/cloud/fastreport/model/RunThumbnailTemplateTaskVM.java
 src/main/java/cloud/fastreport/model/RunTransformTaskBaseVM.java
 src/main/java/cloud/fastreport/model/RunTransportTaskBaseVM.java
 src/main/java/cloud/fastreport/model/RunWebhookTaskVM.java
@@ -405,6 +417,8 @@ src/main/java/cloud/fastreport/model/TemplateFolderCreateVM.java
 src/main/java/cloud/fastreport/model/TemplateVM.java
 src/main/java/cloud/fastreport/model/TemplateVMFilesVMBase.java
 src/main/java/cloud/fastreport/model/TemplatesVM.java
+src/main/java/cloud/fastreport/model/ThumbnailReportTaskVM.java
+src/main/java/cloud/fastreport/model/ThumbnailTemplateTaskVM.java
 src/main/java/cloud/fastreport/model/TimePeriodType.java
 src/main/java/cloud/fastreport/model/TransformTaskBaseVM.java
 src/main/java/cloud/fastreport/model/TransportTaskBaseVM.java
@@ -448,6 +462,7 @@ src/test/java/cloud/fastreport/model/AdminTemplateFolderCreateVMTest.java
 src/test/java/cloud/fastreport/model/ApiKeyVMTest.java
 src/test/java/cloud/fastreport/model/ApiKeysVMTest.java
 src/test/java/cloud/fastreport/model/AppMixinsTest.java
+src/test/java/cloud/fastreport/model/AuthConfigVMTest.java
 src/test/java/cloud/fastreport/model/BreadcrumbsModelTest.java
 src/test/java/cloud/fastreport/model/BreadcrumbsVMTest.java
 src/test/java/cloud/fastreport/model/CountVMTest.java
@@ -464,6 +479,8 @@ src/test/java/cloud/fastreport/model/CreateGroupVMTest.java
 src/test/java/cloud/fastreport/model/CreatePrepareTemplateTaskVMTest.java
 src/test/java/cloud/fastreport/model/CreateSubscriptionInviteVMTest.java
 src/test/java/cloud/fastreport/model/CreateTaskBaseVMTest.java
+src/test/java/cloud/fastreport/model/CreateThumbnailReportTaskVMTest.java
+src/test/java/cloud/fastreport/model/CreateThumbnailTemplateTaskVMTest.java
 src/test/java/cloud/fastreport/model/CreateTransformTaskBaseVMTest.java
 src/test/java/cloud/fastreport/model/CreateTransportTaskBaseVMTest.java
 src/test/java/cloud/fastreport/model/CreateWebhookTaskVMTest.java
@@ -569,6 +586,8 @@ src/test/java/cloud/fastreport/model/RunFetchTaskVMTest.java
 src/test/java/cloud/fastreport/model/RunInputFileVMTest.java
 src/test/java/cloud/fastreport/model/RunPrepareTemplateTaskVMTest.java
 src/test/java/cloud/fastreport/model/RunTaskBaseVMTest.java
+src/test/java/cloud/fastreport/model/RunThumbnailReportTaskVMTest.java
+src/test/java/cloud/fastreport/model/RunThumbnailTemplateTaskVMTest.java
 src/test/java/cloud/fastreport/model/RunTransformTaskBaseVMTest.java
 src/test/java/cloud/fastreport/model/RunTransportTaskBaseVMTest.java
 src/test/java/cloud/fastreport/model/RunWebhookTaskVMTest.java
@@ -605,6 +624,8 @@ src/test/java/cloud/fastreport/model/TemplateFolderCreateVMTest.java
 src/test/java/cloud/fastreport/model/TemplateVMFilesVMBaseTest.java
 src/test/java/cloud/fastreport/model/TemplateVMTest.java
 src/test/java/cloud/fastreport/model/TemplatesVMTest.java
+src/test/java/cloud/fastreport/model/ThumbnailReportTaskVMTest.java
+src/test/java/cloud/fastreport/model/ThumbnailTemplateTaskVMTest.java
 src/test/java/cloud/fastreport/model/TimePeriodTypeTest.java
 src/test/java/cloud/fastreport/model/TransformTaskBaseVMTest.java
 src/test/java/cloud/fastreport/model/TransportTaskBaseVMTest.java

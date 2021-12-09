@@ -64,7 +64,8 @@ public class TemplatesApiTest {
     @Test
     public void templateFolderAndFileGetCountTest() throws IOException {
         String id = null;
-        CountVM response = api.templateFolderAndFileGetCount(id);
+        String searchPattern = null;
+        CountVM response = api.templateFolderAndFileGetCount(id, searchPattern);
 
         // TODO: test validations
     }
@@ -419,7 +420,8 @@ public class TemplatesApiTest {
         String id = null;
         Integer skip = null;
         Integer take = null;
-        TemplatesVM response = api.templatesGetFilesList(id, skip, take);
+        String searchPattern = null;
+        TemplatesVM response = api.templatesGetFilesList(id, skip, take, searchPattern);
 
         // TODO: test validations
     }

@@ -65,11 +65,12 @@ public class ExportsApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - Folder not found
     * @param id folder id
+    * @param searchPattern string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders)
     * @return CountVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public CountVM exportFolderAndFileGetCount(String id) throws IOException {
-        HttpResponse response = exportFolderAndFileGetCountForHttpResponse(id);
+    public CountVM exportFolderAndFileGetCount(String id, String searchPattern) throws IOException {
+        HttpResponse response = exportFolderAndFileGetCountForHttpResponse(id, searchPattern);
         TypeReference<CountVM> typeRef = new TypeReference<CountVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -92,7 +93,7 @@ public class ExportsApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse exportFolderAndFileGetCountForHttpResponse(String id) throws IOException {
+    public HttpResponse exportFolderAndFileGetCountForHttpResponse(String id, String searchPattern) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling exportFolderAndFileGetCount");
@@ -101,6 +102,17 @@ public class ExportsApi {
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("id", id);
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/Folder/{id}/CountFolderAndFiles");
+        if (searchPattern != null) {
+            String key = "searchPattern";
+            Object value = searchPattern;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -2052,11 +2064,12 @@ public class ExportsApi {
     * @param id folder id
     * @param skip number of files, that have to be skipped
     * @param take number of files, that have to be returned
+    * @param searchPattern The searchPattern parameter
     * @return ExportsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public ExportsVM exportsGetFilesList(String id, Integer skip, Integer take) throws IOException {
-        HttpResponse response = exportsGetFilesListForHttpResponse(id, skip, take);
+    public ExportsVM exportsGetFilesList(String id, Integer skip, Integer take, String searchPattern) throws IOException {
+        HttpResponse response = exportsGetFilesListForHttpResponse(id, skip, take, searchPattern);
         TypeReference<ExportsVM> typeRef = new TypeReference<ExportsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -2079,7 +2092,7 @@ public class ExportsApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse exportsGetFilesListForHttpResponse(String id, Integer skip, Integer take) throws IOException {
+    public HttpResponse exportsGetFilesListForHttpResponse(String id, Integer skip, Integer take, String searchPattern) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling exportsGetFilesList");
@@ -2101,6 +2114,16 @@ public class ExportsApi {
         }        if (take != null) {
             String key = "take";
             Object value = take;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (searchPattern != null) {
+            String key = "searchPattern";
+            Object value = searchPattern;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {

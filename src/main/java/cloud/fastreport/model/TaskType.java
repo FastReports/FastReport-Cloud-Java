@@ -35,7 +35,11 @@ public enum TaskType {
   
   EMAIL("Email"),
   
-  WEBHOOK("Webhook");
+  WEBHOOK("Webhook"),
+  
+  THUMBNAILTEMPLATE("ThumbnailTemplate"),
+  
+  THUMBNAILREPORT("ThumbnailReport");
 
   private String value;
 

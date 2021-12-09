@@ -15,7 +15,6 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.DataSourceConnectionType;
 import cloud.fastreport.model.RunTransformTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,78 +33,17 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * RunFetchTaskVM
  */
 @JsonPropertyOrder({
-  RunFetchTaskVM.JSON_PROPERTY_CONNECTION_TYPE,
-  RunFetchTaskVM.JSON_PROPERTY_CONNECTION_STRING,
   RunFetchTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   RunFetchTaskVM.JSON_PROPERTY_TYPE
 })
 @JsonTypeName("RunFetchTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RunFetchTaskVM {
-  public static final String JSON_PROPERTY_CONNECTION_TYPE = "connectionType";
-  private DataSourceConnectionType connectionType;
-
-  public static final String JSON_PROPERTY_CONNECTION_STRING = "connectionString";
-  private String connectionString;
-
   public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
   private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private TaskType type;
-
-
-  public RunFetchTaskVM connectionType(DataSourceConnectionType connectionType) {
-    
-    this.connectionType = connectionType;
-    return this;
-  }
-
-   /**
-   * Get connectionType
-   * @return connectionType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public DataSourceConnectionType getConnectionType() {
-    return connectionType;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConnectionType(DataSourceConnectionType connectionType) {
-    this.connectionType = connectionType;
-  }
-
-
-  public RunFetchTaskVM connectionString(String connectionString) {
-    
-    this.connectionString = connectionString;
-    return this;
-  }
-
-   /**
-   * Get connectionString
-   * @return connectionString
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getConnectionString() {
-    return connectionString;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setConnectionString(String connectionString) {
-    this.connectionString = connectionString;
-  }
 
 
   public RunFetchTaskVM subscriptionId(String subscriptionId) {
@@ -179,23 +117,19 @@ public class RunFetchTaskVM {
       return false;
     }
     RunFetchTaskVM runFetchTaskVM = (RunFetchTaskVM) o;
-    return Objects.equals(this.connectionType, runFetchTaskVM.connectionType) &&
-        Objects.equals(this.connectionString, runFetchTaskVM.connectionString) &&
-        Objects.equals(this.subscriptionId, runFetchTaskVM.subscriptionId) &&
+    return Objects.equals(this.subscriptionId, runFetchTaskVM.subscriptionId) &&
         Objects.equals(this.type, runFetchTaskVM.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(connectionType, connectionString, subscriptionId, type);
+    return Objects.hash(subscriptionId, type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RunFetchTaskVM {\n");
-    sb.append("    connectionType: ").append(toIndentedString(connectionType)).append("\n");
-    sb.append("    connectionString: ").append(toIndentedString(connectionString)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");

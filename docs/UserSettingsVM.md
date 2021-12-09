@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **profileVisibility** | **ProfileVisibility** |  |  [optional]
 **defaultSubscription** | **String** |  |  [optional]
+**showHiddenFilesAndFolders** | **Boolean** |  |  [optional]
 
 
 

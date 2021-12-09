@@ -59,4 +59,12 @@ public class UserSettingsVMTest {
         // TODO: test defaultSubscription
     }
 
+    /**
+     * Test the property 'showHiddenFilesAndFolders'
+     */
+    @Test
+    public void showHiddenFilesAndFoldersTest() {
+        // TODO: test showHiddenFilesAndFolders
+    }
+
 }

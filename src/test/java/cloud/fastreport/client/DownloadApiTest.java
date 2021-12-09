@@ -44,7 +44,8 @@ public class DownloadApiTest {
     @Test
     public void downloadGetExportTest() throws IOException {
         String id = null;
-        File response = api.downloadGetExport(id);
+        Boolean preview = null;
+        File response = api.downloadGetExport(id, preview);
 
         // TODO: test validations
     }
@@ -132,7 +133,7 @@ public class DownloadApiTest {
     }
     
     /**
-     * Returns a report file with specified id
+     * Returns a Template file with specified id
      *
      * 
      *
@@ -143,6 +144,22 @@ public class DownloadApiTest {
     public void downloadGetTemplateTest() throws IOException {
         String id = null;
         File response = api.downloadGetTemplate(id);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Returns template&#39;s thumbnail
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void downloadGetTemplateThumbnailTest() throws IOException {
+        String id = null;
+        File response = api.downloadGetTemplateThumbnail(id);
 
         // TODO: test validations
     }

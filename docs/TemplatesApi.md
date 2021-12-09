@@ -39,7 +39,7 @@ Method | HTTP request | Description
 
 ## templateFolderAndFileGetCount
 
-> CountVM templateFolderAndFileGetCount(id)
+> CountVM templateFolderAndFileGetCount(id, searchPattern)
 
 Get count of files and folders what contains in a specified folder
 
@@ -72,8 +72,9 @@ public class Example {
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | folder id
+        String searchPattern = "searchPattern_example"; // String | string, that must be incuded in file or folder name to be counted <br />              (leave undefined to count all files and folders)
         try {
-            CountVM result = apiInstance.templateFolderAndFileGetCount(id);
+            CountVM result = apiInstance.templateFolderAndFileGetCount(id, searchPattern);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templateFolderAndFileGetCount");
@@ -92,6 +93,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| folder id |
+ **searchPattern** | **String**| string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders) | [optional]
 
 ### Return type
 
@@ -1739,7 +1741,7 @@ Name | Type | Description  | Notes
 
 ## templatesGetFilesList
 
-> TemplatesVM templatesGetFilesList(id, skip, take)
+> TemplatesVM templatesGetFilesList(id, skip, take, searchPattern)
 
 Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
 
@@ -1772,8 +1774,9 @@ public class Example {
         String id = "id_example"; // String | folder id
         Integer skip = 0; // Integer | number of files, that have to be skipped
         Integer take = 10; // Integer | number of files, that have to be returned
+        String searchPattern = "searchPattern_example"; // String | 
         try {
-            TemplatesVM result = apiInstance.templatesGetFilesList(id, skip, take);
+            TemplatesVM result = apiInstance.templatesGetFilesList(id, skip, take, searchPattern);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templatesGetFilesList");
@@ -1794,6 +1797,7 @@ Name | Type | Description  | Notes
  **id** | **String**| folder id |
  **skip** | **Integer**| number of files, that have to be skipped | [optional] [default to 0]
  **take** | **Integer**| number of files, that have to be returned | [optional] [default to 10]
+ **searchPattern** | **String**|  | [optional]
 
 ### Return type
 

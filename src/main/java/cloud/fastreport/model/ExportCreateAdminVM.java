@@ -36,7 +36,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   ExportCreateAdminVM.JSON_PROPERTY_OWNER_ID,
   ExportCreateAdminVM.JSON_PROPERTY_PARENT_ID,
-  ExportCreateAdminVM.JSON_PROPERTY_TEMPLATE_ID,
   ExportCreateAdminVM.JSON_PROPERTY_NAME,
   ExportCreateAdminVM.JSON_PROPERTY_TAGS,
   ExportCreateAdminVM.JSON_PROPERTY_ICON,
@@ -50,9 +49,6 @@ public class ExportCreateAdminVM {
 
   public static final String JSON_PROPERTY_PARENT_ID = "parentId";
   private String parentId;
-
-  public static final String JSON_PROPERTY_TEMPLATE_ID = "templateId";
-  private JsonNullable<String> templateId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NAME = "name";
   private JsonNullable<String> name = JsonNullable.<String>undefined();
@@ -116,41 +112,6 @@ public class ExportCreateAdminVM {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setParentId(String parentId) {
     this.parentId = parentId;
-  }
-
-
-  public ExportCreateAdminVM templateId(String templateId) {
-    this.templateId = JsonNullable.<String>of(templateId);
-    
-    return this;
-  }
-
-   /**
-   * Get templateId
-   * @return templateId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonIgnore
-
-  public String getTemplateId() {
-        return templateId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getTemplateId_JsonNullable() {
-    return templateId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
-  public void setTemplateId_JsonNullable(JsonNullable<String> templateId) {
-    this.templateId = templateId;
-  }
-
-  public void setTemplateId(String templateId) {
-    this.templateId = JsonNullable.<String>of(templateId);
   }
 
 
@@ -317,7 +278,6 @@ public class ExportCreateAdminVM {
     ExportCreateAdminVM exportCreateAdminVM = (ExportCreateAdminVM) o;
     return Objects.equals(this.ownerId, exportCreateAdminVM.ownerId) &&
         Objects.equals(this.parentId, exportCreateAdminVM.parentId) &&
-        Objects.equals(this.templateId, exportCreateAdminVM.templateId) &&
         Objects.equals(this.name, exportCreateAdminVM.name) &&
         Objects.equals(this.tags, exportCreateAdminVM.tags) &&
         Arrays.equals(this.icon, exportCreateAdminVM.icon) &&
@@ -326,7 +286,7 @@ public class ExportCreateAdminVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, parentId, templateId, name, tags, Arrays.hashCode(icon), Arrays.hashCode(content));
+    return Objects.hash(ownerId, parentId, name, tags, Arrays.hashCode(icon), Arrays.hashCode(content));
   }
 
   @Override
@@ -335,7 +295,6 @@ public class ExportCreateAdminVM {
     sb.append("class ExportCreateAdminVM {\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
-    sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");

@@ -36,7 +36,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TaskSettingsVM.JSON_PROPERTY_EXPORT_REPORT,
   TaskSettingsVM.JSON_PROPERTY_SEND_VIA_EMAIL,
   TaskSettingsVM.JSON_PROPERTY_SEND_VIA_WEBHOOK,
-  TaskSettingsVM.JSON_PROPERTY_FETCH_DATA
+  TaskSettingsVM.JSON_PROPERTY_FETCH_DATA,
+  TaskSettingsVM.JSON_PROPERTY_THUMBNAIL_REPORT,
+  TaskSettingsVM.JSON_PROPERTY_THUMBNAIL_TEMPLATE
 })
 @JsonTypeName("TaskSettingsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -58,6 +60,12 @@ public class TaskSettingsVM {
 
   public static final String JSON_PROPERTY_FETCH_DATA = "fetchData";
   private JsonNullable<Boolean> fetchData = JsonNullable.<Boolean>undefined();
+
+  public static final String JSON_PROPERTY_THUMBNAIL_REPORT = "thumbnailReport";
+  private JsonNullable<Boolean> thumbnailReport = JsonNullable.<Boolean>undefined();
+
+  public static final String JSON_PROPERTY_THUMBNAIL_TEMPLATE = "thumbnailTemplate";
+  private JsonNullable<Boolean> thumbnailTemplate = JsonNullable.<Boolean>undefined();
 
 
   public TaskSettingsVM prepare(Boolean prepare) {
@@ -270,6 +278,76 @@ public class TaskSettingsVM {
   }
 
 
+  public TaskSettingsVM thumbnailReport(Boolean thumbnailReport) {
+    this.thumbnailReport = JsonNullable.<Boolean>of(thumbnailReport);
+    
+    return this;
+  }
+
+   /**
+   * Get thumbnailReport
+   * @return thumbnailReport
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public Boolean getThumbnailReport() {
+        return thumbnailReport.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_THUMBNAIL_REPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Boolean> getThumbnailReport_JsonNullable() {
+    return thumbnailReport;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_THUMBNAIL_REPORT)
+  public void setThumbnailReport_JsonNullable(JsonNullable<Boolean> thumbnailReport) {
+    this.thumbnailReport = thumbnailReport;
+  }
+
+  public void setThumbnailReport(Boolean thumbnailReport) {
+    this.thumbnailReport = JsonNullable.<Boolean>of(thumbnailReport);
+  }
+
+
+  public TaskSettingsVM thumbnailTemplate(Boolean thumbnailTemplate) {
+    this.thumbnailTemplate = JsonNullable.<Boolean>of(thumbnailTemplate);
+    
+    return this;
+  }
+
+   /**
+   * Get thumbnailTemplate
+   * @return thumbnailTemplate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public Boolean getThumbnailTemplate() {
+        return thumbnailTemplate.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_THUMBNAIL_TEMPLATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Boolean> getThumbnailTemplate_JsonNullable() {
+    return thumbnailTemplate;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_THUMBNAIL_TEMPLATE)
+  public void setThumbnailTemplate_JsonNullable(JsonNullable<Boolean> thumbnailTemplate) {
+    this.thumbnailTemplate = thumbnailTemplate;
+  }
+
+  public void setThumbnailTemplate(Boolean thumbnailTemplate) {
+    this.thumbnailTemplate = JsonNullable.<Boolean>of(thumbnailTemplate);
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -284,12 +362,14 @@ public class TaskSettingsVM {
         Objects.equals(this.exportReport, taskSettingsVM.exportReport) &&
         Objects.equals(this.sendViaEmail, taskSettingsVM.sendViaEmail) &&
         Objects.equals(this.sendViaWebhook, taskSettingsVM.sendViaWebhook) &&
-        Objects.equals(this.fetchData, taskSettingsVM.fetchData);
+        Objects.equals(this.fetchData, taskSettingsVM.fetchData) &&
+        Objects.equals(this.thumbnailReport, taskSettingsVM.thumbnailReport) &&
+        Objects.equals(this.thumbnailTemplate, taskSettingsVM.thumbnailTemplate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(prepare, exportTemplate, exportReport, sendViaEmail, sendViaWebhook, fetchData);
+    return Objects.hash(prepare, exportTemplate, exportReport, sendViaEmail, sendViaWebhook, fetchData, thumbnailReport, thumbnailTemplate);
   }
 
   @Override
@@ -302,6 +382,8 @@ public class TaskSettingsVM {
     sb.append("    sendViaEmail: ").append(toIndentedString(sendViaEmail)).append("\n");
     sb.append("    sendViaWebhook: ").append(toIndentedString(sendViaWebhook)).append("\n");
     sb.append("    fetchData: ").append(toIndentedString(fetchData)).append("\n");
+    sb.append("    thumbnailReport: ").append(toIndentedString(thumbnailReport)).append("\n");
+    sb.append("    thumbnailTemplate: ").append(toIndentedString(thumbnailTemplate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

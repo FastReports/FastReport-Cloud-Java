@@ -10,14 +10,15 @@ Method | HTTP request | Description
 [**downloadGetReport**](DownloadApi.md#downloadGetReport) | **GET** /download/r/{id} | Returns a prepared file with specified id
 [**downloadGetReportThumbnail**](DownloadApi.md#downloadGetReportThumbnail) | **GET** /download/r/{id}/thumbnail | Returns report&#39;s thumbnail
 [**downloadGetReports**](DownloadApi.md#downloadGetReports) | **GET** /download/rs/{archiveName} | Returns a zip archive with selected files
-[**downloadGetTemplate**](DownloadApi.md#downloadGetTemplate) | **GET** /download/t/{id} | Returns a report file with specified id
+[**downloadGetTemplate**](DownloadApi.md#downloadGetTemplate) | **GET** /download/t/{id} | Returns a Template file with specified id
+[**downloadGetTemplateThumbnail**](DownloadApi.md#downloadGetTemplateThumbnail) | **GET** /download/t/{id}/thumbnail | Returns template&#39;s thumbnail
 [**downloadGetTemplates**](DownloadApi.md#downloadGetTemplates) | **GET** /download/ts/{archiveName} | Returns a zip archive with selected files
 
 
 
 ## downloadGetExport
 
-> File downloadGetExport(id)
+> File downloadGetExport(id, preview)
 
 Returns a export file with specified id
 
@@ -48,8 +49,9 @@ public class Example {
 
         DownloadApi apiInstance = new DownloadApi(defaultClient);
         String id = "id_example"; // String | 
+        Boolean preview = false; // Boolean | 
         try {
-            File result = apiInstance.downloadGetExport(id);
+            File result = apiInstance.downloadGetExport(id, preview);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DownloadApi#downloadGetExport");
@@ -68,6 +70,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  |
+ **preview** | **Boolean**|  | [optional] [default to false]
 
 ### Return type
 
@@ -80,7 +83,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream, application/json
+- **Accept**: application/octet-stream, application/pdf, application/json
 
 
 ### HTTP response details
@@ -158,7 +161,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: image/jpeg, application/json
+- **Accept**: image/png, image/jpeg, application/json
 
 
 ### HTTP response details
@@ -394,7 +397,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: image/jpeg, application/json
+- **Accept**: image/png, image/jpeg, application/json
 
 
 ### HTTP response details
@@ -491,7 +494,7 @@ Name | Type | Description  | Notes
 
 > File downloadGetTemplate(id)
 
-Returns a report file with specified id
+Returns a Template file with specified id
 
 ### Example
 
@@ -563,6 +566,84 @@ Name | Type | Description  | Notes
 | **400** | bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions |  -  |
+
+
+## downloadGetTemplateThumbnail
+
+> File downloadGetTemplateThumbnail(id)
+
+Returns template&#39;s thumbnail
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.DownloadApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
+
+        DownloadApi apiInstance = new DownloadApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            File result = apiInstance.downloadGetTemplateThumbnail(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DownloadApi#downloadGetTemplateThumbnail");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  |
+
+### Return type
+
+[**File**](File.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: image/png, image/jpeg, application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Specified thumbnail was found |  -  |
+| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is blocked |  -  |
+| **403** | Not enough permissions for the operation |  -  |
 
 
 ## downloadGetTemplates

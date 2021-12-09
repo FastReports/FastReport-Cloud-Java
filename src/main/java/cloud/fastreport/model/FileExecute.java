@@ -33,6 +33,8 @@ public enum FileExecute {
   
   NUMBER_4(4),
   
+  NUMBER_8(8),
+  
   NUMBER_MINUS_1(-1);
 
   private Integer value;

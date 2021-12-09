@@ -13,7 +13,6 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.DataSourceConnectionType;
 import cloud.fastreport.model.TaskType;
 import cloud.fastreport.model.TransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;

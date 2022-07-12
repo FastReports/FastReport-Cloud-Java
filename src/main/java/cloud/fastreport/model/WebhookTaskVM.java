@@ -27,6 +27,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.threeten.bp.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
@@ -39,7 +40,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   WebhookTaskVM.JSON_PROPERTY_ENDPOINTS,
   WebhookTaskVM.JSON_PROPERTY_NAME,
   WebhookTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  WebhookTaskVM.JSON_PROPERTY_TYPE
+  WebhookTaskVM.JSON_PROPERTY_TYPE,
+  WebhookTaskVM.JSON_PROPERTY_DELAYED_RUN_TIME,
+  WebhookTaskVM.JSON_PROPERTY_CRON_EXPRESSION
 })
 @JsonTypeName("WebhookTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -55,6 +58,12 @@ public class WebhookTaskVM {
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private TaskType type;
+
+  public static final String JSON_PROPERTY_DELAYED_RUN_TIME = "delayedRunTime";
+  private JsonNullable<OffsetDateTime> delayedRunTime = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
+  private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
 
   public WebhookTaskVM endpoints(List<EndpointVM> endpoints) {
@@ -201,6 +210,76 @@ public class WebhookTaskVM {
   }
 
 
+  public WebhookTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.delayedRunTime = JsonNullable.<OffsetDateTime>of(delayedRunTime);
+    
+    return this;
+  }
+
+   /**
+   * Get delayedRunTime
+   * @return delayedRunTime
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public OffsetDateTime getDelayedRunTime() {
+        return delayedRunTime.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_DELAYED_RUN_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getDelayedRunTime_JsonNullable() {
+    return delayedRunTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DELAYED_RUN_TIME)
+  public void setDelayedRunTime_JsonNullable(JsonNullable<OffsetDateTime> delayedRunTime) {
+    this.delayedRunTime = delayedRunTime;
+  }
+
+  public void setDelayedRunTime(OffsetDateTime delayedRunTime) {
+    this.delayedRunTime = JsonNullable.<OffsetDateTime>of(delayedRunTime);
+  }
+
+
+  public WebhookTaskVM cronExpression(String cronExpression) {
+    this.cronExpression = JsonNullable.<String>of(cronExpression);
+    
+    return this;
+  }
+
+   /**
+   * Get cronExpression
+   * @return cronExpression
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public String getCronExpression() {
+        return cronExpression.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCronExpression_JsonNullable() {
+    return cronExpression;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
+  public void setCronExpression_JsonNullable(JsonNullable<String> cronExpression) {
+    this.cronExpression = cronExpression;
+  }
+
+  public void setCronExpression(String cronExpression) {
+    this.cronExpression = JsonNullable.<String>of(cronExpression);
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -213,12 +292,14 @@ public class WebhookTaskVM {
     return Objects.equals(this.endpoints, webhookTaskVM.endpoints) &&
         Objects.equals(this.name, webhookTaskVM.name) &&
         Objects.equals(this.subscriptionId, webhookTaskVM.subscriptionId) &&
-        Objects.equals(this.type, webhookTaskVM.type);
+        Objects.equals(this.type, webhookTaskVM.type) &&
+        Objects.equals(this.delayedRunTime, webhookTaskVM.delayedRunTime) &&
+        Objects.equals(this.cronExpression, webhookTaskVM.cronExpression);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(endpoints, name, subscriptionId, type);
+    return Objects.hash(endpoints, name, subscriptionId, type, delayedRunTime, cronExpression);
   }
 
   @Override
@@ -229,6 +310,8 @@ public class WebhookTaskVM {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    delayedRunTime: ").append(toIndentedString(delayedRunTime)).append("\n");
+    sb.append("    cronExpression: ").append(toIndentedString(cronExpression)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -23,6 +23,8 @@
 
 * `NUMBER_128` (value: `128`)
 
+* `NUMBER_256` (value: `256`)
+
 * `NUMBER_MINUS_1` (value: `-1`)
 
 

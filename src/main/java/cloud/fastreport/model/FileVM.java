@@ -47,6 +47,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   FileVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   FileVM.JSON_PROPERTY_STATUS,
   FileVM.JSON_PROPERTY_STATUS_REASON,
+  FileVM.JSON_PROPERTY_ERROR_MESSAGE,
   FileVM.JSON_PROPERTY_ID,
   FileVM.JSON_PROPERTY_CREATED_TIME,
   FileVM.JSON_PROPERTY_CREATOR_USER_ID,
@@ -82,6 +83,9 @@ public class FileVM {
 
   public static final String JSON_PROPERTY_STATUS_REASON = "statusReason";
   private FileStatusReason statusReason;
+
+  public static final String JSON_PROPERTY_ERROR_MESSAGE = "errorMessage";
+  private JsonNullable<String> errorMessage = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ID = "id";
   private JsonNullable<String> id = JsonNullable.<String>undefined();
@@ -394,6 +398,41 @@ public class FileVM {
   }
 
 
+  public FileVM errorMessage(String errorMessage) {
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
+    
+    return this;
+  }
+
+   /**
+   * Get errorMessage
+   * @return errorMessage
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public String getErrorMessage() {
+        return errorMessage.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_ERROR_MESSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getErrorMessage_JsonNullable() {
+    return errorMessage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_MESSAGE)
+  public void setErrorMessage_JsonNullable(JsonNullable<String> errorMessage) {
+    this.errorMessage = errorMessage;
+  }
+
+  public void setErrorMessage(String errorMessage) {
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
+  }
+
+
   public FileVM id(String id) {
     this.id = JsonNullable.<String>of(id);
     
@@ -571,6 +610,7 @@ public class FileVM {
         Objects.equals(this.subscriptionId, fileVM.subscriptionId) &&
         Objects.equals(this.status, fileVM.status) &&
         Objects.equals(this.statusReason, fileVM.statusReason) &&
+        Objects.equals(this.errorMessage, fileVM.errorMessage) &&
         Objects.equals(this.id, fileVM.id) &&
         Objects.equals(this.createdTime, fileVM.createdTime) &&
         Objects.equals(this.creatorUserId, fileVM.creatorUserId) &&
@@ -580,7 +620,7 @@ public class FileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, parentId, tags, Arrays.hashCode(icon), type, size, subscriptionId, status, statusReason, id, createdTime, creatorUserId, editedTime, editorUserId);
+    return Objects.hash(name, parentId, tags, Arrays.hashCode(icon), type, size, subscriptionId, status, statusReason, errorMessage, id, createdTime, creatorUserId, editedTime, editorUserId);
   }
 
   @Override
@@ -596,6 +636,7 @@ public class FileVM {
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    statusReason: ").append(toIndentedString(statusReason)).append("\n");
+    sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
     sb.append("    creatorUserId: ").append(toIndentedString(creatorUserId)).append("\n");

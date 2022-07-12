@@ -46,7 +46,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SubscriptionPlanVM.JSON_PROPERTY_FILE_UPLOAD_SIZE_LIMIT,
   SubscriptionPlanVM.JSON_PROPERTY_DATA_SOURCE_LIMIT,
   SubscriptionPlanVM.JSON_PROPERTY_MAX_USERS_COUNT,
-  SubscriptionPlanVM.JSON_PROPERTY_HAS_SPACE_OVERDRAFT,
   SubscriptionPlanVM.JSON_PROPERTY_GROUP_LIMIT,
   SubscriptionPlanVM.JSON_PROPERTY_ONLINE_DESIGNER,
   SubscriptionPlanVM.JSON_PROPERTY_IS_DEMO,
@@ -68,7 +67,7 @@ public class SubscriptionPlanVM {
   private JsonNullable<String> displayName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TIME_PERIOD_TYPE = "timePeriodType";
-  private TimePeriodType timePeriodType;
+  private JsonNullable<TimePeriodType> timePeriodType = JsonNullable.<TimePeriodType>undefined();
 
   public static final String JSON_PROPERTY_TIME_PERIOD = "timePeriod";
   private JsonNullable<Integer> timePeriod = JsonNullable.<Integer>undefined();
@@ -96,9 +95,6 @@ public class SubscriptionPlanVM {
 
   public static final String JSON_PROPERTY_MAX_USERS_COUNT = "maxUsersCount";
   private JsonNullable<Integer> maxUsersCount = JsonNullable.<Integer>undefined();
-
-  public static final String JSON_PROPERTY_HAS_SPACE_OVERDRAFT = "hasSpaceOverdraft";
-  private JsonNullable<Boolean> hasSpaceOverdraft = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_GROUP_LIMIT = "groupLimit";
   private JsonNullable<Integer> groupLimit = JsonNullable.<Integer>undefined();
@@ -228,8 +224,8 @@ public class SubscriptionPlanVM {
 
 
   public SubscriptionPlanVM timePeriodType(TimePeriodType timePeriodType) {
+    this.timePeriodType = JsonNullable.<TimePeriodType>of(timePeriodType);
     
-    this.timePeriodType = timePeriodType;
     return this;
   }
 
@@ -239,18 +235,26 @@ public class SubscriptionPlanVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TIME_PERIOD_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public TimePeriodType getTimePeriodType() {
-    return timePeriodType;
+        return timePeriodType.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_TIME_PERIOD_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimePeriodType(TimePeriodType timePeriodType) {
+
+  public JsonNullable<TimePeriodType> getTimePeriodType_JsonNullable() {
+    return timePeriodType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TIME_PERIOD_TYPE)
+  public void setTimePeriodType_JsonNullable(JsonNullable<TimePeriodType> timePeriodType) {
     this.timePeriodType = timePeriodType;
+  }
+
+  public void setTimePeriodType(TimePeriodType timePeriodType) {
+    this.timePeriodType = JsonNullable.<TimePeriodType>of(timePeriodType);
   }
 
 
@@ -553,41 +557,6 @@ public class SubscriptionPlanVM {
   }
 
 
-  public SubscriptionPlanVM hasSpaceOverdraft(Boolean hasSpaceOverdraft) {
-    this.hasSpaceOverdraft = JsonNullable.<Boolean>of(hasSpaceOverdraft);
-    
-    return this;
-  }
-
-   /**
-   * Get hasSpaceOverdraft
-   * @return hasSpaceOverdraft
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonIgnore
-
-  public Boolean getHasSpaceOverdraft() {
-        return hasSpaceOverdraft.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_HAS_SPACE_OVERDRAFT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getHasSpaceOverdraft_JsonNullable() {
-    return hasSpaceOverdraft;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_HAS_SPACE_OVERDRAFT)
-  public void setHasSpaceOverdraft_JsonNullable(JsonNullable<Boolean> hasSpaceOverdraft) {
-    this.hasSpaceOverdraft = hasSpaceOverdraft;
-  }
-
-  public void setHasSpaceOverdraft(Boolean hasSpaceOverdraft) {
-    this.hasSpaceOverdraft = JsonNullable.<Boolean>of(hasSpaceOverdraft);
-  }
-
-
   public SubscriptionPlanVM groupLimit(Integer groupLimit) {
     this.groupLimit = JsonNullable.<Integer>of(groupLimit);
     
@@ -831,7 +800,6 @@ public class SubscriptionPlanVM {
         Objects.equals(this.fileUploadSizeLimit, subscriptionPlanVM.fileUploadSizeLimit) &&
         Objects.equals(this.dataSourceLimit, subscriptionPlanVM.dataSourceLimit) &&
         Objects.equals(this.maxUsersCount, subscriptionPlanVM.maxUsersCount) &&
-        Objects.equals(this.hasSpaceOverdraft, subscriptionPlanVM.hasSpaceOverdraft) &&
         Objects.equals(this.groupLimit, subscriptionPlanVM.groupLimit) &&
         Objects.equals(this.onlineDesigner, subscriptionPlanVM.onlineDesigner) &&
         Objects.equals(this.isDemo, subscriptionPlanVM.isDemo) &&
@@ -843,7 +811,7 @@ public class SubscriptionPlanVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, isActive, displayName, timePeriodType, timePeriod, readonlyTimeLimitType, readonlyTimeLimit, templatesSpaceLimit, reportsSpaceLimit, exportsSpaceLimit, fileUploadSizeLimit, dataSourceLimit, maxUsersCount, hasSpaceOverdraft, groupLimit, onlineDesigner, isDemo, urlToBuy, unlimitedPage, pageLimit, tasks);
+    return Objects.hash(id, isActive, displayName, timePeriodType, timePeriod, readonlyTimeLimitType, readonlyTimeLimit, templatesSpaceLimit, reportsSpaceLimit, exportsSpaceLimit, fileUploadSizeLimit, dataSourceLimit, maxUsersCount, groupLimit, onlineDesigner, isDemo, urlToBuy, unlimitedPage, pageLimit, tasks);
   }
 
   @Override
@@ -863,7 +831,6 @@ public class SubscriptionPlanVM {
     sb.append("    fileUploadSizeLimit: ").append(toIndentedString(fileUploadSizeLimit)).append("\n");
     sb.append("    dataSourceLimit: ").append(toIndentedString(dataSourceLimit)).append("\n");
     sb.append("    maxUsersCount: ").append(toIndentedString(maxUsersCount)).append("\n");
-    sb.append("    hasSpaceOverdraft: ").append(toIndentedString(hasSpaceOverdraft)).append("\n");
     sb.append("    groupLimit: ").append(toIndentedString(groupLimit)).append("\n");
     sb.append("    onlineDesigner: ").append(toIndentedString(onlineDesigner)).append("\n");
     sb.append("    isDemo: ").append(toIndentedString(isDemo)).append("\n");

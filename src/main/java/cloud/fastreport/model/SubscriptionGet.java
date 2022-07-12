@@ -43,6 +43,8 @@ public enum SubscriptionGet {
   
   NUMBER_128(128),
   
+  NUMBER_256(256),
+  
   NUMBER_MINUS_1(-1);
 
   private Integer value;

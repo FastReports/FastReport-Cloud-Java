@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.threeten.bp.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
@@ -68,6 +69,22 @@ public class CreateEmailTaskVMTest {
     @Test
     public void typeTest() {
         // TODO: test type
+    }
+
+    /**
+     * Test the property 'delayedRunTime'
+     */
+    @Test
+    public void delayedRunTimeTest() {
+        // TODO: test delayedRunTime
+    }
+
+    /**
+     * Test the property 'cronExpression'
+     */
+    @Test
+    public void cronExpressionTest() {
+        // TODO: test cronExpression
     }
 
 }

@@ -36,7 +36,7 @@ Method | HTTP request | Description
 
 ## exportFolderAndFileGetCount
 
-> CountVM exportFolderAndFileGetCount(id, searchPattern)
+> CountVM exportFolderAndFileGetCount(id, searchPattern, useRegex)
 
 Get count of files and folders what contains in a specified folder
 
@@ -70,8 +70,9 @@ public class Example {
         ExportsApi apiInstance = new ExportsApi(defaultClient);
         String id = "id_example"; // String | folder id
         String searchPattern = "searchPattern_example"; // String | string, that must be incuded in file or folder name to be counted <br />              (leave undefined to count all files and folders)
+        Boolean useRegex = false; // Boolean | set this to true if you want to use regular expression to search
         try {
-            CountVM result = apiInstance.exportFolderAndFileGetCount(id, searchPattern);
+            CountVM result = apiInstance.exportFolderAndFileGetCount(id, searchPattern, useRegex);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ExportsApi#exportFolderAndFileGetCount");
@@ -91,6 +92,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| folder id |
  **searchPattern** | **String**| string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders) | [optional]
+ **useRegex** | **Boolean**| set this to true if you want to use regular expression to search | [optional] [default to false]
 
 ### Return type
 
@@ -117,7 +119,7 @@ Name | Type | Description  | Notes
 
 ## exportFolderAndFileGetFoldersAndFiles
 
-> FilesVM exportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern)
+> FilesVM exportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern, useRegex)
 
 Get all folders and files from specified folder
 
@@ -155,8 +157,9 @@ public class Example {
         FileSorting orderBy = FileSorting.fromValue("None"); // FileSorting | indicates a field to sort by
         Boolean desc = false; // Boolean | indicates if sorting is descending
         String searchPattern = ""; // String | 
+        Boolean useRegex = false; // Boolean | 
         try {
-            FilesVM result = apiInstance.exportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern);
+            FilesVM result = apiInstance.exportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern, useRegex);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ExportsApi#exportFolderAndFileGetFoldersAndFiles");
@@ -180,6 +183,7 @@ Name | Type | Description  | Notes
  **orderBy** | [**FileSorting**](.md)| indicates a field to sort by | [optional] [enum: None, CreatedTime, EditedTime, Size, Name]
  **desc** | **Boolean**| indicates if sorting is descending | [optional] [default to false]
  **searchPattern** | **String**|  | [optional] [default to ]
+ **useRegex** | **Boolean**|  | [optional] [default to false]
 
 ### Return type
 
@@ -1656,7 +1660,7 @@ Name | Type | Description  | Notes
 
 ## exportsGetFilesList
 
-> ExportsVM exportsGetFilesList(id, skip, take, searchPattern)
+> ExportsVM exportsGetFilesList(id, skip, take, searchPattern, orderBy, desc, useRegex)
 
 Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
 
@@ -1690,8 +1694,11 @@ public class Example {
         Integer skip = 0; // Integer | number of files, that have to be skipped
         Integer take = 10; // Integer | number of files, that have to be returned
         String searchPattern = "searchPattern_example"; // String | 
+        FileSorting orderBy = FileSorting.fromValue("None"); // FileSorting | 
+        Boolean desc = false; // Boolean | 
+        Boolean useRegex = false; // Boolean | 
         try {
-            ExportsVM result = apiInstance.exportsGetFilesList(id, skip, take, searchPattern);
+            ExportsVM result = apiInstance.exportsGetFilesList(id, skip, take, searchPattern, orderBy, desc, useRegex);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ExportsApi#exportsGetFilesList");
@@ -1713,6 +1720,9 @@ Name | Type | Description  | Notes
  **skip** | **Integer**| number of files, that have to be skipped | [optional] [default to 0]
  **take** | **Integer**| number of files, that have to be returned | [optional] [default to 10]
  **searchPattern** | **String**|  | [optional]
+ **orderBy** | [**FileSorting**](.md)|  | [optional] [enum: None, CreatedTime, EditedTime, Size, Name]
+ **desc** | **Boolean**|  | [optional] [default to false]
+ **useRegex** | **Boolean**|  | [optional] [default to false]
 
 ### Return type
 

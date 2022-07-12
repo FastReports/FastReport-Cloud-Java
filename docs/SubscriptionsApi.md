@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## subscriptionsGetDefaultPermissions
 
-> DefaultPermissions subscriptionsGetDefaultPermissions(subscriptionId)
+> DefaultPermissionsVM subscriptionsGetDefaultPermissions(subscriptionId)
 
 Get subscription&#39;s default permissions for new entities
 
@@ -50,7 +50,7 @@ public class Example {
         SubscriptionsApi apiInstance = new SubscriptionsApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | id
         try {
-            DefaultPermissions result = apiInstance.subscriptionsGetDefaultPermissions(subscriptionId);
+            DefaultPermissionsVM result = apiInstance.subscriptionsGetDefaultPermissions(subscriptionId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SubscriptionsApi#subscriptionsGetDefaultPermissions");
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DefaultPermissions**](DefaultPermissions.md)
+[**DefaultPermissionsVM**](DefaultPermissionsVM.md)
 
 ### Authorization
 

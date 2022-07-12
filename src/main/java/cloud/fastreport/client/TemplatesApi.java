@@ -71,11 +71,12 @@ public class TemplatesApi {
     * <p><b>404</b> - Folder not found
     * @param id folder id
     * @param searchPattern string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders)
+    * @param useRegex set this to true if you want to use regular expression to search
     * @return CountVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public CountVM templateFolderAndFileGetCount(String id, String searchPattern) throws IOException {
-        HttpResponse response = templateFolderAndFileGetCountForHttpResponse(id, searchPattern);
+    public CountVM templateFolderAndFileGetCount(String id, String searchPattern, Boolean useRegex) throws IOException {
+        HttpResponse response = templateFolderAndFileGetCountForHttpResponse(id, searchPattern, useRegex);
         TypeReference<CountVM> typeRef = new TypeReference<CountVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -98,7 +99,7 @@ public class TemplatesApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templateFolderAndFileGetCountForHttpResponse(String id, String searchPattern) throws IOException {
+    public HttpResponse templateFolderAndFileGetCountForHttpResponse(String id, String searchPattern, Boolean useRegex) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFolderAndFileGetCount");
@@ -110,6 +111,16 @@ public class TemplatesApi {
         if (searchPattern != null) {
             String key = "searchPattern";
             Object value = searchPattern;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (useRegex != null) {
+            String key = "useRegex";
+            Object value = useRegex;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {
@@ -175,11 +186,12 @@ public class TemplatesApi {
     * @param orderBy indicates a field to sort by
     * @param desc indicates if sorting is descending
     * @param searchPattern The searchPattern parameter
+    * @param useRegex The useRegex parameter
     * @return FilesVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilesVM templateFolderAndFileGetFoldersAndFiles(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern) throws IOException {
-        HttpResponse response = templateFolderAndFileGetFoldersAndFilesForHttpResponse(id, skip, take, orderBy, desc, searchPattern);
+    public FilesVM templateFolderAndFileGetFoldersAndFiles(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws IOException {
+        HttpResponse response = templateFolderAndFileGetFoldersAndFilesForHttpResponse(id, skip, take, orderBy, desc, searchPattern, useRegex);
         TypeReference<FilesVM> typeRef = new TypeReference<FilesVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -202,7 +214,7 @@ public class TemplatesApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templateFolderAndFileGetFoldersAndFilesForHttpResponse(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern) throws IOException {
+    public HttpResponse templateFolderAndFileGetFoldersAndFilesForHttpResponse(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templateFolderAndFileGetFoldersAndFiles");
@@ -254,6 +266,16 @@ public class TemplatesApi {
         }        if (searchPattern != null) {
             String key = "searchPattern";
             Object value = searchPattern;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (useRegex != null) {
+            String key = "useRegex";
+            Object value = useRegex;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {
@@ -2180,11 +2202,14 @@ public class TemplatesApi {
     * @param skip number of files, that have to be skipped
     * @param take number of files, that have to be returned
     * @param searchPattern The searchPattern parameter
+    * @param orderBy The orderBy parameter
+    * @param desc The desc parameter
+    * @param useRegex The useRegex parameter
     * @return TemplatesVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public TemplatesVM templatesGetFilesList(String id, Integer skip, Integer take, String searchPattern) throws IOException {
-        HttpResponse response = templatesGetFilesListForHttpResponse(id, skip, take, searchPattern);
+    public TemplatesVM templatesGetFilesList(String id, Integer skip, Integer take, String searchPattern, FileSorting orderBy, Boolean desc, Boolean useRegex) throws IOException {
+        HttpResponse response = templatesGetFilesListForHttpResponse(id, skip, take, searchPattern, orderBy, desc, useRegex);
         TypeReference<TemplatesVM> typeRef = new TypeReference<TemplatesVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -2207,7 +2232,7 @@ public class TemplatesApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templatesGetFilesListForHttpResponse(String id, Integer skip, Integer take, String searchPattern) throws IOException {
+    public HttpResponse templatesGetFilesListForHttpResponse(String id, Integer skip, Integer take, String searchPattern, FileSorting orderBy, Boolean desc, Boolean useRegex) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesGetFilesList");
@@ -2239,6 +2264,36 @@ public class TemplatesApi {
         }        if (searchPattern != null) {
             String key = "searchPattern";
             Object value = searchPattern;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (orderBy != null) {
+            String key = "orderBy";
+            Object value = orderBy;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (desc != null) {
+            String key = "desc";
+            Object value = desc;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (useRegex != null) {
+            String key = "useRegex";
+            Object value = useRegex;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {

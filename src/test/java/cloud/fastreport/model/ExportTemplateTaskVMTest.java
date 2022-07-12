@@ -25,6 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.threeten.bp.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
@@ -69,6 +70,22 @@ public class ExportTemplateTaskVMTest {
     @Test
     public void typeTest() {
         // TODO: test type
+    }
+
+    /**
+     * Test the property 'delayedRunTime'
+     */
+    @Test
+    public void delayedRunTimeTest() {
+        // TODO: test delayedRunTime
+    }
+
+    /**
+     * Test the property 'cronExpression'
+     */
+    @Test
+    public void cronExpressionTest() {
+        // TODO: test cronExpression
     }
 
 }

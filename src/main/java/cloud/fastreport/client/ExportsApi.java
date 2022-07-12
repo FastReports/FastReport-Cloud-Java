@@ -66,11 +66,12 @@ public class ExportsApi {
     * <p><b>404</b> - Folder not found
     * @param id folder id
     * @param searchPattern string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders)
+    * @param useRegex set this to true if you want to use regular expression to search
     * @return CountVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public CountVM exportFolderAndFileGetCount(String id, String searchPattern) throws IOException {
-        HttpResponse response = exportFolderAndFileGetCountForHttpResponse(id, searchPattern);
+    public CountVM exportFolderAndFileGetCount(String id, String searchPattern, Boolean useRegex) throws IOException {
+        HttpResponse response = exportFolderAndFileGetCountForHttpResponse(id, searchPattern, useRegex);
         TypeReference<CountVM> typeRef = new TypeReference<CountVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -93,7 +94,7 @@ public class ExportsApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse exportFolderAndFileGetCountForHttpResponse(String id, String searchPattern) throws IOException {
+    public HttpResponse exportFolderAndFileGetCountForHttpResponse(String id, String searchPattern, Boolean useRegex) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling exportFolderAndFileGetCount");
@@ -105,6 +106,16 @@ public class ExportsApi {
         if (searchPattern != null) {
             String key = "searchPattern";
             Object value = searchPattern;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (useRegex != null) {
+            String key = "useRegex";
+            Object value = useRegex;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {
@@ -170,11 +181,12 @@ public class ExportsApi {
     * @param orderBy indicates a field to sort by
     * @param desc indicates if sorting is descending
     * @param searchPattern The searchPattern parameter
+    * @param useRegex The useRegex parameter
     * @return FilesVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public FilesVM exportFolderAndFileGetFoldersAndFiles(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern) throws IOException {
-        HttpResponse response = exportFolderAndFileGetFoldersAndFilesForHttpResponse(id, skip, take, orderBy, desc, searchPattern);
+    public FilesVM exportFolderAndFileGetFoldersAndFiles(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws IOException {
+        HttpResponse response = exportFolderAndFileGetFoldersAndFilesForHttpResponse(id, skip, take, orderBy, desc, searchPattern, useRegex);
         TypeReference<FilesVM> typeRef = new TypeReference<FilesVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -197,7 +209,7 @@ public class ExportsApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse exportFolderAndFileGetFoldersAndFilesForHttpResponse(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern) throws IOException {
+    public HttpResponse exportFolderAndFileGetFoldersAndFilesForHttpResponse(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling exportFolderAndFileGetFoldersAndFiles");
@@ -249,6 +261,16 @@ public class ExportsApi {
         }        if (searchPattern != null) {
             String key = "searchPattern";
             Object value = searchPattern;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (useRegex != null) {
+            String key = "useRegex";
+            Object value = useRegex;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {
@@ -2065,11 +2087,14 @@ public class ExportsApi {
     * @param skip number of files, that have to be skipped
     * @param take number of files, that have to be returned
     * @param searchPattern The searchPattern parameter
+    * @param orderBy The orderBy parameter
+    * @param desc The desc parameter
+    * @param useRegex The useRegex parameter
     * @return ExportsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public ExportsVM exportsGetFilesList(String id, Integer skip, Integer take, String searchPattern) throws IOException {
-        HttpResponse response = exportsGetFilesListForHttpResponse(id, skip, take, searchPattern);
+    public ExportsVM exportsGetFilesList(String id, Integer skip, Integer take, String searchPattern, FileSorting orderBy, Boolean desc, Boolean useRegex) throws IOException {
+        HttpResponse response = exportsGetFilesListForHttpResponse(id, skip, take, searchPattern, orderBy, desc, useRegex);
         TypeReference<ExportsVM> typeRef = new TypeReference<ExportsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -2092,7 +2117,7 @@ public class ExportsApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse exportsGetFilesListForHttpResponse(String id, Integer skip, Integer take, String searchPattern) throws IOException {
+    public HttpResponse exportsGetFilesListForHttpResponse(String id, Integer skip, Integer take, String searchPattern, FileSorting orderBy, Boolean desc, Boolean useRegex) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling exportsGetFilesList");
@@ -2124,6 +2149,36 @@ public class ExportsApi {
         }        if (searchPattern != null) {
             String key = "searchPattern";
             Object value = searchPattern;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (orderBy != null) {
+            String key = "orderBy";
+            Object value = orderBy;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (desc != null) {
+            String key = "desc";
+            Object value = desc;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (useRegex != null) {
+            String key = "useRegex";
+            Object value = useRegex;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {

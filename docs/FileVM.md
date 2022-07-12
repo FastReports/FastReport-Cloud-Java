@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **subscriptionId** | **String** |  |  [optional]
 **status** | **FileStatus** |  |  [optional]
 **statusReason** | **FileStatusReason** |  |  [optional]
+**errorMessage** | **String** |  |  [optional]
 **id** | **String** |  |  [optional]
 **createdTime** | **OffsetDateTime** |  |  [optional]
 **creatorUserId** | **String** |  |  [optional]

@@ -13,7 +13,6 @@
 
 package cloud.fastreport.client;
 
-import cloud.fastreport.model.DefaultPermissions;
 import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.MyPermissionsVM;
 import cloud.fastreport.model.ProblemDetails;
@@ -53,7 +52,7 @@ public class SubscriptionsApiTest {
     @Test
     public void subscriptionsGetDefaultPermissionsTest() throws IOException {
         String subscriptionId = null;
-        DefaultPermissions response = api.subscriptionsGetDefaultPermissions(subscriptionId);
+        DefaultPermissionsVM response = api.subscriptionsGetDefaultPermissions(subscriptionId);
 
         // TODO: test validations
     }

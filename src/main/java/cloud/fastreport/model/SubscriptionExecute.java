@@ -27,6 +27,8 @@ public enum SubscriptionExecute {
   
   NUMBER_0(0),
   
+  NUMBER_4(4),
+  
   NUMBER_MINUS_1(-1);
 
   private Integer value;

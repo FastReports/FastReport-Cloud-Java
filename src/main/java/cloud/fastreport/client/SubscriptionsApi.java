@@ -2,7 +2,6 @@ package cloud.fastreport.client;
 
 import cloud.fastreport.ApiClient;
 
-import cloud.fastreport.model.DefaultPermissions;
 import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.MyPermissionsVM;
 import cloud.fastreport.model.ProblemDetails;
@@ -59,12 +58,12 @@ public class SubscriptionsApi {
     * <p><b>403</b> - Not enough permissions
     * <p><b>404</b> - there is no subscription with such id
     * @param subscriptionId id
-    * @return DefaultPermissions
+    * @return DefaultPermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public DefaultPermissions subscriptionsGetDefaultPermissions(String subscriptionId) throws IOException {
+    public DefaultPermissionsVM subscriptionsGetDefaultPermissions(String subscriptionId) throws IOException {
         HttpResponse response = subscriptionsGetDefaultPermissionsForHttpResponse(subscriptionId);
-        TypeReference<DefaultPermissions> typeRef = new TypeReference<DefaultPermissions>() {};
+        TypeReference<DefaultPermissionsVM> typeRef = new TypeReference<DefaultPermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
@@ -77,12 +76,12 @@ public class SubscriptionsApi {
     * <p><b>404</b> - there is no subscription with such id
     * @param subscriptionId id
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return DefaultPermissions
+    * @return DefaultPermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public DefaultPermissions subscriptionsGetDefaultPermissions(String subscriptionId, Map<String, Object> params) throws IOException {
+    public DefaultPermissionsVM subscriptionsGetDefaultPermissions(String subscriptionId, Map<String, Object> params) throws IOException {
         HttpResponse response = subscriptionsGetDefaultPermissionsForHttpResponse(subscriptionId, params);
-        TypeReference<DefaultPermissions> typeRef = new TypeReference<DefaultPermissions>() {};
+        TypeReference<DefaultPermissionsVM> typeRef = new TypeReference<DefaultPermissionsVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 

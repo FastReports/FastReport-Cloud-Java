@@ -65,7 +65,8 @@ public class TemplatesApiTest {
     public void templateFolderAndFileGetCountTest() throws IOException {
         String id = null;
         String searchPattern = null;
-        CountVM response = api.templateFolderAndFileGetCount(id, searchPattern);
+        Boolean useRegex = null;
+        CountVM response = api.templateFolderAndFileGetCount(id, searchPattern, useRegex);
 
         // TODO: test validations
     }
@@ -86,7 +87,8 @@ public class TemplatesApiTest {
         FileSorting orderBy = null;
         Boolean desc = null;
         String searchPattern = null;
-        FilesVM response = api.templateFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern);
+        Boolean useRegex = null;
+        FilesVM response = api.templateFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern, useRegex);
 
         // TODO: test validations
     }
@@ -421,7 +423,10 @@ public class TemplatesApiTest {
         Integer skip = null;
         Integer take = null;
         String searchPattern = null;
-        TemplatesVM response = api.templatesGetFilesList(id, skip, take, searchPattern);
+        FileSorting orderBy = null;
+        Boolean desc = null;
+        Boolean useRegex = null;
+        TemplatesVM response = api.templatesGetFilesList(id, skip, take, searchPattern, orderBy, desc, useRegex);
 
         // TODO: test validations
     }

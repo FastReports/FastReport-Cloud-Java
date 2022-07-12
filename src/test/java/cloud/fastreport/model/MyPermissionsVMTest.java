@@ -17,6 +17,7 @@ import cloud.fastreport.model.DataSourcePermission;
 import cloud.fastreport.model.FilePermission;
 import cloud.fastreport.model.GroupPermission;
 import cloud.fastreport.model.SubscriptionPermission;
+import cloud.fastreport.model.TaskPermission;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -73,6 +74,14 @@ public class MyPermissionsVMTest {
     @Test
     public void groupsTest() {
         // TODO: test groups
+    }
+
+    /**
+     * Test the property 'tasks'
+     */
+    @Test
+    public void tasksTest() {
+        // TODO: test tasks
     }
 
 }

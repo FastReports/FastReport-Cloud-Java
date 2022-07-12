@@ -36,6 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   AdminFolderCreateVM.JSON_PROPERTY_PARENT_ID,
   AdminFolderCreateVM.JSON_PROPERTY_OWNER_ID,
+  AdminFolderCreateVM.JSON_PROPERTY_FORCE,
   AdminFolderCreateVM.JSON_PROPERTY_NAME,
   AdminFolderCreateVM.JSON_PROPERTY_TAGS,
   AdminFolderCreateVM.JSON_PROPERTY_ICON
@@ -48,6 +49,9 @@ public class AdminFolderCreateVM {
 
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
   private String ownerId;
+
+  public static final String JSON_PROPERTY_FORCE = "force";
+  private Boolean force;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private JsonNullable<String> name = JsonNullable.<String>undefined();
@@ -108,6 +112,33 @@ public class AdminFolderCreateVM {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOwnerId(String ownerId) {
     this.ownerId = ownerId;
+  }
+
+
+  public AdminFolderCreateVM force(Boolean force) {
+    
+    this.force = force;
+    return this;
+  }
+
+   /**
+   * Get force
+   * @return force
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_FORCE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getForce() {
+    return force;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FORCE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setForce(Boolean force) {
+    this.force = force;
   }
 
 
@@ -239,6 +270,7 @@ public class AdminFolderCreateVM {
     AdminFolderCreateVM adminFolderCreateVM = (AdminFolderCreateVM) o;
     return Objects.equals(this.parentId, adminFolderCreateVM.parentId) &&
         Objects.equals(this.ownerId, adminFolderCreateVM.ownerId) &&
+        Objects.equals(this.force, adminFolderCreateVM.force) &&
         Objects.equals(this.name, adminFolderCreateVM.name) &&
         Objects.equals(this.tags, adminFolderCreateVM.tags) &&
         Arrays.equals(this.icon, adminFolderCreateVM.icon);
@@ -246,7 +278,7 @@ public class AdminFolderCreateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(parentId, ownerId, name, tags, Arrays.hashCode(icon));
+    return Objects.hash(parentId, ownerId, force, name, tags, Arrays.hashCode(icon));
   }
 
   @Override
@@ -255,6 +287,7 @@ public class AdminFolderCreateVM {
     sb.append("class AdminFolderCreateVM {\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    force: ").append(toIndentedString(force)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");

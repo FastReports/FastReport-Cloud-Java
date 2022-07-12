@@ -15,8 +15,8 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.AppMixins;
 import cloud.fastreport.model.AuthConfigVM;
+import cloud.fastreport.model.FrontendApp;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -34,10 +34,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   ServerConfigurationVM.JSON_PROPERTY_TITLE,
+  ServerConfigurationVM.JSON_PROPERTY_LOGO_LINK,
+  ServerConfigurationVM.JSON_PROPERTY_COPYRIGHT,
   ServerConfigurationVM.JSON_PROPERTY_CORPORATE_SERVER_MODE,
   ServerConfigurationVM.JSON_PROPERTY_IS_DISABLED,
-  ServerConfigurationVM.JSON_PROPERTY_APP_MIXINS,
-  ServerConfigurationVM.JSON_PROPERTY_AUTH
+  ServerConfigurationVM.JSON_PROPERTY_FRONTEND,
+  ServerConfigurationVM.JSON_PROPERTY_AUTH,
+  ServerConfigurationVM.JSON_PROPERTY_DESIGNER_FOR_ANONS
 })
 @JsonTypeName("ServerConfigurationVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -45,17 +48,26 @@ public class ServerConfigurationVM {
   public static final String JSON_PROPERTY_TITLE = "title";
   private JsonNullable<String> title = JsonNullable.<String>undefined();
 
+  public static final String JSON_PROPERTY_LOGO_LINK = "logoLink";
+  private JsonNullable<String> logoLink = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_COPYRIGHT = "copyright";
+  private JsonNullable<String> copyright = JsonNullable.<String>undefined();
+
   public static final String JSON_PROPERTY_CORPORATE_SERVER_MODE = "corporateServerMode";
   private Boolean corporateServerMode;
 
   public static final String JSON_PROPERTY_IS_DISABLED = "isDisabled";
   private Boolean isDisabled;
 
-  public static final String JSON_PROPERTY_APP_MIXINS = "appMixins";
-  private AppMixins appMixins;
+  public static final String JSON_PROPERTY_FRONTEND = "frontend";
+  private FrontendApp frontend;
 
   public static final String JSON_PROPERTY_AUTH = "auth";
   private AuthConfigVM auth;
+
+  public static final String JSON_PROPERTY_DESIGNER_FOR_ANONS = "designerForAnons";
+  private Boolean designerForAnons;
 
 
   public ServerConfigurationVM title(String title) {
@@ -90,6 +102,76 @@ public class ServerConfigurationVM {
 
   public void setTitle(String title) {
     this.title = JsonNullable.<String>of(title);
+  }
+
+
+  public ServerConfigurationVM logoLink(String logoLink) {
+    this.logoLink = JsonNullable.<String>of(logoLink);
+    
+    return this;
+  }
+
+   /**
+   * Get logoLink
+   * @return logoLink
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public String getLogoLink() {
+        return logoLink.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_LOGO_LINK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getLogoLink_JsonNullable() {
+    return logoLink;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LOGO_LINK)
+  public void setLogoLink_JsonNullable(JsonNullable<String> logoLink) {
+    this.logoLink = logoLink;
+  }
+
+  public void setLogoLink(String logoLink) {
+    this.logoLink = JsonNullable.<String>of(logoLink);
+  }
+
+
+  public ServerConfigurationVM copyright(String copyright) {
+    this.copyright = JsonNullable.<String>of(copyright);
+    
+    return this;
+  }
+
+   /**
+   * Get copyright
+   * @return copyright
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public String getCopyright() {
+        return copyright.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_COPYRIGHT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCopyright_JsonNullable() {
+    return copyright;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_COPYRIGHT)
+  public void setCopyright_JsonNullable(JsonNullable<String> copyright) {
+    this.copyright = copyright;
+  }
+
+  public void setCopyright(String copyright) {
+    this.copyright = JsonNullable.<String>of(copyright);
   }
 
 
@@ -147,30 +229,30 @@ public class ServerConfigurationVM {
   }
 
 
-  public ServerConfigurationVM appMixins(AppMixins appMixins) {
+  public ServerConfigurationVM frontend(FrontendApp frontend) {
     
-    this.appMixins = appMixins;
+    this.frontend = frontend;
     return this;
   }
 
    /**
-   * Get appMixins
-   * @return appMixins
+   * Get frontend
+   * @return frontend
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_APP_MIXINS)
+  @JsonProperty(JSON_PROPERTY_FRONTEND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public AppMixins getAppMixins() {
-    return appMixins;
+  public FrontendApp getFrontend() {
+    return frontend;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_APP_MIXINS)
+  @JsonProperty(JSON_PROPERTY_FRONTEND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAppMixins(AppMixins appMixins) {
-    this.appMixins = appMixins;
+  public void setFrontend(FrontendApp frontend) {
+    this.frontend = frontend;
   }
 
 
@@ -201,6 +283,33 @@ public class ServerConfigurationVM {
   }
 
 
+  public ServerConfigurationVM designerForAnons(Boolean designerForAnons) {
+    
+    this.designerForAnons = designerForAnons;
+    return this;
+  }
+
+   /**
+   * Get designerForAnons
+   * @return designerForAnons
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DESIGNER_FOR_ANONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getDesignerForAnons() {
+    return designerForAnons;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESIGNER_FOR_ANONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDesignerForAnons(Boolean designerForAnons) {
+    this.designerForAnons = designerForAnons;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -211,15 +320,18 @@ public class ServerConfigurationVM {
     }
     ServerConfigurationVM serverConfigurationVM = (ServerConfigurationVM) o;
     return Objects.equals(this.title, serverConfigurationVM.title) &&
+        Objects.equals(this.logoLink, serverConfigurationVM.logoLink) &&
+        Objects.equals(this.copyright, serverConfigurationVM.copyright) &&
         Objects.equals(this.corporateServerMode, serverConfigurationVM.corporateServerMode) &&
         Objects.equals(this.isDisabled, serverConfigurationVM.isDisabled) &&
-        Objects.equals(this.appMixins, serverConfigurationVM.appMixins) &&
-        Objects.equals(this.auth, serverConfigurationVM.auth);
+        Objects.equals(this.frontend, serverConfigurationVM.frontend) &&
+        Objects.equals(this.auth, serverConfigurationVM.auth) &&
+        Objects.equals(this.designerForAnons, serverConfigurationVM.designerForAnons);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, corporateServerMode, isDisabled, appMixins, auth);
+    return Objects.hash(title, logoLink, copyright, corporateServerMode, isDisabled, frontend, auth, designerForAnons);
   }
 
   @Override
@@ -227,10 +339,13 @@ public class ServerConfigurationVM {
     StringBuilder sb = new StringBuilder();
     sb.append("class ServerConfigurationVM {\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    logoLink: ").append(toIndentedString(logoLink)).append("\n");
+    sb.append("    copyright: ").append(toIndentedString(copyright)).append("\n");
     sb.append("    corporateServerMode: ").append(toIndentedString(corporateServerMode)).append("\n");
     sb.append("    isDisabled: ").append(toIndentedString(isDisabled)).append("\n");
-    sb.append("    appMixins: ").append(toIndentedString(appMixins)).append("\n");
+    sb.append("    frontend: ").append(toIndentedString(frontend)).append("\n");
     sb.append("    auth: ").append(toIndentedString(auth)).append("\n");
+    sb.append("    designerForAnons: ").append(toIndentedString(designerForAnons)).append("\n");
     sb.append("}");
     return sb.toString();
   }

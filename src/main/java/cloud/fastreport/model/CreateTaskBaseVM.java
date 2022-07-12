@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.threeten.bp.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
@@ -34,7 +35,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   CreateTaskBaseVM.JSON_PROPERTY_NAME,
   CreateTaskBaseVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  CreateTaskBaseVM.JSON_PROPERTY_TYPE
+  CreateTaskBaseVM.JSON_PROPERTY_TYPE,
+  CreateTaskBaseVM.JSON_PROPERTY_DELAYED_RUN_TIME,
+  CreateTaskBaseVM.JSON_PROPERTY_CRON_EXPRESSION
 })
 @JsonTypeName("CreateTaskBaseVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -47,6 +50,12 @@ public class CreateTaskBaseVM {
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private TaskType type;
+
+  public static final String JSON_PROPERTY_DELAYED_RUN_TIME = "delayedRunTime";
+  private JsonNullable<OffsetDateTime> delayedRunTime = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
+  private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
 
   public CreateTaskBaseVM name(String name) {
@@ -146,6 +155,76 @@ public class CreateTaskBaseVM {
   }
 
 
+  public CreateTaskBaseVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.delayedRunTime = JsonNullable.<OffsetDateTime>of(delayedRunTime);
+    
+    return this;
+  }
+
+   /**
+   * Get delayedRunTime
+   * @return delayedRunTime
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public OffsetDateTime getDelayedRunTime() {
+        return delayedRunTime.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_DELAYED_RUN_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getDelayedRunTime_JsonNullable() {
+    return delayedRunTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DELAYED_RUN_TIME)
+  public void setDelayedRunTime_JsonNullable(JsonNullable<OffsetDateTime> delayedRunTime) {
+    this.delayedRunTime = delayedRunTime;
+  }
+
+  public void setDelayedRunTime(OffsetDateTime delayedRunTime) {
+    this.delayedRunTime = JsonNullable.<OffsetDateTime>of(delayedRunTime);
+  }
+
+
+  public CreateTaskBaseVM cronExpression(String cronExpression) {
+    this.cronExpression = JsonNullable.<String>of(cronExpression);
+    
+    return this;
+  }
+
+   /**
+   * Get cronExpression
+   * @return cronExpression
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public String getCronExpression() {
+        return cronExpression.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCronExpression_JsonNullable() {
+    return cronExpression;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
+  public void setCronExpression_JsonNullable(JsonNullable<String> cronExpression) {
+    this.cronExpression = cronExpression;
+  }
+
+  public void setCronExpression(String cronExpression) {
+    this.cronExpression = JsonNullable.<String>of(cronExpression);
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -157,12 +236,14 @@ public class CreateTaskBaseVM {
     CreateTaskBaseVM createTaskBaseVM = (CreateTaskBaseVM) o;
     return Objects.equals(this.name, createTaskBaseVM.name) &&
         Objects.equals(this.subscriptionId, createTaskBaseVM.subscriptionId) &&
-        Objects.equals(this.type, createTaskBaseVM.type);
+        Objects.equals(this.type, createTaskBaseVM.type) &&
+        Objects.equals(this.delayedRunTime, createTaskBaseVM.delayedRunTime) &&
+        Objects.equals(this.cronExpression, createTaskBaseVM.cronExpression);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, subscriptionId, type);
+    return Objects.hash(name, subscriptionId, type, delayedRunTime, cronExpression);
   }
 
   @Override
@@ -172,6 +253,8 @@ public class CreateTaskBaseVM {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    delayedRunTime: ").append(toIndentedString(delayedRunTime)).append("\n");
+    sb.append("    cronExpression: ").append(toIndentedString(cronExpression)).append("\n");
     sb.append("}");
     return sb.toString();
   }

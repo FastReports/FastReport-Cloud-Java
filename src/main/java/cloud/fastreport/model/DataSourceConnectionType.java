@@ -37,7 +37,11 @@ public enum DataSourceConnectionType {
   
   POSTGRES("Postgres"),
   
-  ORACLEDB("OracleDB");
+  ORACLEDB("OracleDB"),
+  
+  FIREBIRDDB("FirebirdDB"),
+  
+  MONGODB("MongoDB");
 
   private String value;
 

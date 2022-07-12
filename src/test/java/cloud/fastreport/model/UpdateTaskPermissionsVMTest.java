@@ -13,9 +13,8 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.DataSourcePermissions;
-import cloud.fastreport.model.FilePermissions;
-import cloud.fastreport.model.GroupPermissions;
+import cloud.fastreport.model.TaskAdministrate;
+import cloud.fastreport.model.TaskPermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -29,41 +28,33 @@ import org.junit.Test;
 
 
 /**
- * Model tests for DefaultPermissions
+ * Model tests for UpdateTaskPermissionsVM
  */
-public class DefaultPermissionsTest {
-    private final DefaultPermissions model = new DefaultPermissions();
+public class UpdateTaskPermissionsVMTest {
+    private final UpdateTaskPermissionsVM model = new UpdateTaskPermissionsVM();
 
     /**
-     * Model tests for DefaultPermissions
+     * Model tests for UpdateTaskPermissionsVM
      */
     @Test
-    public void testDefaultPermissions() {
-        // TODO: test DefaultPermissions
+    public void testUpdateTaskPermissionsVM() {
+        // TODO: test UpdateTaskPermissionsVM
     }
 
     /**
-     * Test the property 'filePermissions'
+     * Test the property 'newPermissions'
      */
     @Test
-    public void filePermissionsTest() {
-        // TODO: test filePermissions
+    public void newPermissionsTest() {
+        // TODO: test newPermissions
     }
 
     /**
-     * Test the property 'groupPermissions'
+     * Test the property 'administrate'
      */
     @Test
-    public void groupPermissionsTest() {
-        // TODO: test groupPermissions
-    }
-
-    /**
-     * Test the property 'dataSourcePermissions'
-     */
-    @Test
-    public void dataSourcePermissionsTest() {
-        // TODO: test dataSourcePermissions
+    public void administrateTest() {
+        // TODO: test administrate
     }
 
 }

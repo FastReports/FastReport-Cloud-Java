@@ -24,6 +24,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
@@ -34,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   CreateEndpointVM.JSON_PROPERTY_BEARER_TOKEN,
+  CreateEndpointVM.JSON_PROPERTY_HEADERS,
   CreateEndpointVM.JSON_PROPERTY_URL
 })
 @JsonTypeName("CreateEndpointVM")
@@ -41,6 +45,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class CreateEndpointVM {
   public static final String JSON_PROPERTY_BEARER_TOKEN = "bearerToken";
   private JsonNullable<String> bearerToken = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_HEADERS = "headers";
+  private JsonNullable<Map<String, String>> headers = JsonNullable.<Map<String, String>>undefined();
 
   public static final String JSON_PROPERTY_URL = "url";
   private JsonNullable<URI> url = JsonNullable.<URI>undefined();
@@ -78,6 +85,53 @@ public class CreateEndpointVM {
 
   public void setBearerToken(String bearerToken) {
     this.bearerToken = JsonNullable.<String>of(bearerToken);
+  }
+
+
+  public CreateEndpointVM headers(Map<String, String> headers) {
+    this.headers = JsonNullable.<Map<String, String>>of(headers);
+    
+    return this;
+  }
+
+  public CreateEndpointVM putHeadersItem(String key, String headersItem) {
+    if (this.headers == null || !this.headers.isPresent()) {
+      this.headers = JsonNullable.<Map<String, String>>of(new HashMap<>());
+    }
+    try {
+      this.headers.get().put(key, headersItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+   /**
+   * Get headers
+   * @return headers
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public Map<String, String> getHeaders() {
+        return headers.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_HEADERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Map<String, String>> getHeaders_JsonNullable() {
+    return headers;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HEADERS)
+  public void setHeaders_JsonNullable(JsonNullable<Map<String, String>> headers) {
+    this.headers = headers;
+  }
+
+  public void setHeaders(Map<String, String> headers) {
+    this.headers = JsonNullable.<Map<String, String>>of(headers);
   }
 
 
@@ -126,12 +180,13 @@ public class CreateEndpointVM {
     }
     CreateEndpointVM createEndpointVM = (CreateEndpointVM) o;
     return Objects.equals(this.bearerToken, createEndpointVM.bearerToken) &&
+        Objects.equals(this.headers, createEndpointVM.headers) &&
         Objects.equals(this.url, createEndpointVM.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bearerToken, url);
+    return Objects.hash(bearerToken, headers, url);
   }
 
   @Override
@@ -139,6 +194,7 @@ public class CreateEndpointVM {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateEndpointVM {\n");
     sb.append("    bearerToken: ").append(toIndentedString(bearerToken)).append("\n");
+    sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();

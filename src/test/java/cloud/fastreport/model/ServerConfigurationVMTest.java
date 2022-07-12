@@ -13,8 +13,8 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.AppMixins;
 import cloud.fastreport.model.AuthConfigVM;
+import cloud.fastreport.model.FrontendApp;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -53,6 +53,22 @@ public class ServerConfigurationVMTest {
     }
 
     /**
+     * Test the property 'logoLink'
+     */
+    @Test
+    public void logoLinkTest() {
+        // TODO: test logoLink
+    }
+
+    /**
+     * Test the property 'copyright'
+     */
+    @Test
+    public void copyrightTest() {
+        // TODO: test copyright
+    }
+
+    /**
      * Test the property 'corporateServerMode'
      */
     @Test
@@ -69,11 +85,11 @@ public class ServerConfigurationVMTest {
     }
 
     /**
-     * Test the property 'appMixins'
+     * Test the property 'frontend'
      */
     @Test
-    public void appMixinsTest() {
-        // TODO: test appMixins
+    public void frontendTest() {
+        // TODO: test frontend
     }
 
     /**
@@ -82,6 +98,14 @@ public class ServerConfigurationVMTest {
     @Test
     public void authTest() {
         // TODO: test auth
+    }
+
+    /**
+     * Test the property 'designerForAnons'
+     */
+    @Test
+    public void designerForAnonsTest() {
+        // TODO: test designerForAnons
     }
 
 }

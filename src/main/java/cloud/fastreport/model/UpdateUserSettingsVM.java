@@ -40,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateUserSettingsVM {
   public static final String JSON_PROPERTY_PROFILE_VISIBILITY = "profileVisibility";
-  private ProfileVisibility profileVisibility;
+  private JsonNullable<ProfileVisibility> profileVisibility = JsonNullable.<ProfileVisibility>undefined();
 
   public static final String JSON_PROPERTY_DEFAULT_SUBSCRIPTION = "defaultSubscription";
   private JsonNullable<String> defaultSubscription = JsonNullable.<String>undefined();
@@ -50,8 +50,8 @@ public class UpdateUserSettingsVM {
 
 
   public UpdateUserSettingsVM profileVisibility(ProfileVisibility profileVisibility) {
+    this.profileVisibility = JsonNullable.<ProfileVisibility>of(profileVisibility);
     
-    this.profileVisibility = profileVisibility;
     return this;
   }
 
@@ -61,18 +61,26 @@ public class UpdateUserSettingsVM {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PROFILE_VISIBILITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
   public ProfileVisibility getProfileVisibility() {
-    return profileVisibility;
+        return profileVisibility.orElse(null);
   }
-
 
   @JsonProperty(JSON_PROPERTY_PROFILE_VISIBILITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProfileVisibility(ProfileVisibility profileVisibility) {
+
+  public JsonNullable<ProfileVisibility> getProfileVisibility_JsonNullable() {
+    return profileVisibility;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PROFILE_VISIBILITY)
+  public void setProfileVisibility_JsonNullable(JsonNullable<ProfileVisibility> profileVisibility) {
     this.profileVisibility = profileVisibility;
+  }
+
+  public void setProfileVisibility(ProfileVisibility profileVisibility) {
+    this.profileVisibility = JsonNullable.<ProfileVisibility>of(profileVisibility);
   }
 
 

@@ -63,7 +63,8 @@ public class ReportsApiTest {
     public void reportFolderAndFileGetCountTest() throws IOException {
         String id = null;
         String searchPattern = null;
-        CountVM response = api.reportFolderAndFileGetCount(id, searchPattern);
+        Boolean useRegex = null;
+        CountVM response = api.reportFolderAndFileGetCount(id, searchPattern, useRegex);
 
         // TODO: test validations
     }
@@ -84,7 +85,8 @@ public class ReportsApiTest {
         FileSorting orderBy = null;
         Boolean desc = null;
         String searchPattern = null;
-        FilesVM response = api.reportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern);
+        Boolean useRegex = null;
+        FilesVM response = api.reportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern, useRegex);
 
         // TODO: test validations
     }
@@ -419,7 +421,10 @@ public class ReportsApiTest {
         Integer skip = null;
         Integer take = null;
         String searchPattern = null;
-        ReportsVM response = api.reportsGetFilesList(id, skip, take, searchPattern);
+        FileSorting orderBy = null;
+        Boolean desc = null;
+        Boolean useRegex = null;
+        ReportsVM response = api.reportsGetFilesList(id, skip, take, searchPattern, orderBy, desc, useRegex);
 
         // TODO: test validations
     }

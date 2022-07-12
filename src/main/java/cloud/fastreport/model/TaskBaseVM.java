@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.threeten.bp.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
@@ -34,15 +35,29 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   TaskBaseVM.JSON_PROPERTY_ID,
+  TaskBaseVM.JSON_PROPERTY_DELAYED_WAS_RUN_TIME,
+  TaskBaseVM.JSON_PROPERTY_RECURRENT_RUN_TIME,
+  TaskBaseVM.JSON_PROPERTY_RECURRENT_WAS_RUN_TIME,
   TaskBaseVM.JSON_PROPERTY_NAME,
   TaskBaseVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  TaskBaseVM.JSON_PROPERTY_TYPE
+  TaskBaseVM.JSON_PROPERTY_TYPE,
+  TaskBaseVM.JSON_PROPERTY_DELAYED_RUN_TIME,
+  TaskBaseVM.JSON_PROPERTY_CRON_EXPRESSION
 })
 @JsonTypeName("TaskBaseVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TaskBaseVM {
   public static final String JSON_PROPERTY_ID = "id";
   private JsonNullable<String> id = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_DELAYED_WAS_RUN_TIME = "delayedWasRunTime";
+  private JsonNullable<OffsetDateTime> delayedWasRunTime = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_RECURRENT_RUN_TIME = "recurrentRunTime";
+  private JsonNullable<OffsetDateTime> recurrentRunTime = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_RECURRENT_WAS_RUN_TIME = "recurrentWasRunTime";
+  private JsonNullable<OffsetDateTime> recurrentWasRunTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_NAME = "name";
   private JsonNullable<String> name = JsonNullable.<String>undefined();
@@ -52,6 +67,12 @@ public class TaskBaseVM {
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private TaskType type;
+
+  public static final String JSON_PROPERTY_DELAYED_RUN_TIME = "delayedRunTime";
+  private JsonNullable<OffsetDateTime> delayedRunTime = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
+  private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
 
   public TaskBaseVM id(String id) {
@@ -87,6 +108,101 @@ public class TaskBaseVM {
   public void setId(String id) {
     this.id = JsonNullable.<String>of(id);
   }
+
+
+  public TaskBaseVM delayedWasRunTime(OffsetDateTime delayedWasRunTime) {
+    this.delayedWasRunTime = JsonNullable.<OffsetDateTime>of(delayedWasRunTime);
+    
+    return this;
+  }
+
+   /**
+   * Get delayedWasRunTime
+   * @return delayedWasRunTime
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public OffsetDateTime getDelayedWasRunTime() {
+        return delayedWasRunTime.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_DELAYED_WAS_RUN_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getDelayedWasRunTime_JsonNullable() {
+    return delayedWasRunTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DELAYED_WAS_RUN_TIME)
+  public void setDelayedWasRunTime_JsonNullable(JsonNullable<OffsetDateTime> delayedWasRunTime) {
+    this.delayedWasRunTime = delayedWasRunTime;
+  }
+
+  public void setDelayedWasRunTime(OffsetDateTime delayedWasRunTime) {
+    this.delayedWasRunTime = JsonNullable.<OffsetDateTime>of(delayedWasRunTime);
+  }
+
+
+   /**
+   * Get recurrentRunTime
+   * @return recurrentRunTime
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public OffsetDateTime getRecurrentRunTime() {
+    
+    if (recurrentRunTime == null) {
+      recurrentRunTime = JsonNullable.<OffsetDateTime>undefined();
+    }
+    return recurrentRunTime.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getRecurrentRunTime_JsonNullable() {
+    return recurrentRunTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME)
+  private void setRecurrentRunTime_JsonNullable(JsonNullable<OffsetDateTime> recurrentRunTime) {
+    this.recurrentRunTime = recurrentRunTime;
+  }
+
+
+
+   /**
+   * Get recurrentWasRunTime
+   * @return recurrentWasRunTime
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public OffsetDateTime getRecurrentWasRunTime() {
+    
+    if (recurrentWasRunTime == null) {
+      recurrentWasRunTime = JsonNullable.<OffsetDateTime>undefined();
+    }
+    return recurrentWasRunTime.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getRecurrentWasRunTime_JsonNullable() {
+    return recurrentWasRunTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME)
+  private void setRecurrentWasRunTime_JsonNullable(JsonNullable<OffsetDateTime> recurrentWasRunTime) {
+    this.recurrentWasRunTime = recurrentWasRunTime;
+  }
+
 
 
   public TaskBaseVM name(String name) {
@@ -186,6 +302,76 @@ public class TaskBaseVM {
   }
 
 
+  public TaskBaseVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.delayedRunTime = JsonNullable.<OffsetDateTime>of(delayedRunTime);
+    
+    return this;
+  }
+
+   /**
+   * Get delayedRunTime
+   * @return delayedRunTime
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public OffsetDateTime getDelayedRunTime() {
+        return delayedRunTime.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_DELAYED_RUN_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getDelayedRunTime_JsonNullable() {
+    return delayedRunTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DELAYED_RUN_TIME)
+  public void setDelayedRunTime_JsonNullable(JsonNullable<OffsetDateTime> delayedRunTime) {
+    this.delayedRunTime = delayedRunTime;
+  }
+
+  public void setDelayedRunTime(OffsetDateTime delayedRunTime) {
+    this.delayedRunTime = JsonNullable.<OffsetDateTime>of(delayedRunTime);
+  }
+
+
+  public TaskBaseVM cronExpression(String cronExpression) {
+    this.cronExpression = JsonNullable.<String>of(cronExpression);
+    
+    return this;
+  }
+
+   /**
+   * Get cronExpression
+   * @return cronExpression
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonIgnore
+
+  public String getCronExpression() {
+        return cronExpression.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCronExpression_JsonNullable() {
+    return cronExpression;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
+  public void setCronExpression_JsonNullable(JsonNullable<String> cronExpression) {
+    this.cronExpression = cronExpression;
+  }
+
+  public void setCronExpression(String cronExpression) {
+    this.cronExpression = JsonNullable.<String>of(cronExpression);
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -196,14 +382,19 @@ public class TaskBaseVM {
     }
     TaskBaseVM taskBaseVM = (TaskBaseVM) o;
     return Objects.equals(this.id, taskBaseVM.id) &&
+        Objects.equals(this.delayedWasRunTime, taskBaseVM.delayedWasRunTime) &&
+        Objects.equals(this.recurrentRunTime, taskBaseVM.recurrentRunTime) &&
+        Objects.equals(this.recurrentWasRunTime, taskBaseVM.recurrentWasRunTime) &&
         Objects.equals(this.name, taskBaseVM.name) &&
         Objects.equals(this.subscriptionId, taskBaseVM.subscriptionId) &&
-        Objects.equals(this.type, taskBaseVM.type);
+        Objects.equals(this.type, taskBaseVM.type) &&
+        Objects.equals(this.delayedRunTime, taskBaseVM.delayedRunTime) &&
+        Objects.equals(this.cronExpression, taskBaseVM.cronExpression);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, subscriptionId, type);
+    return Objects.hash(id, delayedWasRunTime, recurrentRunTime, recurrentWasRunTime, name, subscriptionId, type, delayedRunTime, cronExpression);
   }
 
   @Override
@@ -211,9 +402,14 @@ public class TaskBaseVM {
     StringBuilder sb = new StringBuilder();
     sb.append("class TaskBaseVM {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    delayedWasRunTime: ").append(toIndentedString(delayedWasRunTime)).append("\n");
+    sb.append("    recurrentRunTime: ").append(toIndentedString(recurrentRunTime)).append("\n");
+    sb.append("    recurrentWasRunTime: ").append(toIndentedString(recurrentWasRunTime)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    delayedRunTime: ").append(toIndentedString(delayedRunTime)).append("\n");
+    sb.append("    cronExpression: ").append(toIndentedString(cronExpression)).append("\n");
     sb.append("}");
     return sb.toString();
   }

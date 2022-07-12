@@ -60,7 +60,8 @@ public class ExportsApiTest {
     public void exportFolderAndFileGetCountTest() throws IOException {
         String id = null;
         String searchPattern = null;
-        CountVM response = api.exportFolderAndFileGetCount(id, searchPattern);
+        Boolean useRegex = null;
+        CountVM response = api.exportFolderAndFileGetCount(id, searchPattern, useRegex);
 
         // TODO: test validations
     }
@@ -81,7 +82,8 @@ public class ExportsApiTest {
         FileSorting orderBy = null;
         Boolean desc = null;
         String searchPattern = null;
-        FilesVM response = api.exportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern);
+        Boolean useRegex = null;
+        FilesVM response = api.exportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern, useRegex);
 
         // TODO: test validations
     }
@@ -399,7 +401,10 @@ public class ExportsApiTest {
         Integer skip = null;
         Integer take = null;
         String searchPattern = null;
-        ExportsVM response = api.exportsGetFilesList(id, skip, take, searchPattern);
+        FileSorting orderBy = null;
+        Boolean desc = null;
+        Boolean useRegex = null;
+        ExportsVM response = api.exportsGetFilesList(id, skip, take, searchPattern, orderBy, desc, useRegex);
 
         // TODO: test validations
     }

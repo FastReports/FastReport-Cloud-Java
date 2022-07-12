@@ -19,5 +19,9 @@
 
 * `ORACLEDB` (value: `"OracleDB"`)
 
+* `FIREBIRDDB` (value: `"FirebirdDB"`)
+
+* `MONGODB` (value: `"MongoDB"`)
+
 
 

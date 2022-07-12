@@ -15,7 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.DefaultPermissions;
+import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.SubscriptionFolder;
 import cloud.fastreport.model.SubscriptionPeriodVM;
 import cloud.fastreport.model.SubscriptionVM;
@@ -51,7 +51,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AdminSubscriptionVM {
   public static final String JSON_PROPERTY_DEFAULT_PERMISSIONS = "defaultPermissions";
-  private DefaultPermissions defaultPermissions;
+  private DefaultPermissionsVM defaultPermissions;
 
   public static final String JSON_PROPERTY_ID = "id";
   private JsonNullable<String> id = JsonNullable.<String>undefined();
@@ -78,7 +78,7 @@ public class AdminSubscriptionVM {
   private SubscriptionFolder exportsFolder;
 
 
-  public AdminSubscriptionVM defaultPermissions(DefaultPermissions defaultPermissions) {
+  public AdminSubscriptionVM defaultPermissions(DefaultPermissionsVM defaultPermissions) {
     
     this.defaultPermissions = defaultPermissions;
     return this;
@@ -93,14 +93,14 @@ public class AdminSubscriptionVM {
   @JsonProperty(JSON_PROPERTY_DEFAULT_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DefaultPermissions getDefaultPermissions() {
+  public DefaultPermissionsVM getDefaultPermissions() {
     return defaultPermissions;
   }
 
 
   @JsonProperty(JSON_PROPERTY_DEFAULT_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDefaultPermissions(DefaultPermissions defaultPermissions) {
+  public void setDefaultPermissions(DefaultPermissionsVM defaultPermissions) {
     this.defaultPermissions = defaultPermissions;
   }
 

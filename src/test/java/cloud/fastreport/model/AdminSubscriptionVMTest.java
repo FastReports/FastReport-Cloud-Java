@@ -13,7 +13,7 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.DefaultPermissions;
+import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.SubscriptionFolder;
 import cloud.fastreport.model.SubscriptionPeriodVM;
 import cloud.fastreport.model.SubscriptionVM;

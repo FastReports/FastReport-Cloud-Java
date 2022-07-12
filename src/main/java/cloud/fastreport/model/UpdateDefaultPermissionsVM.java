@@ -18,6 +18,7 @@ import java.util.Arrays;
 import cloud.fastreport.model.UpdateDataSourcePermissionsVM;
 import cloud.fastreport.model.UpdateFilePermissionsVM;
 import cloud.fastreport.model.UpdateGroupPermissionsVM;
+import cloud.fastreport.model.UpdateTaskPermissionsVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -33,7 +34,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   UpdateDefaultPermissionsVM.JSON_PROPERTY_FILE_PERMISSIONS,
   UpdateDefaultPermissionsVM.JSON_PROPERTY_GROUP_PERMISSIONS,
-  UpdateDefaultPermissionsVM.JSON_PROPERTY_DATA_SOURCE_PERMISSIONS
+  UpdateDefaultPermissionsVM.JSON_PROPERTY_DATA_SOURCE_PERMISSIONS,
+  UpdateDefaultPermissionsVM.JSON_PROPERTY_TASK_PERMISSIONS
 })
 @JsonTypeName("UpdateDefaultPermissionsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -46,6 +48,9 @@ public class UpdateDefaultPermissionsVM {
 
   public static final String JSON_PROPERTY_DATA_SOURCE_PERMISSIONS = "dataSourcePermissions";
   private UpdateDataSourcePermissionsVM dataSourcePermissions;
+
+  public static final String JSON_PROPERTY_TASK_PERMISSIONS = "taskPermissions";
+  private UpdateTaskPermissionsVM taskPermissions;
 
 
   public UpdateDefaultPermissionsVM filePermissions(UpdateFilePermissionsVM filePermissions) {
@@ -129,6 +134,33 @@ public class UpdateDefaultPermissionsVM {
   }
 
 
+  public UpdateDefaultPermissionsVM taskPermissions(UpdateTaskPermissionsVM taskPermissions) {
+    
+    this.taskPermissions = taskPermissions;
+    return this;
+  }
+
+   /**
+   * Get taskPermissions
+   * @return taskPermissions
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TASK_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public UpdateTaskPermissionsVM getTaskPermissions() {
+    return taskPermissions;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TASK_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTaskPermissions(UpdateTaskPermissionsVM taskPermissions) {
+    this.taskPermissions = taskPermissions;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -140,12 +172,13 @@ public class UpdateDefaultPermissionsVM {
     UpdateDefaultPermissionsVM updateDefaultPermissionsVM = (UpdateDefaultPermissionsVM) o;
     return Objects.equals(this.filePermissions, updateDefaultPermissionsVM.filePermissions) &&
         Objects.equals(this.groupPermissions, updateDefaultPermissionsVM.groupPermissions) &&
-        Objects.equals(this.dataSourcePermissions, updateDefaultPermissionsVM.dataSourcePermissions);
+        Objects.equals(this.dataSourcePermissions, updateDefaultPermissionsVM.dataSourcePermissions) &&
+        Objects.equals(this.taskPermissions, updateDefaultPermissionsVM.taskPermissions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filePermissions, groupPermissions, dataSourcePermissions);
+    return Objects.hash(filePermissions, groupPermissions, dataSourcePermissions, taskPermissions);
   }
 
   @Override
@@ -155,6 +188,7 @@ public class UpdateDefaultPermissionsVM {
     sb.append("    filePermissions: ").append(toIndentedString(filePermissions)).append("\n");
     sb.append("    groupPermissions: ").append(toIndentedString(groupPermissions)).append("\n");
     sb.append("    dataSourcePermissions: ").append(toIndentedString(dataSourcePermissions)).append("\n");
+    sb.append("    taskPermissions: ").append(toIndentedString(taskPermissions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

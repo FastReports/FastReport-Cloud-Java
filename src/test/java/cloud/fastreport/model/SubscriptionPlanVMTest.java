@@ -149,14 +149,6 @@ public class SubscriptionPlanVMTest {
     }
 
     /**
-     * Test the property 'hasSpaceOverdraft'
-     */
-    @Test
-    public void hasSpaceOverdraftTest() {
-        // TODO: test hasSpaceOverdraft
-    }
-
-    /**
      * Test the property 'groupLimit'
      */
     @Test

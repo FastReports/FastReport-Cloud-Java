@@ -17,7 +17,10 @@ import cloud.fastreport.model.CreateTaskBaseVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.RunTaskBaseVM;
 import cloud.fastreport.model.TaskBaseVM;
+import cloud.fastreport.model.TaskPermissionsVM;
 import cloud.fastreport.model.TasksVM;
+import cloud.fastreport.model.UpdateTaskBaseVM;
+import cloud.fastreport.model.UpdateTaskPermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -103,6 +106,39 @@ public class TasksApiTest {
     }
     
     /**
+     * Get all Task permissions
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void tasksGetPermissionsTest() throws IOException {
+        String id = null;
+        TaskPermissionsVM response = api.tasksGetPermissions(id);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Rename a task
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void tasksRenameTaskTest() throws IOException {
+        String taskId = null;
+        String newName = null;
+        TaskBaseVM response = api.tasksRenameTask(taskId, newName);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Run a task from request body
      *
      * 
@@ -130,6 +166,40 @@ public class TasksApiTest {
     public void tasksRunTaskByIdTest() throws IOException {
         String taskId = null;
         api.tasksRunTaskById(taskId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Update permissions
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void tasksUpdatePermissionsTest() throws IOException {
+        String id = null;
+        UpdateTaskPermissionsVM updateTaskPermissionsVM = null;
+        api.tasksUpdatePermissions(id, updateTaskPermissionsVM);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Update a task
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void tasksUpdateTaskTest() throws IOException {
+        String taskId = null;
+        UpdateTaskBaseVM updateTaskBaseVM = null;
+        TaskBaseVM response = api.tasksUpdateTask(taskId, updateTaskBaseVM);
 
         // TODO: test validations
     }

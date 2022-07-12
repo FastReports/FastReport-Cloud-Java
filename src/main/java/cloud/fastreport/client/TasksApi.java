@@ -6,7 +6,10 @@ import cloud.fastreport.model.CreateTaskBaseVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.RunTaskBaseVM;
 import cloud.fastreport.model.TaskBaseVM;
+import cloud.fastreport.model.TaskPermissionsVM;
 import cloud.fastreport.model.TasksVM;
+import cloud.fastreport.model.UpdateTaskBaseVM;
+import cloud.fastreport.model.UpdateTaskPermissionsVM;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.api.client.http.EmptyContent;
@@ -420,8 +423,201 @@ public class TasksApi {
 
 
   /**
+    * Get all Task permissions
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>402</b> - Client Error
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id task id
+    * @return TaskPermissionsVM
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public TaskPermissionsVM tasksGetPermissions(String id) throws IOException {
+        HttpResponse response = tasksGetPermissionsForHttpResponse(id);
+        TypeReference<TaskPermissionsVM> typeRef = new TypeReference<TaskPermissionsVM>() {};
+        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+  /**
+    * Get all Task permissions
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>402</b> - Client Error
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id task id
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @return TaskPermissionsVM
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public TaskPermissionsVM tasksGetPermissions(String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = tasksGetPermissionsForHttpResponse(id, params);
+        TypeReference<TaskPermissionsVM> typeRef = new TypeReference<TaskPermissionsVM>() {};
+        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+    public HttpResponse tasksGetPermissionsForHttpResponse(String id) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling tasksGetPermissions");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{id}/permissions");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+    }
+
+    public HttpResponse tasksGetPermissionsForHttpResponse(String id, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling tasksGetPermissions");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{id}/permissions");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+    }
+
+
+  /**
+    * Rename a task
+    * <p><b>200</b> - Success
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>402</b> - Client Error
+    * <p><b>400</b> - Bad Request
+    * <p><b>500</b> - Server Error
+    * @param taskId renaming task id
+    * @param newName task&#39;s new Name
+    * @return TaskBaseVM
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public TaskBaseVM tasksRenameTask(String taskId, String newName) throws IOException {
+        HttpResponse response = tasksRenameTaskForHttpResponse(taskId, newName);
+        TypeReference<TaskBaseVM> typeRef = new TypeReference<TaskBaseVM>() {};
+        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+  /**
+    * Rename a task
+    * <p><b>200</b> - Success
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>402</b> - Client Error
+    * <p><b>400</b> - Bad Request
+    * <p><b>500</b> - Server Error
+    * @param taskId renaming task id
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @return TaskBaseVM
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public TaskBaseVM tasksRenameTask(String taskId, Map<String, Object> params) throws IOException {
+        HttpResponse response = tasksRenameTaskForHttpResponse(taskId, params);
+        TypeReference<TaskBaseVM> typeRef = new TypeReference<TaskBaseVM>() {};
+        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+    public HttpResponse tasksRenameTaskForHttpResponse(String taskId, String newName) throws IOException {
+        // verify the required parameter 'taskId' is set
+        if (taskId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'taskId' when calling tasksRenameTask");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("taskId", taskId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}/rename");
+        if (newName != null) {
+            String key = "newName";
+            Object value = newName;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+    }
+
+    public HttpResponse tasksRenameTaskForHttpResponse(String taskId, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'taskId' is set
+        if (taskId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'taskId' when calling tasksRenameTask");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("taskId", taskId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}/rename");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+    }
+
+
+  /**
     * Run a task from request body
     * <p><b>200</b> - Success
+    * <p><b>204</b> - Success
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>402</b> - Client Error
@@ -437,6 +633,7 @@ public class TasksApi {
   /**
     * Run a task from request body
     * <p><b>200</b> - Success
+    * <p><b>204</b> - Success
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>402</b> - Client Error
@@ -584,6 +781,220 @@ public class TasksApi {
 
         HttpContent content = new EmptyContent();
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+
+  /**
+    * Update permissions
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>402</b> - Client Error
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id task id
+    * @param updateTaskPermissionsVM new permissions
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void tasksUpdatePermissions(String id, UpdateTaskPermissionsVM updateTaskPermissionsVM) throws IOException {
+        tasksUpdatePermissionsForHttpResponse(id, updateTaskPermissionsVM);
+    }
+
+  /**
+    * Update permissions
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>402</b> - Client Error
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id task id
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void tasksUpdatePermissions(UpdateTaskPermissionsVM updateTaskPermissionsVM, String id, Map<String, Object> params) throws IOException {
+        tasksUpdatePermissionsForHttpResponse(updateTaskPermissionsVM, id, params);
+    }
+
+    public HttpResponse tasksUpdatePermissionsForHttpResponse(String id, UpdateTaskPermissionsVM updateTaskPermissionsVM) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling tasksUpdatePermissions");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{id}/permissions");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateTaskPermissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+      public HttpResponse tasksUpdatePermissionsForHttpResponse(String id, java.io.InputStream updateTaskPermissionsVM, String mediaType) throws IOException {
+          // verify the required parameter 'id' is set
+              if (id == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'id' when calling tasksUpdatePermissions");
+              }
+                  // create a map of path variables
+                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
+                      uriVariables.put("id", id);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{id}/permissions");
+
+              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+              HttpContent content = updateTaskPermissionsVM == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateTaskPermissionsVM);
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+      }
+
+    public HttpResponse tasksUpdatePermissionsForHttpResponse(UpdateTaskPermissionsVM updateTaskPermissionsVM, String id, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling tasksUpdatePermissions");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{id}/permissions");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateTaskPermissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+
+  /**
+    * Update a task
+    * <p><b>200</b> - Success
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>402</b> - Client Error
+    * <p><b>400</b> - Bad Request
+    * <p><b>500</b> - Server Error
+    * @param taskId updating task id
+    * @param updateTaskBaseVM task&#39;s view model. You have to specify task type (type: \&quot;ExportTemplate\&quot;)
+    * @return TaskBaseVM
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public TaskBaseVM tasksUpdateTask(String taskId, UpdateTaskBaseVM updateTaskBaseVM) throws IOException {
+        HttpResponse response = tasksUpdateTaskForHttpResponse(taskId, updateTaskBaseVM);
+        TypeReference<TaskBaseVM> typeRef = new TypeReference<TaskBaseVM>() {};
+        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+  /**
+    * Update a task
+    * <p><b>200</b> - Success
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>402</b> - Client Error
+    * <p><b>400</b> - Bad Request
+    * <p><b>500</b> - Server Error
+    * @param taskId updating task id
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @return TaskBaseVM
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public TaskBaseVM tasksUpdateTask(UpdateTaskBaseVM updateTaskBaseVM, String taskId, Map<String, Object> params) throws IOException {
+        HttpResponse response = tasksUpdateTaskForHttpResponse(updateTaskBaseVM, taskId, params);
+        TypeReference<TaskBaseVM> typeRef = new TypeReference<TaskBaseVM>() {};
+        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+    public HttpResponse tasksUpdateTaskForHttpResponse(String taskId, UpdateTaskBaseVM updateTaskBaseVM) throws IOException {
+        // verify the required parameter 'taskId' is set
+        if (taskId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'taskId' when calling tasksUpdateTask");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("taskId", taskId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateTaskBaseVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+    }
+
+      public HttpResponse tasksUpdateTaskForHttpResponse(String taskId, java.io.InputStream updateTaskBaseVM, String mediaType) throws IOException {
+          // verify the required parameter 'taskId' is set
+              if (taskId == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'taskId' when calling tasksUpdateTask");
+              }
+                  // create a map of path variables
+                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
+                      uriVariables.put("taskId", taskId);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}");
+
+              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+              HttpContent content = updateTaskBaseVM == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateTaskBaseVM);
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+      }
+
+    public HttpResponse tasksUpdateTaskForHttpResponse(UpdateTaskBaseVM updateTaskBaseVM, String taskId, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'taskId' is set
+        if (taskId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'taskId' when calling tasksUpdateTask");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("taskId", taskId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateTaskBaseVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
 

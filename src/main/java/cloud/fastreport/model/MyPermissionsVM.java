@@ -19,6 +19,7 @@ import cloud.fastreport.model.DataSourcePermission;
 import cloud.fastreport.model.FilePermission;
 import cloud.fastreport.model.GroupPermission;
 import cloud.fastreport.model.SubscriptionPermission;
+import cloud.fastreport.model.TaskPermission;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -35,7 +36,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MyPermissionsVM.JSON_PROPERTY_SUBSCRIPTION,
   MyPermissionsVM.JSON_PROPERTY_FILES,
   MyPermissionsVM.JSON_PROPERTY_DATASOURCES,
-  MyPermissionsVM.JSON_PROPERTY_GROUPS
+  MyPermissionsVM.JSON_PROPERTY_GROUPS,
+  MyPermissionsVM.JSON_PROPERTY_TASKS
 })
 @JsonTypeName("MyPermissionsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -51,6 +53,9 @@ public class MyPermissionsVM {
 
   public static final String JSON_PROPERTY_GROUPS = "groups";
   private GroupPermission groups;
+
+  public static final String JSON_PROPERTY_TASKS = "tasks";
+  private TaskPermission tasks;
 
 
   public MyPermissionsVM subscription(SubscriptionPermission subscription) {
@@ -161,6 +166,33 @@ public class MyPermissionsVM {
   }
 
 
+  public MyPermissionsVM tasks(TaskPermission tasks) {
+    
+    this.tasks = tasks;
+    return this;
+  }
+
+   /**
+   * Get tasks
+   * @return tasks
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TASKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TaskPermission getTasks() {
+    return tasks;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TASKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTasks(TaskPermission tasks) {
+    this.tasks = tasks;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -173,12 +205,13 @@ public class MyPermissionsVM {
     return Objects.equals(this.subscription, myPermissionsVM.subscription) &&
         Objects.equals(this.files, myPermissionsVM.files) &&
         Objects.equals(this.datasources, myPermissionsVM.datasources) &&
-        Objects.equals(this.groups, myPermissionsVM.groups);
+        Objects.equals(this.groups, myPermissionsVM.groups) &&
+        Objects.equals(this.tasks, myPermissionsVM.tasks);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subscription, files, datasources, groups);
+    return Objects.hash(subscription, files, datasources, groups, tasks);
   }
 
   @Override
@@ -189,6 +222,7 @@ public class MyPermissionsVM {
     sb.append("    files: ").append(toIndentedString(files)).append("\n");
     sb.append("    datasources: ").append(toIndentedString(datasources)).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
+    sb.append("    tasks: ").append(toIndentedString(tasks)).append("\n");
     sb.append("}");
     return sb.toString();
   }

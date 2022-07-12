@@ -717,65 +717,81 @@ paths:
       responses:
         "200":
           content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
             image/png:
               schema:
                 format: binary
                 type: string
             image/jpeg:
-              schema:
-                format: binary
-                type: string
-            application/json:
               schema:
                 format: binary
                 type: string
           description: Specified thumbnail was found
         "404":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/png:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Specified thumbnail was not found or user do not has access
             to it
         "400":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/png:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad id provided
         "402":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/png:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Subscription is blocked
         "403":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/png:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not enough permissions for the operation
@@ -806,65 +822,81 @@ paths:
       responses:
         "200":
           content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
             application/octet-stream:
               schema:
                 format: binary
                 type: string
             application/pdf:
-              schema:
-                format: binary
-                type: string
-            application/json:
               schema:
                 format: binary
                 type: string
           description: Specified file was found
         "404":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/pdf:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Specified file was not found or user do not has access to the
             file
         "400":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/pdf:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad id provided
         "402":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/pdf:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Subscription is blocked
         "403":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/pdf:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not enough permissions for the operation
@@ -895,48 +927,64 @@ paths:
       responses:
         "200":
           content:
-            application/zip:
+            text/plain:
               schema:
                 format: binary
                 type: string
             application/json:
+              schema:
+                format: binary
+                type: string
+            application/zip:
               schema:
                 format: binary
                 type: string
           description: Specified file was found
         "400":
           content:
-            application/zip:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/zip:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad id provided
         "402":
           content:
-            application/zip:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/zip:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Subscription is blocked
         "403":
           content:
-            application/zip:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/zip:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not enough permissions for the operation
         "404":
           content:
-            application/zip:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/zip:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Specified file was not found or user do not has access to the
@@ -960,65 +1008,81 @@ paths:
       responses:
         "200":
           content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
             image/png:
               schema:
                 format: binary
                 type: string
             image/jpeg:
-              schema:
-                format: binary
-                type: string
-            application/json:
               schema:
                 format: binary
                 type: string
           description: Specified thumbnail was found
         "404":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/png:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Specified thumbnail was not found or user do not has access
             to it
         "400":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/png:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad id provided
         "402":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/png:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Subscription is blocked
         "403":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/png:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not enough permissions for the operation
@@ -1041,49 +1105,65 @@ paths:
       responses:
         "200":
           content:
-            application/octet-stream:
+            text/plain:
               schema:
                 format: binary
                 type: string
             application/json:
+              schema:
+                format: binary
+                type: string
+            application/octet-stream:
               schema:
                 format: binary
                 type: string
           description: Specified file was found
         "404":
           content:
-            application/octet-stream:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Specified file was not found or user do not has access to the
             file
         "400":
           content:
-            application/octet-stream:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: bad id provided
         "402":
           content:
-            application/octet-stream:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Subscription is blocked
         "403":
           content:
-            application/octet-stream:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not enough permissions
@@ -1114,48 +1194,64 @@ paths:
       responses:
         "200":
           content:
-            application/zip:
+            text/plain:
               schema:
                 format: binary
                 type: string
             application/json:
+              schema:
+                format: binary
+                type: string
+            application/zip:
               schema:
                 format: binary
                 type: string
           description: File has been downloaded
         "404":
           content:
-            application/zip:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/zip:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: files is not found
         "400":
           content:
-            application/zip:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/zip:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: wrong parameters provided
         "402":
           content:
-            application/zip:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/zip:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Subscription is blocked
         "403":
           content:
-            application/zip:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/zip:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: You don't have rights for the operation
@@ -1178,65 +1274,81 @@ paths:
       responses:
         "200":
           content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
             image/png:
               schema:
                 format: binary
                 type: string
             image/jpeg:
-              schema:
-                format: binary
-                type: string
-            application/json:
               schema:
                 format: binary
                 type: string
           description: Specified thumbnail was found
         "404":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/png:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Specified thumbnail was not found or user do not has access
             to it
         "400":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/png:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad id provided
         "402":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/png:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Subscription is blocked
         "403":
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/png:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-            application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not enough permissions for the operation
@@ -1260,49 +1372,65 @@ paths:
       responses:
         "200":
           content:
-            application/octet-stream:
+            text/plain:
               schema:
                 format: binary
                 type: string
             application/json:
+              schema:
+                format: binary
+                type: string
+            application/octet-stream:
               schema:
                 format: binary
                 type: string
           description: Specified file was found
         "404":
           content:
-            application/octet-stream:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Specified file was not found or user do not has access to the
             file
         "400":
           content:
-            application/octet-stream:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: bad id provided
         "402":
           content:
-            application/octet-stream:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Subscription is blocked
         "403":
           content:
-            application/octet-stream:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not enough permissions
@@ -1333,48 +1461,64 @@ paths:
       responses:
         "200":
           content:
-            application/zip:
+            text/plain:
               schema:
                 format: binary
                 type: string
             application/json:
+              schema:
+                format: binary
+                type: string
+            application/zip:
               schema:
                 format: binary
                 type: string
           description: File has been downloaded
         "400":
           content:
-            application/zip:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/zip:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: wrong parameters provided
         "402":
           content:
-            application/zip:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/zip:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Subscription is blocked
         "403":
           content:
-            application/zip:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/zip:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: You don't have rights for the operation
         "404":
           content:
-            application/zip:
+            text/plain:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/zip:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: files is not found
@@ -1406,6 +1550,15 @@ paths:
           maxLength: 100
           minLength: 0
           type: string
+        style: form
+      - description: set this to true if you want to use regular expression to search
+        explode: true
+        in: query
+        name: useRegex
+        required: false
+        schema:
+          default: false
+          type: boolean
         style: form
       responses:
         "200":
@@ -1500,6 +1653,14 @@ paths:
           maxLength: 100
           minLength: 0
           type: string
+        style: form
+      - explode: true
+        in: query
+        name: useRegex
+        required: false
+        schema:
+          default: false
+          type: boolean
         style: form
       responses:
         "200":
@@ -2510,6 +2671,29 @@ paths:
           minLength: 0
           type: string
         style: form
+      - explode: true
+        in: query
+        name: orderBy
+        required: false
+        schema:
+          $ref: '#/components/schemas/FileSorting'
+        style: form
+      - explode: true
+        in: query
+        name: desc
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: useRegex
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -3497,6 +3681,15 @@ paths:
           minLength: 0
           type: string
         style: form
+      - description: set this to true if you want to use regular expression to search
+        explode: true
+        in: query
+        name: useRegex
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -3590,6 +3783,14 @@ paths:
           maxLength: 100
           minLength: 0
           type: string
+        style: form
+      - explode: true
+        in: query
+        name: useRegex
+        required: false
+        schema:
+          default: false
+          type: boolean
         style: form
       responses:
         "200":
@@ -4663,6 +4864,29 @@ paths:
           minLength: 0
           type: string
         style: form
+      - explode: true
+        in: query
+        name: orderBy
+        required: false
+        schema:
+          $ref: '#/components/schemas/FileSorting'
+        style: form
+      - explode: true
+        in: query
+        name: desc
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: useRegex
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -5683,7 +5907,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DefaultPermissions'
+                $ref: '#/components/schemas/DefaultPermissionsVM'
           description: Successfully returned
         "400":
           content:
@@ -6136,7 +6360,7 @@ paths:
         name: subscriptionId
         required: false
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
           type: string
         style: form
       responses:
@@ -6323,6 +6547,179 @@ paths:
       tags:
       - Tasks
       x-accepts: application/json
+    put:
+      operationId: Tasks_UpdateTask
+      parameters:
+      - description: updating task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          pattern: ^[A-Fa-f0-9]{24}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskBaseVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskBaseVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskBaseVM'
+        description: 'task''s view model. You have to specify task type (type: "ExportTemplate")'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskBaseVM'
+          description: Success
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "500":
+          description: Server Error
+      summary: Update a task
+      tags:
+      - Tasks
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/tasks/{taskId}/rename:
+    put:
+      operationId: Tasks_RenameTask
+      parameters:
+      - description: renaming task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          pattern: ^[A-Fa-f0-9]{24}$
+          type: string
+        style: simple
+      - description: task's new Name
+        explode: true
+        in: query
+        name: newName
+        required: false
+        schema:
+          maxLength: 50
+          minLength: 1
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskBaseVM'
+          description: Success
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "500":
+          description: Server Error
+      summary: Rename a task
+      tags:
+      - Tasks
+      x-accepts: application/json
+  /api/tasks/run:
+    post:
+      operationId: Tasks_RunTask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunTaskBaseVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RunTaskBaseVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RunTaskBaseVM'
+        description: task's view model
+      responses:
+        "200":
+          description: Success
+        "204":
+          description: Success
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "500":
+          description: Server Error
+      summary: Run a task from request body
+      tags:
+      - Tasks
+      x-contentType: application/json
+      x-accepts: application/json
   /api/tasks/{taskId}/run:
     post:
       operationId: Tasks_RunTaskById
@@ -6369,24 +6766,38 @@ paths:
       tags:
       - Tasks
       x-accepts: application/json
-  /api/tasks/run:
-    post:
-      operationId: Tasks_RunTask
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RunTaskBaseVM'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/RunTaskBaseVM'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/RunTaskBaseVM'
-        description: task's view model
+  /api/tasks/{id}/permissions:
+    get:
+      operationId: Tasks_GetPermissions
+      parameters:
+      - description: task id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: ^[A-Fa-f0-9]{24}$
+          type: string
+        style: simple
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskPermissionsVM'
           description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
         "403":
           content:
             application/json:
@@ -6399,21 +6810,66 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
-        "402":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
+        "500":
+          description: Server Error
+      summary: Get all Task permissions
+      tags:
+      - Tasks
+      x-accepts: application/json
+    post:
+      operationId: Tasks_UpdatePermissions
+      parameters:
+      - description: task id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: ^[A-Fa-f0-9]{24}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskPermissionsVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskPermissionsVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskPermissionsVM'
+        description: new permissions
+      responses:
+        "200":
+          description: Success
         "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Bad Request
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
         "500":
           description: Server Error
-      summary: Run a task from request body
+      summary: Update permissions
       tags:
       - Tasks
       x-contentType: application/json
@@ -6442,6 +6898,15 @@ paths:
           maxLength: 100
           minLength: 0
           type: string
+        style: form
+      - description: set this to true if you want to use regular expression to search
+        explode: true
+        in: query
+        name: useRegex
+        required: false
+        schema:
+          default: false
+          type: boolean
         style: form
       responses:
         "200":
@@ -6536,6 +7001,14 @@ paths:
           maxLength: 100
           minLength: 0
           type: string
+        style: form
+      - explode: true
+        in: query
+        name: useRegex
+        required: false
+        schema:
+          default: false
+          type: boolean
         style: form
       responses:
         "200":
@@ -7672,6 +8145,29 @@ paths:
           minLength: 0
           type: string
         style: form
+      - explode: true
+        in: query
+        name: orderBy
+        required: false
+        schema:
+          $ref: '#/components/schemas/FileSorting'
+        style: form
+      - explode: true
+        in: query
+        name: desc
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: useRegex
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -8265,6 +8761,8 @@ components:
         ownerId:
           pattern: (^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
           type: string
+        force:
+          type: boolean
       required:
       - ownerId
       - parentId
@@ -8280,7 +8778,7 @@ components:
       - $ref: '#/components/schemas/SubscriptionVM'
       properties:
         defaultPermissions:
-          $ref: '#/components/schemas/DefaultPermissions'
+          $ref: '#/components/schemas/DefaultPermissionsVM'
       type: object
     AdminTemplateFolderCreateVM:
       additionalProperties: false
@@ -8504,6 +9002,11 @@ components:
           minLength: 1
           nullable: true
           type: string
+        headers:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
       type: object
     CreateExportReportTaskVM:
       additionalProperties: false
@@ -8613,6 +9116,8 @@ components:
     CreateTaskBaseVM:
       additionalProperties: false
       example:
+        cronExpression: cronExpression
+        delayedRunTime: 2000-01-23T04:56:07.000+00:00
         name: name
         subscriptionId: subscriptionId
       properties:
@@ -8627,6 +9132,13 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/TaskType'
+        delayedRunTime:
+          format: date-time
+          nullable: true
+          type: string
+        cronExpression:
+          nullable: true
+          type: string
       type: object
     CreateThumbnailReportTaskVM:
       additionalProperties: false
@@ -8710,6 +9222,8 @@ components:
       - MySQL
       - Postgres
       - OracleDB
+      - FirebirdDB
+      - MongoDB
       type: string
       x-typeName: FastReport.Cloud.Enums.DataSourceConnectionType
     DataSourceCreate:
@@ -8935,17 +9449,6 @@ components:
         status:
           $ref: '#/components/schemas/DataSourceStatus'
       type: object
-    DefaultPermissions:
-      additionalProperties: false
-      example: {}
-      properties:
-        filePermissions:
-          $ref: '#/components/schemas/FilePermissions'
-        groupPermissions:
-          $ref: '#/components/schemas/GroupPermissions'
-        dataSourcePermissions:
-          $ref: '#/components/schemas/DataSourcePermissions'
-      type: object
     DefaultPermissionsVM:
       additionalProperties: false
       example: {}
@@ -8956,6 +9459,8 @@ components:
           $ref: '#/components/schemas/DataSourcePermissions'
         groupPermissions:
           $ref: '#/components/schemas/GroupPermissions'
+        taskPermissions:
+          $ref: '#/components/schemas/TaskPermissions'
       type: object
     DeleteApiKeyVM:
       additionalProperties: false
@@ -9536,6 +10041,7 @@ components:
         size: 0
         name: name
         icon: icon
+        errorMessage: errorMessage
         subscriptionId: subscriptionId
         parentId: parentId
         tags:
@@ -9569,6 +10075,9 @@ components:
           $ref: '#/components/schemas/FileStatus'
         statusReason:
           $ref: '#/components/schemas/FileStatusReason'
+        errorMessage:
+          nullable: true
+          type: string
       type: object
     FileVMFilesVMBase:
       additionalProperties: false
@@ -9650,6 +10159,20 @@ components:
           minLength: 1
           nullable: true
           type: array
+      type: object
+    FrontendApp:
+      additionalProperties: false
+      example:
+        mixins:
+          head: head
+          body: body
+        invariantLocale: invariantLocale
+      properties:
+        mixins:
+          $ref: '#/components/schemas/AppMixins'
+        invariantLocale:
+          nullable: true
+          type: string
       type: object
     GroupAdministrate:
       enum:
@@ -9912,6 +10435,8 @@ components:
           $ref: '#/components/schemas/DataSourcePermission'
         groups:
           $ref: '#/components/schemas/GroupPermission'
+        tasks:
+          $ref: '#/components/schemas/TaskPermission'
       type: object
     OutputFileVM:
       additionalProperties: false
@@ -10397,28 +10922,41 @@ components:
     ServerConfigurationVM:
       additionalProperties: false
       example:
+        copyright: copyright
         corporateServerMode: true
-        appMixins:
-          head: head
-          body: body
+        logoLink: logoLink
         auth:
           useLocal: true
           useOpenId: true
           authority: authority
         isDisabled: true
+        designerForAnons: true
         title: title
+        frontend:
+          mixins:
+            head: head
+            body: body
+          invariantLocale: invariantLocale
       properties:
         title:
+          nullable: true
+          type: string
+        logoLink:
+          nullable: true
+          type: string
+        copyright:
           nullable: true
           type: string
         corporateServerMode:
           type: boolean
         isDisabled:
           type: boolean
-        appMixins:
-          $ref: '#/components/schemas/AppMixins'
+        frontend:
+          $ref: '#/components/schemas/FrontendApp'
         auth:
           $ref: '#/components/schemas/AuthConfigVM'
+        designerForAnons:
+          type: boolean
       type: object
     SubscriptionAdministrate:
       enum:
@@ -10446,6 +10984,7 @@ components:
       - 2
       - 4
       - 8
+      - 16
       - -1
       format: int32
       type: integer
@@ -10455,6 +10994,7 @@ components:
       - Groups
       - DataSources
       - Invites
+      - Tasks
       - All
       x-enumFlags: true
       x-typeName: FastReport.Cloud.Enums.SubscriptionPermissionsEnums.SubscriptionCreate
@@ -10492,11 +11032,13 @@ components:
     SubscriptionExecute:
       enum:
       - 0
+      - 4
       - -1
       format: int32
       type: integer
       x-enumNames:
       - None
+      - Tasks
       - All
       x-enumFlags: true
       x-typeName: FastReport.Cloud.Enums.SubscriptionPermissionsEnums.SubscriptionExecute
@@ -10524,6 +11066,7 @@ components:
       - 32
       - 64
       - 128
+      - 256
       - -1
       format: int32
       type: integer
@@ -10537,6 +11080,7 @@ components:
       - Groups
       - DefaultPermissions
       - Invites
+      - Tasks
       - All
       x-enumFlags: true
       x-typeName: FastReport.Cloud.Enums.SubscriptionPermissionsEnums.SubscriptionGet
@@ -10621,7 +11165,6 @@ components:
           maxUsersCount: 9
           templatesSpaceLimit: 1
           fileUploadSizeLimit: 2
-          hasSpaceOverdraft: true
           isActive: true
           dataSourceLimit: 7
           isDemo: true
@@ -10633,6 +11176,7 @@ components:
           timePeriod: 0
           id: id
           groupLimit: 3
+          timePeriodType: ""
           tasks:
             prepare: true
             thumbnailReport: true
@@ -10700,7 +11244,6 @@ components:
           maxUsersCount: 9
           templatesSpaceLimit: 1
           fileUploadSizeLimit: 2
-          hasSpaceOverdraft: true
           isActive: true
           dataSourceLimit: 7
           isDemo: true
@@ -10712,6 +11255,7 @@ components:
           timePeriod: 0
           id: id
           groupLimit: 3
+          timePeriodType: ""
           tasks:
             prepare: true
             thumbnailReport: true
@@ -10727,7 +11271,6 @@ components:
           maxUsersCount: 9
           templatesSpaceLimit: 1
           fileUploadSizeLimit: 2
-          hasSpaceOverdraft: true
           isActive: true
           dataSourceLimit: 7
           isDemo: true
@@ -10739,6 +11282,7 @@ components:
           timePeriod: 0
           id: id
           groupLimit: 3
+          timePeriodType: ""
           tasks:
             prepare: true
             thumbnailReport: true
@@ -10775,7 +11319,6 @@ components:
         maxUsersCount: 9
         templatesSpaceLimit: 1
         fileUploadSizeLimit: 2
-        hasSpaceOverdraft: true
         isActive: true
         dataSourceLimit: 7
         isDemo: true
@@ -10787,6 +11330,7 @@ components:
         timePeriod: 0
         id: id
         groupLimit: 3
+        timePeriodType: ""
         tasks:
           prepare: true
           thumbnailReport: true
@@ -10807,7 +11351,11 @@ components:
           nullable: true
           type: string
         timePeriodType:
-          $ref: '#/components/schemas/TimePeriodType'
+          allOf:
+          - $ref: '#/components/schemas/TimePeriodType'
+          nullable: true
+          required:
+          - "false"
         timePeriod:
           format: int32
           nullable: true
@@ -10841,9 +11389,6 @@ components:
           format: int32
           nullable: true
           type: integer
-        hasSpaceOverdraft:
-          nullable: true
-          type: boolean
         groupLimit:
           format: int32
           nullable: true
@@ -10883,7 +11428,6 @@ components:
               maxUsersCount: 9
               templatesSpaceLimit: 1
               fileUploadSizeLimit: 2
-              hasSpaceOverdraft: true
               isActive: true
               dataSourceLimit: 7
               isDemo: true
@@ -10895,6 +11439,7 @@ components:
               timePeriod: 0
               id: id
               groupLimit: 3
+              timePeriodType: ""
               tasks:
                 prepare: true
                 thumbnailReport: true
@@ -10917,7 +11462,6 @@ components:
               maxUsersCount: 9
               templatesSpaceLimit: 1
               fileUploadSizeLimit: 2
-              hasSpaceOverdraft: true
               isActive: true
               dataSourceLimit: 7
               isDemo: true
@@ -10929,6 +11473,7 @@ components:
               timePeriod: 0
               id: id
               groupLimit: 3
+              timePeriodType: ""
               tasks:
                 prepare: true
                 thumbnailReport: true
@@ -10947,7 +11492,6 @@ components:
               maxUsersCount: 9
               templatesSpaceLimit: 1
               fileUploadSizeLimit: 2
-              hasSpaceOverdraft: true
               isActive: true
               dataSourceLimit: 7
               isDemo: true
@@ -10959,6 +11503,7 @@ components:
               timePeriod: 0
               id: id
               groupLimit: 3
+              timePeriodType: ""
               tasks:
                 prepare: true
                 thumbnailReport: true
@@ -10987,7 +11532,6 @@ components:
               maxUsersCount: 9
               templatesSpaceLimit: 1
               fileUploadSizeLimit: 2
-              hasSpaceOverdraft: true
               isActive: true
               dataSourceLimit: 7
               isDemo: true
@@ -10999,6 +11543,7 @@ components:
               timePeriod: 0
               id: id
               groupLimit: 3
+              timePeriodType: ""
               tasks:
                 prepare: true
                 thumbnailReport: true
@@ -11021,7 +11566,6 @@ components:
               maxUsersCount: 9
               templatesSpaceLimit: 1
               fileUploadSizeLimit: 2
-              hasSpaceOverdraft: true
               isActive: true
               dataSourceLimit: 7
               isDemo: true
@@ -11033,6 +11577,7 @@ components:
               timePeriod: 0
               id: id
               groupLimit: 3
+              timePeriodType: ""
               tasks:
                 prepare: true
                 thumbnailReport: true
@@ -11051,7 +11596,6 @@ components:
               maxUsersCount: 9
               templatesSpaceLimit: 1
               fileUploadSizeLimit: 2
-              hasSpaceOverdraft: true
               isActive: true
               dataSourceLimit: 7
               isDemo: true
@@ -11063,6 +11607,7 @@ components:
               timePeriod: 0
               id: id
               groupLimit: 3
+              timePeriodType: ""
               tasks:
                 prepare: true
                 thumbnailReport: true
@@ -11189,7 +11734,6 @@ components:
             maxUsersCount: 9
             templatesSpaceLimit: 1
             fileUploadSizeLimit: 2
-            hasSpaceOverdraft: true
             isActive: true
             dataSourceLimit: 7
             isDemo: true
@@ -11201,6 +11745,7 @@ components:
             timePeriod: 0
             id: id
             groupLimit: 3
+            timePeriodType: ""
             tasks:
               prepare: true
               thumbnailReport: true
@@ -11223,7 +11768,6 @@ components:
             maxUsersCount: 9
             templatesSpaceLimit: 1
             fileUploadSizeLimit: 2
-            hasSpaceOverdraft: true
             isActive: true
             dataSourceLimit: 7
             isDemo: true
@@ -11235,6 +11779,7 @@ components:
             timePeriod: 0
             id: id
             groupLimit: 3
+            timePeriodType: ""
             tasks:
               prepare: true
               thumbnailReport: true
@@ -11253,7 +11798,6 @@ components:
             maxUsersCount: 9
             templatesSpaceLimit: 1
             fileUploadSizeLimit: 2
-            hasSpaceOverdraft: true
             isActive: true
             dataSourceLimit: 7
             isDemo: true
@@ -11265,6 +11809,7 @@ components:
             timePeriod: 0
             id: id
             groupLimit: 3
+            timePeriodType: ""
             tasks:
               prepare: true
               thumbnailReport: true
@@ -11304,17 +11849,160 @@ components:
         exportsFolder:
           $ref: '#/components/schemas/SubscriptionFolder'
       type: object
+    TaskAdministrate:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 8
+      - -1
+      format: int32
+      type: integer
+      x-enumNames:
+      - None
+      - Owner
+      - Group
+      - Other
+      - Anon
+      - All
+      x-enumFlags: true
+      x-typeName: FastReport.Cloud.Enums.TaskPermissionsEnums.TaskAdministrate
     TaskBaseVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/CreateTaskBaseVM'
       example:
+        delayedWasRunTime: 2000-01-23T04:56:07.000+00:00
+        recurrentWasRunTime: 2000-01-23T04:56:07.000+00:00
+        recurrentRunTime: 2000-01-23T04:56:07.000+00:00
         id: id
       properties:
         id:
           nullable: true
           pattern: ^[A-Fa-f0-9]{24}$
           type: string
+        delayedWasRunTime:
+          format: date-time
+          nullable: true
+          type: string
+        recurrentRunTime:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        recurrentWasRunTime:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+      type: object
+    TaskCreate:
+      enum:
+      - 0
+      - -1
+      format: int32
+      type: integer
+      x-enumNames:
+      - None
+      - All
+      x-enumFlags: true
+      x-typeName: FastReport.Cloud.Enums.TaskPermissionsEnums.TaskCreate
+    TaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermission:
+      additionalProperties: false
+      properties:
+        create:
+          $ref: '#/components/schemas/TaskCreate'
+        delete:
+          $ref: '#/components/schemas/TaskDelete'
+        execute:
+          $ref: '#/components/schemas/TaskExecute'
+        get:
+          $ref: '#/components/schemas/TaskGet'
+        update:
+          $ref: '#/components/schemas/TaskUpdate'
+        administrate:
+          $ref: '#/components/schemas/TaskAdministrate'
+      type: object
+    TaskDelete:
+      enum:
+      - 0
+      - 1
+      - -1
+      format: int32
+      type: integer
+      x-enumNames:
+      - None
+      - Entity
+      - All
+      x-enumFlags: true
+      x-typeName: FastReport.Cloud.Enums.TaskPermissionsEnums.TaskDelete
+    TaskExecute:
+      enum:
+      - 0
+      - 1
+      - -1
+      format: int32
+      type: integer
+      x-enumNames:
+      - None
+      - Entity
+      - All
+      x-enumFlags: true
+      x-typeName: FastReport.Cloud.Enums.TaskPermissionsEnums.TaskExecute
+    TaskGet:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      - -1
+      format: int32
+      type: integer
+      x-enumNames:
+      - None
+      - Entity
+      - Count
+      - Permission
+      - All
+      x-enumFlags: true
+      x-typeName: FastReport.Cloud.Enums.TaskPermissionsEnums.TaskGet
+    TaskPermission:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/TaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermission'
+      type: object
+    TaskPermissions:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/TaskPermissionTaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermissions'
+      type: object
+    TaskPermissionsVM:
+      additionalProperties: false
+      example: {}
+      properties:
+        permissions:
+          $ref: '#/components/schemas/TaskPermissions'
+      type: object
+    TaskPermissionTaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermissions:
+      additionalProperties: false
+      properties:
+        ownerId:
+          nullable: true
+          pattern: (^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
+          type: string
+        owner:
+          $ref: '#/components/schemas/TaskPermission'
+        groups:
+          additionalProperties:
+            $ref: '#/components/schemas/TaskPermission'
+          maxLength: 20
+          nullable: true
+          type: object
+        other:
+          $ref: '#/components/schemas/TaskPermission'
+        anon:
+          $ref: '#/components/schemas/TaskPermission'
       type: object
     TaskSettingsVM:
       additionalProperties: false
@@ -11360,8 +12048,14 @@ components:
         count: 0
         skip: 6
         tasks:
-        - id: id
-        - id: id
+        - delayedWasRunTime: 2000-01-23T04:56:07.000+00:00
+          recurrentWasRunTime: 2000-01-23T04:56:07.000+00:00
+          recurrentRunTime: 2000-01-23T04:56:07.000+00:00
+          id: id
+        - delayedWasRunTime: 2000-01-23T04:56:07.000+00:00
+          recurrentWasRunTime: 2000-01-23T04:56:07.000+00:00
+          recurrentRunTime: 2000-01-23T04:56:07.000+00:00
+          id: id
       properties:
         count:
           format: int64
@@ -11390,6 +12084,21 @@ components:
       - ThumbnailReport
       type: string
       x-typeName: FastReport.Cloud.ViewModels.Tasks.TaskType
+    TaskUpdate:
+      enum:
+      - 0
+      - 1
+      - 2
+      - -1
+      format: int32
+      type: integer
+      x-enumNames:
+      - None
+      - Name
+      - Entity
+      - All
+      x-enumFlags: true
+      x-typeName: FastReport.Cloud.Enums.TaskPermissionsEnums.TaskUpdate
     TemplateCreateAdminVM:
       additionalProperties: false
       allOf:
@@ -11548,6 +12257,7 @@ components:
     UpdateDefaultPermissionsVM:
       additionalProperties: false
       example:
+        taskPermissions: {}
         groupPermissions: {}
         filePermissions: {}
         dataSourcePermissions: {}
@@ -11558,6 +12268,112 @@ components:
           $ref: '#/components/schemas/UpdateGroupPermissionsVM'
         dataSourcePermissions:
           $ref: '#/components/schemas/UpdateDataSourcePermissionsVM'
+        taskPermissions:
+          $ref: '#/components/schemas/UpdateTaskPermissionsVM'
+      type: object
+    UpdateEmailTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/UpdateTransportTaskBaseVM'
+      properties:
+        password:
+          maxLength: 300
+          minLength: 5
+          nullable: true
+          type: string
+        body:
+          maxLength: 384000
+          minLength: 1
+          nullable: true
+          type: string
+        isBodyHtml:
+          type: boolean
+        subject:
+          maxLength: 1000
+          minLength: 1
+          nullable: true
+          type: string
+        to:
+          format: email
+          items:
+            type: string
+          maxItems: 200
+          nullable: true
+          type: array
+        from:
+          format: email
+          nullable: true
+          type: string
+        username:
+          maxLength: 100
+          minLength: 1
+          nullable: true
+          type: string
+        server:
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
+        port:
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        enableSsl:
+          type: boolean
+      type: object
+    UpdateEndpointVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/EndpointVM'
+      properties:
+        bearerToken:
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
+        headers:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+      type: object
+    UpdateExportReportTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/UpdateTransformTaskBaseVM'
+      properties:
+        exportParameters:
+          additionalProperties:
+            type: string
+          maxLength: 200
+          nullable: true
+          type: object
+        format:
+          $ref: '#/components/schemas/ExportFormat'
+        pagesCount:
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          type: integer
+      type: object
+    UpdateExportTemplateTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/UpdateExportReportTaskVM'
+      properties:
+        reportParameters:
+          additionalProperties:
+            type: string
+          maxLength: 200
+          nullable: true
+          type: object
+      type: object
+    UpdateFetchTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/UpdateTransformTaskBaseVM'
       type: object
     UpdateFilePermissionsVM:
       additionalProperties: false
@@ -11583,6 +12399,30 @@ components:
       - administrate
       - newPermissions
       type: object
+    UpdatePrepareTemplateTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/UpdateTransformTaskBaseVM'
+      properties:
+        exports:
+          items:
+            $ref: '#/components/schemas/UpdateExportReportTaskVM'
+          maxItems: 10
+          nullable: true
+          type: array
+        pagesCount:
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          type: integer
+        reportParameters:
+          additionalProperties:
+            type: string
+          maxLength: 200
+          nullable: true
+          type: object
+      type: object
     UpdateSubscriptionLocaleVM:
       additionalProperties: false
       example:
@@ -11605,6 +12445,87 @@ components:
       required:
       - administrate
       - newPermissions
+      type: object
+    UpdateTaskBaseVM:
+      additionalProperties: false
+      example:
+        cronExpression: cronExpression
+        delayedRunTime: 2000-01-23T04:56:07.000+00:00
+        name: name
+        subscriptionId: subscriptionId
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          nullable: true
+          type: string
+        subscriptionId:
+          nullable: true
+          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          type: string
+        type:
+          $ref: '#/components/schemas/TaskType'
+        delayedRunTime:
+          format: date-time
+          nullable: true
+          type: string
+        cronExpression:
+          nullable: true
+          type: string
+      type: object
+    UpdateTaskPermissionsVM:
+      additionalProperties: false
+      example: {}
+      properties:
+        newPermissions:
+          $ref: '#/components/schemas/TaskPermissions'
+        administrate:
+          $ref: '#/components/schemas/TaskAdministrate'
+      required:
+      - administrate
+      - newPermissions
+      type: object
+    UpdateThumbnailReportTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/UpdateTransformTaskBaseVM'
+      type: object
+    UpdateThumbnailTemplateTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/UpdateTransformTaskBaseVM'
+      type: object
+    UpdateTransformTaskBaseVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/UpdateTaskBaseVM'
+      properties:
+        locale:
+          nullable: true
+          pattern: ^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$
+          type: string
+        inputFile:
+          $ref: '#/components/schemas/InputFileVM'
+        outputFile:
+          $ref: '#/components/schemas/OutputFileVM'
+        transports:
+          items:
+            $ref: '#/components/schemas/UpdateTransportTaskBaseVM'
+          maxItems: 10
+          nullable: true
+          type: array
+      type: object
+    UpdateTransportTaskBaseVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/UpdateTaskBaseVM'
+      properties:
+        files:
+          items:
+            $ref: '#/components/schemas/InputFileVM'
+          maxItems: 10
+          nullable: true
+          type: array
       type: object
     UpdateUserProfileVM:
       additionalProperties: false
@@ -11645,17 +12566,34 @@ components:
     UpdateUserSettingsVM:
       additionalProperties: false
       example:
+        profileVisibility: ""
         defaultSubscription: defaultSubscription
         showHiddenFilesAndFolders: true
       properties:
         profileVisibility:
-          $ref: '#/components/schemas/ProfileVisibility'
+          allOf:
+          - $ref: '#/components/schemas/ProfileVisibility'
+          nullable: true
+          required:
+          - "false"
         defaultSubscription:
           nullable: true
           type: string
         showHiddenFilesAndFolders:
           nullable: true
           type: boolean
+      type: object
+    UpdateWebhookTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/UpdateTransportTaskBaseVM'
+      properties:
+        endpoints:
+          items:
+            $ref: '#/components/schemas/UpdateEndpointVM'
+          maxItems: 5
+          nullable: true
+          type: array
       type: object
     UserProfileVM:
       additionalProperties: false

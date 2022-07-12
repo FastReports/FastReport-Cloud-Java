@@ -34,7 +34,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>cloud.fastreport.sdk</groupId>
   <artifactId>fastreport-cloud-sdk</artifactId>
-  <version>2022.1.3</version>
+  <version>2022.2.20</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -44,7 +44,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2022.1.3"
+compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2022.2.20"
 ```
 
 ### Others
@@ -57,7 +57,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/fastreport-cloud-sdk-2022.1.3.jar`
+- `target/fastreport-cloud-sdk-2022.2.20.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -217,8 +217,12 @@ Class | Method | HTTP request | Description
 *TasksApi* | [**tasksDeleteTask**](docs/TasksApi.md#tasksDeleteTask) | **DELETE** /api/tasks/{taskId} | Delete a task from a storage
 *TasksApi* | [**tasksGet**](docs/TasksApi.md#tasksGet) | **GET** /api/tasks/{taskId} | Get a task by a specified id
 *TasksApi* | [**tasksGetList**](docs/TasksApi.md#tasksGetList) | **GET** /api/tasks | Get tasks list
+*TasksApi* | [**tasksGetPermissions**](docs/TasksApi.md#tasksGetPermissions) | **GET** /api/tasks/{id}/permissions | Get all Task permissions
+*TasksApi* | [**tasksRenameTask**](docs/TasksApi.md#tasksRenameTask) | **PUT** /api/tasks/{taskId}/rename | Rename a task
 *TasksApi* | [**tasksRunTask**](docs/TasksApi.md#tasksRunTask) | **POST** /api/tasks/run | Run a task from request body
 *TasksApi* | [**tasksRunTaskById**](docs/TasksApi.md#tasksRunTaskById) | **POST** /api/tasks/{taskId}/run | Run a task by id
+*TasksApi* | [**tasksUpdatePermissions**](docs/TasksApi.md#tasksUpdatePermissions) | **POST** /api/tasks/{id}/permissions | Update permissions
+*TasksApi* | [**tasksUpdateTask**](docs/TasksApi.md#tasksUpdateTask) | **PUT** /api/tasks/{taskId} | Update a task
 *TemplatesApi* | [**templateFolderAndFileGetCount**](docs/TemplatesApi.md#templateFolderAndFileGetCount) | **GET** /api/rp/v1/Templates/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder
 *TemplatesApi* | [**templateFolderAndFileGetFoldersAndFiles**](docs/TemplatesApi.md#templateFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder
 *TemplatesApi* | [**templateFoldersCopyFolder**](docs/TemplatesApi.md#templateFoldersCopyFolder) | **POST** /api/rp/v1/Templates/Folder/{id}/Copy/{folderId} | Move folder to a specified folder
@@ -304,7 +308,6 @@ Class | Method | HTTP request | Description
  - [DataSourceUpdate](docs/DataSourceUpdate.md)
  - [DataSourceVM](docs/DataSourceVM.md)
  - [DataSourcesVM](docs/DataSourcesVM.md)
- - [DefaultPermissions](docs/DefaultPermissions.md)
  - [DefaultPermissionsVM](docs/DefaultPermissionsVM.md)
  - [DeleteApiKeyVM](docs/DeleteApiKeyVM.md)
  - [EmailTaskVM](docs/EmailTaskVM.md)
@@ -349,6 +352,7 @@ Class | Method | HTTP request | Description
  - [FolderIconVM](docs/FolderIconVM.md)
  - [FolderRenameVM](docs/FolderRenameVM.md)
  - [FolderTagsUpdateVM](docs/FolderTagsUpdateVM.md)
+ - [FrontendApp](docs/FrontendApp.md)
  - [GroupAdministrate](docs/GroupAdministrate.md)
  - [GroupCreate](docs/GroupCreate.md)
  - [GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission](docs/GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission.md)
@@ -418,9 +422,20 @@ Class | Method | HTTP request | Description
  - [SubscriptionUsersVM](docs/SubscriptionUsersVM.md)
  - [SubscriptionVM](docs/SubscriptionVM.md)
  - [SubscriptionsVM](docs/SubscriptionsVM.md)
+ - [TaskAdministrate](docs/TaskAdministrate.md)
  - [TaskBaseVM](docs/TaskBaseVM.md)
+ - [TaskCreate](docs/TaskCreate.md)
+ - [TaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermission](docs/TaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermission.md)
+ - [TaskDelete](docs/TaskDelete.md)
+ - [TaskExecute](docs/TaskExecute.md)
+ - [TaskGet](docs/TaskGet.md)
+ - [TaskPermission](docs/TaskPermission.md)
+ - [TaskPermissionTaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermissions](docs/TaskPermissionTaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermissions.md)
+ - [TaskPermissions](docs/TaskPermissions.md)
+ - [TaskPermissionsVM](docs/TaskPermissionsVM.md)
  - [TaskSettingsVM](docs/TaskSettingsVM.md)
  - [TaskType](docs/TaskType.md)
+ - [TaskUpdate](docs/TaskUpdate.md)
  - [TasksVM](docs/TasksVM.md)
  - [TemplateCreateAdminVM](docs/TemplateCreateAdminVM.md)
  - [TemplateCreateVM](docs/TemplateCreateVM.md)
@@ -437,12 +452,25 @@ Class | Method | HTTP request | Description
  - [UpdateDataSourcePermissionsVM](docs/UpdateDataSourcePermissionsVM.md)
  - [UpdateDataSourceSubscriptionVM](docs/UpdateDataSourceSubscriptionVM.md)
  - [UpdateDefaultPermissionsVM](docs/UpdateDefaultPermissionsVM.md)
+ - [UpdateEmailTaskVM](docs/UpdateEmailTaskVM.md)
+ - [UpdateEndpointVM](docs/UpdateEndpointVM.md)
+ - [UpdateExportReportTaskVM](docs/UpdateExportReportTaskVM.md)
+ - [UpdateExportTemplateTaskVM](docs/UpdateExportTemplateTaskVM.md)
+ - [UpdateFetchTaskVM](docs/UpdateFetchTaskVM.md)
  - [UpdateFilePermissionsVM](docs/UpdateFilePermissionsVM.md)
  - [UpdateGroupPermissionsVM](docs/UpdateGroupPermissionsVM.md)
+ - [UpdatePrepareTemplateTaskVM](docs/UpdatePrepareTemplateTaskVM.md)
  - [UpdateSubscriptionLocaleVM](docs/UpdateSubscriptionLocaleVM.md)
  - [UpdateSubscriptionPermissionsVM](docs/UpdateSubscriptionPermissionsVM.md)
+ - [UpdateTaskBaseVM](docs/UpdateTaskBaseVM.md)
+ - [UpdateTaskPermissionsVM](docs/UpdateTaskPermissionsVM.md)
+ - [UpdateThumbnailReportTaskVM](docs/UpdateThumbnailReportTaskVM.md)
+ - [UpdateThumbnailTemplateTaskVM](docs/UpdateThumbnailTemplateTaskVM.md)
+ - [UpdateTransformTaskBaseVM](docs/UpdateTransformTaskBaseVM.md)
+ - [UpdateTransportTaskBaseVM](docs/UpdateTransportTaskBaseVM.md)
  - [UpdateUserProfileVM](docs/UpdateUserProfileVM.md)
  - [UpdateUserSettingsVM](docs/UpdateUserSettingsVM.md)
+ - [UpdateWebhookTaskVM](docs/UpdateWebhookTaskVM.md)
  - [UserProfileVM](docs/UserProfileVM.md)
  - [UserSettingsVM](docs/UserSettingsVM.md)
  - [ValidationProblemDetails](docs/ValidationProblemDetails.md)

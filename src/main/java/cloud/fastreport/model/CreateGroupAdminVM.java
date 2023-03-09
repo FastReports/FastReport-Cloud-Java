@@ -15,18 +15,17 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.CreateGroupVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * CreateGroupAdminVM
@@ -36,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CreateGroupAdminVM.JSON_PROPERTY_NAME,
   CreateGroupAdminVM.JSON_PROPERTY_SUBSCRIPTION_ID
 })
-@JsonTypeName("CreateGroupAdminVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateGroupAdminVM {
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
@@ -48,6 +46,8 @@ public class CreateGroupAdminVM {
   public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
   private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
 
+  public CreateGroupAdminVM() {
+  }
 
   public CreateGroupAdminVM ownerId(String ownerId) {
     this.ownerId = JsonNullable.<String>of(ownerId);
@@ -60,7 +60,6 @@ public class CreateGroupAdminVM {
    * @return ownerId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getOwnerId() {
@@ -94,7 +93,7 @@ public class CreateGroupAdminVM {
    * Get name
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -121,7 +120,6 @@ public class CreateGroupAdminVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -154,14 +152,25 @@ public class CreateGroupAdminVM {
       return false;
     }
     CreateGroupAdminVM createGroupAdminVM = (CreateGroupAdminVM) o;
-    return Objects.equals(this.ownerId, createGroupAdminVM.ownerId) &&
+    return equalsNullable(this.ownerId, createGroupAdminVM.ownerId) &&
         Objects.equals(this.name, createGroupAdminVM.name) &&
-        Objects.equals(this.subscriptionId, createGroupAdminVM.subscriptionId);
+        equalsNullable(this.subscriptionId, createGroupAdminVM.subscriptionId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, name, subscriptionId);
+    return Objects.hash(hashCodeNullable(ownerId), name, hashCodeNullable(subscriptionId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

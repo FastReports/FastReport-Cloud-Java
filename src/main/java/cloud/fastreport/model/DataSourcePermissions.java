@@ -16,21 +16,19 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.DataSourcePermission;
-import cloud.fastreport.model.DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * DataSourcePermissions
@@ -42,7 +40,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   DataSourcePermissions.JSON_PROPERTY_OTHER,
   DataSourcePermissions.JSON_PROPERTY_ANON
 })
-@JsonTypeName("DataSourcePermissions")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DataSourcePermissions {
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
@@ -60,6 +57,8 @@ public class DataSourcePermissions {
   public static final String JSON_PROPERTY_ANON = "anon";
   private DataSourcePermission anon;
 
+  public DataSourcePermissions() {
+  }
 
   public DataSourcePermissions ownerId(String ownerId) {
     this.ownerId = JsonNullable.<String>of(ownerId);
@@ -72,7 +71,6 @@ public class DataSourcePermissions {
    * @return ownerId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getOwnerId() {
@@ -107,7 +105,6 @@ public class DataSourcePermissions {
    * @return owner
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_OWNER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -146,7 +143,6 @@ public class DataSourcePermissions {
    * @return groups
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Map<String, DataSourcePermission> getGroups() {
@@ -181,7 +177,6 @@ public class DataSourcePermissions {
    * @return other
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_OTHER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -208,7 +203,6 @@ public class DataSourcePermissions {
    * @return anon
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ANON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -233,16 +227,27 @@ public class DataSourcePermissions {
       return false;
     }
     DataSourcePermissions dataSourcePermissions = (DataSourcePermissions) o;
-    return Objects.equals(this.ownerId, dataSourcePermissions.ownerId) &&
+    return equalsNullable(this.ownerId, dataSourcePermissions.ownerId) &&
         Objects.equals(this.owner, dataSourcePermissions.owner) &&
-        Objects.equals(this.groups, dataSourcePermissions.groups) &&
+        equalsNullable(this.groups, dataSourcePermissions.groups) &&
         Objects.equals(this.other, dataSourcePermissions.other) &&
         Objects.equals(this.anon, dataSourcePermissions.anon);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, owner, groups, other, anon);
+    return Objects.hash(hashCodeNullable(ownerId), owner, hashCodeNullable(groups), other, anon);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

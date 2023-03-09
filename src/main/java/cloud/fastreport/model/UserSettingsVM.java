@@ -21,13 +21,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * UserSettingsVM
@@ -38,7 +38,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   UserSettingsVM.JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS,
   UserSettingsVM.JSON_PROPERTY_SLA_ACCEPTED_DATE_TIME
 })
-@JsonTypeName("UserSettingsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UserSettingsVM {
   public static final String JSON_PROPERTY_PROFILE_VISIBILITY = "profileVisibility";
@@ -53,6 +52,8 @@ public class UserSettingsVM {
   public static final String JSON_PROPERTY_SLA_ACCEPTED_DATE_TIME = "slaAcceptedDateTime";
   private JsonNullable<OffsetDateTime> slaAcceptedDateTime = JsonNullable.<OffsetDateTime>undefined();
 
+  public UserSettingsVM() {
+  }
 
   public UserSettingsVM profileVisibility(ProfileVisibility profileVisibility) {
     
@@ -65,7 +66,6 @@ public class UserSettingsVM {
    * @return profileVisibility
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_PROFILE_VISIBILITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -92,7 +92,6 @@ public class UserSettingsVM {
    * @return defaultSubscription
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getDefaultSubscription() {
@@ -127,7 +126,6 @@ public class UserSettingsVM {
    * @return showHiddenFilesAndFolders
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -154,7 +152,6 @@ public class UserSettingsVM {
    * @return slaAcceptedDateTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getSlaAcceptedDateTime() {
@@ -188,14 +185,25 @@ public class UserSettingsVM {
     }
     UserSettingsVM userSettingsVM = (UserSettingsVM) o;
     return Objects.equals(this.profileVisibility, userSettingsVM.profileVisibility) &&
-        Objects.equals(this.defaultSubscription, userSettingsVM.defaultSubscription) &&
+        equalsNullable(this.defaultSubscription, userSettingsVM.defaultSubscription) &&
         Objects.equals(this.showHiddenFilesAndFolders, userSettingsVM.showHiddenFilesAndFolders) &&
-        Objects.equals(this.slaAcceptedDateTime, userSettingsVM.slaAcceptedDateTime);
+        equalsNullable(this.slaAcceptedDateTime, userSettingsVM.slaAcceptedDateTime);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileVisibility, defaultSubscription, showHiddenFilesAndFolders, slaAcceptedDateTime);
+    return Objects.hash(profileVisibility, hashCodeNullable(defaultSubscription), showHiddenFilesAndFolders, hashCodeNullable(slaAcceptedDateTime));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

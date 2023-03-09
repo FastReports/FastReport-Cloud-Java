@@ -21,12 +21,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * OutputFileVM
@@ -36,7 +36,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   OutputFileVM.JSON_PROPERTY_FOLDER_ID,
   OutputFileVM.JSON_PROPERTY_TYPE
 })
-@JsonTypeName("OutputFileVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class OutputFileVM {
   public static final String JSON_PROPERTY_FILE_NAME = "fileName";
@@ -48,6 +47,8 @@ public class OutputFileVM {
   public static final String JSON_PROPERTY_TYPE = "type";
   private FileKind type;
 
+  public OutputFileVM() {
+  }
 
   public OutputFileVM fileName(String fileName) {
     this.fileName = JsonNullable.<String>of(fileName);
@@ -60,7 +61,6 @@ public class OutputFileVM {
    * @return fileName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFileName() {
@@ -95,7 +95,6 @@ public class OutputFileVM {
    * @return folderId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFolderId() {
@@ -130,7 +129,6 @@ public class OutputFileVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -155,14 +153,25 @@ public class OutputFileVM {
       return false;
     }
     OutputFileVM outputFileVM = (OutputFileVM) o;
-    return Objects.equals(this.fileName, outputFileVM.fileName) &&
-        Objects.equals(this.folderId, outputFileVM.folderId) &&
+    return equalsNullable(this.fileName, outputFileVM.fileName) &&
+        equalsNullable(this.folderId, outputFileVM.folderId) &&
         Objects.equals(this.type, outputFileVM.type);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileName, folderId, type);
+    return Objects.hash(hashCodeNullable(fileName), hashCodeNullable(folderId), type);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

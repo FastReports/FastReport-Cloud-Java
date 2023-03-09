@@ -21,13 +21,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * UpdateTaskBaseVM
@@ -39,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   UpdateTaskBaseVM.JSON_PROPERTY_DELAYED_RUN_TIME,
   UpdateTaskBaseVM.JSON_PROPERTY_CRON_EXPRESSION
 })
-@JsonTypeName("UpdateTaskBaseVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateTaskBaseVM {
   public static final String JSON_PROPERTY_NAME = "name";
@@ -57,6 +56,8 @@ public class UpdateTaskBaseVM {
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
   private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
+  public UpdateTaskBaseVM() {
+  }
 
   public UpdateTaskBaseVM name(String name) {
     this.name = JsonNullable.<String>of(name);
@@ -69,7 +70,6 @@ public class UpdateTaskBaseVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -104,7 +104,6 @@ public class UpdateTaskBaseVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -139,7 +138,6 @@ public class UpdateTaskBaseVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -166,7 +164,6 @@ public class UpdateTaskBaseVM {
    * @return delayedRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedRunTime() {
@@ -201,7 +198,6 @@ public class UpdateTaskBaseVM {
    * @return cronExpression
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCronExpression() {
@@ -234,16 +230,27 @@ public class UpdateTaskBaseVM {
       return false;
     }
     UpdateTaskBaseVM updateTaskBaseVM = (UpdateTaskBaseVM) o;
-    return Objects.equals(this.name, updateTaskBaseVM.name) &&
-        Objects.equals(this.subscriptionId, updateTaskBaseVM.subscriptionId) &&
+    return equalsNullable(this.name, updateTaskBaseVM.name) &&
+        equalsNullable(this.subscriptionId, updateTaskBaseVM.subscriptionId) &&
         Objects.equals(this.type, updateTaskBaseVM.type) &&
-        Objects.equals(this.delayedRunTime, updateTaskBaseVM.delayedRunTime) &&
-        Objects.equals(this.cronExpression, updateTaskBaseVM.cronExpression);
+        equalsNullable(this.delayedRunTime, updateTaskBaseVM.delayedRunTime) &&
+        equalsNullable(this.cronExpression, updateTaskBaseVM.cronExpression);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, subscriptionId, type, delayedRunTime, cronExpression);
+    return Objects.hash(hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -5,9 +5,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**permissions** | [**FilePermissions**](FilePermissions.md) |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**permissions** | [**FilePermissions**](FilePermissions.md) |  |  [optional] |
 
 
 

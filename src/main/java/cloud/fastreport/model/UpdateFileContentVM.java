@@ -20,9 +20,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * UpdateFileContentVM
@@ -30,12 +29,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   UpdateFileContentVM.JSON_PROPERTY_CONTENT
 })
-@JsonTypeName("UpdateFileContentVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateFileContentVM {
   public static final String JSON_PROPERTY_CONTENT = "content";
   private byte[] content;
 
+  public UpdateFileContentVM() {
+  }
 
   public UpdateFileContentVM content(byte[] content) {
     
@@ -47,7 +47,7 @@ public class UpdateFileContentVM {
    * Get content
    * @return content
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_CONTENT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

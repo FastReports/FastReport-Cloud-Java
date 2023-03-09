@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * TaskSettingsVM
@@ -41,7 +41,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TaskSettingsVM.JSON_PROPERTY_THUMBNAIL_REPORT,
   TaskSettingsVM.JSON_PROPERTY_THUMBNAIL_TEMPLATE
 })
-@JsonTypeName("TaskSettingsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TaskSettingsVM {
   public static final String JSON_PROPERTY_PREPARE = "prepare";
@@ -71,6 +70,8 @@ public class TaskSettingsVM {
   public static final String JSON_PROPERTY_THUMBNAIL_TEMPLATE = "thumbnailTemplate";
   private JsonNullable<Boolean> thumbnailTemplate = JsonNullable.<Boolean>undefined();
 
+  public TaskSettingsVM() {
+  }
 
   public TaskSettingsVM prepare(Boolean prepare) {
     this.prepare = JsonNullable.<Boolean>of(prepare);
@@ -83,7 +84,6 @@ public class TaskSettingsVM {
    * @return prepare
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getPrepare() {
@@ -118,7 +118,6 @@ public class TaskSettingsVM {
    * @return exportTemplate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getExportTemplate() {
@@ -153,7 +152,6 @@ public class TaskSettingsVM {
    * @return exportReport
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getExportReport() {
@@ -188,7 +186,6 @@ public class TaskSettingsVM {
    * @return sendViaEmail
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getSendViaEmail() {
@@ -223,7 +220,6 @@ public class TaskSettingsVM {
    * @return uploadToFTP
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getUploadToFTP() {
@@ -258,7 +254,6 @@ public class TaskSettingsVM {
    * @return sendViaWebhook
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getSendViaWebhook() {
@@ -293,7 +288,6 @@ public class TaskSettingsVM {
    * @return fetchData
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getFetchData() {
@@ -328,7 +322,6 @@ public class TaskSettingsVM {
    * @return thumbnailReport
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getThumbnailReport() {
@@ -363,7 +356,6 @@ public class TaskSettingsVM {
    * @return thumbnailTemplate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getThumbnailTemplate() {
@@ -396,20 +388,31 @@ public class TaskSettingsVM {
       return false;
     }
     TaskSettingsVM taskSettingsVM = (TaskSettingsVM) o;
-    return Objects.equals(this.prepare, taskSettingsVM.prepare) &&
-        Objects.equals(this.exportTemplate, taskSettingsVM.exportTemplate) &&
-        Objects.equals(this.exportReport, taskSettingsVM.exportReport) &&
-        Objects.equals(this.sendViaEmail, taskSettingsVM.sendViaEmail) &&
-        Objects.equals(this.uploadToFTP, taskSettingsVM.uploadToFTP) &&
-        Objects.equals(this.sendViaWebhook, taskSettingsVM.sendViaWebhook) &&
-        Objects.equals(this.fetchData, taskSettingsVM.fetchData) &&
-        Objects.equals(this.thumbnailReport, taskSettingsVM.thumbnailReport) &&
-        Objects.equals(this.thumbnailTemplate, taskSettingsVM.thumbnailTemplate);
+    return equalsNullable(this.prepare, taskSettingsVM.prepare) &&
+        equalsNullable(this.exportTemplate, taskSettingsVM.exportTemplate) &&
+        equalsNullable(this.exportReport, taskSettingsVM.exportReport) &&
+        equalsNullable(this.sendViaEmail, taskSettingsVM.sendViaEmail) &&
+        equalsNullable(this.uploadToFTP, taskSettingsVM.uploadToFTP) &&
+        equalsNullable(this.sendViaWebhook, taskSettingsVM.sendViaWebhook) &&
+        equalsNullable(this.fetchData, taskSettingsVM.fetchData) &&
+        equalsNullable(this.thumbnailReport, taskSettingsVM.thumbnailReport) &&
+        equalsNullable(this.thumbnailTemplate, taskSettingsVM.thumbnailTemplate);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(prepare, exportTemplate, exportReport, sendViaEmail, uploadToFTP, sendViaWebhook, fetchData, thumbnailReport, thumbnailTemplate);
+    return Objects.hash(hashCodeNullable(prepare), hashCodeNullable(exportTemplate), hashCodeNullable(exportReport), hashCodeNullable(sendViaEmail), hashCodeNullable(uploadToFTP), hashCodeNullable(sendViaWebhook), hashCodeNullable(fetchData), hashCodeNullable(thumbnailReport), hashCodeNullable(thumbnailTemplate));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

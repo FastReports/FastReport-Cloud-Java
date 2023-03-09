@@ -15,20 +15,19 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.ReportInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ReportVM
@@ -42,7 +41,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ReportVM.JSON_PROPERTY_EDITED_TIME,
   ReportVM.JSON_PROPERTY_EDITOR_USER_ID
 })
-@JsonTypeName("ReportVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportVM {
   public static final String JSON_PROPERTY_TEMPLATE_ID = "templateId";
@@ -66,6 +64,8 @@ public class ReportVM {
   public static final String JSON_PROPERTY_EDITOR_USER_ID = "editorUserId";
   private JsonNullable<String> editorUserId = JsonNullable.<String>undefined();
 
+  public ReportVM() {
+  }
 
   public ReportVM templateId(String templateId) {
     this.templateId = JsonNullable.<String>of(templateId);
@@ -78,7 +78,6 @@ public class ReportVM {
    * @return templateId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getTemplateId() {
@@ -113,7 +112,6 @@ public class ReportVM {
    * @return reportInfo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_REPORT_INFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -140,7 +138,6 @@ public class ReportVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -175,7 +172,6 @@ public class ReportVM {
    * @return createdTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CREATED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -202,7 +198,6 @@ public class ReportVM {
    * @return creatorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCreatorUserId() {
@@ -237,7 +232,6 @@ public class ReportVM {
    * @return editedTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EDITED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -264,7 +258,6 @@ public class ReportVM {
    * @return editorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEditorUserId() {
@@ -297,18 +290,29 @@ public class ReportVM {
       return false;
     }
     ReportVM reportVM = (ReportVM) o;
-    return Objects.equals(this.templateId, reportVM.templateId) &&
+    return equalsNullable(this.templateId, reportVM.templateId) &&
         Objects.equals(this.reportInfo, reportVM.reportInfo) &&
-        Objects.equals(this.id, reportVM.id) &&
+        equalsNullable(this.id, reportVM.id) &&
         Objects.equals(this.createdTime, reportVM.createdTime) &&
-        Objects.equals(this.creatorUserId, reportVM.creatorUserId) &&
+        equalsNullable(this.creatorUserId, reportVM.creatorUserId) &&
         Objects.equals(this.editedTime, reportVM.editedTime) &&
-        Objects.equals(this.editorUserId, reportVM.editorUserId);
+        equalsNullable(this.editorUserId, reportVM.editorUserId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateId, reportInfo, id, createdTime, creatorUserId, editedTime, editorUserId);
+    return Objects.hash(hashCodeNullable(templateId), reportInfo, hashCodeNullable(id), createdTime, hashCodeNullable(creatorUserId), editedTime, hashCodeNullable(editorUserId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

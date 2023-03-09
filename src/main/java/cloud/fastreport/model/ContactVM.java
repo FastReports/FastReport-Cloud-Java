@@ -20,15 +20,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.threeten.bp.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ContactVM
@@ -44,7 +44,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ContactVM.JSON_PROPERTY_EDITED_TIME,
   ContactVM.JSON_PROPERTY_EDITOR_USER_ID
 })
-@JsonTypeName("ContactVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ContactVM {
   public static final String JSON_PROPERTY_ID = "id";
@@ -74,6 +73,8 @@ public class ContactVM {
   public static final String JSON_PROPERTY_EDITOR_USER_ID = "editorUserId";
   private JsonNullable<String> editorUserId = JsonNullable.<String>undefined();
 
+  public ContactVM() {
+  }
 
   public ContactVM id(String id) {
     this.id = JsonNullable.<String>of(id);
@@ -86,7 +87,6 @@ public class ContactVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -121,7 +121,6 @@ public class ContactVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -156,7 +155,6 @@ public class ContactVM {
    * @return email
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEmail() {
@@ -203,7 +201,6 @@ public class ContactVM {
    * @return groups
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<String> getGroups() {
@@ -238,7 +235,6 @@ public class ContactVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -273,7 +269,6 @@ public class ContactVM {
    * @return createdTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CREATED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -300,7 +295,6 @@ public class ContactVM {
    * @return creatorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCreatorUserId() {
@@ -335,7 +329,6 @@ public class ContactVM {
    * @return editedTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EDITED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -362,7 +355,6 @@ public class ContactVM {
    * @return editorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEditorUserId() {
@@ -395,20 +387,31 @@ public class ContactVM {
       return false;
     }
     ContactVM contactVM = (ContactVM) o;
-    return Objects.equals(this.id, contactVM.id) &&
-        Objects.equals(this.name, contactVM.name) &&
-        Objects.equals(this.email, contactVM.email) &&
-        Objects.equals(this.groups, contactVM.groups) &&
-        Objects.equals(this.subscriptionId, contactVM.subscriptionId) &&
+    return equalsNullable(this.id, contactVM.id) &&
+        equalsNullable(this.name, contactVM.name) &&
+        equalsNullable(this.email, contactVM.email) &&
+        equalsNullable(this.groups, contactVM.groups) &&
+        equalsNullable(this.subscriptionId, contactVM.subscriptionId) &&
         Objects.equals(this.createdTime, contactVM.createdTime) &&
-        Objects.equals(this.creatorUserId, contactVM.creatorUserId) &&
+        equalsNullable(this.creatorUserId, contactVM.creatorUserId) &&
         Objects.equals(this.editedTime, contactVM.editedTime) &&
-        Objects.equals(this.editorUserId, contactVM.editorUserId);
+        equalsNullable(this.editorUserId, contactVM.editorUserId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, email, groups, subscriptionId, createdTime, creatorUserId, editedTime, editorUserId);
+    return Objects.hash(hashCodeNullable(id), hashCodeNullable(name), hashCodeNullable(email), hashCodeNullable(groups), hashCodeNullable(subscriptionId), createdTime, hashCodeNullable(creatorUserId), editedTime, hashCodeNullable(editorUserId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

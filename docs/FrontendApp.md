@@ -5,9 +5,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**mixins** | [**AppMixins**](AppMixins.md) |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**mixins** | [**AppMixins**](AppMixins.md) |  |  [optional] |
 
 
 

@@ -5,10 +5,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**folderId** | **String** |  |  [optional]
-**bytesUsed** | **Long** |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**folderId** | **String** |  |  [optional] |
+|**bytesUsed** | **Long** |  |  [optional] |
 
 
 

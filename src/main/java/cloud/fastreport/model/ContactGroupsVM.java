@@ -21,14 +21,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ContactGroupsVM
@@ -39,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ContactGroupsVM.JSON_PROPERTY_TAKE,
   ContactGroupsVM.JSON_PROPERTY_COUNT
 })
-@JsonTypeName("ContactGroupsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ContactGroupsVM {
   public static final String JSON_PROPERTY_GROUPS = "groups";
@@ -54,6 +53,8 @@ public class ContactGroupsVM {
   public static final String JSON_PROPERTY_COUNT = "count";
   private Long count;
 
+  public ContactGroupsVM() {
+  }
 
   public ContactGroupsVM groups(List<ContactGroupVM> groups) {
     this.groups = JsonNullable.<List<ContactGroupVM>>of(groups);
@@ -78,7 +79,6 @@ public class ContactGroupsVM {
    * @return groups
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<ContactGroupVM> getGroups() {
@@ -113,7 +113,6 @@ public class ContactGroupsVM {
    * @return skip
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SKIP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -140,7 +139,6 @@ public class ContactGroupsVM {
    * @return take
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TAKE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -167,7 +165,6 @@ public class ContactGroupsVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -192,15 +189,26 @@ public class ContactGroupsVM {
       return false;
     }
     ContactGroupsVM contactGroupsVM = (ContactGroupsVM) o;
-    return Objects.equals(this.groups, contactGroupsVM.groups) &&
+    return equalsNullable(this.groups, contactGroupsVM.groups) &&
         Objects.equals(this.skip, contactGroupsVM.skip) &&
         Objects.equals(this.take, contactGroupsVM.take) &&
         Objects.equals(this.count, contactGroupsVM.count);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(groups, skip, take, count);
+    return Objects.hash(hashCodeNullable(groups), skip, take, count);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

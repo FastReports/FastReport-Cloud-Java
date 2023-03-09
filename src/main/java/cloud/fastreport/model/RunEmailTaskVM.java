@@ -15,21 +15,20 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.RunTransportTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RunEmailTaskVM
@@ -48,7 +47,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RunEmailTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   RunEmailTaskVM.JSON_PROPERTY_TYPE
 })
-@JsonTypeName("RunEmailTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RunEmailTaskVM {
   public static final String JSON_PROPERTY_PASSWORD = "password";
@@ -87,6 +85,8 @@ public class RunEmailTaskVM {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TaskType type;
 
+  public RunEmailTaskVM() {
+  }
 
   public RunEmailTaskVM password(String password) {
     this.password = JsonNullable.<String>of(password);
@@ -99,7 +99,6 @@ public class RunEmailTaskVM {
    * @return password
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getPassword() {
@@ -134,7 +133,6 @@ public class RunEmailTaskVM {
    * @return body
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getBody() {
@@ -169,7 +167,6 @@ public class RunEmailTaskVM {
    * @return isBodyHtml
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_IS_BODY_HTML)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -196,7 +193,6 @@ public class RunEmailTaskVM {
    * @return subject
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubject() {
@@ -243,7 +239,6 @@ public class RunEmailTaskVM {
    * @return to
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<String> getTo() {
@@ -278,7 +273,6 @@ public class RunEmailTaskVM {
    * @return from
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFrom() {
@@ -313,7 +307,6 @@ public class RunEmailTaskVM {
    * @return username
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getUsername() {
@@ -348,7 +341,6 @@ public class RunEmailTaskVM {
    * @return server
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getServer() {
@@ -385,7 +377,6 @@ public class RunEmailTaskVM {
    * @return port
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_PORT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -412,7 +403,6 @@ public class RunEmailTaskVM {
    * @return enableSsl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ENABLE_SSL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -439,7 +429,6 @@ public class RunEmailTaskVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -474,7 +463,6 @@ public class RunEmailTaskVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -499,23 +487,34 @@ public class RunEmailTaskVM {
       return false;
     }
     RunEmailTaskVM runEmailTaskVM = (RunEmailTaskVM) o;
-    return Objects.equals(this.password, runEmailTaskVM.password) &&
-        Objects.equals(this.body, runEmailTaskVM.body) &&
+    return equalsNullable(this.password, runEmailTaskVM.password) &&
+        equalsNullable(this.body, runEmailTaskVM.body) &&
         Objects.equals(this.isBodyHtml, runEmailTaskVM.isBodyHtml) &&
-        Objects.equals(this.subject, runEmailTaskVM.subject) &&
-        Objects.equals(this.to, runEmailTaskVM.to) &&
-        Objects.equals(this.from, runEmailTaskVM.from) &&
-        Objects.equals(this.username, runEmailTaskVM.username) &&
-        Objects.equals(this.server, runEmailTaskVM.server) &&
+        equalsNullable(this.subject, runEmailTaskVM.subject) &&
+        equalsNullable(this.to, runEmailTaskVM.to) &&
+        equalsNullable(this.from, runEmailTaskVM.from) &&
+        equalsNullable(this.username, runEmailTaskVM.username) &&
+        equalsNullable(this.server, runEmailTaskVM.server) &&
         Objects.equals(this.port, runEmailTaskVM.port) &&
         Objects.equals(this.enableSsl, runEmailTaskVM.enableSsl) &&
-        Objects.equals(this.subscriptionId, runEmailTaskVM.subscriptionId) &&
+        equalsNullable(this.subscriptionId, runEmailTaskVM.subscriptionId) &&
         Objects.equals(this.type, runEmailTaskVM.type);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(password, body, isBodyHtml, subject, to, from, username, server, port, enableSsl, subscriptionId, type);
+    return Objects.hash(hashCodeNullable(password), hashCodeNullable(body), isBodyHtml, hashCodeNullable(subject), hashCodeNullable(to), hashCodeNullable(from), hashCodeNullable(username), hashCodeNullable(server), port, enableSsl, hashCodeNullable(subscriptionId), type);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

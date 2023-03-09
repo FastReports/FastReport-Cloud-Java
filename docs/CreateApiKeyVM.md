@@ -5,10 +5,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**description** | **String** |  |  [optional]
-**expired** | **OffsetDateTime** |  | 
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**description** | **String** |  |  [optional] |
+|**expired** | **OffsetDateTime** |  |  |
 
 
 

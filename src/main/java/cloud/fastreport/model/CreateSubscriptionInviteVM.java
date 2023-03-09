@@ -20,10 +20,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * CreateSubscriptionInviteVM
@@ -33,7 +32,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CreateSubscriptionInviteVM.JSON_PROPERTY_DURABLE,
   CreateSubscriptionInviteVM.JSON_PROPERTY_EXPIRED_DATE
 })
-@JsonTypeName("CreateSubscriptionInviteVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateSubscriptionInviteVM {
   public static final String JSON_PROPERTY_USAGES = "usages";
@@ -45,6 +43,8 @@ public class CreateSubscriptionInviteVM {
   public static final String JSON_PROPERTY_EXPIRED_DATE = "expiredDate";
   private OffsetDateTime expiredDate;
 
+  public CreateSubscriptionInviteVM() {
+  }
 
   public CreateSubscriptionInviteVM usages(Long usages) {
     
@@ -59,7 +59,6 @@ public class CreateSubscriptionInviteVM {
    * @return usages
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_USAGES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -86,7 +85,6 @@ public class CreateSubscriptionInviteVM {
    * @return durable
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DURABLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -113,7 +111,6 @@ public class CreateSubscriptionInviteVM {
    * @return expiredDate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EXPIRED_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

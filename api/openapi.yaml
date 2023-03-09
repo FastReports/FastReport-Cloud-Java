@@ -49,11 +49,11 @@ paths:
       summary: Delete an apikey
       tags:
       - ApiKeys
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
     get:
-      description: Always work, it should make only 200 response (except if user is
-        not authorized).
+      description: "Always work, it should make only 200 response (except if user\
+        \ is not authorized)."
       operationId: ApiKeys_GetApiKeys
       responses:
         "200":
@@ -108,10 +108,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: User is not authorized
-      summary: Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
+      summary: "Create a new apikey, 5 apikeys for user. Hardcoded for ddos."
       tags:
       - ApiKeys
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/v1/Configuration:
     get:
@@ -141,6 +141,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateContactGroupVM'
+        description: ""
       responses:
         "200":
           content:
@@ -177,18 +178,19 @@ paths:
       summary: Creates contact group
       tags:
       - ContactGroups
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/v1/ContactGroups/{id}:
     delete:
       operationId: ContactGroups_Delete
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -227,12 +229,13 @@ paths:
     get:
       operationId: ContactGroups_Get
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -275,12 +278,13 @@ paths:
     put:
       operationId: ContactGroups_Update
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -294,6 +298,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateContactGroupVM'
+        description: ""
       responses:
         "200":
           content:
@@ -330,21 +335,23 @@ paths:
       summary: Updates contact group by id
       tags:
       - ContactGroups
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/v1/ContactGroups/subscription/{subscriptionId}/groups:
     get:
       operationId: ContactGroups_GetList
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         style: simple
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: skip
         required: false
@@ -353,7 +360,8 @@ paths:
           format: int32
           type: integer
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: take
         required: false
@@ -413,6 +421,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateContactVM'
+        description: ""
       responses:
         "200":
           content:
@@ -449,18 +458,19 @@ paths:
       summary: Creates new contact
       tags:
       - Contacts
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/v1/Contacts/{id}:
     delete:
       operationId: Contacts_Delete
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -499,12 +509,13 @@ paths:
     get:
       operationId: Contacts_Get
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -547,12 +558,13 @@ paths:
     put:
       operationId: Contacts_Update
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -566,6 +578,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateContactVM'
+        description: ""
       responses:
         "200":
           content:
@@ -602,95 +615,23 @@ paths:
       summary: Updates contact by id
       tags:
       - Contacts
-      x-contentType: application/json
-      x-accepts: application/json
-  /api/v1/Contacts/subscription/{subscriptionId}/contacts:
-    get:
-      operationId: Contacts_GetList
-      parameters:
-      - explode: false
-        in: path
-        name: subscriptionId
-        required: true
-        schema:
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: skip
-        required: false
-        schema:
-          default: 0
-          format: int32
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: take
-        required: false
-        schema:
-          default: 10
-          format: int32
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: searchPattern
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ContactsVM'
-          description: Success
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "402":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "500":
-          description: Server Error
-      summary: Allows to search for contacts
-      tags:
-      - Contacts
+      x-content-type: application/json
       x-accepts: application/json
   /api/v1/Contacts/group/{groupId}/contacts:
     get:
       operationId: Contacts_GetByGroup
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: groupId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: skip
         required: false
@@ -699,7 +640,8 @@ paths:
           format: int32
           type: integer
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: take
         required: false
@@ -745,6 +687,84 @@ paths:
       tags:
       - Contacts
       x-accepts: application/json
+  /api/v1/Contacts/subscription/{subscriptionId}/contacts:
+    get:
+      operationId: Contacts_GetList
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
+        style: simple
+      - description: ""
+        explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: take
+        required: false
+        schema:
+          default: 10
+          format: int32
+          type: integer
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: searchPattern
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactsVM'
+          description: Success
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "500":
+          description: Server Error
+      summary: Allows to search for contacts
+      tags:
+      - Contacts
+      x-accepts: application/json
   /api/data/v1/DataSources:
     get:
       operationId: DataSources_GetAvailableDataSources
@@ -755,7 +775,7 @@ paths:
         name: subscriptionId
         required: false
         schema:
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         style: form
       - description: how many data sources will be skipped
@@ -886,7 +906,7 @@ paths:
       summary: Create new data source
       tags:
       - DataSources
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/data/v1/DataSources/{id}:
     delete:
@@ -898,7 +918,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -943,7 +963,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -993,7 +1013,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -1044,7 +1064,7 @@ paths:
       summary: Rename data source by id
       tags:
       - DataSources
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/data/v1/DataSources/{id}/ConnectionString:
     put:
@@ -1056,7 +1076,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -1107,7 +1127,7 @@ paths:
       summary: Update data source's connection string by id
       tags:
       - DataSources
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/data/v1/DataSources/{id}/fetch:
     get:
@@ -1119,7 +1139,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -1165,7 +1185,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -1212,7 +1232,7 @@ paths:
       summary: Update data source's subscription
       tags:
       - DataSources
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/data/v1/DataSources/{id}/permissions:
     get:
@@ -1224,7 +1244,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -1267,12 +1287,13 @@ paths:
     post:
       operationId: DataSources_UpdatePermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -1286,6 +1307,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateDataSourcePermissionsVM'
+        description: ""
       responses:
         "200":
           description: Success
@@ -1318,7 +1340,7 @@ paths:
       summary: Update permissions
       tags:
       - DataSources
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/data/v1/DataSources/{subscriptionId}/count:
     get:
@@ -1330,7 +1352,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -1359,8 +1381,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-          description: there is no subscription with provided id found, or user don't
-            even have a subscription
+          description: "there is no subscription with provided id found, or user don't\
+            \ even have a subscription"
       summary: Returns a number of data sources in subscription
       tags:
       - DataSources
@@ -1369,12 +1391,13 @@ paths:
     get:
       operationId: Download_GetExportThumbnail
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -1466,15 +1489,17 @@ paths:
     get:
       operationId: Download_GetExport
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: preview
         required: false
@@ -1571,7 +1596,7 @@ paths:
     get:
       operationId: Download_GetExports
       parameters:
-      - description: ids separated with a ',' sign
+      - description: "ids separated with a ',' sign"
         explode: true
         in: query
         name: ids
@@ -1661,7 +1686,8 @@ paths:
       deprecated: true
       operationId: Download_GetLastSVGExport
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: reportId
         required: true
@@ -1732,7 +1758,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-      summary: returns export, that was created from report with specified id
+      summary: "returns export, that was created from report with specified id"
       tags:
       - Download
       x-accepts: application/json
@@ -1740,12 +1766,13 @@ paths:
     get:
       operationId: Download_GetReportThumbnail
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -1837,12 +1864,13 @@ paths:
     get:
       operationId: Download_GetReport
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -1918,7 +1946,7 @@ paths:
     get:
       operationId: Download_GetReports
       parameters:
-      - description: ids separated with a ',' sign
+      - description: "ids separated with a ',' sign"
         explode: true
         in: query
         name: ids
@@ -2006,12 +2034,13 @@ paths:
     get:
       operationId: Download_GetTemplateThumbnail
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -2109,7 +2138,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -2185,7 +2214,7 @@ paths:
     get:
       operationId: Download_GetTemplates
       parameters:
-      - description: ids separated with a ',' sign
+      - description: "ids separated with a ',' sign"
         explode: true
         in: query
         name: ids
@@ -2280,7 +2309,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: "string, that must be incuded in file or folder name to be counted\
@@ -2343,10 +2372,10 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - description: number of folder and files, that have to be skipped
+      - description: "number of folder and files, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -2358,7 +2387,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of folder and files, that have to be returned
+      - description: "number of folder and files, that have to be returned"
         explode: true
         in: query
         name: take
@@ -2387,7 +2416,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: searchPattern
         required: false
@@ -2397,7 +2427,8 @@ paths:
           minLength: 0
           type: string
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: useRegex
         required: false
@@ -2445,10 +2476,10 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - description: number of folder and files, that have to be skipped
+      - description: "number of folder and files, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -2460,7 +2491,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of folder and files, that have to be returned
+      - description: "number of folder and files, that have to be returned"
         explode: true
         in: query
         name: take
@@ -2489,7 +2520,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: searchPattern
         required: false
@@ -2499,7 +2531,8 @@ paths:
           minLength: 0
           type: string
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: useRegex
         required: false
@@ -2547,7 +2580,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -2586,7 +2619,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -2618,12 +2651,13 @@ paths:
     get:
       operationId: ExportFolders_GetPermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -2659,12 +2693,13 @@ paths:
     post:
       operationId: ExportFolders_UpdatePermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -2678,6 +2713,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateFilePermissionsVM'
+        description: ""
       responses:
         "200":
           description: Success
@@ -2710,7 +2746,7 @@ paths:
       summary: Update permissions
       tags:
       - Exports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Exports/Folder/{id}:
     delete:
@@ -2723,7 +2759,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -2767,7 +2803,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -2810,7 +2846,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -2855,10 +2891,11 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: recoveryPath
         required: false
@@ -2907,7 +2944,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -2960,7 +2997,7 @@ paths:
         name: subscriptionId
         required: false
         schema:
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         style: form
       - description: parent folder id
@@ -2969,7 +3006,7 @@ paths:
         name: parentId
         required: false
         schema:
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         style: form
       responses:
@@ -3012,10 +3049,10 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - description: number of files, that have to be skipped
+      - description: "number of files, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -3027,7 +3064,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of files, that have to be returned
+      - description: "number of files, that have to be returned"
         explode: true
         in: query
         name: take
@@ -3039,14 +3076,16 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: orderBy
         required: false
         schema:
           $ref: '#/components/schemas/FileSorting'
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: desc
         required: false
@@ -3054,7 +3093,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: searchPattern
         required: false
@@ -3064,7 +3104,8 @@ paths:
           minLength: 0
           type: string
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: useRegex
         required: false
@@ -3112,7 +3153,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -3186,7 +3227,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: destination folder id
@@ -3195,7 +3236,7 @@ paths:
         name: folderId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -3245,7 +3286,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: destination folder id
@@ -3254,7 +3295,7 @@ paths:
         name: folderId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -3303,7 +3344,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -3352,7 +3393,7 @@ paths:
       summary: Create folder
       tags:
       - Exports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Exports/Folder/{id}/Rename:
     put:
@@ -3364,7 +3405,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -3412,7 +3453,7 @@ paths:
       summary: Rename a folder
       tags:
       - Exports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Exports/Folder/{id}/Icon:
     put:
@@ -3425,7 +3466,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -3474,7 +3515,7 @@ paths:
       summary: Update a folder's icon
       tags:
       - Exports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Exports/Folder/{id}/UpdateTags:
     put:
@@ -3486,7 +3527,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -3534,7 +3575,7 @@ paths:
       summary: Update tags
       tags:
       - Exports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Exports/File/{id}/Copy/{folderId}:
     post:
@@ -3546,7 +3587,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: folder id
@@ -3555,7 +3596,7 @@ paths:
         name: folderId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -3606,7 +3647,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -3652,7 +3693,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -3697,7 +3738,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -3744,10 +3785,11 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: recoveryPath
         required: false
@@ -3791,15 +3833,17 @@ paths:
     get:
       operationId: Exports_GetFileHistory
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: skip
         required: false
@@ -3808,7 +3852,8 @@ paths:
           format: int32
           type: integer
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: take
         required: false
@@ -3842,7 +3887,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
-      summary: Returns list of actions, performed on this file
+      summary: "Returns list of actions, performed on this file"
       tags:
       - Exports
       x-accepts: application/json
@@ -3857,7 +3902,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -3901,10 +3946,10 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - description: number of files, that have to be skipped
+      - description: "number of files, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -3916,7 +3961,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of files, that have to be returned
+      - description: "number of files, that have to be returned"
         explode: true
         in: query
         name: take
@@ -3928,7 +3973,8 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: searchPattern
         required: false
@@ -3937,14 +3983,16 @@ paths:
           minLength: 0
           type: string
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: orderBy
         required: false
         schema:
           $ref: '#/components/schemas/FileSorting'
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: desc
         required: false
@@ -3952,7 +4000,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: useRegex
         required: false
@@ -3998,12 +4047,13 @@ paths:
     get:
       operationId: Exports_GetPermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -4038,12 +4088,13 @@ paths:
     post:
       operationId: Exports_UpdatePermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -4057,6 +4108,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateFilePermissionsVM'
+        description: ""
       responses:
         "200":
           description: Success
@@ -4089,7 +4141,7 @@ paths:
       summary: Update permissions
       tags:
       - Exports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Exports/File/{id}/Move/{folderId}:
     post:
@@ -4102,7 +4154,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: folder id
@@ -4111,7 +4163,7 @@ paths:
         name: folderId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -4161,7 +4213,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -4211,7 +4263,7 @@ paths:
       summary: Rename a file
       tags:
       - Exports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Exports/File/{id}/Icon:
     put:
@@ -4223,7 +4275,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -4273,7 +4325,7 @@ paths:
       summary: Update a files's icon
       tags:
       - Exports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Exports/File/{id}/UpdateTags:
     put:
@@ -4285,7 +4337,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -4335,7 +4387,7 @@ paths:
       summary: Update tags
       tags:
       - Exports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/Groups/{id}/permissions:
     get:
@@ -4347,7 +4399,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -4382,12 +4434,13 @@ paths:
     post:
       operationId: Groups_UpdatePermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -4401,6 +4454,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateGroupPermissionsVM'
+        description: ""
       responses:
         "200":
           description: Success
@@ -4433,7 +4487,7 @@ paths:
       summary: Update permissions
       tags:
       - Groups
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/Groups/{id}:
     delete:
@@ -4445,7 +4499,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -4490,7 +4544,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -4631,7 +4685,7 @@ paths:
       summary: Create a new user group
       tags:
       - Groups
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/Groups/{id}/rename:
     put:
@@ -4643,7 +4697,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -4695,7 +4749,7 @@ paths:
       summary: Rename group by identifier
       tags:
       - Groups
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/Groups/{id}/Users:
     get:
@@ -4707,7 +4761,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: how many to skip
@@ -4775,7 +4829,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: Identifier of user
@@ -4828,7 +4882,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: Identifier of user
@@ -4882,7 +4936,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -4933,7 +4987,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: "string, that must be incuded in file or folder name to be counted\
@@ -4996,10 +5050,10 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - description: number of folder and files, that have to be skipped
+      - description: "number of folder and files, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -5011,7 +5065,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of folder and files, that have to be returned
+      - description: "number of folder and files, that have to be returned"
         explode: true
         in: query
         name: take
@@ -5040,7 +5094,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: searchPattern
         required: false
@@ -5050,7 +5105,8 @@ paths:
           minLength: 0
           type: string
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: useRegex
         required: false
@@ -5098,10 +5154,10 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - description: number of folder and files, that have to be skipped
+      - description: "number of folder and files, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -5113,7 +5169,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of folder and files, that have to be returned
+      - description: "number of folder and files, that have to be returned"
         explode: true
         in: query
         name: take
@@ -5142,7 +5198,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: searchPattern
         required: false
@@ -5152,7 +5209,8 @@ paths:
           minLength: 0
           type: string
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: useRegex
         required: false
@@ -5200,7 +5258,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -5239,7 +5297,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -5279,7 +5337,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -5328,18 +5386,19 @@ paths:
       summary: Export specified report folder to a specified format
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Reports/Folder/{id}/permissions:
     get:
       operationId: ReportFolders_GetPermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -5375,12 +5434,13 @@ paths:
     post:
       operationId: ReportFolders_UpdatePermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -5394,6 +5454,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateFilePermissionsVM'
+        description: ""
       responses:
         "200":
           description: Success
@@ -5426,7 +5487,7 @@ paths:
       summary: Update permissions
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Reports/Folder/{id}:
     delete:
@@ -5439,7 +5500,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -5483,7 +5544,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -5526,7 +5587,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -5571,10 +5632,11 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: recoveryPath
         required: false
@@ -5623,7 +5685,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -5676,7 +5738,7 @@ paths:
         name: subscriptionId
         required: false
         schema:
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         style: form
       - description: parent folder id
@@ -5685,7 +5747,7 @@ paths:
         name: parentId
         required: false
         schema:
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         style: form
       responses:
@@ -5728,10 +5790,10 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - description: number of files, that have to be skipped
+      - description: "number of files, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -5743,7 +5805,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of files, that have to be returned
+      - description: "number of files, that have to be returned"
         explode: true
         in: query
         name: take
@@ -5755,14 +5817,16 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: orderBy
         required: false
         schema:
           $ref: '#/components/schemas/FileSorting'
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: desc
         required: false
@@ -5770,7 +5834,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: searchPattern
         required: false
@@ -5780,7 +5845,8 @@ paths:
           minLength: 0
           type: string
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: useRegex
         required: false
@@ -5828,7 +5894,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -5902,7 +5968,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: destination folder id
@@ -5911,7 +5977,7 @@ paths:
         name: folderId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -5961,7 +6027,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: destination folder id
@@ -5970,7 +6036,7 @@ paths:
         name: folderId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -6019,7 +6085,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -6068,7 +6134,7 @@ paths:
       summary: Create folder
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Reports/Folder/{id}/Rename:
     put:
@@ -6080,7 +6146,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -6128,7 +6194,7 @@ paths:
       summary: Rename a folder
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Reports/Folder/{id}/Icon:
     put:
@@ -6141,7 +6207,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -6190,7 +6256,7 @@ paths:
       summary: Update a folder's icon
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Reports/Folder/{id}/UpdateTags:
     put:
@@ -6202,7 +6268,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -6250,7 +6316,7 @@ paths:
       summary: Update tags
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Reports/File/{id}/Export:
     post:
@@ -6264,7 +6330,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -6313,7 +6379,7 @@ paths:
       summary: Export specified report to a specified format
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Reports/File/{id}/StaticPreview:
     post:
@@ -6325,7 +6391,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -6376,7 +6442,7 @@ paths:
         \ `` parameter to check prepared timestamp"
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Reports/File/{id}/Copy/{folderId}:
     post:
@@ -6388,7 +6454,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: folder id
@@ -6397,7 +6463,7 @@ paths:
         name: folderId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -6448,7 +6514,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -6494,7 +6560,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -6539,7 +6605,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -6586,10 +6652,11 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: recoveryPath
         required: false
@@ -6633,15 +6700,17 @@ paths:
     get:
       operationId: Reports_GetFileHistory
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: skip
         required: false
@@ -6650,7 +6719,8 @@ paths:
           format: int32
           type: integer
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: take
         required: false
@@ -6684,7 +6754,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
-      summary: Returns list of actions, performed on this file
+      summary: "Returns list of actions, performed on this file"
       tags:
       - Reports
       x-accepts: application/json
@@ -6699,7 +6769,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -6743,10 +6813,10 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - description: number of files, that have to be skipped
+      - description: "number of files, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -6758,7 +6828,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of files, that have to be returned
+      - description: "number of files, that have to be returned"
         explode: true
         in: query
         name: take
@@ -6770,7 +6840,8 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: searchPattern
         required: false
@@ -6779,14 +6850,16 @@ paths:
           minLength: 0
           type: string
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: orderBy
         required: false
         schema:
           $ref: '#/components/schemas/FileSorting'
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: desc
         required: false
@@ -6794,7 +6867,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: useRegex
         required: false
@@ -6840,12 +6914,13 @@ paths:
     get:
       operationId: Reports_GetPermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -6880,12 +6955,13 @@ paths:
     post:
       operationId: Reports_UpdatePermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -6899,6 +6975,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateFilePermissionsVM'
+        description: ""
       responses:
         "200":
           description: Success
@@ -6931,7 +7008,7 @@ paths:
       summary: Update permissions
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Reports/File/{id}/Move/{folderId}:
     post:
@@ -6944,7 +7021,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: folder id
@@ -6953,7 +7030,7 @@ paths:
         name: folderId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -7003,7 +7080,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -7053,7 +7130,7 @@ paths:
       summary: Rename a file
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Reports/File/{id}/Icon:
     put:
@@ -7065,7 +7142,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -7115,7 +7192,7 @@ paths:
       summary: Update a files's icon
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Reports/File/{id}/UpdateTags:
     put:
@@ -7127,7 +7204,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -7177,7 +7254,7 @@ paths:
       summary: Update tags
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Reports/Folder/{id}/File:
     post:
@@ -7190,7 +7267,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -7239,7 +7316,7 @@ paths:
       summary: Upload a file to the specified folder  !
       tags:
       - Reports
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/Subscriptions/{subscriptionId}/groups:
     get:
@@ -7251,7 +7328,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: user Id (optional)
@@ -7287,8 +7364,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-          description: there is no subscription with provided id found, or user don't
-            even have a subscription
+          description: "there is no subscription with provided id found, or user don't\
+            \ even have a subscription"
       summary: returns groups of the subscription or subscription user
       tags:
       - SubscriptionGroups
@@ -7303,7 +7380,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -7332,8 +7409,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-          description: there is no subscription with provided id found, or user don't
-            even have a subscription
+          description: "there is no subscription with provided id found, or user don't\
+            \ even have a subscription"
       summary: Returns a number of groups in subscription
       tags:
       - SubscriptionGroups
@@ -7348,7 +7425,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -7394,7 +7471,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -7445,7 +7522,7 @@ paths:
       summary: Create invite to subscription
       tags:
       - SubscriptionInvites
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/Subscriptions/{subscriptionId}/invite/{accesstoken}:
     delete:
@@ -7457,7 +7534,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: invite's token
@@ -7511,7 +7588,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: access token of the subscription
@@ -7561,7 +7638,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -7592,11 +7669,11 @@ paths:
       x-accepts: application/json
   /api/manage/v1/SubscriptionPlans:
     get:
-      description: If no active subscription plans, then the endpoint will return
-        empty list
+      description: "If no active subscription plans, then the endpoint will return\
+        \ empty list"
       operationId: SubscriptionPlans_GetSubscriptionPlans
       parameters:
-      - description: Variable for pagination, defautl value is 0
+      - description: "Variable for pagination, defautl value is 0"
         explode: true
         in: query
         name: skip
@@ -7608,7 +7685,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: Variable for pagination, default value is 10
+      - description: "Variable for pagination, default value is 10"
         explode: true
         in: query
         name: take
@@ -7648,7 +7725,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -7684,7 +7761,7 @@ paths:
     get:
       operationId: Subscriptions_GetSubscriptions
       parameters:
-      - description: Variable for pagination, defautl value is 0
+      - description: "Variable for pagination, defautl value is 0"
         explode: true
         in: query
         name: skip
@@ -7696,7 +7773,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: Variable for pagination, default value is 10
+      - description: "Variable for pagination, default value is 10"
         explode: true
         in: query
         name: take
@@ -7735,7 +7812,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -7785,7 +7862,7 @@ paths:
       summary: Rename subscription
       tags:
       - Subscriptions
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/Subscriptions/{subscriptionId}/Locale:
     put:
@@ -7797,7 +7874,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -7847,7 +7924,7 @@ paths:
       summary: Update subscription's default locale
       tags:
       - Subscriptions
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions:
     get:
@@ -7859,7 +7936,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -7906,7 +7983,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -7956,18 +8033,19 @@ paths:
       summary: Change subscription's default permissions for new entities
       tags:
       - Subscriptions
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/Subscriptions/{id}/permissions:
     get:
       operationId: Subscriptions_GetPermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -7990,12 +8068,13 @@ paths:
     post:
       operationId: Subscriptions_UpdatePermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -8009,6 +8088,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateSubscriptionPermissionsVM'
+        description: ""
       responses:
         "200":
           description: Success
@@ -8041,7 +8121,7 @@ paths:
       summary: Update permissions
       tags:
       - Subscriptions
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/Subscriptions/{subId}/mypermissions:
     get:
@@ -8053,7 +8133,7 @@ paths:
         name: subId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -8077,7 +8157,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: Idenitifier of user
@@ -8132,7 +8212,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: Idenitifier of user
@@ -8188,7 +8268,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -8214,7 +8294,7 @@ paths:
           description: Subscription or user is not found
         "500":
           description: Exception thrown
-      summary: Allows user to leave subscription,.
+      summary: "Allows user to leave subscription,."
       tags:
       - SubscriptionUsers
       x-accepts: application/json
@@ -8228,7 +8308,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: How many entities skip
@@ -8290,12 +8370,13 @@ paths:
     get:
       operationId: SubscriptionUsers_CountUsersAsync
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -8334,7 +8415,7 @@ paths:
     get:
       operationId: Tasks_GetList
       parameters:
-      - description: number of tasks, that have to be skipped
+      - description: "number of tasks, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -8346,7 +8427,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of tasks, that have to be returned
+      - description: "number of tasks, that have to be returned"
         explode: true
         in: query
         name: take
@@ -8364,7 +8445,7 @@ paths:
         name: subscriptionId
         required: false
         schema:
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         style: form
       responses:
@@ -8417,7 +8498,8 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateTaskBaseVM'
-        description: 'task''s view model. You have to specify task type (type: "ExportTemplate")'
+        description: "task's view model. You have to specify task type (type: \"ExportTemplate\"\
+          )"
       responses:
         "200":
           content:
@@ -8454,7 +8536,7 @@ paths:
       summary: Create a new task
       tags:
       - Tasks
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/tasks/{taskId}:
     delete:
@@ -8466,7 +8548,7 @@ paths:
         name: taskId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -8511,7 +8593,7 @@ paths:
         name: taskId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -8560,7 +8642,7 @@ paths:
         name: taskId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -8574,7 +8656,8 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateTaskBaseVM'
-        description: 'task''s view model. You have to specify task type (type: "ExportTemplate")'
+        description: "task's view model. You have to specify task type (type: \"ExportTemplate\"\
+          )"
       responses:
         "200":
           content:
@@ -8611,7 +8694,7 @@ paths:
       summary: Update a task
       tags:
       - Tasks
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/tasks/{taskId}/rename:
     put:
@@ -8623,7 +8706,7 @@ paths:
         name: taskId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: task's new Name
@@ -8722,7 +8805,7 @@ paths:
       summary: Run a task from request body
       tags:
       - Tasks
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/tasks/{taskId}/run:
     post:
@@ -8734,7 +8817,7 @@ paths:
         name: taskId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -8780,7 +8863,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -8829,7 +8912,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -8876,7 +8959,7 @@ paths:
       summary: Update permissions
       tags:
       - Tasks
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/Folder/{id}/CountFolderAndFiles:
     get:
@@ -8889,7 +8972,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: "string, that must be incuded in file or folder name to be counted\
@@ -8952,10 +9035,10 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - description: number of folder and files, that have to be skipped
+      - description: "number of folder and files, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -8967,7 +9050,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of folder and files, that have to be returned
+      - description: "number of folder and files, that have to be returned"
         explode: true
         in: query
         name: take
@@ -8996,7 +9079,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: searchPattern
         required: false
@@ -9006,7 +9090,8 @@ paths:
           minLength: 0
           type: string
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: useRegex
         required: false
@@ -9054,10 +9139,10 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - description: number of folder and files, that have to be skipped
+      - description: "number of folder and files, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -9069,7 +9154,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of folder and files, that have to be returned
+      - description: "number of folder and files, that have to be returned"
         explode: true
         in: query
         name: take
@@ -9098,7 +9183,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: searchPattern
         required: false
@@ -9108,7 +9194,8 @@ paths:
           minLength: 0
           type: string
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: useRegex
         required: false
@@ -9156,7 +9243,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -9195,7 +9282,7 @@ paths:
         name: subscriptionId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -9235,7 +9322,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -9284,7 +9371,7 @@ paths:
       summary: Export specified template folder to a specified format
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/Folder/{id}/Prepare:
     post:
@@ -9298,7 +9385,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -9347,18 +9434,19 @@ paths:
       summary: Prepare specified template folder to report folder
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/Folder/{id}/permissions:
     get:
       operationId: TemplateFolders_GetPermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -9394,12 +9482,13 @@ paths:
     post:
       operationId: TemplateFolders_UpdatePermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -9413,6 +9502,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateFilePermissionsVM'
+        description: ""
       responses:
         "200":
           description: Success
@@ -9445,7 +9535,7 @@ paths:
       summary: Update permissions
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/Folder/{id}:
     delete:
@@ -9458,7 +9548,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -9502,7 +9592,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -9545,7 +9635,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -9590,10 +9680,11 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: recoveryPath
         required: false
@@ -9642,7 +9733,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -9695,7 +9786,7 @@ paths:
         name: subscriptionId
         required: false
         schema:
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         style: form
       - description: parent folder id
@@ -9704,7 +9795,7 @@ paths:
         name: parentId
         required: false
         schema:
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         style: form
       responses:
@@ -9747,10 +9838,10 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - description: number of files, that have to be skipped
+      - description: "number of files, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -9762,7 +9853,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of files, that have to be returned
+      - description: "number of files, that have to be returned"
         explode: true
         in: query
         name: take
@@ -9774,14 +9865,16 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: orderBy
         required: false
         schema:
           $ref: '#/components/schemas/FileSorting'
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: desc
         required: false
@@ -9789,7 +9882,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: searchPattern
         required: false
@@ -9799,7 +9893,8 @@ paths:
           minLength: 0
           type: string
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: useRegex
         required: false
@@ -9847,7 +9942,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -9921,7 +10016,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: destination folder id
@@ -9930,7 +10025,7 @@ paths:
         name: folderId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -9980,7 +10075,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: destination folder id
@@ -9989,7 +10084,7 @@ paths:
         name: folderId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -10038,7 +10133,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -10087,7 +10182,7 @@ paths:
       summary: Create folder
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/Folder/{id}/Rename:
     put:
@@ -10099,7 +10194,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -10147,7 +10242,7 @@ paths:
       summary: Rename a folder
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/Folder/{id}/Icon:
     put:
@@ -10160,7 +10255,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -10209,7 +10304,7 @@ paths:
       summary: Update a folder's icon
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/Folder/{id}/UpdateTags:
     put:
@@ -10221,7 +10316,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -10269,7 +10364,7 @@ paths:
       summary: Update tags
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/File/{id}/Export:
     post:
@@ -10283,7 +10378,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -10332,7 +10427,7 @@ paths:
       summary: Export specified report template to a specified format
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/File/{id}/Prepare:
     post:
@@ -10346,7 +10441,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -10395,7 +10490,7 @@ paths:
       summary: Prepare specified template to report
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/File/{id}/Content:
     put:
@@ -10407,7 +10502,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -10421,7 +10516,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateFileContentVM'
-        description: VM with only byte[] with new content
+        description: "VM with only byte[] with new content"
       responses:
         "204":
           description: No Content
@@ -10452,7 +10547,7 @@ paths:
       summary: Updates contnet of the template
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/File/{id}/StaticPreview:
     post:
@@ -10464,7 +10559,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -10515,7 +10610,7 @@ paths:
         \ `` parameter to check prepared timestamp"
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/File/{id}/Copy/{folderId}:
     post:
@@ -10527,7 +10622,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: folder id
@@ -10536,7 +10631,7 @@ paths:
         name: folderId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -10587,7 +10682,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -10633,7 +10728,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -10678,7 +10773,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -10725,10 +10820,11 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: recoveryPath
         required: false
@@ -10772,15 +10868,17 @@ paths:
     get:
       operationId: Templates_GetFileHistory
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: skip
         required: false
@@ -10789,7 +10887,8 @@ paths:
           format: int32
           type: integer
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: take
         required: false
@@ -10823,7 +10922,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not Found
-      summary: Returns list of actions, performed on this file
+      summary: "Returns list of actions, performed on this file"
       tags:
       - Templates
       x-accepts: application/json
@@ -10838,7 +10937,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -10882,10 +10981,10 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
-      - description: number of files, that have to be skipped
+      - description: "number of files, that have to be skipped"
         explode: true
         in: query
         name: skip
@@ -10897,7 +10996,7 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: number of files, that have to be returned
+      - description: "number of files, that have to be returned"
         explode: true
         in: query
         name: take
@@ -10909,7 +11008,8 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: searchPattern
         required: false
@@ -10918,14 +11018,16 @@ paths:
           minLength: 0
           type: string
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: orderBy
         required: false
         schema:
           $ref: '#/components/schemas/FileSorting'
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: desc
         required: false
@@ -10933,7 +11035,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - explode: true
+      - description: ""
+        explode: true
         in: query
         name: useRegex
         required: false
@@ -10979,12 +11082,13 @@ paths:
     get:
       operationId: Templates_GetPermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -11019,12 +11123,13 @@ paths:
     post:
       operationId: Templates_UpdatePermissions
       parameters:
-      - explode: false
+      - description: ""
+        explode: false
         in: path
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -11038,6 +11143,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateFilePermissionsVM'
+        description: ""
       responses:
         "200":
           description: Success
@@ -11070,7 +11176,7 @@ paths:
       summary: Update permissions
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/File/{id}/Move/{folderId}:
     post:
@@ -11083,7 +11189,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       - description: folder id
@@ -11092,7 +11198,7 @@ paths:
         name: folderId
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       responses:
@@ -11142,7 +11248,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -11192,7 +11298,7 @@ paths:
       summary: Rename a file
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/File/{id}/Icon:
     put:
@@ -11204,7 +11310,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -11254,7 +11360,7 @@ paths:
       summary: Update a files's icon
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/File/{id}/UpdateTags:
     put:
@@ -11266,7 +11372,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -11316,7 +11422,7 @@ paths:
       summary: Update tags
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/rp/v1/Templates/Folder/{id}/File:
     post:
@@ -11329,7 +11435,7 @@ paths:
         name: id
         required: true
         schema:
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         style: simple
       requestBody:
@@ -11378,7 +11484,7 @@ paths:
       summary: Upload a file to the specified folder  !
       tags:
       - Templates
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/UserProfile:
     get:
@@ -11414,6 +11520,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateUserProfileVM'
+        description: ""
       responses:
         "200":
           description: Succesfully updated
@@ -11426,7 +11533,7 @@ paths:
       summary: Update profile of the current user
       tags:
       - UserProfile
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/UserProfile/{userId}:
     get:
@@ -11437,7 +11544,7 @@ paths:
         name: userId
         required: true
         schema:
-          pattern: (^000000000000000000000000$|^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
+          pattern: "(^000000000000000000000000$|^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)"
           type: string
         style: simple
       responses:
@@ -11492,6 +11599,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateUserSettingsVM'
+        description: ""
       responses:
         "200":
           content:
@@ -11514,7 +11622,7 @@ paths:
       summary: Update settings of the current user
       tags:
       - UserSettings
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /api/manage/v1/UserSettings/accept:
     post:
@@ -11530,13 +11638,14 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/AcceptAgreementsVM'
+        description: ""
       responses:
         "200":
           description: Success
       summary: Use this endpoint to accept current version of service license agreement
       tags:
       - UserSettings
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
 components:
   schemas:
@@ -11560,11 +11669,11 @@ components:
       properties:
         parentId:
           minLength: 1
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         ownerId:
           minLength: 1
-          pattern: (^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
+          pattern: "(^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)"
           type: string
         force:
           type: boolean
@@ -11650,6 +11759,7 @@ components:
         entityId: entityId
         id: id
         subscriptionId: subscriptionId
+        type: null
         userId: userId
         adminAction: true
       properties:
@@ -11692,6 +11802,7 @@ components:
           entityId: entityId
           id: id
           subscriptionId: subscriptionId
+          type: null
           userId: userId
           adminAction: true
         - creatorUserId: creatorUserId
@@ -11700,6 +11811,7 @@ components:
           entityId: entityId
           id: id
           subscriptionId: subscriptionId
+          type: null
           userId: userId
           adminAction: true
       properties:
@@ -12077,7 +12189,7 @@ components:
           type: string
         subscriptionId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
       required:
       - name
@@ -12109,7 +12221,7 @@ components:
           type: array
         subscriptionId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
       type: object
     CreateDataSourceAdminVM:
@@ -12119,7 +12231,7 @@ components:
       properties:
         ownerId:
           minLength: 1
-          pattern: (^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
+          pattern: "(^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)"
           type: string
       required:
       - ownerId
@@ -12130,6 +12242,7 @@ components:
         connectionString: connectionString
         name: name
         subscriptionId: subscriptionId
+        connectionType: null
       properties:
         name:
           maxLength: 50
@@ -12142,7 +12255,7 @@ components:
           type: string
         subscriptionId:
           minLength: 1
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         connectionType:
           $ref: '#/components/schemas/DataSourceConnectionType'
@@ -12313,7 +12426,7 @@ components:
           type: string
         subscriptionId:
           nullable: true
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
       required:
       - name
@@ -12368,6 +12481,7 @@ components:
         delayedRunTime: 2000-01-23T04:56:07.000+00:00
         name: name
         subscriptionId: subscriptionId
+        type: null
       properties:
         name:
           maxLength: 50
@@ -12376,7 +12490,7 @@ components:
           type: string
         subscriptionId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         type:
           $ref: '#/components/schemas/TaskType'
@@ -12405,7 +12519,7 @@ components:
       properties:
         locale:
           nullable: true
-          pattern: ^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$
+          pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
         inputFile:
           $ref: '#/components/schemas/InputFileVM'
@@ -12550,7 +12664,7 @@ components:
       properties:
         ownerId:
           nullable: true
-          pattern: (^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
+          pattern: "(^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)"
           type: string
         owner:
           $ref: '#/components/schemas/DataSourcePermission'
@@ -12572,7 +12686,8 @@ components:
       type: object
     DataSourcePermissionsVM:
       additionalProperties: false
-      example: {}
+      example:
+        permissions: null
       properties:
         permissions:
           $ref: '#/components/schemas/DataSourcePermissions'
@@ -12623,6 +12738,8 @@ components:
         id: id
         dataStructure: dataStructure
         subscriptionId: subscriptionId
+        connectionType: null
+        status: null
       properties:
         id:
           nullable: true
@@ -12672,6 +12789,8 @@ components:
           id: id
           dataStructure: dataStructure
           subscriptionId: subscriptionId
+          connectionType: null
+          status: null
         - connectionString: connectionString
           creatorUserId: creatorUserId
           editedTime: 2000-01-23T04:56:07.000+00:00
@@ -12681,6 +12800,8 @@ components:
           id: id
           dataStructure: dataStructure
           subscriptionId: subscriptionId
+          connectionType: null
+          status: null
       properties:
         dataSources:
           items:
@@ -12699,7 +12820,11 @@ components:
       type: object
     DefaultPermissionsVM:
       additionalProperties: false
-      example: {}
+      example:
+        taskPermissions: null
+        groupPermissions: null
+        filePermissions: null
+        dataSourcePermissions: null
       properties:
         filePermissions:
           $ref: '#/components/schemas/FilePermissions'
@@ -12814,11 +12939,11 @@ components:
       properties:
         ownerId:
           minLength: 1
-          pattern: (^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
+          pattern: "(^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)"
           type: string
         parentId:
           minLength: 1
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
       required:
       - ownerId
@@ -12831,11 +12956,11 @@ components:
       properties:
         templateId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         reportId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
       type: object
     ExportFolderCreateVM:
@@ -12896,6 +13021,7 @@ components:
       example:
         fileName: fileName
         pagesCount: 171976544
+        format: null
         exportParameters:
           key: exportParameters
         locale: locale
@@ -12908,11 +13034,11 @@ components:
           type: string
         folderId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         locale:
           nullable: true
-          pattern: ^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$
+          pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
         pagesCount:
           format: int32
@@ -12948,6 +13074,7 @@ components:
       example:
         fileName: fileName
         pagesCount: 171976544
+        format: null
         exportParameters:
           key: exportParameters
         reportParameters:
@@ -12962,11 +13089,11 @@ components:
           type: string
         folderId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         locale:
           nullable: true
-          pattern: ^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$
+          pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
         pagesCount:
           format: int32
@@ -12997,6 +13124,7 @@ components:
       - $ref: '#/components/schemas/FileVM'
       example:
         reportId: reportId
+        format: null
         templateId: templateId
       properties:
         format:
@@ -13227,7 +13355,7 @@ components:
       properties:
         ownerId:
           nullable: true
-          pattern: (^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
+          pattern: "(^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)"
           type: string
         owner:
           $ref: '#/components/schemas/FilePermission'
@@ -13249,7 +13377,8 @@ components:
       type: object
     FilePermissionsVM:
       additionalProperties: false
-      example: {}
+      example:
+        permissions: null
       properties:
         permissions:
           $ref: '#/components/schemas/FilePermissions'
@@ -13343,15 +13472,18 @@ components:
       allOf:
       - $ref: '#/components/schemas/EntityVM'
       example:
+        statusReason: null
         size: 0
         name: name
         icon: icon
         errorMessage: errorMessage
+        type: null
         subscriptionId: subscriptionId
         parentId: parentId
         tags:
         - tags
         - tags
+        status: null
       properties:
         name:
           nullable: true
@@ -13581,7 +13713,7 @@ components:
       properties:
         ownerId:
           nullable: true
-          pattern: (^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
+          pattern: "(^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)"
           type: string
         owner:
           $ref: '#/components/schemas/GroupPermission'
@@ -13603,7 +13735,8 @@ components:
       type: object
     GroupPermissionsVM:
       additionalProperties: false
-      example: {}
+      example:
+        permissions: null
       properties:
         permissions:
           $ref: '#/components/schemas/GroupPermissions'
@@ -13719,7 +13852,7 @@ components:
       properties:
         entityId:
           nullable: true
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         fileName:
           maxLength: 250
@@ -13744,7 +13877,12 @@ components:
       type: object
     MyPermissionsVM:
       additionalProperties: false
-      example: {}
+      example:
+        datasources: null
+        files: null
+        groups: null
+        subscription: null
+        tasks: null
       properties:
         subscription:
           $ref: '#/components/schemas/SubscriptionPermission'
@@ -13767,7 +13905,7 @@ components:
           type: string
         folderId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         type:
           $ref: '#/components/schemas/FileKind'
@@ -13813,11 +13951,11 @@ components:
           type: string
         locale:
           nullable: true
-          pattern: ^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$
+          pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
         folderId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         pagesCount:
           format: int32
@@ -13841,7 +13979,7 @@ components:
       properties:
         locale:
           nullable: true
-          pattern: ^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$
+          pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
         cacheTolerance:
           default: 300
@@ -13858,7 +13996,7 @@ components:
       properties:
         locale:
           nullable: true
-          pattern: ^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$
+          pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
         reportParameters:
           additionalProperties:
@@ -13950,11 +14088,11 @@ components:
       properties:
         ownerId:
           minLength: 1
-          pattern: (^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
+          pattern: "(^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)"
           type: string
         parentId:
           minLength: 1
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
       required:
       - ownerId
@@ -13969,7 +14107,7 @@ components:
       properties:
         templateId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
       type: object
     ReportFolderCreateVM:
@@ -13980,6 +14118,7 @@ components:
     ReportInfo:
       additionalProperties: false
       example:
+        saveMode: null
         author: author
         created: 2000-01-23T04:56:07.000+00:00
         name: name
@@ -14034,6 +14173,7 @@ components:
       - $ref: '#/components/schemas/FileVM'
       example:
         reportInfo:
+          saveMode: null
           author: author
           created: 2000-01-23T04:56:07.000+00:00
           name: name
@@ -14247,10 +14387,11 @@ components:
       additionalProperties: false
       example:
         subscriptionId: subscriptionId
+        type: null
       properties:
         subscriptionId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         type:
           $ref: '#/components/schemas/TaskType'
@@ -14272,7 +14413,7 @@ components:
       properties:
         locale:
           nullable: true
-          pattern: ^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$
+          pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
         inputFile:
           $ref: '#/components/schemas/RunInputFileVM'
@@ -14618,6 +14759,7 @@ components:
           id: id
           groupLimit: 3
           timePeriodType: ""
+          readonlyTimeLimitType: null
           tasks:
             prepare: true
             thumbnailReport: true
@@ -14648,7 +14790,7 @@ components:
       properties:
         ownerId:
           nullable: true
-          pattern: (^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
+          pattern: "(^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)"
           type: string
         owner:
           $ref: '#/components/schemas/SubscriptionPermission'
@@ -14670,7 +14812,8 @@ components:
       type: object
     SubscriptionPermissionsVM:
       additionalProperties: false
-      example: {}
+      example:
+        permissions: null
       properties:
         permissions:
           $ref: '#/components/schemas/SubscriptionPermissions'
@@ -14696,6 +14839,7 @@ components:
         id: id
         groupLimit: 3
         timePeriodType: ""
+        readonlyTimeLimitType: null
         tasks:
           prepare: true
           thumbnailReport: true
@@ -14799,6 +14943,7 @@ components:
           id: id
           groupLimit: 3
           timePeriodType: ""
+          readonlyTimeLimitType: null
           tasks:
             prepare: true
             thumbnailReport: true
@@ -14827,6 +14972,7 @@ components:
           id: id
           groupLimit: 3
           timePeriodType: ""
+          readonlyTimeLimitType: null
           tasks:
             prepare: true
             thumbnailReport: true
@@ -14962,6 +15108,7 @@ components:
             id: id
             groupLimit: 3
             timePeriodType: ""
+            readonlyTimeLimitType: null
             tasks:
               prepare: true
               thumbnailReport: true
@@ -14997,6 +15144,7 @@ components:
             id: id
             groupLimit: 3
             timePeriodType: ""
+            readonlyTimeLimitType: null
             tasks:
               prepare: true
               thumbnailReport: true
@@ -15028,6 +15176,7 @@ components:
             id: id
             groupLimit: 3
             timePeriodType: ""
+            readonlyTimeLimitType: null
             tasks:
               prepare: true
               thumbnailReport: true
@@ -15098,6 +15247,7 @@ components:
               id: id
               groupLimit: 3
               timePeriodType: ""
+              readonlyTimeLimitType: null
               tasks:
                 prepare: true
                 thumbnailReport: true
@@ -15133,6 +15283,7 @@ components:
               id: id
               groupLimit: 3
               timePeriodType: ""
+              readonlyTimeLimitType: null
               tasks:
                 prepare: true
                 thumbnailReport: true
@@ -15164,6 +15315,7 @@ components:
               id: id
               groupLimit: 3
               timePeriodType: ""
+              readonlyTimeLimitType: null
               tasks:
                 prepare: true
                 thumbnailReport: true
@@ -15205,6 +15357,7 @@ components:
               id: id
               groupLimit: 3
               timePeriodType: ""
+              readonlyTimeLimitType: null
               tasks:
                 prepare: true
                 thumbnailReport: true
@@ -15240,6 +15393,7 @@ components:
               id: id
               groupLimit: 3
               timePeriodType: ""
+              readonlyTimeLimitType: null
               tasks:
                 prepare: true
                 thumbnailReport: true
@@ -15271,6 +15425,7 @@ components:
               id: id
               groupLimit: 3
               timePeriodType: ""
+              readonlyTimeLimitType: null
               tasks:
                 prepare: true
                 thumbnailReport: true
@@ -15336,7 +15491,7 @@ components:
       properties:
         id:
           nullable: true
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         delayedWasRunTime:
           format: date-time
@@ -15433,7 +15588,7 @@ components:
       properties:
         ownerId:
           nullable: true
-          pattern: (^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
+          pattern: "(^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)"
           type: string
         owner:
           $ref: '#/components/schemas/TaskPermission'
@@ -15455,7 +15610,8 @@ components:
       type: object
     TaskPermissionsVM:
       additionalProperties: false
-      example: {}
+      example:
+        permissions: null
       properties:
         permissions:
           $ref: '#/components/schemas/TaskPermissions'
@@ -15575,11 +15731,11 @@ components:
       properties:
         ownerId:
           minLength: 1
-          pattern: (^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)
+          pattern: "(^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)"
           type: string
         parentId:
           minLength: 1
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
       required:
       - ownerId
@@ -15601,6 +15757,7 @@ components:
       - $ref: '#/components/schemas/FileVM'
       example:
         reportInfo:
+          saveMode: null
           author: author
           created: 2000-01-23T04:56:07.000+00:00
           name: name
@@ -15667,7 +15824,7 @@ components:
       properties:
         locale:
           nullable: true
-          pattern: ^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$
+          pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
         inputFile:
           $ref: '#/components/schemas/InputFileVM'
@@ -15701,7 +15858,7 @@ components:
           type: string
         subscriptionId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
       required:
       - name
@@ -15733,7 +15890,7 @@ components:
           type: array
         subscriptionId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
       type: object
     UpdateDataSourceConnectionStringVM:
@@ -15750,7 +15907,9 @@ components:
       type: object
     UpdateDataSourcePermissionsVM:
       additionalProperties: false
-      example: {}
+      example:
+        newPermissions: null
+        administrate: null
       properties:
         newPermissions:
           $ref: '#/components/schemas/DataSourcePermissions'
@@ -15767,7 +15926,7 @@ components:
       properties:
         subscriptionId:
           minLength: 1
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
       required:
       - subscriptionId
@@ -15775,10 +15934,18 @@ components:
     UpdateDefaultPermissionsVM:
       additionalProperties: false
       example:
-        taskPermissions: {}
-        groupPermissions: {}
-        filePermissions: {}
-        dataSourcePermissions: {}
+        taskPermissions:
+          newPermissions: null
+          administrate: null
+        groupPermissions:
+          newPermissions: null
+          administrate: null
+        filePermissions:
+          newPermissions: null
+          administrate: null
+        dataSourcePermissions:
+          newPermissions: null
+          administrate: null
       properties:
         filePermissions:
           $ref: '#/components/schemas/UpdateFilePermissionsVM'
@@ -15952,7 +16119,9 @@ components:
       type: object
     UpdateFilePermissionsVM:
       additionalProperties: false
-      example: {}
+      example:
+        newPermissions: null
+        administrate: null
       properties:
         newPermissions:
           $ref: '#/components/schemas/FilePermissions'
@@ -15964,7 +16133,9 @@ components:
       type: object
     UpdateGroupPermissionsVM:
       additionalProperties: false
-      example: {}
+      example:
+        newPermissions: null
+        administrate: null
       properties:
         newPermissions:
           $ref: '#/components/schemas/GroupPermissions'
@@ -16006,14 +16177,16 @@ components:
       properties:
         locale:
           minLength: 1
-          pattern: ^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$
+          pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
       required:
       - locale
       type: object
     UpdateSubscriptionPermissionsVM:
       additionalProperties: false
-      example: {}
+      example:
+        newPermissions: null
+        administrate: null
       properties:
         newPermissions:
           $ref: '#/components/schemas/SubscriptionPermissions'
@@ -16030,6 +16203,7 @@ components:
         delayedRunTime: 2000-01-23T04:56:07.000+00:00
         name: name
         subscriptionId: subscriptionId
+        type: null
       properties:
         name:
           maxLength: 50
@@ -16038,7 +16212,7 @@ components:
           type: string
         subscriptionId:
           nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
         type:
           $ref: '#/components/schemas/TaskType'
@@ -16052,7 +16226,9 @@ components:
       type: object
     UpdateTaskPermissionsVM:
       additionalProperties: false
-      example: {}
+      example:
+        newPermissions: null
+        administrate: null
       properties:
         newPermissions:
           $ref: '#/components/schemas/TaskPermissions'
@@ -16079,7 +16255,7 @@ components:
       properties:
         locale:
           nullable: true
-          pattern: ^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$
+          pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
         inputFile:
           $ref: '#/components/schemas/InputFileVM'
@@ -16107,7 +16283,7 @@ components:
           type: array
         id:
           nullable: true
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
       type: object
     UpdateUserProfileVM:
@@ -16205,6 +16381,7 @@ components:
     UserSettingsVM:
       additionalProperties: false
       example:
+        profileVisibility: null
         defaultSubscription: defaultSubscription
         showHiddenFilesAndFolders: true
         slaAcceptedDateTime: 2000-01-23T04:56:07.000+00:00
@@ -16213,7 +16390,7 @@ components:
           $ref: '#/components/schemas/ProfileVisibility'
         defaultSubscription:
           nullable: true
-          pattern: ^[A-Fa-f0-9]{24}$
+          pattern: "^[A-Fa-f0-9]{24}$"
           type: string
         showHiddenFilesAndFolders:
           type: boolean
@@ -16237,8 +16414,8 @@ components:
   securitySchemes:
     JWT:
       bearerFormat: JWT
-      description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization:
-        Bearer {token}"'
+      description: "JWT Authorization header using the Bearer scheme. Example: \"\
+        Authorization: Bearer {token}\""
       scheme: bearer
       type: http
     ApiKey:

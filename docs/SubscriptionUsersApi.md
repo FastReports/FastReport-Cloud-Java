@@ -2,13 +2,13 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**subscriptionUsersAddUser**](SubscriptionUsersApi.md#subscriptionUsersAddUser) | **PUT** /api/manage/v1/Subscriptions/{subscriptionId}/users/{userId} | Add a user to the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
-[**subscriptionUsersCountUsersAsync**](SubscriptionUsersApi.md#subscriptionUsersCountUsersAsync) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/UsersCount | Returns a number of users in subscription
-[**subscriptionUsersGetUsers**](SubscriptionUsersApi.md#subscriptionUsersGetUsers) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/users | Returns all users of subscription
-[**subscriptionUsersLeaveSubscripiton**](SubscriptionUsersApi.md#subscriptionUsersLeaveSubscripiton) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/leave | Allows user to leave subscription,.
-[**subscriptionUsersRemoveUser**](SubscriptionUsersApi.md#subscriptionUsersRemoveUser) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/users/{userId} | Delete a user from the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**subscriptionUsersAddUser**](SubscriptionUsersApi.md#subscriptionUsersAddUser) | **PUT** /api/manage/v1/Subscriptions/{subscriptionId}/users/{userId} | Add a user to the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription. |
+| [**subscriptionUsersCountUsersAsync**](SubscriptionUsersApi.md#subscriptionUsersCountUsersAsync) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/UsersCount | Returns a number of users in subscription |
+| [**subscriptionUsersGetUsers**](SubscriptionUsersApi.md#subscriptionUsersGetUsers) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/users | Returns all users of subscription |
+| [**subscriptionUsersLeaveSubscripiton**](SubscriptionUsersApi.md#subscriptionUsersLeaveSubscripiton) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/leave | Allows user to leave subscription,. |
+| [**subscriptionUsersRemoveUser**](SubscriptionUsersApi.md#subscriptionUsersRemoveUser) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/users/{userId} | Delete a user from the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription. |
 
 
 
@@ -62,10 +62,10 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subscriptionId** | **String**| Idenitifier of subscription |
- **userId** | **String**| Idenitifier of user |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| Idenitifier of subscription | |
+| **userId** | **String**| Idenitifier of user | |
 
 ### Return type
 
@@ -142,9 +142,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subscriptionId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**|  | |
 
 ### Return type
 
@@ -222,11 +222,11 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subscriptionId** | **String**| Idenitifier of subscription |
- **skip** | **Integer**| How many entities skip | [optional] [default to 0]
- **take** | **Integer**| How many entities take | [optional] [default to 10]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| Idenitifier of subscription | |
+| **skip** | **Integer**| How many entities skip | [optional] [default to 0] |
+| **take** | **Integer**| How many entities take | [optional] [default to 10] |
 
 ### Return type
 
@@ -301,9 +301,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subscriptionId** | **String**| Idenitifier of subscription |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| Idenitifier of subscription | |
 
 ### Return type
 
@@ -379,10 +379,10 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subscriptionId** | **String**| Idenitifier of subscription |
- **userId** | **String**| Idenitifier of user |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| Idenitifier of subscription | |
+| **userId** | **String**| Idenitifier of user | |
 
 ### Return type
 

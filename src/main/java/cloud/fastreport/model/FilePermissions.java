@@ -16,21 +16,19 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.FilePermission;
-import cloud.fastreport.model.FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * FilePermissions
@@ -42,7 +40,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   FilePermissions.JSON_PROPERTY_OTHER,
   FilePermissions.JSON_PROPERTY_ANON
 })
-@JsonTypeName("FilePermissions")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FilePermissions {
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
@@ -60,6 +57,8 @@ public class FilePermissions {
   public static final String JSON_PROPERTY_ANON = "anon";
   private FilePermission anon;
 
+  public FilePermissions() {
+  }
 
   public FilePermissions ownerId(String ownerId) {
     this.ownerId = JsonNullable.<String>of(ownerId);
@@ -72,7 +71,6 @@ public class FilePermissions {
    * @return ownerId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getOwnerId() {
@@ -107,7 +105,6 @@ public class FilePermissions {
    * @return owner
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_OWNER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -146,7 +143,6 @@ public class FilePermissions {
    * @return groups
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Map<String, FilePermission> getGroups() {
@@ -181,7 +177,6 @@ public class FilePermissions {
    * @return other
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_OTHER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -208,7 +203,6 @@ public class FilePermissions {
    * @return anon
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ANON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -233,16 +227,27 @@ public class FilePermissions {
       return false;
     }
     FilePermissions filePermissions = (FilePermissions) o;
-    return Objects.equals(this.ownerId, filePermissions.ownerId) &&
+    return equalsNullable(this.ownerId, filePermissions.ownerId) &&
         Objects.equals(this.owner, filePermissions.owner) &&
-        Objects.equals(this.groups, filePermissions.groups) &&
+        equalsNullable(this.groups, filePermissions.groups) &&
         Objects.equals(this.other, filePermissions.other) &&
         Objects.equals(this.anon, filePermissions.anon);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, owner, groups, other, anon);
+    return Objects.hash(hashCodeNullable(ownerId), owner, hashCodeNullable(groups), other, anon);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

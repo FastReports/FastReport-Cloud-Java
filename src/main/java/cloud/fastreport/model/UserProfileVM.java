@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * UserProfileVM
@@ -37,7 +37,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   UserProfileVM.JSON_PROPERTY_EMAIL,
   UserProfileVM.JSON_PROPERTY_IS_READ_ONLY
 })
-@JsonTypeName("UserProfileVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UserProfileVM {
   public static final String JSON_PROPERTY_ID = "id";
@@ -55,6 +54,8 @@ public class UserProfileVM {
   public static final String JSON_PROPERTY_IS_READ_ONLY = "isReadOnly";
   private Boolean isReadOnly;
 
+  public UserProfileVM() {
+  }
 
   public UserProfileVM id(String id) {
     this.id = JsonNullable.<String>of(id);
@@ -67,7 +68,6 @@ public class UserProfileVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -102,7 +102,6 @@ public class UserProfileVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -137,7 +136,6 @@ public class UserProfileVM {
    * @return username
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getUsername() {
@@ -172,7 +170,6 @@ public class UserProfileVM {
    * @return email
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEmail() {
@@ -207,7 +204,6 @@ public class UserProfileVM {
    * @return isReadOnly
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_IS_READ_ONLY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -232,16 +228,27 @@ public class UserProfileVM {
       return false;
     }
     UserProfileVM userProfileVM = (UserProfileVM) o;
-    return Objects.equals(this.id, userProfileVM.id) &&
-        Objects.equals(this.name, userProfileVM.name) &&
-        Objects.equals(this.username, userProfileVM.username) &&
-        Objects.equals(this.email, userProfileVM.email) &&
+    return equalsNullable(this.id, userProfileVM.id) &&
+        equalsNullable(this.name, userProfileVM.name) &&
+        equalsNullable(this.username, userProfileVM.username) &&
+        equalsNullable(this.email, userProfileVM.email) &&
         Objects.equals(this.isReadOnly, userProfileVM.isReadOnly);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, username, email, isReadOnly);
+    return Objects.hash(hashCodeNullable(id), hashCodeNullable(name), hashCodeNullable(username), hashCodeNullable(email), isReadOnly);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

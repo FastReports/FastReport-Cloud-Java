@@ -2,10 +2,10 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**subscriptionGroupsCountGroupsAsync**](SubscriptionGroupsApi.md#subscriptionGroupsCountGroupsAsync) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/count | Returns a number of groups in subscription
-[**subscriptionGroupsGetGroupsList**](SubscriptionGroupsApi.md#subscriptionGroupsGetGroupsList) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/groups | returns groups of the subscription or subscription user
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**subscriptionGroupsCountGroupsAsync**](SubscriptionGroupsApi.md#subscriptionGroupsCountGroupsAsync) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/count | Returns a number of groups in subscription |
+| [**subscriptionGroupsGetGroupsList**](SubscriptionGroupsApi.md#subscriptionGroupsGetGroupsList) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/groups | returns groups of the subscription or subscription user |
 
 
 
@@ -59,9 +59,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subscriptionId** | **String**| subscripiton id |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| subscripiton id | |
 
 ### Return type
 
@@ -137,10 +137,10 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subscriptionId** | **String**| subscripiton id |
- **userId** | **String**| user Id (optional) | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| subscripiton id | |
+| **userId** | **String**| user Id (optional) | [optional] |
 
 ### Return type
 

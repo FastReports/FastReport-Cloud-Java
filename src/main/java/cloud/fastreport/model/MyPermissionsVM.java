@@ -25,9 +25,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * MyPermissionsVM
@@ -39,7 +38,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MyPermissionsVM.JSON_PROPERTY_GROUPS,
   MyPermissionsVM.JSON_PROPERTY_TASKS
 })
-@JsonTypeName("MyPermissionsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class MyPermissionsVM {
   public static final String JSON_PROPERTY_SUBSCRIPTION = "subscription";
@@ -57,6 +55,8 @@ public class MyPermissionsVM {
   public static final String JSON_PROPERTY_TASKS = "tasks";
   private TaskPermission tasks;
 
+  public MyPermissionsVM() {
+  }
 
   public MyPermissionsVM subscription(SubscriptionPermission subscription) {
     
@@ -69,7 +69,6 @@ public class MyPermissionsVM {
    * @return subscription
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SUBSCRIPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -96,7 +95,6 @@ public class MyPermissionsVM {
    * @return files
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_FILES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -123,7 +121,6 @@ public class MyPermissionsVM {
    * @return datasources
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DATASOURCES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -150,7 +147,6 @@ public class MyPermissionsVM {
    * @return groups
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_GROUPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -177,7 +173,6 @@ public class MyPermissionsVM {
    * @return tasks
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TASKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

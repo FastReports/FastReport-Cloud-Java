@@ -20,13 +20,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * EndpointVM
@@ -34,12 +34,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   EndpointVM.JSON_PROPERTY_URL
 })
-@JsonTypeName("EndpointVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EndpointVM {
   public static final String JSON_PROPERTY_URL = "url";
   private JsonNullable<URI> url = JsonNullable.<URI>undefined();
 
+  public EndpointVM() {
+  }
 
   public EndpointVM url(URI url) {
     this.url = JsonNullable.<URI>of(url);
@@ -52,7 +53,6 @@ public class EndpointVM {
    * @return url
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public URI getUrl() {
@@ -85,12 +85,23 @@ public class EndpointVM {
       return false;
     }
     EndpointVM endpointVM = (EndpointVM) o;
-    return Objects.equals(this.url, endpointVM.url);
+    return equalsNullable(this.url, endpointVM.url);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url);
+    return Objects.hash(hashCodeNullable(url));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -20,9 +20,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * DeleteApiKeyVM
@@ -30,12 +29,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   DeleteApiKeyVM.JSON_PROPERTY_API_KEY
 })
-@JsonTypeName("DeleteApiKeyVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DeleteApiKeyVM {
   public static final String JSON_PROPERTY_API_KEY = "apiKey";
   private String apiKey;
 
+  public DeleteApiKeyVM() {
+  }
 
   public DeleteApiKeyVM apiKey(String apiKey) {
     
@@ -47,7 +47,7 @@ public class DeleteApiKeyVM {
    * Get apiKey
    * @return apiKey
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_API_KEY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

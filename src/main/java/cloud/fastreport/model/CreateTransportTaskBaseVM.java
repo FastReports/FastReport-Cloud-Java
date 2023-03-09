@@ -15,7 +15,6 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.CreateTaskBaseVM;
 import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -23,15 +22,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.threeten.bp.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * CreateTransportTaskBaseVM
@@ -44,7 +43,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CreateTransportTaskBaseVM.JSON_PROPERTY_DELAYED_RUN_TIME,
   CreateTransportTaskBaseVM.JSON_PROPERTY_CRON_EXPRESSION
 })
-@JsonTypeName("CreateTransportTaskBaseVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateTransportTaskBaseVM {
   public static final String JSON_PROPERTY_FILES = "files";
@@ -65,6 +63,8 @@ public class CreateTransportTaskBaseVM {
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
   private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
+  public CreateTransportTaskBaseVM() {
+  }
 
   public CreateTransportTaskBaseVM files(List<InputFileVM> files) {
     this.files = JsonNullable.<List<InputFileVM>>of(files);
@@ -89,7 +89,6 @@ public class CreateTransportTaskBaseVM {
    * @return files
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<InputFileVM> getFiles() {
@@ -124,7 +123,6 @@ public class CreateTransportTaskBaseVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -159,7 +157,6 @@ public class CreateTransportTaskBaseVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -194,7 +191,6 @@ public class CreateTransportTaskBaseVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -221,7 +217,6 @@ public class CreateTransportTaskBaseVM {
    * @return delayedRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedRunTime() {
@@ -256,7 +251,6 @@ public class CreateTransportTaskBaseVM {
    * @return cronExpression
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCronExpression() {
@@ -289,17 +283,28 @@ public class CreateTransportTaskBaseVM {
       return false;
     }
     CreateTransportTaskBaseVM createTransportTaskBaseVM = (CreateTransportTaskBaseVM) o;
-    return Objects.equals(this.files, createTransportTaskBaseVM.files) &&
-        Objects.equals(this.name, createTransportTaskBaseVM.name) &&
-        Objects.equals(this.subscriptionId, createTransportTaskBaseVM.subscriptionId) &&
+    return equalsNullable(this.files, createTransportTaskBaseVM.files) &&
+        equalsNullable(this.name, createTransportTaskBaseVM.name) &&
+        equalsNullable(this.subscriptionId, createTransportTaskBaseVM.subscriptionId) &&
         Objects.equals(this.type, createTransportTaskBaseVM.type) &&
-        Objects.equals(this.delayedRunTime, createTransportTaskBaseVM.delayedRunTime) &&
-        Objects.equals(this.cronExpression, createTransportTaskBaseVM.cronExpression);
+        equalsNullable(this.delayedRunTime, createTransportTaskBaseVM.delayedRunTime) &&
+        equalsNullable(this.cronExpression, createTransportTaskBaseVM.cronExpression);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(files, name, subscriptionId, type, delayedRunTime, cronExpression);
+    return Objects.hash(hashCodeNullable(files), hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

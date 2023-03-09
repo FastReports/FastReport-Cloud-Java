@@ -21,9 +21,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * DataSourcePermissionsVM
@@ -31,12 +30,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   DataSourcePermissionsVM.JSON_PROPERTY_PERMISSIONS
 })
-@JsonTypeName("DataSourcePermissionsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DataSourcePermissionsVM {
   public static final String JSON_PROPERTY_PERMISSIONS = "permissions";
   private DataSourcePermissions permissions;
 
+  public DataSourcePermissionsVM() {
+  }
 
   public DataSourcePermissionsVM permissions(DataSourcePermissions permissions) {
     
@@ -49,7 +49,6 @@ public class DataSourcePermissionsVM {
    * @return permissions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

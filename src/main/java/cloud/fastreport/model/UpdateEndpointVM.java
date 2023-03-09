@@ -15,22 +15,20 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.EndpointVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * UpdateEndpointVM
@@ -40,7 +38,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   UpdateEndpointVM.JSON_PROPERTY_HEADERS,
   UpdateEndpointVM.JSON_PROPERTY_URL
 })
-@JsonTypeName("UpdateEndpointVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateEndpointVM {
   public static final String JSON_PROPERTY_BEARER_TOKEN = "bearerToken";
@@ -52,6 +49,8 @@ public class UpdateEndpointVM {
   public static final String JSON_PROPERTY_URL = "url";
   private JsonNullable<URI> url = JsonNullable.<URI>undefined();
 
+  public UpdateEndpointVM() {
+  }
 
   public UpdateEndpointVM bearerToken(String bearerToken) {
     this.bearerToken = JsonNullable.<String>of(bearerToken);
@@ -64,7 +63,6 @@ public class UpdateEndpointVM {
    * @return bearerToken
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getBearerToken() {
@@ -111,7 +109,6 @@ public class UpdateEndpointVM {
    * @return headers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Map<String, String> getHeaders() {
@@ -146,7 +143,6 @@ public class UpdateEndpointVM {
    * @return url
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public URI getUrl() {
@@ -179,14 +175,25 @@ public class UpdateEndpointVM {
       return false;
     }
     UpdateEndpointVM updateEndpointVM = (UpdateEndpointVM) o;
-    return Objects.equals(this.bearerToken, updateEndpointVM.bearerToken) &&
-        Objects.equals(this.headers, updateEndpointVM.headers) &&
-        Objects.equals(this.url, updateEndpointVM.url);
+    return equalsNullable(this.bearerToken, updateEndpointVM.bearerToken) &&
+        equalsNullable(this.headers, updateEndpointVM.headers) &&
+        equalsNullable(this.url, updateEndpointVM.url);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bearerToken, headers, url);
+    return Objects.hash(hashCodeNullable(bearerToken), hashCodeNullable(headers), hashCodeNullable(url));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -20,9 +20,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * FolderIconVM
@@ -30,12 +29,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   FolderIconVM.JSON_PROPERTY_ICON
 })
-@JsonTypeName("FolderIconVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FolderIconVM {
   public static final String JSON_PROPERTY_ICON = "icon";
   private byte[] icon;
 
+  public FolderIconVM() {
+  }
 
   public FolderIconVM icon(byte[] icon) {
     
@@ -47,7 +47,7 @@ public class FolderIconVM {
    * Get icon
    * @return icon
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_ICON)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

@@ -21,14 +21,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * BreadcrumbsVM
@@ -36,12 +36,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   BreadcrumbsVM.JSON_PROPERTY_BREADCRUMBS
 })
-@JsonTypeName("BreadcrumbsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class BreadcrumbsVM {
   public static final String JSON_PROPERTY_BREADCRUMBS = "breadcrumbs";
   private JsonNullable<List<BreadcrumbsModel>> breadcrumbs = JsonNullable.<List<BreadcrumbsModel>>undefined();
 
+  public BreadcrumbsVM() {
+  }
 
   public BreadcrumbsVM breadcrumbs(List<BreadcrumbsModel> breadcrumbs) {
     this.breadcrumbs = JsonNullable.<List<BreadcrumbsModel>>of(breadcrumbs);
@@ -66,7 +67,6 @@ public class BreadcrumbsVM {
    * @return breadcrumbs
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<BreadcrumbsModel> getBreadcrumbs() {
@@ -99,12 +99,23 @@ public class BreadcrumbsVM {
       return false;
     }
     BreadcrumbsVM breadcrumbsVM = (BreadcrumbsVM) o;
-    return Objects.equals(this.breadcrumbs, breadcrumbsVM.breadcrumbs);
+    return equalsNullable(this.breadcrumbs, breadcrumbsVM.breadcrumbs);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(breadcrumbs);
+    return Objects.hash(hashCodeNullable(breadcrumbs));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

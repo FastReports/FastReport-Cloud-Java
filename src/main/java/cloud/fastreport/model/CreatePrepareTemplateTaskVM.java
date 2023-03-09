@@ -16,24 +16,23 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.CreateExportReportTaskVM;
-import cloud.fastreport.model.CreateTransformTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.threeten.bp.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * CreatePrepareTemplateTaskVM
@@ -48,7 +47,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CreatePrepareTemplateTaskVM.JSON_PROPERTY_DELAYED_RUN_TIME,
   CreatePrepareTemplateTaskVM.JSON_PROPERTY_CRON_EXPRESSION
 })
-@JsonTypeName("CreatePrepareTemplateTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreatePrepareTemplateTaskVM {
   public static final String JSON_PROPERTY_EXPORTS = "exports";
@@ -75,6 +73,8 @@ public class CreatePrepareTemplateTaskVM {
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
   private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
+  public CreatePrepareTemplateTaskVM() {
+  }
 
   public CreatePrepareTemplateTaskVM exports(List<CreateExportReportTaskVM> exports) {
     this.exports = JsonNullable.<List<CreateExportReportTaskVM>>of(exports);
@@ -99,7 +99,6 @@ public class CreatePrepareTemplateTaskVM {
    * @return exports
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<CreateExportReportTaskVM> getExports() {
@@ -136,7 +135,6 @@ public class CreatePrepareTemplateTaskVM {
    * @return pagesCount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Integer getPagesCount() {
@@ -183,7 +181,6 @@ public class CreatePrepareTemplateTaskVM {
    * @return reportParameters
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Map<String, String> getReportParameters() {
@@ -218,7 +215,6 @@ public class CreatePrepareTemplateTaskVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -253,7 +249,6 @@ public class CreatePrepareTemplateTaskVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -288,7 +283,6 @@ public class CreatePrepareTemplateTaskVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -315,7 +309,6 @@ public class CreatePrepareTemplateTaskVM {
    * @return delayedRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedRunTime() {
@@ -350,7 +343,6 @@ public class CreatePrepareTemplateTaskVM {
    * @return cronExpression
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCronExpression() {
@@ -383,19 +375,30 @@ public class CreatePrepareTemplateTaskVM {
       return false;
     }
     CreatePrepareTemplateTaskVM createPrepareTemplateTaskVM = (CreatePrepareTemplateTaskVM) o;
-    return Objects.equals(this.exports, createPrepareTemplateTaskVM.exports) &&
-        Objects.equals(this.pagesCount, createPrepareTemplateTaskVM.pagesCount) &&
-        Objects.equals(this.reportParameters, createPrepareTemplateTaskVM.reportParameters) &&
-        Objects.equals(this.name, createPrepareTemplateTaskVM.name) &&
-        Objects.equals(this.subscriptionId, createPrepareTemplateTaskVM.subscriptionId) &&
+    return equalsNullable(this.exports, createPrepareTemplateTaskVM.exports) &&
+        equalsNullable(this.pagesCount, createPrepareTemplateTaskVM.pagesCount) &&
+        equalsNullable(this.reportParameters, createPrepareTemplateTaskVM.reportParameters) &&
+        equalsNullable(this.name, createPrepareTemplateTaskVM.name) &&
+        equalsNullable(this.subscriptionId, createPrepareTemplateTaskVM.subscriptionId) &&
         Objects.equals(this.type, createPrepareTemplateTaskVM.type) &&
-        Objects.equals(this.delayedRunTime, createPrepareTemplateTaskVM.delayedRunTime) &&
-        Objects.equals(this.cronExpression, createPrepareTemplateTaskVM.cronExpression);
+        equalsNullable(this.delayedRunTime, createPrepareTemplateTaskVM.delayedRunTime) &&
+        equalsNullable(this.cronExpression, createPrepareTemplateTaskVM.cronExpression);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(exports, pagesCount, reportParameters, name, subscriptionId, type, delayedRunTime, cronExpression);
+    return Objects.hash(hashCodeNullable(exports), hashCodeNullable(pagesCount), hashCodeNullable(reportParameters), hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

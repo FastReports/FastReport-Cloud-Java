@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * AppMixins
@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   AppMixins.JSON_PROPERTY_HEAD,
   AppMixins.JSON_PROPERTY_BODY
 })
-@JsonTypeName("AppMixins")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AppMixins {
   public static final String JSON_PROPERTY_HEAD = "head";
@@ -43,6 +42,8 @@ public class AppMixins {
   public static final String JSON_PROPERTY_BODY = "body";
   private JsonNullable<String> body = JsonNullable.<String>undefined();
 
+  public AppMixins() {
+  }
 
   public AppMixins head(String head) {
     this.head = JsonNullable.<String>of(head);
@@ -55,7 +56,6 @@ public class AppMixins {
    * @return head
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getHead() {
@@ -90,7 +90,6 @@ public class AppMixins {
    * @return body
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getBody() {
@@ -123,13 +122,24 @@ public class AppMixins {
       return false;
     }
     AppMixins appMixins = (AppMixins) o;
-    return Objects.equals(this.head, appMixins.head) &&
-        Objects.equals(this.body, appMixins.body);
+    return equalsNullable(this.head, appMixins.head) &&
+        equalsNullable(this.body, appMixins.body);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(head, body);
+    return Objects.hash(hashCodeNullable(head), hashCodeNullable(body));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

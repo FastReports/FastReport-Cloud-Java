@@ -16,19 +16,18 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.TaskType;
-import cloud.fastreport.model.UpdateTransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * UpdateThumbnailReportTaskVM
@@ -40,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   UpdateThumbnailReportTaskVM.JSON_PROPERTY_DELAYED_RUN_TIME,
   UpdateThumbnailReportTaskVM.JSON_PROPERTY_CRON_EXPRESSION
 })
-@JsonTypeName("UpdateThumbnailReportTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateThumbnailReportTaskVM {
   public static final String JSON_PROPERTY_NAME = "name";
@@ -58,6 +56,8 @@ public class UpdateThumbnailReportTaskVM {
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
   private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
+  public UpdateThumbnailReportTaskVM() {
+  }
 
   public UpdateThumbnailReportTaskVM name(String name) {
     this.name = JsonNullable.<String>of(name);
@@ -70,7 +70,6 @@ public class UpdateThumbnailReportTaskVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -105,7 +104,6 @@ public class UpdateThumbnailReportTaskVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -140,7 +138,6 @@ public class UpdateThumbnailReportTaskVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -167,7 +164,6 @@ public class UpdateThumbnailReportTaskVM {
    * @return delayedRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedRunTime() {
@@ -202,7 +198,6 @@ public class UpdateThumbnailReportTaskVM {
    * @return cronExpression
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCronExpression() {
@@ -235,16 +230,27 @@ public class UpdateThumbnailReportTaskVM {
       return false;
     }
     UpdateThumbnailReportTaskVM updateThumbnailReportTaskVM = (UpdateThumbnailReportTaskVM) o;
-    return Objects.equals(this.name, updateThumbnailReportTaskVM.name) &&
-        Objects.equals(this.subscriptionId, updateThumbnailReportTaskVM.subscriptionId) &&
+    return equalsNullable(this.name, updateThumbnailReportTaskVM.name) &&
+        equalsNullable(this.subscriptionId, updateThumbnailReportTaskVM.subscriptionId) &&
         Objects.equals(this.type, updateThumbnailReportTaskVM.type) &&
-        Objects.equals(this.delayedRunTime, updateThumbnailReportTaskVM.delayedRunTime) &&
-        Objects.equals(this.cronExpression, updateThumbnailReportTaskVM.cronExpression);
+        equalsNullable(this.delayedRunTime, updateThumbnailReportTaskVM.delayedRunTime) &&
+        equalsNullable(this.cronExpression, updateThumbnailReportTaskVM.cronExpression);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, subscriptionId, type, delayedRunTime, cronExpression);
+    return Objects.hash(hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

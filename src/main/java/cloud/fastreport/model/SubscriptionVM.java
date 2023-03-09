@@ -22,14 +22,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * SubscriptionVM
@@ -44,7 +44,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SubscriptionVM.JSON_PROPERTY_REPORTS_FOLDER,
   SubscriptionVM.JSON_PROPERTY_EXPORTS_FOLDER
 })
-@JsonTypeName("SubscriptionVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionVM {
   public static final String JSON_PROPERTY_ID = "id";
@@ -71,6 +70,8 @@ public class SubscriptionVM {
   public static final String JSON_PROPERTY_EXPORTS_FOLDER = "exportsFolder";
   private SubscriptionFolder exportsFolder;
 
+  public SubscriptionVM() {
+  }
 
   public SubscriptionVM id(String id) {
     this.id = JsonNullable.<String>of(id);
@@ -83,7 +84,6 @@ public class SubscriptionVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -118,7 +118,6 @@ public class SubscriptionVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -153,7 +152,6 @@ public class SubscriptionVM {
    * @return locale
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getLocale() {
@@ -188,7 +186,6 @@ public class SubscriptionVM {
    * @return current
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CURRENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -227,7 +224,6 @@ public class SubscriptionVM {
    * @return old
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<SubscriptionPeriodVM> getOld() {
@@ -262,7 +258,6 @@ public class SubscriptionVM {
    * @return templatesFolder
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TEMPLATES_FOLDER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -289,7 +284,6 @@ public class SubscriptionVM {
    * @return reportsFolder
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_REPORTS_FOLDER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -316,7 +310,6 @@ public class SubscriptionVM {
    * @return exportsFolder
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EXPORTS_FOLDER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -341,19 +334,30 @@ public class SubscriptionVM {
       return false;
     }
     SubscriptionVM subscriptionVM = (SubscriptionVM) o;
-    return Objects.equals(this.id, subscriptionVM.id) &&
-        Objects.equals(this.name, subscriptionVM.name) &&
-        Objects.equals(this.locale, subscriptionVM.locale) &&
+    return equalsNullable(this.id, subscriptionVM.id) &&
+        equalsNullable(this.name, subscriptionVM.name) &&
+        equalsNullable(this.locale, subscriptionVM.locale) &&
         Objects.equals(this.current, subscriptionVM.current) &&
-        Objects.equals(this.old, subscriptionVM.old) &&
+        equalsNullable(this.old, subscriptionVM.old) &&
         Objects.equals(this.templatesFolder, subscriptionVM.templatesFolder) &&
         Objects.equals(this.reportsFolder, subscriptionVM.reportsFolder) &&
         Objects.equals(this.exportsFolder, subscriptionVM.exportsFolder);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, locale, current, old, templatesFolder, reportsFolder, exportsFolder);
+    return Objects.hash(hashCodeNullable(id), hashCodeNullable(name), hashCodeNullable(locale), current, hashCodeNullable(old), templatesFolder, reportsFolder, exportsFolder);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -21,14 +21,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * SubscriptionInvitesVM
@@ -37,7 +37,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SubscriptionInvitesVM.JSON_PROPERTY_INVITES,
   SubscriptionInvitesVM.JSON_PROPERTY_COUNT
 })
-@JsonTypeName("SubscriptionInvitesVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionInvitesVM {
   public static final String JSON_PROPERTY_INVITES = "invites";
@@ -46,6 +45,8 @@ public class SubscriptionInvitesVM {
   public static final String JSON_PROPERTY_COUNT = "count";
   private Long count;
 
+  public SubscriptionInvitesVM() {
+  }
 
   public SubscriptionInvitesVM invites(List<SubscriptionInviteVM> invites) {
     this.invites = JsonNullable.<List<SubscriptionInviteVM>>of(invites);
@@ -70,7 +71,6 @@ public class SubscriptionInvitesVM {
    * @return invites
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<SubscriptionInviteVM> getInvites() {
@@ -105,7 +105,6 @@ public class SubscriptionInvitesVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -130,13 +129,24 @@ public class SubscriptionInvitesVM {
       return false;
     }
     SubscriptionInvitesVM subscriptionInvitesVM = (SubscriptionInvitesVM) o;
-    return Objects.equals(this.invites, subscriptionInvitesVM.invites) &&
+    return equalsNullable(this.invites, subscriptionInvitesVM.invites) &&
         Objects.equals(this.count, subscriptionInvitesVM.count);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(invites, count);
+    return Objects.hash(hashCodeNullable(invites), count);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

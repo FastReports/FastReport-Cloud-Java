@@ -20,13 +20,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ApiKeyVM
@@ -36,7 +36,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ApiKeyVM.JSON_PROPERTY_DESCRIPTION,
   ApiKeyVM.JSON_PROPERTY_EXPIRED
 })
-@JsonTypeName("ApiKeyVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiKeyVM {
   public static final String JSON_PROPERTY_VALUE = "value";
@@ -48,6 +47,8 @@ public class ApiKeyVM {
   public static final String JSON_PROPERTY_EXPIRED = "expired";
   private OffsetDateTime expired;
 
+  public ApiKeyVM() {
+  }
 
   public ApiKeyVM value(String value) {
     this.value = JsonNullable.<String>of(value);
@@ -60,7 +61,6 @@ public class ApiKeyVM {
    * @return value
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getValue() {
@@ -95,7 +95,6 @@ public class ApiKeyVM {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getDescription() {
@@ -130,7 +129,6 @@ public class ApiKeyVM {
    * @return expired
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EXPIRED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -155,14 +153,25 @@ public class ApiKeyVM {
       return false;
     }
     ApiKeyVM apiKeyVM = (ApiKeyVM) o;
-    return Objects.equals(this.value, apiKeyVM.value) &&
-        Objects.equals(this.description, apiKeyVM.description) &&
+    return equalsNullable(this.value, apiKeyVM.value) &&
+        equalsNullable(this.description, apiKeyVM.description) &&
         Objects.equals(this.expired, apiKeyVM.expired);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, description, expired);
+    return Objects.hash(hashCodeNullable(value), hashCodeNullable(description), expired);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

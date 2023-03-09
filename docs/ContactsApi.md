@@ -2,14 +2,14 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**contactsCreate**](ContactsApi.md#contactsCreate) | **POST** /api/v1/Contacts/contact | Creates new contact
-[**contactsDelete**](ContactsApi.md#contactsDelete) | **DELETE** /api/v1/Contacts/{id} | Removes contact by id
-[**contactsGet**](ContactsApi.md#contactsGet) | **GET** /api/v1/Contacts/{id} | Returns contact group by id
-[**contactsGetByGroup**](ContactsApi.md#contactsGetByGroup) | **GET** /api/v1/Contacts/group/{groupId}/contacts | Returns contacts by group id
-[**contactsGetList**](ContactsApi.md#contactsGetList) | **GET** /api/v1/Contacts/subscription/{subscriptionId}/contacts | Allows to search for contacts
-[**contactsUpdate**](ContactsApi.md#contactsUpdate) | **PUT** /api/v1/Contacts/{id} | Updates contact by id
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**contactsCreate**](ContactsApi.md#contactsCreate) | **POST** /api/v1/Contacts/contact | Creates new contact |
+| [**contactsDelete**](ContactsApi.md#contactsDelete) | **DELETE** /api/v1/Contacts/{id} | Removes contact by id |
+| [**contactsGet**](ContactsApi.md#contactsGet) | **GET** /api/v1/Contacts/{id} | Returns contact group by id |
+| [**contactsGetByGroup**](ContactsApi.md#contactsGetByGroup) | **GET** /api/v1/Contacts/group/{groupId}/contacts | Returns contacts by group id |
+| [**contactsGetList**](ContactsApi.md#contactsGetList) | **GET** /api/v1/Contacts/subscription/{subscriptionId}/contacts | Allows to search for contacts |
+| [**contactsUpdate**](ContactsApi.md#contactsUpdate) | **PUT** /api/v1/Contacts/{id} | Updates contact by id |
 
 
 
@@ -63,9 +63,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createContactVM** | [**CreateContactVM**](CreateContactVM.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createContactVM** | [**CreateContactVM**](CreateContactVM.md)|  | [optional] |
 
 ### Return type
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 
@@ -141,9 +141,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
 
 ### Return type
 
@@ -220,9 +220,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
 
 ### Return type
 
@@ -301,11 +301,11 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **groupId** | **String**|  |
- **skip** | **Integer**|  | [optional] [default to 0]
- **take** | **Integer**|  | [optional] [default to 10]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **groupId** | **String**|  | |
+| **skip** | **Integer**|  | [optional] [default to 0] |
+| **take** | **Integer**|  | [optional] [default to 10] |
 
 ### Return type
 
@@ -385,12 +385,12 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subscriptionId** | **String**|  |
- **skip** | **Integer**|  | [optional] [default to 0]
- **take** | **Integer**|  | [optional] [default to 10]
- **searchPattern** | **String**|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**|  | |
+| **skip** | **Integer**|  | [optional] [default to 0] |
+| **take** | **Integer**|  | [optional] [default to 10] |
+| **searchPattern** | **String**|  | [optional] |
 
 ### Return type
 
@@ -468,10 +468,10 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  |
- **updateContactVM** | [**UpdateContactVM**](UpdateContactVM.md)|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **updateContactVM** | [**UpdateContactVM**](UpdateContactVM.md)|  | [optional] |
 
 ### Return type
 
@@ -483,7 +483,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 

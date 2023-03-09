@@ -21,10 +21,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * SubscriptionPeriodVM
@@ -34,7 +33,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SubscriptionPeriodVM.JSON_PROPERTY_END_TIME,
   SubscriptionPeriodVM.JSON_PROPERTY_PLAN
 })
-@JsonTypeName("SubscriptionPeriodVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionPeriodVM {
   public static final String JSON_PROPERTY_START_TIME = "startTime";
@@ -46,6 +44,8 @@ public class SubscriptionPeriodVM {
   public static final String JSON_PROPERTY_PLAN = "plan";
   private SubscriptionPlanVM plan;
 
+  public SubscriptionPeriodVM() {
+  }
 
   public SubscriptionPeriodVM startTime(OffsetDateTime startTime) {
     
@@ -58,7 +58,6 @@ public class SubscriptionPeriodVM {
    * @return startTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_START_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -85,7 +84,6 @@ public class SubscriptionPeriodVM {
    * @return endTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_END_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -112,7 +110,6 @@ public class SubscriptionPeriodVM {
    * @return plan
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_PLAN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

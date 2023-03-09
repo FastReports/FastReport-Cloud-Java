@@ -616,8 +616,8 @@ public class GroupsApi {
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
-    * @param updateGroupPermissionsVM The updateGroupPermissionsVM parameter
+    * @param id 
+    * @param updateGroupPermissionsVM 
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
     public void groupsUpdatePermissions(String id, UpdateGroupPermissionsVM updateGroupPermissionsVM) throws IOException {
@@ -632,7 +632,7 @@ public class GroupsApi {
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/

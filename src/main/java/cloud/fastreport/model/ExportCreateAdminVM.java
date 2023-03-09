@@ -15,20 +15,19 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.ExportCreateVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ExportCreateAdminVM
@@ -41,7 +40,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ExportCreateAdminVM.JSON_PROPERTY_ICON,
   ExportCreateAdminVM.JSON_PROPERTY_CONTENT
 })
-@JsonTypeName("ExportCreateAdminVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ExportCreateAdminVM {
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
@@ -62,6 +60,8 @@ public class ExportCreateAdminVM {
   public static final String JSON_PROPERTY_CONTENT = "content";
   private JsonNullable<byte[]> content = JsonNullable.<byte[]>undefined();
 
+  public ExportCreateAdminVM() {
+  }
 
   public ExportCreateAdminVM ownerId(String ownerId) {
     
@@ -73,7 +73,7 @@ public class ExportCreateAdminVM {
    * Get ownerId
    * @return ownerId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_OWNER_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -99,7 +99,7 @@ public class ExportCreateAdminVM {
    * Get parentId
    * @return parentId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_PARENT_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -126,7 +126,6 @@ public class ExportCreateAdminVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -173,7 +172,6 @@ public class ExportCreateAdminVM {
    * @return tags
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<String> getTags() {
@@ -208,7 +206,6 @@ public class ExportCreateAdminVM {
    * @return icon
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public byte[] getIcon() {
@@ -243,7 +240,6 @@ public class ExportCreateAdminVM {
    * @return content
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public byte[] getContent() {
@@ -278,15 +274,26 @@ public class ExportCreateAdminVM {
     ExportCreateAdminVM exportCreateAdminVM = (ExportCreateAdminVM) o;
     return Objects.equals(this.ownerId, exportCreateAdminVM.ownerId) &&
         Objects.equals(this.parentId, exportCreateAdminVM.parentId) &&
-        Objects.equals(this.name, exportCreateAdminVM.name) &&
-        Objects.equals(this.tags, exportCreateAdminVM.tags) &&
-        Arrays.equals(this.icon, exportCreateAdminVM.icon) &&
-        Arrays.equals(this.content, exportCreateAdminVM.content);
+        equalsNullable(this.name, exportCreateAdminVM.name) &&
+        equalsNullable(this.tags, exportCreateAdminVM.tags) &&
+        equalsNullable(this.icon, exportCreateAdminVM.icon) &&
+        equalsNullable(this.content, exportCreateAdminVM.content);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, parentId, name, tags, Arrays.hashCode(icon), Arrays.hashCode(content));
+    return Objects.hash(ownerId, parentId, hashCodeNullable(name), hashCodeNullable(tags), hashCodeNullable(icon), hashCodeNullable(content));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

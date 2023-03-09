@@ -15,21 +15,20 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.ProblemDetails;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * HttpValidationProblemDetails
@@ -42,11 +41,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   HttpValidationProblemDetails.JSON_PROPERTY_DETAIL,
   HttpValidationProblemDetails.JSON_PROPERTY_INSTANCE
 })
-@JsonTypeName("HttpValidationProblemDetails")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class HttpValidationProblemDetails {
+public class HttpValidationProblemDetails extends HashMap<String, Object> {
   public static final String JSON_PROPERTY_ERRORS = "errors";
-  private Map<String, List<String>> errors = null;
+  private Map<String, List<String>> errors = new HashMap<>();
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private JsonNullable<String> type = JsonNullable.<String>undefined();
@@ -63,13 +61,23 @@ public class HttpValidationProblemDetails {
   public static final String JSON_PROPERTY_INSTANCE = "instance";
   private JsonNullable<String> instance = JsonNullable.<String>undefined();
 
+  public HttpValidationProblemDetails() {
+
+  }
+
+  @JsonCreator
+  public HttpValidationProblemDetails(
+    @JsonProperty(JSON_PROPERTY_ERRORS) Map<String, List<String>> errors
+  ) {
+    this();
+    this.errors = errors;
+  }
 
    /**
    * Get errors
    * @return errors
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ERRORS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -91,7 +99,6 @@ public class HttpValidationProblemDetails {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getType() {
@@ -126,7 +133,6 @@ public class HttpValidationProblemDetails {
    * @return title
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getTitle() {
@@ -161,7 +167,6 @@ public class HttpValidationProblemDetails {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Integer getStatus() {
@@ -196,7 +201,6 @@ public class HttpValidationProblemDetails {
    * @return detail
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getDetail() {
@@ -231,7 +235,6 @@ public class HttpValidationProblemDetails {
    * @return instance
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getInstance() {
@@ -265,22 +268,35 @@ public class HttpValidationProblemDetails {
     }
     HttpValidationProblemDetails httpValidationProblemDetails = (HttpValidationProblemDetails) o;
     return Objects.equals(this.errors, httpValidationProblemDetails.errors) &&
-        Objects.equals(this.type, httpValidationProblemDetails.type) &&
-        Objects.equals(this.title, httpValidationProblemDetails.title) &&
-        Objects.equals(this.status, httpValidationProblemDetails.status) &&
-        Objects.equals(this.detail, httpValidationProblemDetails.detail) &&
-        Objects.equals(this.instance, httpValidationProblemDetails.instance);
+        equalsNullable(this.type, httpValidationProblemDetails.type) &&
+        equalsNullable(this.title, httpValidationProblemDetails.title) &&
+        equalsNullable(this.status, httpValidationProblemDetails.status) &&
+        equalsNullable(this.detail, httpValidationProblemDetails.detail) &&
+        equalsNullable(this.instance, httpValidationProblemDetails.instance) &&
+        super.equals(o);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errors, type, title, status, detail, instance);
+    return Objects.hash(errors, hashCodeNullable(type), hashCodeNullable(title), hashCodeNullable(status), hashCodeNullable(detail), hashCodeNullable(instance), super.hashCode());
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HttpValidationProblemDetails {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");

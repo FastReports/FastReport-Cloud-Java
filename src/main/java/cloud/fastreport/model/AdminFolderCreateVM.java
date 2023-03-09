@@ -15,20 +15,19 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.FolderCreateVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * AdminFolderCreateVM
@@ -41,7 +40,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   AdminFolderCreateVM.JSON_PROPERTY_TAGS,
   AdminFolderCreateVM.JSON_PROPERTY_ICON
 })
-@JsonTypeName("AdminFolderCreateVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AdminFolderCreateVM {
   public static final String JSON_PROPERTY_PARENT_ID = "parentId";
@@ -62,6 +60,8 @@ public class AdminFolderCreateVM {
   public static final String JSON_PROPERTY_ICON = "icon";
   private JsonNullable<byte[]> icon = JsonNullable.<byte[]>undefined();
 
+  public AdminFolderCreateVM() {
+  }
 
   public AdminFolderCreateVM parentId(String parentId) {
     
@@ -73,7 +73,7 @@ public class AdminFolderCreateVM {
    * Get parentId
    * @return parentId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_PARENT_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -99,7 +99,7 @@ public class AdminFolderCreateVM {
    * Get ownerId
    * @return ownerId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_OWNER_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -126,7 +126,6 @@ public class AdminFolderCreateVM {
    * @return force
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_FORCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -153,7 +152,6 @@ public class AdminFolderCreateVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -200,7 +198,6 @@ public class AdminFolderCreateVM {
    * @return tags
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<String> getTags() {
@@ -235,7 +232,6 @@ public class AdminFolderCreateVM {
    * @return icon
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public byte[] getIcon() {
@@ -271,14 +267,25 @@ public class AdminFolderCreateVM {
     return Objects.equals(this.parentId, adminFolderCreateVM.parentId) &&
         Objects.equals(this.ownerId, adminFolderCreateVM.ownerId) &&
         Objects.equals(this.force, adminFolderCreateVM.force) &&
-        Objects.equals(this.name, adminFolderCreateVM.name) &&
-        Objects.equals(this.tags, adminFolderCreateVM.tags) &&
-        Arrays.equals(this.icon, adminFolderCreateVM.icon);
+        equalsNullable(this.name, adminFolderCreateVM.name) &&
+        equalsNullable(this.tags, adminFolderCreateVM.tags) &&
+        equalsNullable(this.icon, adminFolderCreateVM.icon);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(parentId, ownerId, force, name, tags, Arrays.hashCode(icon));
+    return Objects.hash(parentId, ownerId, force, hashCodeNullable(name), hashCodeNullable(tags), hashCodeNullable(icon));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -20,9 +20,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RenameSubscriptionVM
@@ -30,12 +29,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   RenameSubscriptionVM.JSON_PROPERTY_NAME
 })
-@JsonTypeName("RenameSubscriptionVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RenameSubscriptionVM {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
+  public RenameSubscriptionVM() {
+  }
 
   public RenameSubscriptionVM name(String name) {
     
@@ -47,7 +47,7 @@ public class RenameSubscriptionVM {
    * Get name
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

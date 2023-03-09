@@ -2,18 +2,18 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**tasksCreateTask**](TasksApi.md#tasksCreateTask) | **POST** /api/tasks | Create a new task
-[**tasksDeleteTask**](TasksApi.md#tasksDeleteTask) | **DELETE** /api/tasks/{taskId} | Delete a task from a storage
-[**tasksGet**](TasksApi.md#tasksGet) | **GET** /api/tasks/{taskId} | Get a task by a specified id
-[**tasksGetList**](TasksApi.md#tasksGetList) | **GET** /api/tasks | Get tasks list
-[**tasksGetPermissions**](TasksApi.md#tasksGetPermissions) | **GET** /api/tasks/{id}/permissions | Get all Task permissions
-[**tasksRenameTask**](TasksApi.md#tasksRenameTask) | **PUT** /api/tasks/{taskId}/rename | Rename a task
-[**tasksRunTask**](TasksApi.md#tasksRunTask) | **POST** /api/tasks/run | Run a task from request body
-[**tasksRunTaskById**](TasksApi.md#tasksRunTaskById) | **POST** /api/tasks/{taskId}/run | Run a task by id
-[**tasksUpdatePermissions**](TasksApi.md#tasksUpdatePermissions) | **POST** /api/tasks/{id}/permissions | Update permissions
-[**tasksUpdateTask**](TasksApi.md#tasksUpdateTask) | **PUT** /api/tasks/{taskId} | Update a task
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**tasksCreateTask**](TasksApi.md#tasksCreateTask) | **POST** /api/tasks | Create a new task |
+| [**tasksDeleteTask**](TasksApi.md#tasksDeleteTask) | **DELETE** /api/tasks/{taskId} | Delete a task from a storage |
+| [**tasksGet**](TasksApi.md#tasksGet) | **GET** /api/tasks/{taskId} | Get a task by a specified id |
+| [**tasksGetList**](TasksApi.md#tasksGetList) | **GET** /api/tasks | Get tasks list |
+| [**tasksGetPermissions**](TasksApi.md#tasksGetPermissions) | **GET** /api/tasks/{id}/permissions | Get all Task permissions |
+| [**tasksRenameTask**](TasksApi.md#tasksRenameTask) | **PUT** /api/tasks/{taskId}/rename | Rename a task |
+| [**tasksRunTask**](TasksApi.md#tasksRunTask) | **POST** /api/tasks/run | Run a task from request body |
+| [**tasksRunTaskById**](TasksApi.md#tasksRunTaskById) | **POST** /api/tasks/{taskId}/run | Run a task by id |
+| [**tasksUpdatePermissions**](TasksApi.md#tasksUpdatePermissions) | **POST** /api/tasks/{id}/permissions | Update permissions |
+| [**tasksUpdateTask**](TasksApi.md#tasksUpdateTask) | **PUT** /api/tasks/{taskId} | Update a task |
 
 
 
@@ -67,9 +67,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createTaskBaseVM** | [**CreateTaskBaseVM**](CreateTaskBaseVM.md)| task&#39;s view model. You have to specify task type (type: \&quot;ExportTemplate\&quot;) | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createTaskBaseVM** | [**CreateTaskBaseVM**](CreateTaskBaseVM.md)| task&#39;s view model. You have to specify task type (type: \&quot;ExportTemplate\&quot;) | [optional] |
 
 ### Return type
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 
@@ -145,9 +145,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **taskId** | **String**| deleting task id |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **taskId** | **String**| deleting task id | |
 
 ### Return type
 
@@ -224,9 +224,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **taskId** | **String**| a task id |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **taskId** | **String**| a task id | |
 
 ### Return type
 
@@ -305,11 +305,11 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **skip** | **Integer**| number of tasks, that have to be skipped | [optional] [default to 0]
- **take** | **Integer**| number of tasks, that have to be returned | [optional] [default to 10]
- **subscriptionId** | **String**| subscription id | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **skip** | **Integer**| number of tasks, that have to be skipped | [optional] [default to 0] |
+| **take** | **Integer**| number of tasks, that have to be returned | [optional] [default to 10] |
+| **subscriptionId** | **String**| subscription id | [optional] |
 
 ### Return type
 
@@ -386,9 +386,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| task id |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| task id | |
 
 ### Return type
 
@@ -466,10 +466,10 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **taskId** | **String**| renaming task id |
- **newName** | **String**| task&#39;s new Name | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **taskId** | **String**| renaming task id | |
+| **newName** | **String**| task&#39;s new Name | [optional] |
 
 ### Return type
 
@@ -545,9 +545,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **runTaskBaseVM** | [**RunTaskBaseVM**](RunTaskBaseVM.md)| task&#39;s view model | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **runTaskBaseVM** | [**RunTaskBaseVM**](RunTaskBaseVM.md)| task&#39;s view model | [optional] |
 
 ### Return type
 
@@ -559,7 +559,7 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 
@@ -624,9 +624,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **taskId** | **String**| task id |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **taskId** | **String**| task id | |
 
 ### Return type
 
@@ -703,10 +703,10 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| task id |
- **updateTaskPermissionsVM** | [**UpdateTaskPermissionsVM**](UpdateTaskPermissionsVM.md)| new permissions | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| task id | |
+| **updateTaskPermissionsVM** | [**UpdateTaskPermissionsVM**](UpdateTaskPermissionsVM.md)| new permissions | [optional] |
 
 ### Return type
 
@@ -718,7 +718,7 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 
@@ -784,10 +784,10 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **taskId** | **String**| updating task id |
- **updateTaskBaseVM** | [**UpdateTaskBaseVM**](UpdateTaskBaseVM.md)| task&#39;s view model. You have to specify task type (type: \&quot;ExportTemplate\&quot;) | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **taskId** | **String**| updating task id | |
+| **updateTaskBaseVM** | [**UpdateTaskBaseVM**](UpdateTaskBaseVM.md)| task&#39;s view model. You have to specify task type (type: \&quot;ExportTemplate\&quot;) | [optional] |
 
 ### Return type
 
@@ -799,7 +799,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 

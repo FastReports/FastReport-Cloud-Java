@@ -222,7 +222,7 @@ public class SubscriptionsApi {
     * Get permissions for a subscription by id
     * <p><b>200</b> - Succesfully returned
     * <p><b>403</b> - You don&#39;t have rights for the operation
-    * @param id The id parameter
+    * @param id 
     * @return SubscriptionPermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -236,7 +236,7 @@ public class SubscriptionsApi {
     * Get permissions for a subscription by id
     * <p><b>200</b> - Succesfully returned
     * <p><b>403</b> - You don&#39;t have rights for the operation
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return SubscriptionPermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -839,8 +839,8 @@ public class SubscriptionsApi {
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
-    * @param updateSubscriptionPermissionsVM The updateSubscriptionPermissionsVM parameter
+    * @param id 
+    * @param updateSubscriptionPermissionsVM 
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
     public void subscriptionsUpdatePermissions(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM) throws IOException {
@@ -855,7 +855,7 @@ public class SubscriptionsApi {
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/

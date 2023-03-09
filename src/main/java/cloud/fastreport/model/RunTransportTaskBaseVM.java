@@ -16,21 +16,20 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.RunInputFileVM;
-import cloud.fastreport.model.RunTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RunTransportTaskBaseVM
@@ -40,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RunTransportTaskBaseVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   RunTransportTaskBaseVM.JSON_PROPERTY_TYPE
 })
-@JsonTypeName("RunTransportTaskBaseVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RunTransportTaskBaseVM {
   public static final String JSON_PROPERTY_FILES = "files";
@@ -52,6 +50,8 @@ public class RunTransportTaskBaseVM {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TaskType type;
 
+  public RunTransportTaskBaseVM() {
+  }
 
   public RunTransportTaskBaseVM files(List<RunInputFileVM> files) {
     this.files = JsonNullable.<List<RunInputFileVM>>of(files);
@@ -76,7 +76,6 @@ public class RunTransportTaskBaseVM {
    * @return files
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<RunInputFileVM> getFiles() {
@@ -111,7 +110,6 @@ public class RunTransportTaskBaseVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -146,7 +144,6 @@ public class RunTransportTaskBaseVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -171,14 +168,25 @@ public class RunTransportTaskBaseVM {
       return false;
     }
     RunTransportTaskBaseVM runTransportTaskBaseVM = (RunTransportTaskBaseVM) o;
-    return Objects.equals(this.files, runTransportTaskBaseVM.files) &&
-        Objects.equals(this.subscriptionId, runTransportTaskBaseVM.subscriptionId) &&
+    return equalsNullable(this.files, runTransportTaskBaseVM.files) &&
+        equalsNullable(this.subscriptionId, runTransportTaskBaseVM.subscriptionId) &&
         Objects.equals(this.type, runTransportTaskBaseVM.type);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(files, subscriptionId, type);
+    return Objects.hash(hashCodeNullable(files), hashCodeNullable(subscriptionId), type);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -21,13 +21,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ReportInfo
@@ -46,7 +46,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ReportInfo.JSON_PROPERTY_TAG,
   ReportInfo.JSON_PROPERTY_VERSION
 })
-@JsonTypeName("ReportInfo")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportInfo {
   public static final String JSON_PROPERTY_AUTHOR = "author";
@@ -85,6 +84,8 @@ public class ReportInfo {
   public static final String JSON_PROPERTY_VERSION = "version";
   private JsonNullable<String> version = JsonNullable.<String>undefined();
 
+  public ReportInfo() {
+  }
 
   public ReportInfo author(String author) {
     this.author = JsonNullable.<String>of(author);
@@ -97,7 +98,6 @@ public class ReportInfo {
    * @return author
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getAuthor() {
@@ -132,7 +132,6 @@ public class ReportInfo {
    * @return created
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CREATED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -159,7 +158,6 @@ public class ReportInfo {
    * @return creatorVersion
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCreatorVersion() {
@@ -194,7 +192,6 @@ public class ReportInfo {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getDescription() {
@@ -229,7 +226,6 @@ public class ReportInfo {
    * @return modified
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_MODIFIED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -256,7 +252,6 @@ public class ReportInfo {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -291,7 +286,6 @@ public class ReportInfo {
    * @return picture
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public byte[] getPicture() {
@@ -326,7 +320,6 @@ public class ReportInfo {
    * @return previewPictureRatio
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_PREVIEW_PICTURE_RATIO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -353,7 +346,6 @@ public class ReportInfo {
    * @return saveMode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SAVE_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -380,7 +372,6 @@ public class ReportInfo {
    * @return savePreviewPicture
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SAVE_PREVIEW_PICTURE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -407,7 +398,6 @@ public class ReportInfo {
    * @return tag
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getTag() {
@@ -442,7 +432,6 @@ public class ReportInfo {
    * @return version
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getVersion() {
@@ -475,23 +464,34 @@ public class ReportInfo {
       return false;
     }
     ReportInfo reportInfo = (ReportInfo) o;
-    return Objects.equals(this.author, reportInfo.author) &&
+    return equalsNullable(this.author, reportInfo.author) &&
         Objects.equals(this.created, reportInfo.created) &&
-        Objects.equals(this.creatorVersion, reportInfo.creatorVersion) &&
-        Objects.equals(this.description, reportInfo.description) &&
+        equalsNullable(this.creatorVersion, reportInfo.creatorVersion) &&
+        equalsNullable(this.description, reportInfo.description) &&
         Objects.equals(this.modified, reportInfo.modified) &&
-        Objects.equals(this.name, reportInfo.name) &&
-        Arrays.equals(this.picture, reportInfo.picture) &&
+        equalsNullable(this.name, reportInfo.name) &&
+        equalsNullable(this.picture, reportInfo.picture) &&
         Objects.equals(this.previewPictureRatio, reportInfo.previewPictureRatio) &&
         Objects.equals(this.saveMode, reportInfo.saveMode) &&
         Objects.equals(this.savePreviewPicture, reportInfo.savePreviewPicture) &&
-        Objects.equals(this.tag, reportInfo.tag) &&
-        Objects.equals(this.version, reportInfo.version);
+        equalsNullable(this.tag, reportInfo.tag) &&
+        equalsNullable(this.version, reportInfo.version);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(author, created, creatorVersion, description, modified, name, Arrays.hashCode(picture), previewPictureRatio, saveMode, savePreviewPicture, tag, version);
+    return Objects.hash(hashCodeNullable(author), created, hashCodeNullable(creatorVersion), hashCodeNullable(description), modified, hashCodeNullable(name), hashCodeNullable(picture), previewPictureRatio, saveMode, savePreviewPicture, hashCodeNullable(tag), hashCodeNullable(version));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

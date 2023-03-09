@@ -15,20 +15,19 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.AuditActionVM;
 import cloud.fastreport.model.AuditType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * AuditSubscriptionActionVM
@@ -47,7 +46,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   AuditSubscriptionActionVM.JSON_PROPERTY_NAME,
   AuditSubscriptionActionVM.JSON_PROPERTY_ADMIN_ACTION
 })
-@JsonTypeName("AuditSubscriptionActionVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AuditSubscriptionActionVM {
   public static final String JSON_PROPERTY_PERIOD_START = "periodStart";
@@ -86,6 +84,8 @@ public class AuditSubscriptionActionVM {
   public static final String JSON_PROPERTY_ADMIN_ACTION = "adminAction";
   private Boolean adminAction;
 
+  public AuditSubscriptionActionVM() {
+  }
 
   public AuditSubscriptionActionVM periodStart(OffsetDateTime periodStart) {
     
@@ -98,7 +98,6 @@ public class AuditSubscriptionActionVM {
    * @return periodStart
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_PERIOD_START)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -125,7 +124,6 @@ public class AuditSubscriptionActionVM {
    * @return periodEnd
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_PERIOD_END)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -152,7 +150,6 @@ public class AuditSubscriptionActionVM {
    * @return planId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getPlanId() {
@@ -187,7 +184,6 @@ public class AuditSubscriptionActionVM {
    * @return userId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getUserId() {
@@ -222,7 +218,6 @@ public class AuditSubscriptionActionVM {
    * @return entityId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEntityId() {
@@ -257,7 +252,6 @@ public class AuditSubscriptionActionVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -292,7 +286,6 @@ public class AuditSubscriptionActionVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -319,7 +312,6 @@ public class AuditSubscriptionActionVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -354,7 +346,6 @@ public class AuditSubscriptionActionVM {
    * @return createdTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CREATED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -381,7 +372,6 @@ public class AuditSubscriptionActionVM {
    * @return creatorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCreatorUserId() {
@@ -416,7 +406,6 @@ public class AuditSubscriptionActionVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -451,7 +440,6 @@ public class AuditSubscriptionActionVM {
    * @return adminAction
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ADMIN_ACTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -478,21 +466,32 @@ public class AuditSubscriptionActionVM {
     AuditSubscriptionActionVM auditSubscriptionActionVM = (AuditSubscriptionActionVM) o;
     return Objects.equals(this.periodStart, auditSubscriptionActionVM.periodStart) &&
         Objects.equals(this.periodEnd, auditSubscriptionActionVM.periodEnd) &&
-        Objects.equals(this.planId, auditSubscriptionActionVM.planId) &&
-        Objects.equals(this.userId, auditSubscriptionActionVM.userId) &&
-        Objects.equals(this.entityId, auditSubscriptionActionVM.entityId) &&
-        Objects.equals(this.subscriptionId, auditSubscriptionActionVM.subscriptionId) &&
+        equalsNullable(this.planId, auditSubscriptionActionVM.planId) &&
+        equalsNullable(this.userId, auditSubscriptionActionVM.userId) &&
+        equalsNullable(this.entityId, auditSubscriptionActionVM.entityId) &&
+        equalsNullable(this.subscriptionId, auditSubscriptionActionVM.subscriptionId) &&
         Objects.equals(this.type, auditSubscriptionActionVM.type) &&
-        Objects.equals(this.id, auditSubscriptionActionVM.id) &&
+        equalsNullable(this.id, auditSubscriptionActionVM.id) &&
         Objects.equals(this.createdTime, auditSubscriptionActionVM.createdTime) &&
-        Objects.equals(this.creatorUserId, auditSubscriptionActionVM.creatorUserId) &&
-        Objects.equals(this.name, auditSubscriptionActionVM.name) &&
+        equalsNullable(this.creatorUserId, auditSubscriptionActionVM.creatorUserId) &&
+        equalsNullable(this.name, auditSubscriptionActionVM.name) &&
         Objects.equals(this.adminAction, auditSubscriptionActionVM.adminAction);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(periodStart, periodEnd, planId, userId, entityId, subscriptionId, type, id, createdTime, creatorUserId, name, adminAction);
+    return Objects.hash(periodStart, periodEnd, hashCodeNullable(planId), hashCodeNullable(userId), hashCodeNullable(entityId), hashCodeNullable(subscriptionId), type, hashCodeNullable(id), createdTime, hashCodeNullable(creatorUserId), hashCodeNullable(name), adminAction);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

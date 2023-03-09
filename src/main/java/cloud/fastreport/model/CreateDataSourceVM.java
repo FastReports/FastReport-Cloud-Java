@@ -21,12 +21,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * CreateDataSourceVM
@@ -37,7 +37,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CreateDataSourceVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   CreateDataSourceVM.JSON_PROPERTY_CONNECTION_TYPE
 })
-@JsonTypeName("CreateDataSourceVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateDataSourceVM {
   public static final String JSON_PROPERTY_NAME = "name";
@@ -52,6 +51,8 @@ public class CreateDataSourceVM {
   public static final String JSON_PROPERTY_CONNECTION_TYPE = "connectionType";
   private DataSourceConnectionType connectionType;
 
+  public CreateDataSourceVM() {
+  }
 
   public CreateDataSourceVM name(String name) {
     this.name = JsonNullable.<String>of(name);
@@ -64,7 +65,6 @@ public class CreateDataSourceVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -98,7 +98,7 @@ public class CreateDataSourceVM {
    * Get connectionString
    * @return connectionString
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -124,7 +124,7 @@ public class CreateDataSourceVM {
    * Get subscriptionId
    * @return subscriptionId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -151,7 +151,6 @@ public class CreateDataSourceVM {
    * @return connectionType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -176,15 +175,26 @@ public class CreateDataSourceVM {
       return false;
     }
     CreateDataSourceVM createDataSourceVM = (CreateDataSourceVM) o;
-    return Objects.equals(this.name, createDataSourceVM.name) &&
+    return equalsNullable(this.name, createDataSourceVM.name) &&
         Objects.equals(this.connectionString, createDataSourceVM.connectionString) &&
         Objects.equals(this.subscriptionId, createDataSourceVM.subscriptionId) &&
         Objects.equals(this.connectionType, createDataSourceVM.connectionType);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(name, connectionString, subscriptionId, connectionType);
+    return Objects.hash(hashCodeNullable(name), connectionString, subscriptionId, connectionType);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

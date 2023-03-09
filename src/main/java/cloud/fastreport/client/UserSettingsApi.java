@@ -47,7 +47,7 @@ public class UserSettingsApi {
   /**
     * Use this endpoint to accept current version of service license agreement
     * <p><b>200</b> - Success
-    * @param acceptAgreementsVM The acceptAgreementsVM parameter
+    * @param acceptAgreementsVM 
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
     public void userSettingsAcceptAgreements(AcceptAgreementsVM acceptAgreementsVM) throws IOException {
@@ -191,7 +191,7 @@ public class UserSettingsApi {
     * <p><b>200</b> - Succesfully updated
     * <p><b>400</b> - The reqeust is wrong
     * <p><b>403</b> - Forbidden
-    * @param updateUserSettingsVM The updateUserSettingsVM parameter
+    * @param updateUserSettingsVM 
     * @return UserSettingsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/

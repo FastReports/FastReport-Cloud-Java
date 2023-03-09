@@ -20,9 +20,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * AcceptAgreementsVM
@@ -30,12 +29,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   AcceptAgreementsVM.JSON_PROPERTY_SLA_ACCEPTED
 })
-@JsonTypeName("AcceptAgreementsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AcceptAgreementsVM {
   public static final String JSON_PROPERTY_SLA_ACCEPTED = "slaAccepted";
   private Boolean slaAccepted;
 
+  public AcceptAgreementsVM() {
+  }
 
   public AcceptAgreementsVM slaAccepted(Boolean slaAccepted) {
     
@@ -48,7 +48,6 @@ public class AcceptAgreementsVM {
    * @return slaAccepted
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SLA_ACCEPTED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

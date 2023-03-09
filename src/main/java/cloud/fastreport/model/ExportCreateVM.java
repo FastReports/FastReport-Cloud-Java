@@ -15,20 +15,19 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.FileCreateVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ExportCreateVM
@@ -41,7 +40,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ExportCreateVM.JSON_PROPERTY_ICON,
   ExportCreateVM.JSON_PROPERTY_CONTENT
 })
-@JsonTypeName("ExportCreateVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ExportCreateVM {
   public static final String JSON_PROPERTY_TEMPLATE_ID = "templateId";
@@ -62,6 +60,8 @@ public class ExportCreateVM {
   public static final String JSON_PROPERTY_CONTENT = "content";
   private JsonNullable<byte[]> content = JsonNullable.<byte[]>undefined();
 
+  public ExportCreateVM() {
+  }
 
   public ExportCreateVM templateId(String templateId) {
     this.templateId = JsonNullable.<String>of(templateId);
@@ -74,7 +74,6 @@ public class ExportCreateVM {
    * @return templateId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getTemplateId() {
@@ -109,7 +108,6 @@ public class ExportCreateVM {
    * @return reportId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getReportId() {
@@ -144,7 +142,6 @@ public class ExportCreateVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -191,7 +188,6 @@ public class ExportCreateVM {
    * @return tags
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<String> getTags() {
@@ -226,7 +222,6 @@ public class ExportCreateVM {
    * @return icon
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public byte[] getIcon() {
@@ -261,7 +256,6 @@ public class ExportCreateVM {
    * @return content
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public byte[] getContent() {
@@ -294,17 +288,28 @@ public class ExportCreateVM {
       return false;
     }
     ExportCreateVM exportCreateVM = (ExportCreateVM) o;
-    return Objects.equals(this.templateId, exportCreateVM.templateId) &&
-        Objects.equals(this.reportId, exportCreateVM.reportId) &&
-        Objects.equals(this.name, exportCreateVM.name) &&
-        Objects.equals(this.tags, exportCreateVM.tags) &&
-        Arrays.equals(this.icon, exportCreateVM.icon) &&
-        Arrays.equals(this.content, exportCreateVM.content);
+    return equalsNullable(this.templateId, exportCreateVM.templateId) &&
+        equalsNullable(this.reportId, exportCreateVM.reportId) &&
+        equalsNullable(this.name, exportCreateVM.name) &&
+        equalsNullable(this.tags, exportCreateVM.tags) &&
+        equalsNullable(this.icon, exportCreateVM.icon) &&
+        equalsNullable(this.content, exportCreateVM.content);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateId, reportId, name, tags, Arrays.hashCode(icon), Arrays.hashCode(content));
+    return Objects.hash(hashCodeNullable(templateId), hashCodeNullable(reportId), hashCodeNullable(name), hashCodeNullable(tags), hashCodeNullable(icon), hashCodeNullable(content));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

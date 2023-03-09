@@ -21,14 +21,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * SubscriptionsVM
@@ -39,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SubscriptionsVM.JSON_PROPERTY_SKIP,
   SubscriptionsVM.JSON_PROPERTY_TAKE
 })
-@JsonTypeName("SubscriptionsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionsVM {
   public static final String JSON_PROPERTY_SUBSCRIPTIONS = "subscriptions";
@@ -54,6 +53,8 @@ public class SubscriptionsVM {
   public static final String JSON_PROPERTY_TAKE = "take";
   private Integer take;
 
+  public SubscriptionsVM() {
+  }
 
   public SubscriptionsVM subscriptions(List<SubscriptionVM> subscriptions) {
     this.subscriptions = JsonNullable.<List<SubscriptionVM>>of(subscriptions);
@@ -78,7 +79,6 @@ public class SubscriptionsVM {
    * @return subscriptions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<SubscriptionVM> getSubscriptions() {
@@ -113,7 +113,6 @@ public class SubscriptionsVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -140,7 +139,6 @@ public class SubscriptionsVM {
    * @return skip
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SKIP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -167,7 +165,6 @@ public class SubscriptionsVM {
    * @return take
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TAKE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -192,15 +189,26 @@ public class SubscriptionsVM {
       return false;
     }
     SubscriptionsVM subscriptionsVM = (SubscriptionsVM) o;
-    return Objects.equals(this.subscriptions, subscriptionsVM.subscriptions) &&
+    return equalsNullable(this.subscriptions, subscriptionsVM.subscriptions) &&
         Objects.equals(this.count, subscriptionsVM.count) &&
         Objects.equals(this.skip, subscriptionsVM.skip) &&
         Objects.equals(this.take, subscriptionsVM.take);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(subscriptions, count, skip, take);
+    return Objects.hash(hashCodeNullable(subscriptions), count, skip, take);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

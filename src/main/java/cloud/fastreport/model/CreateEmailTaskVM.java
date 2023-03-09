@@ -15,22 +15,21 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.CreateTransportTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.threeten.bp.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * CreateEmailTaskVM
@@ -52,7 +51,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CreateEmailTaskVM.JSON_PROPERTY_DELAYED_RUN_TIME,
   CreateEmailTaskVM.JSON_PROPERTY_CRON_EXPRESSION
 })
-@JsonTypeName("CreateEmailTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateEmailTaskVM {
   public static final String JSON_PROPERTY_PASSWORD = "password";
@@ -100,6 +98,8 @@ public class CreateEmailTaskVM {
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
   private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
+  public CreateEmailTaskVM() {
+  }
 
   public CreateEmailTaskVM password(String password) {
     this.password = JsonNullable.<String>of(password);
@@ -112,7 +112,6 @@ public class CreateEmailTaskVM {
    * @return password
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getPassword() {
@@ -147,7 +146,6 @@ public class CreateEmailTaskVM {
    * @return body
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getBody() {
@@ -182,7 +180,6 @@ public class CreateEmailTaskVM {
    * @return isBodyHtml
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_IS_BODY_HTML)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -209,7 +206,6 @@ public class CreateEmailTaskVM {
    * @return subject
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubject() {
@@ -256,7 +252,6 @@ public class CreateEmailTaskVM {
    * @return to
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<String> getTo() {
@@ -291,7 +286,6 @@ public class CreateEmailTaskVM {
    * @return from
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFrom() {
@@ -326,7 +320,6 @@ public class CreateEmailTaskVM {
    * @return username
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getUsername() {
@@ -361,7 +354,6 @@ public class CreateEmailTaskVM {
    * @return server
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getServer() {
@@ -398,7 +390,6 @@ public class CreateEmailTaskVM {
    * @return port
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_PORT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -425,7 +416,6 @@ public class CreateEmailTaskVM {
    * @return enableSsl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ENABLE_SSL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -452,7 +442,6 @@ public class CreateEmailTaskVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -487,7 +476,6 @@ public class CreateEmailTaskVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -522,7 +510,6 @@ public class CreateEmailTaskVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -549,7 +536,6 @@ public class CreateEmailTaskVM {
    * @return delayedRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedRunTime() {
@@ -584,7 +570,6 @@ public class CreateEmailTaskVM {
    * @return cronExpression
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCronExpression() {
@@ -617,26 +602,37 @@ public class CreateEmailTaskVM {
       return false;
     }
     CreateEmailTaskVM createEmailTaskVM = (CreateEmailTaskVM) o;
-    return Objects.equals(this.password, createEmailTaskVM.password) &&
-        Objects.equals(this.body, createEmailTaskVM.body) &&
+    return equalsNullable(this.password, createEmailTaskVM.password) &&
+        equalsNullable(this.body, createEmailTaskVM.body) &&
         Objects.equals(this.isBodyHtml, createEmailTaskVM.isBodyHtml) &&
-        Objects.equals(this.subject, createEmailTaskVM.subject) &&
-        Objects.equals(this.to, createEmailTaskVM.to) &&
-        Objects.equals(this.from, createEmailTaskVM.from) &&
-        Objects.equals(this.username, createEmailTaskVM.username) &&
-        Objects.equals(this.server, createEmailTaskVM.server) &&
+        equalsNullable(this.subject, createEmailTaskVM.subject) &&
+        equalsNullable(this.to, createEmailTaskVM.to) &&
+        equalsNullable(this.from, createEmailTaskVM.from) &&
+        equalsNullable(this.username, createEmailTaskVM.username) &&
+        equalsNullable(this.server, createEmailTaskVM.server) &&
         Objects.equals(this.port, createEmailTaskVM.port) &&
         Objects.equals(this.enableSsl, createEmailTaskVM.enableSsl) &&
-        Objects.equals(this.name, createEmailTaskVM.name) &&
-        Objects.equals(this.subscriptionId, createEmailTaskVM.subscriptionId) &&
+        equalsNullable(this.name, createEmailTaskVM.name) &&
+        equalsNullable(this.subscriptionId, createEmailTaskVM.subscriptionId) &&
         Objects.equals(this.type, createEmailTaskVM.type) &&
-        Objects.equals(this.delayedRunTime, createEmailTaskVM.delayedRunTime) &&
-        Objects.equals(this.cronExpression, createEmailTaskVM.cronExpression);
+        equalsNullable(this.delayedRunTime, createEmailTaskVM.delayedRunTime) &&
+        equalsNullable(this.cronExpression, createEmailTaskVM.cronExpression);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(password, body, isBodyHtml, subject, to, from, username, server, port, enableSsl, name, subscriptionId, type, delayedRunTime, cronExpression);
+    return Objects.hash(hashCodeNullable(password), hashCodeNullable(body), isBodyHtml, hashCodeNullable(subject), hashCodeNullable(to), hashCodeNullable(from), hashCodeNullable(username), hashCodeNullable(server), port, enableSsl, hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

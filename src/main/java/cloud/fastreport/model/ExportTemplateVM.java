@@ -21,15 +21,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ExportTemplateVM
@@ -43,7 +42,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ExportTemplateVM.JSON_PROPERTY_EXPORT_PARAMETERS,
   ExportTemplateVM.JSON_PROPERTY_REPORT_PARAMETERS
 })
-@JsonTypeName("ExportTemplateVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ExportTemplateVM {
   public static final String JSON_PROPERTY_FILE_NAME = "fileName";
@@ -67,6 +65,8 @@ public class ExportTemplateVM {
   public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
   private JsonNullable<Map<String, String>> reportParameters = JsonNullable.<Map<String, String>>undefined();
 
+  public ExportTemplateVM() {
+  }
 
   public ExportTemplateVM fileName(String fileName) {
     this.fileName = JsonNullable.<String>of(fileName);
@@ -79,7 +79,6 @@ public class ExportTemplateVM {
    * @return fileName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFileName() {
@@ -114,7 +113,6 @@ public class ExportTemplateVM {
    * @return folderId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFolderId() {
@@ -149,7 +147,6 @@ public class ExportTemplateVM {
    * @return locale
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getLocale() {
@@ -186,7 +183,6 @@ public class ExportTemplateVM {
    * @return pagesCount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Integer getPagesCount() {
@@ -221,7 +217,6 @@ public class ExportTemplateVM {
    * @return format
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_FORMAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -260,7 +255,6 @@ public class ExportTemplateVM {
    * @return exportParameters
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Map<String, String> getExportParameters() {
@@ -307,7 +301,6 @@ public class ExportTemplateVM {
    * @return reportParameters
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Map<String, String> getReportParameters() {
@@ -340,18 +333,29 @@ public class ExportTemplateVM {
       return false;
     }
     ExportTemplateVM exportTemplateVM = (ExportTemplateVM) o;
-    return Objects.equals(this.fileName, exportTemplateVM.fileName) &&
-        Objects.equals(this.folderId, exportTemplateVM.folderId) &&
-        Objects.equals(this.locale, exportTemplateVM.locale) &&
-        Objects.equals(this.pagesCount, exportTemplateVM.pagesCount) &&
+    return equalsNullable(this.fileName, exportTemplateVM.fileName) &&
+        equalsNullable(this.folderId, exportTemplateVM.folderId) &&
+        equalsNullable(this.locale, exportTemplateVM.locale) &&
+        equalsNullable(this.pagesCount, exportTemplateVM.pagesCount) &&
         Objects.equals(this.format, exportTemplateVM.format) &&
-        Objects.equals(this.exportParameters, exportTemplateVM.exportParameters) &&
-        Objects.equals(this.reportParameters, exportTemplateVM.reportParameters);
+        equalsNullable(this.exportParameters, exportTemplateVM.exportParameters) &&
+        equalsNullable(this.reportParameters, exportTemplateVM.reportParameters);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileName, folderId, locale, pagesCount, format, exportParameters, reportParameters);
+    return Objects.hash(hashCodeNullable(fileName), hashCodeNullable(folderId), hashCodeNullable(locale), hashCodeNullable(pagesCount), format, hashCodeNullable(exportParameters), hashCodeNullable(reportParameters));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

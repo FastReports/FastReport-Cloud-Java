@@ -26,9 +26,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission
@@ -41,7 +40,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission.JSON_PROPERTY_UPDATE,
   GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission.JSON_PROPERTY_ADMINISTRATE
 })
-@JsonTypeName("GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission {
   public static final String JSON_PROPERTY_CREATE = "create";
@@ -62,6 +60,8 @@ public class GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministr
   public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
   private GroupAdministrate administrate;
 
+  public GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission() {
+  }
 
   public GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission create(GroupCreate create) {
     
@@ -74,7 +74,6 @@ public class GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministr
    * @return create
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CREATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -101,7 +100,6 @@ public class GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministr
    * @return delete
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DELETE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -128,7 +126,6 @@ public class GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministr
    * @return execute
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EXECUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -155,7 +152,6 @@ public class GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministr
    * @return get
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_GET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -182,7 +178,6 @@ public class GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministr
    * @return update
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_UPDATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -209,7 +204,6 @@ public class GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministr
    * @return administrate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

@@ -16,20 +16,19 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.ReportVM;
-import cloud.fastreport.model.ReportVMFilesVMBase;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ReportsVM
@@ -40,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ReportsVM.JSON_PROPERTY_SKIP,
   ReportsVM.JSON_PROPERTY_TAKE
 })
-@JsonTypeName("ReportsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportsVM {
   public static final String JSON_PROPERTY_FILES = "files";
@@ -55,6 +53,8 @@ public class ReportsVM {
   public static final String JSON_PROPERTY_TAKE = "take";
   private Integer take;
 
+  public ReportsVM() {
+  }
 
   public ReportsVM files(List<ReportVM> files) {
     this.files = JsonNullable.<List<ReportVM>>of(files);
@@ -79,7 +79,6 @@ public class ReportsVM {
    * @return files
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<ReportVM> getFiles() {
@@ -114,7 +113,6 @@ public class ReportsVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -141,7 +139,6 @@ public class ReportsVM {
    * @return skip
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SKIP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -168,7 +165,6 @@ public class ReportsVM {
    * @return take
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TAKE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -193,15 +189,26 @@ public class ReportsVM {
       return false;
     }
     ReportsVM reportsVM = (ReportsVM) o;
-    return Objects.equals(this.files, reportsVM.files) &&
+    return equalsNullable(this.files, reportsVM.files) &&
         Objects.equals(this.count, reportsVM.count) &&
         Objects.equals(this.skip, reportsVM.skip) &&
         Objects.equals(this.take, reportsVM.take);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(files, count, skip, take);
+    return Objects.hash(hashCodeNullable(files), count, skip, take);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

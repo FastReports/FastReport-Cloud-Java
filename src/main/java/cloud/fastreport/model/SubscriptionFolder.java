@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * SubscriptionFolder
@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SubscriptionFolder.JSON_PROPERTY_FOLDER_ID,
   SubscriptionFolder.JSON_PROPERTY_BYTES_USED
 })
-@JsonTypeName("SubscriptionFolder")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionFolder {
   public static final String JSON_PROPERTY_FOLDER_ID = "folderId";
@@ -43,6 +42,8 @@ public class SubscriptionFolder {
   public static final String JSON_PROPERTY_BYTES_USED = "bytesUsed";
   private Long bytesUsed;
 
+  public SubscriptionFolder() {
+  }
 
   public SubscriptionFolder folderId(String folderId) {
     this.folderId = JsonNullable.<String>of(folderId);
@@ -55,7 +56,6 @@ public class SubscriptionFolder {
    * @return folderId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFolderId() {
@@ -90,7 +90,6 @@ public class SubscriptionFolder {
    * @return bytesUsed
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_BYTES_USED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -115,13 +114,24 @@ public class SubscriptionFolder {
       return false;
     }
     SubscriptionFolder subscriptionFolder = (SubscriptionFolder) o;
-    return Objects.equals(this.folderId, subscriptionFolder.folderId) &&
+    return equalsNullable(this.folderId, subscriptionFolder.folderId) &&
         Objects.equals(this.bytesUsed, subscriptionFolder.bytesUsed);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(folderId, bytesUsed);
+    return Objects.hash(hashCodeNullable(folderId), bytesUsed);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

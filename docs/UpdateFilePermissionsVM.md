@@ -5,10 +5,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**newPermissions** | [**FilePermissions**](FilePermissions.md) |  | 
-**administrate** | **FileAdministrate** |  | 
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**newPermissions** | [**FilePermissions**](FilePermissions.md) |  |  |
+|**administrate** | **FileAdministrate** |  |  |
 
 
 

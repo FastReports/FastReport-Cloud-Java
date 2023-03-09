@@ -22,12 +22,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * SubscriptionPlanVM
@@ -54,7 +54,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SubscriptionPlanVM.JSON_PROPERTY_PAGE_LIMIT,
   SubscriptionPlanVM.JSON_PROPERTY_TASKS
 })
-@JsonTypeName("SubscriptionPlanVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionPlanVM {
   public static final String JSON_PROPERTY_ID = "id";
@@ -117,6 +116,8 @@ public class SubscriptionPlanVM {
   public static final String JSON_PROPERTY_TASKS = "tasks";
   private TaskSettingsVM tasks;
 
+  public SubscriptionPlanVM() {
+  }
 
   public SubscriptionPlanVM id(String id) {
     this.id = JsonNullable.<String>of(id);
@@ -129,7 +130,6 @@ public class SubscriptionPlanVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -164,7 +164,6 @@ public class SubscriptionPlanVM {
    * @return isActive
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getIsActive() {
@@ -199,7 +198,6 @@ public class SubscriptionPlanVM {
    * @return displayName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getDisplayName() {
@@ -234,7 +232,6 @@ public class SubscriptionPlanVM {
    * @return timePeriodType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public TimePeriodType getTimePeriodType() {
@@ -269,7 +266,6 @@ public class SubscriptionPlanVM {
    * @return timePeriod
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Integer getTimePeriod() {
@@ -304,7 +300,6 @@ public class SubscriptionPlanVM {
    * @return readonlyTimeLimitType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_READONLY_TIME_LIMIT_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -331,7 +326,6 @@ public class SubscriptionPlanVM {
    * @return readonlyTimeLimit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_READONLY_TIME_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -358,7 +352,6 @@ public class SubscriptionPlanVM {
    * @return templatesSpaceLimit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Long getTemplatesSpaceLimit() {
@@ -393,7 +386,6 @@ public class SubscriptionPlanVM {
    * @return reportsSpaceLimit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Long getReportsSpaceLimit() {
@@ -428,7 +420,6 @@ public class SubscriptionPlanVM {
    * @return exportsSpaceLimit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Long getExportsSpaceLimit() {
@@ -463,7 +454,6 @@ public class SubscriptionPlanVM {
    * @return fileUploadSizeLimit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Long getFileUploadSizeLimit() {
@@ -498,7 +488,6 @@ public class SubscriptionPlanVM {
    * @return dataSourceLimit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Integer getDataSourceLimit() {
@@ -533,7 +522,6 @@ public class SubscriptionPlanVM {
    * @return maxUsersCount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Integer getMaxUsersCount() {
@@ -568,7 +556,6 @@ public class SubscriptionPlanVM {
    * @return groupLimit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Integer getGroupLimit() {
@@ -603,7 +590,6 @@ public class SubscriptionPlanVM {
    * @return onlineDesigner
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getOnlineDesigner() {
@@ -638,7 +624,6 @@ public class SubscriptionPlanVM {
    * @return isDemo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getIsDemo() {
@@ -673,7 +658,6 @@ public class SubscriptionPlanVM {
    * @return urlToBuy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getUrlToBuy() {
@@ -708,7 +692,6 @@ public class SubscriptionPlanVM {
    * @return unlimitedPage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_UNLIMITED_PAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -735,7 +718,6 @@ public class SubscriptionPlanVM {
    * @return pageLimit
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_PAGE_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -762,7 +744,6 @@ public class SubscriptionPlanVM {
    * @return tasks
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TASKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -787,31 +768,42 @@ public class SubscriptionPlanVM {
       return false;
     }
     SubscriptionPlanVM subscriptionPlanVM = (SubscriptionPlanVM) o;
-    return Objects.equals(this.id, subscriptionPlanVM.id) &&
-        Objects.equals(this.isActive, subscriptionPlanVM.isActive) &&
-        Objects.equals(this.displayName, subscriptionPlanVM.displayName) &&
-        Objects.equals(this.timePeriodType, subscriptionPlanVM.timePeriodType) &&
-        Objects.equals(this.timePeriod, subscriptionPlanVM.timePeriod) &&
+    return equalsNullable(this.id, subscriptionPlanVM.id) &&
+        equalsNullable(this.isActive, subscriptionPlanVM.isActive) &&
+        equalsNullable(this.displayName, subscriptionPlanVM.displayName) &&
+        equalsNullable(this.timePeriodType, subscriptionPlanVM.timePeriodType) &&
+        equalsNullable(this.timePeriod, subscriptionPlanVM.timePeriod) &&
         Objects.equals(this.readonlyTimeLimitType, subscriptionPlanVM.readonlyTimeLimitType) &&
         Objects.equals(this.readonlyTimeLimit, subscriptionPlanVM.readonlyTimeLimit) &&
-        Objects.equals(this.templatesSpaceLimit, subscriptionPlanVM.templatesSpaceLimit) &&
-        Objects.equals(this.reportsSpaceLimit, subscriptionPlanVM.reportsSpaceLimit) &&
-        Objects.equals(this.exportsSpaceLimit, subscriptionPlanVM.exportsSpaceLimit) &&
-        Objects.equals(this.fileUploadSizeLimit, subscriptionPlanVM.fileUploadSizeLimit) &&
-        Objects.equals(this.dataSourceLimit, subscriptionPlanVM.dataSourceLimit) &&
-        Objects.equals(this.maxUsersCount, subscriptionPlanVM.maxUsersCount) &&
-        Objects.equals(this.groupLimit, subscriptionPlanVM.groupLimit) &&
-        Objects.equals(this.onlineDesigner, subscriptionPlanVM.onlineDesigner) &&
-        Objects.equals(this.isDemo, subscriptionPlanVM.isDemo) &&
-        Objects.equals(this.urlToBuy, subscriptionPlanVM.urlToBuy) &&
+        equalsNullable(this.templatesSpaceLimit, subscriptionPlanVM.templatesSpaceLimit) &&
+        equalsNullable(this.reportsSpaceLimit, subscriptionPlanVM.reportsSpaceLimit) &&
+        equalsNullable(this.exportsSpaceLimit, subscriptionPlanVM.exportsSpaceLimit) &&
+        equalsNullable(this.fileUploadSizeLimit, subscriptionPlanVM.fileUploadSizeLimit) &&
+        equalsNullable(this.dataSourceLimit, subscriptionPlanVM.dataSourceLimit) &&
+        equalsNullable(this.maxUsersCount, subscriptionPlanVM.maxUsersCount) &&
+        equalsNullable(this.groupLimit, subscriptionPlanVM.groupLimit) &&
+        equalsNullable(this.onlineDesigner, subscriptionPlanVM.onlineDesigner) &&
+        equalsNullable(this.isDemo, subscriptionPlanVM.isDemo) &&
+        equalsNullable(this.urlToBuy, subscriptionPlanVM.urlToBuy) &&
         Objects.equals(this.unlimitedPage, subscriptionPlanVM.unlimitedPage) &&
         Objects.equals(this.pageLimit, subscriptionPlanVM.pageLimit) &&
         Objects.equals(this.tasks, subscriptionPlanVM.tasks);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, isActive, displayName, timePeriodType, timePeriod, readonlyTimeLimitType, readonlyTimeLimit, templatesSpaceLimit, reportsSpaceLimit, exportsSpaceLimit, fileUploadSizeLimit, dataSourceLimit, maxUsersCount, groupLimit, onlineDesigner, isDemo, urlToBuy, unlimitedPage, pageLimit, tasks);
+    return Objects.hash(hashCodeNullable(id), hashCodeNullable(isActive), hashCodeNullable(displayName), hashCodeNullable(timePeriodType), hashCodeNullable(timePeriod), readonlyTimeLimitType, readonlyTimeLimit, hashCodeNullable(templatesSpaceLimit), hashCodeNullable(reportsSpaceLimit), hashCodeNullable(exportsSpaceLimit), hashCodeNullable(fileUploadSizeLimit), hashCodeNullable(dataSourceLimit), hashCodeNullable(maxUsersCount), hashCodeNullable(groupLimit), hashCodeNullable(onlineDesigner), hashCodeNullable(isDemo), hashCodeNullable(urlToBuy), unlimitedPage, pageLimit, tasks);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

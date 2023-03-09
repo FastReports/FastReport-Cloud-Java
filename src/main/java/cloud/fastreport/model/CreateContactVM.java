@@ -20,14 +20,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * CreateContactVM
@@ -38,7 +38,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CreateContactVM.JSON_PROPERTY_GROUPS,
   CreateContactVM.JSON_PROPERTY_SUBSCRIPTION_ID
 })
-@JsonTypeName("CreateContactVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateContactVM {
   public static final String JSON_PROPERTY_NAME = "name";
@@ -53,6 +52,8 @@ public class CreateContactVM {
   public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
   private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
 
+  public CreateContactVM() {
+  }
 
   public CreateContactVM name(String name) {
     this.name = JsonNullable.<String>of(name);
@@ -65,7 +66,6 @@ public class CreateContactVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -100,7 +100,6 @@ public class CreateContactVM {
    * @return email
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEmail() {
@@ -147,7 +146,6 @@ public class CreateContactVM {
    * @return groups
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<String> getGroups() {
@@ -182,7 +180,6 @@ public class CreateContactVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -215,15 +212,26 @@ public class CreateContactVM {
       return false;
     }
     CreateContactVM createContactVM = (CreateContactVM) o;
-    return Objects.equals(this.name, createContactVM.name) &&
-        Objects.equals(this.email, createContactVM.email) &&
-        Objects.equals(this.groups, createContactVM.groups) &&
-        Objects.equals(this.subscriptionId, createContactVM.subscriptionId);
+    return equalsNullable(this.name, createContactVM.name) &&
+        equalsNullable(this.email, createContactVM.email) &&
+        equalsNullable(this.groups, createContactVM.groups) &&
+        equalsNullable(this.subscriptionId, createContactVM.subscriptionId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, email, groups, subscriptionId);
+    return Objects.hash(hashCodeNullable(name), hashCodeNullable(email), hashCodeNullable(groups), hashCodeNullable(subscriptionId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

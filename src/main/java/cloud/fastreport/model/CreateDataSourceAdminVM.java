@@ -15,19 +15,18 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.CreateDataSourceVM;
 import cloud.fastreport.model.DataSourceConnectionType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * CreateDataSourceAdminVM
@@ -39,7 +38,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CreateDataSourceAdminVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   CreateDataSourceAdminVM.JSON_PROPERTY_CONNECTION_TYPE
 })
-@JsonTypeName("CreateDataSourceAdminVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateDataSourceAdminVM {
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
@@ -57,6 +55,8 @@ public class CreateDataSourceAdminVM {
   public static final String JSON_PROPERTY_CONNECTION_TYPE = "connectionType";
   private DataSourceConnectionType connectionType;
 
+  public CreateDataSourceAdminVM() {
+  }
 
   public CreateDataSourceAdminVM ownerId(String ownerId) {
     
@@ -68,7 +68,7 @@ public class CreateDataSourceAdminVM {
    * Get ownerId
    * @return ownerId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_OWNER_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -95,7 +95,6 @@ public class CreateDataSourceAdminVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -129,7 +128,7 @@ public class CreateDataSourceAdminVM {
    * Get connectionString
    * @return connectionString
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -155,7 +154,7 @@ public class CreateDataSourceAdminVM {
    * Get subscriptionId
    * @return subscriptionId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -182,7 +181,6 @@ public class CreateDataSourceAdminVM {
    * @return connectionType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -208,15 +206,26 @@ public class CreateDataSourceAdminVM {
     }
     CreateDataSourceAdminVM createDataSourceAdminVM = (CreateDataSourceAdminVM) o;
     return Objects.equals(this.ownerId, createDataSourceAdminVM.ownerId) &&
-        Objects.equals(this.name, createDataSourceAdminVM.name) &&
+        equalsNullable(this.name, createDataSourceAdminVM.name) &&
         Objects.equals(this.connectionString, createDataSourceAdminVM.connectionString) &&
         Objects.equals(this.subscriptionId, createDataSourceAdminVM.subscriptionId) &&
         Objects.equals(this.connectionType, createDataSourceAdminVM.connectionType);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, name, connectionString, subscriptionId, connectionType);
+    return Objects.hash(ownerId, hashCodeNullable(name), connectionString, subscriptionId, connectionType);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

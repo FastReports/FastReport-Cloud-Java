@@ -21,15 +21,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.threeten.bp.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * SubscriptionInviteVM
@@ -42,7 +42,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SubscriptionInviteVM.JSON_PROPERTY_ADDED_USERS,
   SubscriptionInviteVM.JSON_PROPERTY_CREATOR_USER_ID
 })
-@JsonTypeName("SubscriptionInviteVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionInviteVM {
   public static final String JSON_PROPERTY_USAGES = "usages";
@@ -63,6 +62,8 @@ public class SubscriptionInviteVM {
   public static final String JSON_PROPERTY_CREATOR_USER_ID = "creatorUserId";
   private JsonNullable<String> creatorUserId = JsonNullable.<String>undefined();
 
+  public SubscriptionInviteVM() {
+  }
 
   public SubscriptionInviteVM usages(Long usages) {
     
@@ -75,7 +76,6 @@ public class SubscriptionInviteVM {
    * @return usages
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_USAGES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -102,7 +102,6 @@ public class SubscriptionInviteVM {
    * @return durable
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DURABLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -129,7 +128,6 @@ public class SubscriptionInviteVM {
    * @return accessToken
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getAccessToken() {
@@ -164,7 +162,6 @@ public class SubscriptionInviteVM {
    * @return expiredDate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EXPIRED_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -203,7 +200,6 @@ public class SubscriptionInviteVM {
    * @return addedUsers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<InvitedUser> getAddedUsers() {
@@ -238,7 +234,6 @@ public class SubscriptionInviteVM {
    * @return creatorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCreatorUserId() {
@@ -273,15 +268,26 @@ public class SubscriptionInviteVM {
     SubscriptionInviteVM subscriptionInviteVM = (SubscriptionInviteVM) o;
     return Objects.equals(this.usages, subscriptionInviteVM.usages) &&
         Objects.equals(this.durable, subscriptionInviteVM.durable) &&
-        Objects.equals(this.accessToken, subscriptionInviteVM.accessToken) &&
+        equalsNullable(this.accessToken, subscriptionInviteVM.accessToken) &&
         Objects.equals(this.expiredDate, subscriptionInviteVM.expiredDate) &&
-        Objects.equals(this.addedUsers, subscriptionInviteVM.addedUsers) &&
-        Objects.equals(this.creatorUserId, subscriptionInviteVM.creatorUserId);
+        equalsNullable(this.addedUsers, subscriptionInviteVM.addedUsers) &&
+        equalsNullable(this.creatorUserId, subscriptionInviteVM.creatorUserId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(usages, durable, accessToken, expiredDate, addedUsers, creatorUserId);
+    return Objects.hash(usages, durable, hashCodeNullable(accessToken), expiredDate, hashCodeNullable(addedUsers), hashCodeNullable(creatorUserId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

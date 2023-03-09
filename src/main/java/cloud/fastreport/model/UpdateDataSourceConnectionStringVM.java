@@ -20,9 +20,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * UpdateDataSourceConnectionStringVM
@@ -30,12 +29,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   UpdateDataSourceConnectionStringVM.JSON_PROPERTY_CONNECTION_STRING
 })
-@JsonTypeName("UpdateDataSourceConnectionStringVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateDataSourceConnectionStringVM {
   public static final String JSON_PROPERTY_CONNECTION_STRING = "connectionString";
   private String connectionString;
 
+  public UpdateDataSourceConnectionStringVM() {
+  }
 
   public UpdateDataSourceConnectionStringVM connectionString(String connectionString) {
     
@@ -47,7 +47,7 @@ public class UpdateDataSourceConnectionStringVM {
    * Get connectionString
    * @return connectionString
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

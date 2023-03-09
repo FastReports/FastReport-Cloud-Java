@@ -143,7 +143,7 @@ public class SubscriptionUsersApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - Subscription is not found
     * <p><b>500</b> - Exception thrown
-    * @param subscriptionId The subscriptionId parameter
+    * @param subscriptionId 
     * @return Long
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -160,7 +160,7 @@ public class SubscriptionUsersApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - Subscription is not found
     * <p><b>500</b> - Exception thrown
-    * @param subscriptionId The subscriptionId parameter
+    * @param subscriptionId 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return Long
     * @throws IOException if an error occurs while attempting to invoke the API

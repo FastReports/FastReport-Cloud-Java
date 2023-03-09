@@ -198,7 +198,7 @@ public class UserProfileApi {
     * This method is only allowed for local sign in via intranet
     * <p><b>200</b> - Succesfully updated
     * <p><b>400</b> - The reqeust is wrong
-    * @param updateUserProfileVM The updateUserProfileVM parameter
+    * @param updateUserProfileVM 
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
     public void userProfileUpdateMyProfile(UpdateUserProfileVM updateUserProfileVM) throws IOException {

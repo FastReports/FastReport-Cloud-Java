@@ -15,19 +15,18 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.RunTransformTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RunThumbnailReportTaskVM
@@ -36,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RunThumbnailReportTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   RunThumbnailReportTaskVM.JSON_PROPERTY_TYPE
 })
-@JsonTypeName("RunThumbnailReportTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RunThumbnailReportTaskVM {
   public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
@@ -45,6 +43,8 @@ public class RunThumbnailReportTaskVM {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TaskType type;
 
+  public RunThumbnailReportTaskVM() {
+  }
 
   public RunThumbnailReportTaskVM subscriptionId(String subscriptionId) {
     this.subscriptionId = JsonNullable.<String>of(subscriptionId);
@@ -57,7 +57,6 @@ public class RunThumbnailReportTaskVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -92,7 +91,6 @@ public class RunThumbnailReportTaskVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -117,13 +115,24 @@ public class RunThumbnailReportTaskVM {
       return false;
     }
     RunThumbnailReportTaskVM runThumbnailReportTaskVM = (RunThumbnailReportTaskVM) o;
-    return Objects.equals(this.subscriptionId, runThumbnailReportTaskVM.subscriptionId) &&
+    return equalsNullable(this.subscriptionId, runThumbnailReportTaskVM.subscriptionId) &&
         Objects.equals(this.type, runThumbnailReportTaskVM.type);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subscriptionId, type);
+    return Objects.hash(hashCodeNullable(subscriptionId), type);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

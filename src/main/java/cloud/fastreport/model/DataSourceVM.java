@@ -22,13 +22,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * DataSourceVM
@@ -46,7 +46,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   DataSourceVM.JSON_PROPERTY_CREATOR_USER_ID,
   DataSourceVM.JSON_PROPERTY_STATUS
 })
-@JsonTypeName("DataSourceVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DataSourceVM {
   public static final String JSON_PROPERTY_ID = "id";
@@ -82,6 +81,8 @@ public class DataSourceVM {
   public static final String JSON_PROPERTY_STATUS = "status";
   private DataSourceStatus status;
 
+  public DataSourceVM() {
+  }
 
   public DataSourceVM id(String id) {
     this.id = JsonNullable.<String>of(id);
@@ -94,7 +95,6 @@ public class DataSourceVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -129,7 +129,6 @@ public class DataSourceVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -164,7 +163,6 @@ public class DataSourceVM {
    * @return connectionType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -191,7 +189,6 @@ public class DataSourceVM {
    * @return connectionString
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getConnectionString() {
@@ -226,7 +223,6 @@ public class DataSourceVM {
    * @return dataStructure
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getDataStructure() {
@@ -261,7 +257,6 @@ public class DataSourceVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -296,7 +291,6 @@ public class DataSourceVM {
    * @return editedTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EDITED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -323,7 +317,6 @@ public class DataSourceVM {
    * @return editorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEditorUserId() {
@@ -358,7 +351,6 @@ public class DataSourceVM {
    * @return createdTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CREATED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -385,7 +377,6 @@ public class DataSourceVM {
    * @return creatorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCreatorUserId() {
@@ -420,7 +411,6 @@ public class DataSourceVM {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -445,22 +435,33 @@ public class DataSourceVM {
       return false;
     }
     DataSourceVM dataSourceVM = (DataSourceVM) o;
-    return Objects.equals(this.id, dataSourceVM.id) &&
-        Objects.equals(this.name, dataSourceVM.name) &&
+    return equalsNullable(this.id, dataSourceVM.id) &&
+        equalsNullable(this.name, dataSourceVM.name) &&
         Objects.equals(this.connectionType, dataSourceVM.connectionType) &&
-        Objects.equals(this.connectionString, dataSourceVM.connectionString) &&
-        Objects.equals(this.dataStructure, dataSourceVM.dataStructure) &&
-        Objects.equals(this.subscriptionId, dataSourceVM.subscriptionId) &&
+        equalsNullable(this.connectionString, dataSourceVM.connectionString) &&
+        equalsNullable(this.dataStructure, dataSourceVM.dataStructure) &&
+        equalsNullable(this.subscriptionId, dataSourceVM.subscriptionId) &&
         Objects.equals(this.editedTime, dataSourceVM.editedTime) &&
-        Objects.equals(this.editorUserId, dataSourceVM.editorUserId) &&
+        equalsNullable(this.editorUserId, dataSourceVM.editorUserId) &&
         Objects.equals(this.createdTime, dataSourceVM.createdTime) &&
-        Objects.equals(this.creatorUserId, dataSourceVM.creatorUserId) &&
+        equalsNullable(this.creatorUserId, dataSourceVM.creatorUserId) &&
         Objects.equals(this.status, dataSourceVM.status);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, connectionType, connectionString, dataStructure, subscriptionId, editedTime, editorUserId, createdTime, creatorUserId, status);
+    return Objects.hash(hashCodeNullable(id), hashCodeNullable(name), connectionType, hashCodeNullable(connectionString), hashCodeNullable(dataStructure), hashCodeNullable(subscriptionId), editedTime, hashCodeNullable(editorUserId), createdTime, hashCodeNullable(creatorUserId), status);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

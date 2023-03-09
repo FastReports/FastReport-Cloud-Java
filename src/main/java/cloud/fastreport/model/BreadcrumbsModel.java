@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * BreadcrumbsModel
@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   BreadcrumbsModel.JSON_PROPERTY_ID,
   BreadcrumbsModel.JSON_PROPERTY_NAME
 })
-@JsonTypeName("BreadcrumbsModel")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class BreadcrumbsModel {
   public static final String JSON_PROPERTY_ID = "id";
@@ -43,6 +42,8 @@ public class BreadcrumbsModel {
   public static final String JSON_PROPERTY_NAME = "name";
   private JsonNullable<String> name = JsonNullable.<String>undefined();
 
+  public BreadcrumbsModel() {
+  }
 
   public BreadcrumbsModel id(String id) {
     this.id = JsonNullable.<String>of(id);
@@ -55,7 +56,6 @@ public class BreadcrumbsModel {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -90,7 +90,6 @@ public class BreadcrumbsModel {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -123,13 +122,24 @@ public class BreadcrumbsModel {
       return false;
     }
     BreadcrumbsModel breadcrumbsModel = (BreadcrumbsModel) o;
-    return Objects.equals(this.id, breadcrumbsModel.id) &&
-        Objects.equals(this.name, breadcrumbsModel.name);
+    return equalsNullable(this.id, breadcrumbsModel.id) &&
+        equalsNullable(this.name, breadcrumbsModel.name);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(hashCodeNullable(id), hashCodeNullable(name));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

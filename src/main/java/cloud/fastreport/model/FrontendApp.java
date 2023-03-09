@@ -21,9 +21,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * FrontendApp
@@ -31,12 +30,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   FrontendApp.JSON_PROPERTY_MIXINS
 })
-@JsonTypeName("FrontendApp")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FrontendApp {
   public static final String JSON_PROPERTY_MIXINS = "mixins";
   private AppMixins mixins;
 
+  public FrontendApp() {
+  }
 
   public FrontendApp mixins(AppMixins mixins) {
     
@@ -49,7 +49,6 @@ public class FrontendApp {
    * @return mixins
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_MIXINS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

@@ -15,20 +15,19 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.FileCreateVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ReportCreateVM
@@ -40,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ReportCreateVM.JSON_PROPERTY_ICON,
   ReportCreateVM.JSON_PROPERTY_CONTENT
 })
-@JsonTypeName("ReportCreateVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportCreateVM {
   public static final String JSON_PROPERTY_TEMPLATE_ID = "templateId";
@@ -58,6 +56,8 @@ public class ReportCreateVM {
   public static final String JSON_PROPERTY_CONTENT = "content";
   private JsonNullable<byte[]> content = JsonNullable.<byte[]>undefined();
 
+  public ReportCreateVM() {
+  }
 
   public ReportCreateVM templateId(String templateId) {
     this.templateId = JsonNullable.<String>of(templateId);
@@ -70,7 +70,6 @@ public class ReportCreateVM {
    * @return templateId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getTemplateId() {
@@ -105,7 +104,6 @@ public class ReportCreateVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -152,7 +150,6 @@ public class ReportCreateVM {
    * @return tags
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<String> getTags() {
@@ -187,7 +184,6 @@ public class ReportCreateVM {
    * @return icon
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public byte[] getIcon() {
@@ -222,7 +218,6 @@ public class ReportCreateVM {
    * @return content
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public byte[] getContent() {
@@ -255,16 +250,27 @@ public class ReportCreateVM {
       return false;
     }
     ReportCreateVM reportCreateVM = (ReportCreateVM) o;
-    return Objects.equals(this.templateId, reportCreateVM.templateId) &&
-        Objects.equals(this.name, reportCreateVM.name) &&
-        Objects.equals(this.tags, reportCreateVM.tags) &&
-        Arrays.equals(this.icon, reportCreateVM.icon) &&
-        Arrays.equals(this.content, reportCreateVM.content);
+    return equalsNullable(this.templateId, reportCreateVM.templateId) &&
+        equalsNullable(this.name, reportCreateVM.name) &&
+        equalsNullable(this.tags, reportCreateVM.tags) &&
+        equalsNullable(this.icon, reportCreateVM.icon) &&
+        equalsNullable(this.content, reportCreateVM.content);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateId, name, tags, Arrays.hashCode(icon), Arrays.hashCode(content));
+    return Objects.hash(hashCodeNullable(templateId), hashCodeNullable(name), hashCodeNullable(tags), hashCodeNullable(icon), hashCodeNullable(content));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

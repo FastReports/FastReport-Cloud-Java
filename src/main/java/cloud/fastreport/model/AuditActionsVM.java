@@ -21,14 +21,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * AuditActionsVM
@@ -39,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   AuditActionsVM.JSON_PROPERTY_SKIP,
   AuditActionsVM.JSON_PROPERTY_TAKE
 })
-@JsonTypeName("AuditActionsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AuditActionsVM {
   public static final String JSON_PROPERTY_ITEMS = "items";
@@ -54,6 +53,8 @@ public class AuditActionsVM {
   public static final String JSON_PROPERTY_TAKE = "take";
   private Integer take;
 
+  public AuditActionsVM() {
+  }
 
   public AuditActionsVM items(List<AuditActionVM> items) {
     this.items = JsonNullable.<List<AuditActionVM>>of(items);
@@ -78,7 +79,6 @@ public class AuditActionsVM {
    * @return items
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<AuditActionVM> getItems() {
@@ -113,7 +113,6 @@ public class AuditActionsVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -140,7 +139,6 @@ public class AuditActionsVM {
    * @return skip
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SKIP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -167,7 +165,6 @@ public class AuditActionsVM {
    * @return take
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TAKE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -192,15 +189,26 @@ public class AuditActionsVM {
       return false;
     }
     AuditActionsVM auditActionsVM = (AuditActionsVM) o;
-    return Objects.equals(this.items, auditActionsVM.items) &&
+    return equalsNullable(this.items, auditActionsVM.items) &&
         Objects.equals(this.count, auditActionsVM.count) &&
         Objects.equals(this.skip, auditActionsVM.skip) &&
         Objects.equals(this.take, auditActionsVM.take);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(items, count, skip, take);
+    return Objects.hash(hashCodeNullable(items), count, skip, take);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

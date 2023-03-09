@@ -5,10 +5,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**newPermissions** | [**SubscriptionPermissions**](SubscriptionPermissions.md) |  | 
-**administrate** | **SubscriptionAdministrate** |  | 
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**newPermissions** | [**SubscriptionPermissions**](SubscriptionPermissions.md) |  |  |
+|**administrate** | **SubscriptionAdministrate** |  |  |
 
 
 

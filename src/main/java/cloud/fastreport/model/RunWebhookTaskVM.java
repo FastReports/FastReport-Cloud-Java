@@ -16,21 +16,20 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.RunEndpointVM;
-import cloud.fastreport.model.RunTransportTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RunWebhookTaskVM
@@ -40,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RunWebhookTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   RunWebhookTaskVM.JSON_PROPERTY_TYPE
 })
-@JsonTypeName("RunWebhookTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RunWebhookTaskVM {
   public static final String JSON_PROPERTY_ENDPOINTS = "endpoints";
@@ -52,6 +50,8 @@ public class RunWebhookTaskVM {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TaskType type;
 
+  public RunWebhookTaskVM() {
+  }
 
   public RunWebhookTaskVM endpoints(List<RunEndpointVM> endpoints) {
     this.endpoints = JsonNullable.<List<RunEndpointVM>>of(endpoints);
@@ -76,7 +76,6 @@ public class RunWebhookTaskVM {
    * @return endpoints
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<RunEndpointVM> getEndpoints() {
@@ -111,7 +110,6 @@ public class RunWebhookTaskVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -146,7 +144,6 @@ public class RunWebhookTaskVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -171,14 +168,25 @@ public class RunWebhookTaskVM {
       return false;
     }
     RunWebhookTaskVM runWebhookTaskVM = (RunWebhookTaskVM) o;
-    return Objects.equals(this.endpoints, runWebhookTaskVM.endpoints) &&
-        Objects.equals(this.subscriptionId, runWebhookTaskVM.subscriptionId) &&
+    return equalsNullable(this.endpoints, runWebhookTaskVM.endpoints) &&
+        equalsNullable(this.subscriptionId, runWebhookTaskVM.subscriptionId) &&
         Objects.equals(this.type, runWebhookTaskVM.type);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(endpoints, subscriptionId, type);
+    return Objects.hash(hashCodeNullable(endpoints), hashCodeNullable(subscriptionId), type);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

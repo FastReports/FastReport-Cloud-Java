@@ -16,21 +16,20 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.TaskType;
-import cloud.fastreport.model.TransportTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.threeten.bp.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * EmailTaskVM
@@ -51,7 +50,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EmailTaskVM.JSON_PROPERTY_DELAYED_RUN_TIME,
   EmailTaskVM.JSON_PROPERTY_CRON_EXPRESSION
 })
-@JsonTypeName("EmailTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EmailTaskVM {
   public static final String JSON_PROPERTY_BODY = "body";
@@ -96,6 +94,8 @@ public class EmailTaskVM {
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
   private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
+  public EmailTaskVM() {
+  }
 
   public EmailTaskVM body(String body) {
     this.body = JsonNullable.<String>of(body);
@@ -108,7 +108,6 @@ public class EmailTaskVM {
    * @return body
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getBody() {
@@ -143,7 +142,6 @@ public class EmailTaskVM {
    * @return isBodyHtml
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_IS_BODY_HTML)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -170,7 +168,6 @@ public class EmailTaskVM {
    * @return subject
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubject() {
@@ -217,7 +214,6 @@ public class EmailTaskVM {
    * @return to
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<String> getTo() {
@@ -252,7 +248,6 @@ public class EmailTaskVM {
    * @return from
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFrom() {
@@ -287,7 +282,6 @@ public class EmailTaskVM {
    * @return username
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getUsername() {
@@ -322,7 +316,6 @@ public class EmailTaskVM {
    * @return server
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getServer() {
@@ -359,7 +352,6 @@ public class EmailTaskVM {
    * @return port
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_PORT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -386,7 +378,6 @@ public class EmailTaskVM {
    * @return enableSsl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ENABLE_SSL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -413,7 +404,6 @@ public class EmailTaskVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -448,7 +438,6 @@ public class EmailTaskVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -483,7 +472,6 @@ public class EmailTaskVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -510,7 +498,6 @@ public class EmailTaskVM {
    * @return delayedRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedRunTime() {
@@ -545,7 +532,6 @@ public class EmailTaskVM {
    * @return cronExpression
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCronExpression() {
@@ -578,25 +564,36 @@ public class EmailTaskVM {
       return false;
     }
     EmailTaskVM emailTaskVM = (EmailTaskVM) o;
-    return Objects.equals(this.body, emailTaskVM.body) &&
+    return equalsNullable(this.body, emailTaskVM.body) &&
         Objects.equals(this.isBodyHtml, emailTaskVM.isBodyHtml) &&
-        Objects.equals(this.subject, emailTaskVM.subject) &&
-        Objects.equals(this.to, emailTaskVM.to) &&
-        Objects.equals(this.from, emailTaskVM.from) &&
-        Objects.equals(this.username, emailTaskVM.username) &&
-        Objects.equals(this.server, emailTaskVM.server) &&
+        equalsNullable(this.subject, emailTaskVM.subject) &&
+        equalsNullable(this.to, emailTaskVM.to) &&
+        equalsNullable(this.from, emailTaskVM.from) &&
+        equalsNullable(this.username, emailTaskVM.username) &&
+        equalsNullable(this.server, emailTaskVM.server) &&
         Objects.equals(this.port, emailTaskVM.port) &&
         Objects.equals(this.enableSsl, emailTaskVM.enableSsl) &&
-        Objects.equals(this.name, emailTaskVM.name) &&
-        Objects.equals(this.subscriptionId, emailTaskVM.subscriptionId) &&
+        equalsNullable(this.name, emailTaskVM.name) &&
+        equalsNullable(this.subscriptionId, emailTaskVM.subscriptionId) &&
         Objects.equals(this.type, emailTaskVM.type) &&
-        Objects.equals(this.delayedRunTime, emailTaskVM.delayedRunTime) &&
-        Objects.equals(this.cronExpression, emailTaskVM.cronExpression);
+        equalsNullable(this.delayedRunTime, emailTaskVM.delayedRunTime) &&
+        equalsNullable(this.cronExpression, emailTaskVM.cronExpression);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(body, isBodyHtml, subject, to, from, username, server, port, enableSsl, name, subscriptionId, type, delayedRunTime, cronExpression);
+    return Objects.hash(hashCodeNullable(body), isBodyHtml, hashCodeNullable(subject), hashCodeNullable(to), hashCodeNullable(from), hashCodeNullable(username), hashCodeNullable(server), port, enableSsl, hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

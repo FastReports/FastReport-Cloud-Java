@@ -270,8 +270,8 @@ public class TemplatesApi {
     * @param take number of folder and files, that have to be returned
     * @param orderBy indicates a field to sort by
     * @param desc indicates if sorting is descending
-    * @param searchPattern The searchPattern parameter
-    * @param useRegex The useRegex parameter
+    * @param searchPattern 
+    * @param useRegex 
     * @return FilesVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -425,8 +425,8 @@ public class TemplatesApi {
     * @param take number of folder and files, that have to be returned
     * @param orderBy indicates a field to sort by
     * @param desc indicates if sorting is descending
-    * @param searchPattern The searchPattern parameter
-    * @param useRegex The useRegex parameter
+    * @param searchPattern 
+    * @param useRegex 
     * @return FilesVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -1130,10 +1130,10 @@ public class TemplatesApi {
     * @param id folder id
     * @param skip number of files, that have to be skipped
     * @param take number of files, that have to be returned
-    * @param orderBy The orderBy parameter
-    * @param desc The desc parameter
-    * @param searchPattern The searchPattern parameter
-    * @param useRegex The useRegex parameter
+    * @param orderBy 
+    * @param desc 
+    * @param searchPattern 
+    * @param useRegex 
     * @return FilesVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -1477,7 +1477,7 @@ public class TemplatesApi {
     * <p><b>400</b> - id is not valid
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - folder is not found
-    * @param id The id parameter
+    * @param id 
     * @return FilePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -1493,7 +1493,7 @@ public class TemplatesApi {
     * <p><b>400</b> - id is not valid
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - folder is not found
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return FilePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -2056,7 +2056,7 @@ public class TemplatesApi {
     * <p><b>402</b> - Subscription is outdated
     * <p><b>404</b> - Folder not found
     * @param id folder id
-    * @param recoveryPath The recoveryPath parameter
+    * @param recoveryPath 
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
     public void templateFoldersRecoverFolder(String id, String recoveryPath) throws IOException {
@@ -2371,8 +2371,8 @@ public class TemplatesApi {
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
-    * @param updateFilePermissionsVM The updateFilePermissionsVM parameter
+    * @param id 
+    * @param updateFilePermissionsVM 
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
     public void templateFoldersUpdatePermissions(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws IOException {
@@ -2387,7 +2387,7 @@ public class TemplatesApi {
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -2969,9 +2969,9 @@ public class TemplatesApi {
     * <p><b>400</b> - Bad Request
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
-    * @param id The id parameter
-    * @param skip The skip parameter
-    * @param take The take parameter
+    * @param id 
+    * @param skip 
+    * @param take 
     * @return AuditActionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -2987,7 +2987,7 @@ public class TemplatesApi {
     * <p><b>400</b> - Bad Request
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return AuditActionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -3172,10 +3172,10 @@ public class TemplatesApi {
     * @param id folder id
     * @param skip number of files, that have to be skipped
     * @param take number of files, that have to be returned
-    * @param searchPattern The searchPattern parameter
-    * @param orderBy The orderBy parameter
-    * @param desc The desc parameter
-    * @param useRegex The useRegex parameter
+    * @param searchPattern 
+    * @param orderBy 
+    * @param desc 
+    * @param useRegex 
     * @return TemplatesVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -3323,7 +3323,7 @@ public class TemplatesApi {
     * <p><b>400</b> - id is not valid
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - file is not found
-    * @param id The id parameter
+    * @param id 
     * @return FilePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -3339,7 +3339,7 @@ public class TemplatesApi {
     * <p><b>400</b> - id is not valid
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - file is not found
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return FilePermissionsVM
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -3711,7 +3711,7 @@ public class TemplatesApi {
     * <p><b>404</b> - File not found
     * <p><b>500</b> - Exception thrown
     * @param id file id
-    * @param recoveryPath The recoveryPath parameter
+    * @param recoveryPath 
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
     public void templatesRecoverFile(String id, String recoveryPath) throws IOException {
@@ -4241,8 +4241,8 @@ public class TemplatesApi {
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
-    * @param updateFilePermissionsVM The updateFilePermissionsVM parameter
+    * @param id 
+    * @param updateFilePermissionsVM 
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
     public void templatesUpdatePermissions(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws IOException {
@@ -4257,7 +4257,7 @@ public class TemplatesApi {
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/

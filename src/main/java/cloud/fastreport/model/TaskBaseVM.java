@@ -15,20 +15,19 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.CreateTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * TaskBaseVM
@@ -44,7 +43,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TaskBaseVM.JSON_PROPERTY_DELAYED_RUN_TIME,
   TaskBaseVM.JSON_PROPERTY_CRON_EXPRESSION
 })
-@JsonTypeName("TaskBaseVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TaskBaseVM {
   public static final String JSON_PROPERTY_ID = "id";
@@ -74,6 +72,18 @@ public class TaskBaseVM {
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
   private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
+  public TaskBaseVM() {
+  }
+
+  @JsonCreator
+  public TaskBaseVM(
+    @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME) OffsetDateTime recurrentRunTime, 
+    @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME) OffsetDateTime recurrentWasRunTime
+  ) {
+    this();
+    this.recurrentRunTime = recurrentRunTime == null ? JsonNullable.<OffsetDateTime>undefined() : JsonNullable.of(recurrentRunTime);
+    this.recurrentWasRunTime = recurrentWasRunTime == null ? JsonNullable.<OffsetDateTime>undefined() : JsonNullable.of(recurrentWasRunTime);
+  }
 
   public TaskBaseVM id(String id) {
     this.id = JsonNullable.<String>of(id);
@@ -86,7 +96,6 @@ public class TaskBaseVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -121,7 +130,6 @@ public class TaskBaseVM {
    * @return delayedWasRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedWasRunTime() {
@@ -150,7 +158,6 @@ public class TaskBaseVM {
    * @return recurrentRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getRecurrentRunTime() {
@@ -180,7 +187,6 @@ public class TaskBaseVM {
    * @return recurrentWasRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getRecurrentWasRunTime() {
@@ -216,7 +222,6 @@ public class TaskBaseVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -251,7 +256,6 @@ public class TaskBaseVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -286,7 +290,6 @@ public class TaskBaseVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -313,7 +316,6 @@ public class TaskBaseVM {
    * @return delayedRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedRunTime() {
@@ -348,7 +350,6 @@ public class TaskBaseVM {
    * @return cronExpression
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCronExpression() {
@@ -381,20 +382,31 @@ public class TaskBaseVM {
       return false;
     }
     TaskBaseVM taskBaseVM = (TaskBaseVM) o;
-    return Objects.equals(this.id, taskBaseVM.id) &&
-        Objects.equals(this.delayedWasRunTime, taskBaseVM.delayedWasRunTime) &&
-        Objects.equals(this.recurrentRunTime, taskBaseVM.recurrentRunTime) &&
-        Objects.equals(this.recurrentWasRunTime, taskBaseVM.recurrentWasRunTime) &&
-        Objects.equals(this.name, taskBaseVM.name) &&
-        Objects.equals(this.subscriptionId, taskBaseVM.subscriptionId) &&
+    return equalsNullable(this.id, taskBaseVM.id) &&
+        equalsNullable(this.delayedWasRunTime, taskBaseVM.delayedWasRunTime) &&
+        equalsNullable(this.recurrentRunTime, taskBaseVM.recurrentRunTime) &&
+        equalsNullable(this.recurrentWasRunTime, taskBaseVM.recurrentWasRunTime) &&
+        equalsNullable(this.name, taskBaseVM.name) &&
+        equalsNullable(this.subscriptionId, taskBaseVM.subscriptionId) &&
         Objects.equals(this.type, taskBaseVM.type) &&
-        Objects.equals(this.delayedRunTime, taskBaseVM.delayedRunTime) &&
-        Objects.equals(this.cronExpression, taskBaseVM.cronExpression);
+        equalsNullable(this.delayedRunTime, taskBaseVM.delayedRunTime) &&
+        equalsNullable(this.cronExpression, taskBaseVM.cronExpression);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, delayedWasRunTime, recurrentRunTime, recurrentWasRunTime, name, subscriptionId, type, delayedRunTime, cronExpression);
+    return Objects.hash(hashCodeNullable(id), hashCodeNullable(delayedWasRunTime), hashCodeNullable(recurrentRunTime), hashCodeNullable(recurrentWasRunTime), hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -22,13 +22,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ServerConfigurationVM
@@ -50,7 +50,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ServerConfigurationVM.JSON_PROPERTY_HOME_PAGE_LINK,
   ServerConfigurationVM.JSON_PROPERTY_AUTH_SERVER_NAME
 })
-@JsonTypeName("ServerConfigurationVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ServerConfigurationVM {
   public static final String JSON_PROPERTY_TITLE = "title";
@@ -98,6 +97,8 @@ public class ServerConfigurationVM {
   public static final String JSON_PROPERTY_AUTH_SERVER_NAME = "authServerName";
   private JsonNullable<String> authServerName = JsonNullable.<String>undefined();
 
+  public ServerConfigurationVM() {
+  }
 
   public ServerConfigurationVM title(String title) {
     this.title = JsonNullable.<String>of(title);
@@ -110,7 +111,6 @@ public class ServerConfigurationVM {
    * @return title
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getTitle() {
@@ -145,7 +145,6 @@ public class ServerConfigurationVM {
    * @return logoLink
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getLogoLink() {
@@ -180,7 +179,6 @@ public class ServerConfigurationVM {
    * @return copyright
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCopyright() {
@@ -215,7 +213,6 @@ public class ServerConfigurationVM {
    * @return corporateServerMode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CORPORATE_SERVER_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -242,7 +239,6 @@ public class ServerConfigurationVM {
    * @return lastSLAVersion
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getLastSLAVersion() {
@@ -277,7 +273,6 @@ public class ServerConfigurationVM {
    * @return isDisabled
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_IS_DISABLED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -304,7 +299,6 @@ public class ServerConfigurationVM {
    * @return frontend
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_FRONTEND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -331,7 +325,6 @@ public class ServerConfigurationVM {
    * @return invariantLocale
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getInvariantLocale() {
@@ -366,7 +359,6 @@ public class ServerConfigurationVM {
    * @return auth
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_AUTH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -393,7 +385,6 @@ public class ServerConfigurationVM {
    * @return designerForAnons
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DESIGNER_FOR_ANONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -420,7 +411,6 @@ public class ServerConfigurationVM {
    * @return slaLink
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSlaLink() {
@@ -455,7 +445,6 @@ public class ServerConfigurationVM {
    * @return firstStepsVideoLink
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFirstStepsVideoLink() {
@@ -490,7 +479,6 @@ public class ServerConfigurationVM {
    * @return aboutLink
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getAboutLink() {
@@ -525,7 +513,6 @@ public class ServerConfigurationVM {
    * @return homePageLink
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getHomePageLink() {
@@ -560,7 +547,6 @@ public class ServerConfigurationVM {
    * @return authServerName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getAuthServerName() {
@@ -593,26 +579,37 @@ public class ServerConfigurationVM {
       return false;
     }
     ServerConfigurationVM serverConfigurationVM = (ServerConfigurationVM) o;
-    return Objects.equals(this.title, serverConfigurationVM.title) &&
-        Objects.equals(this.logoLink, serverConfigurationVM.logoLink) &&
-        Objects.equals(this.copyright, serverConfigurationVM.copyright) &&
+    return equalsNullable(this.title, serverConfigurationVM.title) &&
+        equalsNullable(this.logoLink, serverConfigurationVM.logoLink) &&
+        equalsNullable(this.copyright, serverConfigurationVM.copyright) &&
         Objects.equals(this.corporateServerMode, serverConfigurationVM.corporateServerMode) &&
-        Objects.equals(this.lastSLAVersion, serverConfigurationVM.lastSLAVersion) &&
+        equalsNullable(this.lastSLAVersion, serverConfigurationVM.lastSLAVersion) &&
         Objects.equals(this.isDisabled, serverConfigurationVM.isDisabled) &&
         Objects.equals(this.frontend, serverConfigurationVM.frontend) &&
-        Objects.equals(this.invariantLocale, serverConfigurationVM.invariantLocale) &&
+        equalsNullable(this.invariantLocale, serverConfigurationVM.invariantLocale) &&
         Objects.equals(this.auth, serverConfigurationVM.auth) &&
         Objects.equals(this.designerForAnons, serverConfigurationVM.designerForAnons) &&
-        Objects.equals(this.slaLink, serverConfigurationVM.slaLink) &&
-        Objects.equals(this.firstStepsVideoLink, serverConfigurationVM.firstStepsVideoLink) &&
-        Objects.equals(this.aboutLink, serverConfigurationVM.aboutLink) &&
-        Objects.equals(this.homePageLink, serverConfigurationVM.homePageLink) &&
-        Objects.equals(this.authServerName, serverConfigurationVM.authServerName);
+        equalsNullable(this.slaLink, serverConfigurationVM.slaLink) &&
+        equalsNullable(this.firstStepsVideoLink, serverConfigurationVM.firstStepsVideoLink) &&
+        equalsNullable(this.aboutLink, serverConfigurationVM.aboutLink) &&
+        equalsNullable(this.homePageLink, serverConfigurationVM.homePageLink) &&
+        equalsNullable(this.authServerName, serverConfigurationVM.authServerName);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, logoLink, copyright, corporateServerMode, lastSLAVersion, isDisabled, frontend, invariantLocale, auth, designerForAnons, slaLink, firstStepsVideoLink, aboutLink, homePageLink, authServerName);
+    return Objects.hash(hashCodeNullable(title), hashCodeNullable(logoLink), hashCodeNullable(copyright), corporateServerMode, hashCodeNullable(lastSLAVersion), isDisabled, frontend, hashCodeNullable(invariantLocale), auth, designerForAnons, hashCodeNullable(slaLink), hashCodeNullable(firstStepsVideoLink), hashCodeNullable(aboutLink), hashCodeNullable(homePageLink), hashCodeNullable(authServerName));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

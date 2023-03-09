@@ -15,7 +15,6 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.EntityVM;
 import cloud.fastreport.model.FileStatus;
 import cloud.fastreport.model.FileStatusReason;
 import cloud.fastreport.model.FileType;
@@ -24,15 +23,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.threeten.bp.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * FileVM
@@ -54,7 +53,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   FileVM.JSON_PROPERTY_EDITED_TIME,
   FileVM.JSON_PROPERTY_EDITOR_USER_ID
 })
-@JsonTypeName("FileVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FileVM {
   public static final String JSON_PROPERTY_NAME = "name";
@@ -102,6 +100,8 @@ public class FileVM {
   public static final String JSON_PROPERTY_EDITOR_USER_ID = "editorUserId";
   private JsonNullable<String> editorUserId = JsonNullable.<String>undefined();
 
+  public FileVM() {
+  }
 
   public FileVM name(String name) {
     this.name = JsonNullable.<String>of(name);
@@ -114,7 +114,6 @@ public class FileVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -149,7 +148,6 @@ public class FileVM {
    * @return parentId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getParentId() {
@@ -196,7 +194,6 @@ public class FileVM {
    * @return tags
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<String> getTags() {
@@ -231,7 +228,6 @@ public class FileVM {
    * @return icon
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public byte[] getIcon() {
@@ -266,7 +262,6 @@ public class FileVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -293,7 +288,6 @@ public class FileVM {
    * @return size
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -320,7 +314,6 @@ public class FileVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -355,7 +348,6 @@ public class FileVM {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -382,7 +374,6 @@ public class FileVM {
    * @return statusReason
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_STATUS_REASON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -409,7 +400,6 @@ public class FileVM {
    * @return errorMessage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getErrorMessage() {
@@ -444,7 +434,6 @@ public class FileVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -479,7 +468,6 @@ public class FileVM {
    * @return createdTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CREATED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -506,7 +494,6 @@ public class FileVM {
    * @return creatorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCreatorUserId() {
@@ -541,7 +528,6 @@ public class FileVM {
    * @return editedTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EDITED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -568,7 +554,6 @@ public class FileVM {
    * @return editorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEditorUserId() {
@@ -601,26 +586,37 @@ public class FileVM {
       return false;
     }
     FileVM fileVM = (FileVM) o;
-    return Objects.equals(this.name, fileVM.name) &&
-        Objects.equals(this.parentId, fileVM.parentId) &&
-        Objects.equals(this.tags, fileVM.tags) &&
-        Arrays.equals(this.icon, fileVM.icon) &&
+    return equalsNullable(this.name, fileVM.name) &&
+        equalsNullable(this.parentId, fileVM.parentId) &&
+        equalsNullable(this.tags, fileVM.tags) &&
+        equalsNullable(this.icon, fileVM.icon) &&
         Objects.equals(this.type, fileVM.type) &&
         Objects.equals(this.size, fileVM.size) &&
-        Objects.equals(this.subscriptionId, fileVM.subscriptionId) &&
+        equalsNullable(this.subscriptionId, fileVM.subscriptionId) &&
         Objects.equals(this.status, fileVM.status) &&
         Objects.equals(this.statusReason, fileVM.statusReason) &&
-        Objects.equals(this.errorMessage, fileVM.errorMessage) &&
-        Objects.equals(this.id, fileVM.id) &&
+        equalsNullable(this.errorMessage, fileVM.errorMessage) &&
+        equalsNullable(this.id, fileVM.id) &&
         Objects.equals(this.createdTime, fileVM.createdTime) &&
-        Objects.equals(this.creatorUserId, fileVM.creatorUserId) &&
+        equalsNullable(this.creatorUserId, fileVM.creatorUserId) &&
         Objects.equals(this.editedTime, fileVM.editedTime) &&
-        Objects.equals(this.editorUserId, fileVM.editorUserId);
+        equalsNullable(this.editorUserId, fileVM.editorUserId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, parentId, tags, Arrays.hashCode(icon), type, size, subscriptionId, status, statusReason, errorMessage, id, createdTime, creatorUserId, editedTime, editorUserId);
+    return Objects.hash(hashCodeNullable(name), hashCodeNullable(parentId), hashCodeNullable(tags), hashCodeNullable(icon), type, size, hashCodeNullable(subscriptionId), status, statusReason, hashCodeNullable(errorMessage), hashCodeNullable(id), createdTime, hashCodeNullable(creatorUserId), editedTime, hashCodeNullable(editorUserId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

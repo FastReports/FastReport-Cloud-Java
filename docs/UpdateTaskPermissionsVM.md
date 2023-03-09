@@ -5,10 +5,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**newPermissions** | [**TaskPermissions**](TaskPermissions.md) |  | 
-**administrate** | **TaskAdministrate** |  | 
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**newPermissions** | [**TaskPermissions**](TaskPermissions.md) |  |  |
+|**administrate** | **TaskAdministrate** |  |  |
 
 
 

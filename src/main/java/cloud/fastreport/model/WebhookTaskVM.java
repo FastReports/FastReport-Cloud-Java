@@ -17,21 +17,20 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.EndpointVM;
 import cloud.fastreport.model.TaskType;
-import cloud.fastreport.model.TransportTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.threeten.bp.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * WebhookTaskVM
@@ -44,7 +43,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   WebhookTaskVM.JSON_PROPERTY_DELAYED_RUN_TIME,
   WebhookTaskVM.JSON_PROPERTY_CRON_EXPRESSION
 })
-@JsonTypeName("WebhookTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class WebhookTaskVM {
   public static final String JSON_PROPERTY_ENDPOINTS = "endpoints";
@@ -65,6 +63,8 @@ public class WebhookTaskVM {
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
   private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
+  public WebhookTaskVM() {
+  }
 
   public WebhookTaskVM endpoints(List<EndpointVM> endpoints) {
     this.endpoints = JsonNullable.<List<EndpointVM>>of(endpoints);
@@ -89,7 +89,6 @@ public class WebhookTaskVM {
    * @return endpoints
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<EndpointVM> getEndpoints() {
@@ -124,7 +123,6 @@ public class WebhookTaskVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -159,7 +157,6 @@ public class WebhookTaskVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -194,7 +191,6 @@ public class WebhookTaskVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -221,7 +217,6 @@ public class WebhookTaskVM {
    * @return delayedRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedRunTime() {
@@ -256,7 +251,6 @@ public class WebhookTaskVM {
    * @return cronExpression
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCronExpression() {
@@ -289,17 +283,28 @@ public class WebhookTaskVM {
       return false;
     }
     WebhookTaskVM webhookTaskVM = (WebhookTaskVM) o;
-    return Objects.equals(this.endpoints, webhookTaskVM.endpoints) &&
-        Objects.equals(this.name, webhookTaskVM.name) &&
-        Objects.equals(this.subscriptionId, webhookTaskVM.subscriptionId) &&
+    return equalsNullable(this.endpoints, webhookTaskVM.endpoints) &&
+        equalsNullable(this.name, webhookTaskVM.name) &&
+        equalsNullable(this.subscriptionId, webhookTaskVM.subscriptionId) &&
         Objects.equals(this.type, webhookTaskVM.type) &&
-        Objects.equals(this.delayedRunTime, webhookTaskVM.delayedRunTime) &&
-        Objects.equals(this.cronExpression, webhookTaskVM.cronExpression);
+        equalsNullable(this.delayedRunTime, webhookTaskVM.delayedRunTime) &&
+        equalsNullable(this.cronExpression, webhookTaskVM.cronExpression);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(endpoints, name, subscriptionId, type, delayedRunTime, cronExpression);
+    return Objects.hash(hashCodeNullable(endpoints), hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

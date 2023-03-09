@@ -17,7 +17,6 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.OutputFileVM;
 import cloud.fastreport.model.RunInputFileVM;
-import cloud.fastreport.model.RunTaskBaseVM;
 import cloud.fastreport.model.RunTransportTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,14 +24,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RunTransformTaskBaseVM
@@ -45,7 +44,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RunTransformTaskBaseVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   RunTransformTaskBaseVM.JSON_PROPERTY_TYPE
 })
-@JsonTypeName("RunTransformTaskBaseVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RunTransformTaskBaseVM {
   public static final String JSON_PROPERTY_LOCALE = "locale";
@@ -66,6 +64,8 @@ public class RunTransformTaskBaseVM {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TaskType type;
 
+  public RunTransformTaskBaseVM() {
+  }
 
   public RunTransformTaskBaseVM locale(String locale) {
     this.locale = JsonNullable.<String>of(locale);
@@ -78,7 +78,6 @@ public class RunTransformTaskBaseVM {
    * @return locale
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getLocale() {
@@ -113,7 +112,6 @@ public class RunTransformTaskBaseVM {
    * @return inputFile
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_INPUT_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -140,7 +138,6 @@ public class RunTransformTaskBaseVM {
    * @return outputFile
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_OUTPUT_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -179,7 +176,6 @@ public class RunTransformTaskBaseVM {
    * @return transports
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<RunTransportTaskBaseVM> getTransports() {
@@ -214,7 +210,6 @@ public class RunTransformTaskBaseVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -249,7 +244,6 @@ public class RunTransformTaskBaseVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -274,17 +268,28 @@ public class RunTransformTaskBaseVM {
       return false;
     }
     RunTransformTaskBaseVM runTransformTaskBaseVM = (RunTransformTaskBaseVM) o;
-    return Objects.equals(this.locale, runTransformTaskBaseVM.locale) &&
+    return equalsNullable(this.locale, runTransformTaskBaseVM.locale) &&
         Objects.equals(this.inputFile, runTransformTaskBaseVM.inputFile) &&
         Objects.equals(this.outputFile, runTransformTaskBaseVM.outputFile) &&
-        Objects.equals(this.transports, runTransformTaskBaseVM.transports) &&
-        Objects.equals(this.subscriptionId, runTransformTaskBaseVM.subscriptionId) &&
+        equalsNullable(this.transports, runTransformTaskBaseVM.transports) &&
+        equalsNullable(this.subscriptionId, runTransformTaskBaseVM.subscriptionId) &&
         Objects.equals(this.type, runTransformTaskBaseVM.type);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locale, inputFile, outputFile, transports, subscriptionId, type);
+    return Objects.hash(hashCodeNullable(locale), inputFile, outputFile, hashCodeNullable(transports), hashCodeNullable(subscriptionId), type);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -20,13 +20,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * EntityVM
@@ -38,7 +38,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EntityVM.JSON_PROPERTY_EDITED_TIME,
   EntityVM.JSON_PROPERTY_EDITOR_USER_ID
 })
-@JsonTypeName("EntityVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EntityVM {
   public static final String JSON_PROPERTY_ID = "id";
@@ -56,6 +55,8 @@ public class EntityVM {
   public static final String JSON_PROPERTY_EDITOR_USER_ID = "editorUserId";
   private JsonNullable<String> editorUserId = JsonNullable.<String>undefined();
 
+  public EntityVM() {
+  }
 
   public EntityVM id(String id) {
     this.id = JsonNullable.<String>of(id);
@@ -68,7 +69,6 @@ public class EntityVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -103,7 +103,6 @@ public class EntityVM {
    * @return createdTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CREATED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -130,7 +129,6 @@ public class EntityVM {
    * @return creatorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCreatorUserId() {
@@ -165,7 +163,6 @@ public class EntityVM {
    * @return editedTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EDITED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -192,7 +189,6 @@ public class EntityVM {
    * @return editorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEditorUserId() {
@@ -225,16 +221,27 @@ public class EntityVM {
       return false;
     }
     EntityVM entityVM = (EntityVM) o;
-    return Objects.equals(this.id, entityVM.id) &&
+    return equalsNullable(this.id, entityVM.id) &&
         Objects.equals(this.createdTime, entityVM.createdTime) &&
-        Objects.equals(this.creatorUserId, entityVM.creatorUserId) &&
+        equalsNullable(this.creatorUserId, entityVM.creatorUserId) &&
         Objects.equals(this.editedTime, entityVM.editedTime) &&
-        Objects.equals(this.editorUserId, entityVM.editorUserId);
+        equalsNullable(this.editorUserId, entityVM.editorUserId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdTime, creatorUserId, editedTime, editorUserId);
+    return Objects.hash(hashCodeNullable(id), createdTime, hashCodeNullable(creatorUserId), editedTime, hashCodeNullable(editorUserId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

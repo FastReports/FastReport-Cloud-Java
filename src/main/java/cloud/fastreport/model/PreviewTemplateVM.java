@@ -20,15 +20,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * PreviewTemplateVM
@@ -38,7 +37,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   PreviewTemplateVM.JSON_PROPERTY_REPORT_PARAMETERS,
   PreviewTemplateVM.JSON_PROPERTY_CACHE_TOLERANCE
 })
-@JsonTypeName("PreviewTemplateVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PreviewTemplateVM {
   public static final String JSON_PROPERTY_LOCALE = "locale";
@@ -50,6 +48,8 @@ public class PreviewTemplateVM {
   public static final String JSON_PROPERTY_CACHE_TOLERANCE = "cacheTolerance";
   private Double cacheTolerance = 300d;
 
+  public PreviewTemplateVM() {
+  }
 
   public PreviewTemplateVM locale(String locale) {
     this.locale = JsonNullable.<String>of(locale);
@@ -62,7 +62,6 @@ public class PreviewTemplateVM {
    * @return locale
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getLocale() {
@@ -109,7 +108,6 @@ public class PreviewTemplateVM {
    * @return reportParameters
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Map<String, String> getReportParameters() {
@@ -144,7 +142,6 @@ public class PreviewTemplateVM {
    * @return cacheTolerance
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CACHE_TOLERANCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -169,14 +166,25 @@ public class PreviewTemplateVM {
       return false;
     }
     PreviewTemplateVM previewTemplateVM = (PreviewTemplateVM) o;
-    return Objects.equals(this.locale, previewTemplateVM.locale) &&
-        Objects.equals(this.reportParameters, previewTemplateVM.reportParameters) &&
+    return equalsNullable(this.locale, previewTemplateVM.locale) &&
+        equalsNullable(this.reportParameters, previewTemplateVM.reportParameters) &&
         Objects.equals(this.cacheTolerance, previewTemplateVM.cacheTolerance);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locale, reportParameters, cacheTolerance);
+    return Objects.hash(hashCodeNullable(locale), hashCodeNullable(reportParameters), cacheTolerance);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -21,15 +21,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions
@@ -41,7 +40,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.JSON_PROPERTY_OTHER,
   FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.JSON_PROPERTY_ANON
 })
-@JsonTypeName("FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions {
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
@@ -59,6 +57,8 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
   public static final String JSON_PROPERTY_ANON = "anon";
   private FilePermission anon;
 
+  public FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions() {
+  }
 
   public FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions ownerId(String ownerId) {
     this.ownerId = JsonNullable.<String>of(ownerId);
@@ -71,7 +71,6 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
    * @return ownerId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getOwnerId() {
@@ -106,7 +105,6 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
    * @return owner
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_OWNER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -145,7 +143,6 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
    * @return groups
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Map<String, FilePermission> getGroups() {
@@ -180,7 +177,6 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
    * @return other
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_OTHER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -207,7 +203,6 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
    * @return anon
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ANON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -232,16 +227,27 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
       return false;
     }
     FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions = (FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions) o;
-    return Objects.equals(this.ownerId, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.ownerId) &&
+    return equalsNullable(this.ownerId, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.ownerId) &&
         Objects.equals(this.owner, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.owner) &&
-        Objects.equals(this.groups, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.groups) &&
+        equalsNullable(this.groups, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.groups) &&
         Objects.equals(this.other, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.other) &&
         Objects.equals(this.anon, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.anon);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, owner, groups, other, anon);
+    return Objects.hash(hashCodeNullable(ownerId), owner, hashCodeNullable(groups), other, anon);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

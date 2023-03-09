@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * UpdateUserProfileVM
@@ -37,7 +37,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   UpdateUserProfileVM.JSON_PROPERTY_PASSWORD_NEW,
   UpdateUserProfileVM.JSON_PROPERTY_PASSWORD_NEW2
 })
-@JsonTypeName("UpdateUserProfileVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateUserProfileVM {
   public static final String JSON_PROPERTY_NAME = "name";
@@ -55,6 +54,8 @@ public class UpdateUserProfileVM {
   public static final String JSON_PROPERTY_PASSWORD_NEW2 = "passwordNew2";
   private JsonNullable<String> passwordNew2 = JsonNullable.<String>undefined();
 
+  public UpdateUserProfileVM() {
+  }
 
   public UpdateUserProfileVM name(String name) {
     this.name = JsonNullable.<String>of(name);
@@ -67,7 +68,6 @@ public class UpdateUserProfileVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -102,7 +102,6 @@ public class UpdateUserProfileVM {
    * @return username
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getUsername() {
@@ -137,7 +136,6 @@ public class UpdateUserProfileVM {
    * @return email
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEmail() {
@@ -172,7 +170,6 @@ public class UpdateUserProfileVM {
    * @return passwordNew
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getPasswordNew() {
@@ -207,7 +204,6 @@ public class UpdateUserProfileVM {
    * @return passwordNew2
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getPasswordNew2() {
@@ -240,16 +236,27 @@ public class UpdateUserProfileVM {
       return false;
     }
     UpdateUserProfileVM updateUserProfileVM = (UpdateUserProfileVM) o;
-    return Objects.equals(this.name, updateUserProfileVM.name) &&
-        Objects.equals(this.username, updateUserProfileVM.username) &&
-        Objects.equals(this.email, updateUserProfileVM.email) &&
-        Objects.equals(this.passwordNew, updateUserProfileVM.passwordNew) &&
-        Objects.equals(this.passwordNew2, updateUserProfileVM.passwordNew2);
+    return equalsNullable(this.name, updateUserProfileVM.name) &&
+        equalsNullable(this.username, updateUserProfileVM.username) &&
+        equalsNullable(this.email, updateUserProfileVM.email) &&
+        equalsNullable(this.passwordNew, updateUserProfileVM.passwordNew) &&
+        equalsNullable(this.passwordNew2, updateUserProfileVM.passwordNew2);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, username, email, passwordNew, passwordNew2);
+    return Objects.hash(hashCodeNullable(name), hashCodeNullable(username), hashCodeNullable(email), hashCodeNullable(passwordNew), hashCodeNullable(passwordNew2));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

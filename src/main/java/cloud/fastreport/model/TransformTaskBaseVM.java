@@ -17,7 +17,6 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.OutputFileVM;
-import cloud.fastreport.model.TaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import cloud.fastreport.model.TransportTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,15 +24,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.threeten.bp.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * TransformTaskBaseVM
@@ -49,7 +48,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TransformTaskBaseVM.JSON_PROPERTY_DELAYED_RUN_TIME,
   TransformTaskBaseVM.JSON_PROPERTY_CRON_EXPRESSION
 })
-@JsonTypeName("TransformTaskBaseVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TransformTaskBaseVM {
   public static final String JSON_PROPERTY_LOCALE = "locale";
@@ -79,6 +77,8 @@ public class TransformTaskBaseVM {
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
   private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
+  public TransformTaskBaseVM() {
+  }
 
   public TransformTaskBaseVM locale(String locale) {
     this.locale = JsonNullable.<String>of(locale);
@@ -91,7 +91,6 @@ public class TransformTaskBaseVM {
    * @return locale
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getLocale() {
@@ -126,7 +125,6 @@ public class TransformTaskBaseVM {
    * @return inputFile
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_INPUT_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -153,7 +151,6 @@ public class TransformTaskBaseVM {
    * @return outputFile
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_OUTPUT_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -192,7 +189,6 @@ public class TransformTaskBaseVM {
    * @return transports
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<TransportTaskBaseVM> getTransports() {
@@ -227,7 +223,6 @@ public class TransformTaskBaseVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -262,7 +257,6 @@ public class TransformTaskBaseVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -297,7 +291,6 @@ public class TransformTaskBaseVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -324,7 +317,6 @@ public class TransformTaskBaseVM {
    * @return delayedRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedRunTime() {
@@ -359,7 +351,6 @@ public class TransformTaskBaseVM {
    * @return cronExpression
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCronExpression() {
@@ -392,20 +383,31 @@ public class TransformTaskBaseVM {
       return false;
     }
     TransformTaskBaseVM transformTaskBaseVM = (TransformTaskBaseVM) o;
-    return Objects.equals(this.locale, transformTaskBaseVM.locale) &&
+    return equalsNullable(this.locale, transformTaskBaseVM.locale) &&
         Objects.equals(this.inputFile, transformTaskBaseVM.inputFile) &&
         Objects.equals(this.outputFile, transformTaskBaseVM.outputFile) &&
-        Objects.equals(this.transports, transformTaskBaseVM.transports) &&
-        Objects.equals(this.name, transformTaskBaseVM.name) &&
-        Objects.equals(this.subscriptionId, transformTaskBaseVM.subscriptionId) &&
+        equalsNullable(this.transports, transformTaskBaseVM.transports) &&
+        equalsNullable(this.name, transformTaskBaseVM.name) &&
+        equalsNullable(this.subscriptionId, transformTaskBaseVM.subscriptionId) &&
         Objects.equals(this.type, transformTaskBaseVM.type) &&
-        Objects.equals(this.delayedRunTime, transformTaskBaseVM.delayedRunTime) &&
-        Objects.equals(this.cronExpression, transformTaskBaseVM.cronExpression);
+        equalsNullable(this.delayedRunTime, transformTaskBaseVM.delayedRunTime) &&
+        equalsNullable(this.cronExpression, transformTaskBaseVM.cronExpression);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locale, inputFile, outputFile, transports, name, subscriptionId, type, delayedRunTime, cronExpression);
+    return Objects.hash(hashCodeNullable(locale), inputFile, outputFile, hashCodeNullable(transports), hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

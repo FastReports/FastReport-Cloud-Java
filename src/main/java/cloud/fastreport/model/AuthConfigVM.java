@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * AuthConfigVM
@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   AuthConfigVM.JSON_PROPERTY_USE_OPEN_ID,
   AuthConfigVM.JSON_PROPERTY_AUTHORITY
 })
-@JsonTypeName("AuthConfigVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AuthConfigVM {
   public static final String JSON_PROPERTY_USE_LOCAL = "useLocal";
@@ -47,6 +46,8 @@ public class AuthConfigVM {
   public static final String JSON_PROPERTY_AUTHORITY = "authority";
   private JsonNullable<String> authority = JsonNullable.<String>undefined();
 
+  public AuthConfigVM() {
+  }
 
   public AuthConfigVM useLocal(Boolean useLocal) {
     
@@ -59,7 +60,6 @@ public class AuthConfigVM {
    * @return useLocal
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_USE_LOCAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -86,7 +86,6 @@ public class AuthConfigVM {
    * @return useOpenId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_USE_OPEN_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -113,7 +112,6 @@ public class AuthConfigVM {
    * @return authority
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getAuthority() {
@@ -148,12 +146,23 @@ public class AuthConfigVM {
     AuthConfigVM authConfigVM = (AuthConfigVM) o;
     return Objects.equals(this.useLocal, authConfigVM.useLocal) &&
         Objects.equals(this.useOpenId, authConfigVM.useOpenId) &&
-        Objects.equals(this.authority, authConfigVM.authority);
+        equalsNullable(this.authority, authConfigVM.authority);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(useLocal, useOpenId, authority);
+    return Objects.hash(useLocal, useOpenId, hashCodeNullable(authority));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -17,7 +17,6 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.FileAdministrate;
 import cloud.fastreport.model.FileCreate;
-import cloud.fastreport.model.FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission;
 import cloud.fastreport.model.FileDelete;
 import cloud.fastreport.model.FileExecute;
 import cloud.fastreport.model.FileGet;
@@ -27,9 +26,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * FilePermission
@@ -42,7 +40,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   FilePermission.JSON_PROPERTY_UPDATE,
   FilePermission.JSON_PROPERTY_ADMINISTRATE
 })
-@JsonTypeName("FilePermission")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FilePermission {
   public static final String JSON_PROPERTY_CREATE = "create";
@@ -63,6 +60,8 @@ public class FilePermission {
   public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
   private FileAdministrate administrate;
 
+  public FilePermission() {
+  }
 
   public FilePermission create(FileCreate create) {
     
@@ -75,7 +74,6 @@ public class FilePermission {
    * @return create
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CREATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -102,7 +100,6 @@ public class FilePermission {
    * @return delete
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DELETE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -129,7 +126,6 @@ public class FilePermission {
    * @return execute
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EXECUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -156,7 +152,6 @@ public class FilePermission {
    * @return get
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_GET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -183,7 +178,6 @@ public class FilePermission {
    * @return update
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_UPDATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -210,7 +204,6 @@ public class FilePermission {
    * @return administrate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

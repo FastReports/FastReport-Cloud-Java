@@ -18,20 +18,19 @@ import java.util.Arrays;
 import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.SubscriptionFolder;
 import cloud.fastreport.model.SubscriptionPeriodVM;
-import cloud.fastreport.model.SubscriptionVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * AdminSubscriptionVM
@@ -47,7 +46,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   AdminSubscriptionVM.JSON_PROPERTY_REPORTS_FOLDER,
   AdminSubscriptionVM.JSON_PROPERTY_EXPORTS_FOLDER
 })
-@JsonTypeName("AdminSubscriptionVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AdminSubscriptionVM {
   public static final String JSON_PROPERTY_DEFAULT_PERMISSIONS = "defaultPermissions";
@@ -77,6 +75,8 @@ public class AdminSubscriptionVM {
   public static final String JSON_PROPERTY_EXPORTS_FOLDER = "exportsFolder";
   private SubscriptionFolder exportsFolder;
 
+  public AdminSubscriptionVM() {
+  }
 
   public AdminSubscriptionVM defaultPermissions(DefaultPermissionsVM defaultPermissions) {
     
@@ -89,7 +89,6 @@ public class AdminSubscriptionVM {
    * @return defaultPermissions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DEFAULT_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -116,7 +115,6 @@ public class AdminSubscriptionVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -151,7 +149,6 @@ public class AdminSubscriptionVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -186,7 +183,6 @@ public class AdminSubscriptionVM {
    * @return locale
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getLocale() {
@@ -221,7 +217,6 @@ public class AdminSubscriptionVM {
    * @return current
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CURRENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -260,7 +255,6 @@ public class AdminSubscriptionVM {
    * @return old
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<SubscriptionPeriodVM> getOld() {
@@ -295,7 +289,6 @@ public class AdminSubscriptionVM {
    * @return templatesFolder
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TEMPLATES_FOLDER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -322,7 +315,6 @@ public class AdminSubscriptionVM {
    * @return reportsFolder
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_REPORTS_FOLDER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -349,7 +341,6 @@ public class AdminSubscriptionVM {
    * @return exportsFolder
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EXPORTS_FOLDER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -375,19 +366,30 @@ public class AdminSubscriptionVM {
     }
     AdminSubscriptionVM adminSubscriptionVM = (AdminSubscriptionVM) o;
     return Objects.equals(this.defaultPermissions, adminSubscriptionVM.defaultPermissions) &&
-        Objects.equals(this.id, adminSubscriptionVM.id) &&
-        Objects.equals(this.name, adminSubscriptionVM.name) &&
-        Objects.equals(this.locale, adminSubscriptionVM.locale) &&
+        equalsNullable(this.id, adminSubscriptionVM.id) &&
+        equalsNullable(this.name, adminSubscriptionVM.name) &&
+        equalsNullable(this.locale, adminSubscriptionVM.locale) &&
         Objects.equals(this.current, adminSubscriptionVM.current) &&
-        Objects.equals(this.old, adminSubscriptionVM.old) &&
+        equalsNullable(this.old, adminSubscriptionVM.old) &&
         Objects.equals(this.templatesFolder, adminSubscriptionVM.templatesFolder) &&
         Objects.equals(this.reportsFolder, adminSubscriptionVM.reportsFolder) &&
         Objects.equals(this.exportsFolder, adminSubscriptionVM.exportsFolder);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(defaultPermissions, id, name, locale, current, old, templatesFolder, reportsFolder, exportsFolder);
+    return Objects.hash(defaultPermissions, hashCodeNullable(id), hashCodeNullable(name), hashCodeNullable(locale), current, hashCodeNullable(old), templatesFolder, reportsFolder, exportsFolder);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

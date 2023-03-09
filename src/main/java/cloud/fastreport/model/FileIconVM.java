@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * FileIconVM
@@ -33,12 +33,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   FileIconVM.JSON_PROPERTY_ICON
 })
-@JsonTypeName("FileIconVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FileIconVM {
   public static final String JSON_PROPERTY_ICON = "icon";
   private JsonNullable<byte[]> icon = JsonNullable.<byte[]>undefined();
 
+  public FileIconVM() {
+  }
 
   public FileIconVM icon(byte[] icon) {
     this.icon = JsonNullable.<byte[]>of(icon);
@@ -51,7 +52,6 @@ public class FileIconVM {
    * @return icon
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public byte[] getIcon() {
@@ -84,12 +84,23 @@ public class FileIconVM {
       return false;
     }
     FileIconVM fileIconVM = (FileIconVM) o;
-    return Arrays.equals(this.icon, fileIconVM.icon);
+    return equalsNullable(this.icon, fileIconVM.icon);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Arrays.hashCode(icon));
+    return Objects.hash(hashCodeNullable(icon));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

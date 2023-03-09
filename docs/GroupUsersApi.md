@@ -2,12 +2,12 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**groupUsersAddUserToGroup**](GroupUsersApi.md#groupUsersAddUserToGroup) | **PUT** /api/manage/v1/Groups/{id}/Users/{userId} | Add user to the group by identifier
-[**groupUsersGetUsersInGroup**](GroupUsersApi.md#groupUsersGetUsersInGroup) | **GET** /api/manage/v1/Groups/{id}/Users | Returns users in the group by identifier
-[**groupUsersLeaveFromGroup**](GroupUsersApi.md#groupUsersLeaveFromGroup) | **DELETE** /api/manage/v1/Groups/{id}/leave | Leave from the group
-[**groupUsersRemoveFromGroup**](GroupUsersApi.md#groupUsersRemoveFromGroup) | **DELETE** /api/manage/v1/Groups/{id}/Users/{userId} | Remove user from the group by identifier
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**groupUsersAddUserToGroup**](GroupUsersApi.md#groupUsersAddUserToGroup) | **PUT** /api/manage/v1/Groups/{id}/Users/{userId} | Add user to the group by identifier |
+| [**groupUsersGetUsersInGroup**](GroupUsersApi.md#groupUsersGetUsersInGroup) | **GET** /api/manage/v1/Groups/{id}/Users | Returns users in the group by identifier |
+| [**groupUsersLeaveFromGroup**](GroupUsersApi.md#groupUsersLeaveFromGroup) | **DELETE** /api/manage/v1/Groups/{id}/leave | Leave from the group |
+| [**groupUsersRemoveFromGroup**](GroupUsersApi.md#groupUsersRemoveFromGroup) | **DELETE** /api/manage/v1/Groups/{id}/Users/{userId} | Remove user from the group by identifier |
 
 
 
@@ -61,10 +61,10 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Identifier of group |
- **userId** | **String**| Identifier of user |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Identifier of group | |
+| **userId** | **String**| Identifier of user | |
 
 ### Return type
 
@@ -143,11 +143,11 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Identifier of group |
- **skip** | **Integer**| how many to skip | [optional] [default to 0]
- **take** | **Integer**| how many to take | [optional] [default to 10]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Identifier of group | |
+| **skip** | **Integer**| how many to skip | [optional] [default to 0] |
+| **take** | **Integer**| how many to take | [optional] [default to 10] |
 
 ### Return type
 
@@ -222,9 +222,9 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Identifier of group |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Identifier of group | |
 
 ### Return type
 
@@ -300,10 +300,10 @@ public class Example {
 ### Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Identifier of group |
- **userId** | **String**| Identifier of user |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Identifier of group | |
+| **userId** | **String**| Identifier of user | |
 
 ### Return type
 

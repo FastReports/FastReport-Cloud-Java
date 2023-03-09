@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * GroupUserVM
@@ -33,12 +33,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   GroupUserVM.JSON_PROPERTY_USER_ID
 })
-@JsonTypeName("GroupUserVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GroupUserVM {
   public static final String JSON_PROPERTY_USER_ID = "userId";
   private JsonNullable<String> userId = JsonNullable.<String>undefined();
 
+  public GroupUserVM() {
+  }
 
   public GroupUserVM userId(String userId) {
     this.userId = JsonNullable.<String>of(userId);
@@ -51,7 +52,6 @@ public class GroupUserVM {
    * @return userId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getUserId() {
@@ -84,12 +84,23 @@ public class GroupUserVM {
       return false;
     }
     GroupUserVM groupUserVM = (GroupUserVM) o;
-    return Objects.equals(this.userId, groupUserVM.userId);
+    return equalsNullable(this.userId, groupUserVM.userId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId);
+    return Objects.hash(hashCodeNullable(userId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

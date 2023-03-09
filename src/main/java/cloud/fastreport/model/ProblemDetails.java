@@ -20,14 +20,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ProblemDetails
@@ -39,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ProblemDetails.JSON_PROPERTY_DETAIL,
   ProblemDetails.JSON_PROPERTY_INSTANCE
 })
-@JsonTypeName("ProblemDetails")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ProblemDetails extends HashMap<String, Object> {
   public static final String JSON_PROPERTY_TYPE = "type";
@@ -57,6 +56,9 @@ public class ProblemDetails extends HashMap<String, Object> {
   public static final String JSON_PROPERTY_INSTANCE = "instance";
   private JsonNullable<String> instance = JsonNullable.<String>undefined();
 
+  public ProblemDetails() {
+
+  }
 
   public ProblemDetails type(String type) {
     this.type = JsonNullable.<String>of(type);
@@ -69,7 +71,6 @@ public class ProblemDetails extends HashMap<String, Object> {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getType() {
@@ -104,7 +105,6 @@ public class ProblemDetails extends HashMap<String, Object> {
    * @return title
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getTitle() {
@@ -139,7 +139,6 @@ public class ProblemDetails extends HashMap<String, Object> {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Integer getStatus() {
@@ -174,7 +173,6 @@ public class ProblemDetails extends HashMap<String, Object> {
    * @return detail
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getDetail() {
@@ -209,7 +207,6 @@ public class ProblemDetails extends HashMap<String, Object> {
    * @return instance
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getInstance() {
@@ -242,17 +239,28 @@ public class ProblemDetails extends HashMap<String, Object> {
       return false;
     }
     ProblemDetails problemDetails = (ProblemDetails) o;
-    return Objects.equals(this.type, problemDetails.type) &&
-        Objects.equals(this.title, problemDetails.title) &&
-        Objects.equals(this.status, problemDetails.status) &&
-        Objects.equals(this.detail, problemDetails.detail) &&
-        Objects.equals(this.instance, problemDetails.instance) &&
+    return equalsNullable(this.type, problemDetails.type) &&
+        equalsNullable(this.title, problemDetails.title) &&
+        equalsNullable(this.status, problemDetails.status) &&
+        equalsNullable(this.detail, problemDetails.detail) &&
+        equalsNullable(this.instance, problemDetails.instance) &&
         super.equals(o);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, title, status, detail, instance, super.hashCode());
+    return Objects.hash(hashCodeNullable(type), hashCodeNullable(title), hashCodeNullable(status), hashCodeNullable(detail), hashCodeNullable(instance), super.hashCode());
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

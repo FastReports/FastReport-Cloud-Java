@@ -21,12 +21,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * UpdateUserSettingsVM
@@ -36,7 +36,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   UpdateUserSettingsVM.JSON_PROPERTY_DEFAULT_SUBSCRIPTION,
   UpdateUserSettingsVM.JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS
 })
-@JsonTypeName("UpdateUserSettingsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateUserSettingsVM {
   public static final String JSON_PROPERTY_PROFILE_VISIBILITY = "profileVisibility";
@@ -48,6 +47,8 @@ public class UpdateUserSettingsVM {
   public static final String JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS = "showHiddenFilesAndFolders";
   private JsonNullable<Boolean> showHiddenFilesAndFolders = JsonNullable.<Boolean>undefined();
 
+  public UpdateUserSettingsVM() {
+  }
 
   public UpdateUserSettingsVM profileVisibility(ProfileVisibility profileVisibility) {
     this.profileVisibility = JsonNullable.<ProfileVisibility>of(profileVisibility);
@@ -60,7 +61,6 @@ public class UpdateUserSettingsVM {
    * @return profileVisibility
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public ProfileVisibility getProfileVisibility() {
@@ -95,7 +95,6 @@ public class UpdateUserSettingsVM {
    * @return defaultSubscription
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getDefaultSubscription() {
@@ -130,7 +129,6 @@ public class UpdateUserSettingsVM {
    * @return showHiddenFilesAndFolders
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getShowHiddenFilesAndFolders() {
@@ -163,14 +161,25 @@ public class UpdateUserSettingsVM {
       return false;
     }
     UpdateUserSettingsVM updateUserSettingsVM = (UpdateUserSettingsVM) o;
-    return Objects.equals(this.profileVisibility, updateUserSettingsVM.profileVisibility) &&
-        Objects.equals(this.defaultSubscription, updateUserSettingsVM.defaultSubscription) &&
-        Objects.equals(this.showHiddenFilesAndFolders, updateUserSettingsVM.showHiddenFilesAndFolders);
+    return equalsNullable(this.profileVisibility, updateUserSettingsVM.profileVisibility) &&
+        equalsNullable(this.defaultSubscription, updateUserSettingsVM.defaultSubscription) &&
+        equalsNullable(this.showHiddenFilesAndFolders, updateUserSettingsVM.showHiddenFilesAndFolders);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileVisibility, defaultSubscription, showHiddenFilesAndFolders);
+    return Objects.hash(hashCodeNullable(profileVisibility), hashCodeNullable(defaultSubscription), hashCodeNullable(showHiddenFilesAndFolders));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

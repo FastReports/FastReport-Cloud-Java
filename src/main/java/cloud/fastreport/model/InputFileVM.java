@@ -21,12 +21,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InputFileVM
@@ -36,7 +36,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   InputFileVM.JSON_PROPERTY_FILE_NAME,
   InputFileVM.JSON_PROPERTY_TYPE
 })
-@JsonTypeName("InputFileVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InputFileVM {
   public static final String JSON_PROPERTY_ENTITY_ID = "entityId";
@@ -48,6 +47,8 @@ public class InputFileVM {
   public static final String JSON_PROPERTY_TYPE = "type";
   private FileKind type;
 
+  public InputFileVM() {
+  }
 
   public InputFileVM entityId(String entityId) {
     this.entityId = JsonNullable.<String>of(entityId);
@@ -60,7 +61,6 @@ public class InputFileVM {
    * @return entityId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEntityId() {
@@ -95,7 +95,6 @@ public class InputFileVM {
    * @return fileName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFileName() {
@@ -130,7 +129,6 @@ public class InputFileVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -155,14 +153,25 @@ public class InputFileVM {
       return false;
     }
     InputFileVM inputFileVM = (InputFileVM) o;
-    return Objects.equals(this.entityId, inputFileVM.entityId) &&
-        Objects.equals(this.fileName, inputFileVM.fileName) &&
+    return equalsNullable(this.entityId, inputFileVM.entityId) &&
+        equalsNullable(this.fileName, inputFileVM.fileName) &&
         Objects.equals(this.type, inputFileVM.type);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityId, fileName, type);
+    return Objects.hash(hashCodeNullable(entityId), hashCodeNullable(fileName), type);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

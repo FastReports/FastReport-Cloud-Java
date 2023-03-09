@@ -20,15 +20,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * PrepareTemplateVM
@@ -40,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   PrepareTemplateVM.JSON_PROPERTY_PAGES_COUNT,
   PrepareTemplateVM.JSON_PROPERTY_REPORT_PARAMETERS
 })
-@JsonTypeName("PrepareTemplateVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PrepareTemplateVM {
   public static final String JSON_PROPERTY_NAME = "name";
@@ -58,6 +56,8 @@ public class PrepareTemplateVM {
   public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
   private JsonNullable<Map<String, String>> reportParameters = JsonNullable.<Map<String, String>>undefined();
 
+  public PrepareTemplateVM() {
+  }
 
   public PrepareTemplateVM name(String name) {
     this.name = JsonNullable.<String>of(name);
@@ -70,7 +70,6 @@ public class PrepareTemplateVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -105,7 +104,6 @@ public class PrepareTemplateVM {
    * @return locale
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getLocale() {
@@ -140,7 +138,6 @@ public class PrepareTemplateVM {
    * @return folderId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFolderId() {
@@ -177,7 +174,6 @@ public class PrepareTemplateVM {
    * @return pagesCount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Integer getPagesCount() {
@@ -224,7 +220,6 @@ public class PrepareTemplateVM {
    * @return reportParameters
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Map<String, String> getReportParameters() {
@@ -257,16 +252,27 @@ public class PrepareTemplateVM {
       return false;
     }
     PrepareTemplateVM prepareTemplateVM = (PrepareTemplateVM) o;
-    return Objects.equals(this.name, prepareTemplateVM.name) &&
-        Objects.equals(this.locale, prepareTemplateVM.locale) &&
-        Objects.equals(this.folderId, prepareTemplateVM.folderId) &&
-        Objects.equals(this.pagesCount, prepareTemplateVM.pagesCount) &&
-        Objects.equals(this.reportParameters, prepareTemplateVM.reportParameters);
+    return equalsNullable(this.name, prepareTemplateVM.name) &&
+        equalsNullable(this.locale, prepareTemplateVM.locale) &&
+        equalsNullable(this.folderId, prepareTemplateVM.folderId) &&
+        equalsNullable(this.pagesCount, prepareTemplateVM.pagesCount) &&
+        equalsNullable(this.reportParameters, prepareTemplateVM.reportParameters);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, locale, folderId, pagesCount, reportParameters);
+    return Objects.hash(hashCodeNullable(name), hashCodeNullable(locale), hashCodeNullable(folderId), hashCodeNullable(pagesCount), hashCodeNullable(reportParameters));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

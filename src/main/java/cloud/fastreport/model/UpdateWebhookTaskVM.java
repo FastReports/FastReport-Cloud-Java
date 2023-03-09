@@ -17,21 +17,20 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.TaskType;
 import cloud.fastreport.model.UpdateEndpointVM;
-import cloud.fastreport.model.UpdateTransportTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.threeten.bp.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * UpdateWebhookTaskVM
@@ -44,7 +43,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   UpdateWebhookTaskVM.JSON_PROPERTY_DELAYED_RUN_TIME,
   UpdateWebhookTaskVM.JSON_PROPERTY_CRON_EXPRESSION
 })
-@JsonTypeName("UpdateWebhookTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateWebhookTaskVM {
   public static final String JSON_PROPERTY_ENDPOINTS = "endpoints";
@@ -65,6 +63,8 @@ public class UpdateWebhookTaskVM {
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
   private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
+  public UpdateWebhookTaskVM() {
+  }
 
   public UpdateWebhookTaskVM endpoints(List<UpdateEndpointVM> endpoints) {
     this.endpoints = JsonNullable.<List<UpdateEndpointVM>>of(endpoints);
@@ -89,7 +89,6 @@ public class UpdateWebhookTaskVM {
    * @return endpoints
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<UpdateEndpointVM> getEndpoints() {
@@ -124,7 +123,6 @@ public class UpdateWebhookTaskVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -159,7 +157,6 @@ public class UpdateWebhookTaskVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -194,7 +191,6 @@ public class UpdateWebhookTaskVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -221,7 +217,6 @@ public class UpdateWebhookTaskVM {
    * @return delayedRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedRunTime() {
@@ -256,7 +251,6 @@ public class UpdateWebhookTaskVM {
    * @return cronExpression
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCronExpression() {
@@ -289,17 +283,28 @@ public class UpdateWebhookTaskVM {
       return false;
     }
     UpdateWebhookTaskVM updateWebhookTaskVM = (UpdateWebhookTaskVM) o;
-    return Objects.equals(this.endpoints, updateWebhookTaskVM.endpoints) &&
-        Objects.equals(this.name, updateWebhookTaskVM.name) &&
-        Objects.equals(this.subscriptionId, updateWebhookTaskVM.subscriptionId) &&
+    return equalsNullable(this.endpoints, updateWebhookTaskVM.endpoints) &&
+        equalsNullable(this.name, updateWebhookTaskVM.name) &&
+        equalsNullable(this.subscriptionId, updateWebhookTaskVM.subscriptionId) &&
         Objects.equals(this.type, updateWebhookTaskVM.type) &&
-        Objects.equals(this.delayedRunTime, updateWebhookTaskVM.delayedRunTime) &&
-        Objects.equals(this.cronExpression, updateWebhookTaskVM.cronExpression);
+        equalsNullable(this.delayedRunTime, updateWebhookTaskVM.delayedRunTime) &&
+        equalsNullable(this.cronExpression, updateWebhookTaskVM.cronExpression);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(endpoints, name, subscriptionId, type, delayedRunTime, cronExpression);
+    return Objects.hash(hashCodeNullable(endpoints), hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

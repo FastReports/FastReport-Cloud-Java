@@ -15,7 +15,6 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.AuditActionVM;
 import cloud.fastreport.model.AuditType;
 import cloud.fastreport.model.EntityType;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -23,13 +22,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * AuditFilePropertyChangedVM
@@ -49,7 +48,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   AuditFilePropertyChangedVM.JSON_PROPERTY_NAME,
   AuditFilePropertyChangedVM.JSON_PROPERTY_ADMIN_ACTION
 })
-@JsonTypeName("AuditFilePropertyChangedVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AuditFilePropertyChangedVM {
   public static final String JSON_PROPERTY_PROPERTY_NAME = "propertyName";
@@ -91,6 +89,8 @@ public class AuditFilePropertyChangedVM {
   public static final String JSON_PROPERTY_ADMIN_ACTION = "adminAction";
   private Boolean adminAction;
 
+  public AuditFilePropertyChangedVM() {
+  }
 
   public AuditFilePropertyChangedVM propertyName(String propertyName) {
     this.propertyName = JsonNullable.<String>of(propertyName);
@@ -103,7 +103,6 @@ public class AuditFilePropertyChangedVM {
    * @return propertyName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getPropertyName() {
@@ -138,7 +137,6 @@ public class AuditFilePropertyChangedVM {
    * @return oldValue
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Object getOldValue() {
@@ -173,7 +171,6 @@ public class AuditFilePropertyChangedVM {
    * @return newValue
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Object getNewValue() {
@@ -208,7 +205,6 @@ public class AuditFilePropertyChangedVM {
    * @return entityType
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ENTITY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -235,7 +231,6 @@ public class AuditFilePropertyChangedVM {
    * @return userId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getUserId() {
@@ -270,7 +265,6 @@ public class AuditFilePropertyChangedVM {
    * @return entityId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEntityId() {
@@ -305,7 +299,6 @@ public class AuditFilePropertyChangedVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -340,7 +333,6 @@ public class AuditFilePropertyChangedVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -367,7 +359,6 @@ public class AuditFilePropertyChangedVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -402,7 +393,6 @@ public class AuditFilePropertyChangedVM {
    * @return createdTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CREATED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -429,7 +419,6 @@ public class AuditFilePropertyChangedVM {
    * @return creatorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCreatorUserId() {
@@ -464,7 +453,6 @@ public class AuditFilePropertyChangedVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -499,7 +487,6 @@ public class AuditFilePropertyChangedVM {
    * @return adminAction
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ADMIN_ACTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -524,24 +511,35 @@ public class AuditFilePropertyChangedVM {
       return false;
     }
     AuditFilePropertyChangedVM auditFilePropertyChangedVM = (AuditFilePropertyChangedVM) o;
-    return Objects.equals(this.propertyName, auditFilePropertyChangedVM.propertyName) &&
-        Objects.equals(this.oldValue, auditFilePropertyChangedVM.oldValue) &&
-        Objects.equals(this.newValue, auditFilePropertyChangedVM.newValue) &&
+    return equalsNullable(this.propertyName, auditFilePropertyChangedVM.propertyName) &&
+        equalsNullable(this.oldValue, auditFilePropertyChangedVM.oldValue) &&
+        equalsNullable(this.newValue, auditFilePropertyChangedVM.newValue) &&
         Objects.equals(this.entityType, auditFilePropertyChangedVM.entityType) &&
-        Objects.equals(this.userId, auditFilePropertyChangedVM.userId) &&
-        Objects.equals(this.entityId, auditFilePropertyChangedVM.entityId) &&
-        Objects.equals(this.subscriptionId, auditFilePropertyChangedVM.subscriptionId) &&
+        equalsNullable(this.userId, auditFilePropertyChangedVM.userId) &&
+        equalsNullable(this.entityId, auditFilePropertyChangedVM.entityId) &&
+        equalsNullable(this.subscriptionId, auditFilePropertyChangedVM.subscriptionId) &&
         Objects.equals(this.type, auditFilePropertyChangedVM.type) &&
-        Objects.equals(this.id, auditFilePropertyChangedVM.id) &&
+        equalsNullable(this.id, auditFilePropertyChangedVM.id) &&
         Objects.equals(this.createdTime, auditFilePropertyChangedVM.createdTime) &&
-        Objects.equals(this.creatorUserId, auditFilePropertyChangedVM.creatorUserId) &&
-        Objects.equals(this.name, auditFilePropertyChangedVM.name) &&
+        equalsNullable(this.creatorUserId, auditFilePropertyChangedVM.creatorUserId) &&
+        equalsNullable(this.name, auditFilePropertyChangedVM.name) &&
         Objects.equals(this.adminAction, auditFilePropertyChangedVM.adminAction);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(propertyName, oldValue, newValue, entityType, userId, entityId, subscriptionId, type, id, createdTime, creatorUserId, name, adminAction);
+    return Objects.hash(hashCodeNullable(propertyName), hashCodeNullable(oldValue), hashCodeNullable(newValue), entityType, hashCodeNullable(userId), hashCodeNullable(entityId), hashCodeNullable(subscriptionId), type, hashCodeNullable(id), createdTime, hashCodeNullable(creatorUserId), hashCodeNullable(name), adminAction);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

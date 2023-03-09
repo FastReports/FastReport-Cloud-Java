@@ -16,19 +16,18 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.ExportFormat;
-import cloud.fastreport.model.FileVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ExportVM
@@ -43,7 +42,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ExportVM.JSON_PROPERTY_EDITED_TIME,
   ExportVM.JSON_PROPERTY_EDITOR_USER_ID
 })
-@JsonTypeName("ExportVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ExportVM {
   public static final String JSON_PROPERTY_FORMAT = "format";
@@ -70,6 +68,8 @@ public class ExportVM {
   public static final String JSON_PROPERTY_EDITOR_USER_ID = "editorUserId";
   private JsonNullable<String> editorUserId = JsonNullable.<String>undefined();
 
+  public ExportVM() {
+  }
 
   public ExportVM format(ExportFormat format) {
     
@@ -82,7 +82,6 @@ public class ExportVM {
    * @return format
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_FORMAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -109,7 +108,6 @@ public class ExportVM {
    * @return reportId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getReportId() {
@@ -144,7 +142,6 @@ public class ExportVM {
    * @return templateId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getTemplateId() {
@@ -179,7 +176,6 @@ public class ExportVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -214,7 +210,6 @@ public class ExportVM {
    * @return createdTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CREATED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -241,7 +236,6 @@ public class ExportVM {
    * @return creatorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCreatorUserId() {
@@ -276,7 +270,6 @@ public class ExportVM {
    * @return editedTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EDITED_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -303,7 +296,6 @@ public class ExportVM {
    * @return editorUserId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEditorUserId() {
@@ -337,18 +329,29 @@ public class ExportVM {
     }
     ExportVM exportVM = (ExportVM) o;
     return Objects.equals(this.format, exportVM.format) &&
-        Objects.equals(this.reportId, exportVM.reportId) &&
-        Objects.equals(this.templateId, exportVM.templateId) &&
-        Objects.equals(this.id, exportVM.id) &&
+        equalsNullable(this.reportId, exportVM.reportId) &&
+        equalsNullable(this.templateId, exportVM.templateId) &&
+        equalsNullable(this.id, exportVM.id) &&
         Objects.equals(this.createdTime, exportVM.createdTime) &&
-        Objects.equals(this.creatorUserId, exportVM.creatorUserId) &&
+        equalsNullable(this.creatorUserId, exportVM.creatorUserId) &&
         Objects.equals(this.editedTime, exportVM.editedTime) &&
-        Objects.equals(this.editorUserId, exportVM.editorUserId);
+        equalsNullable(this.editorUserId, exportVM.editorUserId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(format, reportId, templateId, id, createdTime, creatorUserId, editedTime, editorUserId);
+    return Objects.hash(format, hashCodeNullable(reportId), hashCodeNullable(templateId), hashCodeNullable(id), createdTime, hashCodeNullable(creatorUserId), editedTime, hashCodeNullable(editorUserId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -2,9 +2,9 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**configurationGet**](ConfigurationApi.md#configurationGet) | **GET** /api/v1/Configuration | returns information about server configuration
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**configurationGet**](ConfigurationApi.md#configurationGet) | **GET** /api/v1/Configuration | returns information about server configuration |
 
 
 

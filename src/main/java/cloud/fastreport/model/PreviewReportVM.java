@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * PreviewReportVM
@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   PreviewReportVM.JSON_PROPERTY_LOCALE,
   PreviewReportVM.JSON_PROPERTY_CACHE_TOLERANCE
 })
-@JsonTypeName("PreviewReportVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PreviewReportVM {
   public static final String JSON_PROPERTY_LOCALE = "locale";
@@ -43,6 +42,8 @@ public class PreviewReportVM {
   public static final String JSON_PROPERTY_CACHE_TOLERANCE = "cacheTolerance";
   private Double cacheTolerance = 300d;
 
+  public PreviewReportVM() {
+  }
 
   public PreviewReportVM locale(String locale) {
     this.locale = JsonNullable.<String>of(locale);
@@ -55,7 +56,6 @@ public class PreviewReportVM {
    * @return locale
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getLocale() {
@@ -90,7 +90,6 @@ public class PreviewReportVM {
    * @return cacheTolerance
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CACHE_TOLERANCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -115,13 +114,24 @@ public class PreviewReportVM {
       return false;
     }
     PreviewReportVM previewReportVM = (PreviewReportVM) o;
-    return Objects.equals(this.locale, previewReportVM.locale) &&
+    return equalsNullable(this.locale, previewReportVM.locale) &&
         Objects.equals(this.cacheTolerance, previewReportVM.cacheTolerance);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locale, cacheTolerance);
+    return Objects.hash(hashCodeNullable(locale), cacheTolerance);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

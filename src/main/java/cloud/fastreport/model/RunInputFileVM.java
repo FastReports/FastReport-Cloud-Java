@@ -16,18 +16,17 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.FileKind;
-import cloud.fastreport.model.InputFileVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RunInputFileVM
@@ -38,7 +37,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RunInputFileVM.JSON_PROPERTY_FILE_NAME,
   RunInputFileVM.JSON_PROPERTY_TYPE
 })
-@JsonTypeName("RunInputFileVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RunInputFileVM {
   public static final String JSON_PROPERTY_CONTENT = "content";
@@ -53,6 +51,8 @@ public class RunInputFileVM {
   public static final String JSON_PROPERTY_TYPE = "type";
   private FileKind type;
 
+  public RunInputFileVM() {
+  }
 
   public RunInputFileVM content(byte[] content) {
     this.content = JsonNullable.<byte[]>of(content);
@@ -65,7 +65,6 @@ public class RunInputFileVM {
    * @return content
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public byte[] getContent() {
@@ -100,7 +99,6 @@ public class RunInputFileVM {
    * @return entityId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getEntityId() {
@@ -135,7 +133,6 @@ public class RunInputFileVM {
    * @return fileName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFileName() {
@@ -170,7 +167,6 @@ public class RunInputFileVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -195,15 +191,26 @@ public class RunInputFileVM {
       return false;
     }
     RunInputFileVM runInputFileVM = (RunInputFileVM) o;
-    return Arrays.equals(this.content, runInputFileVM.content) &&
-        Objects.equals(this.entityId, runInputFileVM.entityId) &&
-        Objects.equals(this.fileName, runInputFileVM.fileName) &&
+    return equalsNullable(this.content, runInputFileVM.content) &&
+        equalsNullable(this.entityId, runInputFileVM.entityId) &&
+        equalsNullable(this.fileName, runInputFileVM.fileName) &&
         Objects.equals(this.type, runInputFileVM.type);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Arrays.hashCode(content), entityId, fileName, type);
+    return Objects.hash(hashCodeNullable(content), hashCodeNullable(entityId), hashCodeNullable(fileName), type);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

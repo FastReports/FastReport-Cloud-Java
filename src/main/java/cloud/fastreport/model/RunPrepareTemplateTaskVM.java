@@ -16,23 +16,22 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.RunExportReportTaskVM;
-import cloud.fastreport.model.RunTransformTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RunPrepareTemplateTaskVM
@@ -44,7 +43,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RunPrepareTemplateTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   RunPrepareTemplateTaskVM.JSON_PROPERTY_TYPE
 })
-@JsonTypeName("RunPrepareTemplateTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RunPrepareTemplateTaskVM {
   public static final String JSON_PROPERTY_EXPORTS = "exports";
@@ -62,6 +60,8 @@ public class RunPrepareTemplateTaskVM {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TaskType type;
 
+  public RunPrepareTemplateTaskVM() {
+  }
 
   public RunPrepareTemplateTaskVM exports(List<RunExportReportTaskVM> exports) {
     this.exports = JsonNullable.<List<RunExportReportTaskVM>>of(exports);
@@ -86,7 +86,6 @@ public class RunPrepareTemplateTaskVM {
    * @return exports
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<RunExportReportTaskVM> getExports() {
@@ -123,7 +122,6 @@ public class RunPrepareTemplateTaskVM {
    * @return pagesCount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Integer getPagesCount() {
@@ -170,7 +168,6 @@ public class RunPrepareTemplateTaskVM {
    * @return reportParameters
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Map<String, String> getReportParameters() {
@@ -205,7 +202,6 @@ public class RunPrepareTemplateTaskVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -240,7 +236,6 @@ public class RunPrepareTemplateTaskVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -265,16 +260,27 @@ public class RunPrepareTemplateTaskVM {
       return false;
     }
     RunPrepareTemplateTaskVM runPrepareTemplateTaskVM = (RunPrepareTemplateTaskVM) o;
-    return Objects.equals(this.exports, runPrepareTemplateTaskVM.exports) &&
-        Objects.equals(this.pagesCount, runPrepareTemplateTaskVM.pagesCount) &&
-        Objects.equals(this.reportParameters, runPrepareTemplateTaskVM.reportParameters) &&
-        Objects.equals(this.subscriptionId, runPrepareTemplateTaskVM.subscriptionId) &&
+    return equalsNullable(this.exports, runPrepareTemplateTaskVM.exports) &&
+        equalsNullable(this.pagesCount, runPrepareTemplateTaskVM.pagesCount) &&
+        equalsNullable(this.reportParameters, runPrepareTemplateTaskVM.reportParameters) &&
+        equalsNullable(this.subscriptionId, runPrepareTemplateTaskVM.subscriptionId) &&
         Objects.equals(this.type, runPrepareTemplateTaskVM.type);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(exports, pagesCount, reportParameters, subscriptionId, type);
+    return Objects.hash(hashCodeNullable(exports), hashCodeNullable(pagesCount), hashCodeNullable(reportParameters), hashCodeNullable(subscriptionId), type);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

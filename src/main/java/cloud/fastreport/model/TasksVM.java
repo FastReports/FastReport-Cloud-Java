@@ -21,14 +21,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * TasksVM
@@ -39,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TasksVM.JSON_PROPERTY_TAKE,
   TasksVM.JSON_PROPERTY_TASKS
 })
-@JsonTypeName("TasksVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TasksVM {
   public static final String JSON_PROPERTY_COUNT = "count";
@@ -54,6 +53,8 @@ public class TasksVM {
   public static final String JSON_PROPERTY_TASKS = "tasks";
   private JsonNullable<List<TaskBaseVM>> tasks = JsonNullable.<List<TaskBaseVM>>undefined();
 
+  public TasksVM() {
+  }
 
   public TasksVM count(Long count) {
     
@@ -66,7 +67,6 @@ public class TasksVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -93,7 +93,6 @@ public class TasksVM {
    * @return skip
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_SKIP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -120,7 +119,6 @@ public class TasksVM {
    * @return take
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TAKE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -159,7 +157,6 @@ public class TasksVM {
    * @return tasks
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<TaskBaseVM> getTasks() {
@@ -195,12 +192,23 @@ public class TasksVM {
     return Objects.equals(this.count, tasksVM.count) &&
         Objects.equals(this.skip, tasksVM.skip) &&
         Objects.equals(this.take, tasksVM.take) &&
-        Objects.equals(this.tasks, tasksVM.tasks);
+        equalsNullable(this.tasks, tasksVM.tasks);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(count, skip, take, tasks);
+    return Objects.hash(count, skip, take, hashCodeNullable(tasks));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

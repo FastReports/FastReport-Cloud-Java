@@ -53,7 +53,7 @@ public class ContactGroupsApi {
     * <p><b>402</b> - Client Error
     * <p><b>400</b> - Bad Request
     * <p><b>500</b> - Server Error
-    * @param createContactGroupVM The createContactGroupVM parameter
+    * @param createContactGroupVM 
     * @return ContactGroupVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -143,7 +143,7 @@ public class ContactGroupsApi {
     * <p><b>402</b> - Client Error
     * <p><b>400</b> - Bad Request
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
+    * @param id 
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
     public void contactGroupsDelete(String id) throws IOException {
@@ -158,7 +158,7 @@ public class ContactGroupsApi {
     * <p><b>402</b> - Client Error
     * <p><b>400</b> - Bad Request
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -227,7 +227,7 @@ public class ContactGroupsApi {
     * <p><b>402</b> - Client Error
     * <p><b>400</b> - Bad Request
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
+    * @param id 
     * @return ContactGroupVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -245,7 +245,7 @@ public class ContactGroupsApi {
     * <p><b>402</b> - Client Error
     * <p><b>400</b> - Bad Request
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return ContactGroupVM
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -317,9 +317,9 @@ public class ContactGroupsApi {
     * <p><b>402</b> - Client Error
     * <p><b>400</b> - Bad Request
     * <p><b>500</b> - Server Error
-    * @param subscriptionId The subscriptionId parameter
-    * @param skip The skip parameter
-    * @param take The take parameter
+    * @param subscriptionId 
+    * @param skip 
+    * @param take 
     * @return ContactGroupsVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -337,7 +337,7 @@ public class ContactGroupsApi {
     * <p><b>402</b> - Client Error
     * <p><b>400</b> - Bad Request
     * <p><b>500</b> - Server Error
-    * @param subscriptionId The subscriptionId parameter
+    * @param subscriptionId 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return ContactGroupsVM
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -430,8 +430,8 @@ public class ContactGroupsApi {
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
-    * @param updateContactGroupVM The updateContactGroupVM parameter
+    * @param id 
+    * @param updateContactGroupVM 
     * @return ContactGroupVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -449,7 +449,7 @@ public class ContactGroupsApi {
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>500</b> - Server Error
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return ContactGroupVM
     * @throws IOException if an error occurs while attempting to invoke the API

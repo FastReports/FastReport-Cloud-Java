@@ -49,8 +49,8 @@ public class DownloadApi {
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * @param id The id parameter
-    * @param preview The preview parameter
+    * @param id 
+    * @param preview 
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -67,7 +67,7 @@ public class DownloadApi {
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -149,7 +149,7 @@ public class DownloadApi {
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * @param id The id parameter
+    * @param id 
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -166,7 +166,7 @@ public class DownloadApi {
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -337,10 +337,13 @@ public class DownloadApi {
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
-    * @param reportId The reportId parameter
+    * @param reportId 
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
+    * @deprecated
+
     **/
+    @Deprecated
     public File downloadGetLastSVGExport(String reportId) throws IOException {
         HttpResponse response = downloadGetLastSVGExportForHttpResponse(reportId);
         TypeReference<File> typeRef = new TypeReference<File>() {};
@@ -354,17 +357,21 @@ public class DownloadApi {
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
-    * @param reportId The reportId parameter
+    * @param reportId 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
+    * @deprecated
+
     **/
+    @Deprecated
     public File downloadGetLastSVGExport(String reportId, Map<String, Object> params) throws IOException {
         HttpResponse response = downloadGetLastSVGExportForHttpResponse(reportId, params);
         TypeReference<File> typeRef = new TypeReference<File>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
+    @Deprecated
     public HttpResponse downloadGetLastSVGExportForHttpResponse(String reportId) throws IOException {
         // verify the required parameter 'reportId' is set
         if (reportId == null) {
@@ -382,6 +389,7 @@ public class DownloadApi {
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
+    @Deprecated
     public HttpResponse downloadGetLastSVGExportForHttpResponse(String reportId, Map<String, Object> params) throws IOException {
         // verify the required parameter 'reportId' is set
         if (reportId == null) {
@@ -425,7 +433,7 @@ public class DownloadApi {
     * <p><b>400</b> - bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions
-    * @param id The id parameter
+    * @param id 
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -442,7 +450,7 @@ public class DownloadApi {
     * <p><b>400</b> - bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -513,7 +521,7 @@ public class DownloadApi {
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * @param id The id parameter
+    * @param id 
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -530,7 +538,7 @@ public class DownloadApi {
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
@@ -789,7 +797,7 @@ public class DownloadApi {
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * @param id The id parameter
+    * @param id 
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -806,7 +814,7 @@ public class DownloadApi {
     * <p><b>400</b> - Bad id provided
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - Not enough permissions for the operation
-    * @param id The id parameter
+    * @param id 
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API

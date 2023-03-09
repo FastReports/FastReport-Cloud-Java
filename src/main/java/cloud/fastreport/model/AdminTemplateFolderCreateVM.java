@@ -15,20 +15,19 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.AdminFolderCreateVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * AdminTemplateFolderCreateVM
@@ -38,7 +37,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   AdminTemplateFolderCreateVM.JSON_PROPERTY_TAGS,
   AdminTemplateFolderCreateVM.JSON_PROPERTY_ICON
 })
-@JsonTypeName("AdminTemplateFolderCreateVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AdminTemplateFolderCreateVM {
   public static final String JSON_PROPERTY_NAME = "name";
@@ -50,6 +48,8 @@ public class AdminTemplateFolderCreateVM {
   public static final String JSON_PROPERTY_ICON = "icon";
   private JsonNullable<byte[]> icon = JsonNullable.<byte[]>undefined();
 
+  public AdminTemplateFolderCreateVM() {
+  }
 
   public AdminTemplateFolderCreateVM name(String name) {
     this.name = JsonNullable.<String>of(name);
@@ -62,7 +62,6 @@ public class AdminTemplateFolderCreateVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -109,7 +108,6 @@ public class AdminTemplateFolderCreateVM {
    * @return tags
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public List<String> getTags() {
@@ -144,7 +142,6 @@ public class AdminTemplateFolderCreateVM {
    * @return icon
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public byte[] getIcon() {
@@ -177,14 +174,25 @@ public class AdminTemplateFolderCreateVM {
       return false;
     }
     AdminTemplateFolderCreateVM adminTemplateFolderCreateVM = (AdminTemplateFolderCreateVM) o;
-    return Objects.equals(this.name, adminTemplateFolderCreateVM.name) &&
-        Objects.equals(this.tags, adminTemplateFolderCreateVM.tags) &&
-        Arrays.equals(this.icon, adminTemplateFolderCreateVM.icon);
+    return equalsNullable(this.name, adminTemplateFolderCreateVM.name) &&
+        equalsNullable(this.tags, adminTemplateFolderCreateVM.tags) &&
+        equalsNullable(this.icon, adminTemplateFolderCreateVM.icon);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, tags, Arrays.hashCode(icon));
+    return Objects.hash(hashCodeNullable(name), hashCodeNullable(tags), hashCodeNullable(icon));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -15,19 +15,18 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.CreateEndpointVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RunEndpointVM
@@ -35,12 +34,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   RunEndpointVM.JSON_PROPERTY_URL
 })
-@JsonTypeName("RunEndpointVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RunEndpointVM {
   public static final String JSON_PROPERTY_URL = "url";
   private JsonNullable<URI> url = JsonNullable.<URI>undefined();
 
+  public RunEndpointVM() {
+  }
 
   public RunEndpointVM url(URI url) {
     this.url = JsonNullable.<URI>of(url);
@@ -53,7 +53,6 @@ public class RunEndpointVM {
    * @return url
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public URI getUrl() {
@@ -86,12 +85,23 @@ public class RunEndpointVM {
       return false;
     }
     RunEndpointVM runEndpointVM = (RunEndpointVM) o;
-    return Objects.equals(this.url, runEndpointVM.url);
+    return equalsNullable(this.url, runEndpointVM.url);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url);
+    return Objects.hash(hashCodeNullable(url));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

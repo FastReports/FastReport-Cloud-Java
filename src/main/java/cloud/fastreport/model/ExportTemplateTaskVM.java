@@ -15,23 +15,21 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.ExportReportTaskVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import org.threeten.bp.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ExportTemplateTaskVM
@@ -44,7 +42,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ExportTemplateTaskVM.JSON_PROPERTY_DELAYED_RUN_TIME,
   ExportTemplateTaskVM.JSON_PROPERTY_CRON_EXPRESSION
 })
-@JsonTypeName("ExportTemplateTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ExportTemplateTaskVM {
   public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
@@ -65,6 +62,8 @@ public class ExportTemplateTaskVM {
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
   private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
+  public ExportTemplateTaskVM() {
+  }
 
   public ExportTemplateTaskVM reportParameters(Map<String, String> reportParameters) {
     this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
@@ -89,7 +88,6 @@ public class ExportTemplateTaskVM {
    * @return reportParameters
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Map<String, String> getReportParameters() {
@@ -124,7 +122,6 @@ public class ExportTemplateTaskVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -159,7 +156,6 @@ public class ExportTemplateTaskVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -194,7 +190,6 @@ public class ExportTemplateTaskVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -221,7 +216,6 @@ public class ExportTemplateTaskVM {
    * @return delayedRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedRunTime() {
@@ -256,7 +250,6 @@ public class ExportTemplateTaskVM {
    * @return cronExpression
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCronExpression() {
@@ -289,17 +282,28 @@ public class ExportTemplateTaskVM {
       return false;
     }
     ExportTemplateTaskVM exportTemplateTaskVM = (ExportTemplateTaskVM) o;
-    return Objects.equals(this.reportParameters, exportTemplateTaskVM.reportParameters) &&
-        Objects.equals(this.name, exportTemplateTaskVM.name) &&
-        Objects.equals(this.subscriptionId, exportTemplateTaskVM.subscriptionId) &&
+    return equalsNullable(this.reportParameters, exportTemplateTaskVM.reportParameters) &&
+        equalsNullable(this.name, exportTemplateTaskVM.name) &&
+        equalsNullable(this.subscriptionId, exportTemplateTaskVM.subscriptionId) &&
         Objects.equals(this.type, exportTemplateTaskVM.type) &&
-        Objects.equals(this.delayedRunTime, exportTemplateTaskVM.delayedRunTime) &&
-        Objects.equals(this.cronExpression, exportTemplateTaskVM.cronExpression);
+        equalsNullable(this.delayedRunTime, exportTemplateTaskVM.delayedRunTime) &&
+        equalsNullable(this.cronExpression, exportTemplateTaskVM.cronExpression);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(reportParameters, name, subscriptionId, type, delayedRunTime, cronExpression);
+    return Objects.hash(hashCodeNullable(reportParameters), hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -16,19 +16,18 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.TaskType;
-import cloud.fastreport.model.TransportTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * FTPUploadTaskVM
@@ -47,7 +46,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   FTPUploadTaskVM.JSON_PROPERTY_DELAYED_RUN_TIME,
   FTPUploadTaskVM.JSON_PROPERTY_CRON_EXPRESSION
 })
-@JsonTypeName("FTPUploadTaskVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FTPUploadTaskVM {
   public static final String JSON_PROPERTY_FTP_HOST = "ftpHost";
@@ -86,6 +84,8 @@ public class FTPUploadTaskVM {
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
   private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
+  public FTPUploadTaskVM() {
+  }
 
   public FTPUploadTaskVM ftpHost(String ftpHost) {
     this.ftpHost = JsonNullable.<String>of(ftpHost);
@@ -98,7 +98,6 @@ public class FTPUploadTaskVM {
    * @return ftpHost
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFtpHost() {
@@ -133,7 +132,6 @@ public class FTPUploadTaskVM {
    * @return ftpPort
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Integer getFtpPort() {
@@ -168,7 +166,6 @@ public class FTPUploadTaskVM {
    * @return ftpUsername
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getFtpUsername() {
@@ -203,7 +200,6 @@ public class FTPUploadTaskVM {
    * @return destinationFolder
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getDestinationFolder() {
@@ -238,7 +234,6 @@ public class FTPUploadTaskVM {
    * @return archive
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public Boolean getArchive() {
@@ -273,7 +268,6 @@ public class FTPUploadTaskVM {
    * @return archiveName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getArchiveName() {
@@ -308,7 +302,6 @@ public class FTPUploadTaskVM {
    * @return useSFTP
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_USE_S_F_T_P)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -335,7 +328,6 @@ public class FTPUploadTaskVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -370,7 +362,6 @@ public class FTPUploadTaskVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -405,7 +396,6 @@ public class FTPUploadTaskVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -432,7 +422,6 @@ public class FTPUploadTaskVM {
    * @return delayedRunTime
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public OffsetDateTime getDelayedRunTime() {
@@ -467,7 +456,6 @@ public class FTPUploadTaskVM {
    * @return cronExpression
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getCronExpression() {
@@ -500,23 +488,34 @@ public class FTPUploadTaskVM {
       return false;
     }
     FTPUploadTaskVM ftPUploadTaskVM = (FTPUploadTaskVM) o;
-    return Objects.equals(this.ftpHost, ftPUploadTaskVM.ftpHost) &&
-        Objects.equals(this.ftpPort, ftPUploadTaskVM.ftpPort) &&
-        Objects.equals(this.ftpUsername, ftPUploadTaskVM.ftpUsername) &&
-        Objects.equals(this.destinationFolder, ftPUploadTaskVM.destinationFolder) &&
-        Objects.equals(this.archive, ftPUploadTaskVM.archive) &&
-        Objects.equals(this.archiveName, ftPUploadTaskVM.archiveName) &&
+    return equalsNullable(this.ftpHost, ftPUploadTaskVM.ftpHost) &&
+        equalsNullable(this.ftpPort, ftPUploadTaskVM.ftpPort) &&
+        equalsNullable(this.ftpUsername, ftPUploadTaskVM.ftpUsername) &&
+        equalsNullable(this.destinationFolder, ftPUploadTaskVM.destinationFolder) &&
+        equalsNullable(this.archive, ftPUploadTaskVM.archive) &&
+        equalsNullable(this.archiveName, ftPUploadTaskVM.archiveName) &&
         Objects.equals(this.useSFTP, ftPUploadTaskVM.useSFTP) &&
-        Objects.equals(this.name, ftPUploadTaskVM.name) &&
-        Objects.equals(this.subscriptionId, ftPUploadTaskVM.subscriptionId) &&
+        equalsNullable(this.name, ftPUploadTaskVM.name) &&
+        equalsNullable(this.subscriptionId, ftPUploadTaskVM.subscriptionId) &&
         Objects.equals(this.type, ftPUploadTaskVM.type) &&
-        Objects.equals(this.delayedRunTime, ftPUploadTaskVM.delayedRunTime) &&
-        Objects.equals(this.cronExpression, ftPUploadTaskVM.cronExpression);
+        equalsNullable(this.delayedRunTime, ftPUploadTaskVM.delayedRunTime) &&
+        equalsNullable(this.cronExpression, ftPUploadTaskVM.cronExpression);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ftpHost, ftpPort, ftpUsername, destinationFolder, archive, archiveName, useSFTP, name, subscriptionId, type, delayedRunTime, cronExpression);
+    return Objects.hash(hashCodeNullable(ftpHost), hashCodeNullable(ftpPort), hashCodeNullable(ftpUsername), hashCodeNullable(destinationFolder), hashCodeNullable(archive), hashCodeNullable(archiveName), useSFTP, hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

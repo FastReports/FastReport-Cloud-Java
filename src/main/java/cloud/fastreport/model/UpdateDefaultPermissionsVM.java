@@ -24,9 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * UpdateDefaultPermissionsVM
@@ -37,7 +36,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   UpdateDefaultPermissionsVM.JSON_PROPERTY_DATA_SOURCE_PERMISSIONS,
   UpdateDefaultPermissionsVM.JSON_PROPERTY_TASK_PERMISSIONS
 })
-@JsonTypeName("UpdateDefaultPermissionsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateDefaultPermissionsVM {
   public static final String JSON_PROPERTY_FILE_PERMISSIONS = "filePermissions";
@@ -52,6 +50,8 @@ public class UpdateDefaultPermissionsVM {
   public static final String JSON_PROPERTY_TASK_PERMISSIONS = "taskPermissions";
   private UpdateTaskPermissionsVM taskPermissions;
 
+  public UpdateDefaultPermissionsVM() {
+  }
 
   public UpdateDefaultPermissionsVM filePermissions(UpdateFilePermissionsVM filePermissions) {
     
@@ -64,7 +64,6 @@ public class UpdateDefaultPermissionsVM {
    * @return filePermissions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_FILE_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -91,7 +90,6 @@ public class UpdateDefaultPermissionsVM {
    * @return groupPermissions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_GROUP_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -118,7 +116,6 @@ public class UpdateDefaultPermissionsVM {
    * @return dataSourcePermissions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DATA_SOURCE_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -145,7 +142,6 @@ public class UpdateDefaultPermissionsVM {
    * @return taskPermissions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TASK_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

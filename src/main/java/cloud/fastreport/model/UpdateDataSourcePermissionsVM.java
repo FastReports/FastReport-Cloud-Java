@@ -22,9 +22,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * UpdateDataSourcePermissionsVM
@@ -33,7 +32,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   UpdateDataSourcePermissionsVM.JSON_PROPERTY_NEW_PERMISSIONS,
   UpdateDataSourcePermissionsVM.JSON_PROPERTY_ADMINISTRATE
 })
-@JsonTypeName("UpdateDataSourcePermissionsVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateDataSourcePermissionsVM {
   public static final String JSON_PROPERTY_NEW_PERMISSIONS = "newPermissions";
@@ -42,6 +40,8 @@ public class UpdateDataSourcePermissionsVM {
   public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
   private DataSourceAdministrate administrate;
 
+  public UpdateDataSourcePermissionsVM() {
+  }
 
   public UpdateDataSourcePermissionsVM newPermissions(DataSourcePermissions newPermissions) {
     
@@ -53,7 +53,7 @@ public class UpdateDataSourcePermissionsVM {
    * Get newPermissions
    * @return newPermissions
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_NEW_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -79,7 +79,7 @@ public class UpdateDataSourcePermissionsVM {
    * Get administrate
    * @return administrate
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

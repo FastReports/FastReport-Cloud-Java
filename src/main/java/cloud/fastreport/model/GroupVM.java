@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * GroupVM
@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   GroupVM.JSON_PROPERTY_NAME,
   GroupVM.JSON_PROPERTY_SUBSCRIPTION_ID
 })
-@JsonTypeName("GroupVM")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GroupVM {
   public static final String JSON_PROPERTY_ID = "id";
@@ -47,6 +46,8 @@ public class GroupVM {
   public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
   private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
 
+  public GroupVM() {
+  }
 
   public GroupVM id(String id) {
     this.id = JsonNullable.<String>of(id);
@@ -59,7 +60,6 @@ public class GroupVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getId() {
@@ -94,7 +94,6 @@ public class GroupVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getName() {
@@ -129,7 +128,6 @@ public class GroupVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonIgnore
 
   public String getSubscriptionId() {
@@ -162,14 +160,25 @@ public class GroupVM {
       return false;
     }
     GroupVM groupVM = (GroupVM) o;
-    return Objects.equals(this.id, groupVM.id) &&
-        Objects.equals(this.name, groupVM.name) &&
-        Objects.equals(this.subscriptionId, groupVM.subscriptionId);
+    return equalsNullable(this.id, groupVM.id) &&
+        equalsNullable(this.name, groupVM.name) &&
+        equalsNullable(this.subscriptionId, groupVM.subscriptionId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, subscriptionId);
+    return Objects.hash(hashCodeNullable(id), hashCodeNullable(name), hashCodeNullable(subscriptionId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -5,9 +5,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**breadcrumbs** | [**List&lt;BreadcrumbsModel&gt;**](BreadcrumbsModel.md) |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**breadcrumbs** | [**List&lt;BreadcrumbsModel&gt;**](BreadcrumbsModel.md) |  |  [optional] |
 
 
 

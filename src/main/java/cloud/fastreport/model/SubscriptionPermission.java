@@ -17,7 +17,6 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.SubscriptionAdministrate;
 import cloud.fastreport.model.SubscriptionCreate;
-import cloud.fastreport.model.SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission;
 import cloud.fastreport.model.SubscriptionDelete;
 import cloud.fastreport.model.SubscriptionExecute;
 import cloud.fastreport.model.SubscriptionGet;
@@ -27,9 +26,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * SubscriptionPermission
@@ -42,7 +40,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   SubscriptionPermission.JSON_PROPERTY_UPDATE,
   SubscriptionPermission.JSON_PROPERTY_ADMINISTRATE
 })
-@JsonTypeName("SubscriptionPermission")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionPermission {
   public static final String JSON_PROPERTY_CREATE = "create";
@@ -63,6 +60,8 @@ public class SubscriptionPermission {
   public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
   private SubscriptionAdministrate administrate;
 
+  public SubscriptionPermission() {
+  }
 
   public SubscriptionPermission create(SubscriptionCreate create) {
     
@@ -75,7 +74,6 @@ public class SubscriptionPermission {
    * @return create
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_CREATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -102,7 +100,6 @@ public class SubscriptionPermission {
    * @return delete
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DELETE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -129,7 +126,6 @@ public class SubscriptionPermission {
    * @return execute
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EXECUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -156,7 +152,6 @@ public class SubscriptionPermission {
    * @return get
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_GET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -183,7 +178,6 @@ public class SubscriptionPermission {
    * @return update
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_UPDATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -210,7 +204,6 @@ public class SubscriptionPermission {
    * @return administrate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

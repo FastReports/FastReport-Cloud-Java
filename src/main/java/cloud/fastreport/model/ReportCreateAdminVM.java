@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.ReportCreateVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,9 +24,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -34,33 +32,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
   ReportCreateAdminVM.JSON_PROPERTY_OWNER_ID,
-  ReportCreateAdminVM.JSON_PROPERTY_PARENT_ID,
-  ReportCreateAdminVM.JSON_PROPERTY_NAME,
-  ReportCreateAdminVM.JSON_PROPERTY_TAGS,
-  ReportCreateAdminVM.JSON_PROPERTY_ICON,
-  ReportCreateAdminVM.JSON_PROPERTY_CONTENT
+  ReportCreateAdminVM.JSON_PROPERTY_PARENT_ID
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ReportCreateAdminVM {
+public class ReportCreateAdminVM extends ReportCreateVM {
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
   private String ownerId;
 
   public static final String JSON_PROPERTY_PARENT_ID = "parentId";
   private String parentId;
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  private JsonNullable<String> name = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_TAGS = "tags";
-  private JsonNullable<List<String>> tags = JsonNullable.<List<String>>undefined();
-
-  public static final String JSON_PROPERTY_ICON = "icon";
-  private JsonNullable<byte[]> icon = JsonNullable.<byte[]>undefined();
-
-  public static final String JSON_PROPERTY_CONTENT = "content";
-  private JsonNullable<byte[]> content = JsonNullable.<byte[]>undefined();
-
   public ReportCreateAdminVM() {
+
   }
 
   public ReportCreateAdminVM ownerId(String ownerId) {
@@ -115,154 +98,6 @@ public class ReportCreateAdminVM {
   }
 
 
-  public ReportCreateAdminVM name(String name) {
-    this.name = JsonNullable.<String>of(name);
-    
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getName() {
-        return name.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getName_JsonNullable() {
-    return name;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_NAME)
-  public void setName_JsonNullable(JsonNullable<String> name) {
-    this.name = name;
-  }
-
-  public void setName(String name) {
-    this.name = JsonNullable.<String>of(name);
-  }
-
-
-  public ReportCreateAdminVM tags(List<String> tags) {
-    this.tags = JsonNullable.<List<String>>of(tags);
-    
-    return this;
-  }
-
-  public ReportCreateAdminVM addTagsItem(String tagsItem) {
-    if (this.tags == null || !this.tags.isPresent()) {
-      this.tags = JsonNullable.<List<String>>of(new ArrayList<>());
-    }
-    try {
-      this.tags.get().add(tagsItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
-    return this;
-  }
-
-   /**
-   * Get tags
-   * @return tags
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public List<String> getTags() {
-        return tags.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<String>> getTags_JsonNullable() {
-    return tags;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_TAGS)
-  public void setTags_JsonNullable(JsonNullable<List<String>> tags) {
-    this.tags = tags;
-  }
-
-  public void setTags(List<String> tags) {
-    this.tags = JsonNullable.<List<String>>of(tags);
-  }
-
-
-  public ReportCreateAdminVM icon(byte[] icon) {
-    this.icon = JsonNullable.<byte[]>of(icon);
-    
-    return this;
-  }
-
-   /**
-   * Get icon
-   * @return icon
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public byte[] getIcon() {
-        return icon.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ICON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<byte[]> getIcon_JsonNullable() {
-    return icon;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ICON)
-  public void setIcon_JsonNullable(JsonNullable<byte[]> icon) {
-    this.icon = icon;
-  }
-
-  public void setIcon(byte[] icon) {
-    this.icon = JsonNullable.<byte[]>of(icon);
-  }
-
-
-  public ReportCreateAdminVM content(byte[] content) {
-    this.content = JsonNullable.<byte[]>of(content);
-    
-    return this;
-  }
-
-   /**
-   * Get content
-   * @return content
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public byte[] getContent() {
-        return content.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_CONTENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<byte[]> getContent_JsonNullable() {
-    return content;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CONTENT)
-  public void setContent_JsonNullable(JsonNullable<byte[]> content) {
-    this.content = content;
-  }
-
-  public void setContent(byte[] content) {
-    this.content = JsonNullable.<byte[]>of(content);
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -274,10 +109,7 @@ public class ReportCreateAdminVM {
     ReportCreateAdminVM reportCreateAdminVM = (ReportCreateAdminVM) o;
     return Objects.equals(this.ownerId, reportCreateAdminVM.ownerId) &&
         Objects.equals(this.parentId, reportCreateAdminVM.parentId) &&
-        equalsNullable(this.name, reportCreateAdminVM.name) &&
-        equalsNullable(this.tags, reportCreateAdminVM.tags) &&
-        equalsNullable(this.icon, reportCreateAdminVM.icon) &&
-        equalsNullable(this.content, reportCreateAdminVM.content);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -286,7 +118,7 @@ public class ReportCreateAdminVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, parentId, hashCodeNullable(name), hashCodeNullable(tags), hashCodeNullable(icon), hashCodeNullable(content));
+    return Objects.hash(ownerId, parentId, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -300,12 +132,9 @@ public class ReportCreateAdminVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReportCreateAdminVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
-    sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("}");
     return sb.toString();
   }

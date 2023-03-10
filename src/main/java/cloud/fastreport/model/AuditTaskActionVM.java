@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.AuditActionVM;
 import cloud.fastreport.model.AuditType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -33,50 +34,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * AuditTaskActionVM
  */
 @JsonPropertyOrder({
-  AuditTaskActionVM.JSON_PROPERTY_MESSAGE_ID,
-  AuditTaskActionVM.JSON_PROPERTY_USER_ID,
-  AuditTaskActionVM.JSON_PROPERTY_ENTITY_ID,
-  AuditTaskActionVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  AuditTaskActionVM.JSON_PROPERTY_TYPE,
-  AuditTaskActionVM.JSON_PROPERTY_ID,
-  AuditTaskActionVM.JSON_PROPERTY_CREATED_TIME,
-  AuditTaskActionVM.JSON_PROPERTY_CREATOR_USER_ID,
-  AuditTaskActionVM.JSON_PROPERTY_NAME,
-  AuditTaskActionVM.JSON_PROPERTY_ADMIN_ACTION
+  AuditTaskActionVM.JSON_PROPERTY_MESSAGE_ID
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AuditTaskActionVM {
+public class AuditTaskActionVM extends AuditActionVM {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   private JsonNullable<String> messageId = JsonNullable.<String>undefined();
 
-  public static final String JSON_PROPERTY_USER_ID = "userId";
-  private JsonNullable<String> userId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_ENTITY_ID = "entityId";
-  private JsonNullable<String> entityId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private AuditType type;
-
-  public static final String JSON_PROPERTY_ID = "id";
-  private JsonNullable<String> id = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_CREATED_TIME = "createdTime";
-  private OffsetDateTime createdTime;
-
-  public static final String JSON_PROPERTY_CREATOR_USER_ID = "creatorUserId";
-  private JsonNullable<String> creatorUserId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_NAME = "name";
-  private JsonNullable<String> name = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_ADMIN_ACTION = "adminAction";
-  private Boolean adminAction;
-
   public AuditTaskActionVM() {
+
   }
 
   public AuditTaskActionVM messageId(String messageId) {
@@ -113,288 +79,6 @@ public class AuditTaskActionVM {
   }
 
 
-  public AuditTaskActionVM userId(String userId) {
-    this.userId = JsonNullable.<String>of(userId);
-    
-    return this;
-  }
-
-   /**
-   * Get userId
-   * @return userId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getUserId() {
-        return userId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getUserId_JsonNullable() {
-    return userId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_USER_ID)
-  public void setUserId_JsonNullable(JsonNullable<String> userId) {
-    this.userId = userId;
-  }
-
-  public void setUserId(String userId) {
-    this.userId = JsonNullable.<String>of(userId);
-  }
-
-
-  public AuditTaskActionVM entityId(String entityId) {
-    this.entityId = JsonNullable.<String>of(entityId);
-    
-    return this;
-  }
-
-   /**
-   * Get entityId
-   * @return entityId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getEntityId() {
-        return entityId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ENTITY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getEntityId_JsonNullable() {
-    return entityId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ENTITY_ID)
-  public void setEntityId_JsonNullable(JsonNullable<String> entityId) {
-    this.entityId = entityId;
-  }
-
-  public void setEntityId(String entityId) {
-    this.entityId = JsonNullable.<String>of(entityId);
-  }
-
-
-  public AuditTaskActionVM subscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-    
-    return this;
-  }
-
-   /**
-   * Get subscriptionId
-   * @return subscriptionId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getSubscriptionId() {
-        return subscriptionId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getSubscriptionId_JsonNullable() {
-    return subscriptionId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
-    this.subscriptionId = subscriptionId;
-  }
-
-  public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-  }
-
-
-  public AuditTaskActionVM type(AuditType type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public AuditType getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(AuditType type) {
-    this.type = type;
-  }
-
-
-  public AuditTaskActionVM id(String id) {
-    this.id = JsonNullable.<String>of(id);
-    
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getId() {
-        return id.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getId_JsonNullable() {
-    return id;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ID)
-  public void setId_JsonNullable(JsonNullable<String> id) {
-    this.id = id;
-  }
-
-  public void setId(String id) {
-    this.id = JsonNullable.<String>of(id);
-  }
-
-
-  public AuditTaskActionVM createdTime(OffsetDateTime createdTime) {
-    
-    this.createdTime = createdTime;
-    return this;
-  }
-
-   /**
-   * Get createdTime
-   * @return createdTime
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getCreatedTime() {
-    return createdTime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedTime(OffsetDateTime createdTime) {
-    this.createdTime = createdTime;
-  }
-
-
-  public AuditTaskActionVM creatorUserId(String creatorUserId) {
-    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
-    
-    return this;
-  }
-
-   /**
-   * Get creatorUserId
-   * @return creatorUserId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getCreatorUserId() {
-        return creatorUserId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getCreatorUserId_JsonNullable() {
-    return creatorUserId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
-  public void setCreatorUserId_JsonNullable(JsonNullable<String> creatorUserId) {
-    this.creatorUserId = creatorUserId;
-  }
-
-  public void setCreatorUserId(String creatorUserId) {
-    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
-  }
-
-
-  public AuditTaskActionVM name(String name) {
-    this.name = JsonNullable.<String>of(name);
-    
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getName() {
-        return name.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getName_JsonNullable() {
-    return name;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_NAME)
-  public void setName_JsonNullable(JsonNullable<String> name) {
-    this.name = name;
-  }
-
-  public void setName(String name) {
-    this.name = JsonNullable.<String>of(name);
-  }
-
-
-  public AuditTaskActionVM adminAction(Boolean adminAction) {
-    
-    this.adminAction = adminAction;
-    return this;
-  }
-
-   /**
-   * Get adminAction
-   * @return adminAction
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ADMIN_ACTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getAdminAction() {
-    return adminAction;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ADMIN_ACTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdminAction(Boolean adminAction) {
-    this.adminAction = adminAction;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -405,15 +89,7 @@ public class AuditTaskActionVM {
     }
     AuditTaskActionVM auditTaskActionVM = (AuditTaskActionVM) o;
     return equalsNullable(this.messageId, auditTaskActionVM.messageId) &&
-        equalsNullable(this.userId, auditTaskActionVM.userId) &&
-        equalsNullable(this.entityId, auditTaskActionVM.entityId) &&
-        equalsNullable(this.subscriptionId, auditTaskActionVM.subscriptionId) &&
-        Objects.equals(this.type, auditTaskActionVM.type) &&
-        equalsNullable(this.id, auditTaskActionVM.id) &&
-        Objects.equals(this.createdTime, auditTaskActionVM.createdTime) &&
-        equalsNullable(this.creatorUserId, auditTaskActionVM.creatorUserId) &&
-        equalsNullable(this.name, auditTaskActionVM.name) &&
-        Objects.equals(this.adminAction, auditTaskActionVM.adminAction);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -422,7 +98,7 @@ public class AuditTaskActionVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(messageId), hashCodeNullable(userId), hashCodeNullable(entityId), hashCodeNullable(subscriptionId), type, hashCodeNullable(id), createdTime, hashCodeNullable(creatorUserId), hashCodeNullable(name), adminAction);
+    return Objects.hash(hashCodeNullable(messageId), super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -436,16 +112,8 @@ public class AuditTaskActionVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AuditTaskActionVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
-    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
-    sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
-    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
-    sb.append("    creatorUserId: ").append(toIndentedString(creatorUserId)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    adminAction: ").append(toIndentedString(adminAction)).append("\n");
     sb.append("}");
     return sb.toString();
   }

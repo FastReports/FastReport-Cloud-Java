@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.AuditActionVM;
 import cloud.fastreport.model.AuditType;
 import cloud.fastreport.model.EntityType;
 import com.fasterxml.jackson.annotation.JsonInclude;

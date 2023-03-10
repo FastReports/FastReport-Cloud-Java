@@ -16,6 +16,7 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.TaskType;
+import cloud.fastreport.model.TransportTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -43,15 +44,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   EmailTaskVM.JSON_PROPERTY_USERNAME,
   EmailTaskVM.JSON_PROPERTY_SERVER,
   EmailTaskVM.JSON_PROPERTY_PORT,
-  EmailTaskVM.JSON_PROPERTY_ENABLE_SSL,
-  EmailTaskVM.JSON_PROPERTY_NAME,
-  EmailTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  EmailTaskVM.JSON_PROPERTY_TYPE,
-  EmailTaskVM.JSON_PROPERTY_DELAYED_RUN_TIME,
-  EmailTaskVM.JSON_PROPERTY_CRON_EXPRESSION
+  EmailTaskVM.JSON_PROPERTY_ENABLE_SSL
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class EmailTaskVM {
+public class EmailTaskVM extends TransportTaskBaseVM {
   public static final String JSON_PROPERTY_BODY = "body";
   private JsonNullable<String> body = JsonNullable.<String>undefined();
 
@@ -79,22 +75,8 @@ public class EmailTaskVM {
   public static final String JSON_PROPERTY_ENABLE_SSL = "enableSsl";
   private Boolean enableSsl;
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  private JsonNullable<String> name = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TaskType type;
-
-  public static final String JSON_PROPERTY_DELAYED_RUN_TIME = "delayedRunTime";
-  private JsonNullable<OffsetDateTime> delayedRunTime = JsonNullable.<OffsetDateTime>undefined();
-
-  public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
-  private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
-
   public EmailTaskVM() {
+
   }
 
   public EmailTaskVM body(String body) {
@@ -393,168 +375,6 @@ public class EmailTaskVM {
   }
 
 
-  public EmailTaskVM name(String name) {
-    this.name = JsonNullable.<String>of(name);
-    
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getName() {
-        return name.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getName_JsonNullable() {
-    return name;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_NAME)
-  public void setName_JsonNullable(JsonNullable<String> name) {
-    this.name = name;
-  }
-
-  public void setName(String name) {
-    this.name = JsonNullable.<String>of(name);
-  }
-
-
-  public EmailTaskVM subscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-    
-    return this;
-  }
-
-   /**
-   * Get subscriptionId
-   * @return subscriptionId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getSubscriptionId() {
-        return subscriptionId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getSubscriptionId_JsonNullable() {
-    return subscriptionId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
-    this.subscriptionId = subscriptionId;
-  }
-
-  public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-  }
-
-
-  public EmailTaskVM type(TaskType type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TaskType getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TaskType type) {
-    this.type = type;
-  }
-
-
-  public EmailTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
-    this.delayedRunTime = JsonNullable.<OffsetDateTime>of(delayedRunTime);
-    
-    return this;
-  }
-
-   /**
-   * Get delayedRunTime
-   * @return delayedRunTime
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public OffsetDateTime getDelayedRunTime() {
-        return delayedRunTime.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_DELAYED_RUN_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<OffsetDateTime> getDelayedRunTime_JsonNullable() {
-    return delayedRunTime;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_DELAYED_RUN_TIME)
-  public void setDelayedRunTime_JsonNullable(JsonNullable<OffsetDateTime> delayedRunTime) {
-    this.delayedRunTime = delayedRunTime;
-  }
-
-  public void setDelayedRunTime(OffsetDateTime delayedRunTime) {
-    this.delayedRunTime = JsonNullable.<OffsetDateTime>of(delayedRunTime);
-  }
-
-
-  public EmailTaskVM cronExpression(String cronExpression) {
-    this.cronExpression = JsonNullable.<String>of(cronExpression);
-    
-    return this;
-  }
-
-   /**
-   * Get cronExpression
-   * @return cronExpression
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getCronExpression() {
-        return cronExpression.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getCronExpression_JsonNullable() {
-    return cronExpression;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
-  public void setCronExpression_JsonNullable(JsonNullable<String> cronExpression) {
-    this.cronExpression = cronExpression;
-  }
-
-  public void setCronExpression(String cronExpression) {
-    this.cronExpression = JsonNullable.<String>of(cronExpression);
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -573,11 +393,7 @@ public class EmailTaskVM {
         equalsNullable(this.server, emailTaskVM.server) &&
         Objects.equals(this.port, emailTaskVM.port) &&
         Objects.equals(this.enableSsl, emailTaskVM.enableSsl) &&
-        equalsNullable(this.name, emailTaskVM.name) &&
-        equalsNullable(this.subscriptionId, emailTaskVM.subscriptionId) &&
-        Objects.equals(this.type, emailTaskVM.type) &&
-        equalsNullable(this.delayedRunTime, emailTaskVM.delayedRunTime) &&
-        equalsNullable(this.cronExpression, emailTaskVM.cronExpression);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -586,7 +402,7 @@ public class EmailTaskVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(body), isBodyHtml, hashCodeNullable(subject), hashCodeNullable(to), hashCodeNullable(from), hashCodeNullable(username), hashCodeNullable(server), port, enableSsl, hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+    return Objects.hash(hashCodeNullable(body), isBodyHtml, hashCodeNullable(subject), hashCodeNullable(to), hashCodeNullable(from), hashCodeNullable(username), hashCodeNullable(server), port, enableSsl, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -600,6 +416,7 @@ public class EmailTaskVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EmailTaskVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    isBodyHtml: ").append(toIndentedString(isBodyHtml)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
@@ -609,11 +426,6 @@ public class EmailTaskVM {
     sb.append("    server: ").append(toIndentedString(server)).append("\n");
     sb.append("    port: ").append(toIndentedString(port)).append("\n");
     sb.append("    enableSsl: ").append(toIndentedString(enableSsl)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    delayedRunTime: ").append(toIndentedString(delayedRunTime)).append("\n");
-    sb.append("    cronExpression: ").append(toIndentedString(cronExpression)).append("\n");
     sb.append("}");
     return sb.toString();
   }

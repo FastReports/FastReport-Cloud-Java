@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.RunTransportTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -39,12 +40,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   RunFTPUploadTaskVM.JSON_PROPERTY_DESTINATION_FOLDER,
   RunFTPUploadTaskVM.JSON_PROPERTY_ARCHIVE,
   RunFTPUploadTaskVM.JSON_PROPERTY_ARCHIVE_NAME,
-  RunFTPUploadTaskVM.JSON_PROPERTY_USE_S_F_T_P,
-  RunFTPUploadTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  RunFTPUploadTaskVM.JSON_PROPERTY_TYPE
+  RunFTPUploadTaskVM.JSON_PROPERTY_USE_S_F_T_P
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RunFTPUploadTaskVM {
+public class RunFTPUploadTaskVM extends RunTransportTaskBaseVM {
   public static final String JSON_PROPERTY_FTP_HOST = "ftpHost";
   private JsonNullable<String> ftpHost = JsonNullable.<String>undefined();
 
@@ -69,13 +68,8 @@ public class RunFTPUploadTaskVM {
   public static final String JSON_PROPERTY_USE_S_F_T_P = "useSFTP";
   private Boolean useSFTP;
 
-  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TaskType type;
-
   public RunFTPUploadTaskVM() {
+
   }
 
   public RunFTPUploadTaskVM ftpHost(String ftpHost) {
@@ -342,66 +336,6 @@ public class RunFTPUploadTaskVM {
   }
 
 
-  public RunFTPUploadTaskVM subscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-    
-    return this;
-  }
-
-   /**
-   * Get subscriptionId
-   * @return subscriptionId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getSubscriptionId() {
-        return subscriptionId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getSubscriptionId_JsonNullable() {
-    return subscriptionId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
-    this.subscriptionId = subscriptionId;
-  }
-
-  public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-  }
-
-
-  public RunFTPUploadTaskVM type(TaskType type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TaskType getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TaskType type) {
-    this.type = type;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -419,8 +353,7 @@ public class RunFTPUploadTaskVM {
         equalsNullable(this.archive, runFTPUploadTaskVM.archive) &&
         equalsNullable(this.archiveName, runFTPUploadTaskVM.archiveName) &&
         Objects.equals(this.useSFTP, runFTPUploadTaskVM.useSFTP) &&
-        equalsNullable(this.subscriptionId, runFTPUploadTaskVM.subscriptionId) &&
-        Objects.equals(this.type, runFTPUploadTaskVM.type);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -429,7 +362,7 @@ public class RunFTPUploadTaskVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(ftpHost), hashCodeNullable(ftpPort), hashCodeNullable(ftpUsername), hashCodeNullable(ftpPassword), hashCodeNullable(destinationFolder), hashCodeNullable(archive), hashCodeNullable(archiveName), useSFTP, hashCodeNullable(subscriptionId), type);
+    return Objects.hash(hashCodeNullable(ftpHost), hashCodeNullable(ftpPort), hashCodeNullable(ftpUsername), hashCodeNullable(ftpPassword), hashCodeNullable(destinationFolder), hashCodeNullable(archive), hashCodeNullable(archiveName), useSFTP, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -443,6 +376,7 @@ public class RunFTPUploadTaskVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RunFTPUploadTaskVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    ftpHost: ").append(toIndentedString(ftpHost)).append("\n");
     sb.append("    ftpPort: ").append(toIndentedString(ftpPort)).append("\n");
     sb.append("    ftpUsername: ").append(toIndentedString(ftpUsername)).append("\n");
@@ -451,8 +385,6 @@ public class RunFTPUploadTaskVM {
     sb.append("    archive: ").append(toIndentedString(archive)).append("\n");
     sb.append("    archiveName: ").append(toIndentedString(archiveName)).append("\n");
     sb.append("    useSFTP: ").append(toIndentedString(useSFTP)).append("\n");
-    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

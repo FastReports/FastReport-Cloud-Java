@@ -16,6 +16,7 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.RunEndpointVM;
+import cloud.fastreport.model.RunTransportTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -35,22 +36,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * RunWebhookTaskVM
  */
 @JsonPropertyOrder({
-  RunWebhookTaskVM.JSON_PROPERTY_ENDPOINTS,
-  RunWebhookTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  RunWebhookTaskVM.JSON_PROPERTY_TYPE
+  RunWebhookTaskVM.JSON_PROPERTY_ENDPOINTS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RunWebhookTaskVM {
+public class RunWebhookTaskVM extends RunTransportTaskBaseVM {
   public static final String JSON_PROPERTY_ENDPOINTS = "endpoints";
   private JsonNullable<List<RunEndpointVM>> endpoints = JsonNullable.<List<RunEndpointVM>>undefined();
 
-  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TaskType type;
-
   public RunWebhookTaskVM() {
+
   }
 
   public RunWebhookTaskVM endpoints(List<RunEndpointVM> endpoints) {
@@ -99,66 +93,6 @@ public class RunWebhookTaskVM {
   }
 
 
-  public RunWebhookTaskVM subscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-    
-    return this;
-  }
-
-   /**
-   * Get subscriptionId
-   * @return subscriptionId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getSubscriptionId() {
-        return subscriptionId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getSubscriptionId_JsonNullable() {
-    return subscriptionId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
-    this.subscriptionId = subscriptionId;
-  }
-
-  public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-  }
-
-
-  public RunWebhookTaskVM type(TaskType type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TaskType getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TaskType type) {
-    this.type = type;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -169,8 +103,7 @@ public class RunWebhookTaskVM {
     }
     RunWebhookTaskVM runWebhookTaskVM = (RunWebhookTaskVM) o;
     return equalsNullable(this.endpoints, runWebhookTaskVM.endpoints) &&
-        equalsNullable(this.subscriptionId, runWebhookTaskVM.subscriptionId) &&
-        Objects.equals(this.type, runWebhookTaskVM.type);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -179,7 +112,7 @@ public class RunWebhookTaskVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(endpoints), hashCodeNullable(subscriptionId), type);
+    return Objects.hash(hashCodeNullable(endpoints), super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -193,9 +126,8 @@ public class RunWebhookTaskVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RunWebhookTaskVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    endpoints: ").append(toIndentedString(endpoints)).append("\n");
-    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

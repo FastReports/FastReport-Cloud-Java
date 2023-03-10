@@ -17,6 +17,7 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.OutputFileVM;
 import cloud.fastreport.model.RunInputFileVM;
+import cloud.fastreport.model.RunTaskBaseVM;
 import cloud.fastreport.model.RunTransportTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -40,12 +41,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   RunTransformTaskBaseVM.JSON_PROPERTY_LOCALE,
   RunTransformTaskBaseVM.JSON_PROPERTY_INPUT_FILE,
   RunTransformTaskBaseVM.JSON_PROPERTY_OUTPUT_FILE,
-  RunTransformTaskBaseVM.JSON_PROPERTY_TRANSPORTS,
-  RunTransformTaskBaseVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  RunTransformTaskBaseVM.JSON_PROPERTY_TYPE
+  RunTransformTaskBaseVM.JSON_PROPERTY_TRANSPORTS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RunTransformTaskBaseVM {
+public class RunTransformTaskBaseVM extends RunTaskBaseVM {
   public static final String JSON_PROPERTY_LOCALE = "locale";
   private JsonNullable<String> locale = JsonNullable.<String>undefined();
 
@@ -58,13 +57,8 @@ public class RunTransformTaskBaseVM {
   public static final String JSON_PROPERTY_TRANSPORTS = "transports";
   private JsonNullable<List<RunTransportTaskBaseVM>> transports = JsonNullable.<List<RunTransportTaskBaseVM>>undefined();
 
-  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TaskType type;
-
   public RunTransformTaskBaseVM() {
+
   }
 
   public RunTransformTaskBaseVM locale(String locale) {
@@ -199,66 +193,6 @@ public class RunTransformTaskBaseVM {
   }
 
 
-  public RunTransformTaskBaseVM subscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-    
-    return this;
-  }
-
-   /**
-   * Get subscriptionId
-   * @return subscriptionId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getSubscriptionId() {
-        return subscriptionId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getSubscriptionId_JsonNullable() {
-    return subscriptionId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
-    this.subscriptionId = subscriptionId;
-  }
-
-  public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-  }
-
-
-  public RunTransformTaskBaseVM type(TaskType type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TaskType getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TaskType type) {
-    this.type = type;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -272,8 +206,7 @@ public class RunTransformTaskBaseVM {
         Objects.equals(this.inputFile, runTransformTaskBaseVM.inputFile) &&
         Objects.equals(this.outputFile, runTransformTaskBaseVM.outputFile) &&
         equalsNullable(this.transports, runTransformTaskBaseVM.transports) &&
-        equalsNullable(this.subscriptionId, runTransformTaskBaseVM.subscriptionId) &&
-        Objects.equals(this.type, runTransformTaskBaseVM.type);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -282,7 +215,7 @@ public class RunTransformTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(locale), inputFile, outputFile, hashCodeNullable(transports), hashCodeNullable(subscriptionId), type);
+    return Objects.hash(hashCodeNullable(locale), inputFile, outputFile, hashCodeNullable(transports), super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -296,12 +229,11 @@ public class RunTransformTaskBaseVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RunTransformTaskBaseVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     sb.append("    inputFile: ").append(toIndentedString(inputFile)).append("\n");
     sb.append("    outputFile: ").append(toIndentedString(outputFile)).append("\n");
     sb.append("    transports: ").append(toIndentedString(transports)).append("\n");
-    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

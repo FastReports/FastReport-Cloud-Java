@@ -11,8 +11,6 @@
 |**inputFile** | [**RunInputFileVM**](RunInputFileVM.md) |  |  [optional] |
 |**outputFile** | [**OutputFileVM**](OutputFileVM.md) |  |  [optional] |
 |**transports** | [**List&lt;RunTransportTaskBaseVM&gt;**](RunTransportTaskBaseVM.md) |  |  [optional] |
-|**subscriptionId** | **String** |  |  [optional] |
-|**type** | **TaskType** |  |  [optional] |
 
 
 

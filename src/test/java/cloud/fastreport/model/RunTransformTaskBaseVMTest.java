@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import cloud.fastreport.model.OutputFileVM;
 import cloud.fastreport.model.RunInputFileVM;
+import cloud.fastreport.model.RunTaskBaseVM;
 import cloud.fastreport.model.RunTransportTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;

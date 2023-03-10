@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.EndpointVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -35,21 +36,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
   CreateEndpointVM.JSON_PROPERTY_BEARER_TOKEN,
-  CreateEndpointVM.JSON_PROPERTY_HEADERS,
-  CreateEndpointVM.JSON_PROPERTY_URL
+  CreateEndpointVM.JSON_PROPERTY_HEADERS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateEndpointVM {
+public class CreateEndpointVM extends EndpointVM {
   public static final String JSON_PROPERTY_BEARER_TOKEN = "bearerToken";
   private JsonNullable<String> bearerToken = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_HEADERS = "headers";
   private JsonNullable<Map<String, String>> headers = JsonNullable.<Map<String, String>>undefined();
 
-  public static final String JSON_PROPERTY_URL = "url";
-  private JsonNullable<URI> url = JsonNullable.<URI>undefined();
-
   public CreateEndpointVM() {
+
   }
 
   public CreateEndpointVM bearerToken(String bearerToken) {
@@ -132,40 +130,6 @@ public class CreateEndpointVM {
   }
 
 
-  public CreateEndpointVM url(URI url) {
-    this.url = JsonNullable.<URI>of(url);
-    
-    return this;
-  }
-
-   /**
-   * Get url
-   * @return url
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public URI getUrl() {
-        return url.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<URI> getUrl_JsonNullable() {
-    return url;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_URL)
-  public void setUrl_JsonNullable(JsonNullable<URI> url) {
-    this.url = url;
-  }
-
-  public void setUrl(URI url) {
-    this.url = JsonNullable.<URI>of(url);
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -177,7 +141,7 @@ public class CreateEndpointVM {
     CreateEndpointVM createEndpointVM = (CreateEndpointVM) o;
     return equalsNullable(this.bearerToken, createEndpointVM.bearerToken) &&
         equalsNullable(this.headers, createEndpointVM.headers) &&
-        equalsNullable(this.url, createEndpointVM.url);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -186,7 +150,7 @@ public class CreateEndpointVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(bearerToken), hashCodeNullable(headers), hashCodeNullable(url));
+    return Objects.hash(hashCodeNullable(bearerToken), hashCodeNullable(headers), super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -200,9 +164,9 @@ public class CreateEndpointVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateEndpointVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    bearerToken: ").append(toIndentedString(bearerToken)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();
   }

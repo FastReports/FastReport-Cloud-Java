@@ -16,6 +16,7 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.RunInputFileVM;
+import cloud.fastreport.model.RunTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -35,22 +36,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * RunTransportTaskBaseVM
  */
 @JsonPropertyOrder({
-  RunTransportTaskBaseVM.JSON_PROPERTY_FILES,
-  RunTransportTaskBaseVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  RunTransportTaskBaseVM.JSON_PROPERTY_TYPE
+  RunTransportTaskBaseVM.JSON_PROPERTY_FILES
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RunTransportTaskBaseVM {
+public class RunTransportTaskBaseVM extends RunTaskBaseVM {
   public static final String JSON_PROPERTY_FILES = "files";
   private JsonNullable<List<RunInputFileVM>> files = JsonNullable.<List<RunInputFileVM>>undefined();
 
-  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TaskType type;
-
   public RunTransportTaskBaseVM() {
+
   }
 
   public RunTransportTaskBaseVM files(List<RunInputFileVM> files) {
@@ -99,66 +93,6 @@ public class RunTransportTaskBaseVM {
   }
 
 
-  public RunTransportTaskBaseVM subscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-    
-    return this;
-  }
-
-   /**
-   * Get subscriptionId
-   * @return subscriptionId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getSubscriptionId() {
-        return subscriptionId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getSubscriptionId_JsonNullable() {
-    return subscriptionId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
-    this.subscriptionId = subscriptionId;
-  }
-
-  public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-  }
-
-
-  public RunTransportTaskBaseVM type(TaskType type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TaskType getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TaskType type) {
-    this.type = type;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -169,8 +103,7 @@ public class RunTransportTaskBaseVM {
     }
     RunTransportTaskBaseVM runTransportTaskBaseVM = (RunTransportTaskBaseVM) o;
     return equalsNullable(this.files, runTransportTaskBaseVM.files) &&
-        equalsNullable(this.subscriptionId, runTransportTaskBaseVM.subscriptionId) &&
-        Objects.equals(this.type, runTransportTaskBaseVM.type);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -179,7 +112,7 @@ public class RunTransportTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(files), hashCodeNullable(subscriptionId), type);
+    return Objects.hash(hashCodeNullable(files), super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -193,9 +126,8 @@ public class RunTransportTaskBaseVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RunTransportTaskBaseVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    files: ").append(toIndentedString(files)).append("\n");
-    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

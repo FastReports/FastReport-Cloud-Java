@@ -17,6 +17,7 @@ import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.OutputFileVM;
 import cloud.fastreport.model.TaskType;
 import cloud.fastreport.model.TaskUpdateArrayType;
+import cloud.fastreport.model.UpdateTaskBaseVM;
 import cloud.fastreport.model.UpdateTransportTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

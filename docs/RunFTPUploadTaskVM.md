@@ -15,8 +15,6 @@
 |**archive** | **Boolean** |  |  [optional] |
 |**archiveName** | **String** |  |  [optional] |
 |**useSFTP** | **Boolean** |  |  [optional] |
-|**subscriptionId** | **String** |  |  [optional] |
-|**type** | **TaskType** |  |  [optional] |
 
 
 

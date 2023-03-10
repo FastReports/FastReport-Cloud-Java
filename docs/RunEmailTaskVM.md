@@ -17,8 +17,6 @@
 |**server** | **String** |  |  [optional] |
 |**port** | **Integer** |  |  [optional] |
 |**enableSsl** | **Boolean** |  |  [optional] |
-|**subscriptionId** | **String** |  |  [optional] |
-|**type** | **TaskType** |  |  [optional] |
 
 
 

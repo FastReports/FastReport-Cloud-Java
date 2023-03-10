@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import cloud.fastreport.model.EndpointVM;
 import cloud.fastreport.model.TaskType;
+import cloud.fastreport.model.TransportTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;

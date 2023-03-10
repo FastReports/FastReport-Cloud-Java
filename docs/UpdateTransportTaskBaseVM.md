@@ -9,11 +9,6 @@
 |------------ | ------------- | ------------- | -------------|
 |**files** | [**List&lt;InputFileVM&gt;**](InputFileVM.md) |  |  [optional] |
 |**id** | **String** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**subscriptionId** | **String** |  |  [optional] |
-|**type** | **TaskType** |  |  [optional] |
-|**delayedRunTime** | **OffsetDateTime** |  |  [optional] |
-|**cronExpression** | **String** |  |  [optional] |
 
 
 

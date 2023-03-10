@@ -9,10 +9,6 @@
 |------------ | ------------- | ------------- | -------------|
 |**templateId** | **String** |  |  [optional] |
 |**reportId** | **String** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**tags** | **List&lt;String&gt;** |  |  [optional] |
-|**icon** | **byte[]** |  |  [optional] |
-|**content** | **byte[]** |  |  [optional] |
 
 
 

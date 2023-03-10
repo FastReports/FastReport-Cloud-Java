@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.EntityVM;
 import cloud.fastreport.model.FileStatus;
 import cloud.fastreport.model.FileStatusReason;
 import cloud.fastreport.model.FileType;
@@ -46,15 +47,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   FileVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   FileVM.JSON_PROPERTY_STATUS,
   FileVM.JSON_PROPERTY_STATUS_REASON,
-  FileVM.JSON_PROPERTY_ERROR_MESSAGE,
-  FileVM.JSON_PROPERTY_ID,
-  FileVM.JSON_PROPERTY_CREATED_TIME,
-  FileVM.JSON_PROPERTY_CREATOR_USER_ID,
-  FileVM.JSON_PROPERTY_EDITED_TIME,
-  FileVM.JSON_PROPERTY_EDITOR_USER_ID
+  FileVM.JSON_PROPERTY_ERROR_MESSAGE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FileVM {
+public class FileVM extends EntityVM {
   public static final String JSON_PROPERTY_NAME = "name";
   private JsonNullable<String> name = JsonNullable.<String>undefined();
 
@@ -85,22 +81,8 @@ public class FileVM {
   public static final String JSON_PROPERTY_ERROR_MESSAGE = "errorMessage";
   private JsonNullable<String> errorMessage = JsonNullable.<String>undefined();
 
-  public static final String JSON_PROPERTY_ID = "id";
-  private JsonNullable<String> id = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_CREATED_TIME = "createdTime";
-  private OffsetDateTime createdTime;
-
-  public static final String JSON_PROPERTY_CREATOR_USER_ID = "creatorUserId";
-  private JsonNullable<String> creatorUserId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_EDITED_TIME = "editedTime";
-  private OffsetDateTime editedTime;
-
-  public static final String JSON_PROPERTY_EDITOR_USER_ID = "editorUserId";
-  private JsonNullable<String> editorUserId = JsonNullable.<String>undefined();
-
   public FileVM() {
+
   }
 
   public FileVM name(String name) {
@@ -423,160 +405,6 @@ public class FileVM {
   }
 
 
-  public FileVM id(String id) {
-    this.id = JsonNullable.<String>of(id);
-    
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getId() {
-        return id.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getId_JsonNullable() {
-    return id;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ID)
-  public void setId_JsonNullable(JsonNullable<String> id) {
-    this.id = id;
-  }
-
-  public void setId(String id) {
-    this.id = JsonNullable.<String>of(id);
-  }
-
-
-  public FileVM createdTime(OffsetDateTime createdTime) {
-    
-    this.createdTime = createdTime;
-    return this;
-  }
-
-   /**
-   * Get createdTime
-   * @return createdTime
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getCreatedTime() {
-    return createdTime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedTime(OffsetDateTime createdTime) {
-    this.createdTime = createdTime;
-  }
-
-
-  public FileVM creatorUserId(String creatorUserId) {
-    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
-    
-    return this;
-  }
-
-   /**
-   * Get creatorUserId
-   * @return creatorUserId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getCreatorUserId() {
-        return creatorUserId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getCreatorUserId_JsonNullable() {
-    return creatorUserId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
-  public void setCreatorUserId_JsonNullable(JsonNullable<String> creatorUserId) {
-    this.creatorUserId = creatorUserId;
-  }
-
-  public void setCreatorUserId(String creatorUserId) {
-    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
-  }
-
-
-  public FileVM editedTime(OffsetDateTime editedTime) {
-    
-    this.editedTime = editedTime;
-    return this;
-  }
-
-   /**
-   * Get editedTime
-   * @return editedTime
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EDITED_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getEditedTime() {
-    return editedTime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EDITED_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEditedTime(OffsetDateTime editedTime) {
-    this.editedTime = editedTime;
-  }
-
-
-  public FileVM editorUserId(String editorUserId) {
-    this.editorUserId = JsonNullable.<String>of(editorUserId);
-    
-    return this;
-  }
-
-   /**
-   * Get editorUserId
-   * @return editorUserId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getEditorUserId() {
-        return editorUserId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getEditorUserId_JsonNullable() {
-    return editorUserId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
-  public void setEditorUserId_JsonNullable(JsonNullable<String> editorUserId) {
-    this.editorUserId = editorUserId;
-  }
-
-  public void setEditorUserId(String editorUserId) {
-    this.editorUserId = JsonNullable.<String>of(editorUserId);
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -596,11 +424,7 @@ public class FileVM {
         Objects.equals(this.status, fileVM.status) &&
         Objects.equals(this.statusReason, fileVM.statusReason) &&
         equalsNullable(this.errorMessage, fileVM.errorMessage) &&
-        equalsNullable(this.id, fileVM.id) &&
-        Objects.equals(this.createdTime, fileVM.createdTime) &&
-        equalsNullable(this.creatorUserId, fileVM.creatorUserId) &&
-        Objects.equals(this.editedTime, fileVM.editedTime) &&
-        equalsNullable(this.editorUserId, fileVM.editorUserId);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -609,7 +433,7 @@ public class FileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(name), hashCodeNullable(parentId), hashCodeNullable(tags), hashCodeNullable(icon), type, size, hashCodeNullable(subscriptionId), status, statusReason, hashCodeNullable(errorMessage), hashCodeNullable(id), createdTime, hashCodeNullable(creatorUserId), editedTime, hashCodeNullable(editorUserId));
+    return Objects.hash(hashCodeNullable(name), hashCodeNullable(parentId), hashCodeNullable(tags), hashCodeNullable(icon), type, size, hashCodeNullable(subscriptionId), status, statusReason, hashCodeNullable(errorMessage), super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -623,6 +447,7 @@ public class FileVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FileVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
@@ -633,11 +458,6 @@ public class FileVM {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    statusReason: ").append(toIndentedString(statusReason)).append("\n");
     sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
-    sb.append("    creatorUserId: ").append(toIndentedString(creatorUserId)).append("\n");
-    sb.append("    editedTime: ").append(toIndentedString(editedTime)).append("\n");
-    sb.append("    editorUserId: ").append(toIndentedString(editorUserId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

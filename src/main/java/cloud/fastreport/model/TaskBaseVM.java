@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.CreateTaskBaseVM;
 import cloud.fastreport.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,15 +37,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   TaskBaseVM.JSON_PROPERTY_ID,
   TaskBaseVM.JSON_PROPERTY_DELAYED_WAS_RUN_TIME,
   TaskBaseVM.JSON_PROPERTY_RECURRENT_RUN_TIME,
-  TaskBaseVM.JSON_PROPERTY_RECURRENT_WAS_RUN_TIME,
-  TaskBaseVM.JSON_PROPERTY_NAME,
-  TaskBaseVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  TaskBaseVM.JSON_PROPERTY_TYPE,
-  TaskBaseVM.JSON_PROPERTY_DELAYED_RUN_TIME,
-  TaskBaseVM.JSON_PROPERTY_CRON_EXPRESSION
+  TaskBaseVM.JSON_PROPERTY_RECURRENT_WAS_RUN_TIME
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TaskBaseVM {
+public class TaskBaseVM extends CreateTaskBaseVM {
   public static final String JSON_PROPERTY_ID = "id";
   private JsonNullable<String> id = JsonNullable.<String>undefined();
 
@@ -57,22 +53,8 @@ public class TaskBaseVM {
   public static final String JSON_PROPERTY_RECURRENT_WAS_RUN_TIME = "recurrentWasRunTime";
   private JsonNullable<OffsetDateTime> recurrentWasRunTime = JsonNullable.<OffsetDateTime>undefined();
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  private JsonNullable<String> name = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TaskType type;
-
-  public static final String JSON_PROPERTY_DELAYED_RUN_TIME = "delayedRunTime";
-  private JsonNullable<OffsetDateTime> delayedRunTime = JsonNullable.<OffsetDateTime>undefined();
-
-  public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
-  private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
-
   public TaskBaseVM() {
+
   }
 
   @JsonCreator
@@ -211,168 +193,6 @@ public class TaskBaseVM {
 
 
 
-  public TaskBaseVM name(String name) {
-    this.name = JsonNullable.<String>of(name);
-    
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getName() {
-        return name.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getName_JsonNullable() {
-    return name;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_NAME)
-  public void setName_JsonNullable(JsonNullable<String> name) {
-    this.name = name;
-  }
-
-  public void setName(String name) {
-    this.name = JsonNullable.<String>of(name);
-  }
-
-
-  public TaskBaseVM subscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-    
-    return this;
-  }
-
-   /**
-   * Get subscriptionId
-   * @return subscriptionId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getSubscriptionId() {
-        return subscriptionId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getSubscriptionId_JsonNullable() {
-    return subscriptionId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
-    this.subscriptionId = subscriptionId;
-  }
-
-  public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-  }
-
-
-  public TaskBaseVM type(TaskType type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TaskType getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TaskType type) {
-    this.type = type;
-  }
-
-
-  public TaskBaseVM delayedRunTime(OffsetDateTime delayedRunTime) {
-    this.delayedRunTime = JsonNullable.<OffsetDateTime>of(delayedRunTime);
-    
-    return this;
-  }
-
-   /**
-   * Get delayedRunTime
-   * @return delayedRunTime
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public OffsetDateTime getDelayedRunTime() {
-        return delayedRunTime.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_DELAYED_RUN_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<OffsetDateTime> getDelayedRunTime_JsonNullable() {
-    return delayedRunTime;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_DELAYED_RUN_TIME)
-  public void setDelayedRunTime_JsonNullable(JsonNullable<OffsetDateTime> delayedRunTime) {
-    this.delayedRunTime = delayedRunTime;
-  }
-
-  public void setDelayedRunTime(OffsetDateTime delayedRunTime) {
-    this.delayedRunTime = JsonNullable.<OffsetDateTime>of(delayedRunTime);
-  }
-
-
-  public TaskBaseVM cronExpression(String cronExpression) {
-    this.cronExpression = JsonNullable.<String>of(cronExpression);
-    
-    return this;
-  }
-
-   /**
-   * Get cronExpression
-   * @return cronExpression
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getCronExpression() {
-        return cronExpression.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getCronExpression_JsonNullable() {
-    return cronExpression;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
-  public void setCronExpression_JsonNullable(JsonNullable<String> cronExpression) {
-    this.cronExpression = cronExpression;
-  }
-
-  public void setCronExpression(String cronExpression) {
-    this.cronExpression = JsonNullable.<String>of(cronExpression);
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -386,11 +206,7 @@ public class TaskBaseVM {
         equalsNullable(this.delayedWasRunTime, taskBaseVM.delayedWasRunTime) &&
         equalsNullable(this.recurrentRunTime, taskBaseVM.recurrentRunTime) &&
         equalsNullable(this.recurrentWasRunTime, taskBaseVM.recurrentWasRunTime) &&
-        equalsNullable(this.name, taskBaseVM.name) &&
-        equalsNullable(this.subscriptionId, taskBaseVM.subscriptionId) &&
-        Objects.equals(this.type, taskBaseVM.type) &&
-        equalsNullable(this.delayedRunTime, taskBaseVM.delayedRunTime) &&
-        equalsNullable(this.cronExpression, taskBaseVM.cronExpression);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -399,7 +215,7 @@ public class TaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(id), hashCodeNullable(delayedWasRunTime), hashCodeNullable(recurrentRunTime), hashCodeNullable(recurrentWasRunTime), hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+    return Objects.hash(hashCodeNullable(id), hashCodeNullable(delayedWasRunTime), hashCodeNullable(recurrentRunTime), hashCodeNullable(recurrentWasRunTime), super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -413,15 +229,11 @@ public class TaskBaseVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TaskBaseVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    delayedWasRunTime: ").append(toIndentedString(delayedWasRunTime)).append("\n");
     sb.append("    recurrentRunTime: ").append(toIndentedString(recurrentRunTime)).append("\n");
     sb.append("    recurrentWasRunTime: ").append(toIndentedString(recurrentWasRunTime)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    delayedRunTime: ").append(toIndentedString(delayedRunTime)).append("\n");
-    sb.append("    cronExpression: ").append(toIndentedString(cronExpression)).append("\n");
     sb.append("}");
     return sb.toString();
   }

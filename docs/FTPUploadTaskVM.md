@@ -14,11 +14,6 @@
 |**archive** | **Boolean** |  |  [optional] |
 |**archiveName** | **String** |  |  [optional] |
 |**useSFTP** | **Boolean** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**subscriptionId** | **String** |  |  [optional] |
-|**type** | **TaskType** |  |  [optional] |
-|**delayedRunTime** | **OffsetDateTime** |  |  [optional] |
-|**cronExpression** | **String** |  |  [optional] |
 
 
 

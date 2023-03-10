@@ -17,6 +17,7 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.SubscriptionAdministrate;
 import cloud.fastreport.model.SubscriptionCreate;
+import cloud.fastreport.model.SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission;
 import cloud.fastreport.model.SubscriptionDelete;
 import cloud.fastreport.model.SubscriptionExecute;
 import cloud.fastreport.model.SubscriptionGet;
@@ -33,191 +34,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * SubscriptionPermission
  */
 @JsonPropertyOrder({
-  SubscriptionPermission.JSON_PROPERTY_CREATE,
-  SubscriptionPermission.JSON_PROPERTY_DELETE,
-  SubscriptionPermission.JSON_PROPERTY_EXECUTE,
-  SubscriptionPermission.JSON_PROPERTY_GET,
-  SubscriptionPermission.JSON_PROPERTY_UPDATE,
-  SubscriptionPermission.JSON_PROPERTY_ADMINISTRATE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SubscriptionPermission {
-  public static final String JSON_PROPERTY_CREATE = "create";
-  private SubscriptionCreate create;
-
-  public static final String JSON_PROPERTY_DELETE = "delete";
-  private SubscriptionDelete delete;
-
-  public static final String JSON_PROPERTY_EXECUTE = "execute";
-  private SubscriptionExecute execute;
-
-  public static final String JSON_PROPERTY_GET = "get";
-  private SubscriptionGet get;
-
-  public static final String JSON_PROPERTY_UPDATE = "update";
-  private SubscriptionUpdate update;
-
-  public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
-  private SubscriptionAdministrate administrate;
-
+public class SubscriptionPermission extends SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission {
   public SubscriptionPermission() {
+
   }
-
-  public SubscriptionPermission create(SubscriptionCreate create) {
-    
-    this.create = create;
-    return this;
-  }
-
-   /**
-   * Get create
-   * @return create
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CREATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public SubscriptionCreate getCreate() {
-    return create;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreate(SubscriptionCreate create) {
-    this.create = create;
-  }
-
-
-  public SubscriptionPermission delete(SubscriptionDelete delete) {
-    
-    this.delete = delete;
-    return this;
-  }
-
-   /**
-   * Get delete
-   * @return delete
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DELETE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public SubscriptionDelete getDelete() {
-    return delete;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DELETE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDelete(SubscriptionDelete delete) {
-    this.delete = delete;
-  }
-
-
-  public SubscriptionPermission execute(SubscriptionExecute execute) {
-    
-    this.execute = execute;
-    return this;
-  }
-
-   /**
-   * Get execute
-   * @return execute
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EXECUTE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public SubscriptionExecute getExecute() {
-    return execute;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXECUTE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExecute(SubscriptionExecute execute) {
-    this.execute = execute;
-  }
-
-
-  public SubscriptionPermission get(SubscriptionGet get) {
-    
-    this.get = get;
-    return this;
-  }
-
-   /**
-   * Get get
-   * @return get
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_GET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public SubscriptionGet getGet() {
-    return get;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGet(SubscriptionGet get) {
-    this.get = get;
-  }
-
-
-  public SubscriptionPermission update(SubscriptionUpdate update) {
-    
-    this.update = update;
-    return this;
-  }
-
-   /**
-   * Get update
-   * @return update
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public SubscriptionUpdate getUpdate() {
-    return update;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUpdate(SubscriptionUpdate update) {
-    this.update = update;
-  }
-
-
-  public SubscriptionPermission administrate(SubscriptionAdministrate administrate) {
-    
-    this.administrate = administrate;
-    return this;
-  }
-
-   /**
-   * Get administrate
-   * @return administrate
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public SubscriptionAdministrate getAdministrate() {
-    return administrate;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdministrate(SubscriptionAdministrate administrate) {
-    this.administrate = administrate;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -227,30 +49,19 @@ public class SubscriptionPermission {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SubscriptionPermission subscriptionPermission = (SubscriptionPermission) o;
-    return Objects.equals(this.create, subscriptionPermission.create) &&
-        Objects.equals(this.delete, subscriptionPermission.delete) &&
-        Objects.equals(this.execute, subscriptionPermission.execute) &&
-        Objects.equals(this.get, subscriptionPermission.get) &&
-        Objects.equals(this.update, subscriptionPermission.update) &&
-        Objects.equals(this.administrate, subscriptionPermission.administrate);
+    return super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(create, delete, execute, get, update, administrate);
+    return Objects.hash(super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SubscriptionPermission {\n");
-    sb.append("    create: ").append(toIndentedString(create)).append("\n");
-    sb.append("    delete: ").append(toIndentedString(delete)).append("\n");
-    sb.append("    execute: ").append(toIndentedString(execute)).append("\n");
-    sb.append("    get: ").append(toIndentedString(get)).append("\n");
-    sb.append("    update: ").append(toIndentedString(update)).append("\n");
-    sb.append("    administrate: ").append(toIndentedString(administrate)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

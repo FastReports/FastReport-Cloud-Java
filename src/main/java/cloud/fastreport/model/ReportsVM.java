@@ -16,6 +16,7 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.ReportVM;
+import cloud.fastreport.model.ReportVMFilesVMBase;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,9 +25,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -34,151 +32,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * ReportsVM
  */
 @JsonPropertyOrder({
-  ReportsVM.JSON_PROPERTY_FILES,
-  ReportsVM.JSON_PROPERTY_COUNT,
-  ReportsVM.JSON_PROPERTY_SKIP,
-  ReportsVM.JSON_PROPERTY_TAKE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ReportsVM {
-  public static final String JSON_PROPERTY_FILES = "files";
-  private JsonNullable<List<ReportVM>> files = JsonNullable.<List<ReportVM>>undefined();
-
-  public static final String JSON_PROPERTY_COUNT = "count";
-  private Long count;
-
-  public static final String JSON_PROPERTY_SKIP = "skip";
-  private Integer skip;
-
-  public static final String JSON_PROPERTY_TAKE = "take";
-  private Integer take;
-
+public class ReportsVM extends ReportVMFilesVMBase {
   public ReportsVM() {
+
   }
-
-  public ReportsVM files(List<ReportVM> files) {
-    this.files = JsonNullable.<List<ReportVM>>of(files);
-    
-    return this;
-  }
-
-  public ReportsVM addFilesItem(ReportVM filesItem) {
-    if (this.files == null || !this.files.isPresent()) {
-      this.files = JsonNullable.<List<ReportVM>>of(new ArrayList<>());
-    }
-    try {
-      this.files.get().add(filesItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
-    return this;
-  }
-
-   /**
-   * Get files
-   * @return files
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public List<ReportVM> getFiles() {
-        return files.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FILES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<ReportVM>> getFiles_JsonNullable() {
-    return files;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FILES)
-  public void setFiles_JsonNullable(JsonNullable<List<ReportVM>> files) {
-    this.files = files;
-  }
-
-  public void setFiles(List<ReportVM> files) {
-    this.files = JsonNullable.<List<ReportVM>>of(files);
-  }
-
-
-  public ReportsVM count(Long count) {
-    
-    this.count = count;
-    return this;
-  }
-
-   /**
-   * Get count
-   * @return count
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getCount() {
-    return count;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCount(Long count) {
-    this.count = count;
-  }
-
-
-  public ReportsVM skip(Integer skip) {
-    
-    this.skip = skip;
-    return this;
-  }
-
-   /**
-   * Get skip
-   * @return skip
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getSkip() {
-    return skip;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSkip(Integer skip) {
-    this.skip = skip;
-  }
-
-
-  public ReportsVM take(Integer take) {
-    
-    this.take = take;
-    return this;
-  }
-
-   /**
-   * Get take
-   * @return take
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getTake() {
-    return take;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTake(Integer take) {
-    this.take = take;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -188,11 +47,7 @@ public class ReportsVM {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ReportsVM reportsVM = (ReportsVM) o;
-    return equalsNullable(this.files, reportsVM.files) &&
-        Objects.equals(this.count, reportsVM.count) &&
-        Objects.equals(this.skip, reportsVM.skip) &&
-        Objects.equals(this.take, reportsVM.take);
+    return super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -201,7 +56,7 @@ public class ReportsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(files), count, skip, take);
+    return Objects.hash(super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -215,10 +70,7 @@ public class ReportsVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReportsVM {\n");
-    sb.append("    files: ").append(toIndentedString(files)).append("\n");
-    sb.append("    count: ").append(toIndentedString(count)).append("\n");
-    sb.append("    skip: ").append(toIndentedString(skip)).append("\n");
-    sb.append("    take: ").append(toIndentedString(take)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

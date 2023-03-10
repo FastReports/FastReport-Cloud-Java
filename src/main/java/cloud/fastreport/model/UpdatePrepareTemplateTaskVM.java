@@ -17,6 +17,7 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.TaskType;
 import cloud.fastreport.model.UpdateExportReportTaskVM;
+import cloud.fastreport.model.UpdateTransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -40,15 +41,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   UpdatePrepareTemplateTaskVM.JSON_PROPERTY_EXPORTS,
   UpdatePrepareTemplateTaskVM.JSON_PROPERTY_PAGES_COUNT,
-  UpdatePrepareTemplateTaskVM.JSON_PROPERTY_REPORT_PARAMETERS,
-  UpdatePrepareTemplateTaskVM.JSON_PROPERTY_NAME,
-  UpdatePrepareTemplateTaskVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  UpdatePrepareTemplateTaskVM.JSON_PROPERTY_TYPE,
-  UpdatePrepareTemplateTaskVM.JSON_PROPERTY_DELAYED_RUN_TIME,
-  UpdatePrepareTemplateTaskVM.JSON_PROPERTY_CRON_EXPRESSION
+  UpdatePrepareTemplateTaskVM.JSON_PROPERTY_REPORT_PARAMETERS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdatePrepareTemplateTaskVM {
+public class UpdatePrepareTemplateTaskVM extends UpdateTransformTaskBaseVM {
   public static final String JSON_PROPERTY_EXPORTS = "exports";
   private JsonNullable<List<UpdateExportReportTaskVM>> exports = JsonNullable.<List<UpdateExportReportTaskVM>>undefined();
 
@@ -58,22 +54,8 @@ public class UpdatePrepareTemplateTaskVM {
   public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
   private JsonNullable<Map<String, String>> reportParameters = JsonNullable.<Map<String, String>>undefined();
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  private JsonNullable<String> name = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TaskType type;
-
-  public static final String JSON_PROPERTY_DELAYED_RUN_TIME = "delayedRunTime";
-  private JsonNullable<OffsetDateTime> delayedRunTime = JsonNullable.<OffsetDateTime>undefined();
-
-  public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
-  private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
-
   public UpdatePrepareTemplateTaskVM() {
+
   }
 
   public UpdatePrepareTemplateTaskVM exports(List<UpdateExportReportTaskVM> exports) {
@@ -204,168 +186,6 @@ public class UpdatePrepareTemplateTaskVM {
   }
 
 
-  public UpdatePrepareTemplateTaskVM name(String name) {
-    this.name = JsonNullable.<String>of(name);
-    
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getName() {
-        return name.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getName_JsonNullable() {
-    return name;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_NAME)
-  public void setName_JsonNullable(JsonNullable<String> name) {
-    this.name = name;
-  }
-
-  public void setName(String name) {
-    this.name = JsonNullable.<String>of(name);
-  }
-
-
-  public UpdatePrepareTemplateTaskVM subscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-    
-    return this;
-  }
-
-   /**
-   * Get subscriptionId
-   * @return subscriptionId
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getSubscriptionId() {
-        return subscriptionId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getSubscriptionId_JsonNullable() {
-    return subscriptionId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
-    this.subscriptionId = subscriptionId;
-  }
-
-  public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-  }
-
-
-  public UpdatePrepareTemplateTaskVM type(TaskType type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TaskType getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TaskType type) {
-    this.type = type;
-  }
-
-
-  public UpdatePrepareTemplateTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
-    this.delayedRunTime = JsonNullable.<OffsetDateTime>of(delayedRunTime);
-    
-    return this;
-  }
-
-   /**
-   * Get delayedRunTime
-   * @return delayedRunTime
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public OffsetDateTime getDelayedRunTime() {
-        return delayedRunTime.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_DELAYED_RUN_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<OffsetDateTime> getDelayedRunTime_JsonNullable() {
-    return delayedRunTime;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_DELAYED_RUN_TIME)
-  public void setDelayedRunTime_JsonNullable(JsonNullable<OffsetDateTime> delayedRunTime) {
-    this.delayedRunTime = delayedRunTime;
-  }
-
-  public void setDelayedRunTime(OffsetDateTime delayedRunTime) {
-    this.delayedRunTime = JsonNullable.<OffsetDateTime>of(delayedRunTime);
-  }
-
-
-  public UpdatePrepareTemplateTaskVM cronExpression(String cronExpression) {
-    this.cronExpression = JsonNullable.<String>of(cronExpression);
-    
-    return this;
-  }
-
-   /**
-   * Get cronExpression
-   * @return cronExpression
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getCronExpression() {
-        return cronExpression.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getCronExpression_JsonNullable() {
-    return cronExpression;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
-  public void setCronExpression_JsonNullable(JsonNullable<String> cronExpression) {
-    this.cronExpression = cronExpression;
-  }
-
-  public void setCronExpression(String cronExpression) {
-    this.cronExpression = JsonNullable.<String>of(cronExpression);
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -378,11 +198,7 @@ public class UpdatePrepareTemplateTaskVM {
     return equalsNullable(this.exports, updatePrepareTemplateTaskVM.exports) &&
         equalsNullable(this.pagesCount, updatePrepareTemplateTaskVM.pagesCount) &&
         equalsNullable(this.reportParameters, updatePrepareTemplateTaskVM.reportParameters) &&
-        equalsNullable(this.name, updatePrepareTemplateTaskVM.name) &&
-        equalsNullable(this.subscriptionId, updatePrepareTemplateTaskVM.subscriptionId) &&
-        Objects.equals(this.type, updatePrepareTemplateTaskVM.type) &&
-        equalsNullable(this.delayedRunTime, updatePrepareTemplateTaskVM.delayedRunTime) &&
-        equalsNullable(this.cronExpression, updatePrepareTemplateTaskVM.cronExpression);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -391,7 +207,7 @@ public class UpdatePrepareTemplateTaskVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(exports), hashCodeNullable(pagesCount), hashCodeNullable(reportParameters), hashCodeNullable(name), hashCodeNullable(subscriptionId), type, hashCodeNullable(delayedRunTime), hashCodeNullable(cronExpression));
+    return Objects.hash(hashCodeNullable(exports), hashCodeNullable(pagesCount), hashCodeNullable(reportParameters), super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -405,14 +221,10 @@ public class UpdatePrepareTemplateTaskVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdatePrepareTemplateTaskVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    exports: ").append(toIndentedString(exports)).append("\n");
     sb.append("    pagesCount: ").append(toIndentedString(pagesCount)).append("\n");
     sb.append("    reportParameters: ").append(toIndentedString(reportParameters)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    delayedRunTime: ").append(toIndentedString(delayedRunTime)).append("\n");
-    sb.append("    cronExpression: ").append(toIndentedString(cronExpression)).append("\n");
     sb.append("}");
     return sb.toString();
   }

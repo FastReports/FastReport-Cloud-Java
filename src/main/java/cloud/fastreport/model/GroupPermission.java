@@ -17,6 +17,7 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.GroupAdministrate;
 import cloud.fastreport.model.GroupCreate;
+import cloud.fastreport.model.GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission;
 import cloud.fastreport.model.GroupDelete;
 import cloud.fastreport.model.GroupExecute;
 import cloud.fastreport.model.GroupGet;
@@ -33,191 +34,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * GroupPermission
  */
 @JsonPropertyOrder({
-  GroupPermission.JSON_PROPERTY_CREATE,
-  GroupPermission.JSON_PROPERTY_DELETE,
-  GroupPermission.JSON_PROPERTY_EXECUTE,
-  GroupPermission.JSON_PROPERTY_GET,
-  GroupPermission.JSON_PROPERTY_UPDATE,
-  GroupPermission.JSON_PROPERTY_ADMINISTRATE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class GroupPermission {
-  public static final String JSON_PROPERTY_CREATE = "create";
-  private GroupCreate create;
-
-  public static final String JSON_PROPERTY_DELETE = "delete";
-  private GroupDelete delete;
-
-  public static final String JSON_PROPERTY_EXECUTE = "execute";
-  private GroupExecute execute;
-
-  public static final String JSON_PROPERTY_GET = "get";
-  private GroupGet get;
-
-  public static final String JSON_PROPERTY_UPDATE = "update";
-  private GroupUpdate update;
-
-  public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
-  private GroupAdministrate administrate;
-
+public class GroupPermission extends GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission {
   public GroupPermission() {
+
   }
-
-  public GroupPermission create(GroupCreate create) {
-    
-    this.create = create;
-    return this;
-  }
-
-   /**
-   * Get create
-   * @return create
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CREATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public GroupCreate getCreate() {
-    return create;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreate(GroupCreate create) {
-    this.create = create;
-  }
-
-
-  public GroupPermission delete(GroupDelete delete) {
-    
-    this.delete = delete;
-    return this;
-  }
-
-   /**
-   * Get delete
-   * @return delete
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DELETE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public GroupDelete getDelete() {
-    return delete;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DELETE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDelete(GroupDelete delete) {
-    this.delete = delete;
-  }
-
-
-  public GroupPermission execute(GroupExecute execute) {
-    
-    this.execute = execute;
-    return this;
-  }
-
-   /**
-   * Get execute
-   * @return execute
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EXECUTE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public GroupExecute getExecute() {
-    return execute;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXECUTE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExecute(GroupExecute execute) {
-    this.execute = execute;
-  }
-
-
-  public GroupPermission get(GroupGet get) {
-    
-    this.get = get;
-    return this;
-  }
-
-   /**
-   * Get get
-   * @return get
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_GET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public GroupGet getGet() {
-    return get;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGet(GroupGet get) {
-    this.get = get;
-  }
-
-
-  public GroupPermission update(GroupUpdate update) {
-    
-    this.update = update;
-    return this;
-  }
-
-   /**
-   * Get update
-   * @return update
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public GroupUpdate getUpdate() {
-    return update;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUpdate(GroupUpdate update) {
-    this.update = update;
-  }
-
-
-  public GroupPermission administrate(GroupAdministrate administrate) {
-    
-    this.administrate = administrate;
-    return this;
-  }
-
-   /**
-   * Get administrate
-   * @return administrate
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public GroupAdministrate getAdministrate() {
-    return administrate;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdministrate(GroupAdministrate administrate) {
-    this.administrate = administrate;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -227,30 +49,19 @@ public class GroupPermission {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GroupPermission groupPermission = (GroupPermission) o;
-    return Objects.equals(this.create, groupPermission.create) &&
-        Objects.equals(this.delete, groupPermission.delete) &&
-        Objects.equals(this.execute, groupPermission.execute) &&
-        Objects.equals(this.get, groupPermission.get) &&
-        Objects.equals(this.update, groupPermission.update) &&
-        Objects.equals(this.administrate, groupPermission.administrate);
+    return super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(create, delete, execute, get, update, administrate);
+    return Objects.hash(super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GroupPermission {\n");
-    sb.append("    create: ").append(toIndentedString(create)).append("\n");
-    sb.append("    delete: ").append(toIndentedString(delete)).append("\n");
-    sb.append("    execute: ").append(toIndentedString(execute)).append("\n");
-    sb.append("    get: ").append(toIndentedString(get)).append("\n");
-    sb.append("    update: ").append(toIndentedString(update)).append("\n");
-    sb.append("    administrate: ").append(toIndentedString(administrate)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

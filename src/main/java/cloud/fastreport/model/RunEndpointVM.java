@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.CreateEndpointVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -22,9 +23,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.net.URI;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -32,49 +30,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * RunEndpointVM
  */
 @JsonPropertyOrder({
-  RunEndpointVM.JSON_PROPERTY_URL
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RunEndpointVM {
-  public static final String JSON_PROPERTY_URL = "url";
-  private JsonNullable<URI> url = JsonNullable.<URI>undefined();
-
+public class RunEndpointVM extends CreateEndpointVM {
   public RunEndpointVM() {
+
   }
-
-  public RunEndpointVM url(URI url) {
-    this.url = JsonNullable.<URI>of(url);
-    
-    return this;
-  }
-
-   /**
-   * Get url
-   * @return url
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public URI getUrl() {
-        return url.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<URI> getUrl_JsonNullable() {
-    return url;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_URL)
-  public void setUrl_JsonNullable(JsonNullable<URI> url) {
-    this.url = url;
-  }
-
-  public void setUrl(URI url) {
-    this.url = JsonNullable.<URI>of(url);
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -84,8 +45,7 @@ public class RunEndpointVM {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RunEndpointVM runEndpointVM = (RunEndpointVM) o;
-    return equalsNullable(this.url, runEndpointVM.url);
+    return super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -94,7 +54,7 @@ public class RunEndpointVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(url));
+    return Objects.hash(super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -108,7 +68,7 @@ public class RunEndpointVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RunEndpointVM {\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("}");
     return sb.toString();
   }

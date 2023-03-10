@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import cloud.fastreport.model.TaskAdministrate;
 import cloud.fastreport.model.TaskCreate;
+import cloud.fastreport.model.TaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermission;
 import cloud.fastreport.model.TaskDelete;
 import cloud.fastreport.model.TaskExecute;
 import cloud.fastreport.model.TaskGet;

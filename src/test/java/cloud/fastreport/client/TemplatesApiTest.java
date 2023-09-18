@@ -29,11 +29,13 @@ import cloud.fastreport.model.FilesVM;
 import cloud.fastreport.model.FolderCreateVM;
 import cloud.fastreport.model.FolderIconVM;
 import cloud.fastreport.model.FolderRenameVM;
+import cloud.fastreport.model.FolderSizeVM;
 import cloud.fastreport.model.FolderTagsUpdateVM;
 import cloud.fastreport.model.PrepareTemplateVM;
 import cloud.fastreport.model.PreviewTemplateVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.ReportVM;
+import cloud.fastreport.model.SelectedFilesForDeletingVM;
 import cloud.fastreport.model.TemplateCreateVM;
 import cloud.fastreport.model.TemplateFolderCreateVM;
 import cloud.fastreport.model.TemplateVM;
@@ -72,6 +74,23 @@ public class TemplatesApiTest {
     public void templateFolderAndFileClearRecycleBinTest() throws IOException {
         String subscriptionId = null;
         api.templateFolderAndFileClearRecycleBin(subscriptionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Delete folders and files
+     *
+     * User with a Delete permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void templateFolderAndFileDeleteFilesTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesForDeletingVM selectedFilesForDeletingVM = null;
+        api.templateFolderAndFileDeleteFiles(subscriptionId, selectedFilesForDeletingVM);
 
         // TODO: test validations
     }
@@ -150,6 +169,22 @@ public class TemplatesApiTest {
     public void templateFolderAndFileRecoverAllFromRecycleBinTest() throws IOException {
         String subscriptionId = null;
         api.templateFolderAndFileRecoverAllFromRecycleBin(subscriptionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get specified folder, calculate it&#39;s size
+     *
+     * User with a Get Entity permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void templateFoldersCalculateFolderSizeTest() throws IOException {
+        String id = null;
+        FolderSizeVM response = api.templateFoldersCalculateFolderSize(id);
 
         // TODO: test validations
     }

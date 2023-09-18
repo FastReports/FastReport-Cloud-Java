@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**exports** | [**List&lt;UpdateExportReportTaskVM&gt;**](UpdateExportReportTaskVM.md) |  |  [optional] |
+|**exportIds** | **List&lt;String&gt;** |  |  [optional] |
 |**pagesCount** | **Integer** |  |  [optional] |
 |**reportParameters** | **Map&lt;String, String&gt;** |  |  [optional] |
 

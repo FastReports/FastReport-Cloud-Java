@@ -86,7 +86,7 @@ public class TasksApi {
 
     public HttpResponse tasksCreateTaskForHttpResponse(CreateTaskBaseVM createTaskBaseVM) throws IOException {
         
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks");
 
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -97,7 +97,7 @@ public class TasksApi {
 
       public HttpResponse tasksCreateTaskForHttpResponse(java.io.InputStream createTaskBaseVM, String mediaType) throws IOException {
           
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks");
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks");
 
               String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -110,7 +110,7 @@ public class TasksApi {
 
     public HttpResponse tasksCreateTaskForHttpResponse(CreateTaskBaseVM createTaskBaseVM, Map<String, Object> params) throws IOException {
         
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -177,7 +177,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("taskId", taskId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{taskId}");
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -194,7 +194,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("taskId", taskId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{taskId}");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -267,7 +267,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("taskId", taskId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{taskId}");
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -284,7 +284,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("taskId", taskId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{taskId}");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -323,11 +323,12 @@ public class TasksApi {
     * @param skip number of tasks, that have to be skipped
     * @param take number of tasks, that have to be returned
     * @param subscriptionId subscription id
+    * @param searchPattern 
     * @return TasksVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public TasksVM tasksGetList(Integer skip, Integer take, String subscriptionId) throws IOException {
-        HttpResponse response = tasksGetListForHttpResponse(skip, take, subscriptionId);
+    public TasksVM tasksGetList(Integer skip, Integer take, String subscriptionId, String searchPattern) throws IOException {
+        HttpResponse response = tasksGetListForHttpResponse(skip, take, subscriptionId, searchPattern);
         TypeReference<TasksVM> typeRef = new TypeReference<TasksVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -350,9 +351,9 @@ public class TasksApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse tasksGetListForHttpResponse(Integer skip, Integer take, String subscriptionId) throws IOException {
+    public HttpResponse tasksGetListForHttpResponse(Integer skip, Integer take, String subscriptionId, String searchPattern) throws IOException {
         
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks");
         if (skip != null) {
             String key = "skip";
             Object value = skip;
@@ -383,6 +384,16 @@ public class TasksApi {
             } else {
                 uriBuilder = uriBuilder.queryParam(key, value);
             }
+        }        if (searchPattern != null) {
+            String key = "searchPattern";
+            Object value = searchPattern;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
         }
 
         String localVarUrl = uriBuilder.build().toString();
@@ -394,7 +405,7 @@ public class TasksApi {
 
     public HttpResponse tasksGetListForHttpResponse(Map<String, Object> params) throws IOException {
         
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -467,7 +478,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{id}/permissions");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{id}/permissions");
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -484,7 +495,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{id}/permissions");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{id}/permissions");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -558,7 +569,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("taskId", taskId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}/rename");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{taskId}/rename");
         if (newName != null) {
             String key = "newName";
             Object value = newName;
@@ -586,7 +597,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("taskId", taskId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}/rename");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{taskId}/rename");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -617,7 +628,6 @@ public class TasksApi {
   /**
     * Run a task from request body
     * <p><b>200</b> - Success
-    * <p><b>204</b> - No Content
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>402</b> - Client Error
@@ -633,7 +643,6 @@ public class TasksApi {
   /**
     * Run a task from request body
     * <p><b>200</b> - Success
-    * <p><b>204</b> - No Content
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
     * <p><b>402</b> - Client Error
@@ -648,7 +657,7 @@ public class TasksApi {
 
     public HttpResponse tasksRunTaskForHttpResponse(RunTaskBaseVM runTaskBaseVM) throws IOException {
         
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/run");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/run");
 
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -659,7 +668,7 @@ public class TasksApi {
 
       public HttpResponse tasksRunTaskForHttpResponse(java.io.InputStream runTaskBaseVM, String mediaType) throws IOException {
           
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/run");
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/run");
 
               String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -672,7 +681,7 @@ public class TasksApi {
 
     public HttpResponse tasksRunTaskForHttpResponse(RunTaskBaseVM runTaskBaseVM, Map<String, Object> params) throws IOException {
         
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/run");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/run");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -739,7 +748,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("taskId", taskId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}/run");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{taskId}/run");
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -756,7 +765,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("taskId", taskId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}/run");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{taskId}/run");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -786,7 +795,7 @@ public class TasksApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
@@ -802,7 +811,7 @@ public class TasksApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
@@ -824,7 +833,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{id}/permissions");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{id}/permissions");
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -841,7 +850,7 @@ public class TasksApi {
                   // create a map of path variables
                   final Map<String, Object> uriVariables = new HashMap<String, Object>();
                       uriVariables.put("id", id);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{id}/permissions");
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{id}/permissions");
 
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -860,7 +869,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("id", id);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{id}/permissions");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{id}/permissions");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -934,7 +943,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("taskId", taskId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{taskId}");
 
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -951,7 +960,7 @@ public class TasksApi {
                   // create a map of path variables
                   final Map<String, Object> uriVariables = new HashMap<String, Object>();
                       uriVariables.put("taskId", taskId);
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}");
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{taskId}");
 
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
@@ -970,7 +979,7 @@ public class TasksApi {
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("taskId", taskId);
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/{taskId}");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/tasks/v1/Tasks/{taskId}");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);

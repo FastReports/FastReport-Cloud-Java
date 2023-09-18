@@ -17,6 +17,7 @@
 |**status** | **FileStatus** |  |  [optional] |
 |**statusReason** | **FileStatusReason** |  |  [optional] |
 |**errorMessage** | **String** |  |  [optional] |
+|**isDeleted** | **Boolean** |  |  [optional] |
 
 
 

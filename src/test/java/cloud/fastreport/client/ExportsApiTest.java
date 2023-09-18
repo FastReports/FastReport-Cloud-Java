@@ -29,8 +29,10 @@ import cloud.fastreport.model.FilesVM;
 import cloud.fastreport.model.FolderCreateVM;
 import cloud.fastreport.model.FolderIconVM;
 import cloud.fastreport.model.FolderRenameVM;
+import cloud.fastreport.model.FolderSizeVM;
 import cloud.fastreport.model.FolderTagsUpdateVM;
 import cloud.fastreport.model.ProblemDetails;
+import cloud.fastreport.model.SelectedFilesForDeletingVM;
 import cloud.fastreport.model.UpdateFilePermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -64,6 +66,23 @@ public class ExportsApiTest {
     public void exportFolderAndFileClearRecycleBinTest() throws IOException {
         String subscriptionId = null;
         api.exportFolderAndFileClearRecycleBin(subscriptionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Delete folders and files
+     *
+     * User with a Delete permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void exportFolderAndFileDeleteFilesTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesForDeletingVM selectedFilesForDeletingVM = null;
+        api.exportFolderAndFileDeleteFiles(subscriptionId, selectedFilesForDeletingVM);
 
         // TODO: test validations
     }
@@ -142,6 +161,22 @@ public class ExportsApiTest {
     public void exportFolderAndFileRecoverAllFromRecycleBinTest() throws IOException {
         String subscriptionId = null;
         api.exportFolderAndFileRecoverAllFromRecycleBin(subscriptionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get specified folder, calculate it&#39;s size
+     *
+     * User with a Get Entity permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void exportFoldersCalculateFolderSizeTest() throws IOException {
+        String id = null;
+        FolderSizeVM response = api.exportFoldersCalculateFolderSize(id);
 
         // TODO: test validations
     }

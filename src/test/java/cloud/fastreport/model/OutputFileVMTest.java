@@ -66,4 +66,12 @@ public class OutputFileVMTest {
         // TODO: test type
     }
 
+    /**
+     * Test the property 'isTemporary'
+     */
+    @Test
+    public void isTemporaryTest() {
+        // TODO: test isTemporary
+    }
+
 }

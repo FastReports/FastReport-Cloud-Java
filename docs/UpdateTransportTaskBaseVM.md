@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**files** | [**List&lt;InputFileVM&gt;**](InputFileVM.md) |  |  [optional] |
-|**id** | **String** |  |  [optional] |
+|**inputFile** | [**InputFileVM**](InputFileVM.md) |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**endpoints** | [**List&lt;UpdateEndpointVM&gt;**](UpdateEndpointVM.md) |  |  [optional] |
+|**headers** | **Map&lt;String, String&gt;** |  |  [optional] |
+|**url** | **URI** |  |  [optional] |
 
 
 

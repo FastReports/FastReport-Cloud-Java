@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**newPermissions** | [**TaskPermissions**](TaskPermissions.md) |  |  |
 |**administrate** | **TaskAdministrate** |  |  |
+|**newPermissions** | [**TaskPermissions**](TaskPermissions.md) |  |  |
 
 
 

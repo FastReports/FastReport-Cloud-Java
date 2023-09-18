@@ -29,45 +29,19 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * UpdateTaskPermissionsVM
  */
 @JsonPropertyOrder({
-  UpdateTaskPermissionsVM.JSON_PROPERTY_NEW_PERMISSIONS,
-  UpdateTaskPermissionsVM.JSON_PROPERTY_ADMINISTRATE
+  UpdateTaskPermissionsVM.JSON_PROPERTY_ADMINISTRATE,
+  UpdateTaskPermissionsVM.JSON_PROPERTY_NEW_PERMISSIONS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateTaskPermissionsVM {
-  public static final String JSON_PROPERTY_NEW_PERMISSIONS = "newPermissions";
-  private TaskPermissions newPermissions;
-
   public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
   private TaskAdministrate administrate;
 
+  public static final String JSON_PROPERTY_NEW_PERMISSIONS = "newPermissions";
+  private TaskPermissions newPermissions;
+
   public UpdateTaskPermissionsVM() {
   }
-
-  public UpdateTaskPermissionsVM newPermissions(TaskPermissions newPermissions) {
-    
-    this.newPermissions = newPermissions;
-    return this;
-  }
-
-   /**
-   * Get newPermissions
-   * @return newPermissions
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NEW_PERMISSIONS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public TaskPermissions getNewPermissions() {
-    return newPermissions;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NEW_PERMISSIONS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setNewPermissions(TaskPermissions newPermissions) {
-    this.newPermissions = newPermissions;
-  }
-
 
   public UpdateTaskPermissionsVM administrate(TaskAdministrate administrate) {
     
@@ -95,6 +69,32 @@ public class UpdateTaskPermissionsVM {
   }
 
 
+  public UpdateTaskPermissionsVM newPermissions(TaskPermissions newPermissions) {
+    
+    this.newPermissions = newPermissions;
+    return this;
+  }
+
+   /**
+   * Get newPermissions
+   * @return newPermissions
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_NEW_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public TaskPermissions getNewPermissions() {
+    return newPermissions;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NEW_PERMISSIONS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setNewPermissions(TaskPermissions newPermissions) {
+    this.newPermissions = newPermissions;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -104,21 +104,21 @@ public class UpdateTaskPermissionsVM {
       return false;
     }
     UpdateTaskPermissionsVM updateTaskPermissionsVM = (UpdateTaskPermissionsVM) o;
-    return Objects.equals(this.newPermissions, updateTaskPermissionsVM.newPermissions) &&
-        Objects.equals(this.administrate, updateTaskPermissionsVM.administrate);
+    return Objects.equals(this.administrate, updateTaskPermissionsVM.administrate) &&
+        Objects.equals(this.newPermissions, updateTaskPermissionsVM.newPermissions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(newPermissions, administrate);
+    return Objects.hash(administrate, newPermissions);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateTaskPermissionsVM {\n");
-    sb.append("    newPermissions: ").append(toIndentedString(newPermissions)).append("\n");
     sb.append("    administrate: ").append(toIndentedString(administrate)).append("\n");
+    sb.append("    newPermissions: ").append(toIndentedString(newPermissions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

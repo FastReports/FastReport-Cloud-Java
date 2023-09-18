@@ -47,7 +47,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   FileVM.JSON_PROPERTY_SUBSCRIPTION_ID,
   FileVM.JSON_PROPERTY_STATUS,
   FileVM.JSON_PROPERTY_STATUS_REASON,
-  FileVM.JSON_PROPERTY_ERROR_MESSAGE
+  FileVM.JSON_PROPERTY_ERROR_MESSAGE,
+  FileVM.JSON_PROPERTY_IS_DELETED
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FileVM extends EntityVM {
@@ -80,6 +81,9 @@ public class FileVM extends EntityVM {
 
   public static final String JSON_PROPERTY_ERROR_MESSAGE = "errorMessage";
   private JsonNullable<String> errorMessage = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_IS_DELETED = "isDeleted";
+  private Boolean isDeleted;
 
   public FileVM() {
 
@@ -405,6 +409,32 @@ public class FileVM extends EntityVM {
   }
 
 
+  public FileVM isDeleted(Boolean isDeleted) {
+    
+    this.isDeleted = isDeleted;
+    return this;
+  }
+
+   /**
+   * Get isDeleted
+   * @return isDeleted
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_IS_DELETED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsDeleted() {
+    return isDeleted;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_DELETED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsDeleted(Boolean isDeleted) {
+    this.isDeleted = isDeleted;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -424,6 +454,7 @@ public class FileVM extends EntityVM {
         Objects.equals(this.status, fileVM.status) &&
         Objects.equals(this.statusReason, fileVM.statusReason) &&
         equalsNullable(this.errorMessage, fileVM.errorMessage) &&
+        Objects.equals(this.isDeleted, fileVM.isDeleted) &&
         super.equals(o);
   }
 
@@ -433,7 +464,7 @@ public class FileVM extends EntityVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(name), hashCodeNullable(parentId), hashCodeNullable(tags), hashCodeNullable(icon), type, size, hashCodeNullable(subscriptionId), status, statusReason, hashCodeNullable(errorMessage), super.hashCode());
+    return Objects.hash(hashCodeNullable(name), hashCodeNullable(parentId), hashCodeNullable(tags), hashCodeNullable(icon), type, size, hashCodeNullable(subscriptionId), status, statusReason, hashCodeNullable(errorMessage), isDeleted, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -458,6 +489,7 @@ public class FileVM extends EntityVM {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    statusReason: ").append(toIndentedString(statusReason)).append("\n");
     sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
+    sb.append("    isDeleted: ").append(toIndentedString(isDeleted)).append("\n");
     sb.append("}");
     return sb.toString();
   }

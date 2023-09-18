@@ -13,44 +13,52 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.EndpointVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for UpdateEndpointVM
+ * Model tests for FolderSizeVM
  */
-public class UpdateEndpointVMTest {
-    private final UpdateEndpointVM model = new UpdateEndpointVM();
+public class FolderSizeVMTest {
+    private final FolderSizeVM model = new FolderSizeVM();
 
     /**
-     * Model tests for UpdateEndpointVM
+     * Model tests for FolderSizeVM
      */
     @Test
-    public void testUpdateEndpointVM() {
-        // TODO: test UpdateEndpointVM
+    public void testFolderSizeVM() {
+        // TODO: test FolderSizeVM
     }
 
     /**
-     * Test the property 'url'
+     * Test the property 'size'
      */
     @Test
-    public void urlTest() {
-        // TODO: test url
+    public void sizeTest() {
+        // TODO: test size
+    }
+
+    /**
+     * Test the property 'realSize'
+     */
+    @Test
+    public void realSizeTest() {
+        // TODO: test realSize
+    }
+
+    /**
+     * Test the property 'documentsCount'
+     */
+    @Test
+    public void documentsCountTest() {
+        // TODO: test documentsCount
     }
 
 }

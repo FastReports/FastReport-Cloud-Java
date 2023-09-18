@@ -28,6 +28,7 @@ import cloud.fastreport.model.FilesVM;
 import cloud.fastreport.model.FolderCreateVM;
 import cloud.fastreport.model.FolderIconVM;
 import cloud.fastreport.model.FolderRenameVM;
+import cloud.fastreport.model.FolderSizeVM;
 import cloud.fastreport.model.FolderTagsUpdateVM;
 import cloud.fastreport.model.PreviewReportVM;
 import cloud.fastreport.model.ProblemDetails;
@@ -35,6 +36,7 @@ import cloud.fastreport.model.ReportCreateVM;
 import cloud.fastreport.model.ReportFolderCreateVM;
 import cloud.fastreport.model.ReportVM;
 import cloud.fastreport.model.ReportsVM;
+import cloud.fastreport.model.SelectedFilesForDeletingVM;
 import cloud.fastreport.model.UpdateFilePermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -68,6 +70,23 @@ public class ReportsApiTest {
     public void reportFolderAndFileClearRecycleBinTest() throws IOException {
         String subscriptionId = null;
         api.reportFolderAndFileClearRecycleBin(subscriptionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Delete folders and files
+     *
+     * User with a Delete permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void reportFolderAndFileDeleteFilesTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesForDeletingVM selectedFilesForDeletingVM = null;
+        api.reportFolderAndFileDeleteFiles(subscriptionId, selectedFilesForDeletingVM);
 
         // TODO: test validations
     }
@@ -146,6 +165,22 @@ public class ReportsApiTest {
     public void reportFolderAndFileRecoverAllFromRecycleBinTest() throws IOException {
         String subscriptionId = null;
         api.reportFolderAndFileRecoverAllFromRecycleBin(subscriptionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get specified folder, calculate it&#39;s size
+     *
+     * User with a Get Entity permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void reportFoldersCalculateFolderSizeTest() throws IOException {
+        String id = null;
+        FolderSizeVM response = api.reportFoldersCalculateFolderSize(id);
 
         // TODO: test validations
     }

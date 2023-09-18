@@ -44,7 +44,7 @@ public class GroupUsersApi {
 
   /**
     * Add user to the group by identifier
-    * <p><b>200</b> - Succesfully retured
+    * <p><b>204</b> - Succesfully retured
     * <p><b>400</b> - The reqeust is wrong
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>402</b> - subscription is outdated
@@ -60,7 +60,7 @@ public class GroupUsersApi {
 
   /**
     * Add user to the group by identifier
-    * <p><b>200</b> - Succesfully retured
+    * <p><b>204</b> - Succesfully retured
     * <p><b>400</b> - The reqeust is wrong
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>402</b> - subscription is outdated

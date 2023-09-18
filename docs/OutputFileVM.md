@@ -10,6 +10,7 @@
 |**fileName** | **String** |  |  [optional] |
 |**folderId** | **String** |  |  [optional] |
 |**type** | **FileKind** |  |  [optional] |
+|**isTemporary** | **Boolean** |  |  [optional] |
 
 
 

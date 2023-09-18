@@ -11,7 +11,5 @@
 
 * `EXPORT` (value: `"Export"`)
 
-* `DATASOURCE` (value: `"DataSource"`)
-
 
 

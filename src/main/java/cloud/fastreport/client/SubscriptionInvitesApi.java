@@ -47,6 +47,7 @@ public class SubscriptionInvitesApi {
   /**
     * Add a user to the subscription using invite,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
     * <p><b>200</b> - Succesfully added
+    * <p><b>204</b> - Succesfully added
     * <p><b>400</b> - The reqeust is wrong
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - Subscription or user is not found
@@ -62,6 +63,7 @@ public class SubscriptionInvitesApi {
   /**
     * Add a user to the subscription using invite,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
     * <p><b>200</b> - Succesfully added
+    * <p><b>204</b> - Succesfully added
     * <p><b>400</b> - The reqeust is wrong
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - Subscription or user is not found

@@ -102,7 +102,8 @@ public class TasksApiTest {
         Integer skip = null;
         Integer take = null;
         String subscriptionId = null;
-        TasksVM response = api.tasksGetList(skip, take, subscriptionId);
+        String searchPattern = null;
+        TasksVM response = api.tasksGetList(skip, take, subscriptionId, searchPattern);
 
         // TODO: test validations
     }

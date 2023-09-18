@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**content** | **byte[]** |  |  [optional] |
+|**fileName** | **String** |  |  [optional] |
 
 
 

@@ -79,14 +79,15 @@ public class DownloadApiTest {
     @Test
     public void downloadGetExportsTest() throws IOException {
         String archiveName = null;
-        String ids = null;
-        File response = api.downloadGetExports(archiveName, ids);
+        String fileIds = null;
+        String folderIds = null;
+        File response = api.downloadGetExports(archiveName, fileIds, folderIds);
 
         // TODO: test validations
     }
     
     /**
-     * returns export, that was created from report with specified id
+     * returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
      *
      * 
      *
@@ -144,8 +145,9 @@ public class DownloadApiTest {
     @Test
     public void downloadGetReportsTest() throws IOException {
         String archiveName = null;
-        String ids = null;
-        File response = api.downloadGetReports(archiveName, ids);
+        String fileIds = null;
+        String folderIds = null;
+        File response = api.downloadGetReports(archiveName, fileIds, folderIds);
 
         // TODO: test validations
     }
@@ -193,8 +195,9 @@ public class DownloadApiTest {
     @Test
     public void downloadGetTemplatesTest() throws IOException {
         String archiveName = null;
-        String ids = null;
-        File response = api.downloadGetTemplates(archiveName, ids);
+        String fileIds = null;
+        String folderIds = null;
+        File response = api.downloadGetTemplates(archiveName, fileIds, folderIds);
 
         // TODO: test validations
     }

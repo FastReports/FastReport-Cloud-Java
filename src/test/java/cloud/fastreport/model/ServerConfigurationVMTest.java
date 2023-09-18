@@ -164,4 +164,12 @@ public class ServerConfigurationVMTest {
         // TODO: test authServerName
     }
 
+    /**
+     * Test the property 'updateWorkspaceLink'
+     */
+    @Test
+    public void updateWorkspaceLinkTest() {
+        // TODO: test updateWorkspaceLink
+    }
+
 }

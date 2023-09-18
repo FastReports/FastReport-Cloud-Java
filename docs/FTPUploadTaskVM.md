@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**archive** | **Boolean** |  |  [optional] |
+|**archiveName** | **String** |  |  [optional] |
+|**destinationFolder** | **String** |  |  [optional] |
 |**ftpHost** | **String** |  |  [optional] |
 |**ftpPort** | **Integer** |  |  [optional] |
 |**ftpUsername** | **String** |  |  [optional] |
-|**destinationFolder** | **String** |  |  [optional] |
-|**archive** | **Boolean** |  |  [optional] |
-|**archiveName** | **String** |  |  [optional] |
 |**useSFTP** | **Boolean** |  |  [optional] |
 
 

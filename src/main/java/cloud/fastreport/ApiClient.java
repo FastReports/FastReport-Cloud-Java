@@ -154,6 +154,10 @@ public class ApiClient {
         return new TemplatesApi(this);
     }
     
+    public UserNotificationsApi userNotificationsApi() {
+        return new UserNotificationsApi(this);
+    }
+    
     public UserProfileApi userProfileApi() {
         return new UserProfileApi(this);
     }

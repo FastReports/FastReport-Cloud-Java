@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**cronExpression** | **String** |  |  [optional] |
+|**delayedRunTime** | **OffsetDateTime** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**subscriptionId** | **String** |  |  [optional] |
-|**type** | **TaskType** |  |  [optional] |
-|**delayedRunTime** | **OffsetDateTime** |  |  [optional] |
-|**cronExpression** | **String** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

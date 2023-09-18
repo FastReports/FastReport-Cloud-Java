@@ -44,7 +44,7 @@ public class SubscriptionUsersApi {
 
   /**
     * Add a user to the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
-    * <p><b>200</b> - Succesfully added
+    * <p><b>204</b> - Succesfully added
     * <p><b>400</b> - The reqeust is wrong
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>402</b> - subscription is outdated
@@ -60,7 +60,7 @@ public class SubscriptionUsersApi {
 
   /**
     * Add a user to the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
-    * <p><b>200</b> - Succesfully added
+    * <p><b>204</b> - Succesfully added
     * <p><b>400</b> - The reqeust is wrong
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>402</b> - subscription is outdated

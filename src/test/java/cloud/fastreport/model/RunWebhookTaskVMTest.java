@@ -13,16 +13,21 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.RunEndpointVM;
+import cloud.fastreport.model.RunEmailTaskVM;
+import cloud.fastreport.model.RunFTPUploadTaskVM;
 import cloud.fastreport.model.RunTransportTaskBaseVM;
-import cloud.fastreport.model.TaskType;
+import cloud.fastreport.model.RunWebhookTaskVM;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -55,11 +60,11 @@ public class RunWebhookTaskVMTest {
     }
 
     /**
-     * Test the property 'type'
+     * Test the property '$t'
      */
     @Test
-    public void typeTest() {
-        // TODO: test type
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

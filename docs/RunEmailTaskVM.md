@@ -7,16 +7,16 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**password** | **String** |  |  [optional] |
 |**body** | **String** |  |  [optional] |
-|**isBodyHtml** | **Boolean** |  |  [optional] |
-|**subject** | **String** |  |  [optional] |
-|**to** | **List&lt;String&gt;** |  |  [optional] |
-|**from** | **String** |  |  [optional] |
-|**username** | **String** |  |  [optional] |
-|**server** | **String** |  |  [optional] |
-|**port** | **Integer** |  |  [optional] |
 |**enableSsl** | **Boolean** |  |  [optional] |
+|**from** | **String** |  |  [optional] |
+|**isBodyHtml** | **Boolean** |  |  [optional] |
+|**password** | **String** |  |  [optional] |
+|**port** | **Integer** |  |  [optional] |
+|**server** | **String** |  |  [optional] |
+|**subject** | **String** |  |  [optional] |
+|**to** | **List&lt;String&gt;** |  |  |
+|**username** | **String** |  |  [optional] |
 
 
 

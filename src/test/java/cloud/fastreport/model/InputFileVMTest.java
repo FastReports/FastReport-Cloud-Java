@@ -51,14 +51,6 @@ public class InputFileVMTest {
     }
 
     /**
-     * Test the property 'fileName'
-     */
-    @Test
-    public void fileNameTest() {
-        // TODO: test fileName
-    }
-
-    /**
      * Test the property 'type'
      */
     @Test

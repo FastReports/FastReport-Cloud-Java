@@ -16,6 +16,7 @@
 |**creatorUserId** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**adminAction** | **Boolean** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

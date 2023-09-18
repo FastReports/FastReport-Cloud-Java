@@ -15,12 +15,15 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.AuditType;
 import cloud.fastreport.model.ProfileVisibility;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.ArrayList;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -34,7 +37,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   UpdateUserSettingsVM.JSON_PROPERTY_PROFILE_VISIBILITY,
   UpdateUserSettingsVM.JSON_PROPERTY_DEFAULT_SUBSCRIPTION,
-  UpdateUserSettingsVM.JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS
+  UpdateUserSettingsVM.JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS,
+  UpdateUserSettingsVM.JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateUserSettingsVM {
@@ -46,6 +50,9 @@ public class UpdateUserSettingsVM {
 
   public static final String JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS = "showHiddenFilesAndFolders";
   private JsonNullable<Boolean> showHiddenFilesAndFolders = JsonNullable.<Boolean>undefined();
+
+  public static final String JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS = "subscribedNotifications";
+  private JsonNullable<List<AuditType>> subscribedNotifications = JsonNullable.<List<AuditType>>undefined();
 
   public UpdateUserSettingsVM() {
   }
@@ -152,6 +159,52 @@ public class UpdateUserSettingsVM {
   }
 
 
+  public UpdateUserSettingsVM subscribedNotifications(List<AuditType> subscribedNotifications) {
+    this.subscribedNotifications = JsonNullable.<List<AuditType>>of(subscribedNotifications);
+    
+    return this;
+  }
+
+  public UpdateUserSettingsVM addSubscribedNotificationsItem(AuditType subscribedNotificationsItem) {
+    if (this.subscribedNotifications == null || !this.subscribedNotifications.isPresent()) {
+      this.subscribedNotifications = JsonNullable.<List<AuditType>>of(new ArrayList<>());
+    }
+    try {
+      this.subscribedNotifications.get().add(subscribedNotificationsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+   /**
+   * Get subscribedNotifications
+   * @return subscribedNotifications
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public List<AuditType> getSubscribedNotifications() {
+        return subscribedNotifications.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<AuditType>> getSubscribedNotifications_JsonNullable() {
+    return subscribedNotifications;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS)
+  public void setSubscribedNotifications_JsonNullable(JsonNullable<List<AuditType>> subscribedNotifications) {
+    this.subscribedNotifications = subscribedNotifications;
+  }
+
+  public void setSubscribedNotifications(List<AuditType> subscribedNotifications) {
+    this.subscribedNotifications = JsonNullable.<List<AuditType>>of(subscribedNotifications);
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -163,7 +216,8 @@ public class UpdateUserSettingsVM {
     UpdateUserSettingsVM updateUserSettingsVM = (UpdateUserSettingsVM) o;
     return equalsNullable(this.profileVisibility, updateUserSettingsVM.profileVisibility) &&
         equalsNullable(this.defaultSubscription, updateUserSettingsVM.defaultSubscription) &&
-        equalsNullable(this.showHiddenFilesAndFolders, updateUserSettingsVM.showHiddenFilesAndFolders);
+        equalsNullable(this.showHiddenFilesAndFolders, updateUserSettingsVM.showHiddenFilesAndFolders) &&
+        equalsNullable(this.subscribedNotifications, updateUserSettingsVM.subscribedNotifications);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -172,7 +226,7 @@ public class UpdateUserSettingsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(profileVisibility), hashCodeNullable(defaultSubscription), hashCodeNullable(showHiddenFilesAndFolders));
+    return Objects.hash(hashCodeNullable(profileVisibility), hashCodeNullable(defaultSubscription), hashCodeNullable(showHiddenFilesAndFolders), hashCodeNullable(subscribedNotifications));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -189,6 +243,7 @@ public class UpdateUserSettingsVM {
     sb.append("    profileVisibility: ").append(toIndentedString(profileVisibility)).append("\n");
     sb.append("    defaultSubscription: ").append(toIndentedString(defaultSubscription)).append("\n");
     sb.append("    showHiddenFilesAndFolders: ").append(toIndentedString(showHiddenFilesAndFolders)).append("\n");
+    sb.append("    subscribedNotifications: ").append(toIndentedString(subscribedNotifications)).append("\n");
     sb.append("}");
     return sb.toString();
   }

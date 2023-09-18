@@ -238,12 +238,13 @@ public class DownloadApi {
     * <p><b>403</b> - Not enough permissions for the operation
     * <p><b>404</b> - Specified file was not found or user do not has access to the file
     * @param archiveName name of the created archive
-    * @param ids ids separated with a &#39;,&#39; sign
+    * @param fileIds ids separated with a &#39;,&#39; sign
+    * @param folderIds ids separated with a &#39;,&#39; sign
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public File downloadGetExports(String archiveName, String ids) throws IOException {
-        HttpResponse response = downloadGetExportsForHttpResponse(archiveName, ids);
+    public File downloadGetExports(String archiveName, String fileIds, String folderIds) throws IOException {
+        HttpResponse response = downloadGetExportsForHttpResponse(archiveName, fileIds, folderIds);
         TypeReference<File> typeRef = new TypeReference<File>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -266,7 +267,7 @@ public class DownloadApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse downloadGetExportsForHttpResponse(String archiveName, String ids) throws IOException {
+    public HttpResponse downloadGetExportsForHttpResponse(String archiveName, String fileIds, String folderIds) throws IOException {
         // verify the required parameter 'archiveName' is set
         if (archiveName == null) {
             throw new IllegalArgumentException("Missing the required parameter 'archiveName' when calling downloadGetExports");
@@ -275,9 +276,19 @@ public class DownloadApi {
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("archiveName", archiveName);
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/download/es/{archiveName}");
-        if (ids != null) {
-            String key = "ids";
-            Object value = ids;
+        if (fileIds != null) {
+            String key = "fileIds";
+            Object value = fileIds;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (folderIds != null) {
+            String key = "folderIds";
+            Object value = folderIds;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {
@@ -331,7 +342,7 @@ public class DownloadApi {
 
 
   /**
-    * returns export, that was created from report with specified id
+    * returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
     * <p><b>200</b> - Success
     * <p><b>404</b> - Not Found
     * <p><b>400</b> - Bad Request
@@ -340,10 +351,7 @@ public class DownloadApi {
     * @param reportId 
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
-    * @deprecated
-
     **/
-    @Deprecated
     public File downloadGetLastSVGExport(String reportId) throws IOException {
         HttpResponse response = downloadGetLastSVGExportForHttpResponse(reportId);
         TypeReference<File> typeRef = new TypeReference<File>() {};
@@ -351,7 +359,7 @@ public class DownloadApi {
     }
 
   /**
-    * returns export, that was created from report with specified id
+    * returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
     * <p><b>200</b> - Success
     * <p><b>404</b> - Not Found
     * <p><b>400</b> - Bad Request
@@ -361,17 +369,13 @@ public class DownloadApi {
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
-    * @deprecated
-
     **/
-    @Deprecated
     public File downloadGetLastSVGExport(String reportId, Map<String, Object> params) throws IOException {
         HttpResponse response = downloadGetLastSVGExportForHttpResponse(reportId, params);
         TypeReference<File> typeRef = new TypeReference<File>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    @Deprecated
     public HttpResponse downloadGetLastSVGExportForHttpResponse(String reportId) throws IOException {
         // verify the required parameter 'reportId' is set
         if (reportId == null) {
@@ -389,7 +393,6 @@ public class DownloadApi {
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
-    @Deprecated
     public HttpResponse downloadGetLastSVGExportForHttpResponse(String reportId, Map<String, Object> params) throws IOException {
         // verify the required parameter 'reportId' is set
         if (reportId == null) {
@@ -610,12 +613,13 @@ public class DownloadApi {
     * <p><b>402</b> - Subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * @param archiveName name of the created archive
-    * @param ids ids separated with a &#39;,&#39; sign
+    * @param fileIds ids separated with a &#39;,&#39; sign
+    * @param folderIds ids separated with a &#39;,&#39; sign
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public File downloadGetReports(String archiveName, String ids) throws IOException {
-        HttpResponse response = downloadGetReportsForHttpResponse(archiveName, ids);
+    public File downloadGetReports(String archiveName, String fileIds, String folderIds) throws IOException {
+        HttpResponse response = downloadGetReportsForHttpResponse(archiveName, fileIds, folderIds);
         TypeReference<File> typeRef = new TypeReference<File>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -638,7 +642,7 @@ public class DownloadApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse downloadGetReportsForHttpResponse(String archiveName, String ids) throws IOException {
+    public HttpResponse downloadGetReportsForHttpResponse(String archiveName, String fileIds, String folderIds) throws IOException {
         // verify the required parameter 'archiveName' is set
         if (archiveName == null) {
             throw new IllegalArgumentException("Missing the required parameter 'archiveName' when calling downloadGetReports");
@@ -647,9 +651,19 @@ public class DownloadApi {
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("archiveName", archiveName);
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/download/rs/{archiveName}");
-        if (ids != null) {
-            String key = "ids";
-            Object value = ids;
+        if (fileIds != null) {
+            String key = "fileIds";
+            Object value = fileIds;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (folderIds != null) {
+            String key = "folderIds";
+            Object value = folderIds;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {
@@ -886,12 +900,13 @@ public class DownloadApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - files is not found
     * @param archiveName name of the created archive
-    * @param ids ids separated with a &#39;,&#39; sign
+    * @param fileIds ids separated with a &#39;,&#39; sign
+    * @param folderIds ids separated with a &#39;,&#39; sign
     * @return File
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public File downloadGetTemplates(String archiveName, String ids) throws IOException {
-        HttpResponse response = downloadGetTemplatesForHttpResponse(archiveName, ids);
+    public File downloadGetTemplates(String archiveName, String fileIds, String folderIds) throws IOException {
+        HttpResponse response = downloadGetTemplatesForHttpResponse(archiveName, fileIds, folderIds);
         TypeReference<File> typeRef = new TypeReference<File>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -914,7 +929,7 @@ public class DownloadApi {
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse downloadGetTemplatesForHttpResponse(String archiveName, String ids) throws IOException {
+    public HttpResponse downloadGetTemplatesForHttpResponse(String archiveName, String fileIds, String folderIds) throws IOException {
         // verify the required parameter 'archiveName' is set
         if (archiveName == null) {
             throw new IllegalArgumentException("Missing the required parameter 'archiveName' when calling downloadGetTemplates");
@@ -923,9 +938,19 @@ public class DownloadApi {
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
         uriVariables.put("archiveName", archiveName);
         UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/download/ts/{archiveName}");
-        if (ids != null) {
-            String key = "ids";
-            Object value = ids;
+        if (fileIds != null) {
+            String key = "fileIds";
+            Object value = fileIds;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (folderIds != null) {
+            String key = "folderIds";
+            Object value = folderIds;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {

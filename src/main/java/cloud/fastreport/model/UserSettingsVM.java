@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.AuditType;
 import cloud.fastreport.model.ProfileVisibility;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,6 +23,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -36,7 +39,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   UserSettingsVM.JSON_PROPERTY_PROFILE_VISIBILITY,
   UserSettingsVM.JSON_PROPERTY_DEFAULT_SUBSCRIPTION,
   UserSettingsVM.JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS,
-  UserSettingsVM.JSON_PROPERTY_SLA_ACCEPTED_DATE_TIME
+  UserSettingsVM.JSON_PROPERTY_SLA_ACCEPTED_DATE_TIME,
+  UserSettingsVM.JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UserSettingsVM {
@@ -51,6 +55,9 @@ public class UserSettingsVM {
 
   public static final String JSON_PROPERTY_SLA_ACCEPTED_DATE_TIME = "slaAcceptedDateTime";
   private JsonNullable<OffsetDateTime> slaAcceptedDateTime = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS = "subscribedNotifications";
+  private JsonNullable<List<AuditType>> subscribedNotifications = JsonNullable.<List<AuditType>>undefined();
 
   public UserSettingsVM() {
   }
@@ -175,6 +182,52 @@ public class UserSettingsVM {
   }
 
 
+  public UserSettingsVM subscribedNotifications(List<AuditType> subscribedNotifications) {
+    this.subscribedNotifications = JsonNullable.<List<AuditType>>of(subscribedNotifications);
+    
+    return this;
+  }
+
+  public UserSettingsVM addSubscribedNotificationsItem(AuditType subscribedNotificationsItem) {
+    if (this.subscribedNotifications == null || !this.subscribedNotifications.isPresent()) {
+      this.subscribedNotifications = JsonNullable.<List<AuditType>>of(new ArrayList<>());
+    }
+    try {
+      this.subscribedNotifications.get().add(subscribedNotificationsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+   /**
+   * Get subscribedNotifications
+   * @return subscribedNotifications
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public List<AuditType> getSubscribedNotifications() {
+        return subscribedNotifications.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<AuditType>> getSubscribedNotifications_JsonNullable() {
+    return subscribedNotifications;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS)
+  public void setSubscribedNotifications_JsonNullable(JsonNullable<List<AuditType>> subscribedNotifications) {
+    this.subscribedNotifications = subscribedNotifications;
+  }
+
+  public void setSubscribedNotifications(List<AuditType> subscribedNotifications) {
+    this.subscribedNotifications = JsonNullable.<List<AuditType>>of(subscribedNotifications);
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -187,7 +240,8 @@ public class UserSettingsVM {
     return Objects.equals(this.profileVisibility, userSettingsVM.profileVisibility) &&
         equalsNullable(this.defaultSubscription, userSettingsVM.defaultSubscription) &&
         Objects.equals(this.showHiddenFilesAndFolders, userSettingsVM.showHiddenFilesAndFolders) &&
-        equalsNullable(this.slaAcceptedDateTime, userSettingsVM.slaAcceptedDateTime);
+        equalsNullable(this.slaAcceptedDateTime, userSettingsVM.slaAcceptedDateTime) &&
+        equalsNullable(this.subscribedNotifications, userSettingsVM.subscribedNotifications);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -196,7 +250,7 @@ public class UserSettingsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileVisibility, hashCodeNullable(defaultSubscription), showHiddenFilesAndFolders, hashCodeNullable(slaAcceptedDateTime));
+    return Objects.hash(profileVisibility, hashCodeNullable(defaultSubscription), showHiddenFilesAndFolders, hashCodeNullable(slaAcceptedDateTime), hashCodeNullable(subscribedNotifications));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -214,6 +268,7 @@ public class UserSettingsVM {
     sb.append("    defaultSubscription: ").append(toIndentedString(defaultSubscription)).append("\n");
     sb.append("    showHiddenFilesAndFolders: ").append(toIndentedString(showHiddenFilesAndFolders)).append("\n");
     sb.append("    slaAcceptedDateTime: ").append(toIndentedString(slaAcceptedDateTime)).append("\n");
+    sb.append("    subscribedNotifications: ").append(toIndentedString(subscribedNotifications)).append("\n");
     sb.append("}");
     return sb.toString();
   }

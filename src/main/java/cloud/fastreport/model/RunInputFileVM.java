@@ -33,12 +33,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * RunInputFileVM
  */
 @JsonPropertyOrder({
-  RunInputFileVM.JSON_PROPERTY_CONTENT
+  RunInputFileVM.JSON_PROPERTY_CONTENT,
+  RunInputFileVM.JSON_PROPERTY_FILE_NAME
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RunInputFileVM extends InputFileVM {
   public static final String JSON_PROPERTY_CONTENT = "content";
   private JsonNullable<byte[]> content = JsonNullable.<byte[]>undefined();
+
+  public static final String JSON_PROPERTY_FILE_NAME = "fileName";
+  private JsonNullable<String> fileName = JsonNullable.<String>undefined();
 
   public RunInputFileVM() {
 
@@ -78,6 +82,40 @@ public class RunInputFileVM extends InputFileVM {
   }
 
 
+  public RunInputFileVM fileName(String fileName) {
+    this.fileName = JsonNullable.<String>of(fileName);
+    
+    return this;
+  }
+
+   /**
+   * Get fileName
+   * @return fileName
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getFileName() {
+        return fileName.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_FILE_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getFileName_JsonNullable() {
+    return fileName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FILE_NAME)
+  public void setFileName_JsonNullable(JsonNullable<String> fileName) {
+    this.fileName = fileName;
+  }
+
+  public void setFileName(String fileName) {
+    this.fileName = JsonNullable.<String>of(fileName);
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -88,6 +126,7 @@ public class RunInputFileVM extends InputFileVM {
     }
     RunInputFileVM runInputFileVM = (RunInputFileVM) o;
     return equalsNullable(this.content, runInputFileVM.content) &&
+        equalsNullable(this.fileName, runInputFileVM.fileName) &&
         super.equals(o);
   }
 
@@ -97,7 +136,7 @@ public class RunInputFileVM extends InputFileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(content), super.hashCode());
+    return Objects.hash(hashCodeNullable(content), hashCodeNullable(fileName), super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -113,6 +152,7 @@ public class RunInputFileVM extends InputFileVM {
     sb.append("class RunInputFileVM {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

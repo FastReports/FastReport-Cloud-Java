@@ -42,7 +42,9 @@ public enum DataSourceConnectionType {
   
   FIREBIRDDB("FirebirdDB"),
   
-  MONGODB("MongoDB");
+  MONGODB("MongoDB"),
+  
+  CLICKHOUSE("ClickHouse");
 
   private String value;
 

@@ -13,12 +13,14 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.SelectedFilesVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -29,25 +31,41 @@ import org.junit.Test;
 
 
 /**
- * Model tests for EndpointVM
+ * Model tests for SelectedFilesForDeletingVM
  */
-public class EndpointVMTest {
-    private final EndpointVM model = new EndpointVM();
+public class SelectedFilesForDeletingVMTest {
+    private final SelectedFilesForDeletingVM model = new SelectedFilesForDeletingVM();
 
     /**
-     * Model tests for EndpointVM
+     * Model tests for SelectedFilesForDeletingVM
      */
     @Test
-    public void testEndpointVM() {
-        // TODO: test EndpointVM
+    public void testSelectedFilesForDeletingVM() {
+        // TODO: test SelectedFilesForDeletingVM
     }
 
     /**
-     * Test the property 'url'
+     * Test the property 'isAllSelected'
      */
     @Test
-    public void urlTest() {
-        // TODO: test url
+    public void isAllSelectedTest() {
+        // TODO: test isAllSelected
+    }
+
+    /**
+     * Test the property 'files'
+     */
+    @Test
+    public void filesTest() {
+        // TODO: test files
+    }
+
+    /**
+     * Test the property 'folders'
+     */
+    @Test
+    public void foldersTest() {
+        // TODO: test folders
     }
 
 }

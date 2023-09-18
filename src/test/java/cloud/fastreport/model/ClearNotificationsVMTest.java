@@ -13,39 +13,36 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.CreateEndpointVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.net.URI;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for RunEndpointVM
+ * Model tests for ClearNotificationsVM
  */
-public class RunEndpointVMTest {
-    private final RunEndpointVM model = new RunEndpointVM();
+public class ClearNotificationsVMTest {
+    private final ClearNotificationsVM model = new ClearNotificationsVM();
 
     /**
-     * Model tests for RunEndpointVM
+     * Model tests for ClearNotificationsVM
      */
     @Test
-    public void testRunEndpointVM() {
-        // TODO: test RunEndpointVM
+    public void testClearNotificationsVM() {
+        // TODO: test ClearNotificationsVM
     }
 
     /**
-     * Test the property 'url'
+     * Test the property 'update'
      */
     @Test
-    public void urlTest() {
-        // TODO: test url
+    public void updateTest() {
+        // TODO: test update
     }
 
 }

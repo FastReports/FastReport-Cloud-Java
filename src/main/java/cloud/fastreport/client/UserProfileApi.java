@@ -196,8 +196,9 @@ public class UserProfileApi {
   /**
     * Update profile of the current user
     * This method is only allowed for local sign in via intranet
-    * <p><b>200</b> - Succesfully updated
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - The reqeust is wrong
+    * <p><b>200</b> - Succesfully updated
     * @param updateUserProfileVM 
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -208,8 +209,9 @@ public class UserProfileApi {
   /**
     * Update profile of the current user
     * This method is only allowed for local sign in via intranet
-    * <p><b>200</b> - Succesfully updated
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - The reqeust is wrong
+    * <p><b>200</b> - Succesfully updated
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/

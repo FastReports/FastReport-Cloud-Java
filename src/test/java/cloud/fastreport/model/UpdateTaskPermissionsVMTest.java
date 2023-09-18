@@ -40,19 +40,19 @@ public class UpdateTaskPermissionsVMTest {
     }
 
     /**
-     * Test the property 'newPermissions'
-     */
-    @Test
-    public void newPermissionsTest() {
-        // TODO: test newPermissions
-    }
-
-    /**
      * Test the property 'administrate'
      */
     @Test
     public void administrateTest() {
         // TODO: test administrate
+    }
+
+    /**
+     * Test the property 'newPermissions'
+     */
+    @Test
+    public void newPermissionsTest() {
+        // TODO: test newPermissions
     }
 
 }

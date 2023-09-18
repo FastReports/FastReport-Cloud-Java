@@ -765,6 +765,51 @@ paths:
       tags:
       - Contacts
       x-accepts: application/json
+  /api/data/v1/DataSources/{subscriptionId}/count:
+    get:
+      operationId: DataSources_CountDataSourcesAsync
+      parameters:
+      - description: subscripiton id
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                format: int64
+                type: integer
+          description: Everything is all right
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: id is not hex24
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have permisison to get data sources from this subscription
+            (or in your default (1st) subscription)
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "there is no subscription with provided id found, or user don't\
+            \ even have a subscription"
+      summary: Returns a number of data sources in subscription
+      tags:
+      - DataSources
+      x-accepts: application/json
   /api/data/v1/DataSources:
     get:
       operationId: DataSources_GetAvailableDataSources
@@ -1003,6 +1048,160 @@ paths:
       tags:
       - DataSources
       x-accepts: application/json
+  /api/data/v1/DataSources/{id}/fetch:
+    get:
+      operationId: DataSources_FetchData
+      parameters:
+      - description: datasource's id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      summary: This should connect to a database and set data structure
+      tags:
+      - DataSources
+      x-accepts: application/json
+  /api/data/v1/DataSources/{id}/permissions:
+    get:
+      operationId: DataSources_GetPermissions
+      parameters:
+      - description: data source id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourcePermissionsVM'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      summary: Get all Data source permissions
+      tags:
+      - DataSources
+      x-accepts: application/json
+    post:
+      operationId: DataSources_UpdatePermissions
+      parameters:
+      - description: ""
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourcePermissionsVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourcePermissionsVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourcePermissionsVM'
+        description: ""
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      summary: Update permissions
+      tags:
+      - DataSources
+      x-content-type: application/json
+      x-accepts: application/json
   /api/data/v1/DataSources/{id}/rename:
     put:
       operationId: DataSources_RenameDataSource
@@ -1129,52 +1328,6 @@ paths:
       - DataSources
       x-content-type: application/json
       x-accepts: application/json
-  /api/data/v1/DataSources/{id}/fetch:
-    get:
-      operationId: DataSources_FetchData
-      parameters:
-      - description: datasource's id
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          pattern: "^[A-Fa-f0-9]{24}$"
-          type: string
-        style: simple
-      responses:
-        "200":
-          description: Success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          description: Server Error
-      summary: This should connect to a database and set data structure
-      tags:
-      - DataSources
-      x-accepts: application/json
   /api/data/v1/DataSources/{id}/updateSubscription:
     put:
       operationId: DataSources_UpdateSubscriptionDataSource
@@ -1233,159 +1386,6 @@ paths:
       tags:
       - DataSources
       x-content-type: application/json
-      x-accepts: application/json
-  /api/data/v1/DataSources/{id}/permissions:
-    get:
-      operationId: DataSources_GetPermissions
-      parameters:
-      - description: data source id
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          pattern: "^[A-Fa-f0-9]{24}$"
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataSourcePermissionsVM'
-          description: Success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          description: Server Error
-      summary: Get all Data source permissions
-      tags:
-      - DataSources
-      x-accepts: application/json
-    post:
-      operationId: DataSources_UpdatePermissions
-      parameters:
-      - description: ""
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          pattern: "^[A-Fa-f0-9]{24}$"
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateDataSourcePermissionsVM'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/UpdateDataSourcePermissionsVM'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/UpdateDataSourcePermissionsVM'
-        description: ""
-      responses:
-        "200":
-          description: Success
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "402":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "500":
-          description: Server Error
-      summary: Update permissions
-      tags:
-      - DataSources
-      x-content-type: application/json
-      x-accepts: application/json
-  /api/data/v1/DataSources/{subscriptionId}/count:
-    get:
-      operationId: DataSources_CountDataSourcesAsync
-      parameters:
-      - description: subscripiton id
-        explode: false
-        in: path
-        name: subscriptionId
-        required: true
-        schema:
-          pattern: "^[A-Fa-f0-9]{24}$"
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                format: int64
-                type: integer
-          description: Everything is all right
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: id is not hex24
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: You don't have permisison to get data sources from this subscription
-            (or in your default (1st) subscription)
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: "there is no subscription with provided id found, or user don't\
-            \ even have a subscription"
-      summary: Returns a number of data sources in subscription
-      tags:
-      - DataSources
       x-accepts: application/json
   /download/e/{id}/thumbnail:
     get:
@@ -1599,7 +1599,15 @@ paths:
       - description: "ids separated with a ',' sign"
         explode: true
         in: query
-        name: ids
+        name: fileIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "ids separated with a ',' sign"
+        explode: true
+        in: query
+        name: folderIds
         required: false
         schema:
           type: string
@@ -1683,7 +1691,6 @@ paths:
       x-accepts: application/json
   /download/lastPreview/{reportId}:
     get:
-      deprecated: true
       operationId: Download_GetLastSVGExport
       parameters:
       - description: ""
@@ -1758,7 +1765,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Forbidden
-      summary: "returns export, that was created from report with specified id"
+      summary: "returns export, that was created from report with specified id.\r\n\
+        INTERNAL USAGE ONLY!"
       tags:
       - Download
       x-accepts: application/json
@@ -1949,7 +1957,15 @@ paths:
       - description: "ids separated with a ',' sign"
         explode: true
         in: query
-        name: ids
+        name: fileIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "ids separated with a ',' sign"
+        explode: true
+        in: query
+        name: folderIds
         required: false
         schema:
           type: string
@@ -2217,7 +2233,15 @@ paths:
       - description: "ids separated with a ',' sign"
         explode: true
         in: query
-        name: ids
+        name: fileIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "ids separated with a ',' sign"
+        explode: true
+        in: query
+        name: folderIds
         required: false
         schema:
           type: string
@@ -2647,6 +2671,58 @@ paths:
       tags:
       - Exports
       x-accepts: application/json
+  /api/rp/v1/Exports/{subscriptionId}/DeleteFiles:
+    post:
+      description: User with a Delete permission can access this method.
+      operationId: ExportFolderAndFile_DeleteFiles
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been deleted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+      summary: Delete folders and files
+      tags:
+      - Exports
+      x-content-type: application/json
+      x-accepts: application/json
   /api/rp/v1/Exports/Folder/{id}/permissions:
     get:
       operationId: ExportFolders_GetPermissions
@@ -2715,8 +2791,8 @@ paths:
               $ref: '#/components/schemas/UpdateFilePermissionsVM'
         description: ""
       responses:
-        "200":
-          description: Success
+        "204":
+          description: No Content
         "400":
           content:
             application/json:
@@ -2973,6 +3049,49 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Folder not found
       summary: Get specified folder breadcrumbs
+      tags:
+      - Exports
+      x-accepts: application/json
+  /api/rp/v1/Exports/Folder/{id}/size:
+    get:
+      description: User with a Get Entity permission can access this method.
+      operationId: ExportFolders_CalculateFolderSize
+      parameters:
+      - description: folder id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderSizeVM'
+          description: Returns specified folder
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Id is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Folder not found
+      summary: "Get specified folder, calculate it's size"
       tags:
       - Exports
       x-accepts: application/json
@@ -4110,8 +4229,8 @@ paths:
               $ref: '#/components/schemas/UpdateFilePermissionsVM'
         description: ""
       responses:
-        "200":
-          description: Success
+        "204":
+          description: No Content
         "400":
           content:
             application/json:
@@ -4456,8 +4575,8 @@ paths:
               $ref: '#/components/schemas/UpdateGroupPermissionsVM'
         description: ""
       responses:
-        "200":
-          description: Success
+        "204":
+          description: No Content
         "400":
           content:
             application/json:
@@ -4894,7 +5013,7 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
+        "204":
           description: Succesfully retured
         "400":
           content:
@@ -5325,6 +5444,58 @@ paths:
       tags:
       - Reports
       x-accepts: application/json
+  /api/rp/v1/Reports/{subscriptionId}/DeleteFiles:
+    post:
+      description: User with a Delete permission can access this method.
+      operationId: ReportFolderAndFile_DeleteFiles
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been deleted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+      summary: Delete folders and files
+      tags:
+      - Reports
+      x-content-type: application/json
+      x-accepts: application/json
   /api/rp/v1/Reports/Folder/{id}/Export:
     post:
       description: "User with Execute Export permission on report folder and\r\nCreate\
@@ -5456,8 +5627,8 @@ paths:
               $ref: '#/components/schemas/UpdateFilePermissionsVM'
         description: ""
       responses:
-        "200":
-          description: Success
+        "204":
+          description: No Content
         "400":
           content:
             application/json:
@@ -5714,6 +5885,49 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Folder not found
       summary: Get specified folder breadcrumbs
+      tags:
+      - Reports
+      x-accepts: application/json
+  /api/rp/v1/Reports/Folder/{id}/size:
+    get:
+      description: User with a Get Entity permission can access this method.
+      operationId: ReportFolders_CalculateFolderSize
+      parameters:
+      - description: folder id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderSizeVM'
+          description: Returns specified folder
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Id is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Folder not found
+      summary: "Get specified folder, calculate it's size"
       tags:
       - Reports
       x-accepts: application/json
@@ -6352,6 +6566,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ExportVM'
           description: Specified report has been exported
+        "204":
+          description: Specified report has been exported
         "400":
           content:
             application/json:
@@ -6412,6 +6628,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExportVM'
+          description: Specified template has been prepared
+        "204":
           description: Specified template has been prepared
         "400":
           content:
@@ -6977,8 +7195,8 @@ paths:
               $ref: '#/components/schemas/UpdateFilePermissionsVM'
         description: ""
       responses:
-        "200":
-          description: Success
+        "204":
+          description: No Content
         "400":
           content:
             application/json:
@@ -7602,6 +7820,8 @@ paths:
       responses:
         "200":
           description: Succesfully added
+        "204":
+          description: Succesfully added
         "400":
           content:
             application/json:
@@ -8090,8 +8310,8 @@ paths:
               $ref: '#/components/schemas/UpdateSubscriptionPermissionsVM'
         description: ""
       responses:
-        "200":
-          description: Success
+        "204":
+          description: No Content
         "400":
           content:
             application/json:
@@ -8224,7 +8444,7 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
+        "204":
           description: Succesfully added
         "400":
           content:
@@ -8411,7 +8631,7 @@ paths:
       tags:
       - SubscriptionUsers
       x-accepts: application/json
-  /api/tasks:
+  /api/tasks/v1/Tasks:
     get:
       operationId: Tasks_GetList
       parameters:
@@ -8446,6 +8666,15 @@ paths:
         required: false
         schema:
           pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: searchPattern
+        required: false
+        schema:
+          default: ""
           type: string
         style: form
       responses:
@@ -8538,7 +8767,7 @@ paths:
       - Tasks
       x-content-type: application/json
       x-accepts: application/json
-  /api/tasks/{taskId}:
+  /api/tasks/v1/Tasks/{taskId}:
     delete:
       operationId: Tasks_DeleteTask
       parameters:
@@ -8696,164 +8925,7 @@ paths:
       - Tasks
       x-content-type: application/json
       x-accepts: application/json
-  /api/tasks/{taskId}/rename:
-    put:
-      operationId: Tasks_RenameTask
-      parameters:
-      - description: renaming task id
-        explode: false
-        in: path
-        name: taskId
-        required: true
-        schema:
-          pattern: "^[A-Fa-f0-9]{24}$"
-          type: string
-        style: simple
-      - description: task's new Name
-        explode: true
-        in: query
-        name: newName
-        required: false
-        schema:
-          maxLength: 50
-          minLength: 1
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TaskBaseVM'
-          description: Success
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "402":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "500":
-          description: Server Error
-      summary: Rename a task
-      tags:
-      - Tasks
-      x-accepts: application/json
-  /api/tasks/run:
-    post:
-      operationId: Tasks_RunTask
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RunTaskBaseVM'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/RunTaskBaseVM'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/RunTaskBaseVM'
-        description: task's view model
-      responses:
-        "200":
-          description: Success
-        "204":
-          description: No Content
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "402":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "500":
-          description: Server Error
-      summary: Run a task from request body
-      tags:
-      - Tasks
-      x-content-type: application/json
-      x-accepts: application/json
-  /api/tasks/{taskId}/run:
-    post:
-      operationId: Tasks_RunTaskById
-      parameters:
-      - description: task id
-        explode: false
-        in: path
-        name: taskId
-        required: true
-        schema:
-          pattern: "^[A-Fa-f0-9]{24}$"
-          type: string
-        style: simple
-      responses:
-        "200":
-          description: Success
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Not Found
-        "402":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Client Error
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Bad Request
-        "500":
-          description: Server Error
-      summary: Run a task by id
-      tags:
-      - Tasks
-      x-accepts: application/json
-  /api/tasks/{id}/permissions:
+  /api/tasks/v1/Tasks/{id}/permissions:
     get:
       operationId: Tasks_GetPermissions
       parameters:
@@ -8928,8 +9000,8 @@ paths:
               $ref: '#/components/schemas/UpdateTaskPermissionsVM'
         description: new permissions
       responses:
-        "200":
-          description: Success
+        "204":
+          description: No Content
         "400":
           content:
             application/json:
@@ -8960,6 +9032,161 @@ paths:
       tags:
       - Tasks
       x-content-type: application/json
+      x-accepts: application/json
+  /api/tasks/v1/Tasks/{taskId}/rename:
+    put:
+      operationId: Tasks_RenameTask
+      parameters:
+      - description: renaming task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      - description: task's new Name
+        explode: true
+        in: query
+        name: newName
+        required: false
+        schema:
+          maxLength: 50
+          minLength: 1
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskBaseVM'
+          description: Success
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "500":
+          description: Server Error
+      summary: Rename a task
+      tags:
+      - Tasks
+      x-accepts: application/json
+  /api/tasks/v1/Tasks/run:
+    post:
+      operationId: Tasks_RunTask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunTaskBaseVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RunTaskBaseVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RunTaskBaseVM'
+        description: task's view model
+      responses:
+        "200":
+          description: Success
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "500":
+          description: Server Error
+      summary: Run a task from request body
+      tags:
+      - Tasks
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/tasks/v1/Tasks/{taskId}/run:
+    post:
+      operationId: Tasks_RunTaskById
+      parameters:
+      - description: task id
+        explode: false
+        in: path
+        name: taskId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Success
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "500":
+          description: Server Error
+      summary: Run a task by id
+      tags:
+      - Tasks
       x-accepts: application/json
   /api/rp/v1/Templates/Folder/{id}/CountFolderAndFiles:
     get:
@@ -9310,6 +9537,58 @@ paths:
       tags:
       - Templates
       x-accepts: application/json
+  /api/rp/v1/Templates/{subscriptionId}/DeleteFiles:
+    post:
+      description: User with a Delete permission can access this method.
+      operationId: TemplateFolderAndFile_DeleteFiles
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been deleted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+      summary: Delete folders and files
+      tags:
+      - Templates
+      x-content-type: application/json
+      x-accepts: application/json
   /api/rp/v1/Templates/Folder/{id}/Export:
     post:
       description: "User with Execute Export permission on template folder and\r\n\
@@ -9504,8 +9783,8 @@ paths:
               $ref: '#/components/schemas/UpdateFilePermissionsVM'
         description: ""
       responses:
-        "200":
-          description: Success
+        "204":
+          description: No Content
         "400":
           content:
             application/json:
@@ -9762,6 +10041,49 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Folder not found
       summary: Get specified folder breadcrumbs
+      tags:
+      - Templates
+      x-accepts: application/json
+  /api/rp/v1/Templates/Folder/{id}/size:
+    get:
+      description: User with a Get Entity permission can access this method.
+      operationId: TemplateFolders_CalculateFolderSize
+      parameters:
+      - description: folder id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderSizeVM'
+          description: Returns specified folder
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Id is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Folder not found
+      summary: "Get specified folder, calculate it's size"
       tags:
       - Templates
       x-accepts: application/json
@@ -10400,6 +10722,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ExportVM'
           description: Specified report has been exported
+        "204":
+          description: Specified report has been exported
         "400":
           content:
             application/json:
@@ -10462,6 +10786,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReportVM'
+          description: Specified template has been prepared
+        "204":
           description: Specified template has been prepared
         "400":
           content:
@@ -10580,6 +10906,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExportVM'
+          description: Specified template has been prepared
+        "204":
           description: Specified template has been prepared
         "400":
           content:
@@ -11145,8 +11473,8 @@ paths:
               $ref: '#/components/schemas/UpdateFilePermissionsVM'
         description: ""
       responses:
-        "200":
-          description: Success
+        "204":
+          description: No Content
         "400":
           content:
             application/json:
@@ -11486,6 +11814,84 @@ paths:
       - Templates
       x-content-type: application/json
       x-accepts: application/json
+  /api/manage/v1/notifications:
+    delete:
+      operationId: UserNotifications_ClearNotifications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClearNotificationsVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ClearNotificationsVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ClearNotificationsVM'
+        description: ""
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+      summary: Use this endpoint to "clear" your notifications
+      tags:
+      - UserNotifications
+      x-content-type: application/json
+      x-accepts: application/json
+    get:
+      operationId: UserNotifications_GetNotifications
+      parameters:
+      - explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: take
+        required: false
+        schema:
+          default: 5
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: subscriptionId
+        required: false
+        schema:
+          default: ""
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditActionsVM'
+          description: Success
+        "204":
+          description: No Content
+      summary: Use this endpoint to recieve notifications
+      tags:
+      - UserNotifications
+      x-accepts: application/json
   /api/manage/v1/UserProfile:
     get:
       operationId: UserProfile_GetMyProfile
@@ -11522,14 +11928,16 @@ paths:
               $ref: '#/components/schemas/UpdateUserProfileVM'
         description: ""
       responses:
-        "200":
-          description: Succesfully updated
+        "204":
+          description: No Content
         "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: The reqeust is wrong
+        "200":
+          description: Succesfully updated
       summary: Update profile of the current user
       tags:
       - UserProfile
@@ -11640,8 +12048,8 @@ paths:
               $ref: '#/components/schemas/AcceptAgreementsVM'
         description: ""
       responses:
-        "200":
-          description: Success
+        "204":
+          description: No Content
       summary: Use this endpoint to accept current version of service license agreement
       tags:
       - UserSettings
@@ -11753,7 +12161,14 @@ components:
       type: object
     AuditActionVM:
       additionalProperties: false
+      discriminator:
+        mapping:
+          AuditFilePropertyChangedVM: '#/components/schemas/AuditFilePropertyChangedVM'
+          AuditSubscriptionActionVM: '#/components/schemas/AuditSubscriptionActionVM'
+          AuditTaskActionVM: '#/components/schemas/AuditTaskActionVM'
+        propertyName: $t
       example:
+        $t: $t
         creatorUserId: creatorUserId
         name: name
         createdTime: 2000-01-23T04:56:07.000+00:00
@@ -11789,6 +12204,10 @@ components:
           type: string
         adminAction:
           type: boolean
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     AuditActionsVM:
@@ -11798,7 +12217,8 @@ components:
         count: 0
         skip: 6
         items:
-        - creatorUserId: creatorUserId
+        - $t: $t
+          creatorUserId: creatorUserId
           name: name
           createdTime: 2000-01-23T04:56:07.000+00:00
           entityId: entityId
@@ -11807,7 +12227,8 @@ components:
           type: null
           userId: userId
           adminAction: true
-        - creatorUserId: creatorUserId
+        - $t: $t
+          creatorUserId: creatorUserId
           name: name
           createdTime: 2000-01-23T04:56:07.000+00:00
           entityId: entityId
@@ -11993,6 +12414,14 @@ components:
             $ref: '#/components/schemas/BreadcrumbsModel'
           nullable: true
           type: array
+      type: object
+    ClearNotificationsVM:
+      additionalProperties: false
+      example:
+        update: true
+      properties:
+        update:
+          type: boolean
       type: object
     ContactGroupVM:
       additionalProperties: false
@@ -12271,18 +12700,34 @@ components:
       allOf:
       - $ref: '#/components/schemas/CreateTransportTaskBaseVM'
       properties:
-        password:
-          maxLength: 300
-          minLength: 5
-          nullable: true
-          type: string
         body:
           maxLength: 384000
           minLength: 1
           nullable: true
           type: string
+        enableSsl:
+          type: boolean
+        from:
+          format: email
+          nullable: true
+          type: string
         isBodyHtml:
           type: boolean
+        password:
+          maxLength: 300
+          minLength: 5
+          nullable: true
+          type: string
+        port:
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        server:
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
         subject:
           maxLength: 1000
           minLength: 1
@@ -12294,50 +12739,21 @@ components:
           maxItems: 200
           nullable: true
           type: array
-        from:
-          format: email
-          nullable: true
-          type: string
         username:
           maxLength: 100
           minLength: 1
           nullable: true
           type: string
-        server:
-          maxLength: 5000
-          minLength: 1
-          nullable: true
-          type: string
-        port:
-          format: int32
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        enableSsl:
-          type: boolean
       type: object
-    CreateEndpointVM:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/EndpointVM'
-      properties:
-        bearerToken:
-          maxLength: 5000
-          minLength: 1
-          nullable: true
-          type: string
-        headers:
-          additionalProperties:
-            nullable: true
-            type: string
-          nullable: true
-          type: object
-      type: object
-      x-parent: true
     CreateExportReportTaskVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/CreateTransformTaskBaseVM'
+      discriminator:
+        mapping:
+          CreateExportReportTaskVM: '#/components/schemas/CreateExportReportTaskVM'
+          CreateExportTemplateTaskVM: '#/components/schemas/CreateExportTemplateTaskVM'
+        propertyName: $t
       properties:
         exportParameters:
           additionalProperties:
@@ -12352,8 +12768,11 @@ components:
           format: int32
           maximum: 2147483647
           minimum: 0
-          nullable: true
           type: integer
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     CreateExportTemplateTaskVM:
@@ -12374,17 +12793,16 @@ components:
       allOf:
       - $ref: '#/components/schemas/CreateTransportTaskBaseVM'
       properties:
-        ftpHost:
-          maxLength: 400
-          minLength: 1
+        archive:
+          type: boolean
+        archiveName:
           nullable: true
           type: string
-        ftpPort:
-          format: int32
+        destinationFolder:
           nullable: true
-          type: integer
-        ftpUsername:
-          maxLength: 300
+          type: string
+        ftpHost:
+          maxLength: 400
           minLength: 1
           nullable: true
           type: string
@@ -12393,13 +12811,12 @@ components:
           minLength: 4
           nullable: true
           type: string
-        destinationFolder:
-          nullable: true
-          type: string
-        archive:
-          nullable: true
-          type: boolean
-        archiveName:
+        ftpPort:
+          format: int32
+          type: integer
+        ftpUsername:
+          maxLength: 300
+          minLength: 1
           nullable: true
           type: string
         useSFTP:
@@ -12408,7 +12825,12 @@ components:
     CreateFetchTaskVM:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/CreateTransformTaskBaseVM'
+      - $ref: '#/components/schemas/CreateTaskBaseVM'
+      properties:
+        dataSourceId:
+          nullable: true
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
       type: object
     CreateGroupAdminVM:
       additionalProperties: false
@@ -12452,7 +12874,6 @@ components:
           format: int32
           maximum: 2147483647
           minimum: 0
-          nullable: true
           type: integer
         reportParameters:
           additionalProperties:
@@ -12482,13 +12903,32 @@ components:
       type: object
     CreateTaskBaseVM:
       additionalProperties: false
+      discriminator:
+        mapping:
+          CreateEmailTaskVM: '#/components/schemas/CreateEmailTaskVM'
+          CreateWebhookTaskVM: '#/components/schemas/CreateWebhookTaskVM'
+          CreateExportReportTaskVM: '#/components/schemas/CreateExportReportTaskVM'
+          CreateExportTemplateTaskVM: '#/components/schemas/CreateExportTemplateTaskVM'
+          CreatePrepareTemplateTaskVM: '#/components/schemas/CreatePrepareTemplateTaskVM'
+          CreateFetchTaskVM: '#/components/schemas/CreateFetchTaskVM'
+          CreateThumbnailReportTaskVM: '#/components/schemas/CreateThumbnailReportTaskVM'
+          CreateThumbnailTemplateTaskVM: '#/components/schemas/CreateThumbnailTemplateTaskVM'
+          CreateFTPUploadTaskVM: '#/components/schemas/CreateFTPUploadTaskVM'
+        propertyName: $t
       example:
         cronExpression: cronExpression
+        $t: $t
         delayedRunTime: 2000-01-23T04:56:07.000+00:00
         name: name
         subscriptionId: subscriptionId
-        type: null
       properties:
+        cronExpression:
+          nullable: true
+          type: string
+        delayedRunTime:
+          format: date-time
+          nullable: true
+          type: string
         name:
           maxLength: 50
           minLength: 1
@@ -12498,38 +12938,49 @@ components:
           nullable: true
           pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
-        type:
-          $ref: '#/components/schemas/TaskType'
-        delayedRunTime:
-          format: date-time
-          nullable: true
+        $t:
           type: string
-        cronExpression:
-          nullable: true
-          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     CreateThumbnailReportTaskVM:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/CreateTransformTaskBaseVM'
+      - $ref: '#/components/schemas/CreateTaskBaseVM'
+      properties:
+        reportId:
+          nullable: true
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
       type: object
     CreateThumbnailTemplateTaskVM:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/CreateTransformTaskBaseVM'
+      - $ref: '#/components/schemas/CreateTaskBaseVM'
+      properties:
+        templateId:
+          nullable: true
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
       type: object
     CreateTransformTaskBaseVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/CreateTaskBaseVM'
+      discriminator:
+        mapping:
+          CreateExportReportTaskVM: '#/components/schemas/CreateExportReportTaskVM'
+          CreateExportTemplateTaskVM: '#/components/schemas/CreateExportTemplateTaskVM'
+          CreatePrepareTemplateTaskVM: '#/components/schemas/CreatePrepareTemplateTaskVM'
+        propertyName: $t
       properties:
+        inputFile:
+          $ref: '#/components/schemas/InputFileVM'
         locale:
           nullable: true
           pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
-        inputFile:
-          $ref: '#/components/schemas/InputFileVM'
         outputFile:
           $ref: '#/components/schemas/OutputFileVM'
         transports:
@@ -12538,19 +12989,29 @@ components:
           maxItems: 10
           nullable: true
           type: array
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     CreateTransportTaskBaseVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/CreateTaskBaseVM'
+      discriminator:
+        mapping:
+          CreateEmailTaskVM: '#/components/schemas/CreateEmailTaskVM'
+          CreateWebhookTaskVM: '#/components/schemas/CreateWebhookTaskVM'
+          CreateFTPUploadTaskVM: '#/components/schemas/CreateFTPUploadTaskVM'
+        propertyName: $t
       properties:
-        files:
-          items:
-            $ref: '#/components/schemas/InputFileVM'
-          maxItems: 10
-          nullable: true
-          type: array
+        inputFile:
+          $ref: '#/components/schemas/InputFileVM'
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     CreateWebhookTaskVM:
@@ -12558,12 +13019,19 @@ components:
       allOf:
       - $ref: '#/components/schemas/CreateTransportTaskBaseVM'
       properties:
-        endpoints:
-          items:
-            $ref: '#/components/schemas/CreateEndpointVM'
-          maxItems: 5
+        headers:
+          additionalProperties:
+            nullable: true
+            type: string
+          maxLength: 100
           nullable: true
-          type: array
+          type: object
+        url:
+          format: uri
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
       type: object
     DataSourceAdministrate:
       enum:
@@ -12595,6 +13063,7 @@ components:
       - OracleDB
       - FirebirdDB
       - MongoDB
+      - ClickHouse
       type: string
       x-typeName: FastReport.Cloud.Enums.DataSourceConnectionType
     DataSourceCreate:
@@ -12745,6 +13214,7 @@ components:
         editedTime: 2000-01-23T04:56:07.000+00:00
         editorUserId: editorUserId
         name: name
+        errorMessage: errorMessage
         createdTime: 2000-01-23T04:56:07.000+00:00
         id: id
         dataStructure: dataStructure
@@ -12783,6 +13253,9 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/DataSourceStatus'
+        errorMessage:
+          nullable: true
+          type: string
       type: object
     DataSourcesVM:
       additionalProperties: false
@@ -12796,6 +13269,7 @@ components:
           editedTime: 2000-01-23T04:56:07.000+00:00
           editorUserId: editorUserId
           name: name
+          errorMessage: errorMessage
           createdTime: 2000-01-23T04:56:07.000+00:00
           id: id
           dataStructure: dataStructure
@@ -12807,6 +13281,7 @@ components:
           editedTime: 2000-01-23T04:56:07.000+00:00
           editorUserId: editorUserId
           name: name
+          errorMessage: errorMessage
           createdTime: 2000-01-23T04:56:07.000+00:00
           id: id
           dataStructure: dataStructure
@@ -12867,8 +13342,24 @@ components:
           minLength: 1
           nullable: true
           type: string
+        enableSsl:
+          type: boolean
+        from:
+          format: email
+          nullable: true
+          type: string
         isBodyHtml:
           type: boolean
+        port:
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        server:
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
         subject:
           maxLength: 1000
           minLength: 1
@@ -12881,39 +13372,12 @@ components:
           maxItems: 200
           nullable: true
           type: array
-        from:
-          format: email
-          nullable: true
-          type: string
         username:
           maxLength: 100
           minLength: 1
           nullable: true
           type: string
-        server:
-          maxLength: 5000
-          minLength: 1
-          nullable: true
-          type: string
-        port:
-          format: int32
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        enableSsl:
-          type: boolean
       type: object
-    EndpointVM:
-      additionalProperties: false
-      properties:
-        url:
-          format: uri
-          maxLength: 5000
-          minLength: 1
-          nullable: true
-          type: string
-      type: object
-      x-parent: true
     EntityType:
       enum:
       - None
@@ -13013,6 +13477,11 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/TransformTaskBaseVM'
+      discriminator:
+        mapping:
+          ExportReportTaskVM: '#/components/schemas/ExportReportTaskVM'
+          ExportTemplateTaskVM: '#/components/schemas/ExportTemplateTaskVM'
+        propertyName: $t
       properties:
         exportParameters:
           additionalProperties:
@@ -13027,8 +13496,11 @@ components:
           format: int32
           maximum: 2147483647
           minimum: 0
-          nullable: true
           type: integer
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     ExportReportVM:
@@ -13180,6 +13652,14 @@ components:
       allOf:
       - $ref: '#/components/schemas/TransportTaskBaseVM'
       properties:
+        archive:
+          type: boolean
+        archiveName:
+          nullable: true
+          type: string
+        destinationFolder:
+          nullable: true
+          type: string
         ftpHost:
           maxLength: 300
           minLength: 1
@@ -13187,20 +13667,10 @@ components:
           type: string
         ftpPort:
           format: int32
-          nullable: true
           type: integer
         ftpUsername:
           maxLength: 300
           minLength: 1
-          nullable: true
-          type: string
-        destinationFolder:
-          nullable: true
-          type: string
-        archive:
-          nullable: true
-          type: boolean
-        archiveName:
           nullable: true
           type: string
         useSFTP:
@@ -13209,7 +13679,12 @@ components:
     FetchTaskVM:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/TransformTaskBaseVM'
+      - $ref: '#/components/schemas/TaskBaseVM'
+      properties:
+        dataSourceId:
+          nullable: true
+          readOnly: true
+          type: string
       type: object
     FileAdministrate:
       enum:
@@ -13360,7 +13835,6 @@ components:
       - Template
       - Report
       - Export
-      - DataSource
       type: string
       x-typeName: FastReport.Cloud.Models.Messages.FileKind
     FilePermission:
@@ -13493,6 +13967,7 @@ components:
       example:
         statusReason: null
         size: 0
+        isDeleted: true
         name: name
         icon: icon
         errorMessage: errorMessage
@@ -13534,6 +14009,8 @@ components:
         errorMessage:
           nullable: true
           type: string
+        isDeleted:
+          type: boolean
       type: object
       x-parent: true
     FileVMFilesVMBase:
@@ -13606,6 +14083,23 @@ components:
           type: string
       required:
       - name
+      type: object
+    FolderSizeVM:
+      additionalProperties: false
+      example:
+        documentsCount: 1
+        size: 0
+        realSize: 6
+      properties:
+        size:
+          format: int64
+          type: integer
+        realSize:
+          format: int64
+          type: integer
+        documentsCount:
+          format: int64
+          type: integer
       type: object
     FolderTagsUpdateVM:
       additionalProperties: false
@@ -13878,11 +14372,6 @@ components:
           nullable: true
           pattern: "^[A-Fa-f0-9]{24}$"
           type: string
-        fileName:
-          maxLength: 250
-          minLength: 1
-          nullable: true
-          type: string
         type:
           $ref: '#/components/schemas/FileKind'
       type: object
@@ -13934,22 +14423,23 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/FileKind'
+        isTemporary:
+          type: boolean
       type: object
     PrepareTemplateTaskVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/TransformTaskBaseVM'
       properties:
-        exports:
+        exportIds:
           items:
-            $ref: '#/components/schemas/ExportReportTaskVM'
+            type: string
           nullable: true
           type: array
         pagesCount:
           format: int32
           maximum: 2147483647
           minimum: 0
-          nullable: true
           type: integer
         reportParameters:
           additionalProperties:
@@ -14249,42 +14739,22 @@ components:
       allOf:
       - $ref: '#/components/schemas/RunTransportTaskBaseVM'
       properties:
-        password:
-          maxLength: 300
-          minLength: 5
-          nullable: true
-          type: string
         body:
           maxLength: 384000
           minLength: 1
           nullable: true
           type: string
-        isBodyHtml:
+        enableSsl:
           type: boolean
-        subject:
-          maxLength: 1000
-          minLength: 1
-          nullable: true
-          type: string
-        to:
-          format: email
-          items:
-            type: string
-          maxItems: 200
-          nullable: true
-          type: array
         from:
           format: email
           nullable: true
           type: string
-        username:
-          maxLength: 100
-          minLength: 1
-          nullable: true
-          type: string
-        server:
-          maxLength: 5000
-          minLength: 1
+        isBodyHtml:
+          type: boolean
+        password:
+          maxLength: 300
+          minLength: 5
           nullable: true
           type: string
         port:
@@ -14292,18 +14762,39 @@ components:
           maximum: 2147483647
           minimum: 0
           type: integer
-        enableSsl:
-          type: boolean
-      type: object
-    RunEndpointVM:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/CreateEndpointVM'
+        server:
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
+        subject:
+          maxLength: 1000
+          minLength: 1
+          nullable: true
+          type: string
+        to:
+          items:
+            type: string
+          maxItems: 200
+          minItems: 1
+          type: array
+        username:
+          maxLength: 100
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - to
       type: object
     RunExportReportTaskVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/RunTransformTaskBaseVM'
+      discriminator:
+        mapping:
+          RunExportReportTaskVM: '#/components/schemas/RunExportReportTaskVM'
+          RunExportTemplateTaskVM: '#/components/schemas/RunExportTemplateTaskVM'
+        propertyName: $t
       properties:
         exportParameters:
           additionalProperties:
@@ -14318,8 +14809,11 @@ components:
           format: int32
           maximum: 2147483647
           minimum: 0
-          nullable: true
           type: integer
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     RunExportTemplateTaskVM:
@@ -14340,17 +14834,16 @@ components:
       allOf:
       - $ref: '#/components/schemas/RunTransportTaskBaseVM'
       properties:
-        ftpHost:
-          maxLength: 400
-          minLength: 1
+        archive:
+          type: boolean
+        archiveName:
           nullable: true
           type: string
-        ftpPort:
-          format: int32
+        destinationFolder:
           nullable: true
-          type: integer
-        ftpUsername:
-          maxLength: 300
+          type: string
+        ftpHost:
+          maxLength: 400
           minLength: 1
           nullable: true
           type: string
@@ -14359,13 +14852,12 @@ components:
           minLength: 4
           nullable: true
           type: string
-        destinationFolder:
-          nullable: true
-          type: string
-        archive:
-          nullable: true
-          type: boolean
-        archiveName:
+        ftpPort:
+          format: int32
+          type: integer
+        ftpUsername:
+          maxLength: 300
+          minLength: 1
           nullable: true
           type: string
         useSFTP:
@@ -14374,7 +14866,12 @@ components:
     RunFetchTaskVM:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/RunTransformTaskBaseVM'
+      - $ref: '#/components/schemas/RunTaskBaseVM'
+      properties:
+        dataSourceId:
+          nullable: true
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
       type: object
     RunInputFileVM:
       additionalProperties: false
@@ -14384,6 +14881,11 @@ components:
         content:
           format: byte
           maxLength: 1073741824
+          nullable: true
+          type: string
+        fileName:
+          maxLength: 250
+          minLength: 1
           nullable: true
           type: string
       type: object
@@ -14402,7 +14904,6 @@ components:
           format: int32
           maximum: 2147483647
           minimum: 0
-          nullable: true
           type: integer
         reportParameters:
           additionalProperties:
@@ -14414,39 +14915,69 @@ components:
       type: object
     RunTaskBaseVM:
       additionalProperties: false
+      discriminator:
+        mapping:
+          RunFetchTaskVM: '#/components/schemas/RunFetchTaskVM'
+          RunThumbnailReportTaskVM: '#/components/schemas/RunThumbnailReportTaskVM'
+          RunThumbnailTemplateTaskVM: '#/components/schemas/RunThumbnailTemplateTaskVM'
+          RunEmailTaskVM: '#/components/schemas/RunEmailTaskVM'
+          RunWebhookTaskVM: '#/components/schemas/RunWebhookTaskVM'
+          RunExportReportTaskVM: '#/components/schemas/RunExportReportTaskVM'
+          RunExportTemplateTaskVM: '#/components/schemas/RunExportTemplateTaskVM'
+          RunPrepareTemplateTaskVM: '#/components/schemas/RunPrepareTemplateTaskVM'
+          RunFTPUploadTaskVM: '#/components/schemas/RunFTPUploadTaskVM'
+        propertyName: $t
       example:
+        $t: $t
         subscriptionId: subscriptionId
-        type: null
       properties:
         subscriptionId:
           nullable: true
           pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
-        type:
-          $ref: '#/components/schemas/TaskType'
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     RunThumbnailReportTaskVM:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/RunTransformTaskBaseVM'
+      - $ref: '#/components/schemas/RunTaskBaseVM'
+      properties:
+        reportId:
+          nullable: true
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
       type: object
     RunThumbnailTemplateTaskVM:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/RunTransformTaskBaseVM'
+      - $ref: '#/components/schemas/RunTaskBaseVM'
+      properties:
+        templateId:
+          nullable: true
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
       type: object
     RunTransformTaskBaseVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/RunTaskBaseVM'
+      discriminator:
+        mapping:
+          RunExportReportTaskVM: '#/components/schemas/RunExportReportTaskVM'
+          RunExportTemplateTaskVM: '#/components/schemas/RunExportTemplateTaskVM'
+          RunPrepareTemplateTaskVM: '#/components/schemas/RunPrepareTemplateTaskVM'
+        propertyName: $t
       properties:
+        inputFile:
+          $ref: '#/components/schemas/RunInputFileVM'
         locale:
           nullable: true
           pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
-        inputFile:
-          $ref: '#/components/schemas/RunInputFileVM'
         outputFile:
           $ref: '#/components/schemas/OutputFileVM'
         transports:
@@ -14455,19 +14986,29 @@ components:
           maxItems: 10
           nullable: true
           type: array
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     RunTransportTaskBaseVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/RunTaskBaseVM'
+      discriminator:
+        mapping:
+          RunEmailTaskVM: '#/components/schemas/RunEmailTaskVM'
+          RunWebhookTaskVM: '#/components/schemas/RunWebhookTaskVM'
+          RunFTPUploadTaskVM: '#/components/schemas/RunFTPUploadTaskVM'
+        propertyName: $t
       properties:
-        files:
-          items:
-            $ref: '#/components/schemas/RunInputFileVM'
-          maxItems: 10
-          nullable: true
-          type: array
+        inputFile:
+          $ref: '#/components/schemas/RunInputFileVM'
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     RunWebhookTaskVM:
@@ -14475,12 +15016,19 @@ components:
       allOf:
       - $ref: '#/components/schemas/RunTransportTaskBaseVM'
       properties:
-        endpoints:
-          items:
-            $ref: '#/components/schemas/RunEndpointVM'
-          maxItems: 5
+        headers:
+          additionalProperties:
+            nullable: true
+            type: string
+          maxLength: 100
           nullable: true
-          type: array
+          type: object
+        url:
+          format: uri
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
       type: object
     SaveMode:
       enum:
@@ -14493,6 +15041,45 @@ components:
       - Custom
       type: string
       x-typeName: FastReport.Cloud.Enums.SaveMode
+    SelectedFilesForDeletingVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/SelectedFilesVM'
+      example:
+        isBin: true
+        useRegex: true
+        searchPattern: searchPattern
+        folderId: folderId
+      properties:
+        isBin:
+          type: boolean
+        folderId:
+          nullable: true
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        searchPattern:
+          nullable: true
+          type: string
+        useRegex:
+          type: boolean
+      type: object
+    SelectedFilesVM:
+      additionalProperties: false
+      properties:
+        isAllSelected:
+          type: boolean
+        files:
+          items:
+            type: string
+          nullable: true
+          type: array
+        folders:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+      x-parent: true
     ServerConfigurationVM:
       additionalProperties: false
       example:
@@ -14507,6 +15094,7 @@ components:
         title: title
         invariantLocale: invariantLocale
         slaLink: slaLink
+        updateWorkspaceLink: updateWorkspaceLink
         corporateServerMode: true
         logoLink: logoLink
         lastSLAVersion: 2000-01-23T04:56:07.000+00:00
@@ -14557,6 +15145,9 @@ components:
           nullable: true
           type: string
         authServerName:
+          nullable: true
+          type: string
+        updateWorkspaceLink:
           nullable: true
           type: string
       type: object
@@ -15516,20 +16107,47 @@ components:
       x-typeName: FastReport.Cloud.Enums.TaskPermissionsEnums.TaskAdministrate
     TaskBaseVM:
       additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/CreateTaskBaseVM'
+      discriminator:
+        mapping:
+          FetchTaskVM: '#/components/schemas/FetchTaskVM'
+          ThumbnailReportTaskVM: '#/components/schemas/ThumbnailReportTaskVM'
+          ThumbnailTemplateTaskVM: '#/components/schemas/ThumbnailTemplateTaskVM'
+          EmailTaskVM: '#/components/schemas/EmailTaskVM'
+          WebhookTaskVM: '#/components/schemas/WebhookTaskVM'
+          ExportReportTaskVM: '#/components/schemas/ExportReportTaskVM'
+          ExportTemplateTaskVM: '#/components/schemas/ExportTemplateTaskVM'
+          PrepareTemplateTaskVM: '#/components/schemas/PrepareTemplateTaskVM'
+          FTPUploadTaskVM: '#/components/schemas/FTPUploadTaskVM'
+        propertyName: $t
       example:
+        cronExpression: cronExpression
+        $t: $t
+        delayedRunTime: 2000-01-23T04:56:07.000+00:00
         delayedWasRunTime: 2000-01-23T04:56:07.000+00:00
         recurrentWasRunTime: 2000-01-23T04:56:07.000+00:00
         recurrentRunTime: 2000-01-23T04:56:07.000+00:00
+        name: name
         id: id
+        subscriptionId: subscriptionId
       properties:
+        cronExpression:
+          nullable: true
+          type: string
+        delayedRunTime:
+          format: date-time
+          nullable: true
+          type: string
+        delayedWasRunTime:
+          format: date-time
+          nullable: true
+          type: string
         id:
           nullable: true
           pattern: "^[A-Fa-f0-9]{24}$"
           type: string
-        delayedWasRunTime:
-          format: date-time
+        name:
+          maxLength: 50
+          minLength: 1
           nullable: true
           type: string
         recurrentRunTime:
@@ -15542,6 +16160,14 @@ components:
           nullable: true
           readOnly: true
           type: string
+        subscriptionId:
+          nullable: true
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     TaskCreate:
@@ -15695,19 +16321,6 @@ components:
           nullable: true
           type: boolean
       type: object
-    TaskType:
-      enum:
-      - ExportTemplate
-      - ExportReport
-      - Prepare
-      - Fetch
-      - Email
-      - Webhook
-      - ThumbnailTemplate
-      - ThumbnailReport
-      - FTPUpload
-      type: string
-      x-typeName: FastReport.Cloud.ViewModels.Tasks.TaskType
     TaskUpdate:
       enum:
       - 0
@@ -15723,14 +16336,6 @@ components:
       - All
       x-enumFlags: true
       x-typeName: FastReport.Cloud.Enums.TaskPermissionsEnums.TaskUpdate
-    TaskUpdateArrayType:
-      enum:
-      - Add
-      - Remove
-      - Replace
-      - Update
-      type: string
-      x-typeName: FastReport.Cloud.RabbitMQService.Enums.TaskUpdateArrayType
     TasksVM:
       additionalProperties: false
       example:
@@ -15738,14 +16343,24 @@ components:
         count: 0
         skip: 6
         tasks:
-        - delayedWasRunTime: 2000-01-23T04:56:07.000+00:00
+        - cronExpression: cronExpression
+          $t: $t
+          delayedRunTime: 2000-01-23T04:56:07.000+00:00
+          delayedWasRunTime: 2000-01-23T04:56:07.000+00:00
           recurrentWasRunTime: 2000-01-23T04:56:07.000+00:00
           recurrentRunTime: 2000-01-23T04:56:07.000+00:00
+          name: name
           id: id
-        - delayedWasRunTime: 2000-01-23T04:56:07.000+00:00
+          subscriptionId: subscriptionId
+        - cronExpression: cronExpression
+          $t: $t
+          delayedRunTime: 2000-01-23T04:56:07.000+00:00
+          delayedWasRunTime: 2000-01-23T04:56:07.000+00:00
           recurrentWasRunTime: 2000-01-23T04:56:07.000+00:00
           recurrentRunTime: 2000-01-23T04:56:07.000+00:00
+          name: name
           id: id
+          subscriptionId: subscriptionId
       properties:
         count:
           format: int64
@@ -15839,12 +16454,22 @@ components:
     ThumbnailReportTaskVM:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/TransformTaskBaseVM'
+      - $ref: '#/components/schemas/TaskBaseVM'
+      properties:
+        reportId:
+          nullable: true
+          readOnly: true
+          type: string
       type: object
     ThumbnailTemplateTaskVM:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/TransformTaskBaseVM'
+      - $ref: '#/components/schemas/TaskBaseVM'
+      properties:
+        templateId:
+          nullable: true
+          readOnly: true
+          type: string
       type: object
     TimePeriodType:
       enum:
@@ -15862,32 +16487,49 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/TaskBaseVM'
+      discriminator:
+        mapping:
+          ExportReportTaskVM: '#/components/schemas/ExportReportTaskVM'
+          ExportTemplateTaskVM: '#/components/schemas/ExportTemplateTaskVM'
+          PrepareTemplateTaskVM: '#/components/schemas/PrepareTemplateTaskVM'
+        propertyName: $t
       properties:
+        inputFile:
+          $ref: '#/components/schemas/InputFileVM'
         locale:
           nullable: true
           pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
-        inputFile:
-          $ref: '#/components/schemas/InputFileVM'
         outputFile:
           $ref: '#/components/schemas/OutputFileVM'
-        transports:
+        transportIds:
           items:
-            $ref: '#/components/schemas/TransportTaskBaseVM'
+            type: string
           nullable: true
           type: array
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     TransportTaskBaseVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/TaskBaseVM'
+      discriminator:
+        mapping:
+          EmailTaskVM: '#/components/schemas/EmailTaskVM'
+          WebhookTaskVM: '#/components/schemas/WebhookTaskVM'
+          FTPUploadTaskVM: '#/components/schemas/FTPUploadTaskVM'
+        propertyName: $t
       properties:
-        files:
-          items:
-            $ref: '#/components/schemas/InputFileVM'
-          nullable: true
-          type: array
+        inputFile:
+          $ref: '#/components/schemas/InputFileVM'
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     UpdateContactGroupVM:
@@ -15978,8 +16620,8 @@ components:
       additionalProperties: false
       example:
         taskPermissions:
-          newPermissions: null
           administrate: null
+          newPermissions: null
         groupPermissions:
           newPermissions: null
           administrate: null
@@ -16004,19 +16646,35 @@ components:
       allOf:
       - $ref: '#/components/schemas/UpdateTransportTaskBaseVM'
       properties:
-        password:
-          maxLength: 300
-          minLength: 5
-          nullable: true
-          type: string
         body:
           maxLength: 384000
           minLength: 1
           nullable: true
           type: string
+        enableSsl:
+          nullable: true
+          type: boolean
+        from:
+          format: email
+          nullable: true
+          type: string
         isBodyHtml:
           nullable: true
           type: boolean
+        password:
+          maxLength: 300
+          minLength: 5
+          nullable: true
+          type: string
+        port:
+          format: int32
+          nullable: true
+          type: integer
+        server:
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
         subject:
           maxLength: 1000
           minLength: 1
@@ -16028,51 +16686,21 @@ components:
           maxItems: 200
           nullable: true
           type: array
-        toUpdateType:
-          $ref: '#/components/schemas/TaskUpdateArrayType'
-        from:
-          format: email
-          nullable: true
-          type: string
         username:
           maxLength: 100
           minLength: 1
           nullable: true
           type: string
-        server:
-          maxLength: 5000
-          minLength: 1
-          nullable: true
-          type: string
-        port:
-          format: int32
-          nullable: true
-          type: integer
-        enableSsl:
-          nullable: true
-          type: boolean
-      type: object
-    UpdateEndpointVM:
-      additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/EndpointVM'
-      properties:
-        bearerToken:
-          maxLength: 5000
-          minLength: 1
-          nullable: true
-          type: string
-        headers:
-          additionalProperties:
-            nullable: true
-            type: string
-          nullable: true
-          type: object
       type: object
     UpdateExportReportTaskVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/UpdateTransformTaskBaseVM'
+      discriminator:
+        mapping:
+          UpdateExportReportTaskVM: '#/components/schemas/UpdateExportReportTaskVM'
+          UpdateExportTemplateTaskVM: '#/components/schemas/UpdateExportTemplateTaskVM'
+        propertyName: $t
       properties:
         exportParameters:
           additionalProperties:
@@ -16093,6 +16721,10 @@ components:
           minimum: 0
           nullable: true
           type: integer
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     UpdateExportTemplateTaskVM:
@@ -16113,9 +16745,23 @@ components:
       allOf:
       - $ref: '#/components/schemas/UpdateTransportTaskBaseVM'
       properties:
+        archive:
+          nullable: true
+          type: boolean
+        archiveName:
+          nullable: true
+          type: string
+        destinationFolder:
+          nullable: true
+          type: string
         ftpHost:
           maxLength: 400
           minLength: 1
+          nullable: true
+          type: string
+        ftpPassword:
+          maxLength: 300
+          minLength: 4
           nullable: true
           type: string
         ftpPort:
@@ -16127,27 +16773,19 @@ components:
           minLength: 1
           nullable: true
           type: string
-        ftpPassword:
-          maxLength: 300
-          minLength: 4
-          nullable: true
-          type: string
-        destinationFolder:
-          nullable: true
-          type: string
-        archive:
-          nullable: true
-          type: boolean
-        archiveName:
-          nullable: true
-          type: string
         useSFTP:
+          nullable: true
           type: boolean
       type: object
     UpdateFetchTaskVM:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/UpdateTransformTaskBaseVM'
+      - $ref: '#/components/schemas/UpdateTaskBaseVM'
+      properties:
+        dataSourceId:
+          nullable: true
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
       type: object
     UpdateFileContentVM:
       additionalProperties: false
@@ -16194,9 +16832,9 @@ components:
       allOf:
       - $ref: '#/components/schemas/UpdateTransformTaskBaseVM'
       properties:
-        exports:
+        exportIds:
           items:
-            $ref: '#/components/schemas/UpdateExportReportTaskVM'
+            type: string
           maxItems: 10
           nullable: true
           type: array
@@ -16242,43 +16880,53 @@ components:
       type: object
     UpdateTaskBaseVM:
       additionalProperties: false
+      discriminator:
+        mapping:
+          UpdateTaskBaseVM: '#/components/schemas/UpdateTaskBaseVM'
+          UpdateFetchTaskVM: '#/components/schemas/UpdateFetchTaskVM'
+          UpdateThumbnailReportTaskVM: '#/components/schemas/UpdateThumbnailReportTaskVM'
+          UpdateThumbnailTemplateTaskVM: '#/components/schemas/UpdateThumbnailTemplateTaskVM'
+          UpdateEmailTaskVM: '#/components/schemas/UpdateEmailTaskVM'
+          UpdateWebhookTaskVM: '#/components/schemas/UpdateWebhookTaskVM'
+          UpdateExportReportTaskVM: '#/components/schemas/UpdateExportReportTaskVM'
+          UpdateExportTemplateTaskVM: '#/components/schemas/UpdateExportTemplateTaskVM'
+          UpdatePrepareTemplateTaskVM: '#/components/schemas/UpdatePrepareTemplateTaskVM'
+          UpdateFTPUploadTaskVM: '#/components/schemas/UpdateFTPUploadTaskVM'
+        propertyName: $t
       example:
         cronExpression: cronExpression
+        $t: $t
         delayedRunTime: 2000-01-23T04:56:07.000+00:00
         name: name
-        subscriptionId: subscriptionId
-        type: null
       properties:
+        cronExpression:
+          nullable: true
+          type: string
+        delayedRunTime:
+          format: date-time
+          nullable: true
+          type: string
         name:
           maxLength: 50
           minLength: 1
           nullable: true
           type: string
-        subscriptionId:
-          nullable: true
-          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+        $t:
           type: string
-        type:
-          $ref: '#/components/schemas/TaskType'
-        delayedRunTime:
-          format: date-time
-          nullable: true
-          type: string
-        cronExpression:
-          nullable: true
-          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     UpdateTaskPermissionsVM:
       additionalProperties: false
       example:
-        newPermissions: null
         administrate: null
+        newPermissions: null
       properties:
-        newPermissions:
-          $ref: '#/components/schemas/TaskPermissions'
         administrate:
           $ref: '#/components/schemas/TaskAdministrate'
+        newPermissions:
+          $ref: '#/components/schemas/TaskPermissions'
       required:
       - administrate
       - newPermissions
@@ -16286,51 +16934,71 @@ components:
     UpdateThumbnailReportTaskVM:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/UpdateTransformTaskBaseVM'
+      - $ref: '#/components/schemas/UpdateTaskBaseVM'
+      properties:
+        reportId:
+          nullable: true
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
       type: object
     UpdateThumbnailTemplateTaskVM:
       additionalProperties: false
       allOf:
-      - $ref: '#/components/schemas/UpdateTransformTaskBaseVM'
+      - $ref: '#/components/schemas/UpdateTaskBaseVM'
+      properties:
+        templateId:
+          nullable: true
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
       type: object
     UpdateTransformTaskBaseVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/UpdateTaskBaseVM'
+      discriminator:
+        mapping:
+          UpdateExportReportTaskVM: '#/components/schemas/UpdateExportReportTaskVM'
+          UpdateExportTemplateTaskVM: '#/components/schemas/UpdateExportTemplateTaskVM'
+          UpdatePrepareTemplateTaskVM: '#/components/schemas/UpdatePrepareTemplateTaskVM'
+        propertyName: $t
       properties:
+        inputFile:
+          $ref: '#/components/schemas/InputFileVM'
         locale:
           nullable: true
           pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
-        inputFile:
-          $ref: '#/components/schemas/InputFileVM'
         outputFile:
           $ref: '#/components/schemas/OutputFileVM'
-        transports:
+        transportIds:
           items:
-            $ref: '#/components/schemas/UpdateTransportTaskBaseVM'
+            type: string
           maxItems: 10
           nullable: true
           type: array
-        transportsUpdateType:
-          $ref: '#/components/schemas/TaskUpdateArrayType'
+        $t:
+          type: string
+      required:
+      - $t
       type: object
       x-parent: true
     UpdateTransportTaskBaseVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/UpdateTaskBaseVM'
+      discriminator:
+        mapping:
+          UpdateEmailTaskVM: '#/components/schemas/UpdateEmailTaskVM'
+          UpdateWebhookTaskVM: '#/components/schemas/UpdateWebhookTaskVM'
+          UpdateFTPUploadTaskVM: '#/components/schemas/UpdateFTPUploadTaskVM'
+        propertyName: $t
       properties:
-        files:
-          items:
-            $ref: '#/components/schemas/InputFileVM'
-          maxItems: 10
-          nullable: true
-          type: array
-        id:
-          nullable: true
-          pattern: "^[A-Fa-f0-9]{24}$"
+        inputFile:
+          $ref: '#/components/schemas/InputFileVM'
+        $t:
           type: string
+      required:
+      - $t
       type: object
       x-parent: true
     UpdateUserProfileVM:
@@ -16372,6 +17040,9 @@ components:
     UpdateUserSettingsVM:
       additionalProperties: false
       example:
+        subscribedNotifications:
+        - null
+        - null
         profileVisibility: ""
         defaultSubscription: defaultSubscription
         showHiddenFilesAndFolders: true
@@ -16388,18 +17059,30 @@ components:
         showHiddenFilesAndFolders:
           nullable: true
           type: boolean
+        subscribedNotifications:
+          items:
+            $ref: '#/components/schemas/AuditType'
+          nullable: true
+          type: array
       type: object
     UpdateWebhookTaskVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/UpdateTransportTaskBaseVM'
       properties:
-        endpoints:
-          items:
-            $ref: '#/components/schemas/UpdateEndpointVM'
-          maxItems: 5
+        headers:
+          additionalProperties:
+            nullable: true
+            type: string
+          maxLength: 100
           nullable: true
-          type: array
+          type: object
+        url:
+          format: uri
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
       type: object
     UserProfileVM:
       additionalProperties: false
@@ -16428,6 +17111,9 @@ components:
     UserSettingsVM:
       additionalProperties: false
       example:
+        subscribedNotifications:
+        - null
+        - null
         profileVisibility: null
         defaultSubscription: defaultSubscription
         showHiddenFilesAndFolders: true
@@ -16445,18 +17131,29 @@ components:
           format: date-time
           nullable: true
           type: string
+        subscribedNotifications:
+          items:
+            $ref: '#/components/schemas/AuditType'
+          nullable: true
+          type: array
       type: object
     WebhookTaskVM:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/TransportTaskBaseVM'
       properties:
-        endpoints:
-          items:
-            $ref: '#/components/schemas/EndpointVM'
-          maxItems: 5
+        headers:
+          additionalProperties:
+            nullable: true
+            type: string
           nullable: true
-          type: array
+          type: object
+        url:
+          format: uri
+          maxLength: 5000
+          minLength: 1
+          nullable: true
+          type: string
       type: object
   securitySchemes:
     JWT:

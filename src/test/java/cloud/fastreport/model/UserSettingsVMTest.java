@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.AuditType;
 import cloud.fastreport.model.ProfileVisibility;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -73,6 +76,14 @@ public class UserSettingsVMTest {
     @Test
     public void slaAcceptedDateTimeTest() {
         // TODO: test slaAcceptedDateTime
+    }
+
+    /**
+     * Test the property 'subscribedNotifications'
+     */
+    @Test
+    public void subscribedNotificationsTest() {
+        // TODO: test subscribedNotifications
     }
 
 }

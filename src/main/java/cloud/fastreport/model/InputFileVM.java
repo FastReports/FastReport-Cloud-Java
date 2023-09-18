@@ -33,16 +33,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
   InputFileVM.JSON_PROPERTY_ENTITY_ID,
-  InputFileVM.JSON_PROPERTY_FILE_NAME,
   InputFileVM.JSON_PROPERTY_TYPE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InputFileVM {
   public static final String JSON_PROPERTY_ENTITY_ID = "entityId";
   private JsonNullable<String> entityId = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_FILE_NAME = "fileName";
-  private JsonNullable<String> fileName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private FileKind type;
@@ -84,40 +80,6 @@ public class InputFileVM {
   }
 
 
-  public InputFileVM fileName(String fileName) {
-    this.fileName = JsonNullable.<String>of(fileName);
-    
-    return this;
-  }
-
-   /**
-   * Get fileName
-   * @return fileName
-  **/
-  @javax.annotation.Nullable
-  @JsonIgnore
-
-  public String getFileName() {
-        return fileName.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FILE_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getFileName_JsonNullable() {
-    return fileName;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FILE_NAME)
-  public void setFileName_JsonNullable(JsonNullable<String> fileName) {
-    this.fileName = fileName;
-  }
-
-  public void setFileName(String fileName) {
-    this.fileName = JsonNullable.<String>of(fileName);
-  }
-
-
   public InputFileVM type(FileKind type) {
     
     this.type = type;
@@ -154,7 +116,6 @@ public class InputFileVM {
     }
     InputFileVM inputFileVM = (InputFileVM) o;
     return equalsNullable(this.entityId, inputFileVM.entityId) &&
-        equalsNullable(this.fileName, inputFileVM.fileName) &&
         Objects.equals(this.type, inputFileVM.type);
   }
 
@@ -164,7 +125,7 @@ public class InputFileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(entityId), hashCodeNullable(fileName), type);
+    return Objects.hash(hashCodeNullable(entityId), type);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -179,7 +140,6 @@ public class InputFileVM {
     StringBuilder sb = new StringBuilder();
     sb.append("class InputFileVM {\n");
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
-    sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();

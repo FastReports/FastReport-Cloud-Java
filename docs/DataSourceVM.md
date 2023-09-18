@@ -18,6 +18,7 @@
 |**createdTime** | **OffsetDateTime** |  |  [optional] |
 |**creatorUserId** | **String** |  |  [optional] |
 |**status** | **DataSourceStatus** |  |  [optional] |
+|**errorMessage** | **String** |  |  [optional] |
 
 
 

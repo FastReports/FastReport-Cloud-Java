@@ -48,7 +48,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ServerConfigurationVM.JSON_PROPERTY_FIRST_STEPS_VIDEO_LINK,
   ServerConfigurationVM.JSON_PROPERTY_ABOUT_LINK,
   ServerConfigurationVM.JSON_PROPERTY_HOME_PAGE_LINK,
-  ServerConfigurationVM.JSON_PROPERTY_AUTH_SERVER_NAME
+  ServerConfigurationVM.JSON_PROPERTY_AUTH_SERVER_NAME,
+  ServerConfigurationVM.JSON_PROPERTY_UPDATE_WORKSPACE_LINK
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ServerConfigurationVM {
@@ -96,6 +97,9 @@ public class ServerConfigurationVM {
 
   public static final String JSON_PROPERTY_AUTH_SERVER_NAME = "authServerName";
   private JsonNullable<String> authServerName = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_UPDATE_WORKSPACE_LINK = "updateWorkspaceLink";
+  private JsonNullable<String> updateWorkspaceLink = JsonNullable.<String>undefined();
 
   public ServerConfigurationVM() {
   }
@@ -570,6 +574,40 @@ public class ServerConfigurationVM {
   }
 
 
+  public ServerConfigurationVM updateWorkspaceLink(String updateWorkspaceLink) {
+    this.updateWorkspaceLink = JsonNullable.<String>of(updateWorkspaceLink);
+    
+    return this;
+  }
+
+   /**
+   * Get updateWorkspaceLink
+   * @return updateWorkspaceLink
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getUpdateWorkspaceLink() {
+        return updateWorkspaceLink.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_UPDATE_WORKSPACE_LINK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getUpdateWorkspaceLink_JsonNullable() {
+    return updateWorkspaceLink;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_UPDATE_WORKSPACE_LINK)
+  public void setUpdateWorkspaceLink_JsonNullable(JsonNullable<String> updateWorkspaceLink) {
+    this.updateWorkspaceLink = updateWorkspaceLink;
+  }
+
+  public void setUpdateWorkspaceLink(String updateWorkspaceLink) {
+    this.updateWorkspaceLink = JsonNullable.<String>of(updateWorkspaceLink);
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -593,7 +631,8 @@ public class ServerConfigurationVM {
         equalsNullable(this.firstStepsVideoLink, serverConfigurationVM.firstStepsVideoLink) &&
         equalsNullable(this.aboutLink, serverConfigurationVM.aboutLink) &&
         equalsNullable(this.homePageLink, serverConfigurationVM.homePageLink) &&
-        equalsNullable(this.authServerName, serverConfigurationVM.authServerName);
+        equalsNullable(this.authServerName, serverConfigurationVM.authServerName) &&
+        equalsNullable(this.updateWorkspaceLink, serverConfigurationVM.updateWorkspaceLink);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -602,7 +641,7 @@ public class ServerConfigurationVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(title), hashCodeNullable(logoLink), hashCodeNullable(copyright), corporateServerMode, hashCodeNullable(lastSLAVersion), isDisabled, frontend, hashCodeNullable(invariantLocale), auth, designerForAnons, hashCodeNullable(slaLink), hashCodeNullable(firstStepsVideoLink), hashCodeNullable(aboutLink), hashCodeNullable(homePageLink), hashCodeNullable(authServerName));
+    return Objects.hash(hashCodeNullable(title), hashCodeNullable(logoLink), hashCodeNullable(copyright), corporateServerMode, hashCodeNullable(lastSLAVersion), isDisabled, frontend, hashCodeNullable(invariantLocale), auth, designerForAnons, hashCodeNullable(slaLink), hashCodeNullable(firstStepsVideoLink), hashCodeNullable(aboutLink), hashCodeNullable(homePageLink), hashCodeNullable(authServerName), hashCodeNullable(updateWorkspaceLink));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -631,6 +670,7 @@ public class ServerConfigurationVM {
     sb.append("    aboutLink: ").append(toIndentedString(aboutLink)).append("\n");
     sb.append("    homePageLink: ").append(toIndentedString(homePageLink)).append("\n");
     sb.append("    authServerName: ").append(toIndentedString(authServerName)).append("\n");
+    sb.append("    updateWorkspaceLink: ").append(toIndentedString(updateWorkspaceLink)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**files** | [**List&lt;RunInputFileVM&gt;**](RunInputFileVM.md) |  |  [optional] |
+|**inputFile** | [**RunInputFileVM**](RunInputFileVM.md) |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

@@ -312,7 +312,7 @@ public class DataSourcesApi {
 
   /**
     * This should connect to a database and set data structure
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
@@ -327,7 +327,7 @@ public class DataSourcesApi {
 
   /**
     * This should connect to a database and set data structure
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
@@ -926,7 +926,7 @@ public class DataSourcesApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
@@ -942,7 +942,7 @@ public class DataSourcesApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden

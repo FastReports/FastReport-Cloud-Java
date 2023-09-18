@@ -22,6 +22,7 @@
 |**aboutLink** | **String** |  |  [optional] |
 |**homePageLink** | **String** |  |  [optional] |
 |**authServerName** | **String** |  |  [optional] |
+|**updateWorkspaceLink** | **String** |  |  [optional] |
 
 
 

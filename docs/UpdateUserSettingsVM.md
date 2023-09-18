@@ -10,6 +10,7 @@
 |**profileVisibility** | [**ProfileVisibility**](ProfileVisibility.md) |  |  [optional] |
 |**defaultSubscription** | **String** |  |  [optional] |
 |**showHiddenFilesAndFolders** | **Boolean** |  |  [optional] |
+|**subscribedNotifications** | **List&lt;AuditType&gt;** |  |  [optional] |
 
 
 

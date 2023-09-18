@@ -44,7 +44,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   DataSourceVM.JSON_PROPERTY_EDITOR_USER_ID,
   DataSourceVM.JSON_PROPERTY_CREATED_TIME,
   DataSourceVM.JSON_PROPERTY_CREATOR_USER_ID,
-  DataSourceVM.JSON_PROPERTY_STATUS
+  DataSourceVM.JSON_PROPERTY_STATUS,
+  DataSourceVM.JSON_PROPERTY_ERROR_MESSAGE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DataSourceVM {
@@ -80,6 +81,9 @@ public class DataSourceVM {
 
   public static final String JSON_PROPERTY_STATUS = "status";
   private DataSourceStatus status;
+
+  public static final String JSON_PROPERTY_ERROR_MESSAGE = "errorMessage";
+  private JsonNullable<String> errorMessage = JsonNullable.<String>undefined();
 
   public DataSourceVM() {
   }
@@ -426,6 +430,40 @@ public class DataSourceVM {
   }
 
 
+  public DataSourceVM errorMessage(String errorMessage) {
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
+    
+    return this;
+  }
+
+   /**
+   * Get errorMessage
+   * @return errorMessage
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getErrorMessage() {
+        return errorMessage.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_ERROR_MESSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getErrorMessage_JsonNullable() {
+    return errorMessage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_MESSAGE)
+  public void setErrorMessage_JsonNullable(JsonNullable<String> errorMessage) {
+    this.errorMessage = errorMessage;
+  }
+
+  public void setErrorMessage(String errorMessage) {
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -445,7 +483,8 @@ public class DataSourceVM {
         equalsNullable(this.editorUserId, dataSourceVM.editorUserId) &&
         Objects.equals(this.createdTime, dataSourceVM.createdTime) &&
         equalsNullable(this.creatorUserId, dataSourceVM.creatorUserId) &&
-        Objects.equals(this.status, dataSourceVM.status);
+        Objects.equals(this.status, dataSourceVM.status) &&
+        equalsNullable(this.errorMessage, dataSourceVM.errorMessage);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -454,7 +493,7 @@ public class DataSourceVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(id), hashCodeNullable(name), connectionType, hashCodeNullable(connectionString), hashCodeNullable(dataStructure), hashCodeNullable(subscriptionId), editedTime, hashCodeNullable(editorUserId), createdTime, hashCodeNullable(creatorUserId), status);
+    return Objects.hash(hashCodeNullable(id), hashCodeNullable(name), connectionType, hashCodeNullable(connectionString), hashCodeNullable(dataStructure), hashCodeNullable(subscriptionId), editedTime, hashCodeNullable(editorUserId), createdTime, hashCodeNullable(creatorUserId), status, hashCodeNullable(errorMessage));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -479,6 +518,7 @@ public class DataSourceVM {
     sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
     sb.append("    creatorUserId: ").append(toIndentedString(creatorUserId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
     sb.append("}");
     return sb.toString();
   }

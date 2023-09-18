@@ -17,6 +17,7 @@ import cloud.fastreport.model.FilesVM;
 import cloud.fastreport.model.FolderCreateVM;
 import cloud.fastreport.model.FolderIconVM;
 import cloud.fastreport.model.FolderRenameVM;
+import cloud.fastreport.model.FolderSizeVM;
 import cloud.fastreport.model.FolderTagsUpdateVM;
 import cloud.fastreport.model.PreviewReportVM;
 import cloud.fastreport.model.ProblemDetails;
@@ -24,6 +25,7 @@ import cloud.fastreport.model.ReportCreateVM;
 import cloud.fastreport.model.ReportFolderCreateVM;
 import cloud.fastreport.model.ReportVM;
 import cloud.fastreport.model.ReportsVM;
+import cloud.fastreport.model.SelectedFilesForDeletingVM;
 import cloud.fastreport.model.UpdateFilePermissionsVM;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -142,6 +144,108 @@ public class ReportsApi {
 
         HttpContent content = null;
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
+    }
+
+
+  /**
+    * Delete folders and files
+    * User with a Delete permission can access this method.
+    * <p><b>204</b> - All folders and files have been deleted
+    * <p><b>400</b> - FolderId is null
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - File or folder not found
+    * @param subscriptionId id of current subscription
+    * @param selectedFilesForDeletingVM VM with files&#39; ids and params of their destination
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void reportFolderAndFileDeleteFiles(String subscriptionId, SelectedFilesForDeletingVM selectedFilesForDeletingVM) throws IOException {
+        reportFolderAndFileDeleteFilesForHttpResponse(subscriptionId, selectedFilesForDeletingVM);
+    }
+
+  /**
+    * Delete folders and files
+    * User with a Delete permission can access this method.
+    * <p><b>204</b> - All folders and files have been deleted
+    * <p><b>400</b> - FolderId is null
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - File or folder not found
+    * @param subscriptionId id of current subscription
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void reportFolderAndFileDeleteFiles(SelectedFilesForDeletingVM selectedFilesForDeletingVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        reportFolderAndFileDeleteFilesForHttpResponse(selectedFilesForDeletingVM, subscriptionId, params);
+    }
+
+    public HttpResponse reportFolderAndFileDeleteFilesForHttpResponse(String subscriptionId, SelectedFilesForDeletingVM selectedFilesForDeletingVM) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling reportFolderAndFileDeleteFiles");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/{subscriptionId}/DeleteFiles");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesForDeletingVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+      public HttpResponse reportFolderAndFileDeleteFilesForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesForDeletingVM, String mediaType) throws IOException {
+          // verify the required parameter 'subscriptionId' is set
+              if (subscriptionId == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling reportFolderAndFileDeleteFiles");
+              }
+                  // create a map of path variables
+                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
+                      uriVariables.put("subscriptionId", subscriptionId);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/{subscriptionId}/DeleteFiles");
+
+              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+              HttpContent content = selectedFilesForDeletingVM == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesForDeletingVM);
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+      }
+
+    public HttpResponse reportFolderAndFileDeleteFilesForHttpResponse(SelectedFilesForDeletingVM selectedFilesForDeletingVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling reportFolderAndFileDeleteFiles");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/{subscriptionId}/DeleteFiles");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesForDeletingVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -645,6 +749,94 @@ public class ReportsApi {
 
         HttpContent content = new EmptyContent();
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+
+  /**
+    * Get specified folder, calculate it&#39;s size
+    * User with a Get Entity permission can access this method.
+    * <p><b>200</b> - Returns specified folder
+    * <p><b>400</b> - Id is null
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - Folder not found
+    * @param id folder id
+    * @return FolderSizeVM
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public FolderSizeVM reportFoldersCalculateFolderSize(String id) throws IOException {
+        HttpResponse response = reportFoldersCalculateFolderSizeForHttpResponse(id);
+        TypeReference<FolderSizeVM> typeRef = new TypeReference<FolderSizeVM>() {};
+        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+  /**
+    * Get specified folder, calculate it&#39;s size
+    * User with a Get Entity permission can access this method.
+    * <p><b>200</b> - Returns specified folder
+    * <p><b>400</b> - Id is null
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - Folder not found
+    * @param id folder id
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @return FolderSizeVM
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public FolderSizeVM reportFoldersCalculateFolderSize(String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = reportFoldersCalculateFolderSizeForHttpResponse(id, params);
+        TypeReference<FolderSizeVM> typeRef = new TypeReference<FolderSizeVM>() {};
+        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+    public HttpResponse reportFoldersCalculateFolderSizeForHttpResponse(String id) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportFoldersCalculateFolderSize");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/Folder/{id}/size");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+    }
+
+    public HttpResponse reportFoldersCalculateFolderSizeForHttpResponse(String id, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling reportFoldersCalculateFolderSize");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Reports/Folder/{id}/size");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -2253,7 +2445,7 @@ public class ReportsApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
@@ -2269,7 +2461,7 @@ public class ReportsApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
@@ -2655,6 +2847,7 @@ public class ReportsApi {
     * Export specified report to a specified format
     * User with Execute Export permission on prepared report and  Create Entity on an export folder can access this method.
     * <p><b>200</b> - Specified report has been exported
+    * <p><b>204</b> - Specified report has been exported
     * <p><b>400</b> - Report Id is null
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>402</b> - Subscription is outdated
@@ -2674,6 +2867,7 @@ public class ReportsApi {
     * Export specified report to a specified format
     * User with Execute Export permission on prepared report and  Create Entity on an export folder can access this method.
     * <p><b>200</b> - Specified report has been exported
+    * <p><b>204</b> - Specified report has been exported
     * <p><b>400</b> - Report Id is null
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>402</b> - Subscription is outdated
@@ -3692,6 +3886,7 @@ public class ReportsApi {
   /**
     * Make preview for the report.  Generate a new or return exist prepared svg files.  If template was changed will be returned a new.  Pass the &#x60;&#x60; parameter to check prepared timestamp
     * <p><b>200</b> - Specified template has been prepared
+    * <p><b>204</b> - Specified template has been prepared
     * <p><b>400</b> - Template Id is null
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>402</b> - Subscription is outdated
@@ -3710,6 +3905,7 @@ public class ReportsApi {
   /**
     * Make preview for the report.  Generate a new or return exist prepared svg files.  If template was changed will be returned a new.  Pass the &#x60;&#x60; parameter to check prepared timestamp
     * <p><b>200</b> - Specified template has been prepared
+    * <p><b>204</b> - Specified template has been prepared
     * <p><b>400</b> - Template Id is null
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>402</b> - Subscription is outdated
@@ -3911,7 +4107,7 @@ public class ReportsApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
@@ -3927,7 +4123,7 @@ public class ReportsApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden

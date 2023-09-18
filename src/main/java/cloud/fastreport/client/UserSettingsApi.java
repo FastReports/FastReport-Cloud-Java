@@ -46,7 +46,7 @@ public class UserSettingsApi {
 
   /**
     * Use this endpoint to accept current version of service license agreement
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * @param acceptAgreementsVM 
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -56,7 +56,7 @@ public class UserSettingsApi {
 
   /**
     * Use this endpoint to accept current version of service license agreement
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/

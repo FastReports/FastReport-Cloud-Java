@@ -1,13 +1,13 @@
 
 
-# EndpointVM
+# ClearNotificationsVM
 
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**url** | **URI** |  |  [optional] |
+|**update** | **Boolean** |  |  [optional] |
 
 
 

@@ -5,10 +5,12 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**reportFolderAndFileClearRecycleBin**](ReportsApi.md#reportFolderAndFileClearRecycleBin) | **DELETE** /api/rp/v1/Reports/{subscriptionId}/ClearRecycleBin | Delete all folders and files from recycle bin |
+| [**reportFolderAndFileDeleteFiles**](ReportsApi.md#reportFolderAndFileDeleteFiles) | **POST** /api/rp/v1/Reports/{subscriptionId}/DeleteFiles | Delete folders and files |
 | [**reportFolderAndFileGetCount**](ReportsApi.md#reportFolderAndFileGetCount) | **GET** /api/rp/v1/Reports/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder |
 | [**reportFolderAndFileGetFoldersAndFiles**](ReportsApi.md#reportFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Reports/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder |
 | [**reportFolderAndFileGetRecycleBinFoldersAndFiles**](ReportsApi.md#reportFolderAndFileGetRecycleBinFoldersAndFiles) | **GET** /api/rp/v1/Reports/{subscriptionId}/ListRecycleBinFolderAndFiles | Get all folders and files from recycle bin |
 | [**reportFolderAndFileRecoverAllFromRecycleBin**](ReportsApi.md#reportFolderAndFileRecoverAllFromRecycleBin) | **POST** /api/rp/v1/Reports/{subscriptionId}/RecoverRecycleBin | Recover all folders and files from recycle bin |
+| [**reportFoldersCalculateFolderSize**](ReportsApi.md#reportFoldersCalculateFolderSize) | **GET** /api/rp/v1/Reports/Folder/{id}/size | Get specified folder, calculate it&#39;s size |
 | [**reportFoldersCopyFolder**](ReportsApi.md#reportFoldersCopyFolder) | **POST** /api/rp/v1/Reports/Folder/{id}/Copy/{folderId} | Move folder to a specified folder |
 | [**reportFoldersDeleteFolder**](ReportsApi.md#reportFoldersDeleteFolder) | **DELETE** /api/rp/v1/Reports/Folder/{id} | Delete specified folder |
 | [**reportFoldersExport**](ReportsApi.md#reportFoldersExport) | **POST** /api/rp/v1/Reports/Folder/{id}/Export | Export specified report folder to a specified format |
@@ -120,6 +122,86 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | All folders and files in bin have been deleted |  -  |
+| **400** | FolderId is null |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or folder not found |  -  |
+
+
+## reportFolderAndFileDeleteFiles
+
+> reportFolderAndFileDeleteFiles(subscriptionId, selectedFilesForDeletingVM)
+
+Delete folders and files
+
+User with a Delete permission can access this method.
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.ReportsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
+
+        ReportsApi apiInstance = new ReportsApi(defaultClient);
+        String subscriptionId = "subscriptionId_example"; // String | id of current subscription
+        SelectedFilesForDeletingVM selectedFilesForDeletingVM = new SelectedFilesForDeletingVM(); // SelectedFilesForDeletingVM | VM with files' ids and params of their destination
+        try {
+            apiInstance.reportFolderAndFileDeleteFiles(subscriptionId, selectedFilesForDeletingVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ReportsApi#reportFolderAndFileDeleteFiles");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| id of current subscription | |
+| **selectedFilesForDeletingVM** | [**SelectedFilesForDeletingVM**](SelectedFilesForDeletingVM.md)| VM with files&#39; ids and params of their destination | [optional] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | All folders and files have been deleted |  -  |
 | **400** | FolderId is null |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
@@ -466,6 +548,85 @@ null (empty response body)
 | **400** | FolderId is null |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
+
+
+## reportFoldersCalculateFolderSize
+
+> FolderSizeVM reportFoldersCalculateFolderSize(id)
+
+Get specified folder, calculate it&#39;s size
+
+User with a Get Entity permission can access this method.
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.ReportsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
+
+        ReportsApi apiInstance = new ReportsApi(defaultClient);
+        String id = "id_example"; // String | folder id
+        try {
+            FolderSizeVM result = apiInstance.reportFoldersCalculateFolderSize(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ReportsApi#reportFoldersCalculateFolderSize");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| folder id | |
+
+### Return type
+
+[**FolderSizeVM**](FolderSizeVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Returns specified folder |  -  |
+| **400** | Id is null |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder not found |  -  |
 
 
 ## reportFoldersCopyFolder
@@ -1838,7 +1999,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **204** | No Content |  -  |
 | **400** | Bad Request |  -  |
 | **402** | Client Error |  -  |
 | **403** | Forbidden |  -  |
@@ -2165,6 +2326,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified report has been exported |  -  |
+| **204** | Specified report has been exported |  -  |
 | **400** | Report Id is null |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
@@ -2981,6 +3143,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified template has been prepared |  -  |
+| **204** | Specified template has been prepared |  -  |
 | **400** | Template Id is null |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
@@ -3142,7 +3305,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **204** | No Content |  -  |
 | **400** | Bad Request |  -  |
 | **402** | Client Error |  -  |
 | **403** | Forbidden |  -  |

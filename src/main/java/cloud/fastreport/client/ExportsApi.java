@@ -18,8 +18,10 @@ import cloud.fastreport.model.FilesVM;
 import cloud.fastreport.model.FolderCreateVM;
 import cloud.fastreport.model.FolderIconVM;
 import cloud.fastreport.model.FolderRenameVM;
+import cloud.fastreport.model.FolderSizeVM;
 import cloud.fastreport.model.FolderTagsUpdateVM;
 import cloud.fastreport.model.ProblemDetails;
+import cloud.fastreport.model.SelectedFilesForDeletingVM;
 import cloud.fastreport.model.UpdateFilePermissionsVM;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -138,6 +140,108 @@ public class ExportsApi {
 
         HttpContent content = null;
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
+    }
+
+
+  /**
+    * Delete folders and files
+    * User with a Delete permission can access this method.
+    * <p><b>204</b> - All folders and files have been deleted
+    * <p><b>400</b> - FolderId is null
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - File or folder not found
+    * @param subscriptionId id of current subscription
+    * @param selectedFilesForDeletingVM VM with files&#39; ids and params of their destination
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void exportFolderAndFileDeleteFiles(String subscriptionId, SelectedFilesForDeletingVM selectedFilesForDeletingVM) throws IOException {
+        exportFolderAndFileDeleteFilesForHttpResponse(subscriptionId, selectedFilesForDeletingVM);
+    }
+
+  /**
+    * Delete folders and files
+    * User with a Delete permission can access this method.
+    * <p><b>204</b> - All folders and files have been deleted
+    * <p><b>400</b> - FolderId is null
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - File or folder not found
+    * @param subscriptionId id of current subscription
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void exportFolderAndFileDeleteFiles(SelectedFilesForDeletingVM selectedFilesForDeletingVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        exportFolderAndFileDeleteFilesForHttpResponse(selectedFilesForDeletingVM, subscriptionId, params);
+    }
+
+    public HttpResponse exportFolderAndFileDeleteFilesForHttpResponse(String subscriptionId, SelectedFilesForDeletingVM selectedFilesForDeletingVM) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileDeleteFiles");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/DeleteFiles");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesForDeletingVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+      public HttpResponse exportFolderAndFileDeleteFilesForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesForDeletingVM, String mediaType) throws IOException {
+          // verify the required parameter 'subscriptionId' is set
+              if (subscriptionId == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileDeleteFiles");
+              }
+                  // create a map of path variables
+                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
+                      uriVariables.put("subscriptionId", subscriptionId);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/DeleteFiles");
+
+              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+              HttpContent content = selectedFilesForDeletingVM == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesForDeletingVM);
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+      }
+
+    public HttpResponse exportFolderAndFileDeleteFilesForHttpResponse(SelectedFilesForDeletingVM selectedFilesForDeletingVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileDeleteFiles");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/DeleteFiles");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesForDeletingVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -641,6 +745,94 @@ public class ExportsApi {
 
         HttpContent content = new EmptyContent();
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+
+  /**
+    * Get specified folder, calculate it&#39;s size
+    * User with a Get Entity permission can access this method.
+    * <p><b>200</b> - Returns specified folder
+    * <p><b>400</b> - Id is null
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - Folder not found
+    * @param id folder id
+    * @return FolderSizeVM
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public FolderSizeVM exportFoldersCalculateFolderSize(String id) throws IOException {
+        HttpResponse response = exportFoldersCalculateFolderSizeForHttpResponse(id);
+        TypeReference<FolderSizeVM> typeRef = new TypeReference<FolderSizeVM>() {};
+        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+  /**
+    * Get specified folder, calculate it&#39;s size
+    * User with a Get Entity permission can access this method.
+    * <p><b>200</b> - Returns specified folder
+    * <p><b>400</b> - Id is null
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - Folder not found
+    * @param id folder id
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @return FolderSizeVM
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public FolderSizeVM exportFoldersCalculateFolderSize(String id, Map<String, Object> params) throws IOException {
+        HttpResponse response = exportFoldersCalculateFolderSizeForHttpResponse(id, params);
+        TypeReference<FolderSizeVM> typeRef = new TypeReference<FolderSizeVM>() {};
+        return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+    public HttpResponse exportFoldersCalculateFolderSizeForHttpResponse(String id) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling exportFoldersCalculateFolderSize");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/Folder/{id}/size");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+    }
+
+    public HttpResponse exportFoldersCalculateFolderSizeForHttpResponse(String id, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling exportFoldersCalculateFolderSize");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("id", id);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/Folder/{id}/size");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -2139,7 +2331,7 @@ public class ExportsApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
@@ -2155,7 +2347,7 @@ public class ExportsApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
@@ -3579,7 +3771,7 @@ public class ExportsApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
@@ -3595,7 +3787,7 @@ public class ExportsApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden

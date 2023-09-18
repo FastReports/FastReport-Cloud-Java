@@ -30,9 +30,7 @@ public enum FileKind {
   
   REPORT("Report"),
   
-  EXPORT("Export"),
-  
-  DATASOURCE("DataSource");
+  EXPORT("Export");
 
   private String value;
 

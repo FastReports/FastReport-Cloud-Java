@@ -13,17 +13,22 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.CreateEndpointVM;
+import cloud.fastreport.model.CreateEmailTaskVM;
+import cloud.fastreport.model.CreateFTPUploadTaskVM;
 import cloud.fastreport.model.CreateTransportTaskBaseVM;
-import cloud.fastreport.model.TaskType;
+import cloud.fastreport.model.CreateWebhookTaskVM;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.net.URI;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -48,6 +53,22 @@ public class CreateWebhookTaskVMTest {
     }
 
     /**
+     * Test the property 'cronExpression'
+     */
+    @Test
+    public void cronExpressionTest() {
+        // TODO: test cronExpression
+    }
+
+    /**
+     * Test the property 'delayedRunTime'
+     */
+    @Test
+    public void delayedRunTimeTest() {
+        // TODO: test delayedRunTime
+    }
+
+    /**
      * Test the property 'name'
      */
     @Test
@@ -64,27 +85,11 @@ public class CreateWebhookTaskVMTest {
     }
 
     /**
-     * Test the property 'type'
+     * Test the property '$t'
      */
     @Test
-    public void typeTest() {
-        // TODO: test type
-    }
-
-    /**
-     * Test the property 'delayedRunTime'
-     */
-    @Test
-    public void delayedRunTimeTest() {
-        // TODO: test delayedRunTime
-    }
-
-    /**
-     * Test the property 'cronExpression'
-     */
-    @Test
-    public void cronExpressionTest() {
-        // TODO: test cronExpression
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

@@ -14,20 +14,20 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.InputFileVM;
-import cloud.fastreport.model.TaskType;
+import cloud.fastreport.model.UpdateEmailTaskVM;
+import cloud.fastreport.model.UpdateFTPUploadTaskVM;
 import cloud.fastreport.model.UpdateTaskBaseVM;
+import cloud.fastreport.model.UpdateWebhookTaskVM;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -48,27 +48,11 @@ public class UpdateTransportTaskBaseVMTest {
     }
 
     /**
-     * Test the property 'name'
+     * Test the property 'cronExpression'
      */
     @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
-     * Test the property 'subscriptionId'
-     */
-    @Test
-    public void subscriptionIdTest() {
-        // TODO: test subscriptionId
-    }
-
-    /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
+    public void cronExpressionTest() {
+        // TODO: test cronExpression
     }
 
     /**
@@ -80,11 +64,19 @@ public class UpdateTransportTaskBaseVMTest {
     }
 
     /**
-     * Test the property 'cronExpression'
+     * Test the property 'name'
      */
     @Test
-    public void cronExpressionTest() {
-        // TODO: test cronExpression
+    public void nameTest() {
+        // TODO: test name
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

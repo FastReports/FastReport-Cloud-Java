@@ -7,7 +7,7 @@ All URIs are relative to *http://localhost*
 | [**downloadGetExport**](DownloadApi.md#downloadGetExport) | **GET** /download/e/{id} | Returns a export file with specified id |
 | [**downloadGetExportThumbnail**](DownloadApi.md#downloadGetExportThumbnail) | **GET** /download/e/{id}/thumbnail | Returns export&#39;s thumbnail |
 | [**downloadGetExports**](DownloadApi.md#downloadGetExports) | **GET** /download/es/{archiveName} | Returns a zip archive with selected ids |
-| [**downloadGetLastSVGExport**](DownloadApi.md#downloadGetLastSVGExport) | **GET** /download/lastPreview/{reportId} | returns export, that was created from report with specified id |
+| [**downloadGetLastSVGExport**](DownloadApi.md#downloadGetLastSVGExport) | **GET** /download/lastPreview/{reportId} | returns export, that was created from report with specified id.  INTERNAL USAGE ONLY! |
 | [**downloadGetReport**](DownloadApi.md#downloadGetReport) | **GET** /download/r/{id} | Returns a prepared file with specified id |
 | [**downloadGetReportThumbnail**](DownloadApi.md#downloadGetReportThumbnail) | **GET** /download/r/{id}/thumbnail | Returns report&#39;s thumbnail |
 | [**downloadGetReports**](DownloadApi.md#downloadGetReports) | **GET** /download/rs/{archiveName} | Returns a zip archive with selected files |
@@ -177,7 +177,7 @@ public class Example {
 
 ## downloadGetExports
 
-> File downloadGetExports(archiveName, ids)
+> File downloadGetExports(archiveName, fileIds, folderIds)
 
 Returns a zip archive with selected ids
 
@@ -208,9 +208,10 @@ public class Example {
 
         DownloadApi apiInstance = new DownloadApi(defaultClient);
         String archiveName = "archiveName_example"; // String | name of the created archive
-        String ids = "ids_example"; // String | ids separated with a ',' sign
+        String fileIds = "fileIds_example"; // String | ids separated with a ',' sign
+        String folderIds = "folderIds_example"; // String | ids separated with a ',' sign
         try {
-            File result = apiInstance.downloadGetExports(archiveName, ids);
+            File result = apiInstance.downloadGetExports(archiveName, fileIds, folderIds);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DownloadApi#downloadGetExports");
@@ -229,7 +230,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **archiveName** | **String**| name of the created archive | |
-| **ids** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
+| **fileIds** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
+| **folderIds** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
 
 ### Return type
 
@@ -259,7 +261,7 @@ public class Example {
 
 > File downloadGetLastSVGExport(reportId)
 
-returns export, that was created from report with specified id
+returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
 
 ### Example
 
@@ -491,7 +493,7 @@ public class Example {
 
 ## downloadGetReports
 
-> File downloadGetReports(archiveName, ids)
+> File downloadGetReports(archiveName, fileIds, folderIds)
 
 Returns a zip archive with selected files
 
@@ -522,9 +524,10 @@ public class Example {
 
         DownloadApi apiInstance = new DownloadApi(defaultClient);
         String archiveName = "archiveName_example"; // String | name of the created archive
-        String ids = "ids_example"; // String | ids separated with a ',' sign
+        String fileIds = "fileIds_example"; // String | ids separated with a ',' sign
+        String folderIds = "folderIds_example"; // String | ids separated with a ',' sign
         try {
-            File result = apiInstance.downloadGetReports(archiveName, ids);
+            File result = apiInstance.downloadGetReports(archiveName, fileIds, folderIds);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DownloadApi#downloadGetReports");
@@ -543,7 +546,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **archiveName** | **String**| name of the created archive | |
-| **ids** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
+| **fileIds** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
+| **folderIds** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
 
 ### Return type
 
@@ -727,7 +731,7 @@ public class Example {
 
 ## downloadGetTemplates
 
-> File downloadGetTemplates(archiveName, ids)
+> File downloadGetTemplates(archiveName, fileIds, folderIds)
 
 Returns a zip archive with selected files
 
@@ -758,9 +762,10 @@ public class Example {
 
         DownloadApi apiInstance = new DownloadApi(defaultClient);
         String archiveName = "archiveName_example"; // String | name of the created archive
-        String ids = "ids_example"; // String | ids separated with a ',' sign
+        String fileIds = "fileIds_example"; // String | ids separated with a ',' sign
+        String folderIds = "folderIds_example"; // String | ids separated with a ',' sign
         try {
-            File result = apiInstance.downloadGetTemplates(archiveName, ids);
+            File result = apiInstance.downloadGetTemplates(archiveName, fileIds, folderIds);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DownloadApi#downloadGetTemplates");
@@ -779,7 +784,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **archiveName** | **String**| name of the created archive | |
-| **ids** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
+| **fileIds** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
+| **folderIds** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
 
 ### Return type
 

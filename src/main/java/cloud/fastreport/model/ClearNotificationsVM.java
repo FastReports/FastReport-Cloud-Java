@@ -15,27 +15,53 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.CreateEndpointVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.net.URI;
-import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * RunEndpointVM
+ * ClearNotificationsVM
  */
 @JsonPropertyOrder({
+  ClearNotificationsVM.JSON_PROPERTY_UPDATE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RunEndpointVM extends CreateEndpointVM {
-  public RunEndpointVM() {
+public class ClearNotificationsVM {
+  public static final String JSON_PROPERTY_UPDATE = "update";
+  private Boolean update;
 
+  public ClearNotificationsVM() {
   }
+
+  public ClearNotificationsVM update(Boolean update) {
+    
+    this.update = update;
+    return this;
+  }
+
+   /**
+   * Get update
+   * @return update
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getUpdate() {
+    return update;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUpdate(Boolean update) {
+    this.update = update;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -45,30 +71,20 @@ public class RunEndpointVM extends CreateEndpointVM {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    return super.equals(o);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+    ClearNotificationsVM clearNotificationsVM = (ClearNotificationsVM) o;
+    return Objects.equals(this.update, clearNotificationsVM.update);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode());
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(update);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RunEndpointVM {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("class ClearNotificationsVM {\n");
+    sb.append("    update: ").append(toIndentedString(update)).append("\n");
     sb.append("}");
     return sb.toString();
   }

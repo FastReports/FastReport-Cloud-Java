@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**tasksCreateTask**](TasksApi.md#tasksCreateTask) | **POST** /api/tasks | Create a new task |
-| [**tasksDeleteTask**](TasksApi.md#tasksDeleteTask) | **DELETE** /api/tasks/{taskId} | Delete a task from a storage |
-| [**tasksGet**](TasksApi.md#tasksGet) | **GET** /api/tasks/{taskId} | Get a task by a specified id |
-| [**tasksGetList**](TasksApi.md#tasksGetList) | **GET** /api/tasks | Get tasks list |
-| [**tasksGetPermissions**](TasksApi.md#tasksGetPermissions) | **GET** /api/tasks/{id}/permissions | Get all Task permissions |
-| [**tasksRenameTask**](TasksApi.md#tasksRenameTask) | **PUT** /api/tasks/{taskId}/rename | Rename a task |
-| [**tasksRunTask**](TasksApi.md#tasksRunTask) | **POST** /api/tasks/run | Run a task from request body |
-| [**tasksRunTaskById**](TasksApi.md#tasksRunTaskById) | **POST** /api/tasks/{taskId}/run | Run a task by id |
-| [**tasksUpdatePermissions**](TasksApi.md#tasksUpdatePermissions) | **POST** /api/tasks/{id}/permissions | Update permissions |
-| [**tasksUpdateTask**](TasksApi.md#tasksUpdateTask) | **PUT** /api/tasks/{taskId} | Update a task |
+| [**tasksCreateTask**](TasksApi.md#tasksCreateTask) | **POST** /api/tasks/v1/Tasks | Create a new task |
+| [**tasksDeleteTask**](TasksApi.md#tasksDeleteTask) | **DELETE** /api/tasks/v1/Tasks/{taskId} | Delete a task from a storage |
+| [**tasksGet**](TasksApi.md#tasksGet) | **GET** /api/tasks/v1/Tasks/{taskId} | Get a task by a specified id |
+| [**tasksGetList**](TasksApi.md#tasksGetList) | **GET** /api/tasks/v1/Tasks | Get tasks list |
+| [**tasksGetPermissions**](TasksApi.md#tasksGetPermissions) | **GET** /api/tasks/v1/Tasks/{id}/permissions | Get all Task permissions |
+| [**tasksRenameTask**](TasksApi.md#tasksRenameTask) | **PUT** /api/tasks/v1/Tasks/{taskId}/rename | Rename a task |
+| [**tasksRunTask**](TasksApi.md#tasksRunTask) | **POST** /api/tasks/v1/Tasks/run | Run a task from request body |
+| [**tasksRunTaskById**](TasksApi.md#tasksRunTaskById) | **POST** /api/tasks/v1/Tasks/{taskId}/run | Run a task by id |
+| [**tasksUpdatePermissions**](TasksApi.md#tasksUpdatePermissions) | **POST** /api/tasks/v1/Tasks/{id}/permissions | Update permissions |
+| [**tasksUpdateTask**](TasksApi.md#tasksUpdateTask) | **PUT** /api/tasks/v1/Tasks/{taskId} | Update a task |
 
 
 
@@ -255,7 +255,7 @@ public class Example {
 
 ## tasksGetList
 
-> TasksVM tasksGetList(skip, take, subscriptionId)
+> TasksVM tasksGetList(skip, take, subscriptionId, searchPattern)
 
 Get tasks list
 
@@ -288,8 +288,9 @@ public class Example {
         Integer skip = 0; // Integer | number of tasks, that have to be skipped
         Integer take = 10; // Integer | number of tasks, that have to be returned
         String subscriptionId = "subscriptionId_example"; // String | subscription id
+        String searchPattern = ""; // String | 
         try {
-            TasksVM result = apiInstance.tasksGetList(skip, take, subscriptionId);
+            TasksVM result = apiInstance.tasksGetList(skip, take, subscriptionId, searchPattern);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TasksApi#tasksGetList");
@@ -310,6 +311,7 @@ public class Example {
 | **skip** | **Integer**| number of tasks, that have to be skipped | [optional] [default to 0] |
 | **take** | **Integer**| number of tasks, that have to be returned | [optional] [default to 10] |
 | **subscriptionId** | **String**| subscription id | [optional] |
+| **searchPattern** | **String**|  | [optional] [default to ] |
 
 ### Return type
 
@@ -567,7 +569,6 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
-| **204** | No Content |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 | **402** | Client Error |  -  |
@@ -725,7 +726,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **204** | No Content |  -  |
 | **400** | Bad Request |  -  |
 | **402** | Client Error |  -  |
 | **403** | Forbidden |  -  |

@@ -132,4 +132,12 @@ public class DataSourceVMTest {
         // TODO: test status
     }
 
+    /**
+     * Test the property 'errorMessage'
+     */
+    @Test
+    public void errorMessageTest() {
+        // TODO: test errorMessage
+    }
+
 }

@@ -34,7 +34,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   OutputFileVM.JSON_PROPERTY_FILE_NAME,
   OutputFileVM.JSON_PROPERTY_FOLDER_ID,
-  OutputFileVM.JSON_PROPERTY_TYPE
+  OutputFileVM.JSON_PROPERTY_TYPE,
+  OutputFileVM.JSON_PROPERTY_IS_TEMPORARY
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class OutputFileVM {
@@ -46,6 +47,9 @@ public class OutputFileVM {
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private FileKind type;
+
+  public static final String JSON_PROPERTY_IS_TEMPORARY = "isTemporary";
+  private Boolean isTemporary;
 
   public OutputFileVM() {
   }
@@ -144,6 +148,32 @@ public class OutputFileVM {
   }
 
 
+  public OutputFileVM isTemporary(Boolean isTemporary) {
+    
+    this.isTemporary = isTemporary;
+    return this;
+  }
+
+   /**
+   * Get isTemporary
+   * @return isTemporary
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_IS_TEMPORARY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsTemporary() {
+    return isTemporary;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_TEMPORARY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsTemporary(Boolean isTemporary) {
+    this.isTemporary = isTemporary;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -155,7 +185,8 @@ public class OutputFileVM {
     OutputFileVM outputFileVM = (OutputFileVM) o;
     return equalsNullable(this.fileName, outputFileVM.fileName) &&
         equalsNullable(this.folderId, outputFileVM.folderId) &&
-        Objects.equals(this.type, outputFileVM.type);
+        Objects.equals(this.type, outputFileVM.type) &&
+        Objects.equals(this.isTemporary, outputFileVM.isTemporary);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -164,7 +195,7 @@ public class OutputFileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(fileName), hashCodeNullable(folderId), type);
+    return Objects.hash(hashCodeNullable(fileName), hashCodeNullable(folderId), type, isTemporary);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -181,6 +212,7 @@ public class OutputFileVM {
     sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
     sb.append("    folderId: ").append(toIndentedString(folderId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    isTemporary: ").append(toIndentedString(isTemporary)).append("\n");
     sb.append("}");
     return sb.toString();
   }

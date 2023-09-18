@@ -610,7 +610,7 @@ public class GroupsApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
@@ -626,7 +626,7 @@ public class GroupsApi {
 
   /**
     * Update permissions
-    * <p><b>200</b> - Success
+    * <p><b>204</b> - No Content
     * <p><b>400</b> - Bad Request
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden

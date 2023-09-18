@@ -13,11 +13,14 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.TaskType;
 import cloud.fastreport.model.UpdateExportReportTaskVM;
+import cloud.fastreport.model.UpdateExportTemplateTaskVM;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
@@ -47,27 +50,11 @@ public class UpdateExportTemplateTaskVMTest {
     }
 
     /**
-     * Test the property 'name'
+     * Test the property 'cronExpression'
      */
     @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
-     * Test the property 'subscriptionId'
-     */
-    @Test
-    public void subscriptionIdTest() {
-        // TODO: test subscriptionId
-    }
-
-    /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
+    public void cronExpressionTest() {
+        // TODO: test cronExpression
     }
 
     /**
@@ -79,11 +66,19 @@ public class UpdateExportTemplateTaskVMTest {
     }
 
     /**
-     * Test the property 'cronExpression'
+     * Test the property 'name'
      */
     @Test
-    public void cronExpressionTest() {
-        // TODO: test cronExpression
+    public void nameTest() {
+        // TODO: test name
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

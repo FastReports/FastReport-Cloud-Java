@@ -401,7 +401,7 @@ public class DataSourcesApi {
     * <p><b>402</b> - Client Error
     * <p><b>403</b> - Forbidden
     * <p><b>404</b> - Not Found
-    * @param subscriptionId subscription id
+    * @param subscriptionId id of subscription where the datasources are located
     * @param skip how many data sources will be skipped
     * @param take how many data sources will be taken
     * @param orderBy field to order by

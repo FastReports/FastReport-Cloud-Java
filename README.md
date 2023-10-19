@@ -34,7 +34,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>cloud.fastreport.sdk</groupId>
   <artifactId>fastreport-cloud-sdk</artifactId>
-  <version>2023.1.60</version>
+  <version>2023.1.71</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -44,7 +44,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2023.1.60"
+compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2023.1.71"
 ```
 
 ### Others
@@ -57,7 +57,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/fastreport-cloud-sdk-2023.1.60.jar`
+- `target/fastreport-cloud-sdk-2023.1.71.jar`
 - `target/lib/*.jar`
 
 ## Getting Started

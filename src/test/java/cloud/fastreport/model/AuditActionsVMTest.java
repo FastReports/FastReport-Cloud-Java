@@ -53,11 +53,11 @@ public class AuditActionsVMTest {
     }
 
     /**
-     * Test the property 'count'
+     * Test the property 'hasMore'
      */
     @Test
-    public void countTest() {
-        // TODO: test count
+    public void hasMoreTest() {
+        // TODO: test hasMore
     }
 
     /**

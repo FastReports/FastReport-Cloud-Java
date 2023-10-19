@@ -362,7 +362,7 @@ public class Example {
         JWT.setBearerToken("BEARER TOKEN");
 
         DataSourcesApi apiInstance = new DataSourcesApi(defaultClient);
-        String subscriptionId = "subscriptionId_example"; // String | subscription id
+        String subscriptionId = "subscriptionId_example"; // String | id of subscription where the datasources are located
         Integer skip = 0; // Integer | how many data sources will be skipped
         Integer take = 10; // Integer | how many data sources will be taken
         DataSourceSorting orderBy = DataSourceSorting.fromValue("None"); // DataSourceSorting | field to order by
@@ -386,7 +386,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **subscriptionId** | **String**| subscription id | [optional] |
+| **subscriptionId** | **String**| id of subscription where the datasources are located | [optional] |
 | **skip** | **Integer**| how many data sources will be skipped | [optional] [default to 0] |
 | **take** | **Integer**| how many data sources will be taken | [optional] [default to 10] |
 | **orderBy** | [**DataSourceSorting**](.md)| field to order by | [optional] [enum: None, CreatedTime, EditedTime, Name] |

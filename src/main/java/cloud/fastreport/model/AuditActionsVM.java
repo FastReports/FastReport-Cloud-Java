@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
   AuditActionsVM.JSON_PROPERTY_ITEMS,
-  AuditActionsVM.JSON_PROPERTY_COUNT,
+  AuditActionsVM.JSON_PROPERTY_HAS_MORE,
   AuditActionsVM.JSON_PROPERTY_SKIP,
   AuditActionsVM.JSON_PROPERTY_TAKE
 })
@@ -44,8 +44,8 @@ public class AuditActionsVM {
   public static final String JSON_PROPERTY_ITEMS = "items";
   private JsonNullable<List<AuditActionVM>> items = JsonNullable.<List<AuditActionVM>>undefined();
 
-  public static final String JSON_PROPERTY_COUNT = "count";
-  private Long count;
+  public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
+  private Boolean hasMore;
 
   public static final String JSON_PROPERTY_SKIP = "skip";
   private Integer skip;
@@ -102,29 +102,29 @@ public class AuditActionsVM {
   }
 
 
-  public AuditActionsVM count(Long count) {
+  public AuditActionsVM hasMore(Boolean hasMore) {
     
-    this.count = count;
+    this.hasMore = hasMore;
     return this;
   }
 
    /**
-   * Get count
-   * @return count
+   * Get hasMore
+   * @return hasMore
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COUNT)
+  @JsonProperty(JSON_PROPERTY_HAS_MORE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Long getCount() {
-    return count;
+  public Boolean getHasMore() {
+    return hasMore;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COUNT)
+  @JsonProperty(JSON_PROPERTY_HAS_MORE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCount(Long count) {
-    this.count = count;
+  public void setHasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
   }
 
 
@@ -190,7 +190,7 @@ public class AuditActionsVM {
     }
     AuditActionsVM auditActionsVM = (AuditActionsVM) o;
     return equalsNullable(this.items, auditActionsVM.items) &&
-        Objects.equals(this.count, auditActionsVM.count) &&
+        Objects.equals(this.hasMore, auditActionsVM.hasMore) &&
         Objects.equals(this.skip, auditActionsVM.skip) &&
         Objects.equals(this.take, auditActionsVM.take);
   }
@@ -201,7 +201,7 @@ public class AuditActionsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(items), count, skip, take);
+    return Objects.hash(hashCodeNullable(items), hasMore, skip, take);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -216,7 +216,7 @@ public class AuditActionsVM {
     StringBuilder sb = new StringBuilder();
     sb.append("class AuditActionsVM {\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
-    sb.append("    count: ").append(toIndentedString(count)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("    skip: ").append(toIndentedString(skip)).append("\n");
     sb.append("    take: ").append(toIndentedString(take)).append("\n");
     sb.append("}");

@@ -814,7 +814,7 @@ paths:
     get:
       operationId: DataSources_GetAvailableDataSources
       parameters:
-      - description: subscription id
+      - description: id of subscription where the datasources are located
         explode: true
         in: query
         name: subscriptionId
@@ -12213,9 +12213,9 @@ components:
     AuditActionsVM:
       additionalProperties: false
       example:
-        take: 1
-        count: 0
-        skip: 6
+        take: 6
+        hasMore: true
+        skip: 0
         items:
         - $t: $t
           creatorUserId: creatorUserId
@@ -12243,9 +12243,8 @@ components:
             $ref: '#/components/schemas/AuditActionVM'
           nullable: true
           type: array
-        count:
-          format: int64
-          type: integer
+        hasMore:
+          type: boolean
         skip:
           format: int32
           type: integer
@@ -14414,7 +14413,7 @@ components:
       properties:
         fileName:
           maxLength: 50
-          minLength: 1
+          minLength: 0
           nullable: true
           type: string
         folderId:

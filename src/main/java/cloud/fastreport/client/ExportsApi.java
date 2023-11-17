@@ -21,7 +21,7 @@ import cloud.fastreport.model.FolderRenameVM;
 import cloud.fastreport.model.FolderSizeVM;
 import cloud.fastreport.model.FolderTagsUpdateVM;
 import cloud.fastreport.model.ProblemDetails;
-import cloud.fastreport.model.SelectedFilesForDeletingVM;
+import cloud.fastreport.model.SelectedFilesVM;
 import cloud.fastreport.model.UpdateFilePermissionsVM;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -151,11 +151,11 @@ public class ExportsApi {
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId id of current subscription
-    * @param selectedFilesForDeletingVM VM with files&#39; ids and params of their destination
+    * @param selectedFilesVM VM with files&#39; ids and params of their destination
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void exportFolderAndFileDeleteFiles(String subscriptionId, SelectedFilesForDeletingVM selectedFilesForDeletingVM) throws IOException {
-        exportFolderAndFileDeleteFilesForHttpResponse(subscriptionId, selectedFilesForDeletingVM);
+    public void exportFolderAndFileDeleteFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws IOException {
+        exportFolderAndFileDeleteFilesForHttpResponse(subscriptionId, selectedFilesVM);
     }
 
   /**
@@ -169,11 +169,11 @@ public class ExportsApi {
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void exportFolderAndFileDeleteFiles(SelectedFilesForDeletingVM selectedFilesForDeletingVM, String subscriptionId, Map<String, Object> params) throws IOException {
-        exportFolderAndFileDeleteFilesForHttpResponse(selectedFilesForDeletingVM, subscriptionId, params);
+    public void exportFolderAndFileDeleteFiles(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        exportFolderAndFileDeleteFilesForHttpResponse(selectedFilesVM, subscriptionId, params);
     }
 
-    public HttpResponse exportFolderAndFileDeleteFilesForHttpResponse(String subscriptionId, SelectedFilesForDeletingVM selectedFilesForDeletingVM) throws IOException {
+    public HttpResponse exportFolderAndFileDeleteFilesForHttpResponse(String subscriptionId, SelectedFilesVM selectedFilesVM) throws IOException {
         // verify the required parameter 'subscriptionId' is set
         if (subscriptionId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileDeleteFiles");
@@ -186,11 +186,11 @@ public class ExportsApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesForDeletingVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-      public HttpResponse exportFolderAndFileDeleteFilesForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesForDeletingVM, String mediaType) throws IOException {
+      public HttpResponse exportFolderAndFileDeleteFilesForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesVM, String mediaType) throws IOException {
           // verify the required parameter 'subscriptionId' is set
               if (subscriptionId == null) {
               throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileDeleteFiles");
@@ -203,13 +203,13 @@ public class ExportsApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = selectedFilesForDeletingVM == null ?
+              HttpContent content = selectedFilesVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
-                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesForDeletingVM);
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesVM);
               return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
-    public HttpResponse exportFolderAndFileDeleteFilesForHttpResponse(SelectedFilesForDeletingVM selectedFilesForDeletingVM, String subscriptionId, Map<String, Object> params) throws IOException {
+    public HttpResponse exportFolderAndFileDeleteFilesForHttpResponse(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
         // verify the required parameter 'subscriptionId' is set
         if (subscriptionId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileDeleteFiles");
@@ -240,7 +240,7 @@ public class ExportsApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesForDeletingVM);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
@@ -667,6 +667,108 @@ public class ExportsApi {
 
 
   /**
+    * Move folders and files to bin
+    * User with a Delete permission can access this method.
+    * <p><b>204</b> - All folders and files have been moved to bin
+    * <p><b>400</b> - FolderId is null
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - File or folder not found
+    * @param subscriptionId id of current subscription
+    * @param selectedFilesVM VM with files&#39; ids and params of their destination
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void exportFolderAndFileMoveFilesToBin(String subscriptionId, SelectedFilesVM selectedFilesVM) throws IOException {
+        exportFolderAndFileMoveFilesToBinForHttpResponse(subscriptionId, selectedFilesVM);
+    }
+
+  /**
+    * Move folders and files to bin
+    * User with a Delete permission can access this method.
+    * <p><b>204</b> - All folders and files have been moved to bin
+    * <p><b>400</b> - FolderId is null
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - File or folder not found
+    * @param subscriptionId id of current subscription
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void exportFolderAndFileMoveFilesToBin(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        exportFolderAndFileMoveFilesToBinForHttpResponse(selectedFilesVM, subscriptionId, params);
+    }
+
+    public HttpResponse exportFolderAndFileMoveFilesToBinForHttpResponse(String subscriptionId, SelectedFilesVM selectedFilesVM) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileMoveFilesToBin");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/ToBin");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+      public HttpResponse exportFolderAndFileMoveFilesToBinForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesVM, String mediaType) throws IOException {
+          // verify the required parameter 'subscriptionId' is set
+              if (subscriptionId == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileMoveFilesToBin");
+              }
+                  // create a map of path variables
+                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
+                      uriVariables.put("subscriptionId", subscriptionId);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/ToBin");
+
+              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+              HttpContent content = selectedFilesVM == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesVM);
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+      }
+
+    public HttpResponse exportFolderAndFileMoveFilesToBinForHttpResponse(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileMoveFilesToBin");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/ToBin");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+
+  /**
     * Recover all folders and files from recycle bin
     * User with a Create RecycleBin permission can access this method.
     * <p><b>204</b> - All folders and files in bin have been restored
@@ -744,6 +846,108 @@ public class ExportsApi {
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
         HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+
+  /**
+    * Recover folders and files from bin
+    * User with a SubscriptionCreate permission can access this method.
+    * <p><b>204</b> - All folders and files have been recovered
+    * <p><b>400</b> - FolderId is null
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - File or folder not found
+    * @param subscriptionId id of current subscription
+    * @param selectedFilesVM VM with files&#39; ids and params of their destination
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void exportFolderAndFileRecoverFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws IOException {
+        exportFolderAndFileRecoverFilesForHttpResponse(subscriptionId, selectedFilesVM);
+    }
+
+  /**
+    * Recover folders and files from bin
+    * User with a SubscriptionCreate permission can access this method.
+    * <p><b>204</b> - All folders and files have been recovered
+    * <p><b>400</b> - FolderId is null
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - File or folder not found
+    * @param subscriptionId id of current subscription
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void exportFolderAndFileRecoverFiles(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        exportFolderAndFileRecoverFilesForHttpResponse(selectedFilesVM, subscriptionId, params);
+    }
+
+    public HttpResponse exportFolderAndFileRecoverFilesForHttpResponse(String subscriptionId, SelectedFilesVM selectedFilesVM) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileRecoverFiles");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/RecoverFiles");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+      public HttpResponse exportFolderAndFileRecoverFilesForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesVM, String mediaType) throws IOException {
+          // verify the required parameter 'subscriptionId' is set
+              if (subscriptionId == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileRecoverFiles");
+              }
+                  // create a map of path variables
+                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
+                      uriVariables.put("subscriptionId", subscriptionId);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/RecoverFiles");
+
+              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+              HttpContent content = selectedFilesVM == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesVM);
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+      }
+
+    public HttpResponse exportFolderAndFileRecoverFilesForHttpResponse(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileRecoverFiles");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/RecoverFiles");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
         return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
@@ -2730,14 +2934,12 @@ public class ExportsApi {
 
 
   /**
-    * Get specified file
-    * User with Get Entity permission can access this method.
-    * <p><b>200</b> - Returns the specified file
-    * <p><b>400</b> - Id is null
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File not found
-    * <p><b>500</b> - Exception thrown
-    * @param id file id
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id The id parameter
     * @return ExportVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
@@ -2748,14 +2950,12 @@ public class ExportsApi {
     }
 
   /**
-    * Get specified file
-    * User with Get Entity permission can access this method.
-    * <p><b>200</b> - Returns the specified file
-    * <p><b>400</b> - Id is null
-    * <p><b>403</b> - You don&#39;t have rights for the operation
-    * <p><b>404</b> - File not found
-    * <p><b>500</b> - Exception thrown
-    * @param id file id
+    * <p><b>200</b> - Success
+    * <p><b>400</b> - Bad Request
+    * <p><b>403</b> - Forbidden
+    * <p><b>404</b> - Not Found
+    * <p><b>500</b> - Server Error
+    * @param id The id parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return ExportVM
     * @throws IOException if an error occurs while attempting to invoke the API

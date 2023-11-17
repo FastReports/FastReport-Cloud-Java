@@ -9,7 +9,9 @@ All URIs are relative to *http://localhost*
 | [**templateFolderAndFileGetCount**](TemplatesApi.md#templateFolderAndFileGetCount) | **GET** /api/rp/v1/Templates/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder |
 | [**templateFolderAndFileGetFoldersAndFiles**](TemplatesApi.md#templateFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder |
 | [**templateFolderAndFileGetRecycleBinFoldersAndFiles**](TemplatesApi.md#templateFolderAndFileGetRecycleBinFoldersAndFiles) | **GET** /api/rp/v1/Templates/{subscriptionId}/ListRecycleBinFolderAndFiles | Get all folders and files from recycle bin |
+| [**templateFolderAndFileMoveFilesToBin**](TemplatesApi.md#templateFolderAndFileMoveFilesToBin) | **POST** /api/rp/v1/Templates/{subscriptionId}/ToBin | Move folders and files to bin |
 | [**templateFolderAndFileRecoverAllFromRecycleBin**](TemplatesApi.md#templateFolderAndFileRecoverAllFromRecycleBin) | **POST** /api/rp/v1/Templates/{subscriptionId}/RecoverRecycleBin | Recover all folders and files from recycle bin |
+| [**templateFolderAndFileRecoverFiles**](TemplatesApi.md#templateFolderAndFileRecoverFiles) | **POST** /api/rp/v1/Templates/{subscriptionId}/RecoverFiles | Recover folders and files from bin |
 | [**templateFoldersCalculateFolderSize**](TemplatesApi.md#templateFoldersCalculateFolderSize) | **GET** /api/rp/v1/Templates/Folder/{id}/size | Get specified folder, calculate it&#39;s size |
 | [**templateFoldersCopyFolder**](TemplatesApi.md#templateFoldersCopyFolder) | **POST** /api/rp/v1/Templates/Folder/{id}/Copy/{folderId} | Move folder to a specified folder |
 | [**templateFoldersDeleteFolder**](TemplatesApi.md#templateFoldersDeleteFolder) | **DELETE** /api/rp/v1/Templates/Folder/{id} | Delete specified folder |
@@ -132,7 +134,7 @@ null (empty response body)
 
 ## templateFolderAndFileDeleteFiles
 
-> templateFolderAndFileDeleteFiles(subscriptionId, selectedFilesForDeletingVM)
+> templateFolderAndFileDeleteFiles(subscriptionId, selectedFilesVM)
 
 Delete folders and files
 
@@ -165,9 +167,9 @@ public class Example {
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String subscriptionId = "subscriptionId_example"; // String | id of current subscription
-        SelectedFilesForDeletingVM selectedFilesForDeletingVM = new SelectedFilesForDeletingVM(); // SelectedFilesForDeletingVM | VM with files' ids and params of their destination
+        SelectedFilesVM selectedFilesVM = new SelectedFilesVM(); // SelectedFilesVM | VM with files' ids and params of their destination
         try {
-            apiInstance.templateFolderAndFileDeleteFiles(subscriptionId, selectedFilesForDeletingVM);
+            apiInstance.templateFolderAndFileDeleteFiles(subscriptionId, selectedFilesVM);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templateFolderAndFileDeleteFiles");
             System.err.println("Status code: " + e.getCode());
@@ -185,7 +187,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **subscriptionId** | **String**| id of current subscription | |
-| **selectedFilesForDeletingVM** | [**SelectedFilesForDeletingVM**](SelectedFilesForDeletingVM.md)| VM with files&#39; ids and params of their destination | [optional] |
+| **selectedFilesVM** | [**SelectedFilesVM**](SelectedFilesVM.md)| VM with files&#39; ids and params of their destination | [optional] |
 
 ### Return type
 
@@ -475,6 +477,86 @@ public class Example {
 | **404** | File or folder not found |  -  |
 
 
+## templateFolderAndFileMoveFilesToBin
+
+> templateFolderAndFileMoveFilesToBin(subscriptionId, selectedFilesVM)
+
+Move folders and files to bin
+
+User with a Delete permission can access this method.
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.TemplatesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
+
+        TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+        String subscriptionId = "subscriptionId_example"; // String | id of current subscription
+        SelectedFilesVM selectedFilesVM = new SelectedFilesVM(); // SelectedFilesVM | VM with files' ids and params of their destination
+        try {
+            apiInstance.templateFolderAndFileMoveFilesToBin(subscriptionId, selectedFilesVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TemplatesApi#templateFolderAndFileMoveFilesToBin");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| id of current subscription | |
+| **selectedFilesVM** | [**SelectedFilesVM**](SelectedFilesVM.md)| VM with files&#39; ids and params of their destination | [optional] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | All folders and files have been moved to bin |  -  |
+| **400** | FolderId is null |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or folder not found |  -  |
+
+
 ## templateFolderAndFileRecoverAllFromRecycleBin
 
 > templateFolderAndFileRecoverAllFromRecycleBin(subscriptionId)
@@ -548,6 +630,86 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | All folders and files in bin have been restored |  -  |
+| **400** | FolderId is null |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or folder not found |  -  |
+
+
+## templateFolderAndFileRecoverFiles
+
+> templateFolderAndFileRecoverFiles(subscriptionId, selectedFilesVM)
+
+Recover folders and files from bin
+
+User with a SubscriptionCreate permission can access this method.
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.TemplatesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
+
+        TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+        String subscriptionId = "subscriptionId_example"; // String | id of current subscription
+        SelectedFilesVM selectedFilesVM = new SelectedFilesVM(); // SelectedFilesVM | VM with files' ids and params of their destination
+        try {
+            apiInstance.templateFolderAndFileRecoverFiles(subscriptionId, selectedFilesVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TemplatesApi#templateFolderAndFileRecoverFiles");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| id of current subscription | |
+| **selectedFilesVM** | [**SelectedFilesVM**](SelectedFilesVM.md)| VM with files&#39; ids and params of their destination | [optional] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | All folders and files have been recovered |  -  |
 | **400** | FolderId is null |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
@@ -2369,7 +2531,7 @@ public class Example {
         JWT.setBearerToken("BEARER TOKEN");
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
-        String id = "id_example"; // String | report id
+        String id = "id_example"; // String | template id
         ExportTemplateVM exportTemplateVM = new ExportTemplateVM(); // ExportTemplateVM | export parameters (string only)
         try {
             ExportVM result = apiInstance.templatesExport(id, exportTemplateVM);
@@ -2390,7 +2552,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| report id | |
+| **id** | **String**| template id | |
 | **exportTemplateVM** | [**ExportTemplateVM**](ExportTemplateVM.md)| export parameters (string only) | [optional] |
 
 ### Return type

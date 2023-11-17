@@ -35,7 +35,7 @@ import cloud.fastreport.model.PrepareTemplateVM;
 import cloud.fastreport.model.PreviewTemplateVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.ReportVM;
-import cloud.fastreport.model.SelectedFilesForDeletingVM;
+import cloud.fastreport.model.SelectedFilesVM;
 import cloud.fastreport.model.TemplateCreateVM;
 import cloud.fastreport.model.TemplateFolderCreateVM;
 import cloud.fastreport.model.TemplateVM;
@@ -89,8 +89,8 @@ public class TemplatesApiTest {
     @Test
     public void templateFolderAndFileDeleteFilesTest() throws IOException {
         String subscriptionId = null;
-        SelectedFilesForDeletingVM selectedFilesForDeletingVM = null;
-        api.templateFolderAndFileDeleteFiles(subscriptionId, selectedFilesForDeletingVM);
+        SelectedFilesVM selectedFilesVM = null;
+        api.templateFolderAndFileDeleteFiles(subscriptionId, selectedFilesVM);
 
         // TODO: test validations
     }
@@ -158,6 +158,23 @@ public class TemplatesApiTest {
     }
     
     /**
+     * Move folders and files to bin
+     *
+     * User with a Delete permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void templateFolderAndFileMoveFilesToBinTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesVM selectedFilesVM = null;
+        api.templateFolderAndFileMoveFilesToBin(subscriptionId, selectedFilesVM);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Recover all folders and files from recycle bin
      *
      * User with a Create RecycleBin permission can access this method.
@@ -169,6 +186,23 @@ public class TemplatesApiTest {
     public void templateFolderAndFileRecoverAllFromRecycleBinTest() throws IOException {
         String subscriptionId = null;
         api.templateFolderAndFileRecoverAllFromRecycleBin(subscriptionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Recover folders and files from bin
+     *
+     * User with a SubscriptionCreate permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void templateFolderAndFileRecoverFilesTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesVM selectedFilesVM = null;
+        api.templateFolderAndFileRecoverFiles(subscriptionId, selectedFilesVM);
 
         // TODO: test validations
     }

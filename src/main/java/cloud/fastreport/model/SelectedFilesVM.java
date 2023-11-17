@@ -34,19 +34,39 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
   SelectedFilesVM.JSON_PROPERTY_IS_ALL_SELECTED,
+  SelectedFilesVM.JSON_PROPERTY_FOLDER_ID,
+  SelectedFilesVM.JSON_PROPERTY_SEARCH_PATTERN,
+  SelectedFilesVM.JSON_PROPERTY_USE_REGEX,
   SelectedFilesVM.JSON_PROPERTY_FILES,
-  SelectedFilesVM.JSON_PROPERTY_FOLDERS
+  SelectedFilesVM.JSON_PROPERTY_FOLDERS,
+  SelectedFilesVM.JSON_PROPERTY_PATH,
+  SelectedFilesVM.JSON_PROPERTY_IS_BIN
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SelectedFilesVM {
   public static final String JSON_PROPERTY_IS_ALL_SELECTED = "isAllSelected";
   private Boolean isAllSelected;
 
+  public static final String JSON_PROPERTY_FOLDER_ID = "folderId";
+  private JsonNullable<String> folderId = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_SEARCH_PATTERN = "searchPattern";
+  private JsonNullable<String> searchPattern = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_USE_REGEX = "useRegex";
+  private Boolean useRegex;
+
   public static final String JSON_PROPERTY_FILES = "files";
   private JsonNullable<List<String>> files = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_FOLDERS = "folders";
   private JsonNullable<List<String>> folders = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_PATH = "path";
+  private JsonNullable<String> path = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_IS_BIN = "isBin";
+  private Boolean isBin;
 
   public SelectedFilesVM() {
   }
@@ -74,6 +94,100 @@ public class SelectedFilesVM {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsAllSelected(Boolean isAllSelected) {
     this.isAllSelected = isAllSelected;
+  }
+
+
+  public SelectedFilesVM folderId(String folderId) {
+    this.folderId = JsonNullable.<String>of(folderId);
+    
+    return this;
+  }
+
+   /**
+   * Get folderId
+   * @return folderId
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getFolderId() {
+        return folderId.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getFolderId_JsonNullable() {
+    return folderId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
+  public void setFolderId_JsonNullable(JsonNullable<String> folderId) {
+    this.folderId = folderId;
+  }
+
+  public void setFolderId(String folderId) {
+    this.folderId = JsonNullable.<String>of(folderId);
+  }
+
+
+  public SelectedFilesVM searchPattern(String searchPattern) {
+    this.searchPattern = JsonNullable.<String>of(searchPattern);
+    
+    return this;
+  }
+
+   /**
+   * Get searchPattern
+   * @return searchPattern
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getSearchPattern() {
+        return searchPattern.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_SEARCH_PATTERN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getSearchPattern_JsonNullable() {
+    return searchPattern;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SEARCH_PATTERN)
+  public void setSearchPattern_JsonNullable(JsonNullable<String> searchPattern) {
+    this.searchPattern = searchPattern;
+  }
+
+  public void setSearchPattern(String searchPattern) {
+    this.searchPattern = JsonNullable.<String>of(searchPattern);
+  }
+
+
+  public SelectedFilesVM useRegex(Boolean useRegex) {
+    
+    this.useRegex = useRegex;
+    return this;
+  }
+
+   /**
+   * Get useRegex
+   * @return useRegex
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_USE_REGEX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getUseRegex() {
+    return useRegex;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_USE_REGEX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUseRegex(Boolean useRegex) {
+    this.useRegex = useRegex;
   }
 
 
@@ -169,6 +283,66 @@ public class SelectedFilesVM {
   }
 
 
+  public SelectedFilesVM path(String path) {
+    this.path = JsonNullable.<String>of(path);
+    
+    return this;
+  }
+
+   /**
+   * Get path
+   * @return path
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getPath() {
+        return path.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getPath_JsonNullable() {
+    return path;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PATH)
+  public void setPath_JsonNullable(JsonNullable<String> path) {
+    this.path = path;
+  }
+
+  public void setPath(String path) {
+    this.path = JsonNullable.<String>of(path);
+  }
+
+
+  public SelectedFilesVM isBin(Boolean isBin) {
+    
+    this.isBin = isBin;
+    return this;
+  }
+
+   /**
+   * Get isBin
+   * @return isBin
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_IS_BIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsBin() {
+    return isBin;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_BIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsBin(Boolean isBin) {
+    this.isBin = isBin;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -179,8 +353,13 @@ public class SelectedFilesVM {
     }
     SelectedFilesVM selectedFilesVM = (SelectedFilesVM) o;
     return Objects.equals(this.isAllSelected, selectedFilesVM.isAllSelected) &&
+        equalsNullable(this.folderId, selectedFilesVM.folderId) &&
+        equalsNullable(this.searchPattern, selectedFilesVM.searchPattern) &&
+        Objects.equals(this.useRegex, selectedFilesVM.useRegex) &&
         equalsNullable(this.files, selectedFilesVM.files) &&
-        equalsNullable(this.folders, selectedFilesVM.folders);
+        equalsNullable(this.folders, selectedFilesVM.folders) &&
+        equalsNullable(this.path, selectedFilesVM.path) &&
+        Objects.equals(this.isBin, selectedFilesVM.isBin);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -189,7 +368,7 @@ public class SelectedFilesVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(isAllSelected, hashCodeNullable(files), hashCodeNullable(folders));
+    return Objects.hash(isAllSelected, hashCodeNullable(folderId), hashCodeNullable(searchPattern), useRegex, hashCodeNullable(files), hashCodeNullable(folders), hashCodeNullable(path), isBin);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -204,8 +383,13 @@ public class SelectedFilesVM {
     StringBuilder sb = new StringBuilder();
     sb.append("class SelectedFilesVM {\n");
     sb.append("    isAllSelected: ").append(toIndentedString(isAllSelected)).append("\n");
+    sb.append("    folderId: ").append(toIndentedString(folderId)).append("\n");
+    sb.append("    searchPattern: ").append(toIndentedString(searchPattern)).append("\n");
+    sb.append("    useRegex: ").append(toIndentedString(useRegex)).append("\n");
     sb.append("    files: ").append(toIndentedString(files)).append("\n");
     sb.append("    folders: ").append(toIndentedString(folders)).append("\n");
+    sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    isBin: ").append(toIndentedString(isBin)).append("\n");
     sb.append("}");
     return sb.toString();
   }

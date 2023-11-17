@@ -36,7 +36,7 @@ import cloud.fastreport.model.ReportCreateVM;
 import cloud.fastreport.model.ReportFolderCreateVM;
 import cloud.fastreport.model.ReportVM;
 import cloud.fastreport.model.ReportsVM;
-import cloud.fastreport.model.SelectedFilesForDeletingVM;
+import cloud.fastreport.model.SelectedFilesVM;
 import cloud.fastreport.model.UpdateFilePermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -85,8 +85,8 @@ public class ReportsApiTest {
     @Test
     public void reportFolderAndFileDeleteFilesTest() throws IOException {
         String subscriptionId = null;
-        SelectedFilesForDeletingVM selectedFilesForDeletingVM = null;
-        api.reportFolderAndFileDeleteFiles(subscriptionId, selectedFilesForDeletingVM);
+        SelectedFilesVM selectedFilesVM = null;
+        api.reportFolderAndFileDeleteFiles(subscriptionId, selectedFilesVM);
 
         // TODO: test validations
     }
@@ -154,6 +154,23 @@ public class ReportsApiTest {
     }
     
     /**
+     * Move folders and files to bin
+     *
+     * User with a Delete permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void reportFolderAndFileMoveFilesToBinTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesVM selectedFilesVM = null;
+        api.reportFolderAndFileMoveFilesToBin(subscriptionId, selectedFilesVM);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Recover all folders and files from recycle bin
      *
      * User with a Create RecycleBin permission can access this method.
@@ -165,6 +182,23 @@ public class ReportsApiTest {
     public void reportFolderAndFileRecoverAllFromRecycleBinTest() throws IOException {
         String subscriptionId = null;
         api.reportFolderAndFileRecoverAllFromRecycleBin(subscriptionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Recover folders and files from bin
+     *
+     * User with a SubscriptionCreate permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void reportFolderAndFileRecoverFilesTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesVM selectedFilesVM = null;
+        api.reportFolderAndFileRecoverFiles(subscriptionId, selectedFilesVM);
 
         // TODO: test validations
     }

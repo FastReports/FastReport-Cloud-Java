@@ -2689,13 +2689,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+              $ref: '#/components/schemas/SelectedFilesVM'
           text/json:
             schema:
-              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+              $ref: '#/components/schemas/SelectedFilesVM'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+              $ref: '#/components/schemas/SelectedFilesVM'
         description: VM with files' ids and params of their destination
       responses:
         "204":
@@ -2719,6 +2719,110 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: File or folder not found
       summary: Delete folders and files
+      tags:
+      - Exports
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Exports/{subscriptionId}/RecoverFiles:
+    post:
+      description: User with a SubscriptionCreate permission can access this method.
+      operationId: ExportFolderAndFile_RecoverFiles
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been recovered
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+      summary: Recover folders and files from bin
+      tags:
+      - Exports
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Exports/{subscriptionId}/ToBin:
+    post:
+      description: User with a Delete permission can access this method.
+      operationId: ExportFolderAndFile_MoveFilesToBin
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been moved to bin
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+      summary: Move folders and files to bin
       tags:
       - Exports
       x-content-type: application/json
@@ -3696,6 +3800,94 @@ paths:
       - Exports
       x-content-type: application/json
       x-accepts: application/json
+  /api/rp/v1/Exports/File/{id}:
+    delete:
+      description: User with Delete permission can access the method.
+      operationId: Exports_DeleteFile
+      parameters:
+      - description: file id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: File succesfully deleted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Id is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription is outdated
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File not found
+        "500":
+          description: Exception thrown
+      summary: Delete specified file
+      tags:
+      - Exports
+      x-accepts: application/json
+    get:
+      operationId: Exports_GetFile
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportVM'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      tags:
+      - Exports
+      x-accepts: application/json
   /api/rp/v1/Exports/File/{id}/Copy/{folderId}:
     post:
       operationId: Exports_CopyFile
@@ -3752,97 +3944,6 @@ paths:
         "500":
           description: Exception thrown
       summary: Copy file to a specified folder
-      tags:
-      - Exports
-      x-accepts: application/json
-  /api/rp/v1/Exports/File/{id}:
-    delete:
-      description: User with Delete permission can access the method.
-      operationId: Exports_DeleteFile
-      parameters:
-      - description: file id
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          pattern: "^[A-Fa-f0-9]{24}$"
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: File succesfully deleted
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Id is null
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: You don't have rights for the operation
-        "402":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Subscription is outdated
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: File not found
-        "500":
-          description: Exception thrown
-      summary: Delete specified file
-      tags:
-      - Exports
-      x-accepts: application/json
-    get:
-      description: User with Get Entity permission can access this method.
-      operationId: Exports_GetFile
-      parameters:
-      - description: file id
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          pattern: "^[A-Fa-f0-9]{24}$"
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExportVM'
-          description: Returns the specified file
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: Id is null
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: You don't have rights for the operation
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-          description: File not found
-        "500":
-          description: Exception thrown
-      summary: Get specified file
       tags:
       - Exports
       x-accepts: application/json
@@ -5462,13 +5563,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+              $ref: '#/components/schemas/SelectedFilesVM'
           text/json:
             schema:
-              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+              $ref: '#/components/schemas/SelectedFilesVM'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+              $ref: '#/components/schemas/SelectedFilesVM'
         description: VM with files' ids and params of their destination
       responses:
         "204":
@@ -5492,6 +5593,110 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: File or folder not found
       summary: Delete folders and files
+      tags:
+      - Reports
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Reports/{subscriptionId}/RecoverFiles:
+    post:
+      description: User with a SubscriptionCreate permission can access this method.
+      operationId: ReportFolderAndFile_RecoverFiles
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been recovered
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+      summary: Recover folders and files from bin
+      tags:
+      - Reports
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Reports/{subscriptionId}/ToBin:
+    post:
+      description: User with a Delete permission can access this method.
+      operationId: ReportFolderAndFile_MoveFilesToBin
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been moved to bin
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+      summary: Move folders and files to bin
       tags:
       - Reports
       x-content-type: application/json
@@ -9555,13 +9760,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+              $ref: '#/components/schemas/SelectedFilesVM'
           text/json:
             schema:
-              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+              $ref: '#/components/schemas/SelectedFilesVM'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/SelectedFilesForDeletingVM'
+              $ref: '#/components/schemas/SelectedFilesVM'
         description: VM with files' ids and params of their destination
       responses:
         "204":
@@ -9585,6 +9790,110 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: File or folder not found
       summary: Delete folders and files
+      tags:
+      - Templates
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Templates/{subscriptionId}/RecoverFiles:
+    post:
+      description: User with a SubscriptionCreate permission can access this method.
+      operationId: TemplateFolderAndFile_RecoverFiles
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been recovered
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+      summary: Recover folders and files from bin
+      tags:
+      - Templates
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Templates/{subscriptionId}/ToBin:
+    post:
+      description: User with a Delete permission can access this method.
+      operationId: TemplateFolderAndFile_MoveFilesToBin
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been moved to bin
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+      summary: Move folders and files to bin
       tags:
       - Templates
       x-content-type: application/json
@@ -10694,7 +11003,7 @@ paths:
         Create Entity on an export folder can access this method."
       operationId: Templates_Export
       parameters:
-      - description: report id
+      - description: template id
         explode: false
         in: path
         name: id
@@ -15040,17 +15349,23 @@ components:
       - Custom
       type: string
       x-typeName: FastReport.Cloud.Enums.SaveMode
-    SelectedFilesForDeletingVM:
+    SelectedFilesVM:
       additionalProperties: false
-      allOf:
-      - $ref: '#/components/schemas/SelectedFilesVM'
       example:
+        path: path
         isBin: true
         useRegex: true
+        folders:
+        - folders
+        - folders
+        isAllSelected: true
         searchPattern: searchPattern
+        files:
+        - files
+        - files
         folderId: folderId
       properties:
-        isBin:
+        isAllSelected:
           type: boolean
         folderId:
           nullable: true
@@ -15060,12 +15375,6 @@ components:
           nullable: true
           type: string
         useRegex:
-          type: boolean
-      type: object
-    SelectedFilesVM:
-      additionalProperties: false
-      properties:
-        isAllSelected:
           type: boolean
         files:
           items:
@@ -15077,8 +15386,12 @@ components:
             type: string
           nullable: true
           type: array
+        path:
+          nullable: true
+          type: string
+        isBin:
+          type: boolean
       type: object
-      x-parent: true
     ServerConfigurationVM:
       additionalProperties: false
       example:

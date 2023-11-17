@@ -52,6 +52,30 @@ public class SelectedFilesVMTest {
     }
 
     /**
+     * Test the property 'folderId'
+     */
+    @Test
+    public void folderIdTest() {
+        // TODO: test folderId
+    }
+
+    /**
+     * Test the property 'searchPattern'
+     */
+    @Test
+    public void searchPatternTest() {
+        // TODO: test searchPattern
+    }
+
+    /**
+     * Test the property 'useRegex'
+     */
+    @Test
+    public void useRegexTest() {
+        // TODO: test useRegex
+    }
+
+    /**
      * Test the property 'files'
      */
     @Test
@@ -65,6 +89,22 @@ public class SelectedFilesVMTest {
     @Test
     public void foldersTest() {
         // TODO: test folders
+    }
+
+    /**
+     * Test the property 'path'
+     */
+    @Test
+    public void pathTest() {
+        // TODO: test path
+    }
+
+    /**
+     * Test the property 'isBin'
+     */
+    @Test
+    public void isBinTest() {
+        // TODO: test isBin
     }
 
 }

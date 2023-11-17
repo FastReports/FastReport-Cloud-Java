@@ -176,7 +176,6 @@ docs/RunTransformTaskBaseVM.md
 docs/RunTransportTaskBaseVM.md
 docs/RunWebhookTaskVM.md
 docs/SaveMode.md
-docs/SelectedFilesForDeletingVM.md
 docs/SelectedFilesVM.md
 docs/ServerConfigurationVM.md
 docs/SubscriptionAdministrate.md
@@ -456,7 +455,6 @@ src/main/java/cloud/fastreport/model/RunTransformTaskBaseVM.java
 src/main/java/cloud/fastreport/model/RunTransportTaskBaseVM.java
 src/main/java/cloud/fastreport/model/RunWebhookTaskVM.java
 src/main/java/cloud/fastreport/model/SaveMode.java
-src/main/java/cloud/fastreport/model/SelectedFilesForDeletingVM.java
 src/main/java/cloud/fastreport/model/SelectedFilesVM.java
 src/main/java/cloud/fastreport/model/ServerConfigurationVM.java
 src/main/java/cloud/fastreport/model/SubscriptionAdministrate.java
@@ -712,7 +710,6 @@ src/test/java/cloud/fastreport/model/RunTransformTaskBaseVMTest.java
 src/test/java/cloud/fastreport/model/RunTransportTaskBaseVMTest.java
 src/test/java/cloud/fastreport/model/RunWebhookTaskVMTest.java
 src/test/java/cloud/fastreport/model/SaveModeTest.java
-src/test/java/cloud/fastreport/model/SelectedFilesForDeletingVMTest.java
 src/test/java/cloud/fastreport/model/SelectedFilesVMTest.java
 src/test/java/cloud/fastreport/model/ServerConfigurationVMTest.java
 src/test/java/cloud/fastreport/model/SubscriptionAdministrateTest.java

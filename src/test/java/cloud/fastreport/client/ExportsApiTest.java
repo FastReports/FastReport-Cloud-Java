@@ -32,7 +32,7 @@ import cloud.fastreport.model.FolderRenameVM;
 import cloud.fastreport.model.FolderSizeVM;
 import cloud.fastreport.model.FolderTagsUpdateVM;
 import cloud.fastreport.model.ProblemDetails;
-import cloud.fastreport.model.SelectedFilesForDeletingVM;
+import cloud.fastreport.model.SelectedFilesVM;
 import cloud.fastreport.model.UpdateFilePermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -81,8 +81,8 @@ public class ExportsApiTest {
     @Test
     public void exportFolderAndFileDeleteFilesTest() throws IOException {
         String subscriptionId = null;
-        SelectedFilesForDeletingVM selectedFilesForDeletingVM = null;
-        api.exportFolderAndFileDeleteFiles(subscriptionId, selectedFilesForDeletingVM);
+        SelectedFilesVM selectedFilesVM = null;
+        api.exportFolderAndFileDeleteFiles(subscriptionId, selectedFilesVM);
 
         // TODO: test validations
     }
@@ -150,6 +150,23 @@ public class ExportsApiTest {
     }
     
     /**
+     * Move folders and files to bin
+     *
+     * User with a Delete permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void exportFolderAndFileMoveFilesToBinTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesVM selectedFilesVM = null;
+        api.exportFolderAndFileMoveFilesToBin(subscriptionId, selectedFilesVM);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Recover all folders and files from recycle bin
      *
      * User with a Create RecycleBin permission can access this method.
@@ -161,6 +178,23 @@ public class ExportsApiTest {
     public void exportFolderAndFileRecoverAllFromRecycleBinTest() throws IOException {
         String subscriptionId = null;
         api.exportFolderAndFileRecoverAllFromRecycleBin(subscriptionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Recover folders and files from bin
+     *
+     * User with a SubscriptionCreate permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void exportFolderAndFileRecoverFilesTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesVM selectedFilesVM = null;
+        api.exportFolderAndFileRecoverFiles(subscriptionId, selectedFilesVM);
 
         // TODO: test validations
     }
@@ -503,9 +537,9 @@ public class ExportsApiTest {
     }
     
     /**
-     * Get specified file
+     * 
      *
-     * User with Get Entity permission can access this method.
+     * 
      *
      * @throws IOException
      *          if the Api call fails

@@ -12599,6 +12599,9 @@ components:
         messageId:
           nullable: true
           type: string
+        fileName:
+          nullable: true
+          type: string
       type: object
     AuditType:
       enum:
@@ -16960,7 +16963,7 @@ components:
       properties:
         body:
           maxLength: 384000
-          minLength: 1
+          minLength: 0
           nullable: true
           type: string
         enableSsl:
@@ -16989,7 +16992,7 @@ components:
           type: string
         subject:
           maxLength: 1000
-          minLength: 1
+          minLength: 0
           nullable: true
           type: string
         to:

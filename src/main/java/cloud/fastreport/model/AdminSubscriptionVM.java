@@ -27,6 +27,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -34,12 +37,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * AdminSubscriptionVM
  */
 @JsonPropertyOrder({
-  AdminSubscriptionVM.JSON_PROPERTY_DEFAULT_PERMISSIONS
+  AdminSubscriptionVM.JSON_PROPERTY_DEFAULT_PERMISSIONS,
+  AdminSubscriptionVM.JSON_PROPERTY_OWNER_ID
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AdminSubscriptionVM extends SubscriptionVM {
   public static final String JSON_PROPERTY_DEFAULT_PERMISSIONS = "defaultPermissions";
   private DefaultPermissionsVM defaultPermissions;
+
+  public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
+  private JsonNullable<String> ownerId = JsonNullable.<String>undefined();
 
   public AdminSubscriptionVM() {
 
@@ -71,6 +78,40 @@ public class AdminSubscriptionVM extends SubscriptionVM {
   }
 
 
+  public AdminSubscriptionVM ownerId(String ownerId) {
+    this.ownerId = JsonNullable.<String>of(ownerId);
+    
+    return this;
+  }
+
+   /**
+   * Get ownerId
+   * @return ownerId
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getOwnerId() {
+        return ownerId.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_OWNER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getOwnerId_JsonNullable() {
+    return ownerId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OWNER_ID)
+  public void setOwnerId_JsonNullable(JsonNullable<String> ownerId) {
+    this.ownerId = ownerId;
+  }
+
+  public void setOwnerId(String ownerId) {
+    this.ownerId = JsonNullable.<String>of(ownerId);
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -81,6 +122,7 @@ public class AdminSubscriptionVM extends SubscriptionVM {
     }
     AdminSubscriptionVM adminSubscriptionVM = (AdminSubscriptionVM) o;
     return Objects.equals(this.defaultPermissions, adminSubscriptionVM.defaultPermissions) &&
+        equalsNullable(this.ownerId, adminSubscriptionVM.ownerId) &&
         super.equals(o);
   }
 
@@ -90,7 +132,7 @@ public class AdminSubscriptionVM extends SubscriptionVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultPermissions, super.hashCode());
+    return Objects.hash(defaultPermissions, hashCodeNullable(ownerId), super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -106,6 +148,7 @@ public class AdminSubscriptionVM extends SubscriptionVM {
     sb.append("class AdminSubscriptionVM {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    defaultPermissions: ").append(toIndentedString(defaultPermissions)).append("\n");
+    sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

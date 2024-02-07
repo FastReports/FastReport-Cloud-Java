@@ -5,10 +5,12 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**templateFolderAndFileClearRecycleBin**](TemplatesApi.md#templateFolderAndFileClearRecycleBin) | **DELETE** /api/rp/v1/Templates/{subscriptionId}/ClearRecycleBin | Delete all folders and files from recycle bin |
+| [**templateFolderAndFileCopyFiles**](TemplatesApi.md#templateFolderAndFileCopyFiles) | **POST** /api/rp/v1/Templates/{subscriptionId}/CopyFiles | Copy folders and files to a specified folder |
 | [**templateFolderAndFileDeleteFiles**](TemplatesApi.md#templateFolderAndFileDeleteFiles) | **POST** /api/rp/v1/Templates/{subscriptionId}/DeleteFiles | Delete folders and files |
 | [**templateFolderAndFileGetCount**](TemplatesApi.md#templateFolderAndFileGetCount) | **GET** /api/rp/v1/Templates/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder |
 | [**templateFolderAndFileGetFoldersAndFiles**](TemplatesApi.md#templateFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder |
 | [**templateFolderAndFileGetRecycleBinFoldersAndFiles**](TemplatesApi.md#templateFolderAndFileGetRecycleBinFoldersAndFiles) | **GET** /api/rp/v1/Templates/{subscriptionId}/ListRecycleBinFolderAndFiles | Get all folders and files from recycle bin |
+| [**templateFolderAndFileMoveFiles**](TemplatesApi.md#templateFolderAndFileMoveFiles) | **POST** /api/rp/v1/Templates/{subscriptionId}/MoveFiles | Move folders and files to a specified folder |
 | [**templateFolderAndFileMoveFilesToBin**](TemplatesApi.md#templateFolderAndFileMoveFilesToBin) | **POST** /api/rp/v1/Templates/{subscriptionId}/ToBin | Move folders and files to bin |
 | [**templateFolderAndFileRecoverAllFromRecycleBin**](TemplatesApi.md#templateFolderAndFileRecoverAllFromRecycleBin) | **POST** /api/rp/v1/Templates/{subscriptionId}/RecoverRecycleBin | Recover all folders and files from recycle bin |
 | [**templateFolderAndFileRecoverFiles**](TemplatesApi.md#templateFolderAndFileRecoverFiles) | **POST** /api/rp/v1/Templates/{subscriptionId}/RecoverFiles | Recover folders and files from bin |
@@ -46,11 +48,13 @@ All URIs are relative to *http://localhost*
 | [**templatesRecoverFile**](TemplatesApi.md#templatesRecoverFile) | **POST** /api/rp/v1/Templates/File/{id}/Recover | Recover specified file from bin |
 | [**templatesRenameFile**](TemplatesApi.md#templatesRenameFile) | **PUT** /api/rp/v1/Templates/File/{id}/Rename | Rename a file |
 | [**templatesStaticPreview**](TemplatesApi.md#templatesStaticPreview) | **POST** /api/rp/v1/Templates/File/{id}/StaticPreview | Make preview for the report.  Generate a new or return exist prepared svg files.  If template was changed will be returned a new.  Pass the &#x60;&#x60; parameter to check prepared timestamp |
-| [**templatesUpdateContent**](TemplatesApi.md#templatesUpdateContent) | **PUT** /api/rp/v1/Templates/File/{id}/Content | Updates contnet of the template |
+| [**templatesUpdateContent**](TemplatesApi.md#templatesUpdateContent) | **PUT** /api/rp/v1/Templates/File/{id}/Content | Updates contnet of the template. The method is deprecated, use the UpdateContentV2 method instead! |
+| [**templatesUpdateContentV2**](TemplatesApi.md#templatesUpdateContentV2) | **PUT** /api/rp/v2/Templates/File/{id}/Content | Updates contnet of the template. |
 | [**templatesUpdateIcon**](TemplatesApi.md#templatesUpdateIcon) | **PUT** /api/rp/v1/Templates/File/{id}/Icon | Update a files&#39;s icon |
 | [**templatesUpdatePermissions**](TemplatesApi.md#templatesUpdatePermissions) | **POST** /api/rp/v1/Templates/File/{id}/permissions | Update permissions |
 | [**templatesUpdateTags**](TemplatesApi.md#templatesUpdateTags) | **PUT** /api/rp/v1/Templates/File/{id}/UpdateTags | Update tags |
-| [**templatesUploadFile**](TemplatesApi.md#templatesUploadFile) | **POST** /api/rp/v1/Templates/Folder/{id}/File | Upload a file to the specified folder  ! |
+| [**templatesUploadFile**](TemplatesApi.md#templatesUploadFile) | **POST** /api/rp/v1/Templates/Folder/{id}/File | Upload a file to the specified folder. The method is deprecated, use the UploadFileV2 method instead! |
+| [**templatesUploadFileV2**](TemplatesApi.md#templatesUploadFileV2) | **POST** /api/rp/v2/Templates/Folder/{id}/File | Alternative api for upload a file to the specified folder! |
 
 
 
@@ -128,8 +132,91 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | All folders and files in bin have been deleted |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
+
+
+## templateFolderAndFileCopyFiles
+
+> templateFolderAndFileCopyFiles(subscriptionId, selectedFilesVM)
+
+Copy folders and files to a specified folder
+
+User with a Get permission for a files and Create permission for a destination folder can access this method.
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.TemplatesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
+
+        TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+        String subscriptionId = "subscriptionId_example"; // String | id of current subscription
+        SelectedFilesVM selectedFilesVM = new SelectedFilesVM(); // SelectedFilesVM | VM with files' ids and params of their destination
+        try {
+            apiInstance.templateFolderAndFileCopyFiles(subscriptionId, selectedFilesVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TemplatesApi#templateFolderAndFileCopyFiles");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| id of current subscription | |
+| **selectedFilesVM** | [**SelectedFilesVM**](SelectedFilesVM.md)| VM with files&#39; ids and params of their destination | [optional] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | All folders and files have been copied |  -  |
+| **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or folder not found |  -  |
+| **500** | Server Error |  -  |
 
 
 ## templateFolderAndFileDeleteFiles
@@ -208,6 +295,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | All folders and files have been deleted |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
 
@@ -291,6 +379,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns count of the files in a specified folder |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Folder not found |  -  |
 
@@ -382,6 +471,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns list of the files from a specified folder |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
 
@@ -473,8 +563,91 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns list of the files from a specified folder |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
+
+
+## templateFolderAndFileMoveFiles
+
+> templateFolderAndFileMoveFiles(subscriptionId, selectedFilesVM)
+
+Move folders and files to a specified folder
+
+User with a Update Place permission for a files and Create permission for a destination folder can access this method.
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.TemplatesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
+
+        TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+        String subscriptionId = "subscriptionId_example"; // String | id of current subscription
+        SelectedFilesVM selectedFilesVM = new SelectedFilesVM(); // SelectedFilesVM | VM with files' ids and params of their destination
+        try {
+            apiInstance.templateFolderAndFileMoveFiles(subscriptionId, selectedFilesVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TemplatesApi#templateFolderAndFileMoveFiles");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| id of current subscription | |
+| **selectedFilesVM** | [**SelectedFilesVM**](SelectedFilesVM.md)| VM with files&#39; ids and params of their destination | [optional] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | All folders and files have been moved |  -  |
+| **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or folder not found |  -  |
+| **500** | Server Error |  -  |
 
 
 ## templateFolderAndFileMoveFilesToBin
@@ -553,6 +726,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | All folders and files have been moved to bin |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
 
@@ -631,6 +805,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | All folders and files in bin have been restored |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
 
@@ -711,6 +886,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | All folders and files have been recovered |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
 
@@ -2994,7 +3170,7 @@ public class Example {
 
 Move file to a specified folder
 
-User with Update Place permission can access this method.
+User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
 
 ### Example
 
@@ -3484,7 +3660,7 @@ public class Example {
 
 > templatesUpdateContent(id, updateFileContentVM)
 
-Updates contnet of the template
+Updates contnet of the template. The method is deprecated, use the UpdateContentV2 method instead!
 
 ### Example
 
@@ -3546,6 +3722,85 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | No Content |  -  |
+| **404** | Not Found |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+| **402** | Client Error |  -  |
+
+
+## templatesUpdateContentV2
+
+> templatesUpdateContentV2(id, content)
+
+Updates contnet of the template.
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.TemplatesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
+
+        TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+        String id = "id_example"; // String | template id
+        File content = new File("/path/to/file"); // File | 
+        try {
+            apiInstance.templatesUpdateContentV2(id, content);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TemplatesApi#templatesUpdateContentV2");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| template id | |
+| **content** | **File**|  | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 
@@ -3809,7 +4064,7 @@ public class Example {
 
 > TemplateVM templatesUploadFile(id, templateCreateVM)
 
-Upload a file to the specified folder  !
+Upload a file to the specified folder. The method is deprecated, use the UploadFileV2 method instead!
 
 User with Create Entity permission can access this method.
 
@@ -3874,6 +4129,92 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | File has been uploaded |  -  |
+| **400** | fileVM view model is not valid |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
+| **404** | folder/subscription is not found |  -  |
+
+
+## templatesUploadFileV2
+
+> TemplateVM templatesUploadFileV2(id, content, tags, icon)
+
+Alternative api for upload a file to the specified folder!
+
+User with Create Entity permission can access this method.
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.TemplatesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
+
+        TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+        String id = "id_example"; // String | Identifier of folder
+        File content = new File("/path/to/file"); // File | 
+        List<String> tags = Arrays.asList(); // List<String> | 
+        File icon = new File("/path/to/file"); // File | 
+        try {
+            TemplateVM result = apiInstance.templatesUploadFileV2(id, content, tags, icon);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TemplatesApi#templatesUploadFileV2");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Identifier of folder | |
+| **content** | **File**|  | |
+| **tags** | [**List&lt;String&gt;**](String.md)|  | [optional] |
+| **icon** | **File**|  | [optional] |
+
+### Return type
+
+[**TemplateVM**](TemplateVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 

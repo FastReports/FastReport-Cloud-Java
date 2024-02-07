@@ -2369,6 +2369,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -2473,6 +2479,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -2577,6 +2589,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -2616,6 +2634,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -2655,6 +2679,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -2706,6 +2736,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -2758,6 +2794,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -2810,6 +2852,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -2823,6 +2871,128 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: File or folder not found
       summary: Move folders and files to bin
+      tags:
+      - Exports
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Exports/{subscriptionId}/CopyFiles:
+    post:
+      description: User with a Get permission for a files and Create permission for
+        a destination folder can access this method.
+      operationId: ExportFolderAndFile_CopyFiles
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been copied
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+        "500":
+          description: Server Error
+      summary: Copy folders and files to a specified folder
+      tags:
+      - Exports
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Exports/{subscriptionId}/MoveFiles:
+    post:
+      description: User with a Update Place permission for a files and Create permission
+        for a destination folder can access this method.
+      operationId: ExportFolderAndFile_MoveFiles
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been moved
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+        "500":
+          description: Server Error
+      summary: Move folders and files to a specified folder
       tags:
       - Exports
       x-content-type: application/json
@@ -4365,7 +4535,8 @@ paths:
       x-accepts: application/json
   /api/rp/v1/Exports/File/{id}/Move/{folderId}:
     post:
-      description: User with Update Place permission can access this method.
+      description: "User with a Update Place permission for a folder and Create Entity\r\
+        \nfor a Parent Folder can access this method."
       operationId: Exports_MoveFile
       parameters:
       - description: file id
@@ -5243,6 +5414,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -5347,6 +5524,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -5451,6 +5634,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -5490,6 +5679,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -5529,6 +5724,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -5580,6 +5781,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -5632,6 +5839,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -5684,6 +5897,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -5697,6 +5916,128 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: File or folder not found
       summary: Move folders and files to bin
+      tags:
+      - Reports
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Reports/{subscriptionId}/CopyFiles:
+    post:
+      description: User with a Get permission for a files and Create permission for
+        a destination folder can access this method.
+      operationId: ReportFolderAndFile_CopyFiles
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been copied
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+        "500":
+          description: Server Error
+      summary: Copy folders and files to a specified folder
+      tags:
+      - Reports
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Reports/{subscriptionId}/MoveFiles:
+    post:
+      description: User with a Update Place permission for a files and Create permission
+        for a destination folder can access this method.
+      operationId: ReportFolderAndFile_MoveFiles
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been moved
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+        "500":
+          description: Server Error
+      summary: Move folders and files to a specified folder
       tags:
       - Reports
       x-content-type: application/json
@@ -6867,6 +7208,70 @@ paths:
       - Reports
       x-content-type: application/json
       x-accepts: application/json
+  /api/rp/v2/Reports/Folder/{id}/File:
+    post:
+      description: User with Create Entity permission can access this method.
+      operationId: Reports_UploadFileV2
+      parameters:
+      - description: Identifier of folder
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              TemplateId:
+                style: form
+              Tags:
+                style: form
+              Icon:
+                style: form
+              Content:
+                style: form
+            schema:
+              $ref: '#/components/schemas/Reports_UploadFileV2_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportVM'
+          description: File has been uploaded
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: fileVM view model is not valid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: subscription is outdated
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: folder/subscription is not found
+      summary: Alternative api for upload a file to the specified folder!
+      tags:
+      - Reports
+      x-content-type: multipart/form-data
+      x-accepts: application/json
   /api/rp/v1/Reports/File/{id}/Copy/{folderId}:
     post:
       operationId: Reports_CopyFile
@@ -7435,7 +7840,8 @@ paths:
       x-accepts: application/json
   /api/rp/v1/Reports/File/{id}/Move/{folderId}:
     post:
-      description: User with Update Place permission can access this method.
+      description: "User with a Update Place permission for a folder and Create Entity\r\
+        \nfor a Parent Folder can access this method."
       operationId: Reports_MoveFile
       parameters:
       - description: file id
@@ -7681,6 +8087,7 @@ paths:
       x-accepts: application/json
   /api/rp/v1/Reports/Folder/{id}/File:
     post:
+      deprecated: true
       description: User with Create Entity permission can access this method.
       operationId: Reports_UploadFile
       parameters:
@@ -7736,7 +8143,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: folder/subscription is not found
-      summary: Upload a file to the specified folder  !
+      summary: "Upload a file to the specified folder. The method is deprecated, use\
+        \ the UploadFileV2 method instead!"
       tags:
       - Reports
       x-content-type: application/json
@@ -9440,6 +9848,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -9544,6 +9958,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -9648,6 +10068,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -9687,6 +10113,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -9726,6 +10158,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -9777,6 +10215,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -9829,6 +10273,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -9881,6 +10331,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
         "403":
           content:
             application/json:
@@ -9894,6 +10350,128 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: File or folder not found
       summary: Move folders and files to bin
+      tags:
+      - Templates
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Templates/{subscriptionId}/CopyFiles:
+    post:
+      description: User with a Get permission for a files and Create permission for
+        a destination folder can access this method.
+      operationId: TemplateFolderAndFile_CopyFiles
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been copied
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+        "500":
+          description: Server Error
+      summary: Copy folders and files to a specified folder
+      tags:
+      - Templates
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Templates/{subscriptionId}/MoveFiles:
+    post:
+      description: User with a Update Place permission for a files and Create permission
+        for a destination folder can access this method.
+      operationId: TemplateFolderAndFile_MoveFiles
+      parameters:
+      - description: id of current subscription
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SelectedFilesVM'
+        description: VM with files' ids and params of their destination
+      responses:
+        "204":
+          description: All folders and files have been moved
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: FolderId is null
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: File or folder not found
+        "500":
+          description: Server Error
+      summary: Move folders and files to a specified folder
       tags:
       - Templates
       x-content-type: application/json
@@ -11127,8 +11705,62 @@ paths:
       - Templates
       x-content-type: application/json
       x-accepts: application/json
+  /api/rp/v2/Templates/File/{id}/Content:
+    put:
+      operationId: Templates_UpdateContentV2
+      parameters:
+      - description: template id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              Content:
+                style: form
+            schema:
+              $ref: '#/components/schemas/Templates_UpdateContentV2_request'
+      responses:
+        "204":
+          description: No Content
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+      summary: Updates contnet of the template.
+      tags:
+      - Templates
+      x-content-type: multipart/form-data
+      x-accepts: application/json
   /api/rp/v1/Templates/File/{id}/Content:
     put:
+      deprecated: true
       operationId: Templates_UpdateContent
       parameters:
       - description: template id
@@ -11179,7 +11811,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Client Error
-      summary: Updates contnet of the template
+      summary: "Updates contnet of the template. The method is deprecated, use the\
+        \ UpdateContentV2 method instead!"
       tags:
       - Templates
       x-content-type: application/json
@@ -11248,6 +11881,68 @@ paths:
       tags:
       - Templates
       x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v2/Templates/Folder/{id}/File:
+    post:
+      description: User with Create Entity permission can access this method.
+      operationId: Templates_UploadFileV2
+      parameters:
+      - description: Identifier of folder
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              Tags:
+                style: form
+              Icon:
+                style: form
+              Content:
+                style: form
+            schema:
+              $ref: '#/components/schemas/Templates_UploadFileV2_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateVM'
+          description: File has been uploaded
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: fileVM view model is not valid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: subscription is outdated
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: folder/subscription is not found
+      summary: Alternative api for upload a file to the specified folder!
+      tags:
+      - Templates
+      x-content-type: multipart/form-data
       x-accepts: application/json
   /api/rp/v1/Templates/File/{id}/Copy/{folderId}:
     post:
@@ -11817,7 +12512,8 @@ paths:
       x-accepts: application/json
   /api/rp/v1/Templates/File/{id}/Move/{folderId}:
     post:
-      description: User with Update Place permission can access this method.
+      description: "User with a Update Place permission for a folder and Create Entity\r\
+        \nfor a Parent Folder can access this method."
       operationId: Templates_MoveFile
       parameters:
       - description: file id
@@ -12063,6 +12759,7 @@ paths:
       x-accepts: application/json
   /api/rp/v1/Templates/Folder/{id}/File:
     post:
+      deprecated: true
       description: User with Create Entity permission can access this method.
       operationId: Templates_UploadFile
       parameters:
@@ -12118,7 +12815,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: folder/subscription is not found
-      summary: Upload a file to the specified folder  !
+      summary: "Upload a file to the specified folder. The method is deprecated, use\
+        \ the UploadFileV2 method instead!"
       tags:
       - Templates
       x-content-type: application/json
@@ -12411,6 +13109,10 @@ components:
       properties:
         defaultPermissions:
           $ref: '#/components/schemas/DefaultPermissionsVM'
+        ownerId:
+          nullable: true
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
       type: object
     AdminTemplateFolderCreateVM:
       additionalProperties: false
@@ -14069,7 +14771,7 @@ components:
           type: string
         content:
           format: byte
-          maxLength: 1073741824
+          maxLength: 100000000
           nullable: true
           type: string
       type: object
@@ -15191,7 +15893,7 @@ components:
       properties:
         content:
           format: byte
-          maxLength: 1073741824
+          maxLength: 10000000
           nullable: true
           type: string
         fileName:
@@ -17109,7 +17811,7 @@ components:
       properties:
         content:
           format: byte
-          maxLength: 1073741824
+          maxLength: 10000000
           type: string
       required:
       - content
@@ -17469,6 +18171,58 @@ components:
           minLength: 1
           nullable: true
           type: string
+      type: object
+    Reports_UploadFileV2_request:
+      properties:
+        TemplateId:
+          nullable: true
+          pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
+          type: string
+        Tags:
+          items:
+            type: string
+          maxItems: 3
+          maxLength: 50
+          minLength: 1
+          nullable: true
+          type: array
+        Icon:
+          format: binary
+          nullable: true
+          type: string
+        Content:
+          format: binary
+          type: string
+      required:
+      - Content
+      type: object
+    Templates_UpdateContentV2_request:
+      properties:
+        Content:
+          format: binary
+          type: string
+      required:
+      - Content
+      type: object
+    Templates_UploadFileV2_request:
+      properties:
+        Tags:
+          items:
+            type: string
+          maxItems: 3
+          maxLength: 50
+          minLength: 1
+          nullable: true
+          type: array
+        Icon:
+          format: binary
+          nullable: true
+          type: string
+        Content:
+          format: binary
+          type: string
+      required:
+      - Content
       type: object
   securitySchemes:
     JWT:

@@ -71,6 +71,23 @@ public class ExportsApiTest {
     }
     
     /**
+     * Copy folders and files to a specified folder
+     *
+     * User with a Get permission for a files and Create permission for a destination folder can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void exportFolderAndFileCopyFilesTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesVM selectedFilesVM = null;
+        api.exportFolderAndFileCopyFiles(subscriptionId, selectedFilesVM);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Delete folders and files
      *
      * User with a Delete permission can access this method.
@@ -145,6 +162,23 @@ public class ExportsApiTest {
         String searchPattern = null;
         Boolean useRegex = null;
         FilesVM response = api.exportFolderAndFileGetRecycleBinFoldersAndFiles(subscriptionId, skip, take, orderBy, desc, searchPattern, useRegex);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Move folders and files to a specified folder
+     *
+     * User with a Update Place permission for a files and Create permission for a destination folder can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void exportFolderAndFileMoveFilesTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesVM selectedFilesVM = null;
+        api.exportFolderAndFileMoveFiles(subscriptionId, selectedFilesVM);
 
         // TODO: test validations
     }
@@ -627,7 +661,7 @@ public class ExportsApiTest {
     /**
      * Move file to a specified folder
      *
-     * User with Update Place permission can access this method.
+     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
      *
      * @throws IOException
      *          if the Api call fails

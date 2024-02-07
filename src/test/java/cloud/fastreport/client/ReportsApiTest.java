@@ -18,6 +18,7 @@ import cloud.fastreport.model.BreadcrumbsVM;
 import cloud.fastreport.model.CountVM;
 import cloud.fastreport.model.ExportReportVM;
 import cloud.fastreport.model.ExportVM;
+import java.io.File;
 import cloud.fastreport.model.FileIconVM;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileRenameVM;
@@ -70,6 +71,23 @@ public class ReportsApiTest {
     public void reportFolderAndFileClearRecycleBinTest() throws IOException {
         String subscriptionId = null;
         api.reportFolderAndFileClearRecycleBin(subscriptionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Copy folders and files to a specified folder
+     *
+     * User with a Get permission for a files and Create permission for a destination folder can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void reportFolderAndFileCopyFilesTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesVM selectedFilesVM = null;
+        api.reportFolderAndFileCopyFiles(subscriptionId, selectedFilesVM);
 
         // TODO: test validations
     }
@@ -149,6 +167,23 @@ public class ReportsApiTest {
         String searchPattern = null;
         Boolean useRegex = null;
         FilesVM response = api.reportFolderAndFileGetRecycleBinFoldersAndFiles(subscriptionId, skip, take, orderBy, desc, searchPattern, useRegex);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Move folders and files to a specified folder
+     *
+     * User with a Update Place permission for a files and Create permission for a destination folder can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void reportFolderAndFileMoveFilesTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesVM selectedFilesVM = null;
+        api.reportFolderAndFileMoveFiles(subscriptionId, selectedFilesVM);
 
         // TODO: test validations
     }
@@ -665,7 +700,7 @@ public class ReportsApiTest {
     /**
      * Move file to a specified folder
      *
-     * User with Update Place permission can access this method.
+     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
      *
      * @throws IOException
      *          if the Api call fails
@@ -798,7 +833,7 @@ public class ReportsApiTest {
     }
     
     /**
-     * Upload a file to the specified folder  !
+     * Upload a file to the specified folder. The method is deprecated, use the UploadFileV2 method instead!
      *
      * User with Create Entity permission can access this method.
      *
@@ -810,6 +845,26 @@ public class ReportsApiTest {
         String id = null;
         ReportCreateVM reportCreateVM = null;
         ReportVM response = api.reportsUploadFile(id, reportCreateVM);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Alternative api for upload a file to the specified folder!
+     *
+     * User with Create Entity permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void reportsUploadFileV2Test() throws IOException {
+        String id = null;
+        File content = null;
+        String templateId = null;
+        List<String> tags = null;
+        File icon = null;
+        ReportVM response = api.reportsUploadFileV2(id, content, templateId, tags, icon);
 
         // TODO: test validations
     }

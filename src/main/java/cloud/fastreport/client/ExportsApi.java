@@ -66,6 +66,7 @@ public class ExportsApi {
     * User with a Delete RecycleBin permission can access this method.
     * <p><b>204</b> - All folders and files in bin have been deleted
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId subscription id
@@ -80,6 +81,7 @@ public class ExportsApi {
     * User with a Delete RecycleBin permission can access this method.
     * <p><b>204</b> - All folders and files in bin have been deleted
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId subscription id
@@ -144,10 +146,117 @@ public class ExportsApi {
 
 
   /**
+    * Copy folders and files to a specified folder
+    * User with a Get permission for a files and Create permission for a destination folder can access this method.
+    * <p><b>204</b> - All folders and files have been copied
+    * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - File or folder not found
+    * <p><b>500</b> - Server Error
+    * @param subscriptionId id of current subscription
+    * @param selectedFilesVM VM with files&#39; ids and params of their destination
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void exportFolderAndFileCopyFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws IOException {
+        exportFolderAndFileCopyFilesForHttpResponse(subscriptionId, selectedFilesVM);
+    }
+
+  /**
+    * Copy folders and files to a specified folder
+    * User with a Get permission for a files and Create permission for a destination folder can access this method.
+    * <p><b>204</b> - All folders and files have been copied
+    * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - File or folder not found
+    * <p><b>500</b> - Server Error
+    * @param subscriptionId id of current subscription
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void exportFolderAndFileCopyFiles(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        exportFolderAndFileCopyFilesForHttpResponse(selectedFilesVM, subscriptionId, params);
+    }
+
+    public HttpResponse exportFolderAndFileCopyFilesForHttpResponse(String subscriptionId, SelectedFilesVM selectedFilesVM) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileCopyFiles");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/CopyFiles");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+      public HttpResponse exportFolderAndFileCopyFilesForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesVM, String mediaType) throws IOException {
+          // verify the required parameter 'subscriptionId' is set
+              if (subscriptionId == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileCopyFiles");
+              }
+                  // create a map of path variables
+                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
+                      uriVariables.put("subscriptionId", subscriptionId);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/CopyFiles");
+
+              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+              HttpContent content = selectedFilesVM == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesVM);
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+      }
+
+    public HttpResponse exportFolderAndFileCopyFilesForHttpResponse(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileCopyFiles");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/CopyFiles");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+
+  /**
     * Delete folders and files
     * User with a Delete permission can access this method.
     * <p><b>204</b> - All folders and files have been deleted
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId id of current subscription
@@ -163,6 +272,7 @@ public class ExportsApi {
     * User with a Delete permission can access this method.
     * <p><b>204</b> - All folders and files have been deleted
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId id of current subscription
@@ -250,6 +360,7 @@ public class ExportsApi {
     * User with a Get Count permission can access this method.
     * <p><b>200</b> - Returns count of the files in a specified folder
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - Folder not found
     * @param id folder id
@@ -269,6 +380,7 @@ public class ExportsApi {
     * User with a Get Count permission can access this method.
     * <p><b>200</b> - Returns count of the files in a specified folder
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - Folder not found
     * @param id folder id
@@ -361,6 +473,7 @@ public class ExportsApi {
     * User with a Get Entity permission can access this method.
     * <p><b>200</b> - Returns list of the files from a specified folder
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param id folder id
@@ -384,6 +497,7 @@ public class ExportsApi {
     * User with a Get Entity permission can access this method.
     * <p><b>200</b> - Returns list of the files from a specified folder
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param id folder id
@@ -516,6 +630,7 @@ public class ExportsApi {
     * User with a Get DeletedFiles permission can access this method.
     * <p><b>200</b> - Returns list of the files from a specified folder
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId subscription id
@@ -539,6 +654,7 @@ public class ExportsApi {
     * User with a Get DeletedFiles permission can access this method.
     * <p><b>200</b> - Returns list of the files from a specified folder
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId subscription id
@@ -667,10 +783,117 @@ public class ExportsApi {
 
 
   /**
+    * Move folders and files to a specified folder
+    * User with a Update Place permission for a files and Create permission for a destination folder can access this method.
+    * <p><b>204</b> - All folders and files have been moved
+    * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - File or folder not found
+    * <p><b>500</b> - Server Error
+    * @param subscriptionId id of current subscription
+    * @param selectedFilesVM VM with files&#39; ids and params of their destination
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void exportFolderAndFileMoveFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws IOException {
+        exportFolderAndFileMoveFilesForHttpResponse(subscriptionId, selectedFilesVM);
+    }
+
+  /**
+    * Move folders and files to a specified folder
+    * User with a Update Place permission for a files and Create permission for a destination folder can access this method.
+    * <p><b>204</b> - All folders and files have been moved
+    * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
+    * <p><b>403</b> - You don&#39;t have rights for the operation
+    * <p><b>404</b> - File or folder not found
+    * <p><b>500</b> - Server Error
+    * @param subscriptionId id of current subscription
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    **/
+    public void exportFolderAndFileMoveFiles(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        exportFolderAndFileMoveFilesForHttpResponse(selectedFilesVM, subscriptionId, params);
+    }
+
+    public HttpResponse exportFolderAndFileMoveFilesForHttpResponse(String subscriptionId, SelectedFilesVM selectedFilesVM) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileMoveFiles");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/MoveFiles");
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+      public HttpResponse exportFolderAndFileMoveFilesForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesVM, String mediaType) throws IOException {
+          // verify the required parameter 'subscriptionId' is set
+              if (subscriptionId == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileMoveFiles");
+              }
+                  // create a map of path variables
+                  final Map<String, Object> uriVariables = new HashMap<String, Object>();
+                      uriVariables.put("subscriptionId", subscriptionId);
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/MoveFiles");
+
+              String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+              GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+              HttpContent content = selectedFilesVM == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesVM);
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+      }
+
+    public HttpResponse exportFolderAndFileMoveFilesForHttpResponse(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileMoveFiles");
+        }
+        // create a map of path variables
+        final Map<String, Object> uriVariables = new HashMap<String, Object>();
+        uriVariables.put("subscriptionId", subscriptionId);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/api/rp/v1/Exports/{subscriptionId}/MoveFiles");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+
+        for (Map.Entry<String, Object> entry: allParams.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
+        GenericUrl genericUrl = new GenericUrl(localVarUrl);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+    }
+
+
+  /**
     * Move folders and files to bin
     * User with a Delete permission can access this method.
     * <p><b>204</b> - All folders and files have been moved to bin
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId id of current subscription
@@ -686,6 +909,7 @@ public class ExportsApi {
     * User with a Delete permission can access this method.
     * <p><b>204</b> - All folders and files have been moved to bin
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId id of current subscription
@@ -773,6 +997,7 @@ public class ExportsApi {
     * User with a Create RecycleBin permission can access this method.
     * <p><b>204</b> - All folders and files in bin have been restored
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId subscription id
@@ -787,6 +1012,7 @@ public class ExportsApi {
     * User with a Create RecycleBin permission can access this method.
     * <p><b>204</b> - All folders and files in bin have been restored
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId subscription id
@@ -855,6 +1081,7 @@ public class ExportsApi {
     * User with a SubscriptionCreate permission can access this method.
     * <p><b>204</b> - All folders and files have been recovered
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId id of current subscription
@@ -870,6 +1097,7 @@ public class ExportsApi {
     * User with a SubscriptionCreate permission can access this method.
     * <p><b>204</b> - All folders and files have been recovered
     * <p><b>400</b> - FolderId is null
+    * <p><b>402</b> - Payment required, subscription is blocked
     * <p><b>403</b> - You don&#39;t have rights for the operation
     * <p><b>404</b> - File or folder not found
     * @param subscriptionId id of current subscription
@@ -3461,7 +3689,7 @@ public class ExportsApi {
 
   /**
     * Move file to a specified folder
-    * User with Update Place permission can access this method.
+    * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
     * <p><b>200</b> - File has been moved
     * <p><b>400</b> - fileId or folderId is null
     * <p><b>403</b> - You don&#39;t have rights for the operation
@@ -3481,7 +3709,7 @@ public class ExportsApi {
 
   /**
     * Move file to a specified folder
-    * User with Update Place permission can access this method.
+    * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
     * <p><b>200</b> - File has been moved
     * <p><b>400</b> - fileId or folderId is null
     * <p><b>403</b> - You don&#39;t have rights for the operation

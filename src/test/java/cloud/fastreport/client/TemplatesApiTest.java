@@ -18,6 +18,7 @@ import cloud.fastreport.model.BreadcrumbsVM;
 import cloud.fastreport.model.CountVM;
 import cloud.fastreport.model.ExportTemplateVM;
 import cloud.fastreport.model.ExportVM;
+import java.io.File;
 import cloud.fastreport.model.FileCreateVM;
 import cloud.fastreport.model.FileIconVM;
 import cloud.fastreport.model.FilePermissionsVM;
@@ -74,6 +75,23 @@ public class TemplatesApiTest {
     public void templateFolderAndFileClearRecycleBinTest() throws IOException {
         String subscriptionId = null;
         api.templateFolderAndFileClearRecycleBin(subscriptionId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Copy folders and files to a specified folder
+     *
+     * User with a Get permission for a files and Create permission for a destination folder can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void templateFolderAndFileCopyFilesTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesVM selectedFilesVM = null;
+        api.templateFolderAndFileCopyFiles(subscriptionId, selectedFilesVM);
 
         // TODO: test validations
     }
@@ -153,6 +171,23 @@ public class TemplatesApiTest {
         String searchPattern = null;
         Boolean useRegex = null;
         FilesVM response = api.templateFolderAndFileGetRecycleBinFoldersAndFiles(subscriptionId, skip, take, orderBy, desc, searchPattern, useRegex);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Move folders and files to a specified folder
+     *
+     * User with a Update Place permission for a files and Create permission for a destination folder can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void templateFolderAndFileMoveFilesTest() throws IOException {
+        String subscriptionId = null;
+        SelectedFilesVM selectedFilesVM = null;
+        api.templateFolderAndFileMoveFiles(subscriptionId, selectedFilesVM);
 
         // TODO: test validations
     }
@@ -686,7 +721,7 @@ public class TemplatesApiTest {
     /**
      * Move file to a specified folder
      *
-     * User with Update Place permission can access this method.
+     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
      *
      * @throws IOException
      *          if the Api call fails
@@ -785,7 +820,7 @@ public class TemplatesApiTest {
     }
     
     /**
-     * Updates contnet of the template
+     * Updates contnet of the template. The method is deprecated, use the UpdateContentV2 method instead!
      *
      * 
      *
@@ -797,6 +832,23 @@ public class TemplatesApiTest {
         String id = null;
         UpdateFileContentVM updateFileContentVM = null;
         api.templatesUpdateContent(id, updateFileContentVM);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Updates contnet of the template.
+     *
+     * 
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void templatesUpdateContentV2Test() throws IOException {
+        String id = null;
+        File content = null;
+        api.templatesUpdateContentV2(id, content);
 
         // TODO: test validations
     }
@@ -853,7 +905,7 @@ public class TemplatesApiTest {
     }
     
     /**
-     * Upload a file to the specified folder  !
+     * Upload a file to the specified folder. The method is deprecated, use the UploadFileV2 method instead!
      *
      * User with Create Entity permission can access this method.
      *
@@ -865,6 +917,25 @@ public class TemplatesApiTest {
         String id = null;
         TemplateCreateVM templateCreateVM = null;
         TemplateVM response = api.templatesUploadFile(id, templateCreateVM);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Alternative api for upload a file to the specified folder!
+     *
+     * User with Create Entity permission can access this method.
+     *
+     * @throws IOException
+     *          if the Api call fails
+     */
+    @Test
+    public void templatesUploadFileV2Test() throws IOException {
+        String id = null;
+        File content = null;
+        List<String> tags = null;
+        File icon = null;
+        TemplateVM response = api.templatesUploadFileV2(id, content, tags, icon);
 
         // TODO: test validations
     }

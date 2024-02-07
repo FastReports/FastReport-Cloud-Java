@@ -5,10 +5,12 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**exportFolderAndFileClearRecycleBin**](ExportsApi.md#exportFolderAndFileClearRecycleBin) | **DELETE** /api/rp/v1/Exports/{subscriptionId}/ClearRecycleBin | Delete all folders and files from recycle bin |
+| [**exportFolderAndFileCopyFiles**](ExportsApi.md#exportFolderAndFileCopyFiles) | **POST** /api/rp/v1/Exports/{subscriptionId}/CopyFiles | Copy folders and files to a specified folder |
 | [**exportFolderAndFileDeleteFiles**](ExportsApi.md#exportFolderAndFileDeleteFiles) | **POST** /api/rp/v1/Exports/{subscriptionId}/DeleteFiles | Delete folders and files |
 | [**exportFolderAndFileGetCount**](ExportsApi.md#exportFolderAndFileGetCount) | **GET** /api/rp/v1/Exports/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder |
 | [**exportFolderAndFileGetFoldersAndFiles**](ExportsApi.md#exportFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Exports/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder |
 | [**exportFolderAndFileGetRecycleBinFoldersAndFiles**](ExportsApi.md#exportFolderAndFileGetRecycleBinFoldersAndFiles) | **GET** /api/rp/v1/Exports/{subscriptionId}/ListRecycleBinFolderAndFiles | Get all folders and files from recycle bin |
+| [**exportFolderAndFileMoveFiles**](ExportsApi.md#exportFolderAndFileMoveFiles) | **POST** /api/rp/v1/Exports/{subscriptionId}/MoveFiles | Move folders and files to a specified folder |
 | [**exportFolderAndFileMoveFilesToBin**](ExportsApi.md#exportFolderAndFileMoveFilesToBin) | **POST** /api/rp/v1/Exports/{subscriptionId}/ToBin | Move folders and files to bin |
 | [**exportFolderAndFileRecoverAllFromRecycleBin**](ExportsApi.md#exportFolderAndFileRecoverAllFromRecycleBin) | **POST** /api/rp/v1/Exports/{subscriptionId}/RecoverRecycleBin | Recover all folders and files from recycle bin |
 | [**exportFolderAndFileRecoverFiles**](ExportsApi.md#exportFolderAndFileRecoverFiles) | **POST** /api/rp/v1/Exports/{subscriptionId}/RecoverFiles | Recover folders and files from bin |
@@ -121,8 +123,91 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | All folders and files in bin have been deleted |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
+
+
+## exportFolderAndFileCopyFiles
+
+> exportFolderAndFileCopyFiles(subscriptionId, selectedFilesVM)
+
+Copy folders and files to a specified folder
+
+User with a Get permission for a files and Create permission for a destination folder can access this method.
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.ExportsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
+
+        ExportsApi apiInstance = new ExportsApi(defaultClient);
+        String subscriptionId = "subscriptionId_example"; // String | id of current subscription
+        SelectedFilesVM selectedFilesVM = new SelectedFilesVM(); // SelectedFilesVM | VM with files' ids and params of their destination
+        try {
+            apiInstance.exportFolderAndFileCopyFiles(subscriptionId, selectedFilesVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ExportsApi#exportFolderAndFileCopyFiles");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| id of current subscription | |
+| **selectedFilesVM** | [**SelectedFilesVM**](SelectedFilesVM.md)| VM with files&#39; ids and params of their destination | [optional] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | All folders and files have been copied |  -  |
+| **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or folder not found |  -  |
+| **500** | Server Error |  -  |
 
 
 ## exportFolderAndFileDeleteFiles
@@ -201,6 +286,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | All folders and files have been deleted |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
 
@@ -284,6 +370,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns count of the files in a specified folder |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Folder not found |  -  |
 
@@ -375,6 +462,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns list of the files from a specified folder |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
 
@@ -466,8 +554,91 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns list of the files from a specified folder |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
+
+
+## exportFolderAndFileMoveFiles
+
+> exportFolderAndFileMoveFiles(subscriptionId, selectedFilesVM)
+
+Move folders and files to a specified folder
+
+User with a Update Place permission for a files and Create permission for a destination folder can access this method.
+
+### Example
+
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.ExportsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure HTTP basic authorization: ApiKey
+        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+        ApiKey.setUsername("YOUR USERNAME");
+        ApiKey.setPassword("YOUR PASSWORD");
+
+        // Configure HTTP bearer authorization: JWT
+        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+        JWT.setBearerToken("BEARER TOKEN");
+
+        ExportsApi apiInstance = new ExportsApi(defaultClient);
+        String subscriptionId = "subscriptionId_example"; // String | id of current subscription
+        SelectedFilesVM selectedFilesVM = new SelectedFilesVM(); // SelectedFilesVM | VM with files' ids and params of their destination
+        try {
+            apiInstance.exportFolderAndFileMoveFiles(subscriptionId, selectedFilesVM);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ExportsApi#exportFolderAndFileMoveFiles");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| id of current subscription | |
+| **selectedFilesVM** | [**SelectedFilesVM**](SelectedFilesVM.md)| VM with files&#39; ids and params of their destination | [optional] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | All folders and files have been moved |  -  |
+| **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or folder not found |  -  |
+| **500** | Server Error |  -  |
 
 
 ## exportFolderAndFileMoveFilesToBin
@@ -546,6 +717,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | All folders and files have been moved to bin |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
 
@@ -624,6 +796,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | All folders and files in bin have been restored |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
 
@@ -704,6 +877,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | All folders and files have been recovered |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
 
@@ -2738,7 +2912,7 @@ public class Example {
 
 Move file to a specified folder
 
-User with Update Place permission can access this method.
+User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
 
 ### Example
 

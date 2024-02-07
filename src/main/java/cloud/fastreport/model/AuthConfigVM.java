@@ -134,7 +134,6 @@ public class AuthConfigVM {
     this.authority = JsonNullable.<String>of(authority);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

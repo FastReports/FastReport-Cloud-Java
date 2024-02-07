@@ -16,7 +16,6 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.CreateExportReportTaskVM;
-import cloud.fastreport.model.CreateExportTemplateTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -47,10 +46,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = CreateExportReportTaskVM.class, name = "CreateExportReportTaskVM"),
-  @JsonSubTypes.Type(value = CreateExportTemplateTaskVM.class, name = "CreateExportTemplateTaskVM"),
-})
 
 public class CreateExportTemplateTaskVM extends CreateExportReportTaskVM {
   public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
@@ -105,6 +100,29 @@ public class CreateExportTemplateTaskVM extends CreateExportReportTaskVM {
     this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
   }
 
+  @Override
+  public CreateExportTemplateTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public CreateExportTemplateTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public CreateExportTemplateTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public CreateExportTemplateTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

@@ -92,8 +92,8 @@ public class GroupUsersApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+        HttpContent aContent = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
     }
 
     public HttpResponse groupUsersAddUserToGroupForHttpResponse(String id, String userId, Map<String, Object> params) throws IOException {
@@ -131,8 +131,8 @@ public class GroupUsersApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+        HttpContent aContent = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
     }
 
 
@@ -207,8 +207,8 @@ public class GroupUsersApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
     public HttpResponse groupUsersGetUsersInGroupForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -242,8 +242,8 @@ public class GroupUsersApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
 
@@ -289,8 +289,8 @@ public class GroupUsersApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
     }
 
     public HttpResponse groupUsersLeaveFromGroupForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -324,8 +324,8 @@ public class GroupUsersApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
     }
 
 
@@ -379,8 +379,8 @@ public class GroupUsersApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
     }
 
     public HttpResponse groupUsersRemoveFromGroupForHttpResponse(String id, String userId, Map<String, Object> params) throws IOException {
@@ -418,8 +418,8 @@ public class GroupUsersApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
     }
 
 

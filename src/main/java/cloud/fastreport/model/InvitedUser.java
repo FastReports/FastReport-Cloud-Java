@@ -105,7 +105,6 @@ public class InvitedUser {
     this.invitedAt = invitedAt;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

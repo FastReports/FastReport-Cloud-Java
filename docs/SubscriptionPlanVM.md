@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
 |**displayName** | **String** |  |  [optional] |
-|**timePeriodType** | [**TimePeriodType**](TimePeriodType.md) |  |  [optional] |
+|**timePeriodType** | **TimePeriodType** |  |  [optional] |
 |**timePeriod** | **Integer** |  |  [optional] |
 |**readonlyTimeLimitType** | **TimePeriodType** |  |  [optional] |
 |**readonlyTimeLimit** | **Integer** |  |  [optional] |

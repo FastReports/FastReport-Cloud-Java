@@ -74,7 +74,6 @@ public class FileIconVM {
     this.icon = JsonNullable.<byte[]>of(icon);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

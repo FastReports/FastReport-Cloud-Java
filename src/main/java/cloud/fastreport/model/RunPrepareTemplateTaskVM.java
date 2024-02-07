@@ -16,8 +16,6 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.RunExportReportTaskVM;
-import cloud.fastreport.model.RunExportTemplateTaskVM;
-import cloud.fastreport.model.RunPrepareTemplateTaskVM;
 import cloud.fastreport.model.RunTransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -28,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,11 +51,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = RunExportReportTaskVM.class, name = "RunExportReportTaskVM"),
-  @JsonSubTypes.Type(value = RunExportTemplateTaskVM.class, name = "RunExportTemplateTaskVM"),
-  @JsonSubTypes.Type(value = RunPrepareTemplateTaskVM.class, name = "RunPrepareTemplateTaskVM"),
-})
 
 public class RunPrepareTemplateTaskVM extends RunTransformTaskBaseVM {
   public static final String JSON_PROPERTY_EXPORTS = "exports";
@@ -191,6 +185,11 @@ public class RunPrepareTemplateTaskVM extends RunTransformTaskBaseVM {
     this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
   }
 
+  @Override
+  public RunPrepareTemplateTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

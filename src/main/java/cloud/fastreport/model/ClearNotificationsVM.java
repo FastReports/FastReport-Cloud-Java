@@ -62,7 +62,6 @@ public class ClearNotificationsVM {
     this.update = update;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

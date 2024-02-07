@@ -187,7 +187,6 @@ public class MyPermissionsVM {
     this.tasks = tasks;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

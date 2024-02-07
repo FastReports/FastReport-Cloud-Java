@@ -165,7 +165,6 @@ public class CreateDataSourceVM {
     this.connectionType = connectionType;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

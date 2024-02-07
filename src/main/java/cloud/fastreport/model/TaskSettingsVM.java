@@ -378,7 +378,6 @@ public class TaskSettingsVM {
     this.thumbnailTemplate = JsonNullable.<Boolean>of(thumbnailTemplate);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

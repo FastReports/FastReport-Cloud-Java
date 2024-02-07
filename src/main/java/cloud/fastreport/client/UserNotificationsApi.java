@@ -74,8 +74,8 @@ public class UserNotificationsApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
     }
 
       public HttpResponse userNotificationsClearNotificationsForHttpResponse(java.io.InputStream clearNotificationsVM, String mediaType) throws IOException {
@@ -85,10 +85,10 @@ public class UserNotificationsApi {
               String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = clearNotificationsVM == null ?
+              HttpContent aContent = clearNotificationsVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, clearNotificationsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
       }
 
     public HttpResponse userNotificationsClearNotificationsForHttpResponse(ClearNotificationsVM clearNotificationsVM, Map<String, Object> params) throws IOException {
@@ -116,8 +116,8 @@ public class UserNotificationsApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
     }
 
 
@@ -189,8 +189,8 @@ public class UserNotificationsApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
     public HttpResponse userNotificationsGetNotificationsForHttpResponse(Map<String, Object> params) throws IOException {
@@ -218,8 +218,8 @@ public class UserNotificationsApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
 

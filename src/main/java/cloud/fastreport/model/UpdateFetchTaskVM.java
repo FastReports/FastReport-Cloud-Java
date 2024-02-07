@@ -15,16 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.UpdateEmailTaskVM;
-import cloud.fastreport.model.UpdateExportReportTaskVM;
-import cloud.fastreport.model.UpdateExportTemplateTaskVM;
-import cloud.fastreport.model.UpdateFTPUploadTaskVM;
-import cloud.fastreport.model.UpdateFetchTaskVM;
-import cloud.fastreport.model.UpdatePrepareTemplateTaskVM;
 import cloud.fastreport.model.UpdateTaskBaseVM;
-import cloud.fastreport.model.UpdateThumbnailReportTaskVM;
-import cloud.fastreport.model.UpdateThumbnailTemplateTaskVM;
-import cloud.fastreport.model.UpdateWebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -53,18 +44,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = UpdateEmailTaskVM.class, name = "UpdateEmailTaskVM"),
-  @JsonSubTypes.Type(value = UpdateExportReportTaskVM.class, name = "UpdateExportReportTaskVM"),
-  @JsonSubTypes.Type(value = UpdateExportTemplateTaskVM.class, name = "UpdateExportTemplateTaskVM"),
-  @JsonSubTypes.Type(value = UpdateFTPUploadTaskVM.class, name = "UpdateFTPUploadTaskVM"),
-  @JsonSubTypes.Type(value = UpdateFetchTaskVM.class, name = "UpdateFetchTaskVM"),
-  @JsonSubTypes.Type(value = UpdatePrepareTemplateTaskVM.class, name = "UpdatePrepareTemplateTaskVM"),
-  @JsonSubTypes.Type(value = UpdateTaskBaseVM.class, name = "UpdateTaskBaseVM"),
-  @JsonSubTypes.Type(value = UpdateThumbnailReportTaskVM.class, name = "UpdateThumbnailReportTaskVM"),
-  @JsonSubTypes.Type(value = UpdateThumbnailTemplateTaskVM.class, name = "UpdateThumbnailTemplateTaskVM"),
-  @JsonSubTypes.Type(value = UpdateWebhookTaskVM.class, name = "UpdateWebhookTaskVM"),
-})
 
 public class UpdateFetchTaskVM extends UpdateTaskBaseVM {
   public static final String JSON_PROPERTY_DATA_SOURCE_ID = "dataSourceId";
@@ -107,6 +86,23 @@ public class UpdateFetchTaskVM extends UpdateTaskBaseVM {
     this.dataSourceId = JsonNullable.<String>of(dataSourceId);
   }
 
+  @Override
+  public UpdateFetchTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public UpdateFetchTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public UpdateFetchTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

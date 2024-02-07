@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -226,7 +227,6 @@ public class UserSettingsVM {
   public void setSubscribedNotifications(List<AuditType> subscribedNotifications) {
     this.subscribedNotifications = JsonNullable.<List<AuditType>>of(subscribedNotifications);
   }
-
 
   @Override
   public boolean equals(Object o) {

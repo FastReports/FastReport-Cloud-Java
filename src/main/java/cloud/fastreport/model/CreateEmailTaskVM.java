@@ -15,10 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.CreateEmailTaskVM;
-import cloud.fastreport.model.CreateFTPUploadTaskVM;
 import cloud.fastreport.model.CreateTransportTaskBaseVM;
-import cloud.fastreport.model.CreateWebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -58,11 +56,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = CreateEmailTaskVM.class, name = "CreateEmailTaskVM"),
-  @JsonSubTypes.Type(value = CreateFTPUploadTaskVM.class, name = "CreateFTPUploadTaskVM"),
-  @JsonSubTypes.Type(value = CreateWebhookTaskVM.class, name = "CreateWebhookTaskVM"),
-})
 
 public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
   public static final String JSON_PROPERTY_BODY = "body";
@@ -428,6 +421,35 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
     this.username = JsonNullable.<String>of(username);
   }
 
+  @Override
+  public CreateEmailTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public CreateEmailTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public CreateEmailTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public CreateEmailTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
+
+  @Override
+  public CreateEmailTaskVM $t(String $t) {
+    this.set$T($t);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

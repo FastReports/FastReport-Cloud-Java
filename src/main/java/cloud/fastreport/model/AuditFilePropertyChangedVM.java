@@ -16,9 +16,6 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.AuditActionVM;
-import cloud.fastreport.model.AuditFilePropertyChangedVM;
-import cloud.fastreport.model.AuditSubscriptionActionVM;
-import cloud.fastreport.model.AuditTaskActionVM;
 import cloud.fastreport.model.AuditType;
 import cloud.fastreport.model.EntityType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -52,11 +49,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = AuditFilePropertyChangedVM.class, name = "AuditFilePropertyChangedVM"),
-  @JsonSubTypes.Type(value = AuditSubscriptionActionVM.class, name = "AuditSubscriptionActionVM"),
-  @JsonSubTypes.Type(value = AuditTaskActionVM.class, name = "AuditTaskActionVM"),
-})
 
 public class AuditFilePropertyChangedVM extends AuditActionVM {
   public static final String JSON_PROPERTY_PROPERTY_NAME = "propertyName";
@@ -202,6 +194,53 @@ public class AuditFilePropertyChangedVM extends AuditActionVM {
     this.entityType = entityType;
   }
 
+  @Override
+  public AuditFilePropertyChangedVM userId(String userId) {
+    this.setUserId(userId);
+    return this;
+  }
+
+  @Override
+  public AuditFilePropertyChangedVM entityId(String entityId) {
+    this.setEntityId(entityId);
+    return this;
+  }
+
+  @Override
+  public AuditFilePropertyChangedVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
+
+  @Override
+  public AuditFilePropertyChangedVM type(AuditType type) {
+    this.setType(type);
+    return this;
+  }
+
+  @Override
+  public AuditFilePropertyChangedVM createdTime(OffsetDateTime createdTime) {
+    this.setCreatedTime(createdTime);
+    return this;
+  }
+
+  @Override
+  public AuditFilePropertyChangedVM creatorUserId(String creatorUserId) {
+    this.setCreatorUserId(creatorUserId);
+    return this;
+  }
+
+  @Override
+  public AuditFilePropertyChangedVM adminAction(Boolean adminAction) {
+    this.setAdminAction(adminAction);
+    return this;
+  }
+
+  @Override
+  public AuditFilePropertyChangedVM $t(String $t) {
+    this.set$T($t);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

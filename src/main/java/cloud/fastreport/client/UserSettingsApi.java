@@ -71,8 +71,8 @@ public class UserSettingsApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(acceptAgreementsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(acceptAgreementsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
     }
 
       public HttpResponse userSettingsAcceptAgreementsForHttpResponse(java.io.InputStream acceptAgreementsVM, String mediaType) throws IOException {
@@ -82,10 +82,10 @@ public class UserSettingsApi {
               String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = acceptAgreementsVM == null ?
+              HttpContent aContent = acceptAgreementsVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, acceptAgreementsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
       }
 
     public HttpResponse userSettingsAcceptAgreementsForHttpResponse(AcceptAgreementsVM acceptAgreementsVM, Map<String, Object> params) throws IOException {
@@ -113,8 +113,8 @@ public class UserSettingsApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(acceptAgreementsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(acceptAgreementsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
     }
 
 
@@ -152,8 +152,8 @@ public class UserSettingsApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
     public HttpResponse userSettingsGetCurrentUserSettingsForHttpResponse(Map<String, Object> params) throws IOException {
@@ -181,8 +181,8 @@ public class UserSettingsApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
 
@@ -223,8 +223,8 @@ public class UserSettingsApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(updateUserSettingsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateUserSettingsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
     }
 
       public HttpResponse userSettingsUpdateMySettingsForHttpResponse(java.io.InputStream updateUserSettingsVM, String mediaType) throws IOException {
@@ -234,10 +234,10 @@ public class UserSettingsApi {
               String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = updateUserSettingsVM == null ?
+              HttpContent aContent = updateUserSettingsVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateUserSettingsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
       }
 
     public HttpResponse userSettingsUpdateMySettingsForHttpResponse(UpdateUserSettingsVM updateUserSettingsVM, Map<String, Object> params) throws IOException {
@@ -265,8 +265,8 @@ public class UserSettingsApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(updateUserSettingsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateUserSettingsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
     }
 
 

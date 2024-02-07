@@ -607,7 +607,6 @@ public class ServerConfigurationVM {
     this.updateWorkspaceLink = JsonNullable.<String>of(updateWorkspaceLink);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

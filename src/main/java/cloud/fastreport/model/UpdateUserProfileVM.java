@@ -226,7 +226,6 @@ public class UpdateUserProfileVM {
     this.passwordNew2 = JsonNullable.<String>of(passwordNew2);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

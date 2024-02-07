@@ -218,7 +218,6 @@ public class UserProfileVM {
     this.isReadOnly = isReadOnly;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

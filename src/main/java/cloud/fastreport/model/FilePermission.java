@@ -17,7 +17,6 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.FileAdministrate;
 import cloud.fastreport.model.FileCreate;
-import cloud.fastreport.model.FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission;
 import cloud.fastreport.model.FileDelete;
 import cloud.fastreport.model.FileExecute;
 import cloud.fastreport.model.FileGet;
@@ -34,11 +33,189 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * FilePermission
  */
 @JsonPropertyOrder({
+  FilePermission.JSON_PROPERTY_CREATE,
+  FilePermission.JSON_PROPERTY_DELETE,
+  FilePermission.JSON_PROPERTY_EXECUTE,
+  FilePermission.JSON_PROPERTY_GET,
+  FilePermission.JSON_PROPERTY_UPDATE,
+  FilePermission.JSON_PROPERTY_ADMINISTRATE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FilePermission extends FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission {
-  public FilePermission() {
+public class FilePermission {
+  public static final String JSON_PROPERTY_CREATE = "create";
+  private FileCreate create;
 
+  public static final String JSON_PROPERTY_DELETE = "delete";
+  private FileDelete delete;
+
+  public static final String JSON_PROPERTY_EXECUTE = "execute";
+  private FileExecute execute;
+
+  public static final String JSON_PROPERTY_GET = "get";
+  private FileGet get;
+
+  public static final String JSON_PROPERTY_UPDATE = "update";
+  private FileUpdate update;
+
+  public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
+  private FileAdministrate administrate;
+
+  public FilePermission() {
+  }
+
+  public FilePermission create(FileCreate create) {
+    
+    this.create = create;
+    return this;
+  }
+
+   /**
+   * Get create
+   * @return create
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CREATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FileCreate getCreate() {
+    return create;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CREATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCreate(FileCreate create) {
+    this.create = create;
+  }
+
+
+  public FilePermission delete(FileDelete delete) {
+    
+    this.delete = delete;
+    return this;
+  }
+
+   /**
+   * Get delete
+   * @return delete
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DELETE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FileDelete getDelete() {
+    return delete;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DELETE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDelete(FileDelete delete) {
+    this.delete = delete;
+  }
+
+
+  public FilePermission execute(FileExecute execute) {
+    
+    this.execute = execute;
+    return this;
+  }
+
+   /**
+   * Get execute
+   * @return execute
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_EXECUTE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FileExecute getExecute() {
+    return execute;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EXECUTE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExecute(FileExecute execute) {
+    this.execute = execute;
+  }
+
+
+  public FilePermission get(FileGet get) {
+    
+    this.get = get;
+    return this;
+  }
+
+   /**
+   * Get get
+   * @return get
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_GET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FileGet getGet() {
+    return get;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_GET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGet(FileGet get) {
+    this.get = get;
+  }
+
+
+  public FilePermission update(FileUpdate update) {
+    
+    this.update = update;
+    return this;
+  }
+
+   /**
+   * Get update
+   * @return update
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FileUpdate getUpdate() {
+    return update;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUpdate(FileUpdate update) {
+    this.update = update;
+  }
+
+
+  public FilePermission administrate(FileAdministrate administrate) {
+    
+    this.administrate = administrate;
+    return this;
+  }
+
+   /**
+   * Get administrate
+   * @return administrate
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FileAdministrate getAdministrate() {
+    return administrate;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdministrate(FileAdministrate administrate) {
+    this.administrate = administrate;
   }
 
   @Override
@@ -49,19 +226,30 @@ public class FilePermission extends FileCreateFileGetFileUpdateFileDeleteFileExe
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    return super.equals(o);
+    FilePermission filePermission = (FilePermission) o;
+    return Objects.equals(this.create, filePermission.create) &&
+        Objects.equals(this.delete, filePermission.delete) &&
+        Objects.equals(this.execute, filePermission.execute) &&
+        Objects.equals(this.get, filePermission.get) &&
+        Objects.equals(this.update, filePermission.update) &&
+        Objects.equals(this.administrate, filePermission.administrate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode());
+    return Objects.hash(create, delete, execute, get, update, administrate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FilePermission {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    create: ").append(toIndentedString(create)).append("\n");
+    sb.append("    delete: ").append(toIndentedString(delete)).append("\n");
+    sb.append("    execute: ").append(toIndentedString(execute)).append("\n");
+    sb.append("    get: ").append(toIndentedString(get)).append("\n");
+    sb.append("    update: ").append(toIndentedString(update)).append("\n");
+    sb.append("    administrate: ").append(toIndentedString(administrate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

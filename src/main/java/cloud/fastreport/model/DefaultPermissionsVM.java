@@ -156,7 +156,6 @@ public class DefaultPermissionsVM {
     this.taskPermissions = taskPermissions;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

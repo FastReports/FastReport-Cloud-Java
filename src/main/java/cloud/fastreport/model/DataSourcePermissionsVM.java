@@ -63,7 +63,6 @@ public class DataSourcePermissionsVM {
     this.permissions = permissions;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

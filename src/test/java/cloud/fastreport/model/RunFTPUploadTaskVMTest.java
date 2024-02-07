@@ -13,10 +13,7 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.RunEmailTaskVM;
-import cloud.fastreport.model.RunFTPUploadTaskVM;
 import cloud.fastreport.model.RunTransportTaskBaseVM;
-import cloud.fastreport.model.RunWebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,7 +29,6 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 
 /**
  * Model tests for RunFTPUploadTaskVM

@@ -14,10 +14,7 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.InputFileVM;
-import cloud.fastreport.model.UpdateEmailTaskVM;
-import cloud.fastreport.model.UpdateFTPUploadTaskVM;
 import cloud.fastreport.model.UpdateTaskBaseVM;
-import cloud.fastreport.model.UpdateWebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -31,7 +28,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 
 /**
  * Model tests for UpdateTransportTaskBaseVM

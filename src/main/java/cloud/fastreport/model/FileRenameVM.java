@@ -74,7 +74,6 @@ public class FileRenameVM {
     this.name = JsonNullable.<String>of(name);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

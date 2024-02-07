@@ -112,7 +112,6 @@ public class BreadcrumbsModel {
     this.name = JsonNullable.<String>of(name);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

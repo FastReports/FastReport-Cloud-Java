@@ -94,7 +94,6 @@ public class UpdateSubscriptionPermissionsVM {
     this.administrate = administrate;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -15,16 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.CreateEmailTaskVM;
-import cloud.fastreport.model.CreateExportReportTaskVM;
-import cloud.fastreport.model.CreateExportTemplateTaskVM;
-import cloud.fastreport.model.CreateFTPUploadTaskVM;
-import cloud.fastreport.model.CreateFetchTaskVM;
-import cloud.fastreport.model.CreatePrepareTemplateTaskVM;
 import cloud.fastreport.model.CreateTaskBaseVM;
-import cloud.fastreport.model.CreateThumbnailReportTaskVM;
-import cloud.fastreport.model.CreateThumbnailTemplateTaskVM;
-import cloud.fastreport.model.CreateWebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -53,17 +44,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = CreateEmailTaskVM.class, name = "CreateEmailTaskVM"),
-  @JsonSubTypes.Type(value = CreateExportReportTaskVM.class, name = "CreateExportReportTaskVM"),
-  @JsonSubTypes.Type(value = CreateExportTemplateTaskVM.class, name = "CreateExportTemplateTaskVM"),
-  @JsonSubTypes.Type(value = CreateFTPUploadTaskVM.class, name = "CreateFTPUploadTaskVM"),
-  @JsonSubTypes.Type(value = CreateFetchTaskVM.class, name = "CreateFetchTaskVM"),
-  @JsonSubTypes.Type(value = CreatePrepareTemplateTaskVM.class, name = "CreatePrepareTemplateTaskVM"),
-  @JsonSubTypes.Type(value = CreateThumbnailReportTaskVM.class, name = "CreateThumbnailReportTaskVM"),
-  @JsonSubTypes.Type(value = CreateThumbnailTemplateTaskVM.class, name = "CreateThumbnailTemplateTaskVM"),
-  @JsonSubTypes.Type(value = CreateWebhookTaskVM.class, name = "CreateWebhookTaskVM"),
-})
 
 public class CreateFetchTaskVM extends CreateTaskBaseVM {
   public static final String JSON_PROPERTY_DATA_SOURCE_ID = "dataSourceId";
@@ -106,6 +86,29 @@ public class CreateFetchTaskVM extends CreateTaskBaseVM {
     this.dataSourceId = JsonNullable.<String>of(dataSourceId);
   }
 
+  @Override
+  public CreateFetchTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public CreateFetchTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public CreateFetchTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public CreateFetchTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

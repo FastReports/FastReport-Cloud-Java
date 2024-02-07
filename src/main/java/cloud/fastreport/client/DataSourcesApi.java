@@ -96,8 +96,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
     public HttpResponse dataSourcesCountDataSourcesAsyncForHttpResponse(String subscriptionId, Map<String, Object> params) throws IOException {
@@ -131,8 +131,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
 
@@ -179,8 +179,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(createDataSourceVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(createDataSourceVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
     }
 
       public HttpResponse dataSourcesCreateDataSourceForHttpResponse(java.io.InputStream createDataSourceVM, String mediaType) throws IOException {
@@ -190,10 +190,10 @@ public class DataSourcesApi {
               String localVarUrl = uriBuilder.build().toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = createDataSourceVM == null ?
+              HttpContent aContent = createDataSourceVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, createDataSourceVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
       }
 
     public HttpResponse dataSourcesCreateDataSourceForHttpResponse(CreateDataSourceVM createDataSourceVM, Map<String, Object> params) throws IOException {
@@ -221,8 +221,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(createDataSourceVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(createDataSourceVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
     }
 
 
@@ -270,8 +270,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
     }
 
     public HttpResponse dataSourcesDeleteDataSourceForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -305,8 +305,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
     }
 
 
@@ -354,8 +354,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
     public HttpResponse dataSourcesFetchDataForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -389,8 +389,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
 
@@ -490,8 +490,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
     public HttpResponse dataSourcesGetAvailableDataSourcesForHttpResponse(Map<String, Object> params) throws IOException {
@@ -519,8 +519,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
 
@@ -574,8 +574,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
     public HttpResponse dataSourcesGetDataSourceForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -609,8 +609,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
 
@@ -664,8 +664,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
     public HttpResponse dataSourcesGetPermissionsForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -699,8 +699,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
+        HttpContent aContent = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
     }
 
 
@@ -755,8 +755,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(renameDataSourceVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(renameDataSourceVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
     }
 
       public HttpResponse dataSourcesRenameDataSourceForHttpResponse(String id, java.io.InputStream renameDataSourceVM, String mediaType) throws IOException {
@@ -772,10 +772,10 @@ public class DataSourcesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = renameDataSourceVM == null ?
+              HttpContent aContent = renameDataSourceVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, renameDataSourceVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
       }
 
     public HttpResponse dataSourcesRenameDataSourceForHttpResponse(RenameDataSourceVM renameDataSourceVM, String id, Map<String, Object> params) throws IOException {
@@ -809,8 +809,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(renameDataSourceVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(renameDataSourceVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
     }
 
 
@@ -865,8 +865,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(updateDataSourceConnectionStringVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateDataSourceConnectionStringVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
     }
 
       public HttpResponse dataSourcesUpdateConnectionStringForHttpResponse(String id, java.io.InputStream updateDataSourceConnectionStringVM, String mediaType) throws IOException {
@@ -882,10 +882,10 @@ public class DataSourcesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = updateDataSourceConnectionStringVM == null ?
+              HttpContent aContent = updateDataSourceConnectionStringVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateDataSourceConnectionStringVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
       }
 
     public HttpResponse dataSourcesUpdateConnectionStringForHttpResponse(UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM, String id, Map<String, Object> params) throws IOException {
@@ -919,8 +919,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(updateDataSourceConnectionStringVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateDataSourceConnectionStringVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
     }
 
 
@@ -969,8 +969,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(updateDataSourcePermissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateDataSourcePermissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
     }
 
       public HttpResponse dataSourcesUpdatePermissionsForHttpResponse(String id, java.io.InputStream updateDataSourcePermissionsVM, String mediaType) throws IOException {
@@ -986,10 +986,10 @@ public class DataSourcesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = updateDataSourcePermissionsVM == null ?
+              HttpContent aContent = updateDataSourcePermissionsVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateDataSourcePermissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
       }
 
     public HttpResponse dataSourcesUpdatePermissionsForHttpResponse(UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM, String id, Map<String, Object> params) throws IOException {
@@ -1023,8 +1023,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(updateDataSourcePermissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateDataSourcePermissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
     }
 
 
@@ -1073,8 +1073,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(updateDataSourceSubscriptionVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateDataSourceSubscriptionVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
     }
 
       public HttpResponse dataSourcesUpdateSubscriptionDataSourceForHttpResponse(String id, java.io.InputStream updateDataSourceSubscriptionVM, String mediaType) throws IOException {
@@ -1090,10 +1090,10 @@ public class DataSourcesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent content = updateDataSourceSubscriptionVM == null ?
+              HttpContent aContent = updateDataSourceSubscriptionVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateDataSourceSubscriptionVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
       }
 
     public HttpResponse dataSourcesUpdateSubscriptionDataSourceForHttpResponse(UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM, String id, Map<String, Object> params) throws IOException {
@@ -1127,8 +1127,8 @@ public class DataSourcesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent content = apiClient.new JacksonJsonHttpContent(updateDataSourceSubscriptionVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
+        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateDataSourceSubscriptionVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
     }
 
 

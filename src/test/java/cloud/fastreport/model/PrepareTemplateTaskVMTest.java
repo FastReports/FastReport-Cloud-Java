@@ -13,9 +13,6 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.ExportReportTaskVM;
-import cloud.fastreport.model.ExportTemplateTaskVM;
-import cloud.fastreport.model.PrepareTemplateTaskVM;
 import cloud.fastreport.model.TransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -27,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +35,6 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 
 /**
  * Model tests for PrepareTemplateTaskVM

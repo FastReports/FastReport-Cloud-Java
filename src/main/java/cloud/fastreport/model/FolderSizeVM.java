@@ -122,7 +122,6 @@ public class FolderSizeVM {
     this.documentsCount = documentsCount;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

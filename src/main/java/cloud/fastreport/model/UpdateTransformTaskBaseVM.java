@@ -17,9 +17,6 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.OutputFileVM;
-import cloud.fastreport.model.UpdateExportReportTaskVM;
-import cloud.fastreport.model.UpdateExportTemplateTaskVM;
-import cloud.fastreport.model.UpdatePrepareTemplateTaskVM;
 import cloud.fastreport.model.UpdateTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -31,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -238,6 +236,23 @@ public class UpdateTransformTaskBaseVM extends UpdateTaskBaseVM {
     this.$t = $t;
   }
 
+  @Override
+  public UpdateTransformTaskBaseVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public UpdateTransformTaskBaseVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public UpdateTransformTaskBaseVM name(String name) {
+    this.setName(name);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

@@ -173,7 +173,6 @@ public class OutputFileVM {
     this.isTemporary = isTemporary;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

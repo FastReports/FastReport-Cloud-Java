@@ -15,9 +15,6 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.ExportReportTaskVM;
-import cloud.fastreport.model.ExportTemplateTaskVM;
-import cloud.fastreport.model.PrepareTemplateTaskVM;
 import cloud.fastreport.model.TransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -29,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,11 +51,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = ExportReportTaskVM.class, name = "ExportReportTaskVM"),
-  @JsonSubTypes.Type(value = ExportTemplateTaskVM.class, name = "ExportTemplateTaskVM"),
-  @JsonSubTypes.Type(value = PrepareTemplateTaskVM.class, name = "PrepareTemplateTaskVM"),
-})
 
 public class PrepareTemplateTaskVM extends TransformTaskBaseVM {
   public static final String JSON_PROPERTY_EXPORT_IDS = "exportIds";
@@ -202,6 +195,53 @@ public class PrepareTemplateTaskVM extends TransformTaskBaseVM {
     this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
   }
 
+  @Override
+  public PrepareTemplateTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public PrepareTemplateTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public PrepareTemplateTaskVM delayedWasRunTime(OffsetDateTime delayedWasRunTime) {
+    this.setDelayedWasRunTime(delayedWasRunTime);
+    return this;
+  }
+
+  @Override
+  public PrepareTemplateTaskVM id(String id) {
+    this.setId(id);
+    return this;
+  }
+
+  @Override
+  public PrepareTemplateTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public PrepareTemplateTaskVM recurrentRunTime(OffsetDateTime recurrentRunTime) {
+    this.setRecurrentRunTime(recurrentRunTime);
+    return this;
+  }
+
+  @Override
+  public PrepareTemplateTaskVM recurrentWasRunTime(OffsetDateTime recurrentWasRunTime) {
+    this.setRecurrentWasRunTime(recurrentWasRunTime);
+    return this;
+  }
+
+  @Override
+  public PrepareTemplateTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

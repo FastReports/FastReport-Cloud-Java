@@ -15,16 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.RunEmailTaskVM;
-import cloud.fastreport.model.RunExportReportTaskVM;
-import cloud.fastreport.model.RunExportTemplateTaskVM;
-import cloud.fastreport.model.RunFTPUploadTaskVM;
-import cloud.fastreport.model.RunFetchTaskVM;
-import cloud.fastreport.model.RunPrepareTemplateTaskVM;
 import cloud.fastreport.model.RunTaskBaseVM;
-import cloud.fastreport.model.RunThumbnailReportTaskVM;
-import cloud.fastreport.model.RunThumbnailTemplateTaskVM;
-import cloud.fastreport.model.RunWebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -52,17 +43,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = RunEmailTaskVM.class, name = "RunEmailTaskVM"),
-  @JsonSubTypes.Type(value = RunExportReportTaskVM.class, name = "RunExportReportTaskVM"),
-  @JsonSubTypes.Type(value = RunExportTemplateTaskVM.class, name = "RunExportTemplateTaskVM"),
-  @JsonSubTypes.Type(value = RunFTPUploadTaskVM.class, name = "RunFTPUploadTaskVM"),
-  @JsonSubTypes.Type(value = RunFetchTaskVM.class, name = "RunFetchTaskVM"),
-  @JsonSubTypes.Type(value = RunPrepareTemplateTaskVM.class, name = "RunPrepareTemplateTaskVM"),
-  @JsonSubTypes.Type(value = RunThumbnailReportTaskVM.class, name = "RunThumbnailReportTaskVM"),
-  @JsonSubTypes.Type(value = RunThumbnailTemplateTaskVM.class, name = "RunThumbnailTemplateTaskVM"),
-  @JsonSubTypes.Type(value = RunWebhookTaskVM.class, name = "RunWebhookTaskVM"),
-})
 
 public class RunFetchTaskVM extends RunTaskBaseVM {
   public static final String JSON_PROPERTY_DATA_SOURCE_ID = "dataSourceId";
@@ -105,6 +85,11 @@ public class RunFetchTaskVM extends RunTaskBaseVM {
     this.dataSourceId = JsonNullable.<String>of(dataSourceId);
   }
 
+  @Override
+  public RunFetchTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

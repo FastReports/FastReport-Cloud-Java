@@ -273,7 +273,6 @@ public class ExportReportVM {
     this.exportParameters = JsonNullable.<Map<String, String>>of(exportParameters);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

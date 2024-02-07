@@ -15,7 +15,6 @@ package cloud.fastreport.model;
 
 import cloud.fastreport.model.SubscriptionAdministrate;
 import cloud.fastreport.model.SubscriptionCreate;
-import cloud.fastreport.model.SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission;
 import cloud.fastreport.model.SubscriptionDelete;
 import cloud.fastreport.model.SubscriptionExecute;
 import cloud.fastreport.model.SubscriptionGet;
@@ -28,7 +27,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 
 /**
  * Model tests for SubscriptionPermission

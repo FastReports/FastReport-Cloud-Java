@@ -62,7 +62,6 @@ public class UpdateDataSourceConnectionStringVM {
     this.connectionString = connectionString;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

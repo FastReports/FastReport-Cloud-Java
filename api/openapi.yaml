@@ -13096,7 +13096,6 @@ components:
       - ownerId
       - parentId
       type: object
-      x-parent: true
     AdminReportFolderCreateVM:
       additionalProperties: false
       allOf:
@@ -13220,7 +13219,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     AuditActionsVM:
       additionalProperties: false
       example:
@@ -13707,7 +13705,6 @@ components:
       - connectionString
       - subscriptionId
       type: object
-      x-parent: true
     CreateEmailTaskVM:
       additionalProperties: false
       allOf:
@@ -13787,7 +13784,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     CreateExportTemplateTaskVM:
       additionalProperties: false
       allOf:
@@ -13871,7 +13867,6 @@ components:
       required:
       - name
       type: object
-      x-parent: true
     CreatePrepareTemplateTaskVM:
       additionalProperties: false
       allOf:
@@ -13956,7 +13951,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     CreateThumbnailReportTaskVM:
       additionalProperties: false
       allOf:
@@ -14007,7 +14001,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     CreateTransportTaskBaseVM:
       additionalProperties: false
       allOf:
@@ -14026,7 +14019,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     CreateWebhookTaskVM:
       additionalProperties: false
       allOf:
@@ -14106,7 +14098,6 @@ components:
         administrate:
           $ref: '#/components/schemas/DataSourceAdministrate'
       type: object
-      x-parent: true
     DataSourceDelete:
       enum:
       - 0
@@ -14171,7 +14162,6 @@ components:
         anon:
           $ref: '#/components/schemas/DataSourcePermission'
       type: object
-      x-parent: true
     DataSourcePermissions:
       additionalProperties: false
       allOf:
@@ -14421,7 +14411,6 @@ components:
           nullable: true
           type: string
       type: object
-      x-parent: true
     ExportCreateAdminVM:
       additionalProperties: false
       allOf:
@@ -14453,7 +14442,6 @@ components:
           pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
       type: object
-      x-parent: true
     ExportFolderCreateVM:
       additionalProperties: false
       allOf:
@@ -14515,7 +14503,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     ExportReportVM:
       additionalProperties: false
       example:
@@ -14654,7 +14641,6 @@ components:
           format: int32
           type: integer
       type: object
-      x-parent: true
     ExportsVM:
       additionalProperties: false
       allOf:
@@ -14747,7 +14733,6 @@ components:
         administrate:
           $ref: '#/components/schemas/FileAdministrate'
       type: object
-      x-parent: true
     FileCreateVM:
       additionalProperties: false
       properties:
@@ -14775,7 +14760,6 @@ components:
           nullable: true
           type: string
       type: object
-      x-parent: true
     FileDelete:
       enum:
       - 0
@@ -14875,7 +14859,6 @@ components:
         anon:
           $ref: '#/components/schemas/FilePermission'
       type: object
-      x-parent: true
     FilePermissions:
       additionalProperties: false
       allOf:
@@ -15025,7 +15008,6 @@ components:
         isDeleted:
           type: boolean
       type: object
-      x-parent: true
     FileVMFilesVMBase:
       additionalProperties: false
       properties:
@@ -15044,7 +15026,6 @@ components:
           format: int32
           type: integer
       type: object
-      x-parent: true
     FilesVM:
       additionalProperties: false
       allOf:
@@ -15072,7 +15053,6 @@ components:
           nullable: true
           type: string
       type: object
-      x-parent: true
     FolderIconVM:
       additionalProperties: false
       example:
@@ -15189,7 +15169,6 @@ components:
         administrate:
           $ref: '#/components/schemas/GroupAdministrate'
       type: object
-      x-parent: true
     GroupDelete:
       enum:
       - 0
@@ -15258,7 +15237,6 @@ components:
         anon:
           $ref: '#/components/schemas/GroupPermission'
       type: object
-      x-parent: true
     GroupPermissions:
       additionalProperties: false
       allOf:
@@ -15388,7 +15366,6 @@ components:
         type:
           $ref: '#/components/schemas/FileKind'
       type: object
-      x-parent: true
     InvitedUser:
       additionalProperties: false
       example:
@@ -15573,7 +15550,6 @@ components:
       - Name
       x-enumFlags: true
       x-typeName: FastReport.Cloud.Enums.ProfileVisibility
-      x-parent: true
     RenameDataSourceVM:
       additionalProperties: false
       example:
@@ -15639,7 +15615,6 @@ components:
           pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
       type: object
-      x-parent: true
     ReportFolderCreateVM:
       additionalProperties: false
       allOf:
@@ -15741,7 +15716,6 @@ components:
           format: int32
           type: integer
       type: object
-      x-parent: true
     ReportsVM:
       additionalProperties: false
       allOf:
@@ -15828,7 +15802,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     RunExportTemplateTaskVM:
       additionalProperties: false
       allOf:
@@ -15953,7 +15926,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     RunThumbnailReportTaskVM:
       additionalProperties: false
       allOf:
@@ -16004,7 +15976,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     RunTransportTaskBaseVM:
       additionalProperties: false
       allOf:
@@ -16023,7 +15994,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     RunWebhookTaskVM:
       additionalProperties: false
       allOf:
@@ -16228,7 +16198,6 @@ components:
         administrate:
           $ref: '#/components/schemas/SubscriptionAdministrate'
       type: object
-      x-parent: true
     SubscriptionDelete:
       enum:
       - 0
@@ -16446,7 +16415,6 @@ components:
         anon:
           $ref: '#/components/schemas/SubscriptionPermission'
       type: object
-      x-parent: true
     SubscriptionPermissions:
       additionalProperties: false
       allOf:
@@ -16859,7 +16827,6 @@ components:
         exportsFolder:
           $ref: '#/components/schemas/SubscriptionFolder'
       type: object
-      x-parent: true
     SubscriptionsVM:
       additionalProperties: false
       example:
@@ -17186,7 +17153,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     TaskCreate:
       enum:
       - 0
@@ -17214,7 +17180,6 @@ components:
         administrate:
           $ref: '#/components/schemas/TaskAdministrate'
       type: object
-      x-parent: true
     TaskDelete:
       enum:
       - 0
@@ -17283,7 +17248,6 @@ components:
         anon:
           $ref: '#/components/schemas/TaskPermission'
       type: object
-      x-parent: true
     TaskPermissions:
       additionalProperties: false
       allOf:
@@ -17416,7 +17380,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/FileCreateVM'
       type: object
-      x-parent: true
     TemplateFolderCreateVM:
       additionalProperties: false
       allOf:
@@ -17462,7 +17425,6 @@ components:
           format: int32
           type: integer
       type: object
-      x-parent: true
     TemplatesVM:
       additionalProperties: false
       allOf:
@@ -17499,7 +17461,6 @@ components:
       - Year
       type: string
       x-typeName: FastReport.Cloud.Enums.TimePeriodType
-      x-parent: true
     TransformTaskBaseVM:
       additionalProperties: false
       allOf:
@@ -17529,7 +17490,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     TransportTaskBaseVM:
       additionalProperties: false
       allOf:
@@ -17548,7 +17508,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     UpdateContactGroupVM:
       additionalProperties: false
       example:
@@ -17743,7 +17702,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     UpdateExportTemplateTaskVM:
       additionalProperties: false
       allOf:
@@ -17933,7 +17891,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     UpdateTaskPermissionsVM:
       additionalProperties: false
       example:
@@ -17998,7 +17955,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     UpdateTransportTaskBaseVM:
       additionalProperties: false
       allOf:
@@ -18017,7 +17973,6 @@ components:
       required:
       - $t
       type: object
-      x-parent: true
     UpdateUserProfileVM:
       additionalProperties: false
       example:

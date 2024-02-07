@@ -62,7 +62,6 @@ public class UpdateSubscriptionLocaleVM {
     this.locale = locale;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

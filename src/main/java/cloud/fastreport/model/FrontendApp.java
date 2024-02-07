@@ -63,7 +63,6 @@ public class FrontendApp {
     this.mixins = mixins;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -15,10 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.EmailTaskVM;
-import cloud.fastreport.model.FTPUploadTaskVM;
 import cloud.fastreport.model.TransportTaskBaseVM;
-import cloud.fastreport.model.WebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -53,11 +50,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = EmailTaskVM.class, name = "EmailTaskVM"),
-  @JsonSubTypes.Type(value = FTPUploadTaskVM.class, name = "FTPUploadTaskVM"),
-  @JsonSubTypes.Type(value = WebhookTaskVM.class, name = "WebhookTaskVM"),
-})
 
 public class FTPUploadTaskVM extends TransportTaskBaseVM {
   public static final String JSON_PROPERTY_ARCHIVE = "archive";
@@ -308,6 +300,53 @@ public class FTPUploadTaskVM extends TransportTaskBaseVM {
     this.useSFTP = useSFTP;
   }
 
+  @Override
+  public FTPUploadTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public FTPUploadTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public FTPUploadTaskVM delayedWasRunTime(OffsetDateTime delayedWasRunTime) {
+    this.setDelayedWasRunTime(delayedWasRunTime);
+    return this;
+  }
+
+  @Override
+  public FTPUploadTaskVM id(String id) {
+    this.setId(id);
+    return this;
+  }
+
+  @Override
+  public FTPUploadTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public FTPUploadTaskVM recurrentRunTime(OffsetDateTime recurrentRunTime) {
+    this.setRecurrentRunTime(recurrentRunTime);
+    return this;
+  }
+
+  @Override
+  public FTPUploadTaskVM recurrentWasRunTime(OffsetDateTime recurrentWasRunTime) {
+    this.setRecurrentWasRunTime(recurrentWasRunTime);
+    return this;
+  }
+
+  @Override
+  public FTPUploadTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

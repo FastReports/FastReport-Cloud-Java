@@ -104,7 +104,6 @@ public class CreateGroupVM {
     this.subscriptionId = JsonNullable.<String>of(subscriptionId);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

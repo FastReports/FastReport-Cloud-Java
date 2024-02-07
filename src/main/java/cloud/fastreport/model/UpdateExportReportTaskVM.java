@@ -16,8 +16,6 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.ExportFormat;
-import cloud.fastreport.model.UpdateExportReportTaskVM;
-import cloud.fastreport.model.UpdateExportTemplateTaskVM;
 import cloud.fastreport.model.UpdateTransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -215,6 +213,23 @@ public class UpdateExportReportTaskVM extends UpdateTransformTaskBaseVM {
     this.$t = $t;
   }
 
+  @Override
+  public UpdateExportReportTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public UpdateExportReportTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public UpdateExportReportTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

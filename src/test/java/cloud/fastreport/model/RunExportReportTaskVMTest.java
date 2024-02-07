@@ -14,8 +14,6 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.ExportFormat;
-import cloud.fastreport.model.RunExportReportTaskVM;
-import cloud.fastreport.model.RunExportTemplateTaskVM;
 import cloud.fastreport.model.RunTransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,7 +32,6 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 
 /**
  * Model tests for RunExportReportTaskVM

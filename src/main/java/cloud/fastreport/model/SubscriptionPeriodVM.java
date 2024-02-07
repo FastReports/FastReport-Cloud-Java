@@ -124,7 +124,6 @@ public class SubscriptionPeriodVM {
     this.plan = plan;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

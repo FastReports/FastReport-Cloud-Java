@@ -15,17 +15,6 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.EmailTaskVM;
-import cloud.fastreport.model.ExportReportTaskVM;
-import cloud.fastreport.model.ExportTemplateTaskVM;
-import cloud.fastreport.model.FTPUploadTaskVM;
-import cloud.fastreport.model.FetchTaskVM;
-import cloud.fastreport.model.PrepareTemplateTaskVM;
-import cloud.fastreport.model.ThumbnailReportTaskVM;
-import cloud.fastreport.model.ThumbnailTemplateTaskVM;
-import cloud.fastreport.model.TransformTaskBaseVM;
-import cloud.fastreport.model.TransportTaskBaseVM;
-import cloud.fastreport.model.WebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -71,9 +60,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   @JsonSubTypes.Type(value = PrepareTemplateTaskVM.class, name = "PrepareTemplateTaskVM"),
   @JsonSubTypes.Type(value = ThumbnailReportTaskVM.class, name = "ThumbnailReportTaskVM"),
   @JsonSubTypes.Type(value = ThumbnailTemplateTaskVM.class, name = "ThumbnailTemplateTaskVM"),
+  @JsonSubTypes.Type(value = WebhookTaskVM.class, name = "WebhookTaskVM"),
   @JsonSubTypes.Type(value = TransformTaskBaseVM.class, name = "TransformTaskBaseVM"),
   @JsonSubTypes.Type(value = TransportTaskBaseVM.class, name = "TransportTaskBaseVM"),
-  @JsonSubTypes.Type(value = WebhookTaskVM.class, name = "WebhookTaskVM"),
 })
 
 public class TaskBaseVM {
@@ -403,7 +392,6 @@ public class TaskBaseVM {
   public void set$T(String $t) {
     this.$t = $t;
   }
-
 
   @Override
   public boolean equals(Object o) {

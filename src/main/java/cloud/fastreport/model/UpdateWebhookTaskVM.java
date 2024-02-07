@@ -15,10 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.UpdateEmailTaskVM;
-import cloud.fastreport.model.UpdateFTPUploadTaskVM;
 import cloud.fastreport.model.UpdateTransportTaskBaseVM;
-import cloud.fastreport.model.UpdateWebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -51,11 +48,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = UpdateEmailTaskVM.class, name = "UpdateEmailTaskVM"),
-  @JsonSubTypes.Type(value = UpdateFTPUploadTaskVM.class, name = "UpdateFTPUploadTaskVM"),
-  @JsonSubTypes.Type(value = UpdateWebhookTaskVM.class, name = "UpdateWebhookTaskVM"),
-})
 
 public class UpdateWebhookTaskVM extends UpdateTransportTaskBaseVM {
   public static final String JSON_PROPERTY_HEADERS = "headers";
@@ -147,6 +139,23 @@ public class UpdateWebhookTaskVM extends UpdateTransportTaskBaseVM {
     this.url = JsonNullable.<URI>of(url);
   }
 
+  @Override
+  public UpdateWebhookTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public UpdateWebhookTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public UpdateWebhookTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

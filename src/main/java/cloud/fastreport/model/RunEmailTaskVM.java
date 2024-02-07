@@ -15,10 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.RunEmailTaskVM;
-import cloud.fastreport.model.RunFTPUploadTaskVM;
 import cloud.fastreport.model.RunTransportTaskBaseVM;
-import cloud.fastreport.model.RunWebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -57,11 +55,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = RunEmailTaskVM.class, name = "RunEmailTaskVM"),
-  @JsonSubTypes.Type(value = RunFTPUploadTaskVM.class, name = "RunFTPUploadTaskVM"),
-  @JsonSubTypes.Type(value = RunWebhookTaskVM.class, name = "RunWebhookTaskVM"),
-})
 
 public class RunEmailTaskVM extends RunTransportTaskBaseVM {
   public static final String JSON_PROPERTY_BODY = "body";
@@ -355,6 +348,9 @@ public class RunEmailTaskVM extends RunTransportTaskBaseVM {
   }
 
   public RunEmailTaskVM addToItem(String toItem) {
+    if (this.to == null) {
+      this.to = new ArrayList<>();
+    }
     this.to.add(toItem);
     return this;
   }
@@ -412,6 +408,11 @@ public class RunEmailTaskVM extends RunTransportTaskBaseVM {
     this.username = JsonNullable.<String>of(username);
   }
 
+  @Override
+  public RunEmailTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

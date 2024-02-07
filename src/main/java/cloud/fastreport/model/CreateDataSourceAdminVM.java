@@ -15,7 +15,6 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.CreateDataSourceVM;
 import cloud.fastreport.model.DataSourceConnectionType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,6 +22,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -30,15 +32,30 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * CreateDataSourceAdminVM
  */
 @JsonPropertyOrder({
-  CreateDataSourceAdminVM.JSON_PROPERTY_OWNER_ID
+  CreateDataSourceAdminVM.JSON_PROPERTY_OWNER_ID,
+  CreateDataSourceAdminVM.JSON_PROPERTY_NAME,
+  CreateDataSourceAdminVM.JSON_PROPERTY_CONNECTION_STRING,
+  CreateDataSourceAdminVM.JSON_PROPERTY_SUBSCRIPTION_ID,
+  CreateDataSourceAdminVM.JSON_PROPERTY_CONNECTION_TYPE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateDataSourceAdminVM extends CreateDataSourceVM {
+public class CreateDataSourceAdminVM {
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
   private String ownerId;
 
-  public CreateDataSourceAdminVM() {
+  public static final String JSON_PROPERTY_NAME = "name";
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
+  public static final String JSON_PROPERTY_CONNECTION_STRING = "connectionString";
+  private String connectionString;
+
+  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
+  private String subscriptionId;
+
+  public static final String JSON_PROPERTY_CONNECTION_TYPE = "connectionType";
+  private DataSourceConnectionType connectionType;
+
+  public CreateDataSourceAdminVM() {
   }
 
   public CreateDataSourceAdminVM ownerId(String ownerId) {
@@ -67,6 +84,117 @@ public class CreateDataSourceAdminVM extends CreateDataSourceVM {
   }
 
 
+  public CreateDataSourceAdminVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
+    
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getName() {
+        return name.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
+    this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
+  }
+
+
+  public CreateDataSourceAdminVM connectionString(String connectionString) {
+    
+    this.connectionString = connectionString;
+    return this;
+  }
+
+   /**
+   * Get connectionString
+   * @return connectionString
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getConnectionString() {
+    return connectionString;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setConnectionString(String connectionString) {
+    this.connectionString = connectionString;
+  }
+
+
+  public CreateDataSourceAdminVM subscriptionId(String subscriptionId) {
+    
+    this.subscriptionId = subscriptionId;
+    return this;
+  }
+
+   /**
+   * Get subscriptionId
+   * @return subscriptionId
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getSubscriptionId() {
+    return subscriptionId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSubscriptionId(String subscriptionId) {
+    this.subscriptionId = subscriptionId;
+  }
+
+
+  public CreateDataSourceAdminVM connectionType(DataSourceConnectionType connectionType) {
+    
+    this.connectionType = connectionType;
+    return this;
+  }
+
+   /**
+   * Get connectionType
+   * @return connectionType
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public DataSourceConnectionType getConnectionType() {
+    return connectionType;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CONNECTION_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConnectionType(DataSourceConnectionType connectionType) {
+    this.connectionType = connectionType;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -77,7 +205,10 @@ public class CreateDataSourceAdminVM extends CreateDataSourceVM {
     }
     CreateDataSourceAdminVM createDataSourceAdminVM = (CreateDataSourceAdminVM) o;
     return Objects.equals(this.ownerId, createDataSourceAdminVM.ownerId) &&
-        super.equals(o);
+        equalsNullable(this.name, createDataSourceAdminVM.name) &&
+        Objects.equals(this.connectionString, createDataSourceAdminVM.connectionString) &&
+        Objects.equals(this.subscriptionId, createDataSourceAdminVM.subscriptionId) &&
+        Objects.equals(this.connectionType, createDataSourceAdminVM.connectionType);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -86,7 +217,7 @@ public class CreateDataSourceAdminVM extends CreateDataSourceVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, super.hashCode());
+    return Objects.hash(ownerId, hashCodeNullable(name), connectionString, subscriptionId, connectionType);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -100,8 +231,11 @@ public class CreateDataSourceAdminVM extends CreateDataSourceVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateDataSourceAdminVM {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    connectionString: ").append(toIndentedString(connectionString)).append("\n");
+    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
+    sb.append("    connectionType: ").append(toIndentedString(connectionType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

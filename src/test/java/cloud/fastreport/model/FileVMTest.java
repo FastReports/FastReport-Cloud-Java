@@ -13,7 +13,6 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.EntityVM;
 import cloud.fastreport.model.FileStatus;
 import cloud.fastreport.model.FileStatusReason;
 import cloud.fastreport.model.FileType;
@@ -24,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,7 +32,6 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 
 /**
  * Model tests for FileVM

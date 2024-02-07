@@ -15,11 +15,8 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.EmailTaskVM;
-import cloud.fastreport.model.FTPUploadTaskVM;
 import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.TaskBaseVM;
-import cloud.fastreport.model.WebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -124,6 +121,53 @@ public class TransportTaskBaseVM extends TaskBaseVM {
     this.$t = $t;
   }
 
+  @Override
+  public TransportTaskBaseVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public TransportTaskBaseVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public TransportTaskBaseVM delayedWasRunTime(OffsetDateTime delayedWasRunTime) {
+    this.setDelayedWasRunTime(delayedWasRunTime);
+    return this;
+  }
+
+  @Override
+  public TransportTaskBaseVM id(String id) {
+    this.setId(id);
+    return this;
+  }
+
+  @Override
+  public TransportTaskBaseVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public TransportTaskBaseVM recurrentRunTime(OffsetDateTime recurrentRunTime) {
+    this.setRecurrentRunTime(recurrentRunTime);
+    return this;
+  }
+
+  @Override
+  public TransportTaskBaseVM recurrentWasRunTime(OffsetDateTime recurrentWasRunTime) {
+    this.setRecurrentWasRunTime(recurrentWasRunTime);
+    return this;
+  }
+
+  @Override
+  public TransportTaskBaseVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

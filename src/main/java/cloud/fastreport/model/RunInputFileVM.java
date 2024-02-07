@@ -16,7 +16,6 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.FileKind;
-import cloud.fastreport.model.InputFileVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -34,18 +33,25 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
   RunInputFileVM.JSON_PROPERTY_CONTENT,
-  RunInputFileVM.JSON_PROPERTY_FILE_NAME
+  RunInputFileVM.JSON_PROPERTY_FILE_NAME,
+  RunInputFileVM.JSON_PROPERTY_ENTITY_ID,
+  RunInputFileVM.JSON_PROPERTY_TYPE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RunInputFileVM extends InputFileVM {
+public class RunInputFileVM {
   public static final String JSON_PROPERTY_CONTENT = "content";
   private JsonNullable<byte[]> content = JsonNullable.<byte[]>undefined();
 
   public static final String JSON_PROPERTY_FILE_NAME = "fileName";
   private JsonNullable<String> fileName = JsonNullable.<String>undefined();
 
-  public RunInputFileVM() {
+  public static final String JSON_PROPERTY_ENTITY_ID = "entityId";
+  private JsonNullable<String> entityId = JsonNullable.<String>undefined();
 
+  public static final String JSON_PROPERTY_TYPE = "type";
+  private FileKind type;
+
+  public RunInputFileVM() {
   }
 
   public RunInputFileVM content(byte[] content) {
@@ -116,6 +122,65 @@ public class RunInputFileVM extends InputFileVM {
   }
 
 
+  public RunInputFileVM entityId(String entityId) {
+    this.entityId = JsonNullable.<String>of(entityId);
+    
+    return this;
+  }
+
+   /**
+   * Get entityId
+   * @return entityId
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getEntityId() {
+        return entityId.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_ENTITY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getEntityId_JsonNullable() {
+    return entityId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ENTITY_ID)
+  public void setEntityId_JsonNullable(JsonNullable<String> entityId) {
+    this.entityId = entityId;
+  }
+
+  public void setEntityId(String entityId) {
+    this.entityId = JsonNullable.<String>of(entityId);
+  }
+
+
+  public RunInputFileVM type(FileKind type) {
+    
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Get type
+   * @return type
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public FileKind getType() {
+    return type;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setType(FileKind type) {
+    this.type = type;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -127,7 +192,8 @@ public class RunInputFileVM extends InputFileVM {
     RunInputFileVM runInputFileVM = (RunInputFileVM) o;
     return equalsNullable(this.content, runInputFileVM.content) &&
         equalsNullable(this.fileName, runInputFileVM.fileName) &&
-        super.equals(o);
+        equalsNullable(this.entityId, runInputFileVM.entityId) &&
+        Objects.equals(this.type, runInputFileVM.type);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -136,7 +202,7 @@ public class RunInputFileVM extends InputFileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(content), hashCodeNullable(fileName), super.hashCode());
+    return Objects.hash(hashCodeNullable(content), hashCodeNullable(fileName), hashCodeNullable(entityId), type);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -150,9 +216,10 @@ public class RunInputFileVM extends InputFileVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RunInputFileVM {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
+    sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

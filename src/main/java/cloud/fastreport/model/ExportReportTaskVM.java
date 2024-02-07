@@ -16,8 +16,6 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.ExportFormat;
-import cloud.fastreport.model.ExportReportTaskVM;
-import cloud.fastreport.model.ExportTemplateTaskVM;
 import cloud.fastreport.model.TransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -209,6 +207,53 @@ public class ExportReportTaskVM extends TransformTaskBaseVM {
     this.$t = $t;
   }
 
+  @Override
+  public ExportReportTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public ExportReportTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public ExportReportTaskVM delayedWasRunTime(OffsetDateTime delayedWasRunTime) {
+    this.setDelayedWasRunTime(delayedWasRunTime);
+    return this;
+  }
+
+  @Override
+  public ExportReportTaskVM id(String id) {
+    this.setId(id);
+    return this;
+  }
+
+  @Override
+  public ExportReportTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public ExportReportTaskVM recurrentRunTime(OffsetDateTime recurrentRunTime) {
+    this.setRecurrentRunTime(recurrentRunTime);
+    return this;
+  }
+
+  @Override
+  public ExportReportTaskVM recurrentWasRunTime(OffsetDateTime recurrentWasRunTime) {
+    this.setRecurrentWasRunTime(recurrentWasRunTime);
+    return this;
+  }
+
+  @Override
+  public ExportReportTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

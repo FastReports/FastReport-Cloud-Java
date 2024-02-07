@@ -15,10 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.CreateEmailTaskVM;
-import cloud.fastreport.model.CreateFTPUploadTaskVM;
 import cloud.fastreport.model.CreateTaskBaseVM;
-import cloud.fastreport.model.CreateWebhookTaskVM;
 import cloud.fastreport.model.InputFileVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -114,6 +111,29 @@ public class CreateTransportTaskBaseVM extends CreateTaskBaseVM {
     this.$t = $t;
   }
 
+  @Override
+  public CreateTransportTaskBaseVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public CreateTransportTaskBaseVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public CreateTransportTaskBaseVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public CreateTransportTaskBaseVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

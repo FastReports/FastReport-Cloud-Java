@@ -104,7 +104,6 @@ public class PreviewReportVM {
     this.cacheTolerance = cacheTolerance;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

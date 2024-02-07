@@ -94,7 +94,6 @@ public class UpdateTaskPermissionsVM {
     this.newPermissions = newPermissions;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

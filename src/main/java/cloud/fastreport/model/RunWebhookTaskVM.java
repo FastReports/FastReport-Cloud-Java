@@ -15,10 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.RunEmailTaskVM;
-import cloud.fastreport.model.RunFTPUploadTaskVM;
 import cloud.fastreport.model.RunTransportTaskBaseVM;
-import cloud.fastreport.model.RunWebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -50,11 +47,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = RunEmailTaskVM.class, name = "RunEmailTaskVM"),
-  @JsonSubTypes.Type(value = RunFTPUploadTaskVM.class, name = "RunFTPUploadTaskVM"),
-  @JsonSubTypes.Type(value = RunWebhookTaskVM.class, name = "RunWebhookTaskVM"),
-})
 
 public class RunWebhookTaskVM extends RunTransportTaskBaseVM {
   public static final String JSON_PROPERTY_HEADERS = "headers";
@@ -146,6 +138,11 @@ public class RunWebhookTaskVM extends RunTransportTaskBaseVM {
     this.url = JsonNullable.<URI>of(url);
   }
 
+  @Override
+  public RunWebhookTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

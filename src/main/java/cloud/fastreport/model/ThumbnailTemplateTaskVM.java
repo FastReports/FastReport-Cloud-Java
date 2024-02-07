@@ -15,16 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.EmailTaskVM;
-import cloud.fastreport.model.ExportReportTaskVM;
-import cloud.fastreport.model.ExportTemplateTaskVM;
-import cloud.fastreport.model.FTPUploadTaskVM;
-import cloud.fastreport.model.FetchTaskVM;
-import cloud.fastreport.model.PrepareTemplateTaskVM;
 import cloud.fastreport.model.TaskBaseVM;
-import cloud.fastreport.model.ThumbnailReportTaskVM;
-import cloud.fastreport.model.ThumbnailTemplateTaskVM;
-import cloud.fastreport.model.WebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -53,17 +44,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = EmailTaskVM.class, name = "EmailTaskVM"),
-  @JsonSubTypes.Type(value = ExportReportTaskVM.class, name = "ExportReportTaskVM"),
-  @JsonSubTypes.Type(value = ExportTemplateTaskVM.class, name = "ExportTemplateTaskVM"),
-  @JsonSubTypes.Type(value = FTPUploadTaskVM.class, name = "FTPUploadTaskVM"),
-  @JsonSubTypes.Type(value = FetchTaskVM.class, name = "FetchTaskVM"),
-  @JsonSubTypes.Type(value = PrepareTemplateTaskVM.class, name = "PrepareTemplateTaskVM"),
-  @JsonSubTypes.Type(value = ThumbnailReportTaskVM.class, name = "ThumbnailReportTaskVM"),
-  @JsonSubTypes.Type(value = ThumbnailTemplateTaskVM.class, name = "ThumbnailTemplateTaskVM"),
-  @JsonSubTypes.Type(value = WebhookTaskVM.class, name = "WebhookTaskVM"),
-})
 
 public class ThumbnailTemplateTaskVM extends TaskBaseVM {
   public static final String JSON_PROPERTY_TEMPLATE_ID = "templateId";
@@ -113,6 +93,53 @@ public class ThumbnailTemplateTaskVM extends TaskBaseVM {
   }
 
 
+  @Override
+  public ThumbnailTemplateTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public ThumbnailTemplateTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public ThumbnailTemplateTaskVM delayedWasRunTime(OffsetDateTime delayedWasRunTime) {
+    this.setDelayedWasRunTime(delayedWasRunTime);
+    return this;
+  }
+
+  @Override
+  public ThumbnailTemplateTaskVM id(String id) {
+    this.setId(id);
+    return this;
+  }
+
+  @Override
+  public ThumbnailTemplateTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public ThumbnailTemplateTaskVM recurrentRunTime(OffsetDateTime recurrentRunTime) {
+    this.setRecurrentRunTime(recurrentRunTime);
+    return this;
+  }
+
+  @Override
+  public ThumbnailTemplateTaskVM recurrentWasRunTime(OffsetDateTime recurrentWasRunTime) {
+    this.setRecurrentWasRunTime(recurrentWasRunTime);
+    return this;
+  }
+
+  @Override
+  public ThumbnailTemplateTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

@@ -16,10 +16,7 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.OutputFileVM;
-import cloud.fastreport.model.RunExportReportTaskVM;
-import cloud.fastreport.model.RunExportTemplateTaskVM;
 import cloud.fastreport.model.RunInputFileVM;
-import cloud.fastreport.model.RunPrepareTemplateTaskVM;
 import cloud.fastreport.model.RunTaskBaseVM;
 import cloud.fastreport.model.RunTransportTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -31,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -238,6 +236,11 @@ public class RunTransformTaskBaseVM extends RunTaskBaseVM {
     this.$t = $t;
   }
 
+  @Override
+  public RunTransformTaskBaseVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

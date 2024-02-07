@@ -16,9 +16,6 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.AuditActionVM;
-import cloud.fastreport.model.AuditFilePropertyChangedVM;
-import cloud.fastreport.model.AuditSubscriptionActionVM;
-import cloud.fastreport.model.AuditTaskActionVM;
 import cloud.fastreport.model.AuditType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -49,11 +46,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = AuditFilePropertyChangedVM.class, name = "AuditFilePropertyChangedVM"),
-  @JsonSubTypes.Type(value = AuditSubscriptionActionVM.class, name = "AuditSubscriptionActionVM"),
-  @JsonSubTypes.Type(value = AuditTaskActionVM.class, name = "AuditTaskActionVM"),
-})
 
 public class AuditTaskActionVM extends AuditActionVM {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
@@ -133,6 +125,53 @@ public class AuditTaskActionVM extends AuditActionVM {
     this.fileName = JsonNullable.<String>of(fileName);
   }
 
+  @Override
+  public AuditTaskActionVM userId(String userId) {
+    this.setUserId(userId);
+    return this;
+  }
+
+  @Override
+  public AuditTaskActionVM entityId(String entityId) {
+    this.setEntityId(entityId);
+    return this;
+  }
+
+  @Override
+  public AuditTaskActionVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
+
+  @Override
+  public AuditTaskActionVM type(AuditType type) {
+    this.setType(type);
+    return this;
+  }
+
+  @Override
+  public AuditTaskActionVM createdTime(OffsetDateTime createdTime) {
+    this.setCreatedTime(createdTime);
+    return this;
+  }
+
+  @Override
+  public AuditTaskActionVM creatorUserId(String creatorUserId) {
+    this.setCreatorUserId(creatorUserId);
+    return this;
+  }
+
+  @Override
+  public AuditTaskActionVM adminAction(Boolean adminAction) {
+    this.setAdminAction(adminAction);
+    return this;
+  }
+
+  @Override
+  public AuditTaskActionVM $t(String $t) {
+    this.set$T($t);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

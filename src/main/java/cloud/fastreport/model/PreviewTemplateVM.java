@@ -156,7 +156,6 @@ public class PreviewTemplateVM {
     this.cacheTolerance = cacheTolerance;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

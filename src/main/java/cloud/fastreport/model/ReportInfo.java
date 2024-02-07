@@ -454,7 +454,6 @@ public class ReportInfo {
     this.version = JsonNullable.<String>of(version);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

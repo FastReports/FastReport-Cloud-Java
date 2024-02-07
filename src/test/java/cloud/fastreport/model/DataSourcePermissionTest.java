@@ -15,7 +15,6 @@ package cloud.fastreport.model;
 
 import cloud.fastreport.model.DataSourceAdministrate;
 import cloud.fastreport.model.DataSourceCreate;
-import cloud.fastreport.model.DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission;
 import cloud.fastreport.model.DataSourceDelete;
 import cloud.fastreport.model.DataSourceExecute;
 import cloud.fastreport.model.DataSourceGet;
@@ -28,7 +27,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 
 /**
  * Model tests for DataSourcePermission

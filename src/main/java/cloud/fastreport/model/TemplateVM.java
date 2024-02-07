@@ -15,7 +15,6 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.ReportInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,6 +23,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -31,15 +33,34 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * TemplateVM
  */
 @JsonPropertyOrder({
-  TemplateVM.JSON_PROPERTY_REPORT_INFO
+  TemplateVM.JSON_PROPERTY_REPORT_INFO,
+  TemplateVM.JSON_PROPERTY_ID,
+  TemplateVM.JSON_PROPERTY_CREATED_TIME,
+  TemplateVM.JSON_PROPERTY_CREATOR_USER_ID,
+  TemplateVM.JSON_PROPERTY_EDITED_TIME,
+  TemplateVM.JSON_PROPERTY_EDITOR_USER_ID
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TemplateVM extends FileVM {
+public class TemplateVM {
   public static final String JSON_PROPERTY_REPORT_INFO = "reportInfo";
   private ReportInfo reportInfo;
 
-  public TemplateVM() {
+  public static final String JSON_PROPERTY_ID = "id";
+  private JsonNullable<String> id = JsonNullable.<String>undefined();
 
+  public static final String JSON_PROPERTY_CREATED_TIME = "createdTime";
+  private OffsetDateTime createdTime;
+
+  public static final String JSON_PROPERTY_CREATOR_USER_ID = "creatorUserId";
+  private JsonNullable<String> creatorUserId = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_EDITED_TIME = "editedTime";
+  private OffsetDateTime editedTime;
+
+  public static final String JSON_PROPERTY_EDITOR_USER_ID = "editorUserId";
+  private JsonNullable<String> editorUserId = JsonNullable.<String>undefined();
+
+  public TemplateVM() {
   }
 
   public TemplateVM reportInfo(ReportInfo reportInfo) {
@@ -68,6 +89,159 @@ public class TemplateVM extends FileVM {
   }
 
 
+  public TemplateVM id(String id) {
+    this.id = JsonNullable.<String>of(id);
+    
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getId() {
+        return id.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getId_JsonNullable() {
+    return id;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ID)
+  public void setId_JsonNullable(JsonNullable<String> id) {
+    this.id = id;
+  }
+
+  public void setId(String id) {
+    this.id = JsonNullable.<String>of(id);
+  }
+
+
+  public TemplateVM createdTime(OffsetDateTime createdTime) {
+    
+    this.createdTime = createdTime;
+    return this;
+  }
+
+   /**
+   * Get createdTime
+   * @return createdTime
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getCreatedTime() {
+    return createdTime;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCreatedTime(OffsetDateTime createdTime) {
+    this.createdTime = createdTime;
+  }
+
+
+  public TemplateVM creatorUserId(String creatorUserId) {
+    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
+    
+    return this;
+  }
+
+   /**
+   * Get creatorUserId
+   * @return creatorUserId
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getCreatorUserId() {
+        return creatorUserId.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCreatorUserId_JsonNullable() {
+    return creatorUserId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
+  public void setCreatorUserId_JsonNullable(JsonNullable<String> creatorUserId) {
+    this.creatorUserId = creatorUserId;
+  }
+
+  public void setCreatorUserId(String creatorUserId) {
+    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
+  }
+
+
+  public TemplateVM editedTime(OffsetDateTime editedTime) {
+    
+    this.editedTime = editedTime;
+    return this;
+  }
+
+   /**
+   * Get editedTime
+   * @return editedTime
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_EDITED_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getEditedTime() {
+    return editedTime;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EDITED_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEditedTime(OffsetDateTime editedTime) {
+    this.editedTime = editedTime;
+  }
+
+
+  public TemplateVM editorUserId(String editorUserId) {
+    this.editorUserId = JsonNullable.<String>of(editorUserId);
+    
+    return this;
+  }
+
+   /**
+   * Get editorUserId
+   * @return editorUserId
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getEditorUserId() {
+        return editorUserId.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getEditorUserId_JsonNullable() {
+    return editorUserId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
+  public void setEditorUserId_JsonNullable(JsonNullable<String> editorUserId) {
+    this.editorUserId = editorUserId;
+  }
+
+  public void setEditorUserId(String editorUserId) {
+    this.editorUserId = JsonNullable.<String>of(editorUserId);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -78,7 +252,11 @@ public class TemplateVM extends FileVM {
     }
     TemplateVM templateVM = (TemplateVM) o;
     return Objects.equals(this.reportInfo, templateVM.reportInfo) &&
-        super.equals(o);
+        equalsNullable(this.id, templateVM.id) &&
+        Objects.equals(this.createdTime, templateVM.createdTime) &&
+        equalsNullable(this.creatorUserId, templateVM.creatorUserId) &&
+        Objects.equals(this.editedTime, templateVM.editedTime) &&
+        equalsNullable(this.editorUserId, templateVM.editorUserId);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -87,7 +265,7 @@ public class TemplateVM extends FileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(reportInfo, super.hashCode());
+    return Objects.hash(reportInfo, hashCodeNullable(id), createdTime, hashCodeNullable(creatorUserId), editedTime, hashCodeNullable(editorUserId));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -101,8 +279,12 @@ public class TemplateVM extends FileVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TemplateVM {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    reportInfo: ").append(toIndentedString(reportInfo)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
+    sb.append("    creatorUserId: ").append(toIndentedString(creatorUserId)).append("\n");
+    sb.append("    editedTime: ").append(toIndentedString(editedTime)).append("\n");
+    sb.append("    editorUserId: ").append(toIndentedString(editorUserId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

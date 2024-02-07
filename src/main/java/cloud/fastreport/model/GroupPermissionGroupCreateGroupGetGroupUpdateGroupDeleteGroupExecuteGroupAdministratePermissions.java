@@ -217,7 +217,6 @@ public class GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecut
     this.anon = anon;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

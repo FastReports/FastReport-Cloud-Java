@@ -16,7 +16,6 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.DataSourcePermission;
-import cloud.fastreport.model.DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -25,6 +24,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -32,11 +34,187 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * DataSourcePermissions
  */
 @JsonPropertyOrder({
+  DataSourcePermissions.JSON_PROPERTY_OWNER_ID,
+  DataSourcePermissions.JSON_PROPERTY_OWNER,
+  DataSourcePermissions.JSON_PROPERTY_GROUPS,
+  DataSourcePermissions.JSON_PROPERTY_OTHER,
+  DataSourcePermissions.JSON_PROPERTY_ANON
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class DataSourcePermissions extends DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions {
-  public DataSourcePermissions() {
+public class DataSourcePermissions {
+  public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
+  private JsonNullable<String> ownerId = JsonNullable.<String>undefined();
 
+  public static final String JSON_PROPERTY_OWNER = "owner";
+  private DataSourcePermission owner;
+
+  public static final String JSON_PROPERTY_GROUPS = "groups";
+  private JsonNullable<Map<String, DataSourcePermission>> groups = JsonNullable.<Map<String, DataSourcePermission>>undefined();
+
+  public static final String JSON_PROPERTY_OTHER = "other";
+  private DataSourcePermission other;
+
+  public static final String JSON_PROPERTY_ANON = "anon";
+  private DataSourcePermission anon;
+
+  public DataSourcePermissions() {
+  }
+
+  public DataSourcePermissions ownerId(String ownerId) {
+    this.ownerId = JsonNullable.<String>of(ownerId);
+    
+    return this;
+  }
+
+   /**
+   * Get ownerId
+   * @return ownerId
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getOwnerId() {
+        return ownerId.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_OWNER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getOwnerId_JsonNullable() {
+    return ownerId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OWNER_ID)
+  public void setOwnerId_JsonNullable(JsonNullable<String> ownerId) {
+    this.ownerId = ownerId;
+  }
+
+  public void setOwnerId(String ownerId) {
+    this.ownerId = JsonNullable.<String>of(ownerId);
+  }
+
+
+  public DataSourcePermissions owner(DataSourcePermission owner) {
+    
+    this.owner = owner;
+    return this;
+  }
+
+   /**
+   * Get owner
+   * @return owner
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_OWNER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public DataSourcePermission getOwner() {
+    return owner;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_OWNER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOwner(DataSourcePermission owner) {
+    this.owner = owner;
+  }
+
+
+  public DataSourcePermissions groups(Map<String, DataSourcePermission> groups) {
+    this.groups = JsonNullable.<Map<String, DataSourcePermission>>of(groups);
+    
+    return this;
+  }
+
+  public DataSourcePermissions putGroupsItem(String key, DataSourcePermission groupsItem) {
+    if (this.groups == null || !this.groups.isPresent()) {
+      this.groups = JsonNullable.<Map<String, DataSourcePermission>>of(new HashMap<>());
+    }
+    try {
+      this.groups.get().put(key, groupsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+   /**
+   * Get groups
+   * @return groups
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public Map<String, DataSourcePermission> getGroups() {
+        return groups.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_GROUPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Map<String, DataSourcePermission>> getGroups_JsonNullable() {
+    return groups;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GROUPS)
+  public void setGroups_JsonNullable(JsonNullable<Map<String, DataSourcePermission>> groups) {
+    this.groups = groups;
+  }
+
+  public void setGroups(Map<String, DataSourcePermission> groups) {
+    this.groups = JsonNullable.<Map<String, DataSourcePermission>>of(groups);
+  }
+
+
+  public DataSourcePermissions other(DataSourcePermission other) {
+    
+    this.other = other;
+    return this;
+  }
+
+   /**
+   * Get other
+   * @return other
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_OTHER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public DataSourcePermission getOther() {
+    return other;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_OTHER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOther(DataSourcePermission other) {
+    this.other = other;
+  }
+
+
+  public DataSourcePermissions anon(DataSourcePermission anon) {
+    
+    this.anon = anon;
+    return this;
+  }
+
+   /**
+   * Get anon
+   * @return anon
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ANON)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public DataSourcePermission getAnon() {
+    return anon;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ANON)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAnon(DataSourcePermission anon) {
+    this.anon = anon;
   }
 
   @Override
@@ -47,7 +225,12 @@ public class DataSourcePermissions extends DataSourcePermissionDataSourceCreateD
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    return super.equals(o);
+    DataSourcePermissions dataSourcePermissions = (DataSourcePermissions) o;
+    return equalsNullable(this.ownerId, dataSourcePermissions.ownerId) &&
+        Objects.equals(this.owner, dataSourcePermissions.owner) &&
+        equalsNullable(this.groups, dataSourcePermissions.groups) &&
+        Objects.equals(this.other, dataSourcePermissions.other) &&
+        Objects.equals(this.anon, dataSourcePermissions.anon);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -56,7 +239,7 @@ public class DataSourcePermissions extends DataSourcePermissionDataSourceCreateD
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode());
+    return Objects.hash(hashCodeNullable(ownerId), owner, hashCodeNullable(groups), other, anon);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -70,7 +253,11 @@ public class DataSourcePermissions extends DataSourcePermissionDataSourceCreateD
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DataSourcePermissions {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
+    sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
+    sb.append("    other: ").append(toIndentedString(other)).append("\n");
+    sb.append("    anon: ").append(toIndentedString(anon)).append("\n");
     sb.append("}");
     return sb.toString();
   }

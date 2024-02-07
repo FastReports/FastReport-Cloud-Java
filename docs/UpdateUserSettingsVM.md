@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**profileVisibility** | [**ProfileVisibility**](ProfileVisibility.md) |  |  [optional] |
+|**profileVisibility** | **ProfileVisibility** |  |  [optional] |
 |**defaultSubscription** | **String** |  |  [optional] |
 |**showHiddenFilesAndFolders** | **Boolean** |  |  [optional] |
 |**subscribedNotifications** | **List&lt;AuditType&gt;** |  |  [optional] |

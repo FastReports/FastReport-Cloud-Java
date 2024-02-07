@@ -15,11 +15,8 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.RunEmailTaskVM;
-import cloud.fastreport.model.RunFTPUploadTaskVM;
 import cloud.fastreport.model.RunInputFileVM;
 import cloud.fastreport.model.RunTaskBaseVM;
-import cloud.fastreport.model.RunWebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -113,6 +110,11 @@ public class RunTransportTaskBaseVM extends RunTaskBaseVM {
     this.$t = $t;
   }
 
+  @Override
+  public RunTransportTaskBaseVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

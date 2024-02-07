@@ -105,7 +105,6 @@ public class CreateApiKeyVM {
     this.expired = expired;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

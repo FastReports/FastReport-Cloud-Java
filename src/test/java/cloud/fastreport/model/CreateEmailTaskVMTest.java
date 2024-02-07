@@ -13,10 +13,7 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.CreateEmailTaskVM;
-import cloud.fastreport.model.CreateFTPUploadTaskVM;
 import cloud.fastreport.model.CreateTransportTaskBaseVM;
-import cloud.fastreport.model.CreateWebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,7 +33,6 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 
 /**
  * Model tests for CreateEmailTaskVM

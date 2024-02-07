@@ -62,7 +62,6 @@ public class DeleteApiKeyVM {
     this.apiKey = apiKey;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

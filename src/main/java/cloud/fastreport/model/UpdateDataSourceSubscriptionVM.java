@@ -62,7 +62,6 @@ public class UpdateDataSourceSubscriptionVM {
     this.subscriptionId = subscriptionId;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

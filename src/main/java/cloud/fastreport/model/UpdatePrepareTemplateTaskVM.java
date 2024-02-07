@@ -15,9 +15,6 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.UpdateExportReportTaskVM;
-import cloud.fastreport.model.UpdateExportTemplateTaskVM;
-import cloud.fastreport.model.UpdatePrepareTemplateTaskVM;
 import cloud.fastreport.model.UpdateTransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -29,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,11 +51,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = UpdateExportReportTaskVM.class, name = "UpdateExportReportTaskVM"),
-  @JsonSubTypes.Type(value = UpdateExportTemplateTaskVM.class, name = "UpdateExportTemplateTaskVM"),
-  @JsonSubTypes.Type(value = UpdatePrepareTemplateTaskVM.class, name = "UpdatePrepareTemplateTaskVM"),
-})
 
 public class UpdatePrepareTemplateTaskVM extends UpdateTransformTaskBaseVM {
   public static final String JSON_PROPERTY_EXPORT_IDS = "exportIds";
@@ -200,6 +193,23 @@ public class UpdatePrepareTemplateTaskVM extends UpdateTransformTaskBaseVM {
     this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
   }
 
+  @Override
+  public UpdatePrepareTemplateTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public UpdatePrepareTemplateTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public UpdatePrepareTemplateTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

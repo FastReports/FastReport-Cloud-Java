@@ -229,7 +229,6 @@ public class ProblemDetails extends HashMap<String, Object> {
     this.instance = JsonNullable.<String>of(instance);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

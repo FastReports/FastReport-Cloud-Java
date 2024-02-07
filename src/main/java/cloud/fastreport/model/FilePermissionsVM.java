@@ -63,7 +63,6 @@ public class FilePermissionsVM {
     this.permissions = permissions;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

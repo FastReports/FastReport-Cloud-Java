@@ -112,7 +112,6 @@ public class AppMixins {
     this.body = JsonNullable.<String>of(body);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

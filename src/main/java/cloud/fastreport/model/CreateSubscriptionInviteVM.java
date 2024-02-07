@@ -125,7 +125,6 @@ public class CreateSubscriptionInviteVM {
     this.expiredDate = expiredDate;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

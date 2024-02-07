@@ -17,7 +17,6 @@ import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.TaskAdministrate;
 import cloud.fastreport.model.TaskCreate;
-import cloud.fastreport.model.TaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermission;
 import cloud.fastreport.model.TaskDelete;
 import cloud.fastreport.model.TaskExecute;
 import cloud.fastreport.model.TaskGet;
@@ -34,11 +33,189 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * TaskPermission
  */
 @JsonPropertyOrder({
+  TaskPermission.JSON_PROPERTY_CREATE,
+  TaskPermission.JSON_PROPERTY_DELETE,
+  TaskPermission.JSON_PROPERTY_EXECUTE,
+  TaskPermission.JSON_PROPERTY_GET,
+  TaskPermission.JSON_PROPERTY_UPDATE,
+  TaskPermission.JSON_PROPERTY_ADMINISTRATE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TaskPermission extends TaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermission {
-  public TaskPermission() {
+public class TaskPermission {
+  public static final String JSON_PROPERTY_CREATE = "create";
+  private TaskCreate create;
 
+  public static final String JSON_PROPERTY_DELETE = "delete";
+  private TaskDelete delete;
+
+  public static final String JSON_PROPERTY_EXECUTE = "execute";
+  private TaskExecute execute;
+
+  public static final String JSON_PROPERTY_GET = "get";
+  private TaskGet get;
+
+  public static final String JSON_PROPERTY_UPDATE = "update";
+  private TaskUpdate update;
+
+  public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
+  private TaskAdministrate administrate;
+
+  public TaskPermission() {
+  }
+
+  public TaskPermission create(TaskCreate create) {
+    
+    this.create = create;
+    return this;
+  }
+
+   /**
+   * Get create
+   * @return create
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CREATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TaskCreate getCreate() {
+    return create;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CREATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCreate(TaskCreate create) {
+    this.create = create;
+  }
+
+
+  public TaskPermission delete(TaskDelete delete) {
+    
+    this.delete = delete;
+    return this;
+  }
+
+   /**
+   * Get delete
+   * @return delete
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DELETE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TaskDelete getDelete() {
+    return delete;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DELETE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDelete(TaskDelete delete) {
+    this.delete = delete;
+  }
+
+
+  public TaskPermission execute(TaskExecute execute) {
+    
+    this.execute = execute;
+    return this;
+  }
+
+   /**
+   * Get execute
+   * @return execute
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_EXECUTE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TaskExecute getExecute() {
+    return execute;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EXECUTE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExecute(TaskExecute execute) {
+    this.execute = execute;
+  }
+
+
+  public TaskPermission get(TaskGet get) {
+    
+    this.get = get;
+    return this;
+  }
+
+   /**
+   * Get get
+   * @return get
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_GET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TaskGet getGet() {
+    return get;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_GET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGet(TaskGet get) {
+    this.get = get;
+  }
+
+
+  public TaskPermission update(TaskUpdate update) {
+    
+    this.update = update;
+    return this;
+  }
+
+   /**
+   * Get update
+   * @return update
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TaskUpdate getUpdate() {
+    return update;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUpdate(TaskUpdate update) {
+    this.update = update;
+  }
+
+
+  public TaskPermission administrate(TaskAdministrate administrate) {
+    
+    this.administrate = administrate;
+    return this;
+  }
+
+   /**
+   * Get administrate
+   * @return administrate
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TaskAdministrate getAdministrate() {
+    return administrate;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdministrate(TaskAdministrate administrate) {
+    this.administrate = administrate;
   }
 
   @Override
@@ -49,19 +226,30 @@ public class TaskPermission extends TaskCreateTaskGetTaskUpdateTaskDeleteTaskExe
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    return super.equals(o);
+    TaskPermission taskPermission = (TaskPermission) o;
+    return Objects.equals(this.create, taskPermission.create) &&
+        Objects.equals(this.delete, taskPermission.delete) &&
+        Objects.equals(this.execute, taskPermission.execute) &&
+        Objects.equals(this.get, taskPermission.get) &&
+        Objects.equals(this.update, taskPermission.update) &&
+        Objects.equals(this.administrate, taskPermission.administrate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode());
+    return Objects.hash(create, delete, execute, get, update, administrate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TaskPermission {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    create: ").append(toIndentedString(create)).append("\n");
+    sb.append("    delete: ").append(toIndentedString(delete)).append("\n");
+    sb.append("    execute: ").append(toIndentedString(execute)).append("\n");
+    sb.append("    get: ").append(toIndentedString(get)).append("\n");
+    sb.append("    update: ").append(toIndentedString(update)).append("\n");
+    sb.append("    administrate: ").append(toIndentedString(administrate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

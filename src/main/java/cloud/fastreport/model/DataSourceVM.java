@@ -463,7 +463,6 @@ public class DataSourceVM {
     this.errorMessage = JsonNullable.<String>of(errorMessage);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

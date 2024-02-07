@@ -74,7 +74,6 @@ public class GroupUserVM {
     this.userId = JsonNullable.<String>of(userId);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

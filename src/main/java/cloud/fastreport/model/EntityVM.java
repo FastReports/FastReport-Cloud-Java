@@ -211,7 +211,6 @@ public class EntityVM {
     this.editorUserId = JsonNullable.<String>of(editorUserId);
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

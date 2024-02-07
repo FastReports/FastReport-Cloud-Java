@@ -15,9 +15,6 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.AuditFilePropertyChangedVM;
-import cloud.fastreport.model.AuditSubscriptionActionVM;
-import cloud.fastreport.model.AuditTaskActionVM;
 import cloud.fastreport.model.AuditType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -402,7 +399,6 @@ public class AuditActionVM {
   public void set$T(String $t) {
     this.$t = $t;
   }
-
 
   @Override
   public boolean equals(Object o) {

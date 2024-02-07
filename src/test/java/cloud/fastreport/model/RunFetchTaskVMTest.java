@@ -13,16 +13,7 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.RunEmailTaskVM;
-import cloud.fastreport.model.RunExportReportTaskVM;
-import cloud.fastreport.model.RunExportTemplateTaskVM;
-import cloud.fastreport.model.RunFTPUploadTaskVM;
-import cloud.fastreport.model.RunFetchTaskVM;
-import cloud.fastreport.model.RunPrepareTemplateTaskVM;
 import cloud.fastreport.model.RunTaskBaseVM;
-import cloud.fastreport.model.RunThumbnailReportTaskVM;
-import cloud.fastreport.model.RunThumbnailTemplateTaskVM;
-import cloud.fastreport.model.RunWebhookTaskVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,7 +29,6 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 
 /**
  * Model tests for RunFetchTaskVM

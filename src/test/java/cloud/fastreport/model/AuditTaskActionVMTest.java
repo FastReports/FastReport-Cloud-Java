@@ -14,9 +14,6 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.AuditActionVM;
-import cloud.fastreport.model.AuditFilePropertyChangedVM;
-import cloud.fastreport.model.AuditSubscriptionActionVM;
-import cloud.fastreport.model.AuditTaskActionVM;
 import cloud.fastreport.model.AuditType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,7 +31,6 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-
 
 /**
  * Model tests for AuditTaskActionVM

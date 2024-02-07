@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -87,7 +88,6 @@ public class FileTagsUpdateVM {
   public void setTags(List<String> tags) {
     this.tags = JsonNullable.<List<String>>of(tags);
   }
-
 
   @Override
   public boolean equals(Object o) {

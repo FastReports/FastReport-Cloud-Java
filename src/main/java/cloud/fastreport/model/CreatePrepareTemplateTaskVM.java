@@ -16,8 +16,6 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.CreateExportReportTaskVM;
-import cloud.fastreport.model.CreateExportTemplateTaskVM;
-import cloud.fastreport.model.CreatePrepareTemplateTaskVM;
 import cloud.fastreport.model.CreateTransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -29,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,11 +52,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   allowSetters = true // allows the $t to be set during deserialization
 )
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "$t", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = CreateExportReportTaskVM.class, name = "CreateExportReportTaskVM"),
-  @JsonSubTypes.Type(value = CreateExportTemplateTaskVM.class, name = "CreateExportTemplateTaskVM"),
-  @JsonSubTypes.Type(value = CreatePrepareTemplateTaskVM.class, name = "CreatePrepareTemplateTaskVM"),
-})
 
 public class CreatePrepareTemplateTaskVM extends CreateTransformTaskBaseVM {
   public static final String JSON_PROPERTY_EXPORTS = "exports";
@@ -192,6 +186,29 @@ public class CreatePrepareTemplateTaskVM extends CreateTransformTaskBaseVM {
     this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
   }
 
+  @Override
+  public CreatePrepareTemplateTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public CreatePrepareTemplateTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public CreatePrepareTemplateTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public CreatePrepareTemplateTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

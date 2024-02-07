@@ -18,13 +18,13 @@ import java.util.Arrays;
 import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.SubscriptionFolder;
 import cloud.fastreport.model.SubscriptionPeriodVM;
-import cloud.fastreport.model.SubscriptionVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -38,18 +38,49 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
   AdminSubscriptionVM.JSON_PROPERTY_DEFAULT_PERMISSIONS,
-  AdminSubscriptionVM.JSON_PROPERTY_OWNER_ID
+  AdminSubscriptionVM.JSON_PROPERTY_OWNER_ID,
+  AdminSubscriptionVM.JSON_PROPERTY_ID,
+  AdminSubscriptionVM.JSON_PROPERTY_NAME,
+  AdminSubscriptionVM.JSON_PROPERTY_LOCALE,
+  AdminSubscriptionVM.JSON_PROPERTY_CURRENT,
+  AdminSubscriptionVM.JSON_PROPERTY_OLD,
+  AdminSubscriptionVM.JSON_PROPERTY_TEMPLATES_FOLDER,
+  AdminSubscriptionVM.JSON_PROPERTY_REPORTS_FOLDER,
+  AdminSubscriptionVM.JSON_PROPERTY_EXPORTS_FOLDER
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AdminSubscriptionVM extends SubscriptionVM {
+public class AdminSubscriptionVM {
   public static final String JSON_PROPERTY_DEFAULT_PERMISSIONS = "defaultPermissions";
   private DefaultPermissionsVM defaultPermissions;
 
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
   private JsonNullable<String> ownerId = JsonNullable.<String>undefined();
 
-  public AdminSubscriptionVM() {
+  public static final String JSON_PROPERTY_ID = "id";
+  private JsonNullable<String> id = JsonNullable.<String>undefined();
 
+  public static final String JSON_PROPERTY_NAME = "name";
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_LOCALE = "locale";
+  private JsonNullable<String> locale = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_CURRENT = "current";
+  private SubscriptionPeriodVM current;
+
+  public static final String JSON_PROPERTY_OLD = "old";
+  private JsonNullable<List<SubscriptionPeriodVM>> old = JsonNullable.<List<SubscriptionPeriodVM>>undefined();
+
+  public static final String JSON_PROPERTY_TEMPLATES_FOLDER = "templatesFolder";
+  private SubscriptionFolder templatesFolder;
+
+  public static final String JSON_PROPERTY_REPORTS_FOLDER = "reportsFolder";
+  private SubscriptionFolder reportsFolder;
+
+  public static final String JSON_PROPERTY_EXPORTS_FOLDER = "exportsFolder";
+  private SubscriptionFolder exportsFolder;
+
+  public AdminSubscriptionVM() {
   }
 
   public AdminSubscriptionVM defaultPermissions(DefaultPermissionsVM defaultPermissions) {
@@ -112,6 +143,257 @@ public class AdminSubscriptionVM extends SubscriptionVM {
   }
 
 
+  public AdminSubscriptionVM id(String id) {
+    this.id = JsonNullable.<String>of(id);
+    
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getId() {
+        return id.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getId_JsonNullable() {
+    return id;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ID)
+  public void setId_JsonNullable(JsonNullable<String> id) {
+    this.id = id;
+  }
+
+  public void setId(String id) {
+    this.id = JsonNullable.<String>of(id);
+  }
+
+
+  public AdminSubscriptionVM name(String name) {
+    this.name = JsonNullable.<String>of(name);
+    
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getName() {
+        return name.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
+    this.name = name;
+  }
+
+  public void setName(String name) {
+    this.name = JsonNullable.<String>of(name);
+  }
+
+
+  public AdminSubscriptionVM locale(String locale) {
+    this.locale = JsonNullable.<String>of(locale);
+    
+    return this;
+  }
+
+   /**
+   * Get locale
+   * @return locale
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public String getLocale() {
+        return locale.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_LOCALE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getLocale_JsonNullable() {
+    return locale;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LOCALE)
+  public void setLocale_JsonNullable(JsonNullable<String> locale) {
+    this.locale = locale;
+  }
+
+  public void setLocale(String locale) {
+    this.locale = JsonNullable.<String>of(locale);
+  }
+
+
+  public AdminSubscriptionVM current(SubscriptionPeriodVM current) {
+    
+    this.current = current;
+    return this;
+  }
+
+   /**
+   * Get current
+   * @return current
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CURRENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public SubscriptionPeriodVM getCurrent() {
+    return current;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CURRENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCurrent(SubscriptionPeriodVM current) {
+    this.current = current;
+  }
+
+
+  public AdminSubscriptionVM old(List<SubscriptionPeriodVM> old) {
+    this.old = JsonNullable.<List<SubscriptionPeriodVM>>of(old);
+    
+    return this;
+  }
+
+  public AdminSubscriptionVM addOldItem(SubscriptionPeriodVM oldItem) {
+    if (this.old == null || !this.old.isPresent()) {
+      this.old = JsonNullable.<List<SubscriptionPeriodVM>>of(new ArrayList<>());
+    }
+    try {
+      this.old.get().add(oldItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+   /**
+   * Get old
+   * @return old
+  **/
+  @javax.annotation.Nullable
+  @JsonIgnore
+
+  public List<SubscriptionPeriodVM> getOld() {
+        return old.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_OLD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<SubscriptionPeriodVM>> getOld_JsonNullable() {
+    return old;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OLD)
+  public void setOld_JsonNullable(JsonNullable<List<SubscriptionPeriodVM>> old) {
+    this.old = old;
+  }
+
+  public void setOld(List<SubscriptionPeriodVM> old) {
+    this.old = JsonNullable.<List<SubscriptionPeriodVM>>of(old);
+  }
+
+
+  public AdminSubscriptionVM templatesFolder(SubscriptionFolder templatesFolder) {
+    
+    this.templatesFolder = templatesFolder;
+    return this;
+  }
+
+   /**
+   * Get templatesFolder
+   * @return templatesFolder
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_TEMPLATES_FOLDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public SubscriptionFolder getTemplatesFolder() {
+    return templatesFolder;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TEMPLATES_FOLDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTemplatesFolder(SubscriptionFolder templatesFolder) {
+    this.templatesFolder = templatesFolder;
+  }
+
+
+  public AdminSubscriptionVM reportsFolder(SubscriptionFolder reportsFolder) {
+    
+    this.reportsFolder = reportsFolder;
+    return this;
+  }
+
+   /**
+   * Get reportsFolder
+   * @return reportsFolder
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_REPORTS_FOLDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public SubscriptionFolder getReportsFolder() {
+    return reportsFolder;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REPORTS_FOLDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReportsFolder(SubscriptionFolder reportsFolder) {
+    this.reportsFolder = reportsFolder;
+  }
+
+
+  public AdminSubscriptionVM exportsFolder(SubscriptionFolder exportsFolder) {
+    
+    this.exportsFolder = exportsFolder;
+    return this;
+  }
+
+   /**
+   * Get exportsFolder
+   * @return exportsFolder
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_EXPORTS_FOLDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public SubscriptionFolder getExportsFolder() {
+    return exportsFolder;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EXPORTS_FOLDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExportsFolder(SubscriptionFolder exportsFolder) {
+    this.exportsFolder = exportsFolder;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -123,7 +405,14 @@ public class AdminSubscriptionVM extends SubscriptionVM {
     AdminSubscriptionVM adminSubscriptionVM = (AdminSubscriptionVM) o;
     return Objects.equals(this.defaultPermissions, adminSubscriptionVM.defaultPermissions) &&
         equalsNullable(this.ownerId, adminSubscriptionVM.ownerId) &&
-        super.equals(o);
+        equalsNullable(this.id, adminSubscriptionVM.id) &&
+        equalsNullable(this.name, adminSubscriptionVM.name) &&
+        equalsNullable(this.locale, adminSubscriptionVM.locale) &&
+        Objects.equals(this.current, adminSubscriptionVM.current) &&
+        equalsNullable(this.old, adminSubscriptionVM.old) &&
+        Objects.equals(this.templatesFolder, adminSubscriptionVM.templatesFolder) &&
+        Objects.equals(this.reportsFolder, adminSubscriptionVM.reportsFolder) &&
+        Objects.equals(this.exportsFolder, adminSubscriptionVM.exportsFolder);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -132,7 +421,7 @@ public class AdminSubscriptionVM extends SubscriptionVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultPermissions, hashCodeNullable(ownerId), super.hashCode());
+    return Objects.hash(defaultPermissions, hashCodeNullable(ownerId), hashCodeNullable(id), hashCodeNullable(name), hashCodeNullable(locale), current, hashCodeNullable(old), templatesFolder, reportsFolder, exportsFolder);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -146,9 +435,16 @@ public class AdminSubscriptionVM extends SubscriptionVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AdminSubscriptionVM {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    defaultPermissions: ").append(toIndentedString(defaultPermissions)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
+    sb.append("    current: ").append(toIndentedString(current)).append("\n");
+    sb.append("    old: ").append(toIndentedString(old)).append("\n");
+    sb.append("    templatesFolder: ").append(toIndentedString(templatesFolder)).append("\n");
+    sb.append("    reportsFolder: ").append(toIndentedString(reportsFolder)).append("\n");
+    sb.append("    exportsFolder: ").append(toIndentedString(exportsFolder)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -62,7 +62,6 @@ public class AcceptAgreementsVM {
     this.slaAccepted = slaAccepted;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

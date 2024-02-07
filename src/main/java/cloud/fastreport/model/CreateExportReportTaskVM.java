@@ -15,8 +15,6 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import cloud.fastreport.model.CreateExportReportTaskVM;
-import cloud.fastreport.model.CreateExportTemplateTaskVM;
 import cloud.fastreport.model.CreateTransformTaskBaseVM;
 import cloud.fastreport.model.ExportFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -199,6 +197,29 @@ public class CreateExportReportTaskVM extends CreateTransformTaskBaseVM {
     this.$t = $t;
   }
 
+  @Override
+  public CreateExportReportTaskVM cronExpression(String cronExpression) {
+    this.setCronExpression(cronExpression);
+    return this;
+  }
+
+  @Override
+  public CreateExportReportTaskVM delayedRunTime(OffsetDateTime delayedRunTime) {
+    this.setDelayedRunTime(delayedRunTime);
+    return this;
+  }
+
+  @Override
+  public CreateExportReportTaskVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public CreateExportReportTaskVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {

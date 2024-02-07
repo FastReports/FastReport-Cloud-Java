@@ -88,16 +88,6 @@ public class EmailTaskVM extends TransportTaskBaseVM {
 
   }
 
-  @JsonCreator
-  public EmailTaskVM(
-    @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME) OffsetDateTime recurrentRunTime, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME) OffsetDateTime recurrentWasRunTime
-  ) {
-    this();
-    this.recurrentRunTime = recurrentRunTime;
-    this.recurrentWasRunTime = recurrentWasRunTime;
-  }
-
   public EmailTaskVM body(String body) {
     this.body = JsonNullable.<String>of(body);
     

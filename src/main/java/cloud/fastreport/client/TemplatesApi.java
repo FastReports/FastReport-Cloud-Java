@@ -112,8 +112,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
     public HttpResponse templateFolderAndFileClearRecycleBinForHttpResponse(String subscriptionId, Map<String, Object> params) throws IOException {
@@ -147,8 +147,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
 
@@ -199,8 +199,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templateFolderAndFileCopyFilesForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesVM, String mediaType) throws IOException {
@@ -216,10 +216,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = selectedFilesVM == null ?
+              HttpContent content = selectedFilesVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templateFolderAndFileCopyFilesForHttpResponse(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
@@ -253,8 +253,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -303,8 +303,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templateFolderAndFileDeleteFilesForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesVM, String mediaType) throws IOException {
@@ -320,10 +320,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = selectedFilesVM == null ?
+              HttpContent content = selectedFilesVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templateFolderAndFileDeleteFilesForHttpResponse(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
@@ -357,8 +357,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -435,8 +435,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templateFolderAndFileGetCountForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -470,8 +470,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -592,8 +592,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templateFolderAndFileGetFoldersAndFilesForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -627,8 +627,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -749,8 +749,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templateFolderAndFileGetRecycleBinFoldersAndFilesForHttpResponse(String subscriptionId, Map<String, Object> params) throws IOException {
@@ -784,8 +784,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -836,8 +836,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templateFolderAndFileMoveFilesForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesVM, String mediaType) throws IOException {
@@ -853,10 +853,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = selectedFilesVM == null ?
+              HttpContent content = selectedFilesVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templateFolderAndFileMoveFilesForHttpResponse(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
@@ -890,8 +890,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -940,8 +940,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templateFolderAndFileMoveFilesToBinForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesVM, String mediaType) throws IOException {
@@ -957,10 +957,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = selectedFilesVM == null ?
+              HttpContent content = selectedFilesVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templateFolderAndFileMoveFilesToBinForHttpResponse(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
@@ -994,8 +994,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -1043,8 +1043,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
     public HttpResponse templateFolderAndFileRecoverAllFromRecycleBinForHttpResponse(String subscriptionId, Map<String, Object> params) throws IOException {
@@ -1078,8 +1078,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -1128,8 +1128,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templateFolderAndFileRecoverFilesForHttpResponse(String subscriptionId, java.io.InputStream selectedFilesVM, String mediaType) throws IOException {
@@ -1145,10 +1145,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = selectedFilesVM == null ?
+              HttpContent content = selectedFilesVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, selectedFilesVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templateFolderAndFileRecoverFilesForHttpResponse(SelectedFilesVM selectedFilesVM, String subscriptionId, Map<String, Object> params) throws IOException {
@@ -1182,8 +1182,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(selectedFilesVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -1235,8 +1235,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersCalculateFolderSizeForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -1270,8 +1270,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -1331,8 +1331,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersCopyFolderForHttpResponse(String id, String folderId, Map<String, Object> params) throws IOException {
@@ -1370,8 +1370,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -1419,8 +1419,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersDeleteFolderForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -1454,8 +1454,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
 
@@ -1510,8 +1510,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(exportTemplateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(exportTemplateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templateFoldersExportForHttpResponse(String id, java.io.InputStream exportTemplateVM, String mediaType) throws IOException {
@@ -1527,10 +1527,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = exportTemplateVM == null ?
+              HttpContent content = exportTemplateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, exportTemplateVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templateFoldersExportForHttpResponse(ExportTemplateVM exportTemplateVM, String id, Map<String, Object> params) throws IOException {
@@ -1564,8 +1564,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(exportTemplateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(exportTemplateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -1617,8 +1617,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersGetBreadcrumbsForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -1652,8 +1652,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -1705,8 +1705,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersGetFolderForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -1740,8 +1740,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -1860,8 +1860,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersGetFoldersForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -1895,8 +1895,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -1948,8 +1948,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersGetFoldersCountForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -1983,8 +1983,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -2062,8 +2062,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersGetOrCreateForHttpResponse(Map<String, Object> params) throws IOException {
@@ -2091,8 +2091,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -2142,8 +2142,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersGetPermissionsForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -2177,8 +2177,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -2234,8 +2234,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersGetRootFolderForHttpResponse(Map<String, Object> params) throws IOException {
@@ -2263,8 +2263,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -2324,8 +2324,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersMoveFolderForHttpResponse(String id, String folderId, Map<String, Object> params) throws IOException {
@@ -2363,8 +2363,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -2412,8 +2412,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersMoveFolderToBinForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -2447,8 +2447,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
 
@@ -2503,8 +2503,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(templateFolderCreateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(templateFolderCreateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templateFoldersPostFolderForHttpResponse(String id, java.io.InputStream templateFolderCreateVM, String mediaType) throws IOException {
@@ -2520,10 +2520,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = templateFolderCreateVM == null ?
+              HttpContent content = templateFolderCreateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, templateFolderCreateVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templateFoldersPostFolderForHttpResponse(TemplateFolderCreateVM templateFolderCreateVM, String id, Map<String, Object> params) throws IOException {
@@ -2557,8 +2557,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(templateFolderCreateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(templateFolderCreateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -2613,8 +2613,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(prepareTemplateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(prepareTemplateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templateFoldersPrepareForHttpResponse(String id, java.io.InputStream prepareTemplateVM, String mediaType) throws IOException {
@@ -2630,10 +2630,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = prepareTemplateVM == null ?
+              HttpContent content = prepareTemplateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, prepareTemplateVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templateFoldersPrepareForHttpResponse(PrepareTemplateVM prepareTemplateVM, String id, Map<String, Object> params) throws IOException {
@@ -2667,8 +2667,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(prepareTemplateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(prepareTemplateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -2728,8 +2728,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
     public HttpResponse templateFoldersRecoverFolderForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -2763,8 +2763,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -2819,8 +2819,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(folderRenameVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(folderRenameVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
       public HttpResponse templateFoldersRenameFolderForHttpResponse(String id, java.io.InputStream folderRenameVM, String mediaType) throws IOException {
@@ -2836,10 +2836,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = folderRenameVM == null ?
+              HttpContent content = folderRenameVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, folderRenameVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
     public HttpResponse templateFoldersRenameFolderForHttpResponse(FolderRenameVM folderRenameVM, String id, Map<String, Object> params) throws IOException {
@@ -2873,8 +2873,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(folderRenameVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(folderRenameVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
 
@@ -2929,8 +2929,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(folderIconVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(folderIconVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
       public HttpResponse templateFoldersUpdateIconForHttpResponse(String id, java.io.InputStream folderIconVM, String mediaType) throws IOException {
@@ -2946,10 +2946,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = folderIconVM == null ?
+              HttpContent content = folderIconVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, folderIconVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
     public HttpResponse templateFoldersUpdateIconForHttpResponse(FolderIconVM folderIconVM, String id, Map<String, Object> params) throws IOException {
@@ -2983,8 +2983,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(folderIconVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(folderIconVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
 
@@ -3033,8 +3033,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateFilePermissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateFilePermissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templateFoldersUpdatePermissionsForHttpResponse(String id, java.io.InputStream updateFilePermissionsVM, String mediaType) throws IOException {
@@ -3050,10 +3050,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = updateFilePermissionsVM == null ?
+              HttpContent content = updateFilePermissionsVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateFilePermissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templateFoldersUpdatePermissionsForHttpResponse(UpdateFilePermissionsVM updateFilePermissionsVM, String id, Map<String, Object> params) throws IOException {
@@ -3087,8 +3087,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateFilePermissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateFilePermissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -3143,8 +3143,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(folderTagsUpdateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(folderTagsUpdateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
       public HttpResponse templateFoldersUpdateTagsForHttpResponse(String id, java.io.InputStream folderTagsUpdateVM, String mediaType) throws IOException {
@@ -3160,10 +3160,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = folderTagsUpdateVM == null ?
+              HttpContent content = folderTagsUpdateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, folderTagsUpdateVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
     public HttpResponse templateFoldersUpdateTagsForHttpResponse(FolderTagsUpdateVM folderTagsUpdateVM, String id, Map<String, Object> params) throws IOException {
@@ -3197,8 +3197,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(folderTagsUpdateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(folderTagsUpdateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
 
@@ -3258,8 +3258,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
     public HttpResponse templatesCopyFileForHttpResponse(String id, String folderId, Map<String, Object> params) throws IOException {
@@ -3297,8 +3297,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -3348,8 +3348,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
     public HttpResponse templatesDeleteFileForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -3383,8 +3383,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
 
@@ -3441,8 +3441,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(exportTemplateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(exportTemplateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templatesExportForHttpResponse(String id, java.io.InputStream exportTemplateVM, String mediaType) throws IOException {
@@ -3458,10 +3458,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = exportTemplateVM == null ?
+              HttpContent content = exportTemplateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, exportTemplateVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templatesExportForHttpResponse(ExportTemplateVM exportTemplateVM, String id, Map<String, Object> params) throws IOException {
@@ -3495,8 +3495,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(exportTemplateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(exportTemplateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -3550,8 +3550,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templatesGetFileForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -3585,8 +3585,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -3659,8 +3659,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templatesGetFileHistoryForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -3694,8 +3694,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -3749,8 +3749,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templatesGetFilesCountForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -3784,8 +3784,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -3904,8 +3904,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templatesGetFilesListForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -3939,8 +3939,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -3990,8 +3990,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
     public HttpResponse templatesGetPermissionsForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -4025,8 +4025,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content).execute();
     }
 
 
@@ -4088,8 +4088,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
     public HttpResponse templatesMoveFileForHttpResponse(String id, String folderId, Map<String, Object> params) throws IOException {
@@ -4127,8 +4127,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -4178,8 +4178,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
     public HttpResponse templatesMoveFileToBinForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -4213,8 +4213,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = null;
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, aContent).execute();
+        HttpContent content = null;
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.DELETE, genericUrl, content).execute();
     }
 
 
@@ -4271,8 +4271,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(prepareTemplateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(prepareTemplateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templatesPrepareForHttpResponse(String id, java.io.InputStream prepareTemplateVM, String mediaType) throws IOException {
@@ -4288,10 +4288,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = prepareTemplateVM == null ?
+              HttpContent content = prepareTemplateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, prepareTemplateVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templatesPrepareForHttpResponse(PrepareTemplateVM prepareTemplateVM, String id, Map<String, Object> params) throws IOException {
@@ -4325,8 +4325,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(prepareTemplateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(prepareTemplateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -4388,8 +4388,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
     public HttpResponse templatesRecoverFileForHttpResponse(String id, Map<String, Object> params) throws IOException {
@@ -4423,8 +4423,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -4481,8 +4481,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(fileRenameVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(fileRenameVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
       public HttpResponse templatesRenameFileForHttpResponse(String id, java.io.InputStream fileRenameVM, String mediaType) throws IOException {
@@ -4498,10 +4498,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = fileRenameVM == null ?
+              HttpContent content = fileRenameVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, fileRenameVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
     public HttpResponse templatesRenameFileForHttpResponse(FileRenameVM fileRenameVM, String id, Map<String, Object> params) throws IOException {
@@ -4535,8 +4535,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(fileRenameVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(fileRenameVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
 
@@ -4591,8 +4591,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(previewTemplateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(previewTemplateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templatesStaticPreviewForHttpResponse(String id, java.io.InputStream previewTemplateVM, String mediaType) throws IOException {
@@ -4608,10 +4608,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = previewTemplateVM == null ?
+              HttpContent content = previewTemplateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, previewTemplateVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templatesStaticPreviewForHttpResponse(PreviewTemplateVM previewTemplateVM, String id, Map<String, Object> params) throws IOException {
@@ -4645,8 +4645,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(previewTemplateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(previewTemplateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -4700,8 +4700,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateFileContentVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateFileContentVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
       public HttpResponse templatesUpdateContentForHttpResponse(String id, java.io.InputStream updateFileContentVM, String mediaType) throws IOException {
@@ -4717,10 +4717,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = updateFileContentVM == null ?
+              HttpContent content = updateFileContentVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateFileContentVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
     @Deprecated
@@ -4755,8 +4755,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateFileContentVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateFileContentVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
 
@@ -4768,11 +4768,11 @@ public class TemplatesApi {
     * <p><b>403</b> - Forbidden
     * <p><b>402</b> - Client Error
     * @param id template id
-    * @param content The content parameter
+    * @param fileContent The fileContent parameter
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void templatesUpdateContentV2(String id, File content) throws IOException {
-        templatesUpdateContentV2ForHttpResponse(id, content);
+    public void templatesUpdateContentV2(String id, File fileContent) throws IOException {
+        templatesUpdateContentV2ForHttpResponse(id, fileContent);
     }
 
   /**
@@ -4783,21 +4783,21 @@ public class TemplatesApi {
     * <p><b>403</b> - Forbidden
     * <p><b>402</b> - Client Error
     * @param id template id
-    * @param content The content parameter
+    * @param fileContent The fileContent parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public void templatesUpdateContentV2(String id, File content, Map<String, Object> params) throws IOException {
-        templatesUpdateContentV2ForHttpResponse(id, content, params);
+    public void templatesUpdateContentV2(String id, File fileContent, Map<String, Object> params) throws IOException {
+        templatesUpdateContentV2ForHttpResponse(id, fileContent, params);
     }
 
-    public HttpResponse templatesUpdateContentV2ForHttpResponse(String id, File content) throws IOException {
+    public HttpResponse templatesUpdateContentV2ForHttpResponse(String id, File fileContent) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUpdateContentV2");
-        }// verify the required parameter 'content' is set
-        if (content == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'content' when calling templatesUpdateContentV2");
+        }// verify the required parameter 'fileContent' is set
+        if (fileContent == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'fileContent' when calling templatesUpdateContentV2");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -4807,17 +4807,17 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
-    public HttpResponse templatesUpdateContentV2ForHttpResponse(String id, File content, Map<String, Object> params) throws IOException {
+    public HttpResponse templatesUpdateContentV2ForHttpResponse(String id, File fileContent, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUpdateContentV2");
-        }// verify the required parameter 'content' is set
-        if (content == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'content' when calling templatesUpdateContentV2");
+        }// verify the required parameter 'fileContent' is set
+        if (fileContent == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'fileContent' when calling templatesUpdateContentV2");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -4845,8 +4845,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
 
@@ -4903,8 +4903,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(fileIconVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(fileIconVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
       public HttpResponse templatesUpdateIconForHttpResponse(String id, java.io.InputStream fileIconVM, String mediaType) throws IOException {
@@ -4920,10 +4920,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = fileIconVM == null ?
+              HttpContent content = fileIconVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, fileIconVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
     public HttpResponse templatesUpdateIconForHttpResponse(FileIconVM fileIconVM, String id, Map<String, Object> params) throws IOException {
@@ -4957,8 +4957,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(fileIconVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(fileIconVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
 
@@ -5007,8 +5007,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateFilePermissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateFilePermissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templatesUpdatePermissionsForHttpResponse(String id, java.io.InputStream updateFilePermissionsVM, String mediaType) throws IOException {
@@ -5024,10 +5024,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = updateFilePermissionsVM == null ?
+              HttpContent content = updateFilePermissionsVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, updateFilePermissionsVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     public HttpResponse templatesUpdatePermissionsForHttpResponse(UpdateFilePermissionsVM updateFilePermissionsVM, String id, Map<String, Object> params) throws IOException {
@@ -5061,8 +5061,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(updateFilePermissionsVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(updateFilePermissionsVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -5119,8 +5119,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(fileTagsUpdateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(fileTagsUpdateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
       public HttpResponse templatesUpdateTagsForHttpResponse(String id, java.io.InputStream fileTagsUpdateVM, String mediaType) throws IOException {
@@ -5136,10 +5136,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = fileTagsUpdateVM == null ?
+              HttpContent content = fileTagsUpdateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, fileTagsUpdateVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
       }
 
     public HttpResponse templatesUpdateTagsForHttpResponse(FileTagsUpdateVM fileTagsUpdateVM, String id, Map<String, Object> params) throws IOException {
@@ -5173,8 +5173,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(fileTagsUpdateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(fileTagsUpdateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.PUT, genericUrl, content).execute();
     }
 
 
@@ -5236,8 +5236,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(templateCreateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(templateCreateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
       public HttpResponse templatesUploadFileForHttpResponse(String id, java.io.InputStream templateCreateVM, String mediaType) throws IOException {
@@ -5253,10 +5253,10 @@ public class TemplatesApi {
               String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
               GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-              HttpContent aContent = templateCreateVM == null ?
+              HttpContent content = templateCreateVM == null ?
                 apiClient.new JacksonJsonHttpContent(null) :
                 new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, templateCreateVM);
-              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+              return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
       }
 
     @Deprecated
@@ -5291,8 +5291,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = apiClient.new JacksonJsonHttpContent(templateCreateVM);
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = apiClient.new JacksonJsonHttpContent(templateCreateVM);
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 
@@ -5305,14 +5305,14 @@ public class TemplatesApi {
     * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - folder/subscription is not found
     * @param id Identifier of folder
-    * @param content The content parameter
+    * @param fileContent The fileContent parameter
     * @param tags The tags parameter
     * @param icon The icon parameter
     * @return TemplateVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public TemplateVM templatesUploadFileV2(String id, File content, List<String> tags, File icon) throws IOException {
-        HttpResponse response = templatesUploadFileV2ForHttpResponse(id, content, tags, icon);
+    public TemplateVM templatesUploadFileV2(String id, File fileContent, List<String> tags, File icon) throws IOException {
+        HttpResponse response = templatesUploadFileV2ForHttpResponse(id, fileContent, tags, icon);
         TypeReference<TemplateVM> typeRef = new TypeReference<TemplateVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
@@ -5326,24 +5326,24 @@ public class TemplatesApi {
     * <p><b>402</b> - subscription is outdated
     * <p><b>404</b> - folder/subscription is not found
     * @param id Identifier of folder
-    * @param content The content parameter
+    * @param fileContent The fileContent parameter
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
     * @return TemplateVM
     * @throws IOException if an error occurs while attempting to invoke the API
     **/
-    public TemplateVM templatesUploadFileV2(String id, File content, Map<String, Object> params) throws IOException {
-        HttpResponse response = templatesUploadFileV2ForHttpResponse(id, content, params);
+    public TemplateVM templatesUploadFileV2(String id, File fileContent, Map<String, Object> params) throws IOException {
+        HttpResponse response = templatesUploadFileV2ForHttpResponse(id, fileContent, params);
         TypeReference<TemplateVM> typeRef = new TypeReference<TemplateVM>() {};
         return apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse templatesUploadFileV2ForHttpResponse(String id, File content, List<String> tags, File icon) throws IOException {
+    public HttpResponse templatesUploadFileV2ForHttpResponse(String id, File fileContent, List<String> tags, File icon) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUploadFileV2");
-        }// verify the required parameter 'content' is set
-        if (content == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'content' when calling templatesUploadFileV2");
+        }// verify the required parameter 'fileContent' is set
+        if (fileContent == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'fileContent' when calling templatesUploadFileV2");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -5353,17 +5353,17 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
-    public HttpResponse templatesUploadFileV2ForHttpResponse(String id, File content, Map<String, Object> params) throws IOException {
+    public HttpResponse templatesUploadFileV2ForHttpResponse(String id, File fileContent, Map<String, Object> params) throws IOException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling templatesUploadFileV2");
-        }// verify the required parameter 'content' is set
-        if (content == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'content' when calling templatesUploadFileV2");
+        }// verify the required parameter 'fileContent' is set
+        if (fileContent == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'fileContent' when calling templatesUploadFileV2");
         }
         // create a map of path variables
         final Map<String, Object> uriVariables = new HashMap<String, Object>();
@@ -5391,8 +5391,8 @@ public class TemplatesApi {
         String localVarUrl = uriBuilder.buildFromMap(uriVariables).toString();
         GenericUrl genericUrl = new GenericUrl(localVarUrl);
 
-        HttpContent aContent = new EmptyContent();
-        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, aContent).execute();
+        HttpContent content = new EmptyContent();
+        return apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content).execute();
     }
 
 

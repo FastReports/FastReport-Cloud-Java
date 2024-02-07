@@ -7232,7 +7232,7 @@ paths:
                 style: form
               Icon:
                 style: form
-              Content:
+              FileContent:
                 style: form
             schema:
               $ref: '#/components/schemas/Reports_UploadFileV2_request'
@@ -11722,7 +11722,7 @@ paths:
         content:
           multipart/form-data:
             encoding:
-              Content:
+              FileContent:
                 style: form
             schema:
               $ref: '#/components/schemas/Templates_UpdateContentV2_request'
@@ -11904,7 +11904,7 @@ paths:
                 style: form
               Icon:
                 style: form
-              Content:
+              FileContent:
                 style: form
             schema:
               $ref: '#/components/schemas/Templates_UploadFileV2_request'
@@ -14682,7 +14682,6 @@ components:
       properties:
         dataSourceId:
           nullable: true
-          readOnly: true
           type: string
       type: object
     FileAdministrate:
@@ -17137,12 +17136,10 @@ components:
         recurrentRunTime:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         recurrentWasRunTime:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         subscriptionId:
           nullable: true
@@ -17437,7 +17434,6 @@ components:
       properties:
         reportId:
           nullable: true
-          readOnly: true
           type: string
       type: object
     ThumbnailTemplateTaskVM:
@@ -17447,7 +17443,6 @@ components:
       properties:
         templateId:
           nullable: true
-          readOnly: true
           type: string
       type: object
     TimePeriodType:
@@ -18145,19 +18140,19 @@ components:
           format: binary
           nullable: true
           type: string
-        Content:
+        FileContent:
           format: binary
           type: string
       required:
-      - Content
+      - FileContent
       type: object
     Templates_UpdateContentV2_request:
       properties:
-        Content:
+        FileContent:
           format: binary
           type: string
       required:
-      - Content
+      - FileContent
       type: object
     Templates_UploadFileV2_request:
       properties:
@@ -18173,11 +18168,11 @@ components:
           format: binary
           nullable: true
           type: string
-        Content:
+        FileContent:
           format: binary
           type: string
       required:
-      - Content
+      - FileContent
       type: object
   securitySchemes:
     JWT:

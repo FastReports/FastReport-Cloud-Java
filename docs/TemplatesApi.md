@@ -3737,7 +3737,7 @@ null (empty response body)
 
 ## templatesUpdateContentV2
 
-> templatesUpdateContentV2(id, content)
+> templatesUpdateContentV2(id, fileContent)
 
 Updates contnet of the template.
 
@@ -3768,9 +3768,9 @@ public class Example {
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | template id
-        File content = new File("/path/to/file"); // File | 
+        File fileContent = new File("/path/to/file"); // File | 
         try {
-            apiInstance.templatesUpdateContentV2(id, content);
+            apiInstance.templatesUpdateContentV2(id, fileContent);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templatesUpdateContentV2");
             System.err.println("Status code: " + e.getCode());
@@ -3788,7 +3788,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| template id | |
-| **content** | **File**|  | |
+| **fileContent** | **File**|  | |
 
 ### Return type
 
@@ -4144,7 +4144,7 @@ public class Example {
 
 ## templatesUploadFileV2
 
-> TemplateVM templatesUploadFileV2(id, content, tags, icon)
+> TemplateVM templatesUploadFileV2(id, fileContent, tags, icon)
 
 Alternative api for upload a file to the specified folder!
 
@@ -4177,11 +4177,11 @@ public class Example {
 
         TemplatesApi apiInstance = new TemplatesApi(defaultClient);
         String id = "id_example"; // String | Identifier of folder
-        File content = new File("/path/to/file"); // File | 
+        File fileContent = new File("/path/to/file"); // File | 
         List<String> tags = Arrays.asList(); // List<String> | 
         File icon = new File("/path/to/file"); // File | 
         try {
-            TemplateVM result = apiInstance.templatesUploadFileV2(id, content, tags, icon);
+            TemplateVM result = apiInstance.templatesUploadFileV2(id, fileContent, tags, icon);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TemplatesApi#templatesUploadFileV2");
@@ -4200,7 +4200,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of folder | |
-| **content** | **File**|  | |
+| **fileContent** | **File**|  | |
 | **tags** | [**List&lt;String&gt;**](String.md)|  | [optional] |
 | **icon** | **File**|  | [optional] |
 

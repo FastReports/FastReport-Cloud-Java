@@ -3817,7 +3817,7 @@ public class Example {
 
 ## reportsUploadFileV2
 
-> ReportVM reportsUploadFileV2(id, content, templateId, tags, icon)
+> ReportVM reportsUploadFileV2(id, fileContent, templateId, tags, icon)
 
 Alternative api for upload a file to the specified folder!
 
@@ -3850,12 +3850,12 @@ public class Example {
 
         ReportsApi apiInstance = new ReportsApi(defaultClient);
         String id = "id_example"; // String | Identifier of folder
-        File content = new File("/path/to/file"); // File | 
+        File fileContent = new File("/path/to/file"); // File | 
         String templateId = "templateId_example"; // String | 
         List<String> tags = Arrays.asList(); // List<String> | 
         File icon = new File("/path/to/file"); // File | 
         try {
-            ReportVM result = apiInstance.reportsUploadFileV2(id, content, templateId, tags, icon);
+            ReportVM result = apiInstance.reportsUploadFileV2(id, fileContent, templateId, tags, icon);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ReportsApi#reportsUploadFileV2");
@@ -3874,7 +3874,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of folder | |
-| **content** | **File**|  | |
+| **fileContent** | **File**|  | |
 | **templateId** | **String**|  | [optional] |
 | **tags** | [**List&lt;String&gt;**](String.md)|  | [optional] |
 | **icon** | **File**|  | [optional] |

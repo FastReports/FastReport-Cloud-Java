@@ -53,16 +53,10 @@ public class ThumbnailReportTaskVM extends TaskBaseVM {
 
   }
 
-  @JsonCreator
-  public ThumbnailReportTaskVM(
-    @JsonProperty(JSON_PROPERTY_REPORT_ID) String reportId, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME) OffsetDateTime recurrentRunTime, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME) OffsetDateTime recurrentWasRunTime
-  ) {
-    this();
-    this.reportId = reportId == null ? JsonNullable.<String>undefined() : JsonNullable.of(reportId);
-    this.recurrentRunTime = recurrentRunTime;
-    this.recurrentWasRunTime = recurrentWasRunTime;
+  public ThumbnailReportTaskVM reportId(String reportId) {
+    this.reportId = JsonNullable.<String>of(reportId);
+    
+    return this;
   }
 
    /**
@@ -73,11 +67,7 @@ public class ThumbnailReportTaskVM extends TaskBaseVM {
   @JsonIgnore
 
   public String getReportId() {
-    
-    if (reportId == null) {
-      reportId = JsonNullable.<String>undefined();
-    }
-    return reportId.orElse(null);
+        return reportId.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_REPORT_ID)
@@ -88,10 +78,13 @@ public class ThumbnailReportTaskVM extends TaskBaseVM {
   }
   
   @JsonProperty(JSON_PROPERTY_REPORT_ID)
-  private void setReportId_JsonNullable(JsonNullable<String> reportId) {
+  public void setReportId_JsonNullable(JsonNullable<String> reportId) {
     this.reportId = reportId;
   }
 
+  public void setReportId(String reportId) {
+    this.reportId = JsonNullable.<String>of(reportId);
+  }
 
   @Override
   public ThumbnailReportTaskVM cronExpression(String cronExpression) {

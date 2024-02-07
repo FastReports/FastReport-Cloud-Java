@@ -79,16 +79,6 @@ public class TransformTaskBaseVM extends TaskBaseVM {
 
   }
 
-  @JsonCreator
-  public TransformTaskBaseVM(
-    @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME) OffsetDateTime recurrentRunTime, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME) OffsetDateTime recurrentWasRunTime
-  ) {
-    this();
-    this.recurrentRunTime = recurrentRunTime;
-    this.recurrentWasRunTime = recurrentWasRunTime;
-  }
-
   public TransformTaskBaseVM inputFile(InputFileVM inputFile) {
     
     this.inputFile = inputFile;

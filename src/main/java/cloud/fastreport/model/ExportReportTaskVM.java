@@ -72,16 +72,6 @@ public class ExportReportTaskVM extends TransformTaskBaseVM {
 
   }
 
-  @JsonCreator
-  public ExportReportTaskVM(
-    @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME) OffsetDateTime recurrentRunTime, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME) OffsetDateTime recurrentWasRunTime
-  ) {
-    this();
-    this.recurrentRunTime = recurrentRunTime;
-    this.recurrentWasRunTime = recurrentWasRunTime;
-  }
-
   public ExportReportTaskVM exportParameters(Map<String, String> exportParameters) {
     this.exportParameters = JsonNullable.<Map<String, String>>of(exportParameters);
     

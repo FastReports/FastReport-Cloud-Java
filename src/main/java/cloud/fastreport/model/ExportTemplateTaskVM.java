@@ -55,16 +55,6 @@ public class ExportTemplateTaskVM extends ExportReportTaskVM {
 
   }
 
-  @JsonCreator
-  public ExportTemplateTaskVM(
-    @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME) OffsetDateTime recurrentRunTime, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME) OffsetDateTime recurrentWasRunTime
-  ) {
-    this();
-    this.recurrentRunTime = recurrentRunTime;
-    this.recurrentWasRunTime = recurrentWasRunTime;
-  }
-
   public ExportTemplateTaskVM reportParameters(Map<String, String> reportParameters) {
     this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
     

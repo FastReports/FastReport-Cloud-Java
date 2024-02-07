@@ -66,16 +66,6 @@ public class PrepareTemplateTaskVM extends TransformTaskBaseVM {
 
   }
 
-  @JsonCreator
-  public PrepareTemplateTaskVM(
-    @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME) OffsetDateTime recurrentRunTime, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME) OffsetDateTime recurrentWasRunTime
-  ) {
-    this();
-    this.recurrentRunTime = recurrentRunTime;
-    this.recurrentWasRunTime = recurrentWasRunTime;
-  }
-
   public PrepareTemplateTaskVM exportIds(List<String> exportIds) {
     this.exportIds = JsonNullable.<List<String>>of(exportIds);
     

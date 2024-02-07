@@ -859,11 +859,11 @@ public class ReportsApiTest {
     @Test
     public void reportsUploadFileV2Test() throws IOException {
         String id = null;
-        File content = null;
+        File fileContent = null;
         String templateId = null;
         List<String> tags = null;
         File icon = null;
-        ReportVM response = api.reportsUploadFileV2(id, content, templateId, tags, icon);
+        ReportVM response = api.reportsUploadFileV2(id, fileContent, templateId, tags, icon);
 
         // TODO: test validations
     }

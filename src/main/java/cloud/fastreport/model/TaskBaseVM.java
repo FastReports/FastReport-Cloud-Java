@@ -96,16 +96,6 @@ public class TaskBaseVM {
   public TaskBaseVM() {
   }
 
-  @JsonCreator
-  public TaskBaseVM(
-    @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME) OffsetDateTime recurrentRunTime, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME) OffsetDateTime recurrentWasRunTime
-  ) {
-    this();
-    this.recurrentRunTime = recurrentRunTime == null ? JsonNullable.<OffsetDateTime>undefined() : JsonNullable.of(recurrentRunTime);
-    this.recurrentWasRunTime = recurrentWasRunTime == null ? JsonNullable.<OffsetDateTime>undefined() : JsonNullable.of(recurrentWasRunTime);
-  }
-
   public TaskBaseVM cronExpression(String cronExpression) {
     this.cronExpression = JsonNullable.<String>of(cronExpression);
     
@@ -276,6 +266,12 @@ public class TaskBaseVM {
   }
 
 
+  public TaskBaseVM recurrentRunTime(OffsetDateTime recurrentRunTime) {
+    this.recurrentRunTime = JsonNullable.<OffsetDateTime>of(recurrentRunTime);
+    
+    return this;
+  }
+
    /**
    * Get recurrentRunTime
    * @return recurrentRunTime
@@ -284,11 +280,7 @@ public class TaskBaseVM {
   @JsonIgnore
 
   public OffsetDateTime getRecurrentRunTime() {
-    
-    if (recurrentRunTime == null) {
-      recurrentRunTime = JsonNullable.<OffsetDateTime>undefined();
-    }
-    return recurrentRunTime.orElse(null);
+        return recurrentRunTime.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME)
@@ -299,11 +291,20 @@ public class TaskBaseVM {
   }
   
   @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME)
-  private void setRecurrentRunTime_JsonNullable(JsonNullable<OffsetDateTime> recurrentRunTime) {
+  public void setRecurrentRunTime_JsonNullable(JsonNullable<OffsetDateTime> recurrentRunTime) {
     this.recurrentRunTime = recurrentRunTime;
   }
 
+  public void setRecurrentRunTime(OffsetDateTime recurrentRunTime) {
+    this.recurrentRunTime = JsonNullable.<OffsetDateTime>of(recurrentRunTime);
+  }
 
+
+  public TaskBaseVM recurrentWasRunTime(OffsetDateTime recurrentWasRunTime) {
+    this.recurrentWasRunTime = JsonNullable.<OffsetDateTime>of(recurrentWasRunTime);
+    
+    return this;
+  }
 
    /**
    * Get recurrentWasRunTime
@@ -313,11 +314,7 @@ public class TaskBaseVM {
   @JsonIgnore
 
   public OffsetDateTime getRecurrentWasRunTime() {
-    
-    if (recurrentWasRunTime == null) {
-      recurrentWasRunTime = JsonNullable.<OffsetDateTime>undefined();
-    }
-    return recurrentWasRunTime.orElse(null);
+        return recurrentWasRunTime.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME)
@@ -328,10 +325,13 @@ public class TaskBaseVM {
   }
   
   @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME)
-  private void setRecurrentWasRunTime_JsonNullable(JsonNullable<OffsetDateTime> recurrentWasRunTime) {
+  public void setRecurrentWasRunTime_JsonNullable(JsonNullable<OffsetDateTime> recurrentWasRunTime) {
     this.recurrentWasRunTime = recurrentWasRunTime;
   }
 
+  public void setRecurrentWasRunTime(OffsetDateTime recurrentWasRunTime) {
+    this.recurrentWasRunTime = JsonNullable.<OffsetDateTime>of(recurrentWasRunTime);
+  }
 
 
   public TaskBaseVM subscriptionId(String subscriptionId) {

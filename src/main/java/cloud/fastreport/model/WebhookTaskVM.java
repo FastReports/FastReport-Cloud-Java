@@ -60,16 +60,6 @@ public class WebhookTaskVM extends TransportTaskBaseVM {
 
   }
 
-  @JsonCreator
-  public WebhookTaskVM(
-    @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME) OffsetDateTime recurrentRunTime, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME) OffsetDateTime recurrentWasRunTime
-  ) {
-    this();
-    this.recurrentRunTime = recurrentRunTime;
-    this.recurrentWasRunTime = recurrentWasRunTime;
-  }
-
   public WebhookTaskVM headers(Map<String, String> headers) {
     this.headers = JsonNullable.<Map<String, String>>of(headers);
     

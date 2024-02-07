@@ -53,16 +53,10 @@ public class ThumbnailTemplateTaskVM extends TaskBaseVM {
 
   }
 
-  @JsonCreator
-  public ThumbnailTemplateTaskVM(
-    @JsonProperty(JSON_PROPERTY_TEMPLATE_ID) String templateId, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME) OffsetDateTime recurrentRunTime, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME) OffsetDateTime recurrentWasRunTime
-  ) {
-    this();
-    this.templateId = templateId == null ? JsonNullable.<String>undefined() : JsonNullable.of(templateId);
-    this.recurrentRunTime = recurrentRunTime;
-    this.recurrentWasRunTime = recurrentWasRunTime;
+  public ThumbnailTemplateTaskVM templateId(String templateId) {
+    this.templateId = JsonNullable.<String>of(templateId);
+    
+    return this;
   }
 
    /**
@@ -73,11 +67,7 @@ public class ThumbnailTemplateTaskVM extends TaskBaseVM {
   @JsonIgnore
 
   public String getTemplateId() {
-    
-    if (templateId == null) {
-      templateId = JsonNullable.<String>undefined();
-    }
-    return templateId.orElse(null);
+        return templateId.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
@@ -88,10 +78,13 @@ public class ThumbnailTemplateTaskVM extends TaskBaseVM {
   }
   
   @JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
-  private void setTemplateId_JsonNullable(JsonNullable<String> templateId) {
+  public void setTemplateId_JsonNullable(JsonNullable<String> templateId) {
     this.templateId = templateId;
   }
 
+  public void setTemplateId(String templateId) {
+    this.templateId = JsonNullable.<String>of(templateId);
+  }
 
   @Override
   public ThumbnailTemplateTaskVM cronExpression(String cronExpression) {

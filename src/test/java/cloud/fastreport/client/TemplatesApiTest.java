@@ -845,8 +845,8 @@ public class TemplatesApiTest {
     @Test
     public void templatesUpdateContentV2Test() throws IOException {
         String id = null;
-        File content = null;
-        api.templatesUpdateContentV2(id, content);
+        File fileContent = null;
+        api.templatesUpdateContentV2(id, fileContent);
 
         // TODO: test validations
     }
@@ -930,10 +930,10 @@ public class TemplatesApiTest {
     @Test
     public void templatesUploadFileV2Test() throws IOException {
         String id = null;
-        File content = null;
+        File fileContent = null;
         List<String> tags = null;
         File icon = null;
-        TemplateVM response = api.templatesUploadFileV2(id, content, tags, icon);
+        TemplateVM response = api.templatesUploadFileV2(id, fileContent, tags, icon);
 
         // TODO: test validations
     }

@@ -12,8 +12,8 @@
 |**delayedWasRunTime** | **OffsetDateTime** |  |  [optional] |
 |**id** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
-|**recurrentRunTime** | **OffsetDateTime** |  |  [optional] [readonly] |
-|**recurrentWasRunTime** | **OffsetDateTime** |  |  [optional] [readonly] |
+|**recurrentRunTime** | **OffsetDateTime** |  |  [optional] |
+|**recurrentWasRunTime** | **OffsetDateTime** |  |  [optional] |
 |**subscriptionId** | **String** |  |  [optional] |
 |**$t** | **String** |  |  |
 

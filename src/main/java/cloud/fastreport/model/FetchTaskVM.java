@@ -53,16 +53,10 @@ public class FetchTaskVM extends TaskBaseVM {
 
   }
 
-  @JsonCreator
-  public FetchTaskVM(
-    @JsonProperty(JSON_PROPERTY_DATA_SOURCE_ID) String dataSourceId, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_RUN_TIME) OffsetDateTime recurrentRunTime, 
-    @JsonProperty(JSON_PROPERTY_RECURRENT_WAS_RUN_TIME) OffsetDateTime recurrentWasRunTime
-  ) {
-    this();
-    this.dataSourceId = dataSourceId == null ? JsonNullable.<String>undefined() : JsonNullable.of(dataSourceId);
-    this.recurrentRunTime = recurrentRunTime;
-    this.recurrentWasRunTime = recurrentWasRunTime;
+  public FetchTaskVM dataSourceId(String dataSourceId) {
+    this.dataSourceId = JsonNullable.<String>of(dataSourceId);
+    
+    return this;
   }
 
    /**
@@ -73,11 +67,7 @@ public class FetchTaskVM extends TaskBaseVM {
   @JsonIgnore
 
   public String getDataSourceId() {
-    
-    if (dataSourceId == null) {
-      dataSourceId = JsonNullable.<String>undefined();
-    }
-    return dataSourceId.orElse(null);
+        return dataSourceId.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_DATA_SOURCE_ID)
@@ -88,10 +78,13 @@ public class FetchTaskVM extends TaskBaseVM {
   }
   
   @JsonProperty(JSON_PROPERTY_DATA_SOURCE_ID)
-  private void setDataSourceId_JsonNullable(JsonNullable<String> dataSourceId) {
+  public void setDataSourceId_JsonNullable(JsonNullable<String> dataSourceId) {
     this.dataSourceId = dataSourceId;
   }
 
+  public void setDataSourceId(String dataSourceId) {
+    this.dataSourceId = JsonNullable.<String>of(dataSourceId);
+  }
 
   @Override
   public FetchTaskVM cronExpression(String cronExpression) {

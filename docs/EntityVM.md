@@ -12,6 +12,7 @@
 |**creatorUserId** | **String** |  |  [optional] |
 |**editedTime** | **OffsetDateTime** |  |  [optional] |
 |**editorUserId** | **String** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

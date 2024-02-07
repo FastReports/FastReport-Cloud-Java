@@ -14394,6 +14394,14 @@ components:
       x-typeName: FastReport.Cloud.Base.Enums.EntityType
     EntityVM:
       additionalProperties: false
+      discriminator:
+        mapping:
+          ExportVM: '#/components/schemas/ExportVM'
+          EntityVM: '#/components/schemas/EntityVM'
+          FileVM: '#/components/schemas/FileVM'
+          ReportVM: '#/components/schemas/ReportVM'
+          TemplateVM: '#/components/schemas/TemplateVM'
+        propertyName: $t
       properties:
         id:
           nullable: true
@@ -14410,6 +14418,10 @@ components:
         editorUserId:
           nullable: true
           type: string
+        $t:
+          type: string
+      required:
+      - $t
       type: object
     ExportCreateAdminVM:
       additionalProperties: false
@@ -14959,7 +14971,15 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/EntityVM'
+      discriminator:
+        mapping:
+          ExportVM: '#/components/schemas/ExportVM'
+          FileVM: '#/components/schemas/FileVM'
+          ReportVM: '#/components/schemas/ReportVM'
+          TemplateVM: '#/components/schemas/TemplateVM'
+        propertyName: $t
       example:
+        $t: $t
         statusReason: null
         size: 0
         isDeleted: true
@@ -15006,6 +15026,10 @@ components:
           type: string
         isDeleted:
           type: boolean
+        $t:
+          type: string
+      required:
+      - $t
       type: object
     FileVMFilesVMBase:
       additionalProperties: false

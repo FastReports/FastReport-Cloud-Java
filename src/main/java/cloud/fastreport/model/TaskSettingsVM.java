@@ -13,19 +13,24 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * TaskSettingsVM
@@ -70,12 +75,11 @@ public class TaskSettingsVM {
   public static final String JSON_PROPERTY_THUMBNAIL_TEMPLATE = "thumbnailTemplate";
   private JsonNullable<Boolean> thumbnailTemplate = JsonNullable.<Boolean>undefined();
 
-  public TaskSettingsVM() {
+  public TaskSettingsVM() { 
   }
 
   public TaskSettingsVM prepare(Boolean prepare) {
     this.prepare = JsonNullable.<Boolean>of(prepare);
-    
     return this;
   }
 
@@ -109,7 +113,6 @@ public class TaskSettingsVM {
 
   public TaskSettingsVM exportTemplate(Boolean exportTemplate) {
     this.exportTemplate = JsonNullable.<Boolean>of(exportTemplate);
-    
     return this;
   }
 
@@ -143,7 +146,6 @@ public class TaskSettingsVM {
 
   public TaskSettingsVM exportReport(Boolean exportReport) {
     this.exportReport = JsonNullable.<Boolean>of(exportReport);
-    
     return this;
   }
 
@@ -177,7 +179,6 @@ public class TaskSettingsVM {
 
   public TaskSettingsVM sendViaEmail(Boolean sendViaEmail) {
     this.sendViaEmail = JsonNullable.<Boolean>of(sendViaEmail);
-    
     return this;
   }
 
@@ -211,7 +212,6 @@ public class TaskSettingsVM {
 
   public TaskSettingsVM uploadToFTP(Boolean uploadToFTP) {
     this.uploadToFTP = JsonNullable.<Boolean>of(uploadToFTP);
-    
     return this;
   }
 
@@ -245,7 +245,6 @@ public class TaskSettingsVM {
 
   public TaskSettingsVM sendViaWebhook(Boolean sendViaWebhook) {
     this.sendViaWebhook = JsonNullable.<Boolean>of(sendViaWebhook);
-    
     return this;
   }
 
@@ -279,7 +278,6 @@ public class TaskSettingsVM {
 
   public TaskSettingsVM fetchData(Boolean fetchData) {
     this.fetchData = JsonNullable.<Boolean>of(fetchData);
-    
     return this;
   }
 
@@ -313,7 +311,6 @@ public class TaskSettingsVM {
 
   public TaskSettingsVM thumbnailReport(Boolean thumbnailReport) {
     this.thumbnailReport = JsonNullable.<Boolean>of(thumbnailReport);
-    
     return this;
   }
 
@@ -347,7 +344,6 @@ public class TaskSettingsVM {
 
   public TaskSettingsVM thumbnailTemplate(Boolean thumbnailTemplate) {
     this.thumbnailTemplate = JsonNullable.<Boolean>of(thumbnailTemplate);
-    
     return this;
   }
 
@@ -378,6 +374,10 @@ public class TaskSettingsVM {
     this.thumbnailTemplate = JsonNullable.<Boolean>of(thumbnailTemplate);
   }
 
+
+  /**
+   * Return true if this TaskSettingsVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -442,5 +442,84 @@ public class TaskSettingsVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `prepare` to the URL query string
+    if (getPrepare() != null) {
+      joiner.add(String.format("%sprepare%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPrepare()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `exportTemplate` to the URL query string
+    if (getExportTemplate() != null) {
+      joiner.add(String.format("%sexportTemplate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExportTemplate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `exportReport` to the URL query string
+    if (getExportReport() != null) {
+      joiner.add(String.format("%sexportReport%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExportReport()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `sendViaEmail` to the URL query string
+    if (getSendViaEmail() != null) {
+      joiner.add(String.format("%ssendViaEmail%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSendViaEmail()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `uploadToFTP` to the URL query string
+    if (getUploadToFTP() != null) {
+      joiner.add(String.format("%suploadToFTP%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUploadToFTP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `sendViaWebhook` to the URL query string
+    if (getSendViaWebhook() != null) {
+      joiner.add(String.format("%ssendViaWebhook%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSendViaWebhook()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `fetchData` to the URL query string
+    if (getFetchData() != null) {
+      joiner.add(String.format("%sfetchData%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFetchData()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `thumbnailReport` to the URL query string
+    if (getThumbnailReport() != null) {
+      joiner.add(String.format("%sthumbnailReport%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getThumbnailReport()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `thumbnailTemplate` to the URL query string
+    if (getThumbnailTemplate() != null) {
+      joiner.add(String.format("%sthumbnailTemplate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getThumbnailTemplate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

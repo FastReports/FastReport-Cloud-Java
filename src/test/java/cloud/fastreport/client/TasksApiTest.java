@@ -13,6 +13,7 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.CreateTaskBaseVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.RunTaskBaseVM;
@@ -24,13 +25,12 @@ import cloud.fastreport.model.UpdateTaskPermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for TasksApi
@@ -46,14 +46,15 @@ public class TasksApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void tasksCreateTaskTest() throws IOException {
+    public void tasksCreateTaskTest() throws ApiException {
         CreateTaskBaseVM createTaskBaseVM = null;
-        TaskBaseVM response = api.tasksCreateTask(createTaskBaseVM);
-
+        TaskBaseVM response = 
+        api.tasksCreateTask(createTaskBaseVM);
+        
         // TODO: test validations
     }
     
@@ -62,14 +63,15 @@ public class TasksApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void tasksDeleteTaskTest() throws IOException {
+    public void tasksDeleteTaskTest() throws ApiException {
         String taskId = null;
+        
         api.tasksDeleteTask(taskId);
-
+        
         // TODO: test validations
     }
     
@@ -78,14 +80,15 @@ public class TasksApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void tasksGetTest() throws IOException {
+    public void tasksGetTest() throws ApiException {
         String taskId = null;
-        TaskBaseVM response = api.tasksGet(taskId);
-
+        TaskBaseVM response = 
+        api.tasksGet(taskId);
+        
         // TODO: test validations
     }
     
@@ -94,17 +97,18 @@ public class TasksApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void tasksGetListTest() throws IOException {
+    public void tasksGetListTest() throws ApiException {
         Integer skip = null;
         Integer take = null;
         String subscriptionId = null;
         String searchPattern = null;
-        TasksVM response = api.tasksGetList(skip, take, subscriptionId, searchPattern);
-
+        TasksVM response = 
+        api.tasksGetList(skip, take, subscriptionId, searchPattern);
+        
         // TODO: test validations
     }
     
@@ -113,14 +117,15 @@ public class TasksApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void tasksGetPermissionsTest() throws IOException {
+    public void tasksGetPermissionsTest() throws ApiException {
         String id = null;
-        TaskPermissionsVM response = api.tasksGetPermissions(id);
-
+        TaskPermissionsVM response = 
+        api.tasksGetPermissions(id);
+        
         // TODO: test validations
     }
     
@@ -129,15 +134,16 @@ public class TasksApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void tasksRenameTaskTest() throws IOException {
+    public void tasksRenameTaskTest() throws ApiException {
         String taskId = null;
         String newName = null;
-        TaskBaseVM response = api.tasksRenameTask(taskId, newName);
-
+        TaskBaseVM response = 
+        api.tasksRenameTask(taskId, newName);
+        
         // TODO: test validations
     }
     
@@ -146,14 +152,15 @@ public class TasksApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void tasksRunTaskTest() throws IOException {
+    public void tasksRunTaskTest() throws ApiException {
         RunTaskBaseVM runTaskBaseVM = null;
+        
         api.tasksRunTask(runTaskBaseVM);
-
+        
         // TODO: test validations
     }
     
@@ -162,14 +169,15 @@ public class TasksApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void tasksRunTaskByIdTest() throws IOException {
+    public void tasksRunTaskByIdTest() throws ApiException {
         String taskId = null;
+        
         api.tasksRunTaskById(taskId);
-
+        
         // TODO: test validations
     }
     
@@ -178,15 +186,16 @@ public class TasksApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void tasksUpdatePermissionsTest() throws IOException {
+    public void tasksUpdatePermissionsTest() throws ApiException {
         String id = null;
         UpdateTaskPermissionsVM updateTaskPermissionsVM = null;
+        
         api.tasksUpdatePermissions(id, updateTaskPermissionsVM);
-
+        
         // TODO: test validations
     }
     
@@ -195,15 +204,16 @@ public class TasksApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void tasksUpdateTaskTest() throws IOException {
+    public void tasksUpdateTaskTest() throws ApiException {
         String taskId = null;
         UpdateTaskBaseVM updateTaskBaseVM = null;
-        TaskBaseVM response = api.tasksUpdateTask(taskId, updateTaskBaseVM);
-
+        TaskBaseVM response = 
+        api.tasksUpdateTask(taskId, updateTaskBaseVM);
+        
         // TODO: test validations
     }
     

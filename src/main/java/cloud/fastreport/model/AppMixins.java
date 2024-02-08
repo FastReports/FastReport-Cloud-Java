@@ -13,19 +13,24 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * AppMixins
@@ -42,12 +47,11 @@ public class AppMixins {
   public static final String JSON_PROPERTY_BODY = "body";
   private JsonNullable<String> body = JsonNullable.<String>undefined();
 
-  public AppMixins() {
+  public AppMixins() { 
   }
 
   public AppMixins head(String head) {
     this.head = JsonNullable.<String>of(head);
-    
     return this;
   }
 
@@ -81,7 +85,6 @@ public class AppMixins {
 
   public AppMixins body(String body) {
     this.body = JsonNullable.<String>of(body);
-    
     return this;
   }
 
@@ -112,6 +115,10 @@ public class AppMixins {
     this.body = JsonNullable.<String>of(body);
   }
 
+
+  /**
+   * Return true if this AppMixins object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -162,5 +169,49 @@ public class AppMixins {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `head` to the URL query string
+    if (getHead() != null) {
+      joiner.add(String.format("%shead%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getHead()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `body` to the URL query string
+    if (getBody() != null) {
+      joiner.add(String.format("%sbody%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getBody()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

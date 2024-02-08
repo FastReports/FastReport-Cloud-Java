@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.FileStatus;
 import cloud.fastreport.model.FileStatusReason;
 import cloud.fastreport.model.FileType;
@@ -35,8 +39,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
+
+import cloud.fastreport.JSON;
 /**
  * FileVM
  */
@@ -122,14 +127,13 @@ public class FileVM {
   private Boolean isDeleted;
 
   public static final String JSON_PROPERTY_$_T = "$t";
-  protected String $t;
+  private String $t;
 
-  public FileVM() {
+  public FileVM() { 
   }
 
   public FileVM id(String id) {
     this.id = JsonNullable.<String>of(id);
-    
     return this;
   }
 
@@ -162,7 +166,6 @@ public class FileVM {
 
 
   public FileVM createdTime(OffsetDateTime createdTime) {
-    
     this.createdTime = createdTime;
     return this;
   }
@@ -189,7 +192,6 @@ public class FileVM {
 
   public FileVM creatorUserId(String creatorUserId) {
     this.creatorUserId = JsonNullable.<String>of(creatorUserId);
-    
     return this;
   }
 
@@ -222,7 +224,6 @@ public class FileVM {
 
 
   public FileVM editedTime(OffsetDateTime editedTime) {
-    
     this.editedTime = editedTime;
     return this;
   }
@@ -249,7 +250,6 @@ public class FileVM {
 
   public FileVM editorUserId(String editorUserId) {
     this.editorUserId = JsonNullable.<String>of(editorUserId);
-    
     return this;
   }
 
@@ -283,7 +283,6 @@ public class FileVM {
 
   public FileVM name(String name) {
     this.name = JsonNullable.<String>of(name);
-    
     return this;
   }
 
@@ -317,7 +316,6 @@ public class FileVM {
 
   public FileVM parentId(String parentId) {
     this.parentId = JsonNullable.<String>of(parentId);
-    
     return this;
   }
 
@@ -351,7 +349,6 @@ public class FileVM {
 
   public FileVM tags(List<String> tags) {
     this.tags = JsonNullable.<List<String>>of(tags);
-    
     return this;
   }
 
@@ -397,7 +394,6 @@ public class FileVM {
 
   public FileVM icon(byte[] icon) {
     this.icon = JsonNullable.<byte[]>of(icon);
-    
     return this;
   }
 
@@ -430,7 +426,6 @@ public class FileVM {
 
 
   public FileVM type(FileType type) {
-    
     this.type = type;
     return this;
   }
@@ -456,7 +451,6 @@ public class FileVM {
 
 
   public FileVM size(Long size) {
-    
     this.size = size;
     return this;
   }
@@ -483,7 +477,6 @@ public class FileVM {
 
   public FileVM subscriptionId(String subscriptionId) {
     this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-    
     return this;
   }
 
@@ -516,7 +509,6 @@ public class FileVM {
 
 
   public FileVM status(FileStatus status) {
-    
     this.status = status;
     return this;
   }
@@ -542,7 +534,6 @@ public class FileVM {
 
 
   public FileVM statusReason(FileStatusReason statusReason) {
-    
     this.statusReason = statusReason;
     return this;
   }
@@ -569,7 +560,6 @@ public class FileVM {
 
   public FileVM errorMessage(String errorMessage) {
     this.errorMessage = JsonNullable.<String>of(errorMessage);
-    
     return this;
   }
 
@@ -602,7 +592,6 @@ public class FileVM {
 
 
   public FileVM isDeleted(Boolean isDeleted) {
-    
     this.isDeleted = isDeleted;
     return this;
   }
@@ -628,7 +617,6 @@ public class FileVM {
 
 
   public FileVM $t(String $t) {
-    
     this.$t = $t;
     return this;
   }
@@ -652,6 +640,10 @@ public class FileVM {
     this.$t = $t;
   }
 
+
+  /**
+   * Return true if this FileVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -732,5 +724,138 @@ public class FileVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `createdTime` to the URL query string
+    if (getCreatedTime() != null) {
+      joiner.add(String.format("%screatedTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatedTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `creatorUserId` to the URL query string
+    if (getCreatorUserId() != null) {
+      joiner.add(String.format("%screatorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `editedTime` to the URL query string
+    if (getEditedTime() != null) {
+      joiner.add(String.format("%seditedTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEditedTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `editorUserId` to the URL query string
+    if (getEditorUserId() != null) {
+      joiner.add(String.format("%seditorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEditorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `parentId` to the URL query string
+    if (getParentId() != null) {
+      joiner.add(String.format("%sparentId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getParentId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `tags` to the URL query string
+    if (getTags() != null) {
+      for (int i = 0; i < getTags().size(); i++) {
+        joiner.add(String.format("%stags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(String.valueOf(getTags().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `icon` to the URL query string
+    if (getIcon() != null) {
+      joiner.add(String.format("%sicon%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIcon()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `type` to the URL query string
+    if (getType() != null) {
+      joiner.add(String.format("%stype%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(String.format("%ssize%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `subscriptionId` to the URL query string
+    if (getSubscriptionId() != null) {
+      joiner.add(String.format("%ssubscriptionId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubscriptionId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format("%sstatus%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `statusReason` to the URL query string
+    if (getStatusReason() != null) {
+      joiner.add(String.format("%sstatusReason%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStatusReason()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `errorMessage` to the URL query string
+    if (getErrorMessage() != null) {
+      joiner.add(String.format("%serrorMessage%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getErrorMessage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `isDeleted` to the URL query string
+    if (getIsDeleted() != null) {
+      joiner.add(String.format("%sisDeleted%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsDeleted()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `$t` to the URL query string
+    if (get$T() != null) {
+      joiner.add(String.format("%s$t%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(get$T()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("ExportVM", ExportVM.class);
+  mappings.put("FileVM", FileVM.class);
+  mappings.put("ReportVM", ReportVM.class);
+  mappings.put("TemplateVM", TemplateVM.class);
+  mappings.put("FileVM", FileVM.class);
+  JSON.registerDiscriminator(FileVM.class, "$t", mappings);
+}
 }
 

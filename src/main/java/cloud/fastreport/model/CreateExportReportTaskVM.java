@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.CreateTransformTaskBaseVM;
 import cloud.fastreport.model.ExportFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -26,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -33,8 +38,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
+
+import cloud.fastreport.JSON;
 /**
  * CreateExportReportTaskVM
  */
@@ -66,15 +72,13 @@ public class CreateExportReportTaskVM extends CreateTransformTaskBaseVM {
   private Integer pagesCount;
 
   public static final String JSON_PROPERTY_$_T = "$t";
-  protected String $t;
+  private String $t;
 
-  public CreateExportReportTaskVM() {
-
+  public CreateExportReportTaskVM() { 
   }
 
   public CreateExportReportTaskVM exportParameters(Map<String, String> exportParameters) {
     this.exportParameters = JsonNullable.<Map<String, String>>of(exportParameters);
-    
     return this;
   }
 
@@ -119,7 +123,6 @@ public class CreateExportReportTaskVM extends CreateTransformTaskBaseVM {
 
 
   public CreateExportReportTaskVM format(ExportFormat format) {
-    
     this.format = format;
     return this;
   }
@@ -145,7 +148,6 @@ public class CreateExportReportTaskVM extends CreateTransformTaskBaseVM {
 
 
   public CreateExportReportTaskVM pagesCount(Integer pagesCount) {
-    
     this.pagesCount = pagesCount;
     return this;
   }
@@ -173,7 +175,6 @@ public class CreateExportReportTaskVM extends CreateTransformTaskBaseVM {
 
 
   public CreateExportReportTaskVM $t(String $t) {
-    
     this.$t = $t;
     return this;
   }
@@ -196,6 +197,7 @@ public class CreateExportReportTaskVM extends CreateTransformTaskBaseVM {
   public void set$T(String $t) {
     this.$t = $t;
   }
+
 
   @Override
   public CreateExportReportTaskVM cronExpression(String cronExpression) {
@@ -221,6 +223,9 @@ public class CreateExportReportTaskVM extends CreateTransformTaskBaseVM {
     return this;
   }
 
+  /**
+   * Return true if this CreateExportReportTaskVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -277,5 +282,72 @@ public class CreateExportReportTaskVM extends CreateTransformTaskBaseVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `cronExpression` to the URL query string
+    if (getCronExpression() != null) {
+      joiner.add(String.format("%scronExpression%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCronExpression()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `delayedRunTime` to the URL query string
+    if (getDelayedRunTime() != null) {
+      joiner.add(String.format("%sdelayedRunTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDelayedRunTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `subscriptionId` to the URL query string
+    if (getSubscriptionId() != null) {
+      joiner.add(String.format("%ssubscriptionId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubscriptionId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `$t` to the URL query string
+    if (get$T() != null) {
+      joiner.add(String.format("%s$t%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(get$T()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("CreateExportReportTaskVM", CreateExportReportTaskVM.class);
+  mappings.put("CreateExportTemplateTaskVM", CreateExportTemplateTaskVM.class);
+  mappings.put("CreateExportReportTaskVM", CreateExportReportTaskVM.class);
+  JSON.registerDiscriminator(CreateExportReportTaskVM.class, "$t", mappings);
+}
 }
 

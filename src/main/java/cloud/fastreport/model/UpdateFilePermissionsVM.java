@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.FileAdministrate;
 import cloud.fastreport.model.FilePermissions;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -22,8 +26,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * UpdateFilePermissionsVM
@@ -40,11 +45,10 @@ public class UpdateFilePermissionsVM {
   public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
   private FileAdministrate administrate;
 
-  public UpdateFilePermissionsVM() {
+  public UpdateFilePermissionsVM() { 
   }
 
   public UpdateFilePermissionsVM newPermissions(FilePermissions newPermissions) {
-    
     this.newPermissions = newPermissions;
     return this;
   }
@@ -70,7 +74,6 @@ public class UpdateFilePermissionsVM {
 
 
   public UpdateFilePermissionsVM administrate(FileAdministrate administrate) {
-    
     this.administrate = administrate;
     return this;
   }
@@ -94,6 +97,10 @@ public class UpdateFilePermissionsVM {
     this.administrate = administrate;
   }
 
+
+  /**
+   * Return true if this UpdateFilePermissionsVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -133,5 +140,49 @@ public class UpdateFilePermissionsVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `newPermissions` to the URL query string
+    if (getNewPermissions() != null) {
+      joiner.add(getNewPermissions().toUrlQueryString(prefix + "newPermissions" + suffix));
+    }
+
+    // add `administrate` to the URL query string
+    if (getAdministrate() != null) {
+      joiner.add(String.format("%sadministrate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAdministrate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

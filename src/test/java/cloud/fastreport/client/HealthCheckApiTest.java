@@ -13,16 +13,16 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for HealthCheckApi
@@ -38,13 +38,14 @@ public class HealthCheckApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void healthCheckDataGetTest() throws IOException {
+    public void healthCheckDataGetTest() throws ApiException {
+        
         api.healthCheckDataGet();
-
+        
         // TODO: test validations
     }
     

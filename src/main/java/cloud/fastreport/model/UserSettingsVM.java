@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.AuditType;
 import cloud.fastreport.model.ProfileVisibility;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -31,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * UserSettingsVM
@@ -60,11 +64,10 @@ public class UserSettingsVM {
   public static final String JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS = "subscribedNotifications";
   private JsonNullable<List<AuditType>> subscribedNotifications = JsonNullable.<List<AuditType>>undefined();
 
-  public UserSettingsVM() {
+  public UserSettingsVM() { 
   }
 
   public UserSettingsVM profileVisibility(ProfileVisibility profileVisibility) {
-    
     this.profileVisibility = profileVisibility;
     return this;
   }
@@ -91,7 +94,6 @@ public class UserSettingsVM {
 
   public UserSettingsVM defaultSubscription(String defaultSubscription) {
     this.defaultSubscription = JsonNullable.<String>of(defaultSubscription);
-    
     return this;
   }
 
@@ -124,7 +126,6 @@ public class UserSettingsVM {
 
 
   public UserSettingsVM showHiddenFilesAndFolders(Boolean showHiddenFilesAndFolders) {
-    
     this.showHiddenFilesAndFolders = showHiddenFilesAndFolders;
     return this;
   }
@@ -151,7 +152,6 @@ public class UserSettingsVM {
 
   public UserSettingsVM slaAcceptedDateTime(OffsetDateTime slaAcceptedDateTime) {
     this.slaAcceptedDateTime = JsonNullable.<OffsetDateTime>of(slaAcceptedDateTime);
-    
     return this;
   }
 
@@ -185,7 +185,6 @@ public class UserSettingsVM {
 
   public UserSettingsVM subscribedNotifications(List<AuditType> subscribedNotifications) {
     this.subscribedNotifications = JsonNullable.<List<AuditType>>of(subscribedNotifications);
-    
     return this;
   }
 
@@ -228,6 +227,10 @@ public class UserSettingsVM {
     this.subscribedNotifications = JsonNullable.<List<AuditType>>of(subscribedNotifications);
   }
 
+
+  /**
+   * Return true if this UserSettingsVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -284,5 +287,70 @@ public class UserSettingsVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `profileVisibility` to the URL query string
+    if (getProfileVisibility() != null) {
+      joiner.add(String.format("%sprofileVisibility%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getProfileVisibility()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `defaultSubscription` to the URL query string
+    if (getDefaultSubscription() != null) {
+      joiner.add(String.format("%sdefaultSubscription%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDefaultSubscription()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `showHiddenFilesAndFolders` to the URL query string
+    if (getShowHiddenFilesAndFolders() != null) {
+      joiner.add(String.format("%sshowHiddenFilesAndFolders%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getShowHiddenFilesAndFolders()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `slaAcceptedDateTime` to the URL query string
+    if (getSlaAcceptedDateTime() != null) {
+      joiner.add(String.format("%sslaAcceptedDateTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSlaAcceptedDateTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `subscribedNotifications` to the URL query string
+    if (getSubscribedNotifications() != null) {
+      for (int i = 0; i < getSubscribedNotifications().size(); i++) {
+        if (getSubscribedNotifications().get(i) != null) {
+          joiner.add(String.format("%ssubscribedNotifications%s%s=%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+              URLEncoder.encode(String.valueOf(getSubscribedNotifications().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+        }
+      }
+    }
+
+    return joiner.toString();
+  }
 }
 

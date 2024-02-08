@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.AuditActionVM;
 import cloud.fastreport.model.AuditType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -26,13 +30,15 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
+
+import cloud.fastreport.JSON;
 /**
  * AuditSubscriptionActionVM
  */
@@ -58,12 +64,10 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
   public static final String JSON_PROPERTY_PLAN_ID = "planId";
   private JsonNullable<String> planId = JsonNullable.<String>undefined();
 
-  public AuditSubscriptionActionVM() {
-
+  public AuditSubscriptionActionVM() { 
   }
 
   public AuditSubscriptionActionVM periodStart(OffsetDateTime periodStart) {
-    
     this.periodStart = periodStart;
     return this;
   }
@@ -89,7 +93,6 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
 
 
   public AuditSubscriptionActionVM periodEnd(OffsetDateTime periodEnd) {
-    
     this.periodEnd = periodEnd;
     return this;
   }
@@ -116,7 +119,6 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
 
   public AuditSubscriptionActionVM planId(String planId) {
     this.planId = JsonNullable.<String>of(planId);
-    
     return this;
   }
 
@@ -146,6 +148,7 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
   public void setPlanId(String planId) {
     this.planId = JsonNullable.<String>of(planId);
   }
+
 
   @Override
   public AuditSubscriptionActionVM userId(String userId) {
@@ -201,6 +204,9 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
     return this;
   }
 
+  /**
+   * Return true if this AuditSubscriptionActionVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -255,5 +261,95 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `userId` to the URL query string
+    if (getUserId() != null) {
+      joiner.add(String.format("%suserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `entityId` to the URL query string
+    if (getEntityId() != null) {
+      joiner.add(String.format("%sentityId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEntityId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `subscriptionId` to the URL query string
+    if (getSubscriptionId() != null) {
+      joiner.add(String.format("%ssubscriptionId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubscriptionId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `type` to the URL query string
+    if (getType() != null) {
+      joiner.add(String.format("%stype%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `createdTime` to the URL query string
+    if (getCreatedTime() != null) {
+      joiner.add(String.format("%screatedTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatedTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `creatorUserId` to the URL query string
+    if (getCreatorUserId() != null) {
+      joiner.add(String.format("%screatorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `adminAction` to the URL query string
+    if (getAdminAction() != null) {
+      joiner.add(String.format("%sadminAction%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAdminAction()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `$t` to the URL query string
+    if (get$T() != null) {
+      joiner.add(String.format("%s$t%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(get$T()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("AuditSubscriptionActionVM", AuditSubscriptionActionVM.class);
+  JSON.registerDiscriminator(AuditSubscriptionActionVM.class, "$t", mappings);
+}
 }
 

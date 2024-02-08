@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.FolderCreateVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -29,8 +33,9 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
+
+import cloud.fastreport.JSON;
 /**
  * AdminFolderCreateVM
  */
@@ -64,14 +69,12 @@ public class AdminFolderCreateVM extends FolderCreateVM {
   private Boolean force;
 
   public static final String JSON_PROPERTY_$_T = "$t";
-  protected String $t;
+  private String $t;
 
-  public AdminFolderCreateVM() {
-
+  public AdminFolderCreateVM() { 
   }
 
   public AdminFolderCreateVM parentId(String parentId) {
-    
     this.parentId = parentId;
     return this;
   }
@@ -97,7 +100,6 @@ public class AdminFolderCreateVM extends FolderCreateVM {
 
 
   public AdminFolderCreateVM ownerId(String ownerId) {
-    
     this.ownerId = ownerId;
     return this;
   }
@@ -123,7 +125,6 @@ public class AdminFolderCreateVM extends FolderCreateVM {
 
 
   public AdminFolderCreateVM force(Boolean force) {
-    
     this.force = force;
     return this;
   }
@@ -149,7 +150,6 @@ public class AdminFolderCreateVM extends FolderCreateVM {
 
 
   public AdminFolderCreateVM $t(String $t) {
-    
     this.$t = $t;
     return this;
   }
@@ -173,6 +173,7 @@ public class AdminFolderCreateVM extends FolderCreateVM {
     this.$t = $t;
   }
 
+
   @Override
   public AdminFolderCreateVM name(String name) {
     this.setName(name);
@@ -191,6 +192,9 @@ public class AdminFolderCreateVM extends FolderCreateVM {
     return this;
   }
 
+  /**
+   * Return true if this AdminFolderCreateVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -247,5 +251,73 @@ public class AdminFolderCreateVM extends FolderCreateVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `tags` to the URL query string
+    if (getTags() != null) {
+      for (int i = 0; i < getTags().size(); i++) {
+        joiner.add(String.format("%stags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(String.valueOf(getTags().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `icon` to the URL query string
+    if (getIcon() != null) {
+      joiner.add(String.format("%sicon%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIcon()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `$t` to the URL query string
+    if (get$T() != null) {
+      joiner.add(String.format("%s$t%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(get$T()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("AdminExportFolderCreateVM", AdminExportFolderCreateVM.class);
+  mappings.put("AdminFolderCreateVM", AdminFolderCreateVM.class);
+  mappings.put("AdminReportFolderCreateVM", AdminReportFolderCreateVM.class);
+  mappings.put("AdminTemplateFolderCreateVM", AdminTemplateFolderCreateVM.class);
+  mappings.put("AdminFolderCreateVM", AdminFolderCreateVM.class);
+  JSON.registerDiscriminator(AdminFolderCreateVM.class, "$t", mappings);
+}
 }
 

@@ -13,16 +13,21 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * CreateSubscriptionInviteVM
@@ -43,11 +48,10 @@ public class CreateSubscriptionInviteVM {
   public static final String JSON_PROPERTY_EXPIRED_DATE = "expiredDate";
   private OffsetDateTime expiredDate;
 
-  public CreateSubscriptionInviteVM() {
+  public CreateSubscriptionInviteVM() { 
   }
 
   public CreateSubscriptionInviteVM usages(Long usages) {
-    
     this.usages = usages;
     return this;
   }
@@ -75,7 +79,6 @@ public class CreateSubscriptionInviteVM {
 
 
   public CreateSubscriptionInviteVM durable(Boolean durable) {
-    
     this.durable = durable;
     return this;
   }
@@ -101,7 +104,6 @@ public class CreateSubscriptionInviteVM {
 
 
   public CreateSubscriptionInviteVM expiredDate(OffsetDateTime expiredDate) {
-    
     this.expiredDate = expiredDate;
     return this;
   }
@@ -125,6 +127,10 @@ public class CreateSubscriptionInviteVM {
     this.expiredDate = expiredDate;
   }
 
+
+  /**
+   * Return true if this CreateSubscriptionInviteVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -166,5 +172,54 @@ public class CreateSubscriptionInviteVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `usages` to the URL query string
+    if (getUsages() != null) {
+      joiner.add(String.format("%susages%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUsages()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `durable` to the URL query string
+    if (getDurable() != null) {
+      joiner.add(String.format("%sdurable%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDurable()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `expiredDate` to the URL query string
+    if (getExpiredDate() != null) {
+      joiner.add(String.format("%sexpiredDate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExpiredDate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

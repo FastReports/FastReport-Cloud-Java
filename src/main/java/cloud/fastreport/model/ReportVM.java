@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.FileStatus;
 import cloud.fastreport.model.FileStatusReason;
 import cloud.fastreport.model.FileType;
@@ -37,8 +41,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
+
+import cloud.fastreport.JSON;
 /**
  * ReportVM
  */
@@ -60,13 +65,11 @@ public class ReportVM extends FileVM {
   public static final String JSON_PROPERTY_REPORT_INFO = "reportInfo";
   private ReportInfo reportInfo;
 
-  public ReportVM() {
-
+  public ReportVM() { 
   }
 
   public ReportVM templateId(String templateId) {
     this.templateId = JsonNullable.<String>of(templateId);
-    
     return this;
   }
 
@@ -99,7 +102,6 @@ public class ReportVM extends FileVM {
 
 
   public ReportVM reportInfo(ReportInfo reportInfo) {
-    
     this.reportInfo = reportInfo;
     return this;
   }
@@ -122,6 +124,7 @@ public class ReportVM extends FileVM {
   public void setReportInfo(ReportInfo reportInfo) {
     this.reportInfo = reportInfo;
   }
+
 
   @Override
   public ReportVM id(String id) {
@@ -219,6 +222,9 @@ public class ReportVM extends FileVM {
     return this;
   }
 
+  /**
+   * Return true if this ReportVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -271,5 +277,134 @@ public class ReportVM extends FileVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `createdTime` to the URL query string
+    if (getCreatedTime() != null) {
+      joiner.add(String.format("%screatedTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatedTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `creatorUserId` to the URL query string
+    if (getCreatorUserId() != null) {
+      joiner.add(String.format("%screatorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `editedTime` to the URL query string
+    if (getEditedTime() != null) {
+      joiner.add(String.format("%seditedTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEditedTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `editorUserId` to the URL query string
+    if (getEditorUserId() != null) {
+      joiner.add(String.format("%seditorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEditorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `parentId` to the URL query string
+    if (getParentId() != null) {
+      joiner.add(String.format("%sparentId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getParentId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `tags` to the URL query string
+    if (getTags() != null) {
+      for (int i = 0; i < getTags().size(); i++) {
+        joiner.add(String.format("%stags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(String.valueOf(getTags().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `icon` to the URL query string
+    if (getIcon() != null) {
+      joiner.add(String.format("%sicon%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIcon()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `type` to the URL query string
+    if (getType() != null) {
+      joiner.add(String.format("%stype%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(String.format("%ssize%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `subscriptionId` to the URL query string
+    if (getSubscriptionId() != null) {
+      joiner.add(String.format("%ssubscriptionId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubscriptionId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format("%sstatus%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `statusReason` to the URL query string
+    if (getStatusReason() != null) {
+      joiner.add(String.format("%sstatusReason%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStatusReason()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `errorMessage` to the URL query string
+    if (getErrorMessage() != null) {
+      joiner.add(String.format("%serrorMessage%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getErrorMessage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `isDeleted` to the URL query string
+    if (getIsDeleted() != null) {
+      joiner.add(String.format("%sisDeleted%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsDeleted()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `$t` to the URL query string
+    if (get$T() != null) {
+      joiner.add(String.format("%s$t%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(get$T()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("ReportVM", ReportVM.class);
+  JSON.registerDiscriminator(ReportVM.class, "$t", mappings);
+}
 }
 

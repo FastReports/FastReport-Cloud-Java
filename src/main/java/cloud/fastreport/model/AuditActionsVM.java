@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.AuditActionVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * AuditActionsVM
@@ -54,12 +58,11 @@ public class AuditActionsVM {
   public static final String JSON_PROPERTY_TAKE = "take";
   private Integer take;
 
-  public AuditActionsVM() {
+  public AuditActionsVM() { 
   }
 
   public AuditActionsVM items(List<AuditActionVM> items) {
     this.items = JsonNullable.<List<AuditActionVM>>of(items);
-    
     return this;
   }
 
@@ -104,7 +107,6 @@ public class AuditActionsVM {
 
 
   public AuditActionsVM hasMore(Boolean hasMore) {
-    
     this.hasMore = hasMore;
     return this;
   }
@@ -130,7 +132,6 @@ public class AuditActionsVM {
 
 
   public AuditActionsVM skip(Integer skip) {
-    
     this.skip = skip;
     return this;
   }
@@ -156,7 +157,6 @@ public class AuditActionsVM {
 
 
   public AuditActionsVM take(Integer take) {
-    
     this.take = take;
     return this;
   }
@@ -180,6 +180,10 @@ public class AuditActionsVM {
     this.take = take;
   }
 
+
+  /**
+   * Return true if this AuditActionsVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -234,5 +238,64 @@ public class AuditActionsVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `items` to the URL query string
+    if (getItems() != null) {
+      for (int i = 0; i < getItems().size(); i++) {
+        if (getItems().get(i) != null) {
+          joiner.add(getItems().get(i).toUrlQueryString(String.format("%sitems%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `hasMore` to the URL query string
+    if (getHasMore() != null) {
+      joiner.add(String.format("%shasMore%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getHasMore()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `skip` to the URL query string
+    if (getSkip() != null) {
+      joiner.add(String.format("%sskip%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSkip()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `take` to the URL query string
+    if (getTake() != null) {
+      joiner.add(String.format("%stake%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTake()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.TaskSettingsVM;
 import cloud.fastreport.model.TimePeriodType;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -22,12 +26,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * SubscriptionPlanVM
@@ -116,12 +121,11 @@ public class SubscriptionPlanVM {
   public static final String JSON_PROPERTY_TASKS = "tasks";
   private TaskSettingsVM tasks;
 
-  public SubscriptionPlanVM() {
+  public SubscriptionPlanVM() { 
   }
 
   public SubscriptionPlanVM id(String id) {
     this.id = JsonNullable.<String>of(id);
-    
     return this;
   }
 
@@ -155,7 +159,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM isActive(Boolean isActive) {
     this.isActive = JsonNullable.<Boolean>of(isActive);
-    
     return this;
   }
 
@@ -189,7 +192,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM displayName(String displayName) {
     this.displayName = JsonNullable.<String>of(displayName);
-    
     return this;
   }
 
@@ -223,7 +225,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM timePeriodType(TimePeriodType timePeriodType) {
     this.timePeriodType = JsonNullable.<TimePeriodType>of(timePeriodType);
-    
     return this;
   }
 
@@ -257,7 +258,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM timePeriod(Integer timePeriod) {
     this.timePeriod = JsonNullable.<Integer>of(timePeriod);
-    
     return this;
   }
 
@@ -290,7 +290,6 @@ public class SubscriptionPlanVM {
 
 
   public SubscriptionPlanVM readonlyTimeLimitType(TimePeriodType readonlyTimeLimitType) {
-    
     this.readonlyTimeLimitType = readonlyTimeLimitType;
     return this;
   }
@@ -316,7 +315,6 @@ public class SubscriptionPlanVM {
 
 
   public SubscriptionPlanVM readonlyTimeLimit(Integer readonlyTimeLimit) {
-    
     this.readonlyTimeLimit = readonlyTimeLimit;
     return this;
   }
@@ -343,7 +341,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM templatesSpaceLimit(Long templatesSpaceLimit) {
     this.templatesSpaceLimit = JsonNullable.<Long>of(templatesSpaceLimit);
-    
     return this;
   }
 
@@ -377,7 +374,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM reportsSpaceLimit(Long reportsSpaceLimit) {
     this.reportsSpaceLimit = JsonNullable.<Long>of(reportsSpaceLimit);
-    
     return this;
   }
 
@@ -411,7 +407,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM exportsSpaceLimit(Long exportsSpaceLimit) {
     this.exportsSpaceLimit = JsonNullable.<Long>of(exportsSpaceLimit);
-    
     return this;
   }
 
@@ -445,7 +440,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM fileUploadSizeLimit(Long fileUploadSizeLimit) {
     this.fileUploadSizeLimit = JsonNullable.<Long>of(fileUploadSizeLimit);
-    
     return this;
   }
 
@@ -479,7 +473,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM dataSourceLimit(Integer dataSourceLimit) {
     this.dataSourceLimit = JsonNullable.<Integer>of(dataSourceLimit);
-    
     return this;
   }
 
@@ -513,7 +506,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM maxUsersCount(Integer maxUsersCount) {
     this.maxUsersCount = JsonNullable.<Integer>of(maxUsersCount);
-    
     return this;
   }
 
@@ -547,7 +539,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM groupLimit(Integer groupLimit) {
     this.groupLimit = JsonNullable.<Integer>of(groupLimit);
-    
     return this;
   }
 
@@ -581,7 +572,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM onlineDesigner(Boolean onlineDesigner) {
     this.onlineDesigner = JsonNullable.<Boolean>of(onlineDesigner);
-    
     return this;
   }
 
@@ -615,7 +605,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM isDemo(Boolean isDemo) {
     this.isDemo = JsonNullable.<Boolean>of(isDemo);
-    
     return this;
   }
 
@@ -649,7 +638,6 @@ public class SubscriptionPlanVM {
 
   public SubscriptionPlanVM urlToBuy(String urlToBuy) {
     this.urlToBuy = JsonNullable.<String>of(urlToBuy);
-    
     return this;
   }
 
@@ -682,7 +670,6 @@ public class SubscriptionPlanVM {
 
 
   public SubscriptionPlanVM unlimitedPage(Boolean unlimitedPage) {
-    
     this.unlimitedPage = unlimitedPage;
     return this;
   }
@@ -708,7 +695,6 @@ public class SubscriptionPlanVM {
 
 
   public SubscriptionPlanVM pageLimit(Integer pageLimit) {
-    
     this.pageLimit = pageLimit;
     return this;
   }
@@ -734,7 +720,6 @@ public class SubscriptionPlanVM {
 
 
   public SubscriptionPlanVM tasks(TaskSettingsVM tasks) {
-    
     this.tasks = tasks;
     return this;
   }
@@ -758,6 +743,10 @@ public class SubscriptionPlanVM {
     this.tasks = tasks;
   }
 
+
+  /**
+   * Return true if this SubscriptionPlanVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -844,5 +833,139 @@ public class SubscriptionPlanVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `isActive` to the URL query string
+    if (getIsActive() != null) {
+      joiner.add(String.format("%sisActive%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsActive()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `displayName` to the URL query string
+    if (getDisplayName() != null) {
+      joiner.add(String.format("%sdisplayName%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDisplayName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `timePeriodType` to the URL query string
+    if (getTimePeriodType() != null) {
+      joiner.add(String.format("%stimePeriodType%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTimePeriodType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `timePeriod` to the URL query string
+    if (getTimePeriod() != null) {
+      joiner.add(String.format("%stimePeriod%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTimePeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `readonlyTimeLimitType` to the URL query string
+    if (getReadonlyTimeLimitType() != null) {
+      joiner.add(String.format("%sreadonlyTimeLimitType%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getReadonlyTimeLimitType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `readonlyTimeLimit` to the URL query string
+    if (getReadonlyTimeLimit() != null) {
+      joiner.add(String.format("%sreadonlyTimeLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getReadonlyTimeLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `templatesSpaceLimit` to the URL query string
+    if (getTemplatesSpaceLimit() != null) {
+      joiner.add(String.format("%stemplatesSpaceLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTemplatesSpaceLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `reportsSpaceLimit` to the URL query string
+    if (getReportsSpaceLimit() != null) {
+      joiner.add(String.format("%sreportsSpaceLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getReportsSpaceLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `exportsSpaceLimit` to the URL query string
+    if (getExportsSpaceLimit() != null) {
+      joiner.add(String.format("%sexportsSpaceLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExportsSpaceLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `fileUploadSizeLimit` to the URL query string
+    if (getFileUploadSizeLimit() != null) {
+      joiner.add(String.format("%sfileUploadSizeLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFileUploadSizeLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `dataSourceLimit` to the URL query string
+    if (getDataSourceLimit() != null) {
+      joiner.add(String.format("%sdataSourceLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDataSourceLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `maxUsersCount` to the URL query string
+    if (getMaxUsersCount() != null) {
+      joiner.add(String.format("%smaxUsersCount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getMaxUsersCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `groupLimit` to the URL query string
+    if (getGroupLimit() != null) {
+      joiner.add(String.format("%sgroupLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getGroupLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `onlineDesigner` to the URL query string
+    if (getOnlineDesigner() != null) {
+      joiner.add(String.format("%sonlineDesigner%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getOnlineDesigner()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `isDemo` to the URL query string
+    if (getIsDemo() != null) {
+      joiner.add(String.format("%sisDemo%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsDemo()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `urlToBuy` to the URL query string
+    if (getUrlToBuy() != null) {
+      joiner.add(String.format("%surlToBuy%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUrlToBuy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `unlimitedPage` to the URL query string
+    if (getUnlimitedPage() != null) {
+      joiner.add(String.format("%sunlimitedPage%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUnlimitedPage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `pageLimit` to the URL query string
+    if (getPageLimit() != null) {
+      joiner.add(String.format("%spageLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPageLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `tasks` to the URL query string
+    if (getTasks() != null) {
+      joiner.add(getTasks().toUrlQueryString(prefix + "tasks" + suffix));
+    }
+
+    return joiner.toString();
+  }
 }
 

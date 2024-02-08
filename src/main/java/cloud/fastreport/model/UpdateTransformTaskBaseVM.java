@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.OutputFileVM;
 import cloud.fastreport.model.UpdateTaskBaseVM;
@@ -35,8 +39,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
+
+import cloud.fastreport.JSON;
 /**
  * UpdateTransformTaskBaseVM
  */
@@ -73,14 +78,12 @@ public class UpdateTransformTaskBaseVM extends UpdateTaskBaseVM {
   private JsonNullable<List<String>> transportIds = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_$_T = "$t";
-  protected String $t;
+  private String $t;
 
-  public UpdateTransformTaskBaseVM() {
-
+  public UpdateTransformTaskBaseVM() { 
   }
 
   public UpdateTransformTaskBaseVM inputFile(InputFileVM inputFile) {
-    
     this.inputFile = inputFile;
     return this;
   }
@@ -107,7 +110,6 @@ public class UpdateTransformTaskBaseVM extends UpdateTaskBaseVM {
 
   public UpdateTransformTaskBaseVM locale(String locale) {
     this.locale = JsonNullable.<String>of(locale);
-    
     return this;
   }
 
@@ -140,7 +142,6 @@ public class UpdateTransformTaskBaseVM extends UpdateTaskBaseVM {
 
 
   public UpdateTransformTaskBaseVM outputFile(OutputFileVM outputFile) {
-    
     this.outputFile = outputFile;
     return this;
   }
@@ -167,7 +168,6 @@ public class UpdateTransformTaskBaseVM extends UpdateTaskBaseVM {
 
   public UpdateTransformTaskBaseVM transportIds(List<String> transportIds) {
     this.transportIds = JsonNullable.<List<String>>of(transportIds);
-    
     return this;
   }
 
@@ -212,7 +212,6 @@ public class UpdateTransformTaskBaseVM extends UpdateTaskBaseVM {
 
 
   public UpdateTransformTaskBaseVM $t(String $t) {
-    
     this.$t = $t;
     return this;
   }
@@ -236,6 +235,7 @@ public class UpdateTransformTaskBaseVM extends UpdateTaskBaseVM {
     this.$t = $t;
   }
 
+
   @Override
   public UpdateTransformTaskBaseVM cronExpression(String cronExpression) {
     this.setCronExpression(cronExpression);
@@ -254,6 +254,9 @@ public class UpdateTransformTaskBaseVM extends UpdateTaskBaseVM {
     return this;
   }
 
+  /**
+   * Return true if this UpdateTransformTaskBaseVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -312,5 +315,68 @@ public class UpdateTransformTaskBaseVM extends UpdateTaskBaseVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `cronExpression` to the URL query string
+    if (getCronExpression() != null) {
+      joiner.add(String.format("%scronExpression%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCronExpression()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `delayedRunTime` to the URL query string
+    if (getDelayedRunTime() != null) {
+      joiner.add(String.format("%sdelayedRunTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDelayedRunTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `$t` to the URL query string
+    if (get$T() != null) {
+      joiner.add(String.format("%s$t%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(get$T()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("UpdateExportReportTaskVM", UpdateExportReportTaskVM.class);
+  mappings.put("UpdateExportTemplateTaskVM", UpdateExportTemplateTaskVM.class);
+  mappings.put("UpdatePrepareTemplateTaskVM", UpdatePrepareTemplateTaskVM.class);
+  mappings.put("UpdateTransformTaskBaseVM", UpdateTransformTaskBaseVM.class);
+  JSON.registerDiscriminator(UpdateTransformTaskBaseVM.class, "$t", mappings);
+}
 }
 

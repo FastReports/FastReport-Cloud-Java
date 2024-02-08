@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.BreadcrumbsModel;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * BreadcrumbsVM
@@ -42,12 +46,11 @@ public class BreadcrumbsVM {
   public static final String JSON_PROPERTY_BREADCRUMBS = "breadcrumbs";
   private JsonNullable<List<BreadcrumbsModel>> breadcrumbs = JsonNullable.<List<BreadcrumbsModel>>undefined();
 
-  public BreadcrumbsVM() {
+  public BreadcrumbsVM() { 
   }
 
   public BreadcrumbsVM breadcrumbs(List<BreadcrumbsModel> breadcrumbs) {
     this.breadcrumbs = JsonNullable.<List<BreadcrumbsModel>>of(breadcrumbs);
-    
     return this;
   }
 
@@ -90,6 +93,10 @@ public class BreadcrumbsVM {
     this.breadcrumbs = JsonNullable.<List<BreadcrumbsModel>>of(breadcrumbs);
   }
 
+
+  /**
+   * Return true if this BreadcrumbsVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -138,5 +145,49 @@ public class BreadcrumbsVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `breadcrumbs` to the URL query string
+    if (getBreadcrumbs() != null) {
+      for (int i = 0; i < getBreadcrumbs().size(); i++) {
+        if (getBreadcrumbs().get(i) != null) {
+          joiner.add(getBreadcrumbs().get(i).toUrlQueryString(String.format("%sbreadcrumbs%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    return joiner.toString();
+  }
 }
 

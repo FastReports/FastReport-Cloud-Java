@@ -13,13 +13,22 @@
 
 package cloud.fastreport.model;
 
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * HttpValidationProblemDetails
@@ -61,15 +70,14 @@ public class HttpValidationProblemDetails extends HashMap<String, Object> {
   public static final String JSON_PROPERTY_INSTANCE = "instance";
   private JsonNullable<String> instance = JsonNullable.<String>undefined();
 
-  public HttpValidationProblemDetails() {
-
+  public HttpValidationProblemDetails() { 
   }
 
   @JsonCreator
   public HttpValidationProblemDetails(
     @JsonProperty(JSON_PROPERTY_ERRORS) Map<String, List<String>> errors
   ) {
-    this();
+  this();
     this.errors = errors;
   }
 
@@ -90,7 +98,6 @@ public class HttpValidationProblemDetails extends HashMap<String, Object> {
 
   public HttpValidationProblemDetails type(String type) {
     this.type = JsonNullable.<String>of(type);
-    
     return this;
   }
 
@@ -124,7 +131,6 @@ public class HttpValidationProblemDetails extends HashMap<String, Object> {
 
   public HttpValidationProblemDetails title(String title) {
     this.title = JsonNullable.<String>of(title);
-    
     return this;
   }
 
@@ -158,7 +164,6 @@ public class HttpValidationProblemDetails extends HashMap<String, Object> {
 
   public HttpValidationProblemDetails status(Integer status) {
     this.status = JsonNullable.<Integer>of(status);
-    
     return this;
   }
 
@@ -192,7 +197,6 @@ public class HttpValidationProblemDetails extends HashMap<String, Object> {
 
   public HttpValidationProblemDetails detail(String detail) {
     this.detail = JsonNullable.<String>of(detail);
-    
     return this;
   }
 
@@ -226,7 +230,6 @@ public class HttpValidationProblemDetails extends HashMap<String, Object> {
 
   public HttpValidationProblemDetails instance(String instance) {
     this.instance = JsonNullable.<String>of(instance);
-    
     return this;
   }
 
@@ -257,6 +260,53 @@ public class HttpValidationProblemDetails extends HashMap<String, Object> {
     this.instance = JsonNullable.<String>of(instance);
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   * @param key the name of the property
+   * @param value the value of the property
+   * @return self reference
+   */
+  @JsonAnySetter
+  public HttpValidationProblemDetails putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) properties.
+   * @return the additional (undeclared) properties
+   */
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   * @param key the name of the property
+   * @return the additional (undeclared) property with the specified name
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
+
+  /**
+   * Return true if this HttpValidationProblemDetails object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -271,7 +321,8 @@ public class HttpValidationProblemDetails extends HashMap<String, Object> {
         equalsNullable(this.title, httpValidationProblemDetails.title) &&
         equalsNullable(this.status, httpValidationProblemDetails.status) &&
         equalsNullable(this.detail, httpValidationProblemDetails.detail) &&
-        equalsNullable(this.instance, httpValidationProblemDetails.instance) &&
+        equalsNullable(this.instance, httpValidationProblemDetails.instance)&&
+        Objects.equals(this.additionalProperties, httpValidationProblemDetails.additionalProperties) &&
         super.equals(o);
   }
 
@@ -281,7 +332,7 @@ public class HttpValidationProblemDetails extends HashMap<String, Object> {
 
   @Override
   public int hashCode() {
-    return Objects.hash(errors, hashCodeNullable(type), hashCodeNullable(title), hashCodeNullable(status), hashCodeNullable(detail), hashCodeNullable(instance), super.hashCode());
+    return Objects.hash(errors, hashCodeNullable(type), hashCodeNullable(title), hashCodeNullable(status), hashCodeNullable(detail), hashCodeNullable(instance), super.hashCode(), additionalProperties);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -302,6 +353,7 @@ public class HttpValidationProblemDetails extends HashMap<String, Object> {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("    instance: ").append(toIndentedString(instance)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -317,5 +369,64 @@ public class HttpValidationProblemDetails extends HashMap<String, Object> {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `type` to the URL query string
+    if (getType() != null) {
+      joiner.add(String.format("%stype%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `title` to the URL query string
+    if (getTitle() != null) {
+      joiner.add(String.format("%stitle%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTitle()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format("%sstatus%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `detail` to the URL query string
+    if (getDetail() != null) {
+      joiner.add(String.format("%sdetail%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDetail()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `instance` to the URL query string
+    if (getInstance() != null) {
+      joiner.add(String.format("%sinstance%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getInstance()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

@@ -13,6 +13,7 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.ApiKeyVM;
 import cloud.fastreport.model.ApiKeysVM;
 import cloud.fastreport.model.CreateApiKeyVM;
@@ -21,13 +22,12 @@ import cloud.fastreport.model.ProblemDetails;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for ApiKeysApi
@@ -43,14 +43,15 @@ public class ApiKeysApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void apiKeysCreateApiKeyTest() throws IOException {
+    public void apiKeysCreateApiKeyTest() throws ApiException {
         CreateApiKeyVM createApiKeyVM = null;
-        ApiKeyVM response = api.apiKeysCreateApiKey(createApiKeyVM);
-
+        ApiKeyVM response = 
+        api.apiKeysCreateApiKey(createApiKeyVM);
+        
         // TODO: test validations
     }
     
@@ -59,14 +60,15 @@ public class ApiKeysApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void apiKeysDeleteApiKeyTest() throws IOException {
+    public void apiKeysDeleteApiKeyTest() throws ApiException {
         DeleteApiKeyVM deleteApiKeyVM = null;
+        
         api.apiKeysDeleteApiKey(deleteApiKeyVM);
-
+        
         // TODO: test validations
     }
     
@@ -75,13 +77,14 @@ public class ApiKeysApiTest {
      *
      * Always work, it should make only 200 response (except if user is not authorized).
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void apiKeysGetApiKeysTest() throws IOException {
-        ApiKeysVM response = api.apiKeysGetApiKeys();
-
+    public void apiKeysGetApiKeysTest() throws ApiException {
+        ApiKeysVM response = 
+        api.apiKeysGetApiKeys();
+        
         // TODO: test validations
     }
     

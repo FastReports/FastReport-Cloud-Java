@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.UpdateTransformTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -35,8 +39,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
+
+import cloud.fastreport.JSON;
 /**
  * UpdatePrepareTemplateTaskVM
  */
@@ -62,13 +67,11 @@ public class UpdatePrepareTemplateTaskVM extends UpdateTransformTaskBaseVM {
   public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
   private JsonNullable<Map<String, String>> reportParameters = JsonNullable.<Map<String, String>>undefined();
 
-  public UpdatePrepareTemplateTaskVM() {
-
+  public UpdatePrepareTemplateTaskVM() { 
   }
 
   public UpdatePrepareTemplateTaskVM exportIds(List<String> exportIds) {
     this.exportIds = JsonNullable.<List<String>>of(exportIds);
-    
     return this;
   }
 
@@ -114,7 +117,6 @@ public class UpdatePrepareTemplateTaskVM extends UpdateTransformTaskBaseVM {
 
   public UpdatePrepareTemplateTaskVM pagesCount(Integer pagesCount) {
     this.pagesCount = JsonNullable.<Integer>of(pagesCount);
-    
     return this;
   }
 
@@ -150,7 +152,6 @@ public class UpdatePrepareTemplateTaskVM extends UpdateTransformTaskBaseVM {
 
   public UpdatePrepareTemplateTaskVM reportParameters(Map<String, String> reportParameters) {
     this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
-    
     return this;
   }
 
@@ -193,6 +194,7 @@ public class UpdatePrepareTemplateTaskVM extends UpdateTransformTaskBaseVM {
     this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
   }
 
+
   @Override
   public UpdatePrepareTemplateTaskVM cronExpression(String cronExpression) {
     this.setCronExpression(cronExpression);
@@ -211,6 +213,9 @@ public class UpdatePrepareTemplateTaskVM extends UpdateTransformTaskBaseVM {
     return this;
   }
 
+  /**
+   * Return true if this UpdatePrepareTemplateTaskVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -265,5 +270,65 @@ public class UpdatePrepareTemplateTaskVM extends UpdateTransformTaskBaseVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `cronExpression` to the URL query string
+    if (getCronExpression() != null) {
+      joiner.add(String.format("%scronExpression%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCronExpression()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `delayedRunTime` to the URL query string
+    if (getDelayedRunTime() != null) {
+      joiner.add(String.format("%sdelayedRunTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDelayedRunTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `$t` to the URL query string
+    if (get$T() != null) {
+      joiner.add(String.format("%s$t%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(get$T()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("UpdatePrepareTemplateTaskVM", UpdatePrepareTemplateTaskVM.class);
+  JSON.registerDiscriminator(UpdatePrepareTemplateTaskVM.class, "$t", mappings);
+}
 }
 

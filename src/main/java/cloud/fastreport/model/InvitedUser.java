@@ -13,20 +13,25 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * InvitedUser
@@ -43,12 +48,11 @@ public class InvitedUser {
   public static final String JSON_PROPERTY_INVITED_AT = "invitedAt";
   private OffsetDateTime invitedAt;
 
-  public InvitedUser() {
+  public InvitedUser() { 
   }
 
   public InvitedUser userId(String userId) {
     this.userId = JsonNullable.<String>of(userId);
-    
     return this;
   }
 
@@ -81,7 +85,6 @@ public class InvitedUser {
 
 
   public InvitedUser invitedAt(OffsetDateTime invitedAt) {
-    
     this.invitedAt = invitedAt;
     return this;
   }
@@ -105,6 +108,10 @@ public class InvitedUser {
     this.invitedAt = invitedAt;
   }
 
+
+  /**
+   * Return true if this InvitedUser object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -155,5 +162,49 @@ public class InvitedUser {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `userId` to the URL query string
+    if (getUserId() != null) {
+      joiner.add(String.format("%suserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `invitedAt` to the URL query string
+    if (getInvitedAt() != null) {
+      joiner.add(String.format("%sinvitedAt%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getInvitedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

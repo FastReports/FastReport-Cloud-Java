@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.SubscriptionPlanVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,8 +26,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * SubscriptionPeriodVM
@@ -44,11 +49,10 @@ public class SubscriptionPeriodVM {
   public static final String JSON_PROPERTY_PLAN = "plan";
   private SubscriptionPlanVM plan;
 
-  public SubscriptionPeriodVM() {
+  public SubscriptionPeriodVM() { 
   }
 
   public SubscriptionPeriodVM startTime(OffsetDateTime startTime) {
-    
     this.startTime = startTime;
     return this;
   }
@@ -74,7 +78,6 @@ public class SubscriptionPeriodVM {
 
 
   public SubscriptionPeriodVM endTime(OffsetDateTime endTime) {
-    
     this.endTime = endTime;
     return this;
   }
@@ -100,7 +103,6 @@ public class SubscriptionPeriodVM {
 
 
   public SubscriptionPeriodVM plan(SubscriptionPlanVM plan) {
-    
     this.plan = plan;
     return this;
   }
@@ -124,6 +126,10 @@ public class SubscriptionPeriodVM {
     this.plan = plan;
   }
 
+
+  /**
+   * Return true if this SubscriptionPeriodVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -165,5 +171,54 @@ public class SubscriptionPeriodVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `startTime` to the URL query string
+    if (getStartTime() != null) {
+      joiner.add(String.format("%sstartTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStartTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `endTime` to the URL query string
+    if (getEndTime() != null) {
+      joiner.add(String.format("%sendTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEndTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `plan` to the URL query string
+    if (getPlan() != null) {
+      joiner.add(getPlan().toUrlQueryString(prefix + "plan" + suffix));
+    }
+
+    return joiner.toString();
+  }
 }
 

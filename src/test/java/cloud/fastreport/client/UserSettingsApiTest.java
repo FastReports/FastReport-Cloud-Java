@@ -13,6 +13,7 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.AcceptAgreementsVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.UpdateUserSettingsVM;
@@ -20,13 +21,12 @@ import cloud.fastreport.model.UserSettingsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for UserSettingsApi
@@ -42,14 +42,15 @@ public class UserSettingsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void userSettingsAcceptAgreementsTest() throws IOException {
+    public void userSettingsAcceptAgreementsTest() throws ApiException {
         AcceptAgreementsVM acceptAgreementsVM = null;
+        
         api.userSettingsAcceptAgreements(acceptAgreementsVM);
-
+        
         // TODO: test validations
     }
     
@@ -58,13 +59,14 @@ public class UserSettingsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void userSettingsGetCurrentUserSettingsTest() throws IOException {
-        UserSettingsVM response = api.userSettingsGetCurrentUserSettings();
-
+    public void userSettingsGetCurrentUserSettingsTest() throws ApiException {
+        UserSettingsVM response = 
+        api.userSettingsGetCurrentUserSettings();
+        
         // TODO: test validations
     }
     
@@ -73,14 +75,15 @@ public class UserSettingsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void userSettingsUpdateMySettingsTest() throws IOException {
+    public void userSettingsUpdateMySettingsTest() throws ApiException {
         UpdateUserSettingsVM updateUserSettingsVM = null;
-        UserSettingsVM response = api.userSettingsUpdateMySettings(updateUserSettingsVM);
-
+        UserSettingsVM response = 
+        api.userSettingsUpdateMySettings(updateUserSettingsVM);
+        
         // TODO: test validations
     }
     

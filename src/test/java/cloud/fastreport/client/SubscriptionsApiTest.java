@@ -13,6 +13,7 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.MyPermissionsVM;
 import cloud.fastreport.model.ProblemDetails;
@@ -26,13 +27,12 @@ import cloud.fastreport.model.UpdateSubscriptionPermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for SubscriptionsApi
@@ -48,14 +48,15 @@ public class SubscriptionsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionsGetDefaultPermissionsTest() throws IOException {
+    public void subscriptionsGetDefaultPermissionsTest() throws ApiException {
         String subscriptionId = null;
-        DefaultPermissionsVM response = api.subscriptionsGetDefaultPermissions(subscriptionId);
-
+        DefaultPermissionsVM response = 
+        api.subscriptionsGetDefaultPermissions(subscriptionId);
+        
         // TODO: test validations
     }
     
@@ -64,14 +65,15 @@ public class SubscriptionsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionsGetMyPermissionsTest() throws IOException {
+    public void subscriptionsGetMyPermissionsTest() throws ApiException {
         String subId = null;
-        MyPermissionsVM response = api.subscriptionsGetMyPermissions(subId);
-
+        MyPermissionsVM response = 
+        api.subscriptionsGetMyPermissions(subId);
+        
         // TODO: test validations
     }
     
@@ -80,14 +82,15 @@ public class SubscriptionsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionsGetPermissionsTest() throws IOException {
+    public void subscriptionsGetPermissionsTest() throws ApiException {
         String id = null;
-        SubscriptionPermissionsVM response = api.subscriptionsGetPermissions(id);
-
+        SubscriptionPermissionsVM response = 
+        api.subscriptionsGetPermissions(id);
+        
         // TODO: test validations
     }
     
@@ -96,14 +99,15 @@ public class SubscriptionsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionsGetSubscriptionTest() throws IOException {
+    public void subscriptionsGetSubscriptionTest() throws ApiException {
         String id = null;
-        SubscriptionVM response = api.subscriptionsGetSubscription(id);
-
+        SubscriptionVM response = 
+        api.subscriptionsGetSubscription(id);
+        
         // TODO: test validations
     }
     
@@ -112,15 +116,16 @@ public class SubscriptionsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionsGetSubscriptionsTest() throws IOException {
+    public void subscriptionsGetSubscriptionsTest() throws ApiException {
         Integer skip = null;
         Integer take = null;
-        SubscriptionsVM response = api.subscriptionsGetSubscriptions(skip, take);
-
+        SubscriptionsVM response = 
+        api.subscriptionsGetSubscriptions(skip, take);
+        
         // TODO: test validations
     }
     
@@ -129,15 +134,16 @@ public class SubscriptionsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionsRenameSubscriptionTest() throws IOException {
+    public void subscriptionsRenameSubscriptionTest() throws ApiException {
         String subscriptionId = null;
         RenameSubscriptionVM renameSubscriptionVM = null;
-        SubscriptionVM response = api.subscriptionsRenameSubscription(subscriptionId, renameSubscriptionVM);
-
+        SubscriptionVM response = 
+        api.subscriptionsRenameSubscription(subscriptionId, renameSubscriptionVM);
+        
         // TODO: test validations
     }
     
@@ -146,15 +152,16 @@ public class SubscriptionsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionsUpdateDefaultPermissionsTest() throws IOException {
+    public void subscriptionsUpdateDefaultPermissionsTest() throws ApiException {
         String subscriptionId = null;
         UpdateDefaultPermissionsVM updateDefaultPermissionsVM = null;
-        DefaultPermissionsVM response = api.subscriptionsUpdateDefaultPermissions(subscriptionId, updateDefaultPermissionsVM);
-
+        DefaultPermissionsVM response = 
+        api.subscriptionsUpdateDefaultPermissions(subscriptionId, updateDefaultPermissionsVM);
+        
         // TODO: test validations
     }
     
@@ -163,15 +170,16 @@ public class SubscriptionsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionsUpdateLocaleTest() throws IOException {
+    public void subscriptionsUpdateLocaleTest() throws ApiException {
         String subscriptionId = null;
         UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM = null;
-        SubscriptionVM response = api.subscriptionsUpdateLocale(subscriptionId, updateSubscriptionLocaleVM);
-
+        SubscriptionVM response = 
+        api.subscriptionsUpdateLocale(subscriptionId, updateSubscriptionLocaleVM);
+        
         // TODO: test validations
     }
     
@@ -180,15 +188,16 @@ public class SubscriptionsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionsUpdatePermissionsTest() throws IOException {
+    public void subscriptionsUpdatePermissionsTest() throws ApiException {
         String id = null;
         UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM = null;
+        
         api.subscriptionsUpdatePermissions(id, updateSubscriptionPermissionsVM);
-
+        
         // TODO: test validations
     }
     

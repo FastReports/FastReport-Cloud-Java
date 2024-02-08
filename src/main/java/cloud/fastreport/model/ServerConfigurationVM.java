@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.AuthConfigVM;
 import cloud.fastreport.model.FrontendApp;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -23,12 +27,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ServerConfigurationVM
@@ -101,12 +106,11 @@ public class ServerConfigurationVM {
   public static final String JSON_PROPERTY_UPDATE_WORKSPACE_LINK = "updateWorkspaceLink";
   private JsonNullable<String> updateWorkspaceLink = JsonNullable.<String>undefined();
 
-  public ServerConfigurationVM() {
+  public ServerConfigurationVM() { 
   }
 
   public ServerConfigurationVM title(String title) {
     this.title = JsonNullable.<String>of(title);
-    
     return this;
   }
 
@@ -140,7 +144,6 @@ public class ServerConfigurationVM {
 
   public ServerConfigurationVM logoLink(String logoLink) {
     this.logoLink = JsonNullable.<String>of(logoLink);
-    
     return this;
   }
 
@@ -174,7 +177,6 @@ public class ServerConfigurationVM {
 
   public ServerConfigurationVM copyright(String copyright) {
     this.copyright = JsonNullable.<String>of(copyright);
-    
     return this;
   }
 
@@ -207,7 +209,6 @@ public class ServerConfigurationVM {
 
 
   public ServerConfigurationVM corporateServerMode(Boolean corporateServerMode) {
-    
     this.corporateServerMode = corporateServerMode;
     return this;
   }
@@ -234,7 +235,6 @@ public class ServerConfigurationVM {
 
   public ServerConfigurationVM lastSLAVersion(OffsetDateTime lastSLAVersion) {
     this.lastSLAVersion = JsonNullable.<OffsetDateTime>of(lastSLAVersion);
-    
     return this;
   }
 
@@ -267,7 +267,6 @@ public class ServerConfigurationVM {
 
 
   public ServerConfigurationVM isDisabled(Boolean isDisabled) {
-    
     this.isDisabled = isDisabled;
     return this;
   }
@@ -293,7 +292,6 @@ public class ServerConfigurationVM {
 
 
   public ServerConfigurationVM frontend(FrontendApp frontend) {
-    
     this.frontend = frontend;
     return this;
   }
@@ -320,7 +318,6 @@ public class ServerConfigurationVM {
 
   public ServerConfigurationVM invariantLocale(String invariantLocale) {
     this.invariantLocale = JsonNullable.<String>of(invariantLocale);
-    
     return this;
   }
 
@@ -353,7 +350,6 @@ public class ServerConfigurationVM {
 
 
   public ServerConfigurationVM auth(AuthConfigVM auth) {
-    
     this.auth = auth;
     return this;
   }
@@ -379,7 +375,6 @@ public class ServerConfigurationVM {
 
 
   public ServerConfigurationVM designerForAnons(Boolean designerForAnons) {
-    
     this.designerForAnons = designerForAnons;
     return this;
   }
@@ -406,7 +401,6 @@ public class ServerConfigurationVM {
 
   public ServerConfigurationVM slaLink(String slaLink) {
     this.slaLink = JsonNullable.<String>of(slaLink);
-    
     return this;
   }
 
@@ -440,7 +434,6 @@ public class ServerConfigurationVM {
 
   public ServerConfigurationVM firstStepsVideoLink(String firstStepsVideoLink) {
     this.firstStepsVideoLink = JsonNullable.<String>of(firstStepsVideoLink);
-    
     return this;
   }
 
@@ -474,7 +467,6 @@ public class ServerConfigurationVM {
 
   public ServerConfigurationVM aboutLink(String aboutLink) {
     this.aboutLink = JsonNullable.<String>of(aboutLink);
-    
     return this;
   }
 
@@ -508,7 +500,6 @@ public class ServerConfigurationVM {
 
   public ServerConfigurationVM homePageLink(String homePageLink) {
     this.homePageLink = JsonNullable.<String>of(homePageLink);
-    
     return this;
   }
 
@@ -542,7 +533,6 @@ public class ServerConfigurationVM {
 
   public ServerConfigurationVM authServerName(String authServerName) {
     this.authServerName = JsonNullable.<String>of(authServerName);
-    
     return this;
   }
 
@@ -576,7 +566,6 @@ public class ServerConfigurationVM {
 
   public ServerConfigurationVM updateWorkspaceLink(String updateWorkspaceLink) {
     this.updateWorkspaceLink = JsonNullable.<String>of(updateWorkspaceLink);
-    
     return this;
   }
 
@@ -607,6 +596,10 @@ public class ServerConfigurationVM {
     this.updateWorkspaceLink = JsonNullable.<String>of(updateWorkspaceLink);
   }
 
+
+  /**
+   * Return true if this ServerConfigurationVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -685,5 +678,119 @@ public class ServerConfigurationVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `title` to the URL query string
+    if (getTitle() != null) {
+      joiner.add(String.format("%stitle%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTitle()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `logoLink` to the URL query string
+    if (getLogoLink() != null) {
+      joiner.add(String.format("%slogoLink%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLogoLink()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `copyright` to the URL query string
+    if (getCopyright() != null) {
+      joiner.add(String.format("%scopyright%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCopyright()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `corporateServerMode` to the URL query string
+    if (getCorporateServerMode() != null) {
+      joiner.add(String.format("%scorporateServerMode%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCorporateServerMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `lastSLAVersion` to the URL query string
+    if (getLastSLAVersion() != null) {
+      joiner.add(String.format("%slastSLAVersion%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLastSLAVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `isDisabled` to the URL query string
+    if (getIsDisabled() != null) {
+      joiner.add(String.format("%sisDisabled%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsDisabled()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `frontend` to the URL query string
+    if (getFrontend() != null) {
+      joiner.add(getFrontend().toUrlQueryString(prefix + "frontend" + suffix));
+    }
+
+    // add `invariantLocale` to the URL query string
+    if (getInvariantLocale() != null) {
+      joiner.add(String.format("%sinvariantLocale%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getInvariantLocale()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `auth` to the URL query string
+    if (getAuth() != null) {
+      joiner.add(getAuth().toUrlQueryString(prefix + "auth" + suffix));
+    }
+
+    // add `designerForAnons` to the URL query string
+    if (getDesignerForAnons() != null) {
+      joiner.add(String.format("%sdesignerForAnons%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDesignerForAnons()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `slaLink` to the URL query string
+    if (getSlaLink() != null) {
+      joiner.add(String.format("%sslaLink%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSlaLink()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `firstStepsVideoLink` to the URL query string
+    if (getFirstStepsVideoLink() != null) {
+      joiner.add(String.format("%sfirstStepsVideoLink%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFirstStepsVideoLink()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `aboutLink` to the URL query string
+    if (getAboutLink() != null) {
+      joiner.add(String.format("%saboutLink%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAboutLink()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `homePageLink` to the URL query string
+    if (getHomePageLink() != null) {
+      joiner.add(String.format("%shomePageLink%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getHomePageLink()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `authServerName` to the URL query string
+    if (getAuthServerName() != null) {
+      joiner.add(String.format("%sauthServerName%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAuthServerName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `updateWorkspaceLink` to the URL query string
+    if (getUpdateWorkspaceLink() != null) {
+      joiner.add(String.format("%supdateWorkspaceLink%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUpdateWorkspaceLink()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

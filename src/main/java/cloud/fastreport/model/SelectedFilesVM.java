@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -28,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * SelectedFilesVM
@@ -69,11 +73,10 @@ public class SelectedFilesVM {
   public static final String JSON_PROPERTY_IS_BIN = "isBin";
   private Boolean isBin;
 
-  public SelectedFilesVM() {
+  public SelectedFilesVM() { 
   }
 
   public SelectedFilesVM isAllSelected(Boolean isAllSelected) {
-    
     this.isAllSelected = isAllSelected;
     return this;
   }
@@ -100,7 +103,6 @@ public class SelectedFilesVM {
 
   public SelectedFilesVM folderId(String folderId) {
     this.folderId = JsonNullable.<String>of(folderId);
-    
     return this;
   }
 
@@ -134,7 +136,6 @@ public class SelectedFilesVM {
 
   public SelectedFilesVM searchPattern(String searchPattern) {
     this.searchPattern = JsonNullable.<String>of(searchPattern);
-    
     return this;
   }
 
@@ -167,7 +168,6 @@ public class SelectedFilesVM {
 
 
   public SelectedFilesVM useRegex(Boolean useRegex) {
-    
     this.useRegex = useRegex;
     return this;
   }
@@ -194,7 +194,6 @@ public class SelectedFilesVM {
 
   public SelectedFilesVM files(List<String> files) {
     this.files = JsonNullable.<List<String>>of(files);
-    
     return this;
   }
 
@@ -240,7 +239,6 @@ public class SelectedFilesVM {
 
   public SelectedFilesVM folders(List<String> folders) {
     this.folders = JsonNullable.<List<String>>of(folders);
-    
     return this;
   }
 
@@ -286,7 +284,6 @@ public class SelectedFilesVM {
 
   public SelectedFilesVM path(String path) {
     this.path = JsonNullable.<String>of(path);
-    
     return this;
   }
 
@@ -319,7 +316,6 @@ public class SelectedFilesVM {
 
 
   public SelectedFilesVM isBin(Boolean isBin) {
-    
     this.isBin = isBin;
     return this;
   }
@@ -343,6 +339,10 @@ public class SelectedFilesVM {
     this.isBin = isBin;
   }
 
+
+  /**
+   * Return true if this SelectedFilesVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -405,5 +405,87 @@ public class SelectedFilesVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `isAllSelected` to the URL query string
+    if (getIsAllSelected() != null) {
+      joiner.add(String.format("%sisAllSelected%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsAllSelected()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `folderId` to the URL query string
+    if (getFolderId() != null) {
+      joiner.add(String.format("%sfolderId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFolderId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `searchPattern` to the URL query string
+    if (getSearchPattern() != null) {
+      joiner.add(String.format("%ssearchPattern%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSearchPattern()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `useRegex` to the URL query string
+    if (getUseRegex() != null) {
+      joiner.add(String.format("%suseRegex%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUseRegex()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `files` to the URL query string
+    if (getFiles() != null) {
+      for (int i = 0; i < getFiles().size(); i++) {
+        joiner.add(String.format("%sfiles%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(String.valueOf(getFiles().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `folders` to the URL query string
+    if (getFolders() != null) {
+      for (int i = 0; i < getFolders().size(); i++) {
+        joiner.add(String.format("%sfolders%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(String.valueOf(getFolders().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `path` to the URL query string
+    if (getPath() != null) {
+      joiner.add(String.format("%spath%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `isBin` to the URL query string
+    if (getIsBin() != null) {
+      joiner.add(String.format("%sisBin%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsBin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.SubscriptionFolder;
 import cloud.fastreport.model.SubscriptionPeriodVM;
@@ -35,8 +39,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
+
+import cloud.fastreport.JSON;
 /**
  * AdminSubscriptionVM
  */
@@ -58,12 +63,10 @@ public class AdminSubscriptionVM extends SubscriptionVM {
   public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
   private JsonNullable<String> ownerId = JsonNullable.<String>undefined();
 
-  public AdminSubscriptionVM() {
-
+  public AdminSubscriptionVM() { 
   }
 
   public AdminSubscriptionVM defaultPermissions(DefaultPermissionsVM defaultPermissions) {
-    
     this.defaultPermissions = defaultPermissions;
     return this;
   }
@@ -90,7 +93,6 @@ public class AdminSubscriptionVM extends SubscriptionVM {
 
   public AdminSubscriptionVM ownerId(String ownerId) {
     this.ownerId = JsonNullable.<String>of(ownerId);
-    
     return this;
   }
 
@@ -120,6 +122,7 @@ public class AdminSubscriptionVM extends SubscriptionVM {
   public void setOwnerId(String ownerId) {
     this.ownerId = JsonNullable.<String>of(ownerId);
   }
+
 
   @Override
   public AdminSubscriptionVM id(String id) {
@@ -169,6 +172,9 @@ public class AdminSubscriptionVM extends SubscriptionVM {
     return this;
   }
 
+  /**
+   * Return true if this AdminSubscriptionVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -221,5 +227,95 @@ public class AdminSubscriptionVM extends SubscriptionVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `locale` to the URL query string
+    if (getLocale() != null) {
+      joiner.add(String.format("%slocale%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLocale()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `current` to the URL query string
+    if (getCurrent() != null) {
+      joiner.add(getCurrent().toUrlQueryString(prefix + "current" + suffix));
+    }
+
+    // add `old` to the URL query string
+    if (getOld() != null) {
+      for (int i = 0; i < getOld().size(); i++) {
+        if (getOld().get(i) != null) {
+          joiner.add(getOld().get(i).toUrlQueryString(String.format("%sold%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `templatesFolder` to the URL query string
+    if (getTemplatesFolder() != null) {
+      joiner.add(getTemplatesFolder().toUrlQueryString(prefix + "templatesFolder" + suffix));
+    }
+
+    // add `reportsFolder` to the URL query string
+    if (getReportsFolder() != null) {
+      joiner.add(getReportsFolder().toUrlQueryString(prefix + "reportsFolder" + suffix));
+    }
+
+    // add `exportsFolder` to the URL query string
+    if (getExportsFolder() != null) {
+      joiner.add(getExportsFolder().toUrlQueryString(prefix + "exportsFolder" + suffix));
+    }
+
+    // add `$t` to the URL query string
+    if (get$T() != null) {
+      joiner.add(String.format("%s$t%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(get$T()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("AdminSubscriptionVM", AdminSubscriptionVM.class);
+  JSON.registerDiscriminator(AdminSubscriptionVM.class, "$t", mappings);
+}
 }
 

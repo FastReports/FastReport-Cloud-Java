@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.UpdateTransportTaskBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -41,6 +42,22 @@ public class UpdateFTPUploadTaskVMTest {
     }
 
     /**
+     * Test the property 'inputFile'
+     */
+    @Test
+    public void inputFileTest() {
+        // TODO: test inputFile
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
+    }
+
+    /**
      * Test the property 'cronExpression'
      */
     @Test
@@ -62,14 +79,6 @@ public class UpdateFTPUploadTaskVMTest {
     @Test
     public void nameTest() {
         // TODO: test name
-    }
-
-    /**
-     * Test the property '$t'
-     */
-    @Test
-    public void $tTest() {
-        // TODO: test $t
     }
 
 }

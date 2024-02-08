@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.RunInputFileVM;
 import cloud.fastreport.model.RunTransportTaskBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -174,8 +175,9 @@ public class RunWebhookTaskVM extends RunTransportTaskBaseVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("subscriptionId");
+    openapiFields.add("inputFile");
     openapiFields.add("$t");
+    openapiFields.add("subscriptionId");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.TransportTaskBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -40,6 +41,22 @@ public class EmailTaskVMTest {
     @Test
     public void testEmailTaskVM() {
         // TODO: test EmailTaskVM
+    }
+
+    /**
+     * Test the property 'inputFile'
+     */
+    @Test
+    public void inputFileTest() {
+        // TODO: test inputFile
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
     /**
@@ -104,14 +121,6 @@ public class EmailTaskVMTest {
     @Test
     public void subscriptionIdTest() {
         // TODO: test subscriptionId
-    }
-
-    /**
-     * Test the property '$t'
-     */
-    @Test
-    public void $tTest() {
-        // TODO: test $t
     }
 
 }

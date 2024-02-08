@@ -14,6 +14,10 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.CreateExportReportTaskVM;
+import cloud.fastreport.model.CreateTransportTaskBaseVM;
+import cloud.fastreport.model.ExportFormat;
+import cloud.fastreport.model.InputFileVM;
+import cloud.fastreport.model.OutputFileVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -21,8 +25,10 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
@@ -40,6 +46,70 @@ public class CreateExportTemplateTaskVMTest {
     @Test
     public void testCreateExportTemplateTaskVM() {
         // TODO: test CreateExportTemplateTaskVM
+    }
+
+    /**
+     * Test the property 'exportParameters'
+     */
+    @Test
+    public void exportParametersTest() {
+        // TODO: test exportParameters
+    }
+
+    /**
+     * Test the property 'format'
+     */
+    @Test
+    public void formatTest() {
+        // TODO: test format
+    }
+
+    /**
+     * Test the property 'pagesCount'
+     */
+    @Test
+    public void pagesCountTest() {
+        // TODO: test pagesCount
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
+    }
+
+    /**
+     * Test the property 'inputFile'
+     */
+    @Test
+    public void inputFileTest() {
+        // TODO: test inputFile
+    }
+
+    /**
+     * Test the property 'locale'
+     */
+    @Test
+    public void localeTest() {
+        // TODO: test locale
+    }
+
+    /**
+     * Test the property 'outputFile'
+     */
+    @Test
+    public void outputFileTest() {
+        // TODO: test outputFile
+    }
+
+    /**
+     * Test the property 'transports'
+     */
+    @Test
+    public void transportsTest() {
+        // TODO: test transports
     }
 
     /**
@@ -72,14 +142,6 @@ public class CreateExportTemplateTaskVMTest {
     @Test
     public void subscriptionIdTest() {
         // TODO: test subscriptionId
-    }
-
-    /**
-     * Test the property '$t'
-     */
-    @Test
-    public void $tTest() {
-        // TODO: test $t
     }
 
 }

@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CreateGroupVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,20 +52,13 @@ import cloud.fastreport.JSON;
  * CreateGroupAdminVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateGroupAdminVM {
+public class CreateGroupAdminVM extends CreateGroupVM {
   public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
-  public static final String SERIALIZED_NAME_SUBSCRIPTION_ID = "subscriptionId";
-  @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_ID)
-  private String subscriptionId;
-
   public CreateGroupAdminVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public CreateGroupAdminVM ownerId(String ownerId) {
@@ -86,44 +80,6 @@ public class CreateGroupAdminVM {
   }
 
 
-  public CreateGroupAdminVM name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nonnull
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public CreateGroupAdminVM subscriptionId(String subscriptionId) {
-    this.subscriptionId = subscriptionId;
-    return this;
-  }
-
-   /**
-   * Get subscriptionId
-   * @return subscriptionId
-  **/
-  @javax.annotation.Nullable
-  public String getSubscriptionId() {
-    return subscriptionId;
-  }
-
-  public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = subscriptionId;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -135,8 +91,7 @@ public class CreateGroupAdminVM {
     }
     CreateGroupAdminVM createGroupAdminVM = (CreateGroupAdminVM) o;
     return Objects.equals(this.ownerId, createGroupAdminVM.ownerId) &&
-        Objects.equals(this.name, createGroupAdminVM.name) &&
-        Objects.equals(this.subscriptionId, createGroupAdminVM.subscriptionId);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -145,7 +100,7 @@ public class CreateGroupAdminVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, name, subscriptionId);
+    return Objects.hash(ownerId, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -159,9 +114,8 @@ public class CreateGroupAdminVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateGroupAdminVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -186,10 +140,12 @@ public class CreateGroupAdminVM {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("subscriptionId");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("name");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -218,16 +174,6 @@ public class CreateGroupAdminVM {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("ownerId") != null && !jsonObj.get("ownerId").isJsonNull()) && !jsonObj.get("ownerId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ownerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerId").toString()));
-      }
-      if (!jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if ((jsonObj.get("subscriptionId") != null && !jsonObj.get("subscriptionId").isJsonNull()) && !jsonObj.get("subscriptionId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `subscriptionId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subscriptionId").toString()));
       }
   }
 

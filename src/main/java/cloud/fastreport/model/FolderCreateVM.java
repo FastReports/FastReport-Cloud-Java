@@ -66,7 +66,12 @@ public class FolderCreateVM {
   @SerializedName(SERIALIZED_NAME_ICON)
   private byte[] icon;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public FolderCreateVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public FolderCreateVM name(String name) {
@@ -134,6 +139,25 @@ public class FolderCreateVM {
   }
 
 
+  public FolderCreateVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -146,7 +170,8 @@ public class FolderCreateVM {
     FolderCreateVM folderCreateVM = (FolderCreateVM) o;
     return Objects.equals(this.name, folderCreateVM.name) &&
         Objects.equals(this.tags, folderCreateVM.tags) &&
-        Arrays.equals(this.icon, folderCreateVM.icon);
+        Arrays.equals(this.icon, folderCreateVM.icon) &&
+        Objects.equals(this.$t, folderCreateVM.$t);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -155,7 +180,7 @@ public class FolderCreateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, tags, Arrays.hashCode(icon));
+    return Objects.hash(name, tags, Arrays.hashCode(icon), $t);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -172,6 +197,7 @@ public class FolderCreateVM {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -197,9 +223,11 @@ public class FolderCreateVM {
     openapiFields.add("name");
     openapiFields.add("tags");
     openapiFields.add("icon");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -215,51 +243,37 @@ public class FolderCreateVM {
         }
       }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!FolderCreateVM.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FolderCreateVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
+      String discriminatorValue = jsonElement.getAsJsonObject().get("$t").getAsString();
+      switch (discriminatorValue) {
+        case "AdminExportFolderCreateVM":
+          AdminExportFolderCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "AdminFolderCreateVM":
+          AdminFolderCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "AdminReportFolderCreateVM":
+          AdminReportFolderCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "AdminTemplateFolderCreateVM":
+          AdminTemplateFolderCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "ExportFolderCreateVM":
+          ExportFolderCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "FolderCreateVM":
+          FolderCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "ReportFolderCreateVM":
+          ReportFolderCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "TemplateFolderCreateVM":
+          TemplateFolderCreateVM.validateJsonElement(jsonElement);
+          break;
+        default:
+          throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!FolderCreateVM.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'FolderCreateVM' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<FolderCreateVM> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(FolderCreateVM.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<FolderCreateVM>() {
-           @Override
-           public void write(JsonWriter out, FolderCreateVM value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public FolderCreateVM read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
 
  /**
   * Create an instance of FolderCreateVM given an JSON string

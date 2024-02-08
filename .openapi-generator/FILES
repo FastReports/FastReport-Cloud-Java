@@ -78,7 +78,6 @@ docs/DeleteApiKeyVM.md
 docs/DownloadApi.md
 docs/EmailTaskVM.md
 docs/EntityType.md
-docs/EntityVM.md
 docs/ExportCreateAdminVM.md
 docs/ExportCreateVM.md
 docs/ExportFolderCreateVM.md
@@ -375,7 +374,6 @@ src/main/java/cloud/fastreport/model/DefaultPermissionsVM.java
 src/main/java/cloud/fastreport/model/DeleteApiKeyVM.java
 src/main/java/cloud/fastreport/model/EmailTaskVM.java
 src/main/java/cloud/fastreport/model/EntityType.java
-src/main/java/cloud/fastreport/model/EntityVM.java
 src/main/java/cloud/fastreport/model/ExportCreateAdminVM.java
 src/main/java/cloud/fastreport/model/ExportCreateVM.java
 src/main/java/cloud/fastreport/model/ExportFolderCreateVM.java
@@ -630,7 +628,6 @@ src/test/java/cloud/fastreport/model/DefaultPermissionsVMTest.java
 src/test/java/cloud/fastreport/model/DeleteApiKeyVMTest.java
 src/test/java/cloud/fastreport/model/EmailTaskVMTest.java
 src/test/java/cloud/fastreport/model/EntityTypeTest.java
-src/test/java/cloud/fastreport/model/EntityVMTest.java
 src/test/java/cloud/fastreport/model/ExportCreateAdminVMTest.java
 src/test/java/cloud/fastreport/model/ExportCreateVMTest.java
 src/test/java/cloud/fastreport/model/ExportFolderCreateVMTest.java

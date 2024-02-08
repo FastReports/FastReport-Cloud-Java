@@ -11,6 +11,7 @@
 |**connectionString** | **String** |  |  |
 |**subscriptionId** | **String** |  |  |
 |**connectionType** | **DataSourceConnectionType** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

@@ -69,7 +69,12 @@ public class CreateDataSourceVM {
   @SerializedName(SERIALIZED_NAME_CONNECTION_TYPE)
   private DataSourceConnectionType connectionType;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public CreateDataSourceVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public CreateDataSourceVM name(String name) {
@@ -148,6 +153,25 @@ public class CreateDataSourceVM {
   }
 
 
+  public CreateDataSourceVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -161,7 +185,8 @@ public class CreateDataSourceVM {
     return Objects.equals(this.name, createDataSourceVM.name) &&
         Objects.equals(this.connectionString, createDataSourceVM.connectionString) &&
         Objects.equals(this.subscriptionId, createDataSourceVM.subscriptionId) &&
-        Objects.equals(this.connectionType, createDataSourceVM.connectionType);
+        Objects.equals(this.connectionType, createDataSourceVM.connectionType) &&
+        Objects.equals(this.$t, createDataSourceVM.$t);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -170,7 +195,7 @@ public class CreateDataSourceVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, connectionString, subscriptionId, connectionType);
+    return Objects.hash(name, connectionString, subscriptionId, connectionType, $t);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -188,6 +213,7 @@ public class CreateDataSourceVM {
     sb.append("    connectionString: ").append(toIndentedString(connectionString)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    connectionType: ").append(toIndentedString(connectionType)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -214,11 +240,13 @@ public class CreateDataSourceVM {
     openapiFields.add("connectionString");
     openapiFields.add("subscriptionId");
     openapiFields.add("connectionType");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("connectionString");
     openapiRequiredFields.add("subscriptionId");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -234,64 +262,19 @@ public class CreateDataSourceVM {
         }
       }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreateDataSourceVM.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateDataSourceVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreateDataSourceVM.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if (!jsonObj.get("connectionString").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `connectionString` to be a primitive type in the JSON string but got `%s`", jsonObj.get("connectionString").toString()));
-      }
-      if (!jsonObj.get("subscriptionId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `subscriptionId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subscriptionId").toString()));
-      }
-      // validate the optional field `connectionType`
-      if (jsonObj.get("connectionType") != null && !jsonObj.get("connectionType").isJsonNull()) {
-        DataSourceConnectionType.validateJsonElement(jsonObj.get("connectionType"));
+      String discriminatorValue = jsonElement.getAsJsonObject().get("$t").getAsString();
+      switch (discriminatorValue) {
+        case "CreateDataSourceAdminVM":
+          CreateDataSourceAdminVM.validateJsonElement(jsonElement);
+          break;
+        case "CreateDataSourceVM":
+          CreateDataSourceVM.validateJsonElement(jsonElement);
+          break;
+        default:
+          throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CreateDataSourceVM.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CreateDataSourceVM' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CreateDataSourceVM> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CreateDataSourceVM.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<CreateDataSourceVM>() {
-           @Override
-           public void write(JsonWriter out, CreateDataSourceVM value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public CreateDataSourceVM read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
 
  /**
   * Create an instance of CreateDataSourceVM given an JSON string

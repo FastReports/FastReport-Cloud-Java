@@ -14,6 +14,9 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.FileStatus;
+import cloud.fastreport.model.FileStatusReason;
+import cloud.fastreport.model.FileType;
 import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.ReportInfo;
 import com.google.gson.TypeAdapter;
@@ -23,7 +26,9 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -170,6 +175,17 @@ public class ReportVM extends FileVM {
     openapiFields.add("creatorUserId");
     openapiFields.add("editedTime");
     openapiFields.add("editorUserId");
+    openapiFields.add("name");
+    openapiFields.add("parentId");
+    openapiFields.add("tags");
+    openapiFields.add("icon");
+    openapiFields.add("type");
+    openapiFields.add("size");
+    openapiFields.add("subscriptionId");
+    openapiFields.add("status");
+    openapiFields.add("statusReason");
+    openapiFields.add("errorMessage");
+    openapiFields.add("isDeleted");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)

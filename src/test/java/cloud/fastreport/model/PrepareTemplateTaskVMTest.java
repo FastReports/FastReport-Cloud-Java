@@ -13,6 +13,8 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.InputFileVM;
+import cloud.fastreport.model.OutputFileVM;
 import cloud.fastreport.model.TransformTaskBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -42,6 +44,46 @@ public class PrepareTemplateTaskVMTest {
     @Test
     public void testPrepareTemplateTaskVM() {
         // TODO: test PrepareTemplateTaskVM
+    }
+
+    /**
+     * Test the property 'inputFile'
+     */
+    @Test
+    public void inputFileTest() {
+        // TODO: test inputFile
+    }
+
+    /**
+     * Test the property 'locale'
+     */
+    @Test
+    public void localeTest() {
+        // TODO: test locale
+    }
+
+    /**
+     * Test the property 'outputFile'
+     */
+    @Test
+    public void outputFileTest() {
+        // TODO: test outputFile
+    }
+
+    /**
+     * Test the property 'transportIds'
+     */
+    @Test
+    public void transportIdsTest() {
+        // TODO: test transportIds
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
     /**
@@ -106,14 +148,6 @@ public class PrepareTemplateTaskVMTest {
     @Test
     public void subscriptionIdTest() {
         // TODO: test subscriptionId
-    }
-
-    /**
-     * Test the property '$t'
-     */
-    @Test
-    public void $tTest() {
-        // TODO: test $t
     }
 
 }

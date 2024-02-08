@@ -14,7 +14,6 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
-import cloud.fastreport.model.EntityVM;
 import cloud.fastreport.model.FileStatus;
 import cloud.fastreport.model.FileStatusReason;
 import cloud.fastreport.model.FileType;
@@ -58,7 +57,27 @@ import cloud.fastreport.JSON;
  * FileVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FileVM extends EntityVM {
+public class FileVM {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
+  public static final String SERIALIZED_NAME_CREATED_TIME = "createdTime";
+  @SerializedName(SERIALIZED_NAME_CREATED_TIME)
+  private OffsetDateTime createdTime;
+
+  public static final String SERIALIZED_NAME_CREATOR_USER_ID = "creatorUserId";
+  @SerializedName(SERIALIZED_NAME_CREATOR_USER_ID)
+  private String creatorUserId;
+
+  public static final String SERIALIZED_NAME_EDITED_TIME = "editedTime";
+  @SerializedName(SERIALIZED_NAME_EDITED_TIME)
+  private OffsetDateTime editedTime;
+
+  public static final String SERIALIZED_NAME_EDITOR_USER_ID = "editorUserId";
+  @SerializedName(SERIALIZED_NAME_EDITOR_USER_ID)
+  private String editorUserId;
+
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
@@ -110,6 +129,101 @@ public class FileVM extends EntityVM {
   public FileVM() {
     this.$t = this.getClass().getSimpleName();
   }
+
+  public FileVM id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
+  public FileVM createdTime(OffsetDateTime createdTime) {
+    this.createdTime = createdTime;
+    return this;
+  }
+
+   /**
+   * Get createdTime
+   * @return createdTime
+  **/
+  @javax.annotation.Nullable
+  public OffsetDateTime getCreatedTime() {
+    return createdTime;
+  }
+
+  public void setCreatedTime(OffsetDateTime createdTime) {
+    this.createdTime = createdTime;
+  }
+
+
+  public FileVM creatorUserId(String creatorUserId) {
+    this.creatorUserId = creatorUserId;
+    return this;
+  }
+
+   /**
+   * Get creatorUserId
+   * @return creatorUserId
+  **/
+  @javax.annotation.Nullable
+  public String getCreatorUserId() {
+    return creatorUserId;
+  }
+
+  public void setCreatorUserId(String creatorUserId) {
+    this.creatorUserId = creatorUserId;
+  }
+
+
+  public FileVM editedTime(OffsetDateTime editedTime) {
+    this.editedTime = editedTime;
+    return this;
+  }
+
+   /**
+   * Get editedTime
+   * @return editedTime
+  **/
+  @javax.annotation.Nullable
+  public OffsetDateTime getEditedTime() {
+    return editedTime;
+  }
+
+  public void setEditedTime(OffsetDateTime editedTime) {
+    this.editedTime = editedTime;
+  }
+
+
+  public FileVM editorUserId(String editorUserId) {
+    this.editorUserId = editorUserId;
+    return this;
+  }
+
+   /**
+   * Get editorUserId
+   * @return editorUserId
+  **/
+  @javax.annotation.Nullable
+  public String getEditorUserId() {
+    return editorUserId;
+  }
+
+  public void setEditorUserId(String editorUserId) {
+    this.editorUserId = editorUserId;
+  }
+
 
   public FileVM name(String name) {
     this.name = name;
@@ -357,7 +471,12 @@ public class FileVM extends EntityVM {
       return false;
     }
     FileVM fileVM = (FileVM) o;
-    return Objects.equals(this.name, fileVM.name) &&
+    return Objects.equals(this.id, fileVM.id) &&
+        Objects.equals(this.createdTime, fileVM.createdTime) &&
+        Objects.equals(this.creatorUserId, fileVM.creatorUserId) &&
+        Objects.equals(this.editedTime, fileVM.editedTime) &&
+        Objects.equals(this.editorUserId, fileVM.editorUserId) &&
+        Objects.equals(this.name, fileVM.name) &&
         Objects.equals(this.parentId, fileVM.parentId) &&
         Objects.equals(this.tags, fileVM.tags) &&
         Arrays.equals(this.icon, fileVM.icon) &&
@@ -368,8 +487,7 @@ public class FileVM extends EntityVM {
         Objects.equals(this.statusReason, fileVM.statusReason) &&
         Objects.equals(this.errorMessage, fileVM.errorMessage) &&
         Objects.equals(this.isDeleted, fileVM.isDeleted) &&
-        Objects.equals(this.$t, fileVM.$t) &&
-        super.equals(o);
+        Objects.equals(this.$t, fileVM.$t);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -378,7 +496,7 @@ public class FileVM extends EntityVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, parentId, tags, Arrays.hashCode(icon), type, size, subscriptionId, status, statusReason, errorMessage, isDeleted, $t, super.hashCode());
+    return Objects.hash(id, createdTime, creatorUserId, editedTime, editorUserId, name, parentId, tags, Arrays.hashCode(icon), type, size, subscriptionId, status, statusReason, errorMessage, isDeleted, $t);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -392,7 +510,11 @@ public class FileVM extends EntityVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FileVM {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
+    sb.append("    creatorUserId: ").append(toIndentedString(creatorUserId)).append("\n");
+    sb.append("    editedTime: ").append(toIndentedString(editedTime)).append("\n");
+    sb.append("    editorUserId: ").append(toIndentedString(editorUserId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
@@ -432,6 +554,17 @@ public class FileVM extends EntityVM {
     openapiFields.add("creatorUserId");
     openapiFields.add("editedTime");
     openapiFields.add("editorUserId");
+    openapiFields.add("name");
+    openapiFields.add("parentId");
+    openapiFields.add("tags");
+    openapiFields.add("icon");
+    openapiFields.add("type");
+    openapiFields.add("size");
+    openapiFields.add("subscriptionId");
+    openapiFields.add("status");
+    openapiFields.add("statusReason");
+    openapiFields.add("errorMessage");
+    openapiFields.add("isDeleted");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)

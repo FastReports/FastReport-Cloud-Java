@@ -70,7 +70,12 @@ public class FileCreateVM {
   @SerializedName(SERIALIZED_NAME_CONTENT)
   private byte[] content;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public FileCreateVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public FileCreateVM name(String name) {
@@ -157,6 +162,25 @@ public class FileCreateVM {
   }
 
 
+  public FileCreateVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -170,7 +194,8 @@ public class FileCreateVM {
     return Objects.equals(this.name, fileCreateVM.name) &&
         Objects.equals(this.tags, fileCreateVM.tags) &&
         Arrays.equals(this.icon, fileCreateVM.icon) &&
-        Arrays.equals(this.content, fileCreateVM.content);
+        Arrays.equals(this.content, fileCreateVM.content) &&
+        Objects.equals(this.$t, fileCreateVM.$t);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -179,7 +204,7 @@ public class FileCreateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, tags, Arrays.hashCode(icon), Arrays.hashCode(content));
+    return Objects.hash(name, tags, Arrays.hashCode(icon), Arrays.hashCode(content), $t);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -197,6 +222,7 @@ public class FileCreateVM {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -223,9 +249,11 @@ public class FileCreateVM {
     openapiFields.add("tags");
     openapiFields.add("icon");
     openapiFields.add("content");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -241,51 +269,34 @@ public class FileCreateVM {
         }
       }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!FileCreateVM.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FileCreateVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
+      String discriminatorValue = jsonElement.getAsJsonObject().get("$t").getAsString();
+      switch (discriminatorValue) {
+        case "ExportCreateAdminVM":
+          ExportCreateAdminVM.validateJsonElement(jsonElement);
+          break;
+        case "ExportCreateVM":
+          ExportCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "FileCreateVM":
+          FileCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "ReportCreateAdminVM":
+          ReportCreateAdminVM.validateJsonElement(jsonElement);
+          break;
+        case "ReportCreateVM":
+          ReportCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "TemplateCreateAdminVM":
+          TemplateCreateAdminVM.validateJsonElement(jsonElement);
+          break;
+        case "TemplateCreateVM":
+          TemplateCreateVM.validateJsonElement(jsonElement);
+          break;
+        default:
+          throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!FileCreateVM.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'FileCreateVM' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<FileCreateVM> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(FileCreateVM.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<FileCreateVM>() {
-           @Override
-           public void write(JsonWriter out, FileCreateVM value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public FileCreateVM read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
 
  /**
   * Create an instance of FileCreateVM given an JSON string

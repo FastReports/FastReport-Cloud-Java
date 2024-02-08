@@ -17,6 +17,7 @@ import java.util.Objects;
 import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.SubscriptionFolder;
 import cloud.fastreport.model.SubscriptionPeriodVM;
+import cloud.fastreport.model.SubscriptionVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -56,7 +57,7 @@ import cloud.fastreport.JSON;
  * AdminSubscriptionVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AdminSubscriptionVM {
+public class AdminSubscriptionVM extends SubscriptionVM {
   public static final String SERIALIZED_NAME_DEFAULT_PERMISSIONS = "defaultPermissions";
   @SerializedName(SERIALIZED_NAME_DEFAULT_PERMISSIONS)
   private DefaultPermissionsVM defaultPermissions;
@@ -65,39 +66,8 @@ public class AdminSubscriptionVM {
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
-
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
-  public static final String SERIALIZED_NAME_LOCALE = "locale";
-  @SerializedName(SERIALIZED_NAME_LOCALE)
-  private String locale;
-
-  public static final String SERIALIZED_NAME_CURRENT = "current";
-  @SerializedName(SERIALIZED_NAME_CURRENT)
-  private SubscriptionPeriodVM current;
-
-  public static final String SERIALIZED_NAME_OLD = "old";
-  @SerializedName(SERIALIZED_NAME_OLD)
-  private List<SubscriptionPeriodVM> old;
-
-  public static final String SERIALIZED_NAME_TEMPLATES_FOLDER = "templatesFolder";
-  @SerializedName(SERIALIZED_NAME_TEMPLATES_FOLDER)
-  private SubscriptionFolder templatesFolder;
-
-  public static final String SERIALIZED_NAME_REPORTS_FOLDER = "reportsFolder";
-  @SerializedName(SERIALIZED_NAME_REPORTS_FOLDER)
-  private SubscriptionFolder reportsFolder;
-
-  public static final String SERIALIZED_NAME_EXPORTS_FOLDER = "exportsFolder";
-  @SerializedName(SERIALIZED_NAME_EXPORTS_FOLDER)
-  private SubscriptionFolder exportsFolder;
-
   public AdminSubscriptionVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public AdminSubscriptionVM defaultPermissions(DefaultPermissionsVM defaultPermissions) {
@@ -138,166 +108,6 @@ public class AdminSubscriptionVM {
   }
 
 
-  public AdminSubscriptionVM id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public AdminSubscriptionVM name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public AdminSubscriptionVM locale(String locale) {
-    this.locale = locale;
-    return this;
-  }
-
-   /**
-   * Get locale
-   * @return locale
-  **/
-  @javax.annotation.Nullable
-  public String getLocale() {
-    return locale;
-  }
-
-  public void setLocale(String locale) {
-    this.locale = locale;
-  }
-
-
-  public AdminSubscriptionVM current(SubscriptionPeriodVM current) {
-    this.current = current;
-    return this;
-  }
-
-   /**
-   * Get current
-   * @return current
-  **/
-  @javax.annotation.Nullable
-  public SubscriptionPeriodVM getCurrent() {
-    return current;
-  }
-
-  public void setCurrent(SubscriptionPeriodVM current) {
-    this.current = current;
-  }
-
-
-  public AdminSubscriptionVM old(List<SubscriptionPeriodVM> old) {
-    this.old = old;
-    return this;
-  }
-
-  public AdminSubscriptionVM addOldItem(SubscriptionPeriodVM oldItem) {
-    if (this.old == null) {
-      this.old = new ArrayList<>();
-    }
-    this.old.add(oldItem);
-    return this;
-  }
-
-   /**
-   * Get old
-   * @return old
-  **/
-  @javax.annotation.Nullable
-  public List<SubscriptionPeriodVM> getOld() {
-    return old;
-  }
-
-  public void setOld(List<SubscriptionPeriodVM> old) {
-    this.old = old;
-  }
-
-
-  public AdminSubscriptionVM templatesFolder(SubscriptionFolder templatesFolder) {
-    this.templatesFolder = templatesFolder;
-    return this;
-  }
-
-   /**
-   * Get templatesFolder
-   * @return templatesFolder
-  **/
-  @javax.annotation.Nullable
-  public SubscriptionFolder getTemplatesFolder() {
-    return templatesFolder;
-  }
-
-  public void setTemplatesFolder(SubscriptionFolder templatesFolder) {
-    this.templatesFolder = templatesFolder;
-  }
-
-
-  public AdminSubscriptionVM reportsFolder(SubscriptionFolder reportsFolder) {
-    this.reportsFolder = reportsFolder;
-    return this;
-  }
-
-   /**
-   * Get reportsFolder
-   * @return reportsFolder
-  **/
-  @javax.annotation.Nullable
-  public SubscriptionFolder getReportsFolder() {
-    return reportsFolder;
-  }
-
-  public void setReportsFolder(SubscriptionFolder reportsFolder) {
-    this.reportsFolder = reportsFolder;
-  }
-
-
-  public AdminSubscriptionVM exportsFolder(SubscriptionFolder exportsFolder) {
-    this.exportsFolder = exportsFolder;
-    return this;
-  }
-
-   /**
-   * Get exportsFolder
-   * @return exportsFolder
-  **/
-  @javax.annotation.Nullable
-  public SubscriptionFolder getExportsFolder() {
-    return exportsFolder;
-  }
-
-  public void setExportsFolder(SubscriptionFolder exportsFolder) {
-    this.exportsFolder = exportsFolder;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -310,14 +120,7 @@ public class AdminSubscriptionVM {
     AdminSubscriptionVM adminSubscriptionVM = (AdminSubscriptionVM) o;
     return Objects.equals(this.defaultPermissions, adminSubscriptionVM.defaultPermissions) &&
         Objects.equals(this.ownerId, adminSubscriptionVM.ownerId) &&
-        Objects.equals(this.id, adminSubscriptionVM.id) &&
-        Objects.equals(this.name, adminSubscriptionVM.name) &&
-        Objects.equals(this.locale, adminSubscriptionVM.locale) &&
-        Objects.equals(this.current, adminSubscriptionVM.current) &&
-        Objects.equals(this.old, adminSubscriptionVM.old) &&
-        Objects.equals(this.templatesFolder, adminSubscriptionVM.templatesFolder) &&
-        Objects.equals(this.reportsFolder, adminSubscriptionVM.reportsFolder) &&
-        Objects.equals(this.exportsFolder, adminSubscriptionVM.exportsFolder);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -326,7 +129,7 @@ public class AdminSubscriptionVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultPermissions, ownerId, id, name, locale, current, old, templatesFolder, reportsFolder, exportsFolder);
+    return Objects.hash(defaultPermissions, ownerId, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -340,16 +143,9 @@ public class AdminSubscriptionVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AdminSubscriptionVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    defaultPermissions: ").append(toIndentedString(defaultPermissions)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
-    sb.append("    current: ").append(toIndentedString(current)).append("\n");
-    sb.append("    old: ").append(toIndentedString(old)).append("\n");
-    sb.append("    templatesFolder: ").append(toIndentedString(templatesFolder)).append("\n");
-    sb.append("    reportsFolder: ").append(toIndentedString(reportsFolder)).append("\n");
-    sb.append("    exportsFolder: ").append(toIndentedString(exportsFolder)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -380,9 +176,11 @@ public class AdminSubscriptionVM {
     openapiFields.add("templatesFolder");
     openapiFields.add("reportsFolder");
     openapiFields.add("exportsFolder");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -405,52 +203,12 @@ public class AdminSubscriptionVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AdminSubscriptionVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `defaultPermissions`
-      if (jsonObj.get("defaultPermissions") != null && !jsonObj.get("defaultPermissions").isJsonNull()) {
-        DefaultPermissionsVM.validateJsonElement(jsonObj.get("defaultPermissions"));
-      }
-      if ((jsonObj.get("ownerId") != null && !jsonObj.get("ownerId").isJsonNull()) && !jsonObj.get("ownerId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ownerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerId").toString()));
-      }
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if ((jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull()) && !jsonObj.get("locale").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `locale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("locale").toString()));
-      }
-      // validate the optional field `current`
-      if (jsonObj.get("current") != null && !jsonObj.get("current").isJsonNull()) {
-        SubscriptionPeriodVM.validateJsonElement(jsonObj.get("current"));
-      }
-      if (jsonObj.get("old") != null && !jsonObj.get("old").isJsonNull()) {
-        JsonArray jsonArrayold = jsonObj.getAsJsonArray("old");
-        if (jsonArrayold != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("old").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `old` to be an array in the JSON string but got `%s`", jsonObj.get("old").toString()));
-          }
 
-          // validate the optional field `old` (array)
-          for (int i = 0; i < jsonArrayold.size(); i++) {
-            SubscriptionPeriodVM.validateJsonElement(jsonArrayold.get(i));
-          };
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : AdminSubscriptionVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
-      }
-      // validate the optional field `templatesFolder`
-      if (jsonObj.get("templatesFolder") != null && !jsonObj.get("templatesFolder").isJsonNull()) {
-        SubscriptionFolder.validateJsonElement(jsonObj.get("templatesFolder"));
-      }
-      // validate the optional field `reportsFolder`
-      if (jsonObj.get("reportsFolder") != null && !jsonObj.get("reportsFolder").isJsonNull()) {
-        SubscriptionFolder.validateJsonElement(jsonObj.get("reportsFolder"));
-      }
-      // validate the optional field `exportsFolder`
-      if (jsonObj.get("exportsFolder") != null && !jsonObj.get("exportsFolder").isJsonNull()) {
-        SubscriptionFolder.validateJsonElement(jsonObj.get("exportsFolder"));
       }
   }
 

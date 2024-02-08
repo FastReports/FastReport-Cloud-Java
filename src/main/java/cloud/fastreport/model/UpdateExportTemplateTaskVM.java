@@ -14,6 +14,9 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.ExportFormat;
+import cloud.fastreport.model.InputFileVM;
+import cloud.fastreport.model.OutputFileVM;
 import cloud.fastreport.model.UpdateExportReportTaskVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -22,8 +25,10 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -149,10 +154,17 @@ public class UpdateExportTemplateTaskVM extends UpdateExportReportTaskVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("exportParameters");
+    openapiFields.add("format");
+    openapiFields.add("pagesCount");
+    openapiFields.add("$t");
+    openapiFields.add("inputFile");
+    openapiFields.add("locale");
+    openapiFields.add("outputFile");
+    openapiFields.add("transportIds");
     openapiFields.add("cronExpression");
     openapiFields.add("delayedRunTime");
     openapiFields.add("name");
-    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

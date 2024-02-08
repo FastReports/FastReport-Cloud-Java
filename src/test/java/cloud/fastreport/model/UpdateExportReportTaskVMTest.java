@@ -14,6 +14,8 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.ExportFormat;
+import cloud.fastreport.model.InputFileVM;
+import cloud.fastreport.model.OutputFileVM;
 import cloud.fastreport.model.UpdateTransformTaskBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -22,8 +24,10 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
@@ -41,6 +45,46 @@ public class UpdateExportReportTaskVMTest {
     @Test
     public void testUpdateExportReportTaskVM() {
         // TODO: test UpdateExportReportTaskVM
+    }
+
+    /**
+     * Test the property 'inputFile'
+     */
+    @Test
+    public void inputFileTest() {
+        // TODO: test inputFile
+    }
+
+    /**
+     * Test the property 'locale'
+     */
+    @Test
+    public void localeTest() {
+        // TODO: test locale
+    }
+
+    /**
+     * Test the property 'outputFile'
+     */
+    @Test
+    public void outputFileTest() {
+        // TODO: test outputFile
+    }
+
+    /**
+     * Test the property 'transportIds'
+     */
+    @Test
+    public void transportIdsTest() {
+        // TODO: test transportIds
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
     /**
@@ -65,14 +109,6 @@ public class UpdateExportReportTaskVMTest {
     @Test
     public void nameTest() {
         // TODO: test name
-    }
-
-    /**
-     * Test the property '$t'
-     */
-    @Test
-    public void $tTest() {
-        // TODO: test $t
     }
 
 }

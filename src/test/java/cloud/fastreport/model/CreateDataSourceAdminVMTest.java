@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CreateDataSourceVM;
 import cloud.fastreport.model.DataSourceConnectionType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -69,6 +70,14 @@ public class CreateDataSourceAdminVMTest {
     @Test
     public void connectionTypeTest() {
         // TODO: test connectionType
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

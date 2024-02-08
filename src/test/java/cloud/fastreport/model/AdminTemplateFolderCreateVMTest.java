@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.AdminFolderCreateVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -38,6 +39,38 @@ public class AdminTemplateFolderCreateVMTest {
     @Test
     public void testAdminTemplateFolderCreateVM() {
         // TODO: test AdminTemplateFolderCreateVM
+    }
+
+    /**
+     * Test the property 'parentId'
+     */
+    @Test
+    public void parentIdTest() {
+        // TODO: test parentId
+    }
+
+    /**
+     * Test the property 'ownerId'
+     */
+    @Test
+    public void ownerIdTest() {
+        // TODO: test ownerId
+    }
+
+    /**
+     * Test the property 'force'
+     */
+    @Test
+    public void forceTest() {
+        // TODO: test force
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
     /**

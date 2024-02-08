@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.TemplateCreateVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -38,6 +39,14 @@ public class TemplateCreateAdminVMTest {
     @Test
     public void testTemplateCreateAdminVM() {
         // TODO: test TemplateCreateAdminVM
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
     /**

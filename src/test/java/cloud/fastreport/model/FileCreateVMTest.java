@@ -72,4 +72,12 @@ public class FileCreateVMTest {
         // TODO: test content
     }
 
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
+    }
+
 }

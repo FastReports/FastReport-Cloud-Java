@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.CreateTransportTaskBaseVM;
+import cloud.fastreport.model.InputFileVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -38,6 +39,22 @@ public class CreateFTPUploadTaskVMTest {
     @Test
     public void testCreateFTPUploadTaskVM() {
         // TODO: test CreateFTPUploadTaskVM
+    }
+
+    /**
+     * Test the property 'inputFile'
+     */
+    @Test
+    public void inputFileTest() {
+        // TODO: test inputFile
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
     /**
@@ -70,14 +87,6 @@ public class CreateFTPUploadTaskVMTest {
     @Test
     public void subscriptionIdTest() {
         // TODO: test subscriptionId
-    }
-
-    /**
-     * Test the property '$t'
-     */
-    @Test
-    public void $tTest() {
-        // TODO: test $t
     }
 
 }

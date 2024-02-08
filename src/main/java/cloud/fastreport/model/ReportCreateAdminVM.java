@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.ReportCreateVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,7 +54,7 @@ import cloud.fastreport.JSON;
  * ReportCreateAdminVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ReportCreateAdminVM {
+public class ReportCreateAdminVM extends ReportCreateVM {
   public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
@@ -62,23 +63,8 @@ public class ReportCreateAdminVM {
   @SerializedName(SERIALIZED_NAME_PARENT_ID)
   private String parentId;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
-  public static final String SERIALIZED_NAME_TAGS = "tags";
-  @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<String> tags;
-
-  public static final String SERIALIZED_NAME_ICON = "icon";
-  @SerializedName(SERIALIZED_NAME_ICON)
-  private byte[] icon;
-
-  public static final String SERIALIZED_NAME_CONTENT = "content";
-  @SerializedName(SERIALIZED_NAME_CONTENT)
-  private byte[] content;
-
   public ReportCreateAdminVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public ReportCreateAdminVM ownerId(String ownerId) {
@@ -119,90 +105,6 @@ public class ReportCreateAdminVM {
   }
 
 
-  public ReportCreateAdminVM name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public ReportCreateAdminVM tags(List<String> tags) {
-    this.tags = tags;
-    return this;
-  }
-
-  public ReportCreateAdminVM addTagsItem(String tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<>();
-    }
-    this.tags.add(tagsItem);
-    return this;
-  }
-
-   /**
-   * Get tags
-   * @return tags
-  **/
-  @javax.annotation.Nullable
-  public List<String> getTags() {
-    return tags;
-  }
-
-  public void setTags(List<String> tags) {
-    this.tags = tags;
-  }
-
-
-  public ReportCreateAdminVM icon(byte[] icon) {
-    this.icon = icon;
-    return this;
-  }
-
-   /**
-   * Get icon
-   * @return icon
-  **/
-  @javax.annotation.Nullable
-  public byte[] getIcon() {
-    return icon;
-  }
-
-  public void setIcon(byte[] icon) {
-    this.icon = icon;
-  }
-
-
-  public ReportCreateAdminVM content(byte[] content) {
-    this.content = content;
-    return this;
-  }
-
-   /**
-   * Get content
-   * @return content
-  **/
-  @javax.annotation.Nullable
-  public byte[] getContent() {
-    return content;
-  }
-
-  public void setContent(byte[] content) {
-    this.content = content;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -215,10 +117,7 @@ public class ReportCreateAdminVM {
     ReportCreateAdminVM reportCreateAdminVM = (ReportCreateAdminVM) o;
     return Objects.equals(this.ownerId, reportCreateAdminVM.ownerId) &&
         Objects.equals(this.parentId, reportCreateAdminVM.parentId) &&
-        Objects.equals(this.name, reportCreateAdminVM.name) &&
-        Objects.equals(this.tags, reportCreateAdminVM.tags) &&
-        Arrays.equals(this.icon, reportCreateAdminVM.icon) &&
-        Arrays.equals(this.content, reportCreateAdminVM.content);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -227,7 +126,7 @@ public class ReportCreateAdminVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, parentId, name, tags, Arrays.hashCode(icon), Arrays.hashCode(content));
+    return Objects.hash(ownerId, parentId, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -241,12 +140,9 @@ public class ReportCreateAdminVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReportCreateAdminVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
-    sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -269,6 +165,8 @@ public class ReportCreateAdminVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("templateId");
+    openapiFields.add("$t");
     openapiFields.add("name");
     openapiFields.add("tags");
     openapiFields.add("icon");
@@ -278,6 +176,7 @@ public class ReportCreateAdminVM {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("ownerId");
     openapiRequiredFields.add("parentId");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -306,20 +205,6 @@ public class ReportCreateAdminVM {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("ownerId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ownerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerId").toString()));
-      }
-      if (!jsonObj.get("parentId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `parentId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("parentId").toString()));
-      }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
       }
   }
 

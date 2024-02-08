@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.RunInputFileVM;
 import cloud.fastreport.model.RunTransportTaskBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -43,11 +44,11 @@ public class RunWebhookTaskVMTest {
     }
 
     /**
-     * Test the property 'subscriptionId'
+     * Test the property 'inputFile'
      */
     @Test
-    public void subscriptionIdTest() {
-        // TODO: test subscriptionId
+    public void inputFileTest() {
+        // TODO: test inputFile
     }
 
     /**
@@ -56,6 +57,14 @@ public class RunWebhookTaskVMTest {
     @Test
     public void $tTest() {
         // TODO: test $t
+    }
+
+    /**
+     * Test the property 'subscriptionId'
+     */
+    @Test
+    public void subscriptionIdTest() {
+        // TODO: test subscriptionId
     }
 
 }

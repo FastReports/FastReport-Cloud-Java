@@ -16,6 +16,7 @@ package cloud.fastreport.model;
 import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.SubscriptionFolder;
 import cloud.fastreport.model.SubscriptionPeriodVM;
+import cloud.fastreport.model.SubscriptionVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -105,6 +106,14 @@ public class AdminSubscriptionVMTest {
     @Test
     public void exportsFolderTest() {
         // TODO: test exportsFolder
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

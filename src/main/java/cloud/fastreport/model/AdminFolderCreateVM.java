@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.FolderCreateVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,7 +54,7 @@ import cloud.fastreport.JSON;
  * AdminFolderCreateVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AdminFolderCreateVM {
+public class AdminFolderCreateVM extends FolderCreateVM {
   public static final String SERIALIZED_NAME_PARENT_ID = "parentId";
   @SerializedName(SERIALIZED_NAME_PARENT_ID)
   private String parentId;
@@ -66,19 +67,12 @@ public class AdminFolderCreateVM {
   @SerializedName(SERIALIZED_NAME_FORCE)
   private Boolean force;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
-  public static final String SERIALIZED_NAME_TAGS = "tags";
-  @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<String> tags;
-
-  public static final String SERIALIZED_NAME_ICON = "icon";
-  @SerializedName(SERIALIZED_NAME_ICON)
-  private byte[] icon;
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
 
   public AdminFolderCreateVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public AdminFolderCreateVM parentId(String parentId) {
@@ -138,68 +132,22 @@ public class AdminFolderCreateVM {
   }
 
 
-  public AdminFolderCreateVM name(String name) {
-    this.name = name;
+  public AdminFolderCreateVM $t(String $t) {
+    this.$t = $t;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get $t
+   * @return $t
   **/
-  @javax.annotation.Nullable
-  public String getName() {
-    return name;
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public AdminFolderCreateVM tags(List<String> tags) {
-    this.tags = tags;
-    return this;
-  }
-
-  public AdminFolderCreateVM addTagsItem(String tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<>();
-    }
-    this.tags.add(tagsItem);
-    return this;
-  }
-
-   /**
-   * Get tags
-   * @return tags
-  **/
-  @javax.annotation.Nullable
-  public List<String> getTags() {
-    return tags;
-  }
-
-  public void setTags(List<String> tags) {
-    this.tags = tags;
-  }
-
-
-  public AdminFolderCreateVM icon(byte[] icon) {
-    this.icon = icon;
-    return this;
-  }
-
-   /**
-   * Get icon
-   * @return icon
-  **/
-  @javax.annotation.Nullable
-  public byte[] getIcon() {
-    return icon;
-  }
-
-  public void setIcon(byte[] icon) {
-    this.icon = icon;
+  public void set$T(String $t) {
+    this.$t = $t;
   }
 
 
@@ -216,9 +164,8 @@ public class AdminFolderCreateVM {
     return Objects.equals(this.parentId, adminFolderCreateVM.parentId) &&
         Objects.equals(this.ownerId, adminFolderCreateVM.ownerId) &&
         Objects.equals(this.force, adminFolderCreateVM.force) &&
-        Objects.equals(this.name, adminFolderCreateVM.name) &&
-        Objects.equals(this.tags, adminFolderCreateVM.tags) &&
-        Arrays.equals(this.icon, adminFolderCreateVM.icon);
+        Objects.equals(this.$t, adminFolderCreateVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -227,7 +174,7 @@ public class AdminFolderCreateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(parentId, ownerId, force, name, tags, Arrays.hashCode(icon));
+    return Objects.hash(parentId, ownerId, force, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -241,12 +188,11 @@ public class AdminFolderCreateVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AdminFolderCreateVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    force: ").append(toIndentedString(force)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
-    sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -272,11 +218,13 @@ public class AdminFolderCreateVM {
     openapiFields.add("name");
     openapiFields.add("tags");
     openapiFields.add("icon");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("parentId");
     openapiRequiredFields.add("ownerId");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -292,64 +240,25 @@ public class AdminFolderCreateVM {
         }
       }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!AdminFolderCreateVM.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AdminFolderCreateVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : AdminFolderCreateVM.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("parentId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `parentId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("parentId").toString()));
-      }
-      if (!jsonObj.get("ownerId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ownerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerId").toString()));
-      }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
+      String discriminatorValue = jsonElement.getAsJsonObject().get("$t").getAsString();
+      switch (discriminatorValue) {
+        case "AdminExportFolderCreateVM":
+          AdminExportFolderCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "AdminFolderCreateVM":
+          AdminFolderCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "AdminReportFolderCreateVM":
+          AdminReportFolderCreateVM.validateJsonElement(jsonElement);
+          break;
+        case "AdminTemplateFolderCreateVM":
+          AdminTemplateFolderCreateVM.validateJsonElement(jsonElement);
+          break;
+        default:
+          throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!AdminFolderCreateVM.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'AdminFolderCreateVM' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<AdminFolderCreateVM> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(AdminFolderCreateVM.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<AdminFolderCreateVM>() {
-           @Override
-           public void write(JsonWriter out, AdminFolderCreateVM value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public AdminFolderCreateVM read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
 
  /**
   * Create an instance of AdminFolderCreateVM given an JSON string

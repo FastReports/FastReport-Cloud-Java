@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.FileCreateVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,107 +54,31 @@ import cloud.fastreport.JSON;
  * TemplateCreateVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TemplateCreateVM {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
-  public static final String SERIALIZED_NAME_TAGS = "tags";
-  @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<String> tags;
-
-  public static final String SERIALIZED_NAME_ICON = "icon";
-  @SerializedName(SERIALIZED_NAME_ICON)
-  private byte[] icon;
-
-  public static final String SERIALIZED_NAME_CONTENT = "content";
-  @SerializedName(SERIALIZED_NAME_CONTENT)
-  private byte[] content;
+public class TemplateCreateVM extends FileCreateVM {
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
 
   public TemplateCreateVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
-  public TemplateCreateVM name(String name) {
-    this.name = name;
+  public TemplateCreateVM $t(String $t) {
+    this.$t = $t;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get $t
+   * @return $t
   **/
-  @javax.annotation.Nullable
-  public String getName() {
-    return name;
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public TemplateCreateVM tags(List<String> tags) {
-    this.tags = tags;
-    return this;
-  }
-
-  public TemplateCreateVM addTagsItem(String tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<>();
-    }
-    this.tags.add(tagsItem);
-    return this;
-  }
-
-   /**
-   * Get tags
-   * @return tags
-  **/
-  @javax.annotation.Nullable
-  public List<String> getTags() {
-    return tags;
-  }
-
-  public void setTags(List<String> tags) {
-    this.tags = tags;
-  }
-
-
-  public TemplateCreateVM icon(byte[] icon) {
-    this.icon = icon;
-    return this;
-  }
-
-   /**
-   * Get icon
-   * @return icon
-  **/
-  @javax.annotation.Nullable
-  public byte[] getIcon() {
-    return icon;
-  }
-
-  public void setIcon(byte[] icon) {
-    this.icon = icon;
-  }
-
-
-  public TemplateCreateVM content(byte[] content) {
-    this.content = content;
-    return this;
-  }
-
-   /**
-   * Get content
-   * @return content
-  **/
-  @javax.annotation.Nullable
-  public byte[] getContent() {
-    return content;
-  }
-
-  public void setContent(byte[] content) {
-    this.content = content;
+  public void set$T(String $t) {
+    this.$t = $t;
   }
 
 
@@ -167,10 +92,8 @@ public class TemplateCreateVM {
       return false;
     }
     TemplateCreateVM templateCreateVM = (TemplateCreateVM) o;
-    return Objects.equals(this.name, templateCreateVM.name) &&
-        Objects.equals(this.tags, templateCreateVM.tags) &&
-        Arrays.equals(this.icon, templateCreateVM.icon) &&
-        Arrays.equals(this.content, templateCreateVM.content);
+    return Objects.equals(this.$t, templateCreateVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -179,7 +102,7 @@ public class TemplateCreateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, tags, Arrays.hashCode(icon), Arrays.hashCode(content));
+    return Objects.hash($t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -193,10 +116,8 @@ public class TemplateCreateVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TemplateCreateVM {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
-    sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -223,9 +144,11 @@ public class TemplateCreateVM {
     openapiFields.add("tags");
     openapiFields.add("icon");
     openapiFields.add("content");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -241,51 +164,19 @@ public class TemplateCreateVM {
         }
       }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!TemplateCreateVM.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TemplateCreateVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
+      String discriminatorValue = jsonElement.getAsJsonObject().get("$t").getAsString();
+      switch (discriminatorValue) {
+        case "TemplateCreateAdminVM":
+          TemplateCreateAdminVM.validateJsonElement(jsonElement);
+          break;
+        case "TemplateCreateVM":
+          TemplateCreateVM.validateJsonElement(jsonElement);
+          break;
+        default:
+          throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!TemplateCreateVM.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'TemplateCreateVM' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<TemplateCreateVM> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(TemplateCreateVM.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<TemplateCreateVM>() {
-           @Override
-           public void write(JsonWriter out, TemplateCreateVM value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public TemplateCreateVM read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
 
  /**
   * Create an instance of TemplateCreateVM given an JSON string

@@ -60,7 +60,12 @@ public class CreateGroupVM {
   @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_ID)
   private String subscriptionId;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public CreateGroupVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public CreateGroupVM name(String name) {
@@ -101,6 +106,25 @@ public class CreateGroupVM {
   }
 
 
+  public CreateGroupVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -112,7 +136,8 @@ public class CreateGroupVM {
     }
     CreateGroupVM createGroupVM = (CreateGroupVM) o;
     return Objects.equals(this.name, createGroupVM.name) &&
-        Objects.equals(this.subscriptionId, createGroupVM.subscriptionId);
+        Objects.equals(this.subscriptionId, createGroupVM.subscriptionId) &&
+        Objects.equals(this.$t, createGroupVM.$t);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -121,7 +146,7 @@ public class CreateGroupVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, subscriptionId);
+    return Objects.hash(name, subscriptionId, $t);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -137,6 +162,7 @@ public class CreateGroupVM {
     sb.append("class CreateGroupVM {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -161,10 +187,12 @@ public class CreateGroupVM {
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
     openapiFields.add("subscriptionId");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("name");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -180,57 +208,19 @@ public class CreateGroupVM {
         }
       }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreateGroupVM.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateGroupVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreateGroupVM.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if ((jsonObj.get("subscriptionId") != null && !jsonObj.get("subscriptionId").isJsonNull()) && !jsonObj.get("subscriptionId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `subscriptionId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subscriptionId").toString()));
+      String discriminatorValue = jsonElement.getAsJsonObject().get("$t").getAsString();
+      switch (discriminatorValue) {
+        case "CreateGroupAdminVM":
+          CreateGroupAdminVM.validateJsonElement(jsonElement);
+          break;
+        case "CreateGroupVM":
+          CreateGroupVM.validateJsonElement(jsonElement);
+          break;
+        default:
+          throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CreateGroupVM.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CreateGroupVM' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CreateGroupVM> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CreateGroupVM.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<CreateGroupVM>() {
-           @Override
-           public void write(JsonWriter out, CreateGroupVM value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public CreateGroupVM read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
 
  /**
   * Create an instance of CreateGroupVM given an JSON string

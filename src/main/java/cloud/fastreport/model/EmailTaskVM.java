@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.TransportTaskBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -351,6 +352,8 @@ public class EmailTaskVM extends TransportTaskBaseVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("inputFile");
+    openapiFields.add("$t");
     openapiFields.add("cronExpression");
     openapiFields.add("delayedRunTime");
     openapiFields.add("delayedWasRunTime");
@@ -359,7 +362,6 @@ public class EmailTaskVM extends TransportTaskBaseVM {
     openapiFields.add("recurrentRunTime");
     openapiFields.add("recurrentWasRunTime");
     openapiFields.add("subscriptionId");
-    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

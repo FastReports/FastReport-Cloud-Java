@@ -13,6 +13,9 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.FileStatus;
+import cloud.fastreport.model.FileStatusReason;
+import cloud.fastreport.model.FileType;
 import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.ReportInfo;
 import com.google.gson.TypeAdapter;
@@ -22,7 +25,9 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -79,6 +84,94 @@ public class ReportVMTest {
     @Test
     public void editorUserIdTest() {
         // TODO: test editorUserId
+    }
+
+    /**
+     * Test the property 'name'
+     */
+    @Test
+    public void nameTest() {
+        // TODO: test name
+    }
+
+    /**
+     * Test the property 'parentId'
+     */
+    @Test
+    public void parentIdTest() {
+        // TODO: test parentId
+    }
+
+    /**
+     * Test the property 'tags'
+     */
+    @Test
+    public void tagsTest() {
+        // TODO: test tags
+    }
+
+    /**
+     * Test the property 'icon'
+     */
+    @Test
+    public void iconTest() {
+        // TODO: test icon
+    }
+
+    /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
+    }
+
+    /**
+     * Test the property 'size'
+     */
+    @Test
+    public void sizeTest() {
+        // TODO: test size
+    }
+
+    /**
+     * Test the property 'subscriptionId'
+     */
+    @Test
+    public void subscriptionIdTest() {
+        // TODO: test subscriptionId
+    }
+
+    /**
+     * Test the property 'status'
+     */
+    @Test
+    public void statusTest() {
+        // TODO: test status
+    }
+
+    /**
+     * Test the property 'statusReason'
+     */
+    @Test
+    public void statusReasonTest() {
+        // TODO: test statusReason
+    }
+
+    /**
+     * Test the property 'errorMessage'
+     */
+    @Test
+    public void errorMessageTest() {
+        // TODO: test errorMessage
+    }
+
+    /**
+     * Test the property 'isDeleted'
+     */
+    @Test
+    public void isDeletedTest() {
+        // TODO: test isDeleted
     }
 
     /**

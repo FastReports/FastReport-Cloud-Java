@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.ExportCreateVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -38,6 +39,30 @@ public class ExportCreateAdminVMTest {
     @Test
     public void testExportCreateAdminVM() {
         // TODO: test ExportCreateAdminVM
+    }
+
+    /**
+     * Test the property 'templateId'
+     */
+    @Test
+    public void templateIdTest() {
+        // TODO: test templateId
+    }
+
+    /**
+     * Test the property 'reportId'
+     */
+    @Test
+    public void reportIdTest() {
+        // TODO: test reportId
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
     /**

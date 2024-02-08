@@ -88,7 +88,12 @@ public class SubscriptionVM {
   @SerializedName(SERIALIZED_NAME_EXPORTS_FOLDER)
   private SubscriptionFolder exportsFolder;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public SubscriptionVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public SubscriptionVM id(String id) {
@@ -251,6 +256,25 @@ public class SubscriptionVM {
   }
 
 
+  public SubscriptionVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -268,7 +292,8 @@ public class SubscriptionVM {
         Objects.equals(this.old, subscriptionVM.old) &&
         Objects.equals(this.templatesFolder, subscriptionVM.templatesFolder) &&
         Objects.equals(this.reportsFolder, subscriptionVM.reportsFolder) &&
-        Objects.equals(this.exportsFolder, subscriptionVM.exportsFolder);
+        Objects.equals(this.exportsFolder, subscriptionVM.exportsFolder) &&
+        Objects.equals(this.$t, subscriptionVM.$t);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -277,7 +302,7 @@ public class SubscriptionVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, locale, current, old, templatesFolder, reportsFolder, exportsFolder);
+    return Objects.hash(id, name, locale, current, old, templatesFolder, reportsFolder, exportsFolder, $t);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -299,6 +324,7 @@ public class SubscriptionVM {
     sb.append("    templatesFolder: ").append(toIndentedString(templatesFolder)).append("\n");
     sb.append("    reportsFolder: ").append(toIndentedString(reportsFolder)).append("\n");
     sb.append("    exportsFolder: ").append(toIndentedString(exportsFolder)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -329,9 +355,11 @@ public class SubscriptionVM {
     openapiFields.add("templatesFolder");
     openapiFields.add("reportsFolder");
     openapiFields.add("exportsFolder");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -347,83 +375,19 @@ public class SubscriptionVM {
         }
       }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SubscriptionVM.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SubscriptionVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if ((jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull()) && !jsonObj.get("locale").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `locale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("locale").toString()));
-      }
-      // validate the optional field `current`
-      if (jsonObj.get("current") != null && !jsonObj.get("current").isJsonNull()) {
-        SubscriptionPeriodVM.validateJsonElement(jsonObj.get("current"));
-      }
-      if (jsonObj.get("old") != null && !jsonObj.get("old").isJsonNull()) {
-        JsonArray jsonArrayold = jsonObj.getAsJsonArray("old");
-        if (jsonArrayold != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("old").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `old` to be an array in the JSON string but got `%s`", jsonObj.get("old").toString()));
-          }
-
-          // validate the optional field `old` (array)
-          for (int i = 0; i < jsonArrayold.size(); i++) {
-            SubscriptionPeriodVM.validateJsonElement(jsonArrayold.get(i));
-          };
-        }
-      }
-      // validate the optional field `templatesFolder`
-      if (jsonObj.get("templatesFolder") != null && !jsonObj.get("templatesFolder").isJsonNull()) {
-        SubscriptionFolder.validateJsonElement(jsonObj.get("templatesFolder"));
-      }
-      // validate the optional field `reportsFolder`
-      if (jsonObj.get("reportsFolder") != null && !jsonObj.get("reportsFolder").isJsonNull()) {
-        SubscriptionFolder.validateJsonElement(jsonObj.get("reportsFolder"));
-      }
-      // validate the optional field `exportsFolder`
-      if (jsonObj.get("exportsFolder") != null && !jsonObj.get("exportsFolder").isJsonNull()) {
-        SubscriptionFolder.validateJsonElement(jsonObj.get("exportsFolder"));
+      String discriminatorValue = jsonElement.getAsJsonObject().get("$t").getAsString();
+      switch (discriminatorValue) {
+        case "AdminSubscriptionVM":
+          AdminSubscriptionVM.validateJsonElement(jsonElement);
+          break;
+        case "SubscriptionVM":
+          SubscriptionVM.validateJsonElement(jsonElement);
+          break;
+        default:
+          throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!SubscriptionVM.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'SubscriptionVM' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<SubscriptionVM> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(SubscriptionVM.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<SubscriptionVM>() {
-           @Override
-           public void write(JsonWriter out, SubscriptionVM value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public SubscriptionVM read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
 
  /**
   * Create an instance of SubscriptionVM given an JSON string

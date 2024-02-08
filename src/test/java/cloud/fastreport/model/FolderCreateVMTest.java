@@ -64,4 +64,12 @@ public class FolderCreateVMTest {
         // TODO: test icon
     }
 
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
+    }
+
 }

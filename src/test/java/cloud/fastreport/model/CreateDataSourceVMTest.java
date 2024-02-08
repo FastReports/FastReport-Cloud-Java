@@ -71,4 +71,12 @@ public class CreateDataSourceVMTest {
         // TODO: test connectionType
     }
 
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
+    }
+
 }

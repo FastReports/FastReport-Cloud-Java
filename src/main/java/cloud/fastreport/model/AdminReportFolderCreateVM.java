@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.AdminFolderCreateVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,86 +54,10 @@ import cloud.fastreport.JSON;
  * AdminReportFolderCreateVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AdminReportFolderCreateVM {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
-  public static final String SERIALIZED_NAME_TAGS = "tags";
-  @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<String> tags;
-
-  public static final String SERIALIZED_NAME_ICON = "icon";
-  @SerializedName(SERIALIZED_NAME_ICON)
-  private byte[] icon;
-
+public class AdminReportFolderCreateVM extends AdminFolderCreateVM {
   public AdminReportFolderCreateVM() {
+    this.$t = this.getClass().getSimpleName();
   }
-
-  public AdminReportFolderCreateVM name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public AdminReportFolderCreateVM tags(List<String> tags) {
-    this.tags = tags;
-    return this;
-  }
-
-  public AdminReportFolderCreateVM addTagsItem(String tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<>();
-    }
-    this.tags.add(tagsItem);
-    return this;
-  }
-
-   /**
-   * Get tags
-   * @return tags
-  **/
-  @javax.annotation.Nullable
-  public List<String> getTags() {
-    return tags;
-  }
-
-  public void setTags(List<String> tags) {
-    this.tags = tags;
-  }
-
-
-  public AdminReportFolderCreateVM icon(byte[] icon) {
-    this.icon = icon;
-    return this;
-  }
-
-   /**
-   * Get icon
-   * @return icon
-  **/
-  @javax.annotation.Nullable
-  public byte[] getIcon() {
-    return icon;
-  }
-
-  public void setIcon(byte[] icon) {
-    this.icon = icon;
-  }
-
 
 
   @Override
@@ -143,10 +68,7 @@ public class AdminReportFolderCreateVM {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AdminReportFolderCreateVM adminReportFolderCreateVM = (AdminReportFolderCreateVM) o;
-    return Objects.equals(this.name, adminReportFolderCreateVM.name) &&
-        Objects.equals(this.tags, adminReportFolderCreateVM.tags) &&
-        Arrays.equals(this.icon, adminReportFolderCreateVM.icon);
+    return super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -155,7 +77,7 @@ public class AdminReportFolderCreateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, tags, Arrays.hashCode(icon));
+    return Objects.hash(super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -169,9 +91,7 @@ public class AdminReportFolderCreateVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AdminReportFolderCreateVM {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
-    sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -194,12 +114,19 @@ public class AdminReportFolderCreateVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("parentId");
+    openapiFields.add("ownerId");
+    openapiFields.add("force");
+    openapiFields.add("$t");
     openapiFields.add("name");
     openapiFields.add("tags");
     openapiFields.add("icon");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("parentId");
+    openapiRequiredFields.add("ownerId");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -222,13 +149,12 @@ public class AdminReportFolderCreateVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AdminReportFolderCreateVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : AdminReportFolderCreateVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

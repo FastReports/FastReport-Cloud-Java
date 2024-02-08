@@ -16,6 +16,9 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import cloud.fastreport.model.CreateExportReportTaskVM;
 import cloud.fastreport.model.CreateTransformTaskBaseVM;
+import cloud.fastreport.model.CreateTransportTaskBaseVM;
+import cloud.fastreport.model.InputFileVM;
+import cloud.fastreport.model.OutputFileVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -212,11 +215,15 @@ public class CreatePrepareTemplateTaskVM extends CreateTransformTaskBaseVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("inputFile");
+    openapiFields.add("locale");
+    openapiFields.add("outputFile");
+    openapiFields.add("transports");
+    openapiFields.add("$t");
     openapiFields.add("cronExpression");
     openapiFields.add("delayedRunTime");
     openapiFields.add("name");
     openapiFields.add("subscriptionId");
-    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

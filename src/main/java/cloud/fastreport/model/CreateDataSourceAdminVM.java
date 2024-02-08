@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CreateDataSourceVM;
 import cloud.fastreport.model.DataSourceConnectionType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -52,28 +53,13 @@ import cloud.fastreport.JSON;
  * CreateDataSourceAdminVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateDataSourceAdminVM {
+public class CreateDataSourceAdminVM extends CreateDataSourceVM {
   public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
-  public static final String SERIALIZED_NAME_CONNECTION_STRING = "connectionString";
-  @SerializedName(SERIALIZED_NAME_CONNECTION_STRING)
-  private String connectionString;
-
-  public static final String SERIALIZED_NAME_SUBSCRIPTION_ID = "subscriptionId";
-  @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_ID)
-  private String subscriptionId;
-
-  public static final String SERIALIZED_NAME_CONNECTION_TYPE = "connectionType";
-  @SerializedName(SERIALIZED_NAME_CONNECTION_TYPE)
-  private DataSourceConnectionType connectionType;
-
   public CreateDataSourceAdminVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public CreateDataSourceAdminVM ownerId(String ownerId) {
@@ -95,82 +81,6 @@ public class CreateDataSourceAdminVM {
   }
 
 
-  public CreateDataSourceAdminVM name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public CreateDataSourceAdminVM connectionString(String connectionString) {
-    this.connectionString = connectionString;
-    return this;
-  }
-
-   /**
-   * Get connectionString
-   * @return connectionString
-  **/
-  @javax.annotation.Nonnull
-  public String getConnectionString() {
-    return connectionString;
-  }
-
-  public void setConnectionString(String connectionString) {
-    this.connectionString = connectionString;
-  }
-
-
-  public CreateDataSourceAdminVM subscriptionId(String subscriptionId) {
-    this.subscriptionId = subscriptionId;
-    return this;
-  }
-
-   /**
-   * Get subscriptionId
-   * @return subscriptionId
-  **/
-  @javax.annotation.Nonnull
-  public String getSubscriptionId() {
-    return subscriptionId;
-  }
-
-  public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = subscriptionId;
-  }
-
-
-  public CreateDataSourceAdminVM connectionType(DataSourceConnectionType connectionType) {
-    this.connectionType = connectionType;
-    return this;
-  }
-
-   /**
-   * Get connectionType
-   * @return connectionType
-  **/
-  @javax.annotation.Nullable
-  public DataSourceConnectionType getConnectionType() {
-    return connectionType;
-  }
-
-  public void setConnectionType(DataSourceConnectionType connectionType) {
-    this.connectionType = connectionType;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -182,10 +92,7 @@ public class CreateDataSourceAdminVM {
     }
     CreateDataSourceAdminVM createDataSourceAdminVM = (CreateDataSourceAdminVM) o;
     return Objects.equals(this.ownerId, createDataSourceAdminVM.ownerId) &&
-        Objects.equals(this.name, createDataSourceAdminVM.name) &&
-        Objects.equals(this.connectionString, createDataSourceAdminVM.connectionString) &&
-        Objects.equals(this.subscriptionId, createDataSourceAdminVM.subscriptionId) &&
-        Objects.equals(this.connectionType, createDataSourceAdminVM.connectionType);
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -194,7 +101,7 @@ public class CreateDataSourceAdminVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, name, connectionString, subscriptionId, connectionType);
+    return Objects.hash(ownerId, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -208,11 +115,8 @@ public class CreateDataSourceAdminVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateDataSourceAdminVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    connectionString: ").append(toIndentedString(connectionString)).append("\n");
-    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
-    sb.append("    connectionType: ").append(toIndentedString(connectionType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -239,12 +143,14 @@ public class CreateDataSourceAdminVM {
     openapiFields.add("connectionString");
     openapiFields.add("subscriptionId");
     openapiFields.add("connectionType");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("ownerId");
     openapiRequiredFields.add("connectionString");
     openapiRequiredFields.add("subscriptionId");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -273,23 +179,6 @@ public class CreateDataSourceAdminVM {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("ownerId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ownerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerId").toString()));
-      }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if (!jsonObj.get("connectionString").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `connectionString` to be a primitive type in the JSON string but got `%s`", jsonObj.get("connectionString").toString()));
-      }
-      if (!jsonObj.get("subscriptionId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `subscriptionId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subscriptionId").toString()));
-      }
-      // validate the optional field `connectionType`
-      if (jsonObj.get("connectionType") != null && !jsonObj.get("connectionType").isJsonNull()) {
-        DataSourceConnectionType.validateJsonElement(jsonObj.get("connectionType"));
       }
   }
 

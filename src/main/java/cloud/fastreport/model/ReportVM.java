@@ -15,6 +15,9 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.FileStatus;
+import cloud.fastreport.model.FileStatusReason;
+import cloud.fastreport.model.FileType;
 import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.ReportInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -26,6 +29,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -118,6 +124,12 @@ public class ReportVM extends FileVM {
   }
 
   @Override
+  public ReportVM id(String id) {
+    this.setId(id);
+    return this;
+  }
+
+  @Override
   public ReportVM createdTime(OffsetDateTime createdTime) {
     this.setCreatedTime(createdTime);
     return this;
@@ -138,6 +150,72 @@ public class ReportVM extends FileVM {
   @Override
   public ReportVM editorUserId(String editorUserId) {
     this.setEditorUserId(editorUserId);
+    return this;
+  }
+
+  @Override
+  public ReportVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public ReportVM parentId(String parentId) {
+    this.setParentId(parentId);
+    return this;
+  }
+
+  @Override
+  public ReportVM tags(List<String> tags) {
+    this.setTags(tags);
+    return this;
+  }
+
+  @Override
+  public ReportVM icon(byte[] icon) {
+    this.setIcon(icon);
+    return this;
+  }
+
+  @Override
+  public ReportVM type(FileType type) {
+    this.setType(type);
+    return this;
+  }
+
+  @Override
+  public ReportVM size(Long size) {
+    this.setSize(size);
+    return this;
+  }
+
+  @Override
+  public ReportVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
+
+  @Override
+  public ReportVM status(FileStatus status) {
+    this.setStatus(status);
+    return this;
+  }
+
+  @Override
+  public ReportVM statusReason(FileStatusReason statusReason) {
+    this.setStatusReason(statusReason);
+    return this;
+  }
+
+  @Override
+  public ReportVM errorMessage(String errorMessage) {
+    this.setErrorMessage(errorMessage);
+    return this;
+  }
+
+  @Override
+  public ReportVM isDeleted(Boolean isDeleted) {
+    this.setIsDeleted(isDeleted);
     return this;
   }
 

@@ -15,6 +15,9 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import cloud.fastreport.model.FileStatus;
+import cloud.fastreport.model.FileStatusReason;
+import cloud.fastreport.model.FileType;
 import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.ReportInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -26,6 +29,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -77,6 +83,12 @@ public class TemplateVM extends FileVM {
   }
 
   @Override
+  public TemplateVM id(String id) {
+    this.setId(id);
+    return this;
+  }
+
+  @Override
   public TemplateVM createdTime(OffsetDateTime createdTime) {
     this.setCreatedTime(createdTime);
     return this;
@@ -97,6 +109,72 @@ public class TemplateVM extends FileVM {
   @Override
   public TemplateVM editorUserId(String editorUserId) {
     this.setEditorUserId(editorUserId);
+    return this;
+  }
+
+  @Override
+  public TemplateVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public TemplateVM parentId(String parentId) {
+    this.setParentId(parentId);
+    return this;
+  }
+
+  @Override
+  public TemplateVM tags(List<String> tags) {
+    this.setTags(tags);
+    return this;
+  }
+
+  @Override
+  public TemplateVM icon(byte[] icon) {
+    this.setIcon(icon);
+    return this;
+  }
+
+  @Override
+  public TemplateVM type(FileType type) {
+    this.setType(type);
+    return this;
+  }
+
+  @Override
+  public TemplateVM size(Long size) {
+    this.setSize(size);
+    return this;
+  }
+
+  @Override
+  public TemplateVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
+
+  @Override
+  public TemplateVM status(FileStatus status) {
+    this.setStatus(status);
+    return this;
+  }
+
+  @Override
+  public TemplateVM statusReason(FileStatusReason statusReason) {
+    this.setStatusReason(statusReason);
+    return this;
+  }
+
+  @Override
+  public TemplateVM errorMessage(String errorMessage) {
+    this.setErrorMessage(errorMessage);
+    return this;
+  }
+
+  @Override
+  public TemplateVM isDeleted(Boolean isDeleted) {
+    this.setIsDeleted(isDeleted);
     return this;
   }
 

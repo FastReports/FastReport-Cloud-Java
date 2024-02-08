@@ -16,6 +16,9 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import java.util.Arrays;
 import cloud.fastreport.model.ExportFormat;
+import cloud.fastreport.model.FileStatus;
+import cloud.fastreport.model.FileStatusReason;
+import cloud.fastreport.model.FileType;
 import cloud.fastreport.model.FileVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,6 +29,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -156,6 +162,12 @@ public class ExportVM extends FileVM {
   }
 
   @Override
+  public ExportVM id(String id) {
+    this.setId(id);
+    return this;
+  }
+
+  @Override
   public ExportVM createdTime(OffsetDateTime createdTime) {
     this.setCreatedTime(createdTime);
     return this;
@@ -176,6 +188,72 @@ public class ExportVM extends FileVM {
   @Override
   public ExportVM editorUserId(String editorUserId) {
     this.setEditorUserId(editorUserId);
+    return this;
+  }
+
+  @Override
+  public ExportVM name(String name) {
+    this.setName(name);
+    return this;
+  }
+
+  @Override
+  public ExportVM parentId(String parentId) {
+    this.setParentId(parentId);
+    return this;
+  }
+
+  @Override
+  public ExportVM tags(List<String> tags) {
+    this.setTags(tags);
+    return this;
+  }
+
+  @Override
+  public ExportVM icon(byte[] icon) {
+    this.setIcon(icon);
+    return this;
+  }
+
+  @Override
+  public ExportVM type(FileType type) {
+    this.setType(type);
+    return this;
+  }
+
+  @Override
+  public ExportVM size(Long size) {
+    this.setSize(size);
+    return this;
+  }
+
+  @Override
+  public ExportVM subscriptionId(String subscriptionId) {
+    this.setSubscriptionId(subscriptionId);
+    return this;
+  }
+
+  @Override
+  public ExportVM status(FileStatus status) {
+    this.setStatus(status);
+    return this;
+  }
+
+  @Override
+  public ExportVM statusReason(FileStatusReason statusReason) {
+    this.setStatusReason(statusReason);
+    return this;
+  }
+
+  @Override
+  public ExportVM errorMessage(String errorMessage) {
+    this.setErrorMessage(errorMessage);
+    return this;
+  }
+
+  @Override
+  public ExportVM isDeleted(Boolean isDeleted) {
+    this.setIsDeleted(isDeleted);
     return this;
   }
 

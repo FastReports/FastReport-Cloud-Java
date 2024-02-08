@@ -13,60 +13,69 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.SubscriptionInviteVM;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * SubscriptionInvitesVM
  */
-@JsonPropertyOrder({
-  SubscriptionInvitesVM.JSON_PROPERTY_INVITES,
-  SubscriptionInvitesVM.JSON_PROPERTY_COUNT
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionInvitesVM {
-  public static final String JSON_PROPERTY_INVITES = "invites";
-  private JsonNullable<List<SubscriptionInviteVM>> invites = JsonNullable.<List<SubscriptionInviteVM>>undefined();
+  public static final String SERIALIZED_NAME_INVITES = "invites";
+  @SerializedName(SERIALIZED_NAME_INVITES)
+  private List<SubscriptionInviteVM> invites;
 
-  public static final String JSON_PROPERTY_COUNT = "count";
+  public static final String SERIALIZED_NAME_COUNT = "count";
+  @SerializedName(SERIALIZED_NAME_COUNT)
   private Long count;
 
-  public SubscriptionInvitesVM() { 
+  public SubscriptionInvitesVM() {
   }
 
   public SubscriptionInvitesVM invites(List<SubscriptionInviteVM> invites) {
-    this.invites = JsonNullable.<List<SubscriptionInviteVM>>of(invites);
+    this.invites = invites;
     return this;
   }
 
   public SubscriptionInvitesVM addInvitesItem(SubscriptionInviteVM invitesItem) {
-    if (this.invites == null || !this.invites.isPresent()) {
-      this.invites = JsonNullable.<List<SubscriptionInviteVM>>of(new ArrayList<>());
+    if (this.invites == null) {
+      this.invites = new ArrayList<>();
     }
-    try {
-      this.invites.get().add(invitesItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.invites.add(invitesItem);
     return this;
   }
 
@@ -75,26 +84,12 @@ public class SubscriptionInvitesVM {
    * @return invites
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<SubscriptionInviteVM> getInvites() {
-        return invites.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_INVITES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<SubscriptionInviteVM>> getInvites_JsonNullable() {
     return invites;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_INVITES)
-  public void setInvites_JsonNullable(JsonNullable<List<SubscriptionInviteVM>> invites) {
-    this.invites = invites;
   }
 
   public void setInvites(List<SubscriptionInviteVM> invites) {
-    this.invites = JsonNullable.<List<SubscriptionInviteVM>>of(invites);
+    this.invites = invites;
   }
 
 
@@ -108,24 +103,16 @@ public class SubscriptionInvitesVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Long getCount() {
     return count;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCount(Long count) {
     this.count = count;
   }
 
 
-  /**
-   * Return true if this SubscriptionInvitesVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -135,7 +122,7 @@ public class SubscriptionInvitesVM {
       return false;
     }
     SubscriptionInvitesVM subscriptionInvitesVM = (SubscriptionInvitesVM) o;
-    return equalsNullable(this.invites, subscriptionInvitesVM.invites) &&
+    return Objects.equals(this.invites, subscriptionInvitesVM.invites) &&
         Objects.equals(this.count, subscriptionInvitesVM.count);
   }
 
@@ -145,7 +132,7 @@ public class SubscriptionInvitesVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(invites), count);
+    return Objects.hash(invites, count);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -176,54 +163,104 @@ public class SubscriptionInvitesVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("invites");
+    openapiFields.add("count");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `invites` to the URL query string
-    if (getInvites() != null) {
-      for (int i = 0; i < getInvites().size(); i++) {
-        if (getInvites().get(i) != null) {
-          joiner.add(getInvites().get(i).toUrlQueryString(String.format("%sinvites%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to SubscriptionInvitesVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SubscriptionInvitesVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SubscriptionInvitesVM is not found in the empty JSON string", SubscriptionInvitesVM.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    // add `count` to the URL query string
-    if (getCount() != null) {
-      joiner.add(String.format("%scount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!SubscriptionInvitesVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SubscriptionInvitesVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (jsonObj.get("invites") != null && !jsonObj.get("invites").isJsonNull()) {
+        JsonArray jsonArrayinvites = jsonObj.getAsJsonArray("invites");
+        if (jsonArrayinvites != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("invites").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `invites` to be an array in the JSON string but got `%s`", jsonObj.get("invites").toString()));
+          }
 
-    return joiner.toString();
+          // validate the optional field `invites` (array)
+          for (int i = 0; i < jsonArrayinvites.size(); i++) {
+            SubscriptionInviteVM.validateJsonElement(jsonArrayinvites.get(i));
+          };
+        }
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SubscriptionInvitesVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SubscriptionInvitesVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SubscriptionInvitesVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SubscriptionInvitesVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SubscriptionInvitesVM>() {
+           @Override
+           public void write(JsonWriter out, SubscriptionInvitesVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SubscriptionInvitesVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of SubscriptionInvitesVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SubscriptionInvitesVM
+  * @throws IOException if the JSON string is invalid with respect to SubscriptionInvitesVM
+  */
+  public static SubscriptionInvitesVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SubscriptionInvitesVM.class);
+  }
+
+ /**
+  * Convert an instance of SubscriptionInvitesVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

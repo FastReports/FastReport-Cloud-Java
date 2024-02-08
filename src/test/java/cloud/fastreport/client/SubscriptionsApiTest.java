@@ -24,181 +24,133 @@ import cloud.fastreport.model.SubscriptionsVM;
 import cloud.fastreport.model.UpdateDefaultPermissionsVM;
 import cloud.fastreport.model.UpdateSubscriptionLocaleVM;
 import cloud.fastreport.model.UpdateSubscriptionPermissionsVM;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for SubscriptionsApi
  */
-@Ignore
+@Disabled
 public class SubscriptionsApiTest {
 
     private final SubscriptionsApi api = new SubscriptionsApi();
 
-    
     /**
      * Get subscription&#39;s default permissions for new entities
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionsGetDefaultPermissionsTest() throws ApiException {
         String subscriptionId = null;
-        DefaultPermissionsVM response = 
-        api.subscriptionsGetDefaultPermissions(subscriptionId);
-        
+        DefaultPermissionsVM response = api.subscriptionsGetDefaultPermissions(subscriptionId);
         // TODO: test validations
     }
-    
+
     /**
      * Get user&#39;s permissions for a subscription by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionsGetMyPermissionsTest() throws ApiException {
         String subId = null;
-        MyPermissionsVM response = 
-        api.subscriptionsGetMyPermissions(subId);
-        
+        MyPermissionsVM response = api.subscriptionsGetMyPermissions(subId);
         // TODO: test validations
     }
-    
+
     /**
      * Get permissions for a subscription by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionsGetPermissionsTest() throws ApiException {
         String id = null;
-        SubscriptionPermissionsVM response = 
-        api.subscriptionsGetPermissions(id);
-        
+        SubscriptionPermissionsVM response = api.subscriptionsGetPermissions(id);
         // TODO: test validations
     }
-    
+
     /**
      * Returns the subscription by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionsGetSubscriptionTest() throws ApiException {
         String id = null;
-        SubscriptionVM response = 
-        api.subscriptionsGetSubscription(id);
-        
+        SubscriptionVM response = api.subscriptionsGetSubscription(id);
         // TODO: test validations
     }
-    
+
     /**
      * Returns a list of all subscriptions of current user
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionsGetSubscriptionsTest() throws ApiException {
         Integer skip = null;
         Integer take = null;
-        SubscriptionsVM response = 
-        api.subscriptionsGetSubscriptions(skip, take);
-        
+        SubscriptionsVM response = api.subscriptionsGetSubscriptions(skip, take);
         // TODO: test validations
     }
-    
+
     /**
      * Rename subscription
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionsRenameSubscriptionTest() throws ApiException {
         String subscriptionId = null;
         RenameSubscriptionVM renameSubscriptionVM = null;
-        SubscriptionVM response = 
-        api.subscriptionsRenameSubscription(subscriptionId, renameSubscriptionVM);
-        
+        SubscriptionVM response = api.subscriptionsRenameSubscription(subscriptionId, renameSubscriptionVM);
         // TODO: test validations
     }
-    
+
     /**
      * Change subscription&#39;s default permissions for new entities
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionsUpdateDefaultPermissionsTest() throws ApiException {
         String subscriptionId = null;
         UpdateDefaultPermissionsVM updateDefaultPermissionsVM = null;
-        DefaultPermissionsVM response = 
-        api.subscriptionsUpdateDefaultPermissions(subscriptionId, updateDefaultPermissionsVM);
-        
+        DefaultPermissionsVM response = api.subscriptionsUpdateDefaultPermissions(subscriptionId, updateDefaultPermissionsVM);
         // TODO: test validations
     }
-    
+
     /**
      * Update subscription&#39;s default locale
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionsUpdateLocaleTest() throws ApiException {
         String subscriptionId = null;
         UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM = null;
-        SubscriptionVM response = 
-        api.subscriptionsUpdateLocale(subscriptionId, updateSubscriptionLocaleVM);
-        
+        SubscriptionVM response = api.subscriptionsUpdateLocale(subscriptionId, updateSubscriptionLocaleVM);
         // TODO: test validations
     }
-    
+
     /**
      * Update permissions
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionsUpdatePermissionsTest() throws ApiException {
         String id = null;
         UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM = null;
-        
         api.subscriptionsUpdatePermissions(id, updateSubscriptionPermissionsVM);
-        
         // TODO: test validations
     }
-    
+
 }

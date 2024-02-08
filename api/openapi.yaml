@@ -13081,13 +13081,6 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/FolderCreateVM'
-      discriminator:
-        mapping:
-          AdminFolderCreateVM: '#/components/schemas/AdminFolderCreateVM'
-          AdminExportFolderCreateVM: '#/components/schemas/AdminExportFolderCreateVM'
-          AdminReportFolderCreateVM: '#/components/schemas/AdminReportFolderCreateVM'
-          AdminTemplateFolderCreateVM: '#/components/schemas/AdminTemplateFolderCreateVM'
-        propertyName: $t
       properties:
         parentId:
           minLength: 1
@@ -13099,10 +13092,7 @@ components:
           type: string
         force:
           type: boolean
-        $t:
-          type: string
       required:
-      - $t
       - ownerId
       - parentId
       type: object
@@ -13690,14 +13680,8 @@ components:
       type: object
     CreateDataSourceVM:
       additionalProperties: false
-      discriminator:
-        mapping:
-          CreateDataSourceAdminVM: '#/components/schemas/CreateDataSourceAdminVM'
-          CreateDataSourceVM: '#/components/schemas/CreateDataSourceVM'
-        propertyName: $t
       example:
         connectionString: connectionString
-        $t: $t
         name: name
         subscriptionId: subscriptionId
         connectionType: null
@@ -13717,10 +13701,7 @@ components:
           type: string
         connectionType:
           $ref: '#/components/schemas/DataSourceConnectionType'
-        $t:
-          type: string
       required:
-      - $t
       - connectionString
       - subscriptionId
       type: object
@@ -13871,13 +13852,7 @@ components:
       type: object
     CreateGroupVM:
       additionalProperties: false
-      discriminator:
-        mapping:
-          CreateGroupAdminVM: '#/components/schemas/CreateGroupAdminVM'
-          CreateGroupVM: '#/components/schemas/CreateGroupVM'
-        propertyName: $t
       example:
-        $t: $t
         name: name
         subscriptionId: subscriptionId
       properties:
@@ -13889,10 +13864,7 @@ components:
           nullable: true
           pattern: "^[A-Fa-f0-9]{24}$"
           type: string
-        $t:
-          type: string
       required:
-      - $t
       - name
       type: object
     CreatePrepareTemplateTaskVM:
@@ -14420,6 +14392,36 @@ components:
       - ExportFolder
       type: string
       x-typeName: FastReport.Cloud.Base.Enums.EntityType
+    EntityVM:
+      additionalProperties: false
+      discriminator:
+        mapping:
+          ExportVM: '#/components/schemas/ExportVM'
+          FileVM: '#/components/schemas/FileVM'
+          ReportVM: '#/components/schemas/ReportVM'
+          TemplateVM: '#/components/schemas/TemplateVM'
+        propertyName: $t
+      properties:
+        id:
+          nullable: true
+          type: string
+        createdTime:
+          format: date-time
+          type: string
+        creatorUserId:
+          nullable: true
+          type: string
+        editedTime:
+          format: date-time
+          type: string
+        editorUserId:
+          nullable: true
+          type: string
+        $t:
+          type: string
+      required:
+      - $t
+      type: object
     ExportCreateAdminVM:
       additionalProperties: false
       allOf:
@@ -14441,11 +14443,6 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/FileCreateVM'
-      discriminator:
-        mapping:
-          ExportCreateVM: '#/components/schemas/ExportCreateVM'
-          ExportCreateAdminVM: '#/components/schemas/ExportCreateAdminVM'
-        propertyName: $t
       properties:
         templateId:
           nullable: true
@@ -14455,10 +14452,6 @@ components:
           nullable: true
           pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
-        $t:
-          type: string
-      required:
-      - $t
       type: object
     ExportFolderCreateVM:
       additionalProperties: false
@@ -14752,16 +14745,6 @@ components:
       type: object
     FileCreateVM:
       additionalProperties: false
-      discriminator:
-        mapping:
-          ExportCreateVM: '#/components/schemas/ExportCreateVM'
-          FileCreateVM: '#/components/schemas/FileCreateVM'
-          ReportCreateVM: '#/components/schemas/ReportCreateVM'
-          TemplateCreateVM: '#/components/schemas/TemplateCreateVM'
-          TemplateCreateAdminVM: '#/components/schemas/TemplateCreateAdminVM'
-          ReportCreateAdminVM: '#/components/schemas/ReportCreateAdminVM'
-          ExportCreateAdminVM: '#/components/schemas/ExportCreateAdminVM'
-        propertyName: $t
       properties:
         name:
           maxLength: 250
@@ -14786,10 +14769,6 @@ components:
           maxLength: 100000000
           nullable: true
           type: string
-        $t:
-          type: string
-      required:
-      - $t
       type: object
     FileDelete:
       enum:
@@ -14989,6 +14968,8 @@ components:
       x-typeName: FastReport.Cloud.Enums.FilePermissionsEnums.FileUpdate
     FileVM:
       additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/EntityVM'
       discriminator:
         mapping:
           ExportVM: '#/components/schemas/ExportVM'
@@ -14997,41 +14978,21 @@ components:
           TemplateVM: '#/components/schemas/TemplateVM'
         propertyName: $t
       example:
-        creatorUserId: creatorUserId
+        $t: $t
+        statusReason: null
+        size: 0
+        isDeleted: true
+        name: name
         icon: icon
         errorMessage: errorMessage
         type: null
+        subscriptionId: subscriptionId
         parentId: parentId
         tags:
         - tags
         - tags
-        $t: $t
-        editedTime: 2000-01-23T04:56:07.000+00:00
-        statusReason: null
-        size: 0
-        isDeleted: true
-        editorUserId: editorUserId
-        name: name
-        createdTime: 2000-01-23T04:56:07.000+00:00
-        id: id
-        subscriptionId: subscriptionId
         status: null
       properties:
-        id:
-          nullable: true
-          type: string
-        createdTime:
-          format: date-time
-          type: string
-        creatorUserId:
-          nullable: true
-          type: string
-        editedTime:
-          format: date-time
-          type: string
-        editorUserId:
-          nullable: true
-          type: string
         name:
           nullable: true
           type: string
@@ -15094,17 +15055,6 @@ components:
       type: object
     FolderCreateVM:
       additionalProperties: false
-      discriminator:
-        mapping:
-          AdminFolderCreateVM: '#/components/schemas/AdminFolderCreateVM'
-          ExportFolderCreateVM: '#/components/schemas/ExportFolderCreateVM'
-          FolderCreateVM: '#/components/schemas/FolderCreateVM'
-          ReportFolderCreateVM: '#/components/schemas/ReportFolderCreateVM'
-          TemplateFolderCreateVM: '#/components/schemas/TemplateFolderCreateVM'
-          AdminExportFolderCreateVM: '#/components/schemas/AdminExportFolderCreateVM'
-          AdminReportFolderCreateVM: '#/components/schemas/AdminReportFolderCreateVM'
-          AdminTemplateFolderCreateVM: '#/components/schemas/AdminTemplateFolderCreateVM'
-        propertyName: $t
       properties:
         name:
           maxLength: 250
@@ -15124,10 +15074,6 @@ components:
           maxLength: 65536
           nullable: true
           type: string
-        $t:
-          type: string
-      required:
-      - $t
       type: object
     FolderIconVM:
       additionalProperties: false
@@ -15683,23 +15629,13 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/FileCreateVM'
-      discriminator:
-        mapping:
-          ReportCreateVM: '#/components/schemas/ReportCreateVM'
-          ReportCreateAdminVM: '#/components/schemas/ReportCreateAdminVM'
-        propertyName: $t
       example:
-        $t: $t
         templateId: templateId
       properties:
         templateId:
           nullable: true
           pattern: "(^$)|(^[A-Fa-f0-9]{24}$)"
           type: string
-        $t:
-          type: string
-      required:
-      - $t
       type: object
     ReportFolderCreateVM:
       additionalProperties: false
@@ -16778,16 +16714,10 @@ components:
       type: object
     SubscriptionVM:
       additionalProperties: false
-      discriminator:
-        mapping:
-          SubscriptionVM: '#/components/schemas/SubscriptionVM'
-          AdminSubscriptionVM: '#/components/schemas/AdminSubscriptionVM'
-        propertyName: $t
       example:
         exportsFolder:
           bytesUsed: 0
           folderId: folderId
-        $t: $t
         current:
           startTime: 2000-01-23T04:56:07.000+00:00
           endTime: 2000-01-23T04:56:07.000+00:00
@@ -16918,10 +16848,6 @@ components:
           $ref: '#/components/schemas/SubscriptionFolder'
         exportsFolder:
           $ref: '#/components/schemas/SubscriptionFolder'
-        $t:
-          type: string
-      required:
-      - $t
       type: object
     SubscriptionsVM:
       additionalProperties: false
@@ -16931,7 +16857,6 @@ components:
         - exportsFolder:
             bytesUsed: 0
             folderId: folderId
-          $t: $t
           current:
             startTime: 2000-01-23T04:56:07.000+00:00
             endTime: 2000-01-23T04:56:07.000+00:00
@@ -17042,7 +16967,6 @@ components:
         - exportsFolder:
             bytesUsed: 0
             folderId: folderId
-          $t: $t
           current:
             startTime: 2000-01-23T04:56:07.000+00:00
             endTime: 2000-01-23T04:56:07.000+00:00
@@ -17475,18 +17399,6 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/FileCreateVM'
-      discriminator:
-        mapping:
-          TemplateCreateVM: '#/components/schemas/TemplateCreateVM'
-          TemplateCreateAdminVM: '#/components/schemas/TemplateCreateAdminVM'
-        propertyName: $t
-      example:
-        $t: $t
-      properties:
-        $t:
-          type: string
-      required:
-      - $t
       type: object
     TemplateFolderCreateVM:
       additionalProperties: false

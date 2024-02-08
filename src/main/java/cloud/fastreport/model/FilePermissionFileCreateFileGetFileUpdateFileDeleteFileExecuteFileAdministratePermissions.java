@@ -13,60 +13,73 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.FilePermission;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions
  */
-@JsonPropertyOrder({
-  FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.JSON_PROPERTY_OWNER_ID,
-  FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.JSON_PROPERTY_OWNER,
-  FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.JSON_PROPERTY_GROUPS,
-  FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.JSON_PROPERTY_OTHER,
-  FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.JSON_PROPERTY_ANON
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions {
-  public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
-  private JsonNullable<String> ownerId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
+  @SerializedName(SERIALIZED_NAME_OWNER_ID)
+  private String ownerId;
 
-  public static final String JSON_PROPERTY_OWNER = "owner";
+  public static final String SERIALIZED_NAME_OWNER = "owner";
+  @SerializedName(SERIALIZED_NAME_OWNER)
   private FilePermission owner;
 
-  public static final String JSON_PROPERTY_GROUPS = "groups";
-  private JsonNullable<Map<String, FilePermission>> groups = JsonNullable.<Map<String, FilePermission>>undefined();
+  public static final String SERIALIZED_NAME_GROUPS = "groups";
+  @SerializedName(SERIALIZED_NAME_GROUPS)
+  private Map<String, FilePermission> groups;
 
-  public static final String JSON_PROPERTY_OTHER = "other";
+  public static final String SERIALIZED_NAME_OTHER = "other";
+  @SerializedName(SERIALIZED_NAME_OTHER)
   private FilePermission other;
 
-  public static final String JSON_PROPERTY_ANON = "anon";
+  public static final String SERIALIZED_NAME_ANON = "anon";
+  @SerializedName(SERIALIZED_NAME_ANON)
   private FilePermission anon;
 
-  public FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions() { 
+  public FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions() {
   }
 
   public FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions ownerId(String ownerId) {
-    this.ownerId = JsonNullable.<String>of(ownerId);
+    this.ownerId = ownerId;
     return this;
   }
 
@@ -75,26 +88,12 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
    * @return ownerId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getOwnerId() {
-        return ownerId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_OWNER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getOwnerId_JsonNullable() {
     return ownerId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_OWNER_ID)
-  public void setOwnerId_JsonNullable(JsonNullable<String> ownerId) {
-    this.ownerId = ownerId;
   }
 
   public void setOwnerId(String ownerId) {
-    this.ownerId = JsonNullable.<String>of(ownerId);
+    this.ownerId = ownerId;
   }
 
 
@@ -108,35 +107,25 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
    * @return owner
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public FilePermission getOwner() {
     return owner;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOwner(FilePermission owner) {
     this.owner = owner;
   }
 
 
   public FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions groups(Map<String, FilePermission> groups) {
-    this.groups = JsonNullable.<Map<String, FilePermission>>of(groups);
+    this.groups = groups;
     return this;
   }
 
   public FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions putGroupsItem(String key, FilePermission groupsItem) {
-    if (this.groups == null || !this.groups.isPresent()) {
-      this.groups = JsonNullable.<Map<String, FilePermission>>of(new HashMap<>());
+    if (this.groups == null) {
+      this.groups = new HashMap<>();
     }
-    try {
-      this.groups.get().put(key, groupsItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.groups.put(key, groupsItem);
     return this;
   }
 
@@ -145,26 +134,12 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
    * @return groups
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Map<String, FilePermission> getGroups() {
-        return groups.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Map<String, FilePermission>> getGroups_JsonNullable() {
     return groups;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  public void setGroups_JsonNullable(JsonNullable<Map<String, FilePermission>> groups) {
-    this.groups = groups;
   }
 
   public void setGroups(Map<String, FilePermission> groups) {
-    this.groups = JsonNullable.<Map<String, FilePermission>>of(groups);
+    this.groups = groups;
   }
 
 
@@ -178,16 +153,10 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
    * @return other
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OTHER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public FilePermission getOther() {
     return other;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_OTHER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOther(FilePermission other) {
     this.other = other;
   }
@@ -203,24 +172,16 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
    * @return anon
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ANON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public FilePermission getAnon() {
     return anon;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_ANON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAnon(FilePermission anon) {
     this.anon = anon;
   }
 
 
-  /**
-   * Return true if this FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -230,9 +191,9 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
       return false;
     }
     FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions = (FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions) o;
-    return equalsNullable(this.ownerId, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.ownerId) &&
+    return Objects.equals(this.ownerId, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.ownerId) &&
         Objects.equals(this.owner, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.owner) &&
-        equalsNullable(this.groups, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.groups) &&
+        Objects.equals(this.groups, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.groups) &&
         Objects.equals(this.other, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.other) &&
         Objects.equals(this.anon, filePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.anon);
   }
@@ -243,7 +204,7 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(ownerId), owner, hashCodeNullable(groups), other, anon);
+    return Objects.hash(ownerId, owner, groups, other, anon);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -277,69 +238,108 @@ public class FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileA
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("ownerId");
+    openapiFields.add("owner");
+    openapiFields.add("groups");
+    openapiFields.add("other");
+    openapiFields.add("anon");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `ownerId` to the URL query string
-    if (getOwnerId() != null) {
-      joiner.add(String.format("%sownerId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getOwnerId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `owner` to the URL query string
-    if (getOwner() != null) {
-      joiner.add(getOwner().toUrlQueryString(prefix + "owner" + suffix));
-    }
-
-    // add `groups` to the URL query string
-    if (getGroups() != null) {
-      for (String _key : getGroups().keySet()) {
-        if (getGroups().get(_key) != null) {
-          joiner.add(getGroups().get(_key).toUrlQueryString(String.format("%sgroups%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions is not found in the empty JSON string", FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    // add `other` to the URL query string
-    if (getOther() != null) {
-      joiner.add(getOther().toUrlQueryString(prefix + "other" + suffix));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("ownerId") != null && !jsonObj.get("ownerId").isJsonNull()) && !jsonObj.get("ownerId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ownerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerId").toString()));
+      }
+      // validate the optional field `owner`
+      if (jsonObj.get("owner") != null && !jsonObj.get("owner").isJsonNull()) {
+        FilePermission.validateJsonElement(jsonObj.get("owner"));
+      }
+      // validate the optional field `other`
+      if (jsonObj.get("other") != null && !jsonObj.get("other").isJsonNull()) {
+        FilePermission.validateJsonElement(jsonObj.get("other"));
+      }
+      // validate the optional field `anon`
+      if (jsonObj.get("anon") != null && !jsonObj.get("anon").isJsonNull()) {
+        FilePermission.validateJsonElement(jsonObj.get("anon"));
+      }
+  }
 
-    // add `anon` to the URL query string
-    if (getAnon() != null) {
-      joiner.add(getAnon().toUrlQueryString(prefix + "anon" + suffix));
-    }
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.class));
 
-    return joiner.toString();
+       return (TypeAdapter<T>) new TypeAdapter<FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions>() {
+           @Override
+           public void write(JsonWriter out, FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions
+  * @throws IOException if the JSON string is invalid with respect to FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions
+  */
+  public static FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.class);
+  }
+
+ /**
+  * Convert an instance of FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

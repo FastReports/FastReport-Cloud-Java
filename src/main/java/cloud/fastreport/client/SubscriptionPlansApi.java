@@ -10,241 +10,336 @@
  * Do not edit the class manually.
  */
 
+
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiCallback;
 import cloud.fastreport.ApiClient;
 import cloud.fastreport.ApiException;
 import cloud.fastreport.ApiResponse;
+import cloud.fastreport.Configuration;
 import cloud.fastreport.Pair;
+import cloud.fastreport.ProgressRequestBody;
+import cloud.fastreport.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
 
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.SubscriptionPlanVM;
 import cloud.fastreport.model.SubscriptionPlansVM;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.http.HttpRequest;
-import java.nio.channels.Channels;
-import java.nio.channels.Pipe;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.StringJoiner;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionPlansApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public SubscriptionPlansApi() {
-    this(new ApiClient());
-  }
-
-  public SubscriptionPlansApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public SubscriptionPlansApi() {
+        this(Configuration.getDefaultApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Returns a subscription plan. Not all subscriptions can be issued for customer.
-   * 
-   * @param id Identifier of subsctiption plan (required)
-   * @return SubscriptionPlanVM
-   * @throws ApiException if fails to make API call
-   */
-  public SubscriptionPlanVM subscriptionPlansGetSubscriptionPlan(String id) throws ApiException {
-    ApiResponse<SubscriptionPlanVM> localVarResponse = subscriptionPlansGetSubscriptionPlanWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
+    public SubscriptionPlansApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
 
-  /**
-   * Returns a subscription plan. Not all subscriptions can be issued for customer.
-   * 
-   * @param id Identifier of subsctiption plan (required)
-   * @return ApiResponse&lt;SubscriptionPlanVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SubscriptionPlanVM> subscriptionPlansGetSubscriptionPlanWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionPlansGetSubscriptionPlanRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionPlansGetSubscriptionPlan", localVarResponse);
+    public ApiClient getApiClient() {
+        return localVarApiClient;
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for subscriptionPlansGetSubscriptionPlan
+     * @param id Identifier of subsctiption plan (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription plan with this id is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionPlansGetSubscriptionPlanCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<SubscriptionPlanVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SubscriptionPlanVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionPlansGetSubscriptionPlanRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling subscriptionPlansGetSubscriptionPlan");
-    }
+        Object localVarPostBody = null;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/SubscriptionPlans/{id}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
-    String localVarPath = "/api/manage/v1/SubscriptionPlans/{id}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns a list of active subscription plans that can be issued to the user.
-   * If no active subscription plans, then the endpoint will return empty list
-   * @param skip Variable for pagination, defautl value is 0 (optional, default to 0)
-   * @param take Variable for pagination, default value is 10 (optional, default to 10)
-   * @return SubscriptionPlansVM
-   * @throws ApiException if fails to make API call
-   */
-  public SubscriptionPlansVM subscriptionPlansGetSubscriptionPlans(Integer skip, Integer take) throws ApiException {
-    ApiResponse<SubscriptionPlansVM> localVarResponse = subscriptionPlansGetSubscriptionPlansWithHttpInfo(skip, take);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Returns a list of active subscription plans that can be issued to the user.
-   * If no active subscription plans, then the endpoint will return empty list
-   * @param skip Variable for pagination, defautl value is 0 (optional, default to 0)
-   * @param take Variable for pagination, default value is 10 (optional, default to 10)
-   * @return ApiResponse&lt;SubscriptionPlansVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SubscriptionPlansVM> subscriptionPlansGetSubscriptionPlansWithHttpInfo(Integer skip, Integer take) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionPlansGetSubscriptionPlansRequestBuilder(skip, take);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionPlansGetSubscriptionPlans", localVarResponse);
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<SubscriptionPlansVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SubscriptionPlansVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionPlansGetSubscriptionPlansRequestBuilder(Integer skip, Integer take) throws ApiException {
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/SubscriptionPlans";
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "skip";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("skip", skip));
-    localVarQueryParameterBaseName = "take";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("take", take));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionPlansGetSubscriptionPlanValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling subscriptionPlansGetSubscriptionPlan(Async)");
+        }
 
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+        return subscriptionPlansGetSubscriptionPlanCall(id, _callback);
+
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Returns a subscription plan. Not all subscriptions can be issued for customer.
+     * 
+     * @param id Identifier of subsctiption plan (required)
+     * @return SubscriptionPlanVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription plan with this id is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public SubscriptionPlanVM subscriptionPlansGetSubscriptionPlan(String id) throws ApiException {
+        ApiResponse<SubscriptionPlanVM> localVarResp = subscriptionPlansGetSubscriptionPlanWithHttpInfo(id);
+        return localVarResp.getData();
     }
-    return localVarRequestBuilder;
-  }
+
+    /**
+     * Returns a subscription plan. Not all subscriptions can be issued for customer.
+     * 
+     * @param id Identifier of subsctiption plan (required)
+     * @return ApiResponse&lt;SubscriptionPlanVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription plan with this id is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SubscriptionPlanVM> subscriptionPlansGetSubscriptionPlanWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionPlansGetSubscriptionPlanValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<SubscriptionPlanVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns a subscription plan. Not all subscriptions can be issued for customer. (asynchronously)
+     * 
+     * @param id Identifier of subsctiption plan (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription plan with this id is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionPlansGetSubscriptionPlanAsync(String id, final ApiCallback<SubscriptionPlanVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionPlansGetSubscriptionPlanValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<SubscriptionPlanVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for subscriptionPlansGetSubscriptionPlans
+     * @param skip Variable for pagination, defautl value is 0 (optional, default to 0)
+     * @param take Variable for pagination, default value is 10 (optional, default to 10)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionPlansGetSubscriptionPlansCall(Integer skip, Integer take, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/SubscriptionPlans";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (skip != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("skip", skip));
+        }
+
+        if (take != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("take", take));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionPlansGetSubscriptionPlansValidateBeforeCall(Integer skip, Integer take, final ApiCallback _callback) throws ApiException {
+        return subscriptionPlansGetSubscriptionPlansCall(skip, take, _callback);
+
+    }
+
+    /**
+     * Returns a list of active subscription plans that can be issued to the user.
+     * If no active subscription plans, then the endpoint will return empty list
+     * @param skip Variable for pagination, defautl value is 0 (optional, default to 0)
+     * @param take Variable for pagination, default value is 10 (optional, default to 10)
+     * @return SubscriptionPlansVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+     </table>
+     */
+    public SubscriptionPlansVM subscriptionPlansGetSubscriptionPlans(Integer skip, Integer take) throws ApiException {
+        ApiResponse<SubscriptionPlansVM> localVarResp = subscriptionPlansGetSubscriptionPlansWithHttpInfo(skip, take);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Returns a list of active subscription plans that can be issued to the user.
+     * If no active subscription plans, then the endpoint will return empty list
+     * @param skip Variable for pagination, defautl value is 0 (optional, default to 0)
+     * @param take Variable for pagination, default value is 10 (optional, default to 10)
+     * @return ApiResponse&lt;SubscriptionPlansVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SubscriptionPlansVM> subscriptionPlansGetSubscriptionPlansWithHttpInfo(Integer skip, Integer take) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionPlansGetSubscriptionPlansValidateBeforeCall(skip, take, null);
+        Type localVarReturnType = new TypeToken<SubscriptionPlansVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns a list of active subscription plans that can be issued to the user. (asynchronously)
+     * If no active subscription plans, then the endpoint will return empty list
+     * @param skip Variable for pagination, defautl value is 0 (optional, default to 0)
+     * @param take Variable for pagination, default value is 10 (optional, default to 10)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionPlansGetSubscriptionPlansAsync(Integer skip, Integer take, final ApiCallback<SubscriptionPlansVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionPlansGetSubscriptionPlansValidateBeforeCall(skip, take, _callback);
+        Type localVarReturnType = new TypeToken<SubscriptionPlansVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
 }

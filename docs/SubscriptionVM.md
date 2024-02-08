@@ -15,7 +15,6 @@
 |**templatesFolder** | [**SubscriptionFolder**](SubscriptionFolder.md) |  |  [optional] |
 |**reportsFolder** | [**SubscriptionFolder**](SubscriptionFolder.md) |  |  [optional] |
 |**exportsFolder** | [**SubscriptionFolder**](SubscriptionFolder.md) |  |  [optional] |
-|**$t** | **String** |  |  |
 
 
 

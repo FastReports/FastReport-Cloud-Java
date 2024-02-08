@@ -10,400 +10,656 @@
  * Do not edit the class manually.
  */
 
+
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiCallback;
 import cloud.fastreport.ApiClient;
 import cloud.fastreport.ApiException;
 import cloud.fastreport.ApiResponse;
+import cloud.fastreport.Configuration;
 import cloud.fastreport.Pair;
+import cloud.fastreport.ProgressRequestBody;
+import cloud.fastreport.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
 
 import cloud.fastreport.model.CreateSubscriptionInviteVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.SubscriptionInviteVM;
 import cloud.fastreport.model.SubscriptionInvitesVM;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.http.HttpRequest;
-import java.nio.channels.Channels;
-import java.nio.channels.Pipe;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.StringJoiner;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionInvitesApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public SubscriptionInvitesApi() {
-    this(new ApiClient());
-  }
-
-  public SubscriptionInvitesApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public SubscriptionInvitesApi() {
+        this(Configuration.getDefaultApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Add a user to the subscription using invite,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
-   * 
-   * @param subscriptionId Idenitifier of subscription (required)
-   * @param accessToken access token of the subscription (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void subscriptionInvitesAcceptInvite(String subscriptionId, String accessToken) throws ApiException {
-    subscriptionInvitesAcceptInviteWithHttpInfo(subscriptionId, accessToken);
-  }
+    public SubscriptionInvitesApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
 
-  /**
-   * Add a user to the subscription using invite,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
-   * 
-   * @param subscriptionId Idenitifier of subscription (required)
-   * @param accessToken access token of the subscription (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> subscriptionInvitesAcceptInviteWithHttpInfo(String subscriptionId, String accessToken) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionInvitesAcceptInviteRequestBuilder(subscriptionId, accessToken);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionInvitesAcceptInvite", localVarResponse);
+    public ApiClient getApiClient() {
+        return localVarApiClient;
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for subscriptionInvitesAcceptInvite
+     * @param subscriptionId Idenitifier of subscription (required)
+     * @param accessToken access token of the subscription (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionInvitesAcceptInviteCall(String subscriptionId, String accessToken, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/invite/{accessToken}/accept"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()))
+            .replace("{" + "accessToken" + "}", localVarApiClient.escapeString(accessToken.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionInvitesAcceptInviteRequestBuilder(String subscriptionId, String accessToken) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling subscriptionInvitesAcceptInvite");
-    }
-    // verify the required parameter 'accessToken' is set
-    if (accessToken == null) {
-      throw new ApiException(400, "Missing the required parameter 'accessToken' when calling subscriptionInvitesAcceptInvite");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/invite/{accessToken}/accept"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()))
-        .replace("{accessToken}", ApiClient.urlEncode(accessToken.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Create invite to subscription
-   * 
-   * @param subscriptionId id (required)
-   * @param createSubscriptionInviteVM create VM (optional)
-   * @return SubscriptionInviteVM
-   * @throws ApiException if fails to make API call
-   */
-  public SubscriptionInviteVM subscriptionInvitesCreateInvite(String subscriptionId, CreateSubscriptionInviteVM createSubscriptionInviteVM) throws ApiException {
-    ApiResponse<SubscriptionInviteVM> localVarResponse = subscriptionInvitesCreateInviteWithHttpInfo(subscriptionId, createSubscriptionInviteVM);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Create invite to subscription
-   * 
-   * @param subscriptionId id (required)
-   * @param createSubscriptionInviteVM create VM (optional)
-   * @return ApiResponse&lt;SubscriptionInviteVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SubscriptionInviteVM> subscriptionInvitesCreateInviteWithHttpInfo(String subscriptionId, CreateSubscriptionInviteVM createSubscriptionInviteVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionInvitesCreateInviteRequestBuilder(subscriptionId, createSubscriptionInviteVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionInvitesCreateInvite", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<SubscriptionInviteVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SubscriptionInviteVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionInvitesCreateInviteRequestBuilder(String subscriptionId, CreateSubscriptionInviteVM createSubscriptionInviteVM) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling subscriptionInvitesCreateInvite");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/invite"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createSubscriptionInviteVM);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Rename subscription
-   * 
-   * @param subscriptionId id (required)
-   * @param accesstoken invite&#39;s token (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void subscriptionInvitesDeleteInvite(String subscriptionId, String accesstoken) throws ApiException {
-    subscriptionInvitesDeleteInviteWithHttpInfo(subscriptionId, accesstoken);
-  }
-
-  /**
-   * Rename subscription
-   * 
-   * @param subscriptionId id (required)
-   * @param accesstoken invite&#39;s token (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> subscriptionInvitesDeleteInviteWithHttpInfo(String subscriptionId, String accesstoken) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionInvitesDeleteInviteRequestBuilder(subscriptionId, accesstoken);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionInvitesDeleteInvite", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionInvitesAcceptInviteValidateBeforeCall(String subscriptionId, String accessToken, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling subscriptionInvitesAcceptInvite(Async)");
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        // verify the required parameter 'accessToken' is set
+        if (accessToken == null) {
+            throw new ApiException("Missing the required parameter 'accessToken' when calling subscriptionInvitesAcceptInvite(Async)");
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionInvitesDeleteInviteRequestBuilder(String subscriptionId, String accesstoken) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling subscriptionInvitesDeleteInvite");
-    }
-    // verify the required parameter 'accesstoken' is set
-    if (accesstoken == null) {
-      throw new ApiException(400, "Missing the required parameter 'accesstoken' when calling subscriptionInvitesDeleteInvite");
+        return subscriptionInvitesAcceptInviteCall(subscriptionId, accessToken, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/invite/{accesstoken}"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()))
-        .replace("{accesstoken}", ApiClient.urlEncode(accesstoken.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Add a user to the subscription using invite,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
+     * 
+     * @param subscriptionId Idenitifier of subscription (required)
+     * @param accessToken access token of the subscription (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public void subscriptionInvitesAcceptInvite(String subscriptionId, String accessToken) throws ApiException {
+        subscriptionInvitesAcceptInviteWithHttpInfo(subscriptionId, accessToken);
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get list of invites in a subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
-   * 
-   * @param subscriptionId Idenitifier of subscription (required)
-   * @return SubscriptionInvitesVM
-   * @throws ApiException if fails to make API call
-   */
-  public SubscriptionInvitesVM subscriptionInvitesGetInvites(String subscriptionId) throws ApiException {
-    ApiResponse<SubscriptionInvitesVM> localVarResponse = subscriptionInvitesGetInvitesWithHttpInfo(subscriptionId);
-    return localVarResponse.getData();
-  }
 
-  /**
-   * Get list of invites in a subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
-   * 
-   * @param subscriptionId Idenitifier of subscription (required)
-   * @return ApiResponse&lt;SubscriptionInvitesVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SubscriptionInvitesVM> subscriptionInvitesGetInvitesWithHttpInfo(String subscriptionId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionInvitesGetInvitesRequestBuilder(subscriptionId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionInvitesGetInvites", localVarResponse);
+    /**
+     * Add a user to the subscription using invite,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
+     * 
+     * @param subscriptionId Idenitifier of subscription (required)
+     * @param accessToken access token of the subscription (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> subscriptionInvitesAcceptInviteWithHttpInfo(String subscriptionId, String accessToken) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionInvitesAcceptInviteValidateBeforeCall(subscriptionId, accessToken, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Add a user to the subscription using invite,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription. (asynchronously)
+     * 
+     * @param subscriptionId Idenitifier of subscription (required)
+     * @param accessToken access token of the subscription (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionInvitesAcceptInviteAsync(String subscriptionId, String accessToken, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionInvitesAcceptInviteValidateBeforeCall(subscriptionId, accessToken, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for subscriptionInvitesCreateInvite
+     * @param subscriptionId id (required)
+     * @param createSubscriptionInviteVM create VM (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> exception caught </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionInvitesCreateInviteCall(String subscriptionId, CreateSubscriptionInviteVM createSubscriptionInviteVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<SubscriptionInvitesVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SubscriptionInvitesVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+
+        Object localVarPostBody = createSubscriptionInviteVM;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/invite"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionInvitesCreateInviteValidateBeforeCall(String subscriptionId, CreateSubscriptionInviteVM createSubscriptionInviteVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling subscriptionInvitesCreateInvite(Async)");
+        }
+
+        return subscriptionInvitesCreateInviteCall(subscriptionId, createSubscriptionInviteVM, _callback);
+
     }
-  }
 
-  private HttpRequest.Builder subscriptionInvitesGetInvitesRequestBuilder(String subscriptionId) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling subscriptionInvitesGetInvites");
+    /**
+     * Create invite to subscription
+     * 
+     * @param subscriptionId id (required)
+     * @param createSubscriptionInviteVM create VM (optional)
+     * @return SubscriptionInviteVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> exception caught </td><td>  -  </td></tr>
+     </table>
+     */
+    public SubscriptionInviteVM subscriptionInvitesCreateInvite(String subscriptionId, CreateSubscriptionInviteVM createSubscriptionInviteVM) throws ApiException {
+        ApiResponse<SubscriptionInviteVM> localVarResp = subscriptionInvitesCreateInviteWithHttpInfo(subscriptionId, createSubscriptionInviteVM);
+        return localVarResp.getData();
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/invites"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Create invite to subscription
+     * 
+     * @param subscriptionId id (required)
+     * @param createSubscriptionInviteVM create VM (optional)
+     * @return ApiResponse&lt;SubscriptionInviteVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> exception caught </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SubscriptionInviteVM> subscriptionInvitesCreateInviteWithHttpInfo(String subscriptionId, CreateSubscriptionInviteVM createSubscriptionInviteVM) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionInvitesCreateInviteValidateBeforeCall(subscriptionId, createSubscriptionInviteVM, null);
+        Type localVarReturnType = new TypeToken<SubscriptionInviteVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Create invite to subscription (asynchronously)
+     * 
+     * @param subscriptionId id (required)
+     * @param createSubscriptionInviteVM create VM (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> exception caught </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionInvitesCreateInviteAsync(String subscriptionId, CreateSubscriptionInviteVM createSubscriptionInviteVM, final ApiCallback<SubscriptionInviteVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionInvitesCreateInviteValidateBeforeCall(subscriptionId, createSubscriptionInviteVM, _callback);
+        Type localVarReturnType = new TypeToken<SubscriptionInviteVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
     }
-    return localVarRequestBuilder;
-  }
+    /**
+     * Build call for subscriptionInvitesDeleteInvite
+     * @param subscriptionId id (required)
+     * @param accesstoken invite&#39;s token (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Successfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> exception caught </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionInvitesDeleteInviteCall(String subscriptionId, String accesstoken, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/invite/{accesstoken}"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()))
+            .replace("{" + "accesstoken" + "}", localVarApiClient.escapeString(accesstoken.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionInvitesDeleteInviteValidateBeforeCall(String subscriptionId, String accesstoken, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling subscriptionInvitesDeleteInvite(Async)");
+        }
+
+        // verify the required parameter 'accesstoken' is set
+        if (accesstoken == null) {
+            throw new ApiException("Missing the required parameter 'accesstoken' when calling subscriptionInvitesDeleteInvite(Async)");
+        }
+
+        return subscriptionInvitesDeleteInviteCall(subscriptionId, accesstoken, _callback);
+
+    }
+
+    /**
+     * Rename subscription
+     * 
+     * @param subscriptionId id (required)
+     * @param accesstoken invite&#39;s token (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Successfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> exception caught </td><td>  -  </td></tr>
+     </table>
+     */
+    public void subscriptionInvitesDeleteInvite(String subscriptionId, String accesstoken) throws ApiException {
+        subscriptionInvitesDeleteInviteWithHttpInfo(subscriptionId, accesstoken);
+    }
+
+    /**
+     * Rename subscription
+     * 
+     * @param subscriptionId id (required)
+     * @param accesstoken invite&#39;s token (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Successfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> exception caught </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> subscriptionInvitesDeleteInviteWithHttpInfo(String subscriptionId, String accesstoken) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionInvitesDeleteInviteValidateBeforeCall(subscriptionId, accesstoken, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Rename subscription (asynchronously)
+     * 
+     * @param subscriptionId id (required)
+     * @param accesstoken invite&#39;s token (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Successfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> exception caught </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionInvitesDeleteInviteAsync(String subscriptionId, String accesstoken, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionInvitesDeleteInviteValidateBeforeCall(subscriptionId, accesstoken, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for subscriptionInvitesGetInvites
+     * @param subscriptionId Idenitifier of subscription (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionInvitesGetInvitesCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/invites"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionInvitesGetInvitesValidateBeforeCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling subscriptionInvitesGetInvites(Async)");
+        }
+
+        return subscriptionInvitesGetInvitesCall(subscriptionId, _callback);
+
+    }
+
+    /**
+     * Get list of invites in a subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
+     * 
+     * @param subscriptionId Idenitifier of subscription (required)
+     * @return SubscriptionInvitesVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public SubscriptionInvitesVM subscriptionInvitesGetInvites(String subscriptionId) throws ApiException {
+        ApiResponse<SubscriptionInvitesVM> localVarResp = subscriptionInvitesGetInvitesWithHttpInfo(subscriptionId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get list of invites in a subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
+     * 
+     * @param subscriptionId Idenitifier of subscription (required)
+     * @return ApiResponse&lt;SubscriptionInvitesVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SubscriptionInvitesVM> subscriptionInvitesGetInvitesWithHttpInfo(String subscriptionId) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionInvitesGetInvitesValidateBeforeCall(subscriptionId, null);
+        Type localVarReturnType = new TypeToken<SubscriptionInvitesVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get list of invites in a subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription. (asynchronously)
+     * 
+     * @param subscriptionId Idenitifier of subscription (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionInvitesGetInvitesAsync(String subscriptionId, final ApiCallback<SubscriptionInvitesVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionInvitesGetInvitesValidateBeforeCall(subscriptionId, _callback);
+        Type localVarReturnType = new TypeToken<SubscriptionInvitesVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
 }

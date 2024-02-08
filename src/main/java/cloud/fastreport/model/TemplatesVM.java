@@ -13,68 +13,77 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.TemplateVM;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * TemplatesVM
  */
-@JsonPropertyOrder({
-  TemplatesVM.JSON_PROPERTY_FILES,
-  TemplatesVM.JSON_PROPERTY_COUNT,
-  TemplatesVM.JSON_PROPERTY_SKIP,
-  TemplatesVM.JSON_PROPERTY_TAKE
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TemplatesVM {
-  public static final String JSON_PROPERTY_FILES = "files";
-  private JsonNullable<List<TemplateVM>> files = JsonNullable.<List<TemplateVM>>undefined();
+  public static final String SERIALIZED_NAME_FILES = "files";
+  @SerializedName(SERIALIZED_NAME_FILES)
+  private List<TemplateVM> files;
 
-  public static final String JSON_PROPERTY_COUNT = "count";
+  public static final String SERIALIZED_NAME_COUNT = "count";
+  @SerializedName(SERIALIZED_NAME_COUNT)
   private Long count;
 
-  public static final String JSON_PROPERTY_SKIP = "skip";
+  public static final String SERIALIZED_NAME_SKIP = "skip";
+  @SerializedName(SERIALIZED_NAME_SKIP)
   private Integer skip;
 
-  public static final String JSON_PROPERTY_TAKE = "take";
+  public static final String SERIALIZED_NAME_TAKE = "take";
+  @SerializedName(SERIALIZED_NAME_TAKE)
   private Integer take;
 
-  public TemplatesVM() { 
+  public TemplatesVM() {
   }
 
   public TemplatesVM files(List<TemplateVM> files) {
-    this.files = JsonNullable.<List<TemplateVM>>of(files);
+    this.files = files;
     return this;
   }
 
   public TemplatesVM addFilesItem(TemplateVM filesItem) {
-    if (this.files == null || !this.files.isPresent()) {
-      this.files = JsonNullable.<List<TemplateVM>>of(new ArrayList<>());
+    if (this.files == null) {
+      this.files = new ArrayList<>();
     }
-    try {
-      this.files.get().add(filesItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.files.add(filesItem);
     return this;
   }
 
@@ -83,26 +92,12 @@ public class TemplatesVM {
    * @return files
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<TemplateVM> getFiles() {
-        return files.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FILES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<TemplateVM>> getFiles_JsonNullable() {
     return files;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FILES)
-  public void setFiles_JsonNullable(JsonNullable<List<TemplateVM>> files) {
-    this.files = files;
   }
 
   public void setFiles(List<TemplateVM> files) {
-    this.files = JsonNullable.<List<TemplateVM>>of(files);
+    this.files = files;
   }
 
 
@@ -116,16 +111,10 @@ public class TemplatesVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Long getCount() {
     return count;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCount(Long count) {
     this.count = count;
   }
@@ -141,16 +130,10 @@ public class TemplatesVM {
    * @return skip
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getSkip() {
     return skip;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSkip(Integer skip) {
     this.skip = skip;
   }
@@ -166,24 +149,16 @@ public class TemplatesVM {
    * @return take
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getTake() {
     return take;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTake(Integer take) {
     this.take = take;
   }
 
 
-  /**
-   * Return true if this TemplatesVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -193,7 +168,7 @@ public class TemplatesVM {
       return false;
     }
     TemplatesVM templatesVM = (TemplatesVM) o;
-    return equalsNullable(this.files, templatesVM.files) &&
+    return Objects.equals(this.files, templatesVM.files) &&
         Objects.equals(this.count, templatesVM.count) &&
         Objects.equals(this.skip, templatesVM.skip) &&
         Objects.equals(this.take, templatesVM.take);
@@ -205,7 +180,7 @@ public class TemplatesVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(files), count, skip, take);
+    return Objects.hash(files, count, skip, take);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -238,64 +213,106 @@ public class TemplatesVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("files");
+    openapiFields.add("count");
+    openapiFields.add("skip");
+    openapiFields.add("take");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `files` to the URL query string
-    if (getFiles() != null) {
-      for (int i = 0; i < getFiles().size(); i++) {
-        if (getFiles().get(i) != null) {
-          joiner.add(getFiles().get(i).toUrlQueryString(String.format("%sfiles%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to TemplatesVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TemplatesVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TemplatesVM is not found in the empty JSON string", TemplatesVM.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    // add `count` to the URL query string
-    if (getCount() != null) {
-      joiner.add(String.format("%scount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TemplatesVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TemplatesVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (jsonObj.get("files") != null && !jsonObj.get("files").isJsonNull()) {
+        JsonArray jsonArrayfiles = jsonObj.getAsJsonArray("files");
+        if (jsonArrayfiles != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("files").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `files` to be an array in the JSON string but got `%s`", jsonObj.get("files").toString()));
+          }
 
-    // add `skip` to the URL query string
-    if (getSkip() != null) {
-      joiner.add(String.format("%sskip%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSkip()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+          // validate the optional field `files` (array)
+          for (int i = 0; i < jsonArrayfiles.size(); i++) {
+            TemplateVM.validateJsonElement(jsonArrayfiles.get(i));
+          };
+        }
+      }
+  }
 
-    // add `take` to the URL query string
-    if (getTake() != null) {
-      joiner.add(String.format("%stake%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTake()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TemplatesVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TemplatesVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TemplatesVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TemplatesVM.class));
 
-    return joiner.toString();
+       return (TypeAdapter<T>) new TypeAdapter<TemplatesVM>() {
+           @Override
+           public void write(JsonWriter out, TemplatesVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TemplatesVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of TemplatesVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of TemplatesVM
+  * @throws IOException if the JSON string is invalid with respect to TemplatesVM
+  */
+  public static TemplatesVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TemplatesVM.class);
+  }
+
+ /**
+  * Convert an instance of TemplatesVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

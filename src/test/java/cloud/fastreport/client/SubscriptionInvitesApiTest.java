@@ -18,94 +18,71 @@ import cloud.fastreport.model.CreateSubscriptionInviteVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.SubscriptionInviteVM;
 import cloud.fastreport.model.SubscriptionInvitesVM;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for SubscriptionInvitesApi
  */
-@Ignore
+@Disabled
 public class SubscriptionInvitesApiTest {
 
     private final SubscriptionInvitesApi api = new SubscriptionInvitesApi();
 
-    
     /**
      * Add a user to the subscription using invite,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionInvitesAcceptInviteTest() throws ApiException {
         String subscriptionId = null;
         String accessToken = null;
-        
         api.subscriptionInvitesAcceptInvite(subscriptionId, accessToken);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Create invite to subscription
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionInvitesCreateInviteTest() throws ApiException {
         String subscriptionId = null;
         CreateSubscriptionInviteVM createSubscriptionInviteVM = null;
-        SubscriptionInviteVM response = 
-        api.subscriptionInvitesCreateInvite(subscriptionId, createSubscriptionInviteVM);
-        
+        SubscriptionInviteVM response = api.subscriptionInvitesCreateInvite(subscriptionId, createSubscriptionInviteVM);
         // TODO: test validations
     }
-    
+
     /**
      * Rename subscription
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionInvitesDeleteInviteTest() throws ApiException {
         String subscriptionId = null;
         String accesstoken = null;
-        
         api.subscriptionInvitesDeleteInvite(subscriptionId, accesstoken);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Get list of invites in a subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionInvitesGetInvitesTest() throws ApiException {
         String subscriptionId = null;
-        SubscriptionInvitesVM response = 
-        api.subscriptionInvitesGetInvites(subscriptionId);
-        
+        SubscriptionInvitesVM response = api.subscriptionInvitesGetInvites(subscriptionId);
         // TODO: test validations
     }
-    
+
 }

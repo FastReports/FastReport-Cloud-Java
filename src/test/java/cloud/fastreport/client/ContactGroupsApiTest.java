@@ -19,111 +19,83 @@ import cloud.fastreport.model.ContactGroupsVM;
 import cloud.fastreport.model.CreateContactGroupVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.UpdateContactGroupVM;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for ContactGroupsApi
  */
-@Ignore
+@Disabled
 public class ContactGroupsApiTest {
 
     private final ContactGroupsApi api = new ContactGroupsApi();
 
-    
     /**
      * Creates contact group
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void contactGroupsCreateTest() throws ApiException {
         CreateContactGroupVM createContactGroupVM = null;
-        ContactGroupVM response = 
-        api.contactGroupsCreate(createContactGroupVM);
-        
+        ContactGroupVM response = api.contactGroupsCreate(createContactGroupVM);
         // TODO: test validations
     }
-    
+
     /**
      * Removes contact by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void contactGroupsDeleteTest() throws ApiException {
         String id = null;
-        
         api.contactGroupsDelete(id);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Returns contact group by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void contactGroupsGetTest() throws ApiException {
         String id = null;
-        ContactGroupVM response = 
-        api.contactGroupsGet(id);
-        
+        ContactGroupVM response = api.contactGroupsGet(id);
         // TODO: test validations
     }
-    
+
     /**
      * Returns contact groups by subscriptionId
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void contactGroupsGetListTest() throws ApiException {
         String subscriptionId = null;
         Integer skip = null;
         Integer take = null;
-        ContactGroupsVM response = 
-        api.contactGroupsGetList(subscriptionId, skip, take);
-        
+        ContactGroupsVM response = api.contactGroupsGetList(subscriptionId, skip, take);
         // TODO: test validations
     }
-    
+
     /**
      * Updates contact group by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void contactGroupsUpdateTest() throws ApiException {
         String id = null;
         UpdateContactGroupVM updateContactGroupVM = null;
-        ContactGroupVM response = 
-        api.contactGroupsUpdate(id, updateContactGroupVM);
-        
+        ContactGroupVM response = api.contactGroupsUpdate(id, updateContactGroupVM);
         // TODO: test validations
     }
-    
+
 }

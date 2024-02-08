@@ -13,68 +13,77 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.ContactVM;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * ContactsVM
  */
-@JsonPropertyOrder({
-  ContactsVM.JSON_PROPERTY_CONTACTS,
-  ContactsVM.JSON_PROPERTY_SKIP,
-  ContactsVM.JSON_PROPERTY_TAKE,
-  ContactsVM.JSON_PROPERTY_COUNT
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ContactsVM {
-  public static final String JSON_PROPERTY_CONTACTS = "contacts";
-  private JsonNullable<List<ContactVM>> contacts = JsonNullable.<List<ContactVM>>undefined();
+  public static final String SERIALIZED_NAME_CONTACTS = "contacts";
+  @SerializedName(SERIALIZED_NAME_CONTACTS)
+  private List<ContactVM> contacts;
 
-  public static final String JSON_PROPERTY_SKIP = "skip";
+  public static final String SERIALIZED_NAME_SKIP = "skip";
+  @SerializedName(SERIALIZED_NAME_SKIP)
   private Integer skip;
 
-  public static final String JSON_PROPERTY_TAKE = "take";
+  public static final String SERIALIZED_NAME_TAKE = "take";
+  @SerializedName(SERIALIZED_NAME_TAKE)
   private Integer take;
 
-  public static final String JSON_PROPERTY_COUNT = "count";
+  public static final String SERIALIZED_NAME_COUNT = "count";
+  @SerializedName(SERIALIZED_NAME_COUNT)
   private Long count;
 
-  public ContactsVM() { 
+  public ContactsVM() {
   }
 
   public ContactsVM contacts(List<ContactVM> contacts) {
-    this.contacts = JsonNullable.<List<ContactVM>>of(contacts);
+    this.contacts = contacts;
     return this;
   }
 
   public ContactsVM addContactsItem(ContactVM contactsItem) {
-    if (this.contacts == null || !this.contacts.isPresent()) {
-      this.contacts = JsonNullable.<List<ContactVM>>of(new ArrayList<>());
+    if (this.contacts == null) {
+      this.contacts = new ArrayList<>();
     }
-    try {
-      this.contacts.get().add(contactsItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.contacts.add(contactsItem);
     return this;
   }
 
@@ -83,26 +92,12 @@ public class ContactsVM {
    * @return contacts
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<ContactVM> getContacts() {
-        return contacts.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_CONTACTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<ContactVM>> getContacts_JsonNullable() {
     return contacts;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CONTACTS)
-  public void setContacts_JsonNullable(JsonNullable<List<ContactVM>> contacts) {
-    this.contacts = contacts;
   }
 
   public void setContacts(List<ContactVM> contacts) {
-    this.contacts = JsonNullable.<List<ContactVM>>of(contacts);
+    this.contacts = contacts;
   }
 
 
@@ -116,16 +111,10 @@ public class ContactsVM {
    * @return skip
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getSkip() {
     return skip;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSkip(Integer skip) {
     this.skip = skip;
   }
@@ -141,16 +130,10 @@ public class ContactsVM {
    * @return take
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getTake() {
     return take;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTake(Integer take) {
     this.take = take;
   }
@@ -166,24 +149,16 @@ public class ContactsVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Long getCount() {
     return count;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCount(Long count) {
     this.count = count;
   }
 
 
-  /**
-   * Return true if this ContactsVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -193,7 +168,7 @@ public class ContactsVM {
       return false;
     }
     ContactsVM contactsVM = (ContactsVM) o;
-    return equalsNullable(this.contacts, contactsVM.contacts) &&
+    return Objects.equals(this.contacts, contactsVM.contacts) &&
         Objects.equals(this.skip, contactsVM.skip) &&
         Objects.equals(this.take, contactsVM.take) &&
         Objects.equals(this.count, contactsVM.count);
@@ -205,7 +180,7 @@ public class ContactsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(contacts), skip, take, count);
+    return Objects.hash(contacts, skip, take, count);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -238,64 +213,106 @@ public class ContactsVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("contacts");
+    openapiFields.add("skip");
+    openapiFields.add("take");
+    openapiFields.add("count");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `contacts` to the URL query string
-    if (getContacts() != null) {
-      for (int i = 0; i < getContacts().size(); i++) {
-        if (getContacts().get(i) != null) {
-          joiner.add(getContacts().get(i).toUrlQueryString(String.format("%scontacts%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ContactsVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ContactsVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ContactsVM is not found in the empty JSON string", ContactsVM.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    // add `skip` to the URL query string
-    if (getSkip() != null) {
-      joiner.add(String.format("%sskip%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSkip()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ContactsVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContactsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (jsonObj.get("contacts") != null && !jsonObj.get("contacts").isJsonNull()) {
+        JsonArray jsonArraycontacts = jsonObj.getAsJsonArray("contacts");
+        if (jsonArraycontacts != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("contacts").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `contacts` to be an array in the JSON string but got `%s`", jsonObj.get("contacts").toString()));
+          }
 
-    // add `take` to the URL query string
-    if (getTake() != null) {
-      joiner.add(String.format("%stake%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTake()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+          // validate the optional field `contacts` (array)
+          for (int i = 0; i < jsonArraycontacts.size(); i++) {
+            ContactVM.validateJsonElement(jsonArraycontacts.get(i));
+          };
+        }
+      }
+  }
 
-    // add `count` to the URL query string
-    if (getCount() != null) {
-      joiner.add(String.format("%scount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ContactsVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ContactsVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ContactsVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ContactsVM.class));
 
-    return joiner.toString();
+       return (TypeAdapter<T>) new TypeAdapter<ContactsVM>() {
+           @Override
+           public void write(JsonWriter out, ContactsVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ContactsVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of ContactsVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ContactsVM
+  * @throws IOException if the JSON string is invalid with respect to ContactsVM
+  */
+  public static ContactsVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ContactsVM.class);
+  }
+
+ /**
+  * Convert an instance of ContactsVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

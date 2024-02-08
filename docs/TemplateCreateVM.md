@@ -7,7 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**$t** | **String** |  |  |
+|**name** | **String** |  |  [optional] |
+|**tags** | **List&lt;String&gt;** |  |  [optional] |
+|**icon** | **byte[]** |  |  [optional] |
+|**content** | **byte[]** |  |  [optional] |
 
 
 

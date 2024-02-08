@@ -13,87 +13,100 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.SaveMode;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * ReportInfo
  */
-@JsonPropertyOrder({
-  ReportInfo.JSON_PROPERTY_AUTHOR,
-  ReportInfo.JSON_PROPERTY_CREATED,
-  ReportInfo.JSON_PROPERTY_CREATOR_VERSION,
-  ReportInfo.JSON_PROPERTY_DESCRIPTION,
-  ReportInfo.JSON_PROPERTY_MODIFIED,
-  ReportInfo.JSON_PROPERTY_NAME,
-  ReportInfo.JSON_PROPERTY_PICTURE,
-  ReportInfo.JSON_PROPERTY_PREVIEW_PICTURE_RATIO,
-  ReportInfo.JSON_PROPERTY_SAVE_MODE,
-  ReportInfo.JSON_PROPERTY_SAVE_PREVIEW_PICTURE,
-  ReportInfo.JSON_PROPERTY_TAG,
-  ReportInfo.JSON_PROPERTY_VERSION
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportInfo {
-  public static final String JSON_PROPERTY_AUTHOR = "author";
-  private JsonNullable<String> author = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_AUTHOR = "author";
+  @SerializedName(SERIALIZED_NAME_AUTHOR)
+  private String author;
 
-  public static final String JSON_PROPERTY_CREATED = "created";
+  public static final String SERIALIZED_NAME_CREATED = "created";
+  @SerializedName(SERIALIZED_NAME_CREATED)
   private OffsetDateTime created;
 
-  public static final String JSON_PROPERTY_CREATOR_VERSION = "creatorVersion";
-  private JsonNullable<String> creatorVersion = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_CREATOR_VERSION = "creatorVersion";
+  @SerializedName(SERIALIZED_NAME_CREATOR_VERSION)
+  private String creatorVersion;
 
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private JsonNullable<String> description = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
 
-  public static final String JSON_PROPERTY_MODIFIED = "modified";
+  public static final String SERIALIZED_NAME_MODIFIED = "modified";
+  @SerializedName(SERIALIZED_NAME_MODIFIED)
   private OffsetDateTime modified;
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  private JsonNullable<String> name = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
-  public static final String JSON_PROPERTY_PICTURE = "picture";
-  private JsonNullable<byte[]> picture = JsonNullable.<byte[]>undefined();
+  public static final String SERIALIZED_NAME_PICTURE = "picture";
+  @SerializedName(SERIALIZED_NAME_PICTURE)
+  private byte[] picture;
 
-  public static final String JSON_PROPERTY_PREVIEW_PICTURE_RATIO = "previewPictureRatio";
+  public static final String SERIALIZED_NAME_PREVIEW_PICTURE_RATIO = "previewPictureRatio";
+  @SerializedName(SERIALIZED_NAME_PREVIEW_PICTURE_RATIO)
   private Float previewPictureRatio;
 
-  public static final String JSON_PROPERTY_SAVE_MODE = "saveMode";
+  public static final String SERIALIZED_NAME_SAVE_MODE = "saveMode";
+  @SerializedName(SERIALIZED_NAME_SAVE_MODE)
   private SaveMode saveMode;
 
-  public static final String JSON_PROPERTY_SAVE_PREVIEW_PICTURE = "savePreviewPicture";
+  public static final String SERIALIZED_NAME_SAVE_PREVIEW_PICTURE = "savePreviewPicture";
+  @SerializedName(SERIALIZED_NAME_SAVE_PREVIEW_PICTURE)
   private Boolean savePreviewPicture;
 
-  public static final String JSON_PROPERTY_TAG = "tag";
-  private JsonNullable<String> tag = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_TAG = "tag";
+  @SerializedName(SERIALIZED_NAME_TAG)
+  private String tag;
 
-  public static final String JSON_PROPERTY_VERSION = "version";
-  private JsonNullable<String> version = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_VERSION = "version";
+  @SerializedName(SERIALIZED_NAME_VERSION)
+  private String version;
 
-  public ReportInfo() { 
+  public ReportInfo() {
   }
 
   public ReportInfo author(String author) {
-    this.author = JsonNullable.<String>of(author);
+    this.author = author;
     return this;
   }
 
@@ -102,26 +115,12 @@ public class ReportInfo {
    * @return author
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getAuthor() {
-        return author.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_AUTHOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getAuthor_JsonNullable() {
     return author;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_AUTHOR)
-  public void setAuthor_JsonNullable(JsonNullable<String> author) {
-    this.author = author;
   }
 
   public void setAuthor(String author) {
-    this.author = JsonNullable.<String>of(author);
+    this.author = author;
   }
 
 
@@ -135,23 +134,17 @@ public class ReportInfo {
    * @return created
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public OffsetDateTime getCreated() {
     return created;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreated(OffsetDateTime created) {
     this.created = created;
   }
 
 
   public ReportInfo creatorVersion(String creatorVersion) {
-    this.creatorVersion = JsonNullable.<String>of(creatorVersion);
+    this.creatorVersion = creatorVersion;
     return this;
   }
 
@@ -160,31 +153,17 @@ public class ReportInfo {
    * @return creatorVersion
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getCreatorVersion() {
-        return creatorVersion.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_CREATOR_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getCreatorVersion_JsonNullable() {
     return creatorVersion;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CREATOR_VERSION)
-  public void setCreatorVersion_JsonNullable(JsonNullable<String> creatorVersion) {
-    this.creatorVersion = creatorVersion;
   }
 
   public void setCreatorVersion(String creatorVersion) {
-    this.creatorVersion = JsonNullable.<String>of(creatorVersion);
+    this.creatorVersion = creatorVersion;
   }
 
 
   public ReportInfo description(String description) {
-    this.description = JsonNullable.<String>of(description);
+    this.description = description;
     return this;
   }
 
@@ -193,26 +172,12 @@ public class ReportInfo {
    * @return description
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getDescription() {
-        return description.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getDescription_JsonNullable() {
     return description;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  public void setDescription_JsonNullable(JsonNullable<String> description) {
-    this.description = description;
   }
 
   public void setDescription(String description) {
-    this.description = JsonNullable.<String>of(description);
+    this.description = description;
   }
 
 
@@ -226,23 +191,17 @@ public class ReportInfo {
    * @return modified
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MODIFIED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public OffsetDateTime getModified() {
     return modified;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_MODIFIED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setModified(OffsetDateTime modified) {
     this.modified = modified;
   }
 
 
   public ReportInfo name(String name) {
-    this.name = JsonNullable.<String>of(name);
+    this.name = name;
     return this;
   }
 
@@ -251,31 +210,17 @@ public class ReportInfo {
    * @return name
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getName() {
-        return name.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getName_JsonNullable() {
     return name;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_NAME)
-  public void setName_JsonNullable(JsonNullable<String> name) {
-    this.name = name;
   }
 
   public void setName(String name) {
-    this.name = JsonNullable.<String>of(name);
+    this.name = name;
   }
 
 
   public ReportInfo picture(byte[] picture) {
-    this.picture = JsonNullable.<byte[]>of(picture);
+    this.picture = picture;
     return this;
   }
 
@@ -284,26 +229,12 @@ public class ReportInfo {
    * @return picture
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public byte[] getPicture() {
-        return picture.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_PICTURE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<byte[]> getPicture_JsonNullable() {
     return picture;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_PICTURE)
-  public void setPicture_JsonNullable(JsonNullable<byte[]> picture) {
-    this.picture = picture;
   }
 
   public void setPicture(byte[] picture) {
-    this.picture = JsonNullable.<byte[]>of(picture);
+    this.picture = picture;
   }
 
 
@@ -317,16 +248,10 @@ public class ReportInfo {
    * @return previewPictureRatio
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PREVIEW_PICTURE_RATIO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Float getPreviewPictureRatio() {
     return previewPictureRatio;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_PREVIEW_PICTURE_RATIO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPreviewPictureRatio(Float previewPictureRatio) {
     this.previewPictureRatio = previewPictureRatio;
   }
@@ -342,16 +267,10 @@ public class ReportInfo {
    * @return saveMode
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SAVE_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public SaveMode getSaveMode() {
     return saveMode;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_SAVE_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSaveMode(SaveMode saveMode) {
     this.saveMode = saveMode;
   }
@@ -367,23 +286,17 @@ public class ReportInfo {
    * @return savePreviewPicture
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SAVE_PREVIEW_PICTURE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getSavePreviewPicture() {
     return savePreviewPicture;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_SAVE_PREVIEW_PICTURE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSavePreviewPicture(Boolean savePreviewPicture) {
     this.savePreviewPicture = savePreviewPicture;
   }
 
 
   public ReportInfo tag(String tag) {
-    this.tag = JsonNullable.<String>of(tag);
+    this.tag = tag;
     return this;
   }
 
@@ -392,31 +305,17 @@ public class ReportInfo {
    * @return tag
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getTag() {
-        return tag.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_TAG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getTag_JsonNullable() {
     return tag;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_TAG)
-  public void setTag_JsonNullable(JsonNullable<String> tag) {
-    this.tag = tag;
   }
 
   public void setTag(String tag) {
-    this.tag = JsonNullable.<String>of(tag);
+    this.tag = tag;
   }
 
 
   public ReportInfo version(String version) {
-    this.version = JsonNullable.<String>of(version);
+    this.version = version;
     return this;
   }
 
@@ -425,32 +324,16 @@ public class ReportInfo {
    * @return version
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getVersion() {
-        return version.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getVersion_JsonNullable() {
     return version;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  public void setVersion_JsonNullable(JsonNullable<String> version) {
-    this.version = version;
   }
 
   public void setVersion(String version) {
-    this.version = JsonNullable.<String>of(version);
+    this.version = version;
   }
 
 
-  /**
-   * Return true if this ReportInfo object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -460,18 +343,18 @@ public class ReportInfo {
       return false;
     }
     ReportInfo reportInfo = (ReportInfo) o;
-    return equalsNullable(this.author, reportInfo.author) &&
+    return Objects.equals(this.author, reportInfo.author) &&
         Objects.equals(this.created, reportInfo.created) &&
-        equalsNullable(this.creatorVersion, reportInfo.creatorVersion) &&
-        equalsNullable(this.description, reportInfo.description) &&
+        Objects.equals(this.creatorVersion, reportInfo.creatorVersion) &&
+        Objects.equals(this.description, reportInfo.description) &&
         Objects.equals(this.modified, reportInfo.modified) &&
-        equalsNullable(this.name, reportInfo.name) &&
-        equalsNullable(this.picture, reportInfo.picture) &&
+        Objects.equals(this.name, reportInfo.name) &&
+        Arrays.equals(this.picture, reportInfo.picture) &&
         Objects.equals(this.previewPictureRatio, reportInfo.previewPictureRatio) &&
         Objects.equals(this.saveMode, reportInfo.saveMode) &&
         Objects.equals(this.savePreviewPicture, reportInfo.savePreviewPicture) &&
-        equalsNullable(this.tag, reportInfo.tag) &&
-        equalsNullable(this.version, reportInfo.version);
+        Objects.equals(this.tag, reportInfo.tag) &&
+        Objects.equals(this.version, reportInfo.version);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -480,7 +363,7 @@ public class ReportInfo {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(author), created, hashCodeNullable(creatorVersion), hashCodeNullable(description), modified, hashCodeNullable(name), hashCodeNullable(picture), previewPictureRatio, saveMode, savePreviewPicture, hashCodeNullable(tag), hashCodeNullable(version));
+    return Objects.hash(author, created, creatorVersion, description, modified, name, Arrays.hashCode(picture), previewPictureRatio, saveMode, savePreviewPicture, tag, version);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -521,99 +404,122 @@ public class ReportInfo {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("author");
+    openapiFields.add("created");
+    openapiFields.add("creatorVersion");
+    openapiFields.add("description");
+    openapiFields.add("modified");
+    openapiFields.add("name");
+    openapiFields.add("picture");
+    openapiFields.add("previewPictureRatio");
+    openapiFields.add("saveMode");
+    openapiFields.add("savePreviewPicture");
+    openapiFields.add("tag");
+    openapiFields.add("version");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ReportInfo
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ReportInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ReportInfo is not found in the empty JSON string", ReportInfo.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ReportInfo.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ReportInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("author") != null && !jsonObj.get("author").isJsonNull()) && !jsonObj.get("author").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `author` to be a primitive type in the JSON string but got `%s`", jsonObj.get("author").toString()));
+      }
+      if ((jsonObj.get("creatorVersion") != null && !jsonObj.get("creatorVersion").isJsonNull()) && !jsonObj.get("creatorVersion").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `creatorVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("creatorVersion").toString()));
+      }
+      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      // validate the optional field `saveMode`
+      if (jsonObj.get("saveMode") != null && !jsonObj.get("saveMode").isJsonNull()) {
+        SaveMode.validateJsonElement(jsonObj.get("saveMode"));
+      }
+      if ((jsonObj.get("tag") != null && !jsonObj.get("tag").isJsonNull()) && !jsonObj.get("tag").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tag` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tag").toString()));
+      }
+      if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull()) && !jsonObj.get("version").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ReportInfo.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ReportInfo' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ReportInfo> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ReportInfo.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ReportInfo>() {
+           @Override
+           public void write(JsonWriter out, ReportInfo value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ReportInfo read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of ReportInfo given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ReportInfo
+  * @throws IOException if the JSON string is invalid with respect to ReportInfo
+  */
+  public static ReportInfo fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ReportInfo.class);
+  }
 
-    // add `author` to the URL query string
-    if (getAuthor() != null) {
-      joiner.add(String.format("%sauthor%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAuthor()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `created` to the URL query string
-    if (getCreated() != null) {
-      joiner.add(String.format("%screated%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `creatorVersion` to the URL query string
-    if (getCreatorVersion() != null) {
-      joiner.add(String.format("%screatorVersion%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatorVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `description` to the URL query string
-    if (getDescription() != null) {
-      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDescription()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `modified` to the URL query string
-    if (getModified() != null) {
-      joiner.add(String.format("%smodified%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getModified()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `picture` to the URL query string
-    if (getPicture() != null) {
-      joiner.add(String.format("%spicture%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPicture()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `previewPictureRatio` to the URL query string
-    if (getPreviewPictureRatio() != null) {
-      joiner.add(String.format("%spreviewPictureRatio%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPreviewPictureRatio()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `saveMode` to the URL query string
-    if (getSaveMode() != null) {
-      joiner.add(String.format("%ssaveMode%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSaveMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `savePreviewPicture` to the URL query string
-    if (getSavePreviewPicture() != null) {
-      joiner.add(String.format("%ssavePreviewPicture%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSavePreviewPicture()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `tag` to the URL query string
-    if (getTag() != null) {
-      joiner.add(String.format("%stag%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTag()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `version` to the URL query string
-    if (getVersion() != null) {
-      joiner.add(String.format("%sversion%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of ReportInfo to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

@@ -13,42 +13,58 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * CreateSubscriptionInviteVM
  */
-@JsonPropertyOrder({
-  CreateSubscriptionInviteVM.JSON_PROPERTY_USAGES,
-  CreateSubscriptionInviteVM.JSON_PROPERTY_DURABLE,
-  CreateSubscriptionInviteVM.JSON_PROPERTY_EXPIRED_DATE
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateSubscriptionInviteVM {
-  public static final String JSON_PROPERTY_USAGES = "usages";
+  public static final String SERIALIZED_NAME_USAGES = "usages";
+  @SerializedName(SERIALIZED_NAME_USAGES)
   private Long usages;
 
-  public static final String JSON_PROPERTY_DURABLE = "durable";
+  public static final String SERIALIZED_NAME_DURABLE = "durable";
+  @SerializedName(SERIALIZED_NAME_DURABLE)
   private Boolean durable;
 
-  public static final String JSON_PROPERTY_EXPIRED_DATE = "expiredDate";
+  public static final String SERIALIZED_NAME_EXPIRED_DATE = "expiredDate";
+  @SerializedName(SERIALIZED_NAME_EXPIRED_DATE)
   private OffsetDateTime expiredDate;
 
-  public CreateSubscriptionInviteVM() { 
+  public CreateSubscriptionInviteVM() {
   }
 
   public CreateSubscriptionInviteVM usages(Long usages) {
@@ -63,16 +79,10 @@ public class CreateSubscriptionInviteVM {
    * @return usages
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Long getUsages() {
     return usages;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_USAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsages(Long usages) {
     this.usages = usages;
   }
@@ -88,16 +98,10 @@ public class CreateSubscriptionInviteVM {
    * @return durable
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DURABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getDurable() {
     return durable;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_DURABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDurable(Boolean durable) {
     this.durable = durable;
   }
@@ -113,24 +117,16 @@ public class CreateSubscriptionInviteVM {
    * @return expiredDate
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EXPIRED_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public OffsetDateTime getExpiredDate() {
     return expiredDate;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_EXPIRED_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExpiredDate(OffsetDateTime expiredDate) {
     this.expiredDate = expiredDate;
   }
 
 
-  /**
-   * Return true if this CreateSubscriptionInviteVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -172,54 +168,91 @@ public class CreateSubscriptionInviteVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("usages");
+    openapiFields.add("durable");
+    openapiFields.add("expiredDate");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to CreateSubscriptionInviteVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CreateSubscriptionInviteVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateSubscriptionInviteVM is not found in the empty JSON string", CreateSubscriptionInviteVM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!CreateSubscriptionInviteVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateSubscriptionInviteVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CreateSubscriptionInviteVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateSubscriptionInviteVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CreateSubscriptionInviteVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateSubscriptionInviteVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CreateSubscriptionInviteVM>() {
+           @Override
+           public void write(JsonWriter out, CreateSubscriptionInviteVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CreateSubscriptionInviteVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of CreateSubscriptionInviteVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of CreateSubscriptionInviteVM
+  * @throws IOException if the JSON string is invalid with respect to CreateSubscriptionInviteVM
+  */
+  public static CreateSubscriptionInviteVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateSubscriptionInviteVM.class);
+  }
 
-    // add `usages` to the URL query string
-    if (getUsages() != null) {
-      joiner.add(String.format("%susages%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUsages()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `durable` to the URL query string
-    if (getDurable() != null) {
-      joiner.add(String.format("%sdurable%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDurable()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `expiredDate` to the URL query string
-    if (getExpiredDate() != null) {
-      joiner.add(String.format("%sexpiredDate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExpiredDate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of CreateSubscriptionInviteVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

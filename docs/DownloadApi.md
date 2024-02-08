@@ -5,36 +5,24 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**downloadGetExport**](DownloadApi.md#downloadGetExport) | **GET** /download/e/{id} | Returns a export file with specified id |
-| [**downloadGetExportWithHttpInfo**](DownloadApi.md#downloadGetExportWithHttpInfo) | **GET** /download/e/{id} | Returns a export file with specified id |
 | [**downloadGetExportThumbnail**](DownloadApi.md#downloadGetExportThumbnail) | **GET** /download/e/{id}/thumbnail | Returns export&#39;s thumbnail |
-| [**downloadGetExportThumbnailWithHttpInfo**](DownloadApi.md#downloadGetExportThumbnailWithHttpInfo) | **GET** /download/e/{id}/thumbnail | Returns export&#39;s thumbnail |
 | [**downloadGetExports**](DownloadApi.md#downloadGetExports) | **GET** /download/es/{archiveName} | Returns a zip archive with selected ids |
-| [**downloadGetExportsWithHttpInfo**](DownloadApi.md#downloadGetExportsWithHttpInfo) | **GET** /download/es/{archiveName} | Returns a zip archive with selected ids |
 | [**downloadGetLastSVGExport**](DownloadApi.md#downloadGetLastSVGExport) | **GET** /download/lastPreview/{reportId} | returns export, that was created from report with specified id.  INTERNAL USAGE ONLY! |
-| [**downloadGetLastSVGExportWithHttpInfo**](DownloadApi.md#downloadGetLastSVGExportWithHttpInfo) | **GET** /download/lastPreview/{reportId} | returns export, that was created from report with specified id.  INTERNAL USAGE ONLY! |
 | [**downloadGetReport**](DownloadApi.md#downloadGetReport) | **GET** /download/r/{id} | Returns a prepared file with specified id |
-| [**downloadGetReportWithHttpInfo**](DownloadApi.md#downloadGetReportWithHttpInfo) | **GET** /download/r/{id} | Returns a prepared file with specified id |
 | [**downloadGetReportThumbnail**](DownloadApi.md#downloadGetReportThumbnail) | **GET** /download/r/{id}/thumbnail | Returns report&#39;s thumbnail |
-| [**downloadGetReportThumbnailWithHttpInfo**](DownloadApi.md#downloadGetReportThumbnailWithHttpInfo) | **GET** /download/r/{id}/thumbnail | Returns report&#39;s thumbnail |
 | [**downloadGetReports**](DownloadApi.md#downloadGetReports) | **GET** /download/rs/{archiveName} | Returns a zip archive with selected files |
-| [**downloadGetReportsWithHttpInfo**](DownloadApi.md#downloadGetReportsWithHttpInfo) | **GET** /download/rs/{archiveName} | Returns a zip archive with selected files |
 | [**downloadGetTemplate**](DownloadApi.md#downloadGetTemplate) | **GET** /download/t/{id} | Returns a Template file with specified id |
-| [**downloadGetTemplateWithHttpInfo**](DownloadApi.md#downloadGetTemplateWithHttpInfo) | **GET** /download/t/{id} | Returns a Template file with specified id |
 | [**downloadGetTemplateThumbnail**](DownloadApi.md#downloadGetTemplateThumbnail) | **GET** /download/t/{id}/thumbnail | Returns template&#39;s thumbnail |
-| [**downloadGetTemplateThumbnailWithHttpInfo**](DownloadApi.md#downloadGetTemplateThumbnailWithHttpInfo) | **GET** /download/t/{id}/thumbnail | Returns template&#39;s thumbnail |
 | [**downloadGetTemplates**](DownloadApi.md#downloadGetTemplates) | **GET** /download/ts/{archiveName} | Returns a zip archive with selected files |
-| [**downloadGetTemplatesWithHttpInfo**](DownloadApi.md#downloadGetTemplatesWithHttpInfo) | **GET** /download/ts/{archiveName} | Returns a zip archive with selected files |
 
 
-
-## downloadGetExport
-
+<a id="downloadGetExport"></a>
+# **downloadGetExport**
 > File downloadGetExport(id, preview)
 
 Returns a export file with specified id
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -45,38 +33,37 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.DownloadApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String id = "id_example"; // String | 
-        Boolean preview = false; // Boolean | 
-        try {
-            File result = apiInstance.downloadGetExport(id, preview);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetExport");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    DownloadApi apiInstance = new DownloadApi(defaultClient);
+    String id = "id_example"; // String | 
+    Boolean preview = false; // Boolean | 
+    try {
+      File result = apiInstance.downloadGetExport(id, preview);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DownloadApi#downloadGetExport");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -87,15 +74,14 @@ public class Example {
 
 [**File**](File.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/octet-stream, application/pdf
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, application/octet-stream, application/pdf
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -106,97 +92,13 @@ public class Example {
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions for the operation |  -  |
 
-## downloadGetExportWithHttpInfo
-
-> ApiResponse<File> downloadGetExport downloadGetExportWithHttpInfo(id, preview)
-
-Returns a export file with specified id
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.DownloadApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String id = "id_example"; // String | 
-        Boolean preview = false; // Boolean | 
-        try {
-            ApiResponse<File> response = apiInstance.downloadGetExportWithHttpInfo(id, preview);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetExport");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**|  | |
-| **preview** | **Boolean**|  | [optional] [default to false] |
-
-### Return type
-
-ApiResponse<[**File**](File.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/octet-stream, application/pdf
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Specified file was found |  -  |
-| **404** | Specified file was not found or user do not has access to the file |  -  |
-| **400** | Bad id provided |  -  |
-| **402** | Subscription is blocked |  -  |
-| **403** | Not enough permissions for the operation |  -  |
-
-
-## downloadGetExportThumbnail
-
+<a id="downloadGetExportThumbnail"></a>
+# **downloadGetExportThumbnail**
 > File downloadGetExportThumbnail(id)
 
 Returns export&#39;s thumbnail
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -207,37 +109,36 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.DownloadApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String id = "id_example"; // String | 
-        try {
-            File result = apiInstance.downloadGetExportThumbnail(id);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetExportThumbnail");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    DownloadApi apiInstance = new DownloadApi(defaultClient);
+    String id = "id_example"; // String | 
+    try {
+      File result = apiInstance.downloadGetExportThumbnail(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DownloadApi#downloadGetExportThumbnail");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -247,15 +148,14 @@ public class Example {
 
 [**File**](File.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, image/png, image/jpeg
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, image/png, image/jpeg
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -266,95 +166,13 @@ public class Example {
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions for the operation |  -  |
 
-## downloadGetExportThumbnailWithHttpInfo
-
-> ApiResponse<File> downloadGetExportThumbnail downloadGetExportThumbnailWithHttpInfo(id)
-
-Returns export&#39;s thumbnail
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.DownloadApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String id = "id_example"; // String | 
-        try {
-            ApiResponse<File> response = apiInstance.downloadGetExportThumbnailWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetExportThumbnail");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**|  | |
-
-### Return type
-
-ApiResponse<[**File**](File.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, image/png, image/jpeg
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Specified thumbnail was found |  -  |
-| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
-| **400** | Bad id provided |  -  |
-| **402** | Subscription is blocked |  -  |
-| **403** | Not enough permissions for the operation |  -  |
-
-
-## downloadGetExports
-
+<a id="downloadGetExports"></a>
+# **downloadGetExports**
 > File downloadGetExports(archiveName, fileIds, folderIds)
 
 Returns a zip archive with selected ids
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -365,39 +183,38 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.DownloadApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String archiveName = "archiveName_example"; // String | name of the created archive
-        String fileIds = "fileIds_example"; // String | ids separated with a ',' sign
-        String folderIds = "folderIds_example"; // String | ids separated with a ',' sign
-        try {
-            File result = apiInstance.downloadGetExports(archiveName, fileIds, folderIds);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetExports");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    DownloadApi apiInstance = new DownloadApi(defaultClient);
+    String archiveName = "archiveName_example"; // String | name of the created archive
+    String fileIds = "fileIds_example"; // String | ids separated with a ',' sign
+    String folderIds = "folderIds_example"; // String | ids separated with a ',' sign
+    try {
+      File result = apiInstance.downloadGetExports(archiveName, fileIds, folderIds);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DownloadApi#downloadGetExports");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -409,15 +226,14 @@ public class Example {
 
 [**File**](File.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/zip
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, application/zip
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -428,99 +244,13 @@ public class Example {
 | **403** | Not enough permissions for the operation |  -  |
 | **404** | Specified file was not found or user do not has access to the file |  -  |
 
-## downloadGetExportsWithHttpInfo
-
-> ApiResponse<File> downloadGetExports downloadGetExportsWithHttpInfo(archiveName, fileIds, folderIds)
-
-Returns a zip archive with selected ids
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.DownloadApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String archiveName = "archiveName_example"; // String | name of the created archive
-        String fileIds = "fileIds_example"; // String | ids separated with a ',' sign
-        String folderIds = "folderIds_example"; // String | ids separated with a ',' sign
-        try {
-            ApiResponse<File> response = apiInstance.downloadGetExportsWithHttpInfo(archiveName, fileIds, folderIds);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetExports");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **archiveName** | **String**| name of the created archive | |
-| **fileIds** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
-| **folderIds** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
-
-### Return type
-
-ApiResponse<[**File**](File.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/zip
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Specified file was found |  -  |
-| **400** | Bad id provided |  -  |
-| **402** | Subscription is blocked |  -  |
-| **403** | Not enough permissions for the operation |  -  |
-| **404** | Specified file was not found or user do not has access to the file |  -  |
-
-
-## downloadGetLastSVGExport
-
+<a id="downloadGetLastSVGExport"></a>
+# **downloadGetLastSVGExport**
 > File downloadGetLastSVGExport(reportId)
 
 returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -531,37 +261,36 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.DownloadApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String reportId = "reportId_example"; // String | 
-        try {
-            File result = apiInstance.downloadGetLastSVGExport(reportId);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetLastSVGExport");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    DownloadApi apiInstance = new DownloadApi(defaultClient);
+    String reportId = "reportId_example"; // String | 
+    try {
+      File result = apiInstance.downloadGetLastSVGExport(reportId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DownloadApi#downloadGetLastSVGExport");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -571,15 +300,14 @@ public class Example {
 
 [**File**](File.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/octet-stream
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, application/octet-stream
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -590,95 +318,13 @@ public class Example {
 | **402** | Client Error |  -  |
 | **403** | Forbidden |  -  |
 
-## downloadGetLastSVGExportWithHttpInfo
-
-> ApiResponse<File> downloadGetLastSVGExport downloadGetLastSVGExportWithHttpInfo(reportId)
-
-returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.DownloadApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String reportId = "reportId_example"; // String | 
-        try {
-            ApiResponse<File> response = apiInstance.downloadGetLastSVGExportWithHttpInfo(reportId);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetLastSVGExport");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **reportId** | **String**|  | |
-
-### Return type
-
-ApiResponse<[**File**](File.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/octet-stream
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **404** | Not Found |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-
-
-## downloadGetReport
-
+<a id="downloadGetReport"></a>
+# **downloadGetReport**
 > File downloadGetReport(id)
 
 Returns a prepared file with specified id
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -689,37 +335,36 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.DownloadApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String id = "id_example"; // String | 
-        try {
-            File result = apiInstance.downloadGetReport(id);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetReport");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    DownloadApi apiInstance = new DownloadApi(defaultClient);
+    String id = "id_example"; // String | 
+    try {
+      File result = apiInstance.downloadGetReport(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DownloadApi#downloadGetReport");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -729,15 +374,14 @@ public class Example {
 
 [**File**](File.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/octet-stream
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, application/octet-stream
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -748,95 +392,13 @@ public class Example {
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions |  -  |
 
-## downloadGetReportWithHttpInfo
-
-> ApiResponse<File> downloadGetReport downloadGetReportWithHttpInfo(id)
-
-Returns a prepared file with specified id
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.DownloadApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String id = "id_example"; // String | 
-        try {
-            ApiResponse<File> response = apiInstance.downloadGetReportWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetReport");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**|  | |
-
-### Return type
-
-ApiResponse<[**File**](File.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/octet-stream
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Specified file was found |  -  |
-| **404** | Specified file was not found or user do not has access to the file |  -  |
-| **400** | bad id provided |  -  |
-| **402** | Subscription is blocked |  -  |
-| **403** | Not enough permissions |  -  |
-
-
-## downloadGetReportThumbnail
-
+<a id="downloadGetReportThumbnail"></a>
+# **downloadGetReportThumbnail**
 > File downloadGetReportThumbnail(id)
 
 Returns report&#39;s thumbnail
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -847,37 +409,36 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.DownloadApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String id = "id_example"; // String | 
-        try {
-            File result = apiInstance.downloadGetReportThumbnail(id);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetReportThumbnail");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    DownloadApi apiInstance = new DownloadApi(defaultClient);
+    String id = "id_example"; // String | 
+    try {
+      File result = apiInstance.downloadGetReportThumbnail(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DownloadApi#downloadGetReportThumbnail");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -887,15 +448,14 @@ public class Example {
 
 [**File**](File.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, image/png, image/jpeg
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, image/png, image/jpeg
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -906,95 +466,13 @@ public class Example {
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions for the operation |  -  |
 
-## downloadGetReportThumbnailWithHttpInfo
-
-> ApiResponse<File> downloadGetReportThumbnail downloadGetReportThumbnailWithHttpInfo(id)
-
-Returns report&#39;s thumbnail
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.DownloadApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String id = "id_example"; // String | 
-        try {
-            ApiResponse<File> response = apiInstance.downloadGetReportThumbnailWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetReportThumbnail");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**|  | |
-
-### Return type
-
-ApiResponse<[**File**](File.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, image/png, image/jpeg
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Specified thumbnail was found |  -  |
-| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
-| **400** | Bad id provided |  -  |
-| **402** | Subscription is blocked |  -  |
-| **403** | Not enough permissions for the operation |  -  |
-
-
-## downloadGetReports
-
+<a id="downloadGetReports"></a>
+# **downloadGetReports**
 > File downloadGetReports(archiveName, fileIds, folderIds)
 
 Returns a zip archive with selected files
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -1005,39 +483,38 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.DownloadApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String archiveName = "archiveName_example"; // String | name of the created archive
-        String fileIds = "fileIds_example"; // String | ids separated with a ',' sign
-        String folderIds = "folderIds_example"; // String | ids separated with a ',' sign
-        try {
-            File result = apiInstance.downloadGetReports(archiveName, fileIds, folderIds);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetReports");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    DownloadApi apiInstance = new DownloadApi(defaultClient);
+    String archiveName = "archiveName_example"; // String | name of the created archive
+    String fileIds = "fileIds_example"; // String | ids separated with a ',' sign
+    String folderIds = "folderIds_example"; // String | ids separated with a ',' sign
+    try {
+      File result = apiInstance.downloadGetReports(archiveName, fileIds, folderIds);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DownloadApi#downloadGetReports");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -1049,15 +526,14 @@ public class Example {
 
 [**File**](File.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/zip
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, application/zip
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1068,99 +544,13 @@ public class Example {
 | **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 
-## downloadGetReportsWithHttpInfo
-
-> ApiResponse<File> downloadGetReports downloadGetReportsWithHttpInfo(archiveName, fileIds, folderIds)
-
-Returns a zip archive with selected files
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.DownloadApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String archiveName = "archiveName_example"; // String | name of the created archive
-        String fileIds = "fileIds_example"; // String | ids separated with a ',' sign
-        String folderIds = "folderIds_example"; // String | ids separated with a ',' sign
-        try {
-            ApiResponse<File> response = apiInstance.downloadGetReportsWithHttpInfo(archiveName, fileIds, folderIds);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetReports");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **archiveName** | **String**| name of the created archive | |
-| **fileIds** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
-| **folderIds** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
-
-### Return type
-
-ApiResponse<[**File**](File.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/zip
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | File has been downloaded |  -  |
-| **404** | files is not found |  -  |
-| **400** | wrong parameters provided |  -  |
-| **402** | Subscription is blocked |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-
-
-## downloadGetTemplate
-
+<a id="downloadGetTemplate"></a>
+# **downloadGetTemplate**
 > File downloadGetTemplate(id)
 
 Returns a Template file with specified id
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -1171,37 +561,36 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.DownloadApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String id = "id_example"; // String | template id
-        try {
-            File result = apiInstance.downloadGetTemplate(id);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetTemplate");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    DownloadApi apiInstance = new DownloadApi(defaultClient);
+    String id = "id_example"; // String | template id
+    try {
+      File result = apiInstance.downloadGetTemplate(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DownloadApi#downloadGetTemplate");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -1211,15 +600,14 @@ public class Example {
 
 [**File**](File.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/octet-stream
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, application/octet-stream
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1230,95 +618,13 @@ public class Example {
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions |  -  |
 
-## downloadGetTemplateWithHttpInfo
-
-> ApiResponse<File> downloadGetTemplate downloadGetTemplateWithHttpInfo(id)
-
-Returns a Template file with specified id
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.DownloadApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String id = "id_example"; // String | template id
-        try {
-            ApiResponse<File> response = apiInstance.downloadGetTemplateWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetTemplate");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**| template id | |
-
-### Return type
-
-ApiResponse<[**File**](File.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/octet-stream
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Specified file was found |  -  |
-| **404** | Specified file was not found or user do not has access to the file |  -  |
-| **400** | bad id provided |  -  |
-| **402** | Subscription is blocked |  -  |
-| **403** | Not enough permissions |  -  |
-
-
-## downloadGetTemplateThumbnail
-
+<a id="downloadGetTemplateThumbnail"></a>
+# **downloadGetTemplateThumbnail**
 > File downloadGetTemplateThumbnail(id)
 
 Returns template&#39;s thumbnail
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -1329,37 +635,36 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.DownloadApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String id = "id_example"; // String | 
-        try {
-            File result = apiInstance.downloadGetTemplateThumbnail(id);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetTemplateThumbnail");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    DownloadApi apiInstance = new DownloadApi(defaultClient);
+    String id = "id_example"; // String | 
+    try {
+      File result = apiInstance.downloadGetTemplateThumbnail(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DownloadApi#downloadGetTemplateThumbnail");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -1369,15 +674,14 @@ public class Example {
 
 [**File**](File.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, image/png, image/jpeg
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, image/png, image/jpeg
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -1388,95 +692,13 @@ public class Example {
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions for the operation |  -  |
 
-## downloadGetTemplateThumbnailWithHttpInfo
-
-> ApiResponse<File> downloadGetTemplateThumbnail downloadGetTemplateThumbnailWithHttpInfo(id)
-
-Returns template&#39;s thumbnail
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.DownloadApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String id = "id_example"; // String | 
-        try {
-            ApiResponse<File> response = apiInstance.downloadGetTemplateThumbnailWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetTemplateThumbnail");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**|  | |
-
-### Return type
-
-ApiResponse<[**File**](File.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, image/png, image/jpeg
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Specified thumbnail was found |  -  |
-| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
-| **400** | Bad id provided |  -  |
-| **402** | Subscription is blocked |  -  |
-| **403** | Not enough permissions for the operation |  -  |
-
-
-## downloadGetTemplates
-
+<a id="downloadGetTemplates"></a>
+# **downloadGetTemplates**
 > File downloadGetTemplates(archiveName, fileIds, folderIds)
 
 Returns a zip archive with selected files
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -1487,39 +709,38 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.DownloadApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String archiveName = "archiveName_example"; // String | name of the created archive
-        String fileIds = "fileIds_example"; // String | ids separated with a ',' sign
-        String folderIds = "folderIds_example"; // String | ids separated with a ',' sign
-        try {
-            File result = apiInstance.downloadGetTemplates(archiveName, fileIds, folderIds);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetTemplates");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    DownloadApi apiInstance = new DownloadApi(defaultClient);
+    String archiveName = "archiveName_example"; // String | name of the created archive
+    String fileIds = "fileIds_example"; // String | ids separated with a ',' sign
+    String folderIds = "folderIds_example"; // String | ids separated with a ',' sign
+    try {
+      File result = apiInstance.downloadGetTemplates(archiveName, fileIds, folderIds);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DownloadApi#downloadGetTemplates");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -1531,99 +752,14 @@ public class Example {
 
 [**File**](File.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/zip
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | File has been downloaded |  -  |
-| **400** | wrong parameters provided |  -  |
-| **402** | Subscription is blocked |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | files is not found |  -  |
-
-## downloadGetTemplatesWithHttpInfo
-
-> ApiResponse<File> downloadGetTemplates downloadGetTemplatesWithHttpInfo(archiveName, fileIds, folderIds)
-
-Returns a zip archive with selected files
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.DownloadApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        DownloadApi apiInstance = new DownloadApi(defaultClient);
-        String archiveName = "archiveName_example"; // String | name of the created archive
-        String fileIds = "fileIds_example"; // String | ids separated with a ',' sign
-        String folderIds = "folderIds_example"; // String | ids separated with a ',' sign
-        try {
-            ApiResponse<File> response = apiInstance.downloadGetTemplatesWithHttpInfo(archiveName, fileIds, folderIds);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DownloadApi#downloadGetTemplates");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **archiveName** | **String**| name of the created archive | |
-| **fileIds** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
-| **folderIds** | **String**| ids separated with a &#39;,&#39; sign | [optional] |
-
-### Return type
-
-ApiResponse<[**File**](File.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, application/zip
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, application/zip
 
 ### HTTP response details
 | Status code | Description | Response headers |

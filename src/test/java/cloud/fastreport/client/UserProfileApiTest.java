@@ -17,73 +17,57 @@ import cloud.fastreport.ApiException;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.UpdateUserProfileVM;
 import cloud.fastreport.model.UserProfileVM;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for UserProfileApi
  */
-@Ignore
+@Disabled
 public class UserProfileApiTest {
 
     private final UserProfileApi api = new UserProfileApi();
 
-    
     /**
      * Return current profile of the current user
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void userProfileGetMyProfileTest() throws ApiException {
-        UserProfileVM response = 
-        api.userProfileGetMyProfile();
-        
+        UserProfileVM response = api.userProfileGetMyProfile();
         // TODO: test validations
     }
-    
+
     /**
      * Return user profile by user identifier.  If the user did not provide information about himself or blocked, then the endpoint will return an empty model. (only id)
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void userProfileGetUserProfileTest() throws ApiException {
         String userId = null;
-        UserProfileVM response = 
-        api.userProfileGetUserProfile(userId);
-        
+        UserProfileVM response = api.userProfileGetUserProfile(userId);
         // TODO: test validations
     }
-    
+
     /**
      * Update profile of the current user
      *
      * This method is only allowed for local sign in via intranet
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void userProfileUpdateMyProfileTest() throws ApiException {
         UpdateUserProfileVM updateUserProfileVM = null;
-        
         api.userProfileUpdateMyProfile(updateUserProfileVM);
-        
         // TODO: test validations
     }
-    
+
 }

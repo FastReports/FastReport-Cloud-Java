@@ -10,7 +10,9 @@
 |**parentId** | **String** |  |  |
 |**ownerId** | **String** |  |  |
 |**force** | **Boolean** |  |  [optional] |
-|**$t** | **String** |  |  |
+|**name** | **String** |  |  [optional] |
+|**tags** | **List&lt;String&gt;** |  |  [optional] |
+|**icon** | **byte[]** |  |  [optional] |
 
 
 

@@ -14,39 +14,31 @@
 package cloud.fastreport.client;
 
 import cloud.fastreport.ApiException;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for HealthCheckApi
  */
-@Ignore
+@Disabled
 public class HealthCheckApiTest {
 
     private final HealthCheckApi api = new HealthCheckApi();
 
-    
     /**
      * healthcheck
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void healthCheckDataGetTest() throws ApiException {
-        
         api.healthCheckDataGet();
-        
         // TODO: test validations
     }
-    
+
 }

@@ -15,39 +15,31 @@ package cloud.fastreport.client;
 
 import cloud.fastreport.ApiException;
 import cloud.fastreport.model.ServerConfigurationVM;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for ConfigurationApi
  */
-@Ignore
+@Disabled
 public class ConfigurationApiTest {
 
     private final ConfigurationApi api = new ConfigurationApi();
 
-    
     /**
      * returns information about server configuration
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void configurationGetTest() throws ApiException {
-        ServerConfigurationVM response = 
-        api.configurationGet();
-        
+        ServerConfigurationVM response = api.configurationGet();
         // TODO: test validations
     }
-    
+
 }

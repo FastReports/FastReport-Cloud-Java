@@ -13,54 +13,67 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.FileKind;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * RunInputFileVM
  */
-@JsonPropertyOrder({
-  RunInputFileVM.JSON_PROPERTY_CONTENT,
-  RunInputFileVM.JSON_PROPERTY_FILE_NAME,
-  RunInputFileVM.JSON_PROPERTY_ENTITY_ID,
-  RunInputFileVM.JSON_PROPERTY_TYPE
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RunInputFileVM {
-  public static final String JSON_PROPERTY_CONTENT = "content";
-  private JsonNullable<byte[]> content = JsonNullable.<byte[]>undefined();
+  public static final String SERIALIZED_NAME_CONTENT = "content";
+  @SerializedName(SERIALIZED_NAME_CONTENT)
+  private byte[] content;
 
-  public static final String JSON_PROPERTY_FILE_NAME = "fileName";
-  private JsonNullable<String> fileName = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_FILE_NAME = "fileName";
+  @SerializedName(SERIALIZED_NAME_FILE_NAME)
+  private String fileName;
 
-  public static final String JSON_PROPERTY_ENTITY_ID = "entityId";
-  private JsonNullable<String> entityId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_ENTITY_ID = "entityId";
+  @SerializedName(SERIALIZED_NAME_ENTITY_ID)
+  private String entityId;
 
-  public static final String JSON_PROPERTY_TYPE = "type";
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
   private FileKind type;
 
-  public RunInputFileVM() { 
+  public RunInputFileVM() {
   }
 
   public RunInputFileVM content(byte[] content) {
-    this.content = JsonNullable.<byte[]>of(content);
+    this.content = content;
     return this;
   }
 
@@ -69,31 +82,17 @@ public class RunInputFileVM {
    * @return content
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public byte[] getContent() {
-        return content.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_CONTENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<byte[]> getContent_JsonNullable() {
     return content;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CONTENT)
-  public void setContent_JsonNullable(JsonNullable<byte[]> content) {
-    this.content = content;
   }
 
   public void setContent(byte[] content) {
-    this.content = JsonNullable.<byte[]>of(content);
+    this.content = content;
   }
 
 
   public RunInputFileVM fileName(String fileName) {
-    this.fileName = JsonNullable.<String>of(fileName);
+    this.fileName = fileName;
     return this;
   }
 
@@ -102,31 +101,17 @@ public class RunInputFileVM {
    * @return fileName
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getFileName() {
-        return fileName.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FILE_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getFileName_JsonNullable() {
     return fileName;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FILE_NAME)
-  public void setFileName_JsonNullable(JsonNullable<String> fileName) {
-    this.fileName = fileName;
   }
 
   public void setFileName(String fileName) {
-    this.fileName = JsonNullable.<String>of(fileName);
+    this.fileName = fileName;
   }
 
 
   public RunInputFileVM entityId(String entityId) {
-    this.entityId = JsonNullable.<String>of(entityId);
+    this.entityId = entityId;
     return this;
   }
 
@@ -135,26 +120,12 @@ public class RunInputFileVM {
    * @return entityId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getEntityId() {
-        return entityId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ENTITY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getEntityId_JsonNullable() {
     return entityId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ENTITY_ID)
-  public void setEntityId_JsonNullable(JsonNullable<String> entityId) {
-    this.entityId = entityId;
   }
 
   public void setEntityId(String entityId) {
-    this.entityId = JsonNullable.<String>of(entityId);
+    this.entityId = entityId;
   }
 
 
@@ -168,24 +139,16 @@ public class RunInputFileVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public FileKind getType() {
     return type;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(FileKind type) {
     this.type = type;
   }
 
 
-  /**
-   * Return true if this RunInputFileVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -195,9 +158,9 @@ public class RunInputFileVM {
       return false;
     }
     RunInputFileVM runInputFileVM = (RunInputFileVM) o;
-    return equalsNullable(this.content, runInputFileVM.content) &&
-        equalsNullable(this.fileName, runInputFileVM.fileName) &&
-        equalsNullable(this.entityId, runInputFileVM.entityId) &&
+    return Arrays.equals(this.content, runInputFileVM.content) &&
+        Objects.equals(this.fileName, runInputFileVM.fileName) &&
+        Objects.equals(this.entityId, runInputFileVM.entityId) &&
         Objects.equals(this.type, runInputFileVM.type);
   }
 
@@ -207,7 +170,7 @@ public class RunInputFileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(content), hashCodeNullable(fileName), hashCodeNullable(entityId), type);
+    return Objects.hash(Arrays.hashCode(content), fileName, entityId, type);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -240,49 +203,100 @@ public class RunInputFileVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("entityId");
+    openapiFields.add("type");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to RunInputFileVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!RunInputFileVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in RunInputFileVM is not found in the empty JSON string", RunInputFileVM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!RunInputFileVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RunInputFileVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("fileName") != null && !jsonObj.get("fileName").isJsonNull()) && !jsonObj.get("fileName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `fileName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fileName").toString()));
+      }
+      if ((jsonObj.get("entityId") != null && !jsonObj.get("entityId").isJsonNull()) && !jsonObj.get("entityId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `entityId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("entityId").toString()));
+      }
+      // validate the optional field `type`
+      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+        FileKind.validateJsonElement(jsonObj.get("type"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!RunInputFileVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'RunInputFileVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<RunInputFileVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(RunInputFileVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<RunInputFileVM>() {
+           @Override
+           public void write(JsonWriter out, RunInputFileVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public RunInputFileVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of RunInputFileVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of RunInputFileVM
+  * @throws IOException if the JSON string is invalid with respect to RunInputFileVM
+  */
+  public static RunInputFileVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, RunInputFileVM.class);
+  }
 
-    // add `entityId` to the URL query string
-    if (getEntityId() != null) {
-      joiner.add(String.format("%sentityId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEntityId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `type` to the URL query string
-    if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of RunInputFileVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

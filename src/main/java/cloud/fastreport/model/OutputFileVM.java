@@ -13,54 +13,67 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.FileKind;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * OutputFileVM
  */
-@JsonPropertyOrder({
-  OutputFileVM.JSON_PROPERTY_FILE_NAME,
-  OutputFileVM.JSON_PROPERTY_FOLDER_ID,
-  OutputFileVM.JSON_PROPERTY_TYPE,
-  OutputFileVM.JSON_PROPERTY_IS_TEMPORARY
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class OutputFileVM {
-  public static final String JSON_PROPERTY_FILE_NAME = "fileName";
-  private JsonNullable<String> fileName = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_FILE_NAME = "fileName";
+  @SerializedName(SERIALIZED_NAME_FILE_NAME)
+  private String fileName;
 
-  public static final String JSON_PROPERTY_FOLDER_ID = "folderId";
-  private JsonNullable<String> folderId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_FOLDER_ID = "folderId";
+  @SerializedName(SERIALIZED_NAME_FOLDER_ID)
+  private String folderId;
 
-  public static final String JSON_PROPERTY_TYPE = "type";
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
   private FileKind type;
 
-  public static final String JSON_PROPERTY_IS_TEMPORARY = "isTemporary";
+  public static final String SERIALIZED_NAME_IS_TEMPORARY = "isTemporary";
+  @SerializedName(SERIALIZED_NAME_IS_TEMPORARY)
   private Boolean isTemporary;
 
-  public OutputFileVM() { 
+  public OutputFileVM() {
   }
 
   public OutputFileVM fileName(String fileName) {
-    this.fileName = JsonNullable.<String>of(fileName);
+    this.fileName = fileName;
     return this;
   }
 
@@ -69,31 +82,17 @@ public class OutputFileVM {
    * @return fileName
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getFileName() {
-        return fileName.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FILE_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getFileName_JsonNullable() {
     return fileName;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FILE_NAME)
-  public void setFileName_JsonNullable(JsonNullable<String> fileName) {
-    this.fileName = fileName;
   }
 
   public void setFileName(String fileName) {
-    this.fileName = JsonNullable.<String>of(fileName);
+    this.fileName = fileName;
   }
 
 
   public OutputFileVM folderId(String folderId) {
-    this.folderId = JsonNullable.<String>of(folderId);
+    this.folderId = folderId;
     return this;
   }
 
@@ -102,26 +101,12 @@ public class OutputFileVM {
    * @return folderId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getFolderId() {
-        return folderId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getFolderId_JsonNullable() {
     return folderId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
-  public void setFolderId_JsonNullable(JsonNullable<String> folderId) {
-    this.folderId = folderId;
   }
 
   public void setFolderId(String folderId) {
-    this.folderId = JsonNullable.<String>of(folderId);
+    this.folderId = folderId;
   }
 
 
@@ -135,16 +120,10 @@ public class OutputFileVM {
    * @return type
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public FileKind getType() {
     return type;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(FileKind type) {
     this.type = type;
   }
@@ -160,24 +139,16 @@ public class OutputFileVM {
    * @return isTemporary
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS_TEMPORARY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getIsTemporary() {
     return isTemporary;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_IS_TEMPORARY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsTemporary(Boolean isTemporary) {
     this.isTemporary = isTemporary;
   }
 
 
-  /**
-   * Return true if this OutputFileVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -187,8 +158,8 @@ public class OutputFileVM {
       return false;
     }
     OutputFileVM outputFileVM = (OutputFileVM) o;
-    return equalsNullable(this.fileName, outputFileVM.fileName) &&
-        equalsNullable(this.folderId, outputFileVM.folderId) &&
+    return Objects.equals(this.fileName, outputFileVM.fileName) &&
+        Objects.equals(this.folderId, outputFileVM.folderId) &&
         Objects.equals(this.type, outputFileVM.type) &&
         Objects.equals(this.isTemporary, outputFileVM.isTemporary);
   }
@@ -199,7 +170,7 @@ public class OutputFileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(fileName), hashCodeNullable(folderId), type, isTemporary);
+    return Objects.hash(fileName, folderId, type, isTemporary);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -232,59 +203,102 @@ public class OutputFileVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("fileName");
+    openapiFields.add("folderId");
+    openapiFields.add("type");
+    openapiFields.add("isTemporary");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to OutputFileVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!OutputFileVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in OutputFileVM is not found in the empty JSON string", OutputFileVM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!OutputFileVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `OutputFileVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("fileName") != null && !jsonObj.get("fileName").isJsonNull()) && !jsonObj.get("fileName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `fileName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fileName").toString()));
+      }
+      if ((jsonObj.get("folderId") != null && !jsonObj.get("folderId").isJsonNull()) && !jsonObj.get("folderId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `folderId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("folderId").toString()));
+      }
+      // validate the optional field `type`
+      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
+        FileKind.validateJsonElement(jsonObj.get("type"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!OutputFileVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'OutputFileVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<OutputFileVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(OutputFileVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<OutputFileVM>() {
+           @Override
+           public void write(JsonWriter out, OutputFileVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public OutputFileVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of OutputFileVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of OutputFileVM
+  * @throws IOException if the JSON string is invalid with respect to OutputFileVM
+  */
+  public static OutputFileVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, OutputFileVM.class);
+  }
 
-    // add `fileName` to the URL query string
-    if (getFileName() != null) {
-      joiner.add(String.format("%sfileName%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFileName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `folderId` to the URL query string
-    if (getFolderId() != null) {
-      joiner.add(String.format("%sfolderId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFolderId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `type` to the URL query string
-    if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `isTemporary` to the URL query string
-    if (getIsTemporary() != null) {
-      joiner.add(String.format("%sisTemporary%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsTemporary()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of OutputFileVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

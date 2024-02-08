@@ -13,76 +13,89 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * ContactVM
  */
-@JsonPropertyOrder({
-  ContactVM.JSON_PROPERTY_ID,
-  ContactVM.JSON_PROPERTY_NAME,
-  ContactVM.JSON_PROPERTY_EMAIL,
-  ContactVM.JSON_PROPERTY_GROUPS,
-  ContactVM.JSON_PROPERTY_SUBSCRIPTION_ID,
-  ContactVM.JSON_PROPERTY_CREATED_TIME,
-  ContactVM.JSON_PROPERTY_CREATOR_USER_ID,
-  ContactVM.JSON_PROPERTY_EDITED_TIME,
-  ContactVM.JSON_PROPERTY_EDITOR_USER_ID
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ContactVM {
-  public static final String JSON_PROPERTY_ID = "id";
-  private JsonNullable<String> id = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  private JsonNullable<String> name = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
-  public static final String JSON_PROPERTY_EMAIL = "email";
-  private JsonNullable<String> email = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_EMAIL = "email";
+  @SerializedName(SERIALIZED_NAME_EMAIL)
+  private String email;
 
-  public static final String JSON_PROPERTY_GROUPS = "groups";
-  private JsonNullable<List<String>> groups = JsonNullable.<List<String>>undefined();
+  public static final String SERIALIZED_NAME_GROUPS = "groups";
+  @SerializedName(SERIALIZED_NAME_GROUPS)
+  private List<String> groups;
 
-  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_SUBSCRIPTION_ID = "subscriptionId";
+  @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_ID)
+  private String subscriptionId;
 
-  public static final String JSON_PROPERTY_CREATED_TIME = "createdTime";
+  public static final String SERIALIZED_NAME_CREATED_TIME = "createdTime";
+  @SerializedName(SERIALIZED_NAME_CREATED_TIME)
   private OffsetDateTime createdTime;
 
-  public static final String JSON_PROPERTY_CREATOR_USER_ID = "creatorUserId";
-  private JsonNullable<String> creatorUserId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_CREATOR_USER_ID = "creatorUserId";
+  @SerializedName(SERIALIZED_NAME_CREATOR_USER_ID)
+  private String creatorUserId;
 
-  public static final String JSON_PROPERTY_EDITED_TIME = "editedTime";
+  public static final String SERIALIZED_NAME_EDITED_TIME = "editedTime";
+  @SerializedName(SERIALIZED_NAME_EDITED_TIME)
   private OffsetDateTime editedTime;
 
-  public static final String JSON_PROPERTY_EDITOR_USER_ID = "editorUserId";
-  private JsonNullable<String> editorUserId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_EDITOR_USER_ID = "editorUserId";
+  @SerializedName(SERIALIZED_NAME_EDITOR_USER_ID)
+  private String editorUserId;
 
-  public ContactVM() { 
+  public ContactVM() {
   }
 
   public ContactVM id(String id) {
-    this.id = JsonNullable.<String>of(id);
+    this.id = id;
     return this;
   }
 
@@ -91,31 +104,17 @@ public class ContactVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getId() {
-        return id.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getId_JsonNullable() {
     return id;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ID)
-  public void setId_JsonNullable(JsonNullable<String> id) {
-    this.id = id;
   }
 
   public void setId(String id) {
-    this.id = JsonNullable.<String>of(id);
+    this.id = id;
   }
 
 
   public ContactVM name(String name) {
-    this.name = JsonNullable.<String>of(name);
+    this.name = name;
     return this;
   }
 
@@ -124,31 +123,17 @@ public class ContactVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getName() {
-        return name.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getName_JsonNullable() {
     return name;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_NAME)
-  public void setName_JsonNullable(JsonNullable<String> name) {
-    this.name = name;
   }
 
   public void setName(String name) {
-    this.name = JsonNullable.<String>of(name);
+    this.name = name;
   }
 
 
   public ContactVM email(String email) {
-    this.email = JsonNullable.<String>of(email);
+    this.email = email;
     return this;
   }
 
@@ -157,43 +142,25 @@ public class ContactVM {
    * @return email
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getEmail() {
-        return email.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_EMAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getEmail_JsonNullable() {
     return email;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_EMAIL)
-  public void setEmail_JsonNullable(JsonNullable<String> email) {
-    this.email = email;
   }
 
   public void setEmail(String email) {
-    this.email = JsonNullable.<String>of(email);
+    this.email = email;
   }
 
 
   public ContactVM groups(List<String> groups) {
-    this.groups = JsonNullable.<List<String>>of(groups);
+    this.groups = groups;
     return this;
   }
 
   public ContactVM addGroupsItem(String groupsItem) {
-    if (this.groups == null || !this.groups.isPresent()) {
-      this.groups = JsonNullable.<List<String>>of(new ArrayList<>());
+    if (this.groups == null) {
+      this.groups = new ArrayList<>();
     }
-    try {
-      this.groups.get().add(groupsItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.groups.add(groupsItem);
     return this;
   }
 
@@ -202,31 +169,17 @@ public class ContactVM {
    * @return groups
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<String> getGroups() {
-        return groups.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<String>> getGroups_JsonNullable() {
     return groups;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  public void setGroups_JsonNullable(JsonNullable<List<String>> groups) {
-    this.groups = groups;
   }
 
   public void setGroups(List<String> groups) {
-    this.groups = JsonNullable.<List<String>>of(groups);
+    this.groups = groups;
   }
 
 
   public ContactVM subscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
+    this.subscriptionId = subscriptionId;
     return this;
   }
 
@@ -235,26 +188,12 @@ public class ContactVM {
    * @return subscriptionId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getSubscriptionId() {
-        return subscriptionId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getSubscriptionId_JsonNullable() {
     return subscriptionId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
-  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
-    this.subscriptionId = subscriptionId;
   }
 
   public void setSubscriptionId(String subscriptionId) {
-    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
+    this.subscriptionId = subscriptionId;
   }
 
 
@@ -268,23 +207,17 @@ public class ContactVM {
    * @return createdTime
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public OffsetDateTime getCreatedTime() {
     return createdTime;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedTime(OffsetDateTime createdTime) {
     this.createdTime = createdTime;
   }
 
 
   public ContactVM creatorUserId(String creatorUserId) {
-    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
+    this.creatorUserId = creatorUserId;
     return this;
   }
 
@@ -293,26 +226,12 @@ public class ContactVM {
    * @return creatorUserId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getCreatorUserId() {
-        return creatorUserId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getCreatorUserId_JsonNullable() {
     return creatorUserId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
-  public void setCreatorUserId_JsonNullable(JsonNullable<String> creatorUserId) {
-    this.creatorUserId = creatorUserId;
   }
 
   public void setCreatorUserId(String creatorUserId) {
-    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
+    this.creatorUserId = creatorUserId;
   }
 
 
@@ -326,23 +245,17 @@ public class ContactVM {
    * @return editedTime
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EDITED_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public OffsetDateTime getEditedTime() {
     return editedTime;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_EDITED_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEditedTime(OffsetDateTime editedTime) {
     this.editedTime = editedTime;
   }
 
 
   public ContactVM editorUserId(String editorUserId) {
-    this.editorUserId = JsonNullable.<String>of(editorUserId);
+    this.editorUserId = editorUserId;
     return this;
   }
 
@@ -351,32 +264,16 @@ public class ContactVM {
    * @return editorUserId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getEditorUserId() {
-        return editorUserId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getEditorUserId_JsonNullable() {
     return editorUserId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_EDITOR_USER_ID)
-  public void setEditorUserId_JsonNullable(JsonNullable<String> editorUserId) {
-    this.editorUserId = editorUserId;
   }
 
   public void setEditorUserId(String editorUserId) {
-    this.editorUserId = JsonNullable.<String>of(editorUserId);
+    this.editorUserId = editorUserId;
   }
 
 
-  /**
-   * Return true if this ContactVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -386,15 +283,15 @@ public class ContactVM {
       return false;
     }
     ContactVM contactVM = (ContactVM) o;
-    return equalsNullable(this.id, contactVM.id) &&
-        equalsNullable(this.name, contactVM.name) &&
-        equalsNullable(this.email, contactVM.email) &&
-        equalsNullable(this.groups, contactVM.groups) &&
-        equalsNullable(this.subscriptionId, contactVM.subscriptionId) &&
+    return Objects.equals(this.id, contactVM.id) &&
+        Objects.equals(this.name, contactVM.name) &&
+        Objects.equals(this.email, contactVM.email) &&
+        Objects.equals(this.groups, contactVM.groups) &&
+        Objects.equals(this.subscriptionId, contactVM.subscriptionId) &&
         Objects.equals(this.createdTime, contactVM.createdTime) &&
-        equalsNullable(this.creatorUserId, contactVM.creatorUserId) &&
+        Objects.equals(this.creatorUserId, contactVM.creatorUserId) &&
         Objects.equals(this.editedTime, contactVM.editedTime) &&
-        equalsNullable(this.editorUserId, contactVM.editorUserId);
+        Objects.equals(this.editorUserId, contactVM.editorUserId);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -403,7 +300,7 @@ public class ContactVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(id), hashCodeNullable(name), hashCodeNullable(email), hashCodeNullable(groups), hashCodeNullable(subscriptionId), createdTime, hashCodeNullable(creatorUserId), editedTime, hashCodeNullable(editorUserId));
+    return Objects.hash(id, name, email, groups, subscriptionId, createdTime, creatorUserId, editedTime, editorUserId);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -441,88 +338,119 @@ public class ContactVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("id");
+    openapiFields.add("name");
+    openapiFields.add("email");
+    openapiFields.add("groups");
+    openapiFields.add("subscriptionId");
+    openapiFields.add("createdTime");
+    openapiFields.add("creatorUserId");
+    openapiFields.add("editedTime");
+    openapiFields.add("editorUserId");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `email` to the URL query string
-    if (getEmail() != null) {
-      joiner.add(String.format("%semail%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEmail()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `groups` to the URL query string
-    if (getGroups() != null) {
-      for (int i = 0; i < getGroups().size(); i++) {
-        joiner.add(String.format("%sgroups%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(String.valueOf(getGroups().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ContactVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ContactVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ContactVM is not found in the empty JSON string", ContactVM.openapiRequiredFields.toString()));
+        }
       }
-    }
 
-    // add `subscriptionId` to the URL query string
-    if (getSubscriptionId() != null) {
-      joiner.add(String.format("%ssubscriptionId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubscriptionId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ContactVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContactVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull() && !jsonObj.get("groups").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `groups` to be an array in the JSON string but got `%s`", jsonObj.get("groups").toString()));
+      }
+      if ((jsonObj.get("subscriptionId") != null && !jsonObj.get("subscriptionId").isJsonNull()) && !jsonObj.get("subscriptionId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `subscriptionId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subscriptionId").toString()));
+      }
+      if ((jsonObj.get("creatorUserId") != null && !jsonObj.get("creatorUserId").isJsonNull()) && !jsonObj.get("creatorUserId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `creatorUserId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("creatorUserId").toString()));
+      }
+      if ((jsonObj.get("editorUserId") != null && !jsonObj.get("editorUserId").isJsonNull()) && !jsonObj.get("editorUserId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `editorUserId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("editorUserId").toString()));
+      }
+  }
 
-    // add `createdTime` to the URL query string
-    if (getCreatedTime() != null) {
-      joiner.add(String.format("%screatedTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatedTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ContactVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ContactVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ContactVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ContactVM.class));
 
-    // add `creatorUserId` to the URL query string
-    if (getCreatorUserId() != null) {
-      joiner.add(String.format("%screatorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+       return (TypeAdapter<T>) new TypeAdapter<ContactVM>() {
+           @Override
+           public void write(JsonWriter out, ContactVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
 
-    // add `editedTime` to the URL query string
-    if (getEditedTime() != null) {
-      joiner.add(String.format("%seditedTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEditedTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+           @Override
+           public ContactVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
 
-    // add `editorUserId` to the URL query string
-    if (getEditorUserId() != null) {
-      joiner.add(String.format("%seditorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEditorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+       }.nullSafe();
     }
+  }
 
-    return joiner.toString();
+ /**
+  * Create an instance of ContactVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ContactVM
+  * @throws IOException if the JSON string is invalid with respect to ContactVM
+  */
+  public static ContactVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ContactVM.class);
+  }
+
+ /**
+  * Convert an instance of ContactVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

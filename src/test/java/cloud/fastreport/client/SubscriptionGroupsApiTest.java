@@ -16,58 +16,45 @@ package cloud.fastreport.client;
 import cloud.fastreport.ApiException;
 import cloud.fastreport.model.GroupsVM;
 import cloud.fastreport.model.ProblemDetails;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for SubscriptionGroupsApi
  */
-@Ignore
+@Disabled
 public class SubscriptionGroupsApiTest {
 
     private final SubscriptionGroupsApi api = new SubscriptionGroupsApi();
 
-    
     /**
      * Returns a number of groups in subscription
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionGroupsCountGroupsAsyncTest() throws ApiException {
         String subscriptionId = null;
-        Long response = 
-        api.subscriptionGroupsCountGroupsAsync(subscriptionId);
-        
+        Long response = api.subscriptionGroupsCountGroupsAsync(subscriptionId);
         // TODO: test validations
     }
-    
+
     /**
      * returns groups of the subscription or subscription user
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionGroupsGetGroupsListTest() throws ApiException {
         String subscriptionId = null;
         String userId = null;
-        GroupsVM response = 
-        api.subscriptionGroupsGetGroupsList(subscriptionId, userId);
-        
+        GroupsVM response = api.subscriptionGroupsGetGroupsList(subscriptionId, userId);
         // TODO: test validations
     }
-    
+
 }

@@ -13,52 +13,65 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.TaskBaseVM;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * TasksVM
  */
-@JsonPropertyOrder({
-  TasksVM.JSON_PROPERTY_COUNT,
-  TasksVM.JSON_PROPERTY_SKIP,
-  TasksVM.JSON_PROPERTY_TAKE,
-  TasksVM.JSON_PROPERTY_TASKS
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TasksVM {
-  public static final String JSON_PROPERTY_COUNT = "count";
+  public static final String SERIALIZED_NAME_COUNT = "count";
+  @SerializedName(SERIALIZED_NAME_COUNT)
   private Long count;
 
-  public static final String JSON_PROPERTY_SKIP = "skip";
+  public static final String SERIALIZED_NAME_SKIP = "skip";
+  @SerializedName(SERIALIZED_NAME_SKIP)
   private Integer skip;
 
-  public static final String JSON_PROPERTY_TAKE = "take";
+  public static final String SERIALIZED_NAME_TAKE = "take";
+  @SerializedName(SERIALIZED_NAME_TAKE)
   private Integer take;
 
-  public static final String JSON_PROPERTY_TASKS = "tasks";
-  private JsonNullable<List<TaskBaseVM>> tasks = JsonNullable.<List<TaskBaseVM>>undefined();
+  public static final String SERIALIZED_NAME_TASKS = "tasks";
+  @SerializedName(SERIALIZED_NAME_TASKS)
+  private List<TaskBaseVM> tasks;
 
-  public TasksVM() { 
+  public TasksVM() {
   }
 
   public TasksVM count(Long count) {
@@ -71,16 +84,10 @@ public class TasksVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Long getCount() {
     return count;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCount(Long count) {
     this.count = count;
   }
@@ -96,16 +103,10 @@ public class TasksVM {
    * @return skip
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getSkip() {
     return skip;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSkip(Integer skip) {
     this.skip = skip;
   }
@@ -121,35 +122,25 @@ public class TasksVM {
    * @return take
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getTake() {
     return take;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTake(Integer take) {
     this.take = take;
   }
 
 
   public TasksVM tasks(List<TaskBaseVM> tasks) {
-    this.tasks = JsonNullable.<List<TaskBaseVM>>of(tasks);
+    this.tasks = tasks;
     return this;
   }
 
   public TasksVM addTasksItem(TaskBaseVM tasksItem) {
-    if (this.tasks == null || !this.tasks.isPresent()) {
-      this.tasks = JsonNullable.<List<TaskBaseVM>>of(new ArrayList<>());
+    if (this.tasks == null) {
+      this.tasks = new ArrayList<>();
     }
-    try {
-      this.tasks.get().add(tasksItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.tasks.add(tasksItem);
     return this;
   }
 
@@ -158,32 +149,16 @@ public class TasksVM {
    * @return tasks
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<TaskBaseVM> getTasks() {
-        return tasks.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_TASKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<TaskBaseVM>> getTasks_JsonNullable() {
     return tasks;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_TASKS)
-  public void setTasks_JsonNullable(JsonNullable<List<TaskBaseVM>> tasks) {
-    this.tasks = tasks;
   }
 
   public void setTasks(List<TaskBaseVM> tasks) {
-    this.tasks = JsonNullable.<List<TaskBaseVM>>of(tasks);
+    this.tasks = tasks;
   }
 
 
-  /**
-   * Return true if this TasksVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -196,7 +171,7 @@ public class TasksVM {
     return Objects.equals(this.count, tasksVM.count) &&
         Objects.equals(this.skip, tasksVM.skip) &&
         Objects.equals(this.take, tasksVM.take) &&
-        equalsNullable(this.tasks, tasksVM.tasks);
+        Objects.equals(this.tasks, tasksVM.tasks);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -205,7 +180,7 @@ public class TasksVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(count, skip, take, hashCodeNullable(tasks));
+    return Objects.hash(count, skip, take, tasks);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -238,64 +213,106 @@ public class TasksVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("count");
+    openapiFields.add("skip");
+    openapiFields.add("take");
+    openapiFields.add("tasks");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `count` to the URL query string
-    if (getCount() != null) {
-      joiner.add(String.format("%scount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `skip` to the URL query string
-    if (getSkip() != null) {
-      joiner.add(String.format("%sskip%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSkip()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `take` to the URL query string
-    if (getTake() != null) {
-      joiner.add(String.format("%stake%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTake()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `tasks` to the URL query string
-    if (getTasks() != null) {
-      for (int i = 0; i < getTasks().size(); i++) {
-        if (getTasks().get(i) != null) {
-          joiner.add(getTasks().get(i).toUrlQueryString(String.format("%stasks%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to TasksVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TasksVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TasksVM is not found in the empty JSON string", TasksVM.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    return joiner.toString();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TasksVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TasksVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (jsonObj.get("tasks") != null && !jsonObj.get("tasks").isJsonNull()) {
+        JsonArray jsonArraytasks = jsonObj.getAsJsonArray("tasks");
+        if (jsonArraytasks != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("tasks").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `tasks` to be an array in the JSON string but got `%s`", jsonObj.get("tasks").toString()));
+          }
+
+          // validate the optional field `tasks` (array)
+          for (int i = 0; i < jsonArraytasks.size(); i++) {
+            TaskBaseVM.validateJsonElement(jsonArraytasks.get(i));
+          };
+        }
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TasksVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TasksVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TasksVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TasksVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<TasksVM>() {
+           @Override
+           public void write(JsonWriter out, TasksVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TasksVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of TasksVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of TasksVM
+  * @throws IOException if the JSON string is invalid with respect to TasksVM
+  */
+  public static TasksVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TasksVM.class);
+  }
+
+ /**
+  * Convert an instance of TasksVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

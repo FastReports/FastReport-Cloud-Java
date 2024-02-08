@@ -13,59 +13,72 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * PrepareTemplateVM
  */
-@JsonPropertyOrder({
-  PrepareTemplateVM.JSON_PROPERTY_NAME,
-  PrepareTemplateVM.JSON_PROPERTY_LOCALE,
-  PrepareTemplateVM.JSON_PROPERTY_FOLDER_ID,
-  PrepareTemplateVM.JSON_PROPERTY_PAGES_COUNT,
-  PrepareTemplateVM.JSON_PROPERTY_REPORT_PARAMETERS
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PrepareTemplateVM {
-  public static final String JSON_PROPERTY_NAME = "name";
-  private JsonNullable<String> name = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
-  public static final String JSON_PROPERTY_LOCALE = "locale";
-  private JsonNullable<String> locale = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_LOCALE = "locale";
+  @SerializedName(SERIALIZED_NAME_LOCALE)
+  private String locale;
 
-  public static final String JSON_PROPERTY_FOLDER_ID = "folderId";
-  private JsonNullable<String> folderId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_FOLDER_ID = "folderId";
+  @SerializedName(SERIALIZED_NAME_FOLDER_ID)
+  private String folderId;
 
-  public static final String JSON_PROPERTY_PAGES_COUNT = "pagesCount";
-  private JsonNullable<Integer> pagesCount = JsonNullable.<Integer>undefined();
+  public static final String SERIALIZED_NAME_PAGES_COUNT = "pagesCount";
+  @SerializedName(SERIALIZED_NAME_PAGES_COUNT)
+  private Integer pagesCount;
 
-  public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
-  private JsonNullable<Map<String, String>> reportParameters = JsonNullable.<Map<String, String>>undefined();
+  public static final String SERIALIZED_NAME_REPORT_PARAMETERS = "reportParameters";
+  @SerializedName(SERIALIZED_NAME_REPORT_PARAMETERS)
+  private Map<String, String> reportParameters;
 
-  public PrepareTemplateVM() { 
+  public PrepareTemplateVM() {
   }
 
   public PrepareTemplateVM name(String name) {
-    this.name = JsonNullable.<String>of(name);
+    this.name = name;
     return this;
   }
 
@@ -74,31 +87,17 @@ public class PrepareTemplateVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getName() {
-        return name.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getName_JsonNullable() {
     return name;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_NAME)
-  public void setName_JsonNullable(JsonNullable<String> name) {
-    this.name = name;
   }
 
   public void setName(String name) {
-    this.name = JsonNullable.<String>of(name);
+    this.name = name;
   }
 
 
   public PrepareTemplateVM locale(String locale) {
-    this.locale = JsonNullable.<String>of(locale);
+    this.locale = locale;
     return this;
   }
 
@@ -107,31 +106,17 @@ public class PrepareTemplateVM {
    * @return locale
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getLocale() {
-        return locale.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_LOCALE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getLocale_JsonNullable() {
     return locale;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_LOCALE)
-  public void setLocale_JsonNullable(JsonNullable<String> locale) {
-    this.locale = locale;
   }
 
   public void setLocale(String locale) {
-    this.locale = JsonNullable.<String>of(locale);
+    this.locale = locale;
   }
 
 
   public PrepareTemplateVM folderId(String folderId) {
-    this.folderId = JsonNullable.<String>of(folderId);
+    this.folderId = folderId;
     return this;
   }
 
@@ -140,31 +125,17 @@ public class PrepareTemplateVM {
    * @return folderId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getFolderId() {
-        return folderId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getFolderId_JsonNullable() {
     return folderId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
-  public void setFolderId_JsonNullable(JsonNullable<String> folderId) {
-    this.folderId = folderId;
   }
 
   public void setFolderId(String folderId) {
-    this.folderId = JsonNullable.<String>of(folderId);
+    this.folderId = folderId;
   }
 
 
   public PrepareTemplateVM pagesCount(Integer pagesCount) {
-    this.pagesCount = JsonNullable.<Integer>of(pagesCount);
+    this.pagesCount = pagesCount;
     return this;
   }
 
@@ -175,43 +146,25 @@ public class PrepareTemplateVM {
    * @return pagesCount
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Integer getPagesCount() {
-        return pagesCount.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_PAGES_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getPagesCount_JsonNullable() {
     return pagesCount;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_PAGES_COUNT)
-  public void setPagesCount_JsonNullable(JsonNullable<Integer> pagesCount) {
-    this.pagesCount = pagesCount;
   }
 
   public void setPagesCount(Integer pagesCount) {
-    this.pagesCount = JsonNullable.<Integer>of(pagesCount);
+    this.pagesCount = pagesCount;
   }
 
 
   public PrepareTemplateVM reportParameters(Map<String, String> reportParameters) {
-    this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
+    this.reportParameters = reportParameters;
     return this;
   }
 
   public PrepareTemplateVM putReportParametersItem(String key, String reportParametersItem) {
-    if (this.reportParameters == null || !this.reportParameters.isPresent()) {
-      this.reportParameters = JsonNullable.<Map<String, String>>of(new HashMap<>());
+    if (this.reportParameters == null) {
+      this.reportParameters = new HashMap<>();
     }
-    try {
-      this.reportParameters.get().put(key, reportParametersItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.reportParameters.put(key, reportParametersItem);
     return this;
   }
 
@@ -220,32 +173,16 @@ public class PrepareTemplateVM {
    * @return reportParameters
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Map<String, String> getReportParameters() {
-        return reportParameters.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Map<String, String>> getReportParameters_JsonNullable() {
     return reportParameters;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
-  public void setReportParameters_JsonNullable(JsonNullable<Map<String, String>> reportParameters) {
-    this.reportParameters = reportParameters;
   }
 
   public void setReportParameters(Map<String, String> reportParameters) {
-    this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
+    this.reportParameters = reportParameters;
   }
 
 
-  /**
-   * Return true if this PrepareTemplateVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -255,11 +192,11 @@ public class PrepareTemplateVM {
       return false;
     }
     PrepareTemplateVM prepareTemplateVM = (PrepareTemplateVM) o;
-    return equalsNullable(this.name, prepareTemplateVM.name) &&
-        equalsNullable(this.locale, prepareTemplateVM.locale) &&
-        equalsNullable(this.folderId, prepareTemplateVM.folderId) &&
-        equalsNullable(this.pagesCount, prepareTemplateVM.pagesCount) &&
-        equalsNullable(this.reportParameters, prepareTemplateVM.reportParameters);
+    return Objects.equals(this.name, prepareTemplateVM.name) &&
+        Objects.equals(this.locale, prepareTemplateVM.locale) &&
+        Objects.equals(this.folderId, prepareTemplateVM.folderId) &&
+        Objects.equals(this.pagesCount, prepareTemplateVM.pagesCount) &&
+        Objects.equals(this.reportParameters, prepareTemplateVM.reportParameters);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -268,7 +205,7 @@ public class PrepareTemplateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(name), hashCodeNullable(locale), hashCodeNullable(folderId), hashCodeNullable(pagesCount), hashCodeNullable(reportParameters));
+    return Objects.hash(name, locale, folderId, pagesCount, reportParameters);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -302,68 +239,102 @@ public class PrepareTemplateVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("name");
+    openapiFields.add("locale");
+    openapiFields.add("folderId");
+    openapiFields.add("pagesCount");
+    openapiFields.add("reportParameters");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `locale` to the URL query string
-    if (getLocale() != null) {
-      joiner.add(String.format("%slocale%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLocale()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `folderId` to the URL query string
-    if (getFolderId() != null) {
-      joiner.add(String.format("%sfolderId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFolderId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `pagesCount` to the URL query string
-    if (getPagesCount() != null) {
-      joiner.add(String.format("%spagesCount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPagesCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `reportParameters` to the URL query string
-    if (getReportParameters() != null) {
-      for (String _key : getReportParameters().keySet()) {
-        joiner.add(String.format("%sreportParameters%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getReportParameters().get(_key), URLEncoder.encode(String.valueOf(getReportParameters().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to PrepareTemplateVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PrepareTemplateVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PrepareTemplateVM is not found in the empty JSON string", PrepareTemplateVM.openapiRequiredFields.toString()));
+        }
       }
-    }
 
-    return joiner.toString();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!PrepareTemplateVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PrepareTemplateVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull()) && !jsonObj.get("locale").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `locale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("locale").toString()));
+      }
+      if ((jsonObj.get("folderId") != null && !jsonObj.get("folderId").isJsonNull()) && !jsonObj.get("folderId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `folderId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("folderId").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PrepareTemplateVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PrepareTemplateVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PrepareTemplateVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PrepareTemplateVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PrepareTemplateVM>() {
+           @Override
+           public void write(JsonWriter out, PrepareTemplateVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PrepareTemplateVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of PrepareTemplateVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of PrepareTemplateVM
+  * @throws IOException if the JSON string is invalid with respect to PrepareTemplateVM
+  */
+  public static PrepareTemplateVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PrepareTemplateVM.class);
+  }
+
+ /**
+  * Convert an instance of PrepareTemplateVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

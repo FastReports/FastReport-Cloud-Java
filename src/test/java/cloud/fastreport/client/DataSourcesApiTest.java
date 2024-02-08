@@ -24,100 +24,74 @@ import cloud.fastreport.model.RenameDataSourceVM;
 import cloud.fastreport.model.UpdateDataSourceConnectionStringVM;
 import cloud.fastreport.model.UpdateDataSourcePermissionsVM;
 import cloud.fastreport.model.UpdateDataSourceSubscriptionVM;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for DataSourcesApi
  */
-@Ignore
+@Disabled
 public class DataSourcesApiTest {
 
     private final DataSourcesApi api = new DataSourcesApi();
 
-    
     /**
      * Returns a number of data sources in subscription
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void dataSourcesCountDataSourcesAsyncTest() throws ApiException {
         String subscriptionId = null;
-        Long response = 
-        api.dataSourcesCountDataSourcesAsync(subscriptionId);
-        
+        Long response = api.dataSourcesCountDataSourcesAsync(subscriptionId);
         // TODO: test validations
     }
-    
+
     /**
      * Create new data source
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void dataSourcesCreateDataSourceTest() throws ApiException {
         CreateDataSourceVM createDataSourceVM = null;
-        DataSourceVM response = 
-        api.dataSourcesCreateDataSource(createDataSourceVM);
-        
+        DataSourceVM response = api.dataSourcesCreateDataSource(createDataSourceVM);
         // TODO: test validations
     }
-    
+
     /**
      * Delete data source by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void dataSourcesDeleteDataSourceTest() throws ApiException {
         String id = null;
-        
         api.dataSourcesDeleteDataSource(id);
-        
         // TODO: test validations
     }
-    
+
     /**
      * This should connect to a database and set data structure
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void dataSourcesFetchDataTest() throws ApiException {
         String id = null;
-        
         api.dataSourcesFetchData(id);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Returns all of the data sources, that current user have permission for in a subscription &lt;br /&gt;  The method will return minimal infomration about the datasources: &lt;br /&gt;  id, name, editedTime, status.
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void dataSourcesGetAvailableDataSourcesTest() throws ApiException {
@@ -126,116 +100,84 @@ public class DataSourcesApiTest {
         Integer take = null;
         DataSourceSorting orderBy = null;
         Boolean desc = null;
-        DataSourcesVM response = 
-        api.dataSourcesGetAvailableDataSources(subscriptionId, skip, take, orderBy, desc);
-        
+        DataSourcesVM response = api.dataSourcesGetAvailableDataSources(subscriptionId, skip, take, orderBy, desc);
         // TODO: test validations
     }
-    
+
     /**
      * Get data source by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void dataSourcesGetDataSourceTest() throws ApiException {
         String id = null;
-        DataSourceVM response = 
-        api.dataSourcesGetDataSource(id);
-        
+        DataSourceVM response = api.dataSourcesGetDataSource(id);
         // TODO: test validations
     }
-    
+
     /**
      * Get all Data source permissions
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void dataSourcesGetPermissionsTest() throws ApiException {
         String id = null;
-        DataSourcePermissionsVM response = 
-        api.dataSourcesGetPermissions(id);
-        
+        DataSourcePermissionsVM response = api.dataSourcesGetPermissions(id);
         // TODO: test validations
     }
-    
+
     /**
      * Rename data source by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void dataSourcesRenameDataSourceTest() throws ApiException {
         String id = null;
         RenameDataSourceVM renameDataSourceVM = null;
-        DataSourceVM response = 
-        api.dataSourcesRenameDataSource(id, renameDataSourceVM);
-        
+        DataSourceVM response = api.dataSourcesRenameDataSource(id, renameDataSourceVM);
         // TODO: test validations
     }
-    
+
     /**
      * Update data source&#39;s connection string by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void dataSourcesUpdateConnectionStringTest() throws ApiException {
         String id = null;
         UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM = null;
-        DataSourceVM response = 
-        api.dataSourcesUpdateConnectionString(id, updateDataSourceConnectionStringVM);
-        
+        DataSourceVM response = api.dataSourcesUpdateConnectionString(id, updateDataSourceConnectionStringVM);
         // TODO: test validations
     }
-    
+
     /**
      * Update permissions
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void dataSourcesUpdatePermissionsTest() throws ApiException {
         String id = null;
         UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM = null;
-        
         api.dataSourcesUpdatePermissions(id, updateDataSourcePermissionsVM);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Update data source&#39;s subscription
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void dataSourcesUpdateSubscriptionDataSourceTest() throws ApiException {
         String id = null;
         UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM = null;
-        
         api.dataSourcesUpdateSubscriptionDataSource(id, updateDataSourceSubscriptionVM);
-        
         // TODO: test validations
     }
-    
+
 }

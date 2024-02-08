@@ -5,30 +5,21 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**groupsCreateGroup**](GroupsApi.md#groupsCreateGroup) | **POST** /api/manage/v1/Groups | Create a new user group |
-| [**groupsCreateGroupWithHttpInfo**](GroupsApi.md#groupsCreateGroupWithHttpInfo) | **POST** /api/manage/v1/Groups | Create a new user group |
 | [**groupsDeleteGroup**](GroupsApi.md#groupsDeleteGroup) | **DELETE** /api/manage/v1/Groups/{id} | Delete group by identifier |
-| [**groupsDeleteGroupWithHttpInfo**](GroupsApi.md#groupsDeleteGroupWithHttpInfo) | **DELETE** /api/manage/v1/Groups/{id} | Delete group by identifier |
 | [**groupsGetGroup**](GroupsApi.md#groupsGetGroup) | **GET** /api/manage/v1/Groups/{id} | Gets group by identifier |
-| [**groupsGetGroupWithHttpInfo**](GroupsApi.md#groupsGetGroupWithHttpInfo) | **GET** /api/manage/v1/Groups/{id} | Gets group by identifier |
 | [**groupsGetGroupList**](GroupsApi.md#groupsGetGroupList) | **GET** /api/manage/v1/Groups | Returns a list of current user&#39;s groups&lt;br /&gt;  This method will return following data about groups : &lt;br /&gt;  Id, Name, Created time (UTC), Edited time (UTC), creator id, &lt;br /&gt;  editor id, subscription id |
-| [**groupsGetGroupListWithHttpInfo**](GroupsApi.md#groupsGetGroupListWithHttpInfo) | **GET** /api/manage/v1/Groups | Returns a list of current user&#39;s groups&lt;br /&gt;  This method will return following data about groups : &lt;br /&gt;  Id, Name, Created time (UTC), Edited time (UTC), creator id, &lt;br /&gt;  editor id, subscription id |
 | [**groupsGetPermissions**](GroupsApi.md#groupsGetPermissions) | **GET** /api/manage/v1/Groups/{id}/permissions | Gets group permissions by identifier |
-| [**groupsGetPermissionsWithHttpInfo**](GroupsApi.md#groupsGetPermissionsWithHttpInfo) | **GET** /api/manage/v1/Groups/{id}/permissions | Gets group permissions by identifier |
 | [**groupsRenameGroup**](GroupsApi.md#groupsRenameGroup) | **PUT** /api/manage/v1/Groups/{id}/rename | Rename group by identifier |
-| [**groupsRenameGroupWithHttpInfo**](GroupsApi.md#groupsRenameGroupWithHttpInfo) | **PUT** /api/manage/v1/Groups/{id}/rename | Rename group by identifier |
 | [**groupsUpdatePermissions**](GroupsApi.md#groupsUpdatePermissions) | **POST** /api/manage/v1/Groups/{id}/permissions | Update permissions |
-| [**groupsUpdatePermissionsWithHttpInfo**](GroupsApi.md#groupsUpdatePermissionsWithHttpInfo) | **POST** /api/manage/v1/Groups/{id}/permissions | Update permissions |
 
 
-
-## groupsCreateGroup
-
+<a id="groupsCreateGroup"></a>
+# **groupsCreateGroup**
 > GroupVM groupsCreateGroup(createGroupVM)
 
 Create a new user group
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -39,37 +30,36 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.GroupsApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        CreateGroupVM createGroupVM = new CreateGroupVM(); // CreateGroupVM | Model for creating
-        try {
-            GroupVM result = apiInstance.groupsCreateGroup(createGroupVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsCreateGroup");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    GroupsApi apiInstance = new GroupsApi(defaultClient);
+    CreateGroupVM createGroupVM = new CreateGroupVM(); // CreateGroupVM | Model for creating
+    try {
+      GroupVM result = apiInstance.groupsCreateGroup(createGroupVM);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling GroupsApi#groupsCreateGroup");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -79,15 +69,14 @@ public class Example {
 
 [**GroupVM**](GroupVM.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: application/json
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -98,95 +87,13 @@ public class Example {
 | **402** | subscription is outdated |  -  |
 | **404** | Information from view model is not found |  -  |
 
-## groupsCreateGroupWithHttpInfo
-
-> ApiResponse<GroupVM> groupsCreateGroup groupsCreateGroupWithHttpInfo(createGroupVM)
-
-Create a new user group
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.GroupsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        CreateGroupVM createGroupVM = new CreateGroupVM(); // CreateGroupVM | Model for creating
-        try {
-            ApiResponse<GroupVM> response = apiInstance.groupsCreateGroupWithHttpInfo(createGroupVM);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsCreateGroup");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **createGroupVM** | [**CreateGroupVM**](CreateGroupVM.md)| Model for creating | [optional] |
-
-### Return type
-
-ApiResponse<[**GroupVM**](GroupVM.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Succesfully created |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **402** | subscription is outdated |  -  |
-| **404** | Information from view model is not found |  -  |
-
-
-## groupsDeleteGroup
-
-> void groupsDeleteGroup(id)
+<a id="groupsDeleteGroup"></a>
+# **groupsDeleteGroup**
+> groupsDeleteGroup(id)
 
 Delete group by identifier
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -197,43 +104,41 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.GroupsApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String id = "id_example"; // String | Identifier of group
-        try {
-            apiInstance.groupsDeleteGroup(id);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsDeleteGroup");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    GroupsApi apiInstance = new GroupsApi(defaultClient);
+    String id = "id_example"; // String | Identifier of group
+    try {
+      apiInstance.groupsDeleteGroup(id);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling GroupsApi#groupsDeleteGroup");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of group | |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -243,8 +148,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -256,95 +161,13 @@ null (empty response body)
 | **404** | Group with this identifier is not found |  -  |
 | **500** | Exception thrown |  -  |
 
-## groupsDeleteGroupWithHttpInfo
-
-> ApiResponse<Void> groupsDeleteGroup groupsDeleteGroupWithHttpInfo(id)
-
-Delete group by identifier
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.GroupsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String id = "id_example"; // String | Identifier of group
-        try {
-            ApiResponse<Void> response = apiInstance.groupsDeleteGroupWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsDeleteGroup");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**| Identifier of group | |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | Succesfully delete |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **402** | subscripiton is outdated |  -  |
-| **404** | Group with this identifier is not found |  -  |
-| **500** | Exception thrown |  -  |
-
-
-## groupsGetGroup
-
+<a id="groupsGetGroup"></a>
+# **groupsGetGroup**
 > GroupVM groupsGetGroup(id)
 
 Gets group by identifier
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -355,37 +178,36 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.GroupsApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String id = "id_example"; // String | Identifier of group
-        try {
-            GroupVM result = apiInstance.groupsGetGroup(id);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsGetGroup");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    GroupsApi apiInstance = new GroupsApi(defaultClient);
+    String id = "id_example"; // String | Identifier of group
+    try {
+      GroupVM result = apiInstance.groupsGetGroup(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling GroupsApi#groupsGetGroup");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -395,15 +217,14 @@ public class Example {
 
 [**GroupVM**](GroupVM.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -414,95 +235,13 @@ public class Example {
 | **404** | Group with this identifier is not found |  -  |
 | **500** | Exception thrown |  -  |
 
-## groupsGetGroupWithHttpInfo
-
-> ApiResponse<GroupVM> groupsGetGroup groupsGetGroupWithHttpInfo(id)
-
-Gets group by identifier
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.GroupsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String id = "id_example"; // String | Identifier of group
-        try {
-            ApiResponse<GroupVM> response = apiInstance.groupsGetGroupWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsGetGroup");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**| Identifier of group | |
-
-### Return type
-
-ApiResponse<[**GroupVM**](GroupVM.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Succesfully retured |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Group with this identifier is not found |  -  |
-| **500** | Exception thrown |  -  |
-
-
-## groupsGetGroupList
-
+<a id="groupsGetGroupList"></a>
+# **groupsGetGroupList**
 > GroupsVM groupsGetGroupList(skip, take)
 
 Returns a list of current user&#39;s groups&lt;br /&gt;  This method will return following data about groups : &lt;br /&gt;  Id, Name, Created time (UTC), Edited time (UTC), creator id, &lt;br /&gt;  editor id, subscription id
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -513,38 +252,37 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.GroupsApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        Integer skip = 0; // Integer | How many groups need to skip
-        Integer take = 10; // Integer | How many groups need to take
-        try {
-            GroupsVM result = apiInstance.groupsGetGroupList(skip, take);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsGetGroupList");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    GroupsApi apiInstance = new GroupsApi(defaultClient);
+    Integer skip = 0; // Integer | How many groups need to skip
+    Integer take = 10; // Integer | How many groups need to take
+    try {
+      GroupsVM result = apiInstance.groupsGetGroupList(skip, take);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling GroupsApi#groupsGetGroupList");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -555,15 +293,14 @@ public class Example {
 
 [**GroupsVM**](GroupsVM.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -573,96 +310,13 @@ public class Example {
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Current user is not found |  -  |
 
-## groupsGetGroupListWithHttpInfo
-
-> ApiResponse<GroupsVM> groupsGetGroupList groupsGetGroupListWithHttpInfo(skip, take)
-
-Returns a list of current user&#39;s groups&lt;br /&gt;  This method will return following data about groups : &lt;br /&gt;  Id, Name, Created time (UTC), Edited time (UTC), creator id, &lt;br /&gt;  editor id, subscription id
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.GroupsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        Integer skip = 0; // Integer | How many groups need to skip
-        Integer take = 10; // Integer | How many groups need to take
-        try {
-            ApiResponse<GroupsVM> response = apiInstance.groupsGetGroupListWithHttpInfo(skip, take);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsGetGroupList");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **skip** | **Integer**| How many groups need to skip | [optional] [default to 0] |
-| **take** | **Integer**| How many groups need to take | [optional] [default to 10] |
-
-### Return type
-
-ApiResponse<[**GroupsVM**](GroupsVM.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Succesfully retured |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Current user is not found |  -  |
-
-
-## groupsGetPermissions
-
+<a id="groupsGetPermissions"></a>
+# **groupsGetPermissions**
 > GroupPermissionsVM groupsGetPermissions(id)
 
 Gets group permissions by identifier
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -673,37 +327,36 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.GroupsApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String id = "id_example"; // String | Identifier of group
-        try {
-            GroupPermissionsVM result = apiInstance.groupsGetPermissions(id);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsGetPermissions");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    GroupsApi apiInstance = new GroupsApi(defaultClient);
+    String id = "id_example"; // String | Identifier of group
+    try {
+      GroupPermissionsVM result = apiInstance.groupsGetPermissions(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling GroupsApi#groupsGetPermissions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -713,15 +366,14 @@ public class Example {
 
 [**GroupPermissionsVM**](GroupPermissionsVM.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -731,94 +383,13 @@ public class Example {
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Group with this identifier is not found |  -  |
 
-## groupsGetPermissionsWithHttpInfo
-
-> ApiResponse<GroupPermissionsVM> groupsGetPermissions groupsGetPermissionsWithHttpInfo(id)
-
-Gets group permissions by identifier
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.GroupsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String id = "id_example"; // String | Identifier of group
-        try {
-            ApiResponse<GroupPermissionsVM> response = apiInstance.groupsGetPermissionsWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsGetPermissions");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**| Identifier of group | |
-
-### Return type
-
-ApiResponse<[**GroupPermissionsVM**](GroupPermissionsVM.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Succesfully retured |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Group with this identifier is not found |  -  |
-
-
-## groupsRenameGroup
-
+<a id="groupsRenameGroup"></a>
+# **groupsRenameGroup**
 > GroupVM groupsRenameGroup(id, renameGroupVM)
 
 Rename group by identifier
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -829,38 +400,37 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.GroupsApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String id = "id_example"; // String | Identifier of group
-        RenameGroupVM renameGroupVM = new RenameGroupVM(); // RenameGroupVM | Model for renaming
-        try {
-            GroupVM result = apiInstance.groupsRenameGroup(id, renameGroupVM);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsRenameGroup");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    GroupsApi apiInstance = new GroupsApi(defaultClient);
+    String id = "id_example"; // String | Identifier of group
+    RenameGroupVM renameGroupVM = new RenameGroupVM(); // RenameGroupVM | Model for renaming
+    try {
+      GroupVM result = apiInstance.groupsRenameGroup(id, renameGroupVM);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling GroupsApi#groupsRenameGroup");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -871,15 +441,14 @@ public class Example {
 
 [**GroupVM**](GroupVM.md)
 
-
 ### Authorization
 
 [ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: application/json
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -891,98 +460,13 @@ public class Example {
 | **404** | Group with this identifier is not found |  -  |
 | **500** | Exception thrown |  -  |
 
-## groupsRenameGroupWithHttpInfo
-
-> ApiResponse<GroupVM> groupsRenameGroup groupsRenameGroupWithHttpInfo(id, renameGroupVM)
-
-Rename group by identifier
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.GroupsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String id = "id_example"; // String | Identifier of group
-        RenameGroupVM renameGroupVM = new RenameGroupVM(); // RenameGroupVM | Model for renaming
-        try {
-            ApiResponse<GroupVM> response = apiInstance.groupsRenameGroupWithHttpInfo(id, renameGroupVM);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsRenameGroup");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**| Identifier of group | |
-| **renameGroupVM** | [**RenameGroupVM**](RenameGroupVM.md)| Model for renaming | |
-
-### Return type
-
-ApiResponse<[**GroupVM**](GroupVM.md)>
-
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Succesfully renamed |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **402** | subscription is outdated |  -  |
-| **404** | Group with this identifier is not found |  -  |
-| **500** | Exception thrown |  -  |
-
-
-## groupsUpdatePermissions
-
-> void groupsUpdatePermissions(id, updateGroupPermissionsVM)
+<a id="groupsUpdatePermissions"></a>
+# **groupsUpdatePermissions**
+> groupsUpdatePermissions(id, updateGroupPermissionsVM)
 
 Update permissions
 
 ### Example
-
 ```java
 // Import classes:
 import cloud.fastreport.ApiClient;
@@ -993,37 +477,36 @@ import cloud.fastreport.models.*;
 import cloud.fastreport.client.GroupsApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
 
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
 
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String id = "id_example"; // String | 
-        UpdateGroupPermissionsVM updateGroupPermissionsVM = new UpdateGroupPermissionsVM(); // UpdateGroupPermissionsVM | 
-        try {
-            apiInstance.groupsUpdatePermissions(id, updateGroupPermissionsVM);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsUpdatePermissions");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    GroupsApi apiInstance = new GroupsApi(defaultClient);
+    String id = "id_example"; // String | 
+    UpdateGroupPermissionsVM updateGroupPermissionsVM = new UpdateGroupPermissionsVM(); // UpdateGroupPermissionsVM | 
+    try {
+      apiInstance.groupsUpdatePermissions(id, updateGroupPermissionsVM);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling GroupsApi#groupsUpdatePermissions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
-
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -1031,7 +514,6 @@ public class Example {
 | **updateGroupPermissionsVM** | [**UpdateGroupPermissionsVM**](UpdateGroupPermissionsVM.md)|  | [optional] |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -1041,90 +523,8 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
-
-## groupsUpdatePermissionsWithHttpInfo
-
-> ApiResponse<Void> groupsUpdatePermissions groupsUpdatePermissionsWithHttpInfo(id, updateGroupPermissionsVM)
-
-Update permissions
-
-### Example
-
-```java
-// Import classes:
-import cloud.fastreport.ApiClient;
-import cloud.fastreport.ApiException;
-import cloud.fastreport.ApiResponse;
-import cloud.fastreport.Configuration;
-import cloud.fastreport.auth.*;
-import cloud.fastreport.models.*;
-import cloud.fastreport.client.GroupsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP basic authorization: ApiKey
-        HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
-        ApiKey.setUsername("YOUR USERNAME");
-        ApiKey.setPassword("YOUR PASSWORD");
-
-        // Configure HTTP bearer authorization: JWT
-        HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
-        JWT.setBearerToken("BEARER TOKEN");
-
-        GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String id = "id_example"; // String | 
-        UpdateGroupPermissionsVM updateGroupPermissionsVM = new UpdateGroupPermissionsVM(); // UpdateGroupPermissionsVM | 
-        try {
-            ApiResponse<Void> response = apiInstance.groupsUpdatePermissionsWithHttpInfo(id, updateGroupPermissionsVM);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling GroupsApi#groupsUpdatePermissions");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**|  | |
-| **updateGroupPermissionsVM** | [**UpdateGroupPermissionsVM**](UpdateGroupPermissionsVM.md)|  | [optional] |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, text/json, application/*+json
-- **Accept**: application/json
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

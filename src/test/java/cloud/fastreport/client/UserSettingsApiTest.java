@@ -18,73 +18,55 @@ import cloud.fastreport.model.AcceptAgreementsVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.UpdateUserSettingsVM;
 import cloud.fastreport.model.UserSettingsVM;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for UserSettingsApi
  */
-@Ignore
+@Disabled
 public class UserSettingsApiTest {
 
     private final UserSettingsApi api = new UserSettingsApi();
 
-    
     /**
      * Use this endpoint to accept current version of service license agreement
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void userSettingsAcceptAgreementsTest() throws ApiException {
         AcceptAgreementsVM acceptAgreementsVM = null;
-        
         api.userSettingsAcceptAgreements(acceptAgreementsVM);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Return current user settings.
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void userSettingsGetCurrentUserSettingsTest() throws ApiException {
-        UserSettingsVM response = 
-        api.userSettingsGetCurrentUserSettings();
-        
+        UserSettingsVM response = api.userSettingsGetCurrentUserSettings();
         // TODO: test validations
     }
-    
+
     /**
      * Update settings of the current user
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void userSettingsUpdateMySettingsTest() throws ApiException {
         UpdateUserSettingsVM updateUserSettingsVM = null;
-        UserSettingsVM response = 
-        api.userSettingsUpdateMySettings(updateUserSettingsVM);
-        
+        UserSettingsVM response = api.userSettingsUpdateMySettings(updateUserSettingsVM);
         // TODO: test validations
     }
-    
+
 }

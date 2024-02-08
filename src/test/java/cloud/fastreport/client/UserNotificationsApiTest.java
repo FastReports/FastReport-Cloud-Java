@@ -17,59 +17,46 @@ import cloud.fastreport.ApiException;
 import cloud.fastreport.model.AuditActionsVM;
 import cloud.fastreport.model.ClearNotificationsVM;
 import cloud.fastreport.model.ProblemDetails;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for UserNotificationsApi
  */
-@Ignore
+@Disabled
 public class UserNotificationsApiTest {
 
     private final UserNotificationsApi api = new UserNotificationsApi();
 
-    
     /**
      * Use this endpoint to \&quot;clear\&quot; your notifications
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void userNotificationsClearNotificationsTest() throws ApiException {
         ClearNotificationsVM clearNotificationsVM = null;
-        
         api.userNotificationsClearNotifications(clearNotificationsVM);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Use this endpoint to recieve notifications
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void userNotificationsGetNotificationsTest() throws ApiException {
         Integer skip = null;
         Integer take = null;
         String subscriptionId = null;
-        AuditActionsVM response = 
-        api.userNotificationsGetNotifications(skip, take, subscriptionId);
-        
+        AuditActionsVM response = api.userNotificationsGetNotifications(skip, take, subscriptionId);
         // TODO: test validations
     }
-    
+
 }

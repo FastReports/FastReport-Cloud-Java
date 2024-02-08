@@ -13,68 +13,77 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.SubscriptionPlanVM;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * SubscriptionPlansVM
  */
-@JsonPropertyOrder({
-  SubscriptionPlansVM.JSON_PROPERTY_SUBSCRIPTION_PLANS,
-  SubscriptionPlansVM.JSON_PROPERTY_COUNT,
-  SubscriptionPlansVM.JSON_PROPERTY_SKIP,
-  SubscriptionPlansVM.JSON_PROPERTY_TAKE
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionPlansVM {
-  public static final String JSON_PROPERTY_SUBSCRIPTION_PLANS = "subscriptionPlans";
-  private JsonNullable<List<SubscriptionPlanVM>> subscriptionPlans = JsonNullable.<List<SubscriptionPlanVM>>undefined();
+  public static final String SERIALIZED_NAME_SUBSCRIPTION_PLANS = "subscriptionPlans";
+  @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_PLANS)
+  private List<SubscriptionPlanVM> subscriptionPlans;
 
-  public static final String JSON_PROPERTY_COUNT = "count";
+  public static final String SERIALIZED_NAME_COUNT = "count";
+  @SerializedName(SERIALIZED_NAME_COUNT)
   private Long count;
 
-  public static final String JSON_PROPERTY_SKIP = "skip";
+  public static final String SERIALIZED_NAME_SKIP = "skip";
+  @SerializedName(SERIALIZED_NAME_SKIP)
   private Integer skip;
 
-  public static final String JSON_PROPERTY_TAKE = "take";
+  public static final String SERIALIZED_NAME_TAKE = "take";
+  @SerializedName(SERIALIZED_NAME_TAKE)
   private Integer take;
 
-  public SubscriptionPlansVM() { 
+  public SubscriptionPlansVM() {
   }
 
   public SubscriptionPlansVM subscriptionPlans(List<SubscriptionPlanVM> subscriptionPlans) {
-    this.subscriptionPlans = JsonNullable.<List<SubscriptionPlanVM>>of(subscriptionPlans);
+    this.subscriptionPlans = subscriptionPlans;
     return this;
   }
 
   public SubscriptionPlansVM addSubscriptionPlansItem(SubscriptionPlanVM subscriptionPlansItem) {
-    if (this.subscriptionPlans == null || !this.subscriptionPlans.isPresent()) {
-      this.subscriptionPlans = JsonNullable.<List<SubscriptionPlanVM>>of(new ArrayList<>());
+    if (this.subscriptionPlans == null) {
+      this.subscriptionPlans = new ArrayList<>();
     }
-    try {
-      this.subscriptionPlans.get().add(subscriptionPlansItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.subscriptionPlans.add(subscriptionPlansItem);
     return this;
   }
 
@@ -83,26 +92,12 @@ public class SubscriptionPlansVM {
    * @return subscriptionPlans
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<SubscriptionPlanVM> getSubscriptionPlans() {
-        return subscriptionPlans.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_PLANS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<SubscriptionPlanVM>> getSubscriptionPlans_JsonNullable() {
     return subscriptionPlans;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_PLANS)
-  public void setSubscriptionPlans_JsonNullable(JsonNullable<List<SubscriptionPlanVM>> subscriptionPlans) {
-    this.subscriptionPlans = subscriptionPlans;
   }
 
   public void setSubscriptionPlans(List<SubscriptionPlanVM> subscriptionPlans) {
-    this.subscriptionPlans = JsonNullable.<List<SubscriptionPlanVM>>of(subscriptionPlans);
+    this.subscriptionPlans = subscriptionPlans;
   }
 
 
@@ -116,16 +111,10 @@ public class SubscriptionPlansVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Long getCount() {
     return count;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCount(Long count) {
     this.count = count;
   }
@@ -141,16 +130,10 @@ public class SubscriptionPlansVM {
    * @return skip
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getSkip() {
     return skip;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSkip(Integer skip) {
     this.skip = skip;
   }
@@ -166,24 +149,16 @@ public class SubscriptionPlansVM {
    * @return take
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getTake() {
     return take;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTake(Integer take) {
     this.take = take;
   }
 
 
-  /**
-   * Return true if this SubscriptionPlansVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -193,7 +168,7 @@ public class SubscriptionPlansVM {
       return false;
     }
     SubscriptionPlansVM subscriptionPlansVM = (SubscriptionPlansVM) o;
-    return equalsNullable(this.subscriptionPlans, subscriptionPlansVM.subscriptionPlans) &&
+    return Objects.equals(this.subscriptionPlans, subscriptionPlansVM.subscriptionPlans) &&
         Objects.equals(this.count, subscriptionPlansVM.count) &&
         Objects.equals(this.skip, subscriptionPlansVM.skip) &&
         Objects.equals(this.take, subscriptionPlansVM.take);
@@ -205,7 +180,7 @@ public class SubscriptionPlansVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(subscriptionPlans), count, skip, take);
+    return Objects.hash(subscriptionPlans, count, skip, take);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -238,64 +213,106 @@ public class SubscriptionPlansVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("subscriptionPlans");
+    openapiFields.add("count");
+    openapiFields.add("skip");
+    openapiFields.add("take");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `subscriptionPlans` to the URL query string
-    if (getSubscriptionPlans() != null) {
-      for (int i = 0; i < getSubscriptionPlans().size(); i++) {
-        if (getSubscriptionPlans().get(i) != null) {
-          joiner.add(getSubscriptionPlans().get(i).toUrlQueryString(String.format("%ssubscriptionPlans%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to SubscriptionPlansVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SubscriptionPlansVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SubscriptionPlansVM is not found in the empty JSON string", SubscriptionPlansVM.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    // add `count` to the URL query string
-    if (getCount() != null) {
-      joiner.add(String.format("%scount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!SubscriptionPlansVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SubscriptionPlansVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (jsonObj.get("subscriptionPlans") != null && !jsonObj.get("subscriptionPlans").isJsonNull()) {
+        JsonArray jsonArraysubscriptionPlans = jsonObj.getAsJsonArray("subscriptionPlans");
+        if (jsonArraysubscriptionPlans != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("subscriptionPlans").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `subscriptionPlans` to be an array in the JSON string but got `%s`", jsonObj.get("subscriptionPlans").toString()));
+          }
 
-    // add `skip` to the URL query string
-    if (getSkip() != null) {
-      joiner.add(String.format("%sskip%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSkip()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+          // validate the optional field `subscriptionPlans` (array)
+          for (int i = 0; i < jsonArraysubscriptionPlans.size(); i++) {
+            SubscriptionPlanVM.validateJsonElement(jsonArraysubscriptionPlans.get(i));
+          };
+        }
+      }
+  }
 
-    // add `take` to the URL query string
-    if (getTake() != null) {
-      joiner.add(String.format("%stake%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTake()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SubscriptionPlansVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SubscriptionPlansVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SubscriptionPlansVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SubscriptionPlansVM.class));
 
-    return joiner.toString();
+       return (TypeAdapter<T>) new TypeAdapter<SubscriptionPlansVM>() {
+           @Override
+           public void write(JsonWriter out, SubscriptionPlansVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SubscriptionPlansVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of SubscriptionPlansVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SubscriptionPlansVM
+  * @throws IOException if the JSON string is invalid with respect to SubscriptionPlansVM
+  */
+  public static SubscriptionPlansVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SubscriptionPlansVM.class);
+  }
+
+ /**
+  * Convert an instance of SubscriptionPlansVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

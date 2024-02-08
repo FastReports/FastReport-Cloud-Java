@@ -13,49 +13,65 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.UpdateDataSourcePermissionsVM;
 import cloud.fastreport.model.UpdateFilePermissionsVM;
 import cloud.fastreport.model.UpdateGroupPermissionsVM;
 import cloud.fastreport.model.UpdateTaskPermissionsVM;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * UpdateDefaultPermissionsVM
  */
-@JsonPropertyOrder({
-  UpdateDefaultPermissionsVM.JSON_PROPERTY_FILE_PERMISSIONS,
-  UpdateDefaultPermissionsVM.JSON_PROPERTY_GROUP_PERMISSIONS,
-  UpdateDefaultPermissionsVM.JSON_PROPERTY_DATA_SOURCE_PERMISSIONS,
-  UpdateDefaultPermissionsVM.JSON_PROPERTY_TASK_PERMISSIONS
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateDefaultPermissionsVM {
-  public static final String JSON_PROPERTY_FILE_PERMISSIONS = "filePermissions";
+  public static final String SERIALIZED_NAME_FILE_PERMISSIONS = "filePermissions";
+  @SerializedName(SERIALIZED_NAME_FILE_PERMISSIONS)
   private UpdateFilePermissionsVM filePermissions;
 
-  public static final String JSON_PROPERTY_GROUP_PERMISSIONS = "groupPermissions";
+  public static final String SERIALIZED_NAME_GROUP_PERMISSIONS = "groupPermissions";
+  @SerializedName(SERIALIZED_NAME_GROUP_PERMISSIONS)
   private UpdateGroupPermissionsVM groupPermissions;
 
-  public static final String JSON_PROPERTY_DATA_SOURCE_PERMISSIONS = "dataSourcePermissions";
+  public static final String SERIALIZED_NAME_DATA_SOURCE_PERMISSIONS = "dataSourcePermissions";
+  @SerializedName(SERIALIZED_NAME_DATA_SOURCE_PERMISSIONS)
   private UpdateDataSourcePermissionsVM dataSourcePermissions;
 
-  public static final String JSON_PROPERTY_TASK_PERMISSIONS = "taskPermissions";
+  public static final String SERIALIZED_NAME_TASK_PERMISSIONS = "taskPermissions";
+  @SerializedName(SERIALIZED_NAME_TASK_PERMISSIONS)
   private UpdateTaskPermissionsVM taskPermissions;
 
-  public UpdateDefaultPermissionsVM() { 
+  public UpdateDefaultPermissionsVM() {
   }
 
   public UpdateDefaultPermissionsVM filePermissions(UpdateFilePermissionsVM filePermissions) {
@@ -68,16 +84,10 @@ public class UpdateDefaultPermissionsVM {
    * @return filePermissions
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FILE_PERMISSIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public UpdateFilePermissionsVM getFilePermissions() {
     return filePermissions;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_FILE_PERMISSIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFilePermissions(UpdateFilePermissionsVM filePermissions) {
     this.filePermissions = filePermissions;
   }
@@ -93,16 +103,10 @@ public class UpdateDefaultPermissionsVM {
    * @return groupPermissions
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_GROUP_PERMISSIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public UpdateGroupPermissionsVM getGroupPermissions() {
     return groupPermissions;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_GROUP_PERMISSIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGroupPermissions(UpdateGroupPermissionsVM groupPermissions) {
     this.groupPermissions = groupPermissions;
   }
@@ -118,16 +122,10 @@ public class UpdateDefaultPermissionsVM {
    * @return dataSourcePermissions
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DATA_SOURCE_PERMISSIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public UpdateDataSourcePermissionsVM getDataSourcePermissions() {
     return dataSourcePermissions;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_DATA_SOURCE_PERMISSIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDataSourcePermissions(UpdateDataSourcePermissionsVM dataSourcePermissions) {
     this.dataSourcePermissions = dataSourcePermissions;
   }
@@ -143,24 +141,16 @@ public class UpdateDefaultPermissionsVM {
    * @return taskPermissions
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TASK_PERMISSIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public UpdateTaskPermissionsVM getTaskPermissions() {
     return taskPermissions;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_TASK_PERMISSIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTaskPermissions(UpdateTaskPermissionsVM taskPermissions) {
     this.taskPermissions = taskPermissions;
   }
 
 
-  /**
-   * Return true if this UpdateDefaultPermissionsVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -204,59 +194,108 @@ public class UpdateDefaultPermissionsVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("filePermissions");
+    openapiFields.add("groupPermissions");
+    openapiFields.add("dataSourcePermissions");
+    openapiFields.add("taskPermissions");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to UpdateDefaultPermissionsVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdateDefaultPermissionsVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateDefaultPermissionsVM is not found in the empty JSON string", UpdateDefaultPermissionsVM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!UpdateDefaultPermissionsVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateDefaultPermissionsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `filePermissions`
+      if (jsonObj.get("filePermissions") != null && !jsonObj.get("filePermissions").isJsonNull()) {
+        UpdateFilePermissionsVM.validateJsonElement(jsonObj.get("filePermissions"));
+      }
+      // validate the optional field `groupPermissions`
+      if (jsonObj.get("groupPermissions") != null && !jsonObj.get("groupPermissions").isJsonNull()) {
+        UpdateGroupPermissionsVM.validateJsonElement(jsonObj.get("groupPermissions"));
+      }
+      // validate the optional field `dataSourcePermissions`
+      if (jsonObj.get("dataSourcePermissions") != null && !jsonObj.get("dataSourcePermissions").isJsonNull()) {
+        UpdateDataSourcePermissionsVM.validateJsonElement(jsonObj.get("dataSourcePermissions"));
+      }
+      // validate the optional field `taskPermissions`
+      if (jsonObj.get("taskPermissions") != null && !jsonObj.get("taskPermissions").isJsonNull()) {
+        UpdateTaskPermissionsVM.validateJsonElement(jsonObj.get("taskPermissions"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UpdateDefaultPermissionsVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdateDefaultPermissionsVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UpdateDefaultPermissionsVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdateDefaultPermissionsVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UpdateDefaultPermissionsVM>() {
+           @Override
+           public void write(JsonWriter out, UpdateDefaultPermissionsVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UpdateDefaultPermissionsVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of UpdateDefaultPermissionsVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of UpdateDefaultPermissionsVM
+  * @throws IOException if the JSON string is invalid with respect to UpdateDefaultPermissionsVM
+  */
+  public static UpdateDefaultPermissionsVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateDefaultPermissionsVM.class);
+  }
 
-    // add `filePermissions` to the URL query string
-    if (getFilePermissions() != null) {
-      joiner.add(getFilePermissions().toUrlQueryString(prefix + "filePermissions" + suffix));
-    }
-
-    // add `groupPermissions` to the URL query string
-    if (getGroupPermissions() != null) {
-      joiner.add(getGroupPermissions().toUrlQueryString(prefix + "groupPermissions" + suffix));
-    }
-
-    // add `dataSourcePermissions` to the URL query string
-    if (getDataSourcePermissions() != null) {
-      joiner.add(getDataSourcePermissions().toUrlQueryString(prefix + "dataSourcePermissions" + suffix));
-    }
-
-    // add `taskPermissions` to the URL query string
-    if (getTaskPermissions() != null) {
-      joiner.add(getTaskPermissions().toUrlQueryString(prefix + "taskPermissions" + suffix));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of UpdateDefaultPermissionsVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

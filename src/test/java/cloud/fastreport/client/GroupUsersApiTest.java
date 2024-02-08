@@ -16,95 +16,72 @@ package cloud.fastreport.client;
 import cloud.fastreport.ApiException;
 import cloud.fastreport.model.GroupUsersVM;
 import cloud.fastreport.model.ProblemDetails;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for GroupUsersApi
  */
-@Ignore
+@Disabled
 public class GroupUsersApiTest {
 
     private final GroupUsersApi api = new GroupUsersApi();
 
-    
     /**
      * Add user to the group by identifier
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void groupUsersAddUserToGroupTest() throws ApiException {
         String id = null;
         String userId = null;
-        
         api.groupUsersAddUserToGroup(id, userId);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Returns users in the group by identifier
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void groupUsersGetUsersInGroupTest() throws ApiException {
         String id = null;
         Integer skip = null;
         Integer take = null;
-        GroupUsersVM response = 
-        api.groupUsersGetUsersInGroup(id, skip, take);
-        
+        GroupUsersVM response = api.groupUsersGetUsersInGroup(id, skip, take);
         // TODO: test validations
     }
-    
+
     /**
      * Leave from the group
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void groupUsersLeaveFromGroupTest() throws ApiException {
         String id = null;
-        
         api.groupUsersLeaveFromGroup(id);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Remove user from the group by identifier
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void groupUsersRemoveFromGroupTest() throws ApiException {
         String id = null;
         String userId = null;
-        
         api.groupUsersRemoveFromGroup(id, userId);
-        
         // TODO: test validations
     }
-    
+
 }

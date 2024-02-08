@@ -13,60 +13,73 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.DataSourcePermission;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions
  */
-@JsonPropertyOrder({
-  DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.JSON_PROPERTY_OWNER_ID,
-  DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.JSON_PROPERTY_OWNER,
-  DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.JSON_PROPERTY_GROUPS,
-  DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.JSON_PROPERTY_OTHER,
-  DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.JSON_PROPERTY_ANON
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions {
-  public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
-  private JsonNullable<String> ownerId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
+  @SerializedName(SERIALIZED_NAME_OWNER_ID)
+  private String ownerId;
 
-  public static final String JSON_PROPERTY_OWNER = "owner";
+  public static final String SERIALIZED_NAME_OWNER = "owner";
+  @SerializedName(SERIALIZED_NAME_OWNER)
   private DataSourcePermission owner;
 
-  public static final String JSON_PROPERTY_GROUPS = "groups";
-  private JsonNullable<Map<String, DataSourcePermission>> groups = JsonNullable.<Map<String, DataSourcePermission>>undefined();
+  public static final String SERIALIZED_NAME_GROUPS = "groups";
+  @SerializedName(SERIALIZED_NAME_GROUPS)
+  private Map<String, DataSourcePermission> groups;
 
-  public static final String JSON_PROPERTY_OTHER = "other";
+  public static final String SERIALIZED_NAME_OTHER = "other";
+  @SerializedName(SERIALIZED_NAME_OTHER)
   private DataSourcePermission other;
 
-  public static final String JSON_PROPERTY_ANON = "anon";
+  public static final String SERIALIZED_NAME_ANON = "anon";
+  @SerializedName(SERIALIZED_NAME_ANON)
   private DataSourcePermission anon;
 
-  public DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions() { 
+  public DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions() {
   }
 
   public DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions ownerId(String ownerId) {
-    this.ownerId = JsonNullable.<String>of(ownerId);
+    this.ownerId = ownerId;
     return this;
   }
 
@@ -75,26 +88,12 @@ public class DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDa
    * @return ownerId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getOwnerId() {
-        return ownerId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_OWNER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getOwnerId_JsonNullable() {
     return ownerId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_OWNER_ID)
-  public void setOwnerId_JsonNullable(JsonNullable<String> ownerId) {
-    this.ownerId = ownerId;
   }
 
   public void setOwnerId(String ownerId) {
-    this.ownerId = JsonNullable.<String>of(ownerId);
+    this.ownerId = ownerId;
   }
 
 
@@ -108,35 +107,25 @@ public class DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDa
    * @return owner
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public DataSourcePermission getOwner() {
     return owner;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOwner(DataSourcePermission owner) {
     this.owner = owner;
   }
 
 
   public DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions groups(Map<String, DataSourcePermission> groups) {
-    this.groups = JsonNullable.<Map<String, DataSourcePermission>>of(groups);
+    this.groups = groups;
     return this;
   }
 
   public DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions putGroupsItem(String key, DataSourcePermission groupsItem) {
-    if (this.groups == null || !this.groups.isPresent()) {
-      this.groups = JsonNullable.<Map<String, DataSourcePermission>>of(new HashMap<>());
+    if (this.groups == null) {
+      this.groups = new HashMap<>();
     }
-    try {
-      this.groups.get().put(key, groupsItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.groups.put(key, groupsItem);
     return this;
   }
 
@@ -145,26 +134,12 @@ public class DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDa
    * @return groups
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Map<String, DataSourcePermission> getGroups() {
-        return groups.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Map<String, DataSourcePermission>> getGroups_JsonNullable() {
     return groups;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  public void setGroups_JsonNullable(JsonNullable<Map<String, DataSourcePermission>> groups) {
-    this.groups = groups;
   }
 
   public void setGroups(Map<String, DataSourcePermission> groups) {
-    this.groups = JsonNullable.<Map<String, DataSourcePermission>>of(groups);
+    this.groups = groups;
   }
 
 
@@ -178,16 +153,10 @@ public class DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDa
    * @return other
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OTHER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public DataSourcePermission getOther() {
     return other;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_OTHER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOther(DataSourcePermission other) {
     this.other = other;
   }
@@ -203,24 +172,16 @@ public class DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDa
    * @return anon
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ANON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public DataSourcePermission getAnon() {
     return anon;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_ANON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAnon(DataSourcePermission anon) {
     this.anon = anon;
   }
 
 
-  /**
-   * Return true if this DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -230,9 +191,9 @@ public class DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDa
       return false;
     }
     DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions dataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions = (DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions) o;
-    return equalsNullable(this.ownerId, dataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.ownerId) &&
+    return Objects.equals(this.ownerId, dataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.ownerId) &&
         Objects.equals(this.owner, dataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.owner) &&
-        equalsNullable(this.groups, dataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.groups) &&
+        Objects.equals(this.groups, dataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.groups) &&
         Objects.equals(this.other, dataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.other) &&
         Objects.equals(this.anon, dataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.anon);
   }
@@ -243,7 +204,7 @@ public class DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDa
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(ownerId), owner, hashCodeNullable(groups), other, anon);
+    return Objects.hash(ownerId, owner, groups, other, anon);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -277,69 +238,108 @@ public class DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDa
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("ownerId");
+    openapiFields.add("owner");
+    openapiFields.add("groups");
+    openapiFields.add("other");
+    openapiFields.add("anon");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `ownerId` to the URL query string
-    if (getOwnerId() != null) {
-      joiner.add(String.format("%sownerId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getOwnerId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `owner` to the URL query string
-    if (getOwner() != null) {
-      joiner.add(getOwner().toUrlQueryString(prefix + "owner" + suffix));
-    }
-
-    // add `groups` to the URL query string
-    if (getGroups() != null) {
-      for (String _key : getGroups().keySet()) {
-        if (getGroups().get(_key) != null) {
-          joiner.add(getGroups().get(_key).toUrlQueryString(String.format("%sgroups%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions is not found in the empty JSON string", DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    // add `other` to the URL query string
-    if (getOther() != null) {
-      joiner.add(getOther().toUrlQueryString(prefix + "other" + suffix));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("ownerId") != null && !jsonObj.get("ownerId").isJsonNull()) && !jsonObj.get("ownerId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ownerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerId").toString()));
+      }
+      // validate the optional field `owner`
+      if (jsonObj.get("owner") != null && !jsonObj.get("owner").isJsonNull()) {
+        DataSourcePermission.validateJsonElement(jsonObj.get("owner"));
+      }
+      // validate the optional field `other`
+      if (jsonObj.get("other") != null && !jsonObj.get("other").isJsonNull()) {
+        DataSourcePermission.validateJsonElement(jsonObj.get("other"));
+      }
+      // validate the optional field `anon`
+      if (jsonObj.get("anon") != null && !jsonObj.get("anon").isJsonNull()) {
+        DataSourcePermission.validateJsonElement(jsonObj.get("anon"));
+      }
+  }
 
-    // add `anon` to the URL query string
-    if (getAnon() != null) {
-      joiner.add(getAnon().toUrlQueryString(prefix + "anon" + suffix));
-    }
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.class));
 
-    return joiner.toString();
+       return (TypeAdapter<T>) new TypeAdapter<DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions>() {
+           @Override
+           public void write(JsonWriter out, DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions
+  * @throws IOException if the JSON string is invalid with respect to DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions
+  */
+  public static DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.class);
+  }
+
+ /**
+  * Convert an instance of DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

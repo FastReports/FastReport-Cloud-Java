@@ -11,7 +11,6 @@
 |**tags** | **List&lt;String&gt;** |  |  [optional] |
 |**icon** | **byte[]** |  |  [optional] |
 |**content** | **byte[]** |  |  [optional] |
-|**$t** | **String** |  |  |
 
 
 

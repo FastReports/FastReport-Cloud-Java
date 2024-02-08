@@ -13,21 +13,20 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.SerializedName;
 
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.JsonElement;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
 /**
  * Gets or Sets GroupGet
  */
+@JsonAdapter(GroupGet.Adapter.class)
 public enum GroupGet {
   
   NUMBER_0(0),
@@ -46,7 +45,6 @@ public enum GroupGet {
     this.value = value;
   }
 
-  @JsonValue
   public Integer getValue() {
     return value;
   }
@@ -56,7 +54,6 @@ public enum GroupGet {
     return String.valueOf(value);
   }
 
-  @JsonCreator
   public static GroupGet fromValue(Integer value) {
     for (GroupGet b : GroupGet.values()) {
       if (b.value.equals(value)) {
@@ -66,19 +63,22 @@ public enum GroupGet {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    if (prefix == null) {
-      prefix = "";
+  public static class Adapter extends TypeAdapter<GroupGet> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final GroupGet enumeration) throws IOException {
+      jsonWriter.value(enumeration.getValue());
     }
 
-    return String.format("%s=%s", prefix, this.toString());
+    @Override
+    public GroupGet read(final JsonReader jsonReader) throws IOException {
+      Integer value = jsonReader.nextInt();
+      return GroupGet.fromValue(value);
+    }
   }
 
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    Integer value = jsonElement.getAsInt();
+    GroupGet.fromValue(value);
+  }
 }
 

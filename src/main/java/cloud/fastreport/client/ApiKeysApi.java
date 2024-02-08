@@ -10,12 +10,22 @@
  * Do not edit the class manually.
  */
 
+
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiCallback;
 import cloud.fastreport.ApiClient;
 import cloud.fastreport.ApiException;
 import cloud.fastreport.ApiResponse;
+import cloud.fastreport.Configuration;
 import cloud.fastreport.Pair;
+import cloud.fastreport.ProgressRequestBody;
+import cloud.fastreport.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
 
 import cloud.fastreport.model.ApiKeyVM;
 import cloud.fastreport.model.ApiKeysVM;
@@ -23,288 +33,438 @@ import cloud.fastreport.model.CreateApiKeyVM;
 import cloud.fastreport.model.DeleteApiKeyVM;
 import cloud.fastreport.model.ProblemDetails;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.http.HttpRequest;
-import java.nio.channels.Channels;
-import java.nio.channels.Pipe;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.StringJoiner;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiKeysApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public ApiKeysApi() {
-    this(new ApiClient());
-  }
-
-  public ApiKeysApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public ApiKeysApi() {
+        this(Configuration.getDefaultApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
-   * 
-   * @param createApiKeyVM  (required)
-   * @return ApiKeyVM
-   * @throws ApiException if fails to make API call
-   */
-  public ApiKeyVM apiKeysCreateApiKey(CreateApiKeyVM createApiKeyVM) throws ApiException {
-    ApiResponse<ApiKeyVM> localVarResponse = apiKeysCreateApiKeyWithHttpInfo(createApiKeyVM);
-    return localVarResponse.getData();
-  }
+    public ApiKeysApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
 
-  /**
-   * Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
-   * 
-   * @param createApiKeyVM  (required)
-   * @return ApiResponse&lt;ApiKeyVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ApiKeyVM> apiKeysCreateApiKeyWithHttpInfo(CreateApiKeyVM createApiKeyVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = apiKeysCreateApiKeyRequestBuilder(createApiKeyVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("apiKeysCreateApiKey", localVarResponse);
+    public ApiClient getApiClient() {
+        return localVarApiClient;
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for apiKeysCreateApiKey
+     * @param createApiKeyVM  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> wrong model provided or exception thrown (user&#39;s attempts to create sixth key for example throwns an exception) </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call apiKeysCreateApiKeyCall(CreateApiKeyVM createApiKeyVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<ApiKeyVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ApiKeyVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder apiKeysCreateApiKeyRequestBuilder(CreateApiKeyVM createApiKeyVM) throws ApiException {
-    // verify the required parameter 'createApiKeyVM' is set
-    if (createApiKeyVM == null) {
-      throw new ApiException(400, "Missing the required parameter 'createApiKeyVM' when calling apiKeysCreateApiKey");
-    }
+        Object localVarPostBody = createApiKeyVM;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/ApiKeys";
 
-    String localVarPath = "/api/manage/v1/ApiKeys";
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createApiKeyVM);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Delete an apikey
-   * 
-   * @param deleteApiKeyVM  (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void apiKeysDeleteApiKey(DeleteApiKeyVM deleteApiKeyVM) throws ApiException {
-    apiKeysDeleteApiKeyWithHttpInfo(deleteApiKeyVM);
-  }
-
-  /**
-   * Delete an apikey
-   * 
-   * @param deleteApiKeyVM  (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> apiKeysDeleteApiKeyWithHttpInfo(DeleteApiKeyVM deleteApiKeyVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = apiKeysDeleteApiKeyRequestBuilder(deleteApiKeyVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("apiKeysDeleteApiKey", localVarResponse);
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder apiKeysDeleteApiKeyRequestBuilder(DeleteApiKeyVM deleteApiKeyVM) throws ApiException {
-    // verify the required parameter 'deleteApiKeyVM' is set
-    if (deleteApiKeyVM == null) {
-      throw new ApiException(400, "Missing the required parameter 'deleteApiKeyVM' when calling apiKeysDeleteApiKey");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/ApiKeys";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(deleteApiKeyVM);
-      localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns list with all api keys of current user
-   * Always work, it should make only 200 response (except if user is not authorized).
-   * @return ApiKeysVM
-   * @throws ApiException if fails to make API call
-   */
-  public ApiKeysVM apiKeysGetApiKeys() throws ApiException {
-    ApiResponse<ApiKeysVM> localVarResponse = apiKeysGetApiKeysWithHttpInfo();
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Returns list with all api keys of current user
-   * Always work, it should make only 200 response (except if user is not authorized).
-   * @return ApiResponse&lt;ApiKeysVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ApiKeysVM> apiKeysGetApiKeysWithHttpInfo() throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = apiKeysGetApiKeysRequestBuilder();
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("apiKeysGetApiKeys", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call apiKeysCreateApiKeyValidateBeforeCall(CreateApiKeyVM createApiKeyVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'createApiKeyVM' is set
+        if (createApiKeyVM == null) {
+            throw new ApiException("Missing the required parameter 'createApiKeyVM' when calling apiKeysCreateApiKey(Async)");
         }
-        return new ApiResponse<ApiKeysVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ApiKeysVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+
+        return apiKeysCreateApiKeyCall(createApiKeyVM, _callback);
+
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+
+    /**
+     * Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
+     * 
+     * @param createApiKeyVM  (required)
+     * @return ApiKeyVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> wrong model provided or exception thrown (user&#39;s attempts to create sixth key for example throwns an exception) </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiKeyVM apiKeysCreateApiKey(CreateApiKeyVM createApiKeyVM) throws ApiException {
+        ApiResponse<ApiKeyVM> localVarResp = apiKeysCreateApiKeyWithHttpInfo(createApiKeyVM);
+        return localVarResp.getData();
     }
-  }
 
-  private HttpRequest.Builder apiKeysGetApiKeysRequestBuilder() throws ApiException {
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/ApiKeys";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
+     * 
+     * @param createApiKeyVM  (required)
+     * @return ApiResponse&lt;ApiKeyVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> wrong model provided or exception thrown (user&#39;s attempts to create sixth key for example throwns an exception) </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ApiKeyVM> apiKeysCreateApiKeyWithHttpInfo(CreateApiKeyVM createApiKeyVM) throws ApiException {
+        okhttp3.Call localVarCall = apiKeysCreateApiKeyValidateBeforeCall(createApiKeyVM, null);
+        Type localVarReturnType = new TypeToken<ApiKeyVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Create a new apikey, 5 apikeys for user. Hardcoded for ddos. (asynchronously)
+     * 
+     * @param createApiKeyVM  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> wrong model provided or exception thrown (user&#39;s attempts to create sixth key for example throwns an exception) </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call apiKeysCreateApiKeyAsync(CreateApiKeyVM createApiKeyVM, final ApiCallback<ApiKeyVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = apiKeysCreateApiKeyValidateBeforeCall(createApiKeyVM, _callback);
+        Type localVarReturnType = new TypeToken<ApiKeyVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
     }
-    return localVarRequestBuilder;
-  }
+    /**
+     * Build call for apiKeysDeleteApiKey
+     * @param deleteApiKeyVM  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The request is wrong </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such apikey found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call apiKeysDeleteApiKeyCall(DeleteApiKeyVM deleteApiKeyVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = deleteApiKeyVM;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/ApiKeys";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call apiKeysDeleteApiKeyValidateBeforeCall(DeleteApiKeyVM deleteApiKeyVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'deleteApiKeyVM' is set
+        if (deleteApiKeyVM == null) {
+            throw new ApiException("Missing the required parameter 'deleteApiKeyVM' when calling apiKeysDeleteApiKey(Async)");
+        }
+
+        return apiKeysDeleteApiKeyCall(deleteApiKeyVM, _callback);
+
+    }
+
+    /**
+     * Delete an apikey
+     * 
+     * @param deleteApiKeyVM  (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The request is wrong </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such apikey found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public void apiKeysDeleteApiKey(DeleteApiKeyVM deleteApiKeyVM) throws ApiException {
+        apiKeysDeleteApiKeyWithHttpInfo(deleteApiKeyVM);
+    }
+
+    /**
+     * Delete an apikey
+     * 
+     * @param deleteApiKeyVM  (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The request is wrong </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such apikey found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> apiKeysDeleteApiKeyWithHttpInfo(DeleteApiKeyVM deleteApiKeyVM) throws ApiException {
+        okhttp3.Call localVarCall = apiKeysDeleteApiKeyValidateBeforeCall(deleteApiKeyVM, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Delete an apikey (asynchronously)
+     * 
+     * @param deleteApiKeyVM  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The request is wrong </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such apikey found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call apiKeysDeleteApiKeyAsync(DeleteApiKeyVM deleteApiKeyVM, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = apiKeysDeleteApiKeyValidateBeforeCall(deleteApiKeyVM, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for apiKeysGetApiKeys
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception somehow thrown (barely possible) </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call apiKeysGetApiKeysCall(final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/ApiKeys";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call apiKeysGetApiKeysValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return apiKeysGetApiKeysCall(_callback);
+
+    }
+
+    /**
+     * Returns list with all api keys of current user
+     * Always work, it should make only 200 response (except if user is not authorized).
+     * @return ApiKeysVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception somehow thrown (barely possible) </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiKeysVM apiKeysGetApiKeys() throws ApiException {
+        ApiResponse<ApiKeysVM> localVarResp = apiKeysGetApiKeysWithHttpInfo();
+        return localVarResp.getData();
+    }
+
+    /**
+     * Returns list with all api keys of current user
+     * Always work, it should make only 200 response (except if user is not authorized).
+     * @return ApiResponse&lt;ApiKeysVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception somehow thrown (barely possible) </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ApiKeysVM> apiKeysGetApiKeysWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = apiKeysGetApiKeysValidateBeforeCall(null);
+        Type localVarReturnType = new TypeToken<ApiKeysVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns list with all api keys of current user (asynchronously)
+     * Always work, it should make only 200 response (except if user is not authorized).
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception somehow thrown (barely possible) </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call apiKeysGetApiKeysAsync(final ApiCallback<ApiKeysVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = apiKeysGetApiKeysValidateBeforeCall(_callback);
+        Type localVarReturnType = new TypeToken<ApiKeysVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
 }

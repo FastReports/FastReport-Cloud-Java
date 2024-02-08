@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.TaskAdministrate;
 import cloud.fastreport.model.TaskCreate;
 import cloud.fastreport.model.TaskDelete;
@@ -26,8 +30,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * TaskPermission
@@ -60,11 +65,10 @@ public class TaskPermission {
   public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
   private TaskAdministrate administrate;
 
-  public TaskPermission() {
+  public TaskPermission() { 
   }
 
   public TaskPermission create(TaskCreate create) {
-    
     this.create = create;
     return this;
   }
@@ -90,7 +94,6 @@ public class TaskPermission {
 
 
   public TaskPermission delete(TaskDelete delete) {
-    
     this.delete = delete;
     return this;
   }
@@ -116,7 +119,6 @@ public class TaskPermission {
 
 
   public TaskPermission execute(TaskExecute execute) {
-    
     this.execute = execute;
     return this;
   }
@@ -142,7 +144,6 @@ public class TaskPermission {
 
 
   public TaskPermission get(TaskGet get) {
-    
     this.get = get;
     return this;
   }
@@ -168,7 +169,6 @@ public class TaskPermission {
 
 
   public TaskPermission update(TaskUpdate update) {
-    
     this.update = update;
     return this;
   }
@@ -194,7 +194,6 @@ public class TaskPermission {
 
 
   public TaskPermission administrate(TaskAdministrate administrate) {
-    
     this.administrate = administrate;
     return this;
   }
@@ -218,6 +217,10 @@ public class TaskPermission {
     this.administrate = administrate;
   }
 
+
+  /**
+   * Return true if this TaskPermission object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -265,5 +268,69 @@ public class TaskPermission {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `create` to the URL query string
+    if (getCreate() != null) {
+      joiner.add(String.format("%screate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `delete` to the URL query string
+    if (getDelete() != null) {
+      joiner.add(String.format("%sdelete%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDelete()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `execute` to the URL query string
+    if (getExecute() != null) {
+      joiner.add(String.format("%sexecute%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExecute()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `get` to the URL query string
+    if (getGet() != null) {
+      joiner.add(String.format("%sget%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getGet()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `update` to the URL query string
+    if (getUpdate() != null) {
+      joiner.add(String.format("%supdate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUpdate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `administrate` to the URL query string
+    if (getAdministrate() != null) {
+      joiner.add(String.format("%sadministrate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAdministrate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

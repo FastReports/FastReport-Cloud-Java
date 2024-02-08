@@ -13,18 +13,18 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.GroupUsersVM;
 import cloud.fastreport.model.ProblemDetails;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for GroupUsersApi
@@ -40,15 +40,16 @@ public class GroupUsersApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void groupUsersAddUserToGroupTest() throws IOException {
+    public void groupUsersAddUserToGroupTest() throws ApiException {
         String id = null;
         String userId = null;
+        
         api.groupUsersAddUserToGroup(id, userId);
-
+        
         // TODO: test validations
     }
     
@@ -57,16 +58,17 @@ public class GroupUsersApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void groupUsersGetUsersInGroupTest() throws IOException {
+    public void groupUsersGetUsersInGroupTest() throws ApiException {
         String id = null;
         Integer skip = null;
         Integer take = null;
-        GroupUsersVM response = api.groupUsersGetUsersInGroup(id, skip, take);
-
+        GroupUsersVM response = 
+        api.groupUsersGetUsersInGroup(id, skip, take);
+        
         // TODO: test validations
     }
     
@@ -75,14 +77,15 @@ public class GroupUsersApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void groupUsersLeaveFromGroupTest() throws IOException {
+    public void groupUsersLeaveFromGroupTest() throws ApiException {
         String id = null;
+        
         api.groupUsersLeaveFromGroup(id);
-
+        
         // TODO: test validations
     }
     
@@ -91,15 +94,16 @@ public class GroupUsersApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void groupUsersRemoveFromGroupTest() throws IOException {
+    public void groupUsersRemoveFromGroupTest() throws ApiException {
         String id = null;
         String userId = null;
+        
         api.groupUsersRemoveFromGroup(id, userId);
-
+        
         // TODO: test validations
     }
     

@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.RunInputFileVM;
 import cloud.fastreport.model.RunTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,10 +29,12 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
+
+import cloud.fastreport.JSON;
 /**
  * RunTransportTaskBaseVM
  */
@@ -53,14 +59,12 @@ public class RunTransportTaskBaseVM extends RunTaskBaseVM {
   private RunInputFileVM inputFile;
 
   public static final String JSON_PROPERTY_$_T = "$t";
-  protected String $t;
+  private String $t;
 
-  public RunTransportTaskBaseVM() {
-
+  public RunTransportTaskBaseVM() { 
   }
 
   public RunTransportTaskBaseVM inputFile(RunInputFileVM inputFile) {
-    
     this.inputFile = inputFile;
     return this;
   }
@@ -86,7 +90,6 @@ public class RunTransportTaskBaseVM extends RunTaskBaseVM {
 
 
   public RunTransportTaskBaseVM $t(String $t) {
-    
     this.$t = $t;
     return this;
   }
@@ -110,12 +113,16 @@ public class RunTransportTaskBaseVM extends RunTaskBaseVM {
     this.$t = $t;
   }
 
+
   @Override
   public RunTransportTaskBaseVM subscriptionId(String subscriptionId) {
     this.setSubscriptionId(subscriptionId);
     return this;
   }
 
+  /**
+   * Return true if this RunTransportTaskBaseVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -168,5 +175,58 @@ public class RunTransportTaskBaseVM extends RunTaskBaseVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `subscriptionId` to the URL query string
+    if (getSubscriptionId() != null) {
+      joiner.add(String.format("%ssubscriptionId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubscriptionId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `$t` to the URL query string
+    if (get$T() != null) {
+      joiner.add(String.format("%s$t%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(get$T()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("RunEmailTaskVM", RunEmailTaskVM.class);
+  mappings.put("RunFTPUploadTaskVM", RunFTPUploadTaskVM.class);
+  mappings.put("RunWebhookTaskVM", RunWebhookTaskVM.class);
+  mappings.put("RunTransportTaskBaseVM", RunTransportTaskBaseVM.class);
+  JSON.registerDiscriminator(RunTransportTaskBaseVM.class, "$t", mappings);
+}
 }
 

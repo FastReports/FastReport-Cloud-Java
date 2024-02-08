@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.DataSourceConnectionType;
 import cloud.fastreport.model.DataSourceStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -23,12 +27,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * DataSourceVM
@@ -85,12 +90,11 @@ public class DataSourceVM {
   public static final String JSON_PROPERTY_ERROR_MESSAGE = "errorMessage";
   private JsonNullable<String> errorMessage = JsonNullable.<String>undefined();
 
-  public DataSourceVM() {
+  public DataSourceVM() { 
   }
 
   public DataSourceVM id(String id) {
     this.id = JsonNullable.<String>of(id);
-    
     return this;
   }
 
@@ -124,7 +128,6 @@ public class DataSourceVM {
 
   public DataSourceVM name(String name) {
     this.name = JsonNullable.<String>of(name);
-    
     return this;
   }
 
@@ -157,7 +160,6 @@ public class DataSourceVM {
 
 
   public DataSourceVM connectionType(DataSourceConnectionType connectionType) {
-    
     this.connectionType = connectionType;
     return this;
   }
@@ -184,7 +186,6 @@ public class DataSourceVM {
 
   public DataSourceVM connectionString(String connectionString) {
     this.connectionString = JsonNullable.<String>of(connectionString);
-    
     return this;
   }
 
@@ -218,7 +219,6 @@ public class DataSourceVM {
 
   public DataSourceVM dataStructure(String dataStructure) {
     this.dataStructure = JsonNullable.<String>of(dataStructure);
-    
     return this;
   }
 
@@ -252,7 +252,6 @@ public class DataSourceVM {
 
   public DataSourceVM subscriptionId(String subscriptionId) {
     this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-    
     return this;
   }
 
@@ -285,7 +284,6 @@ public class DataSourceVM {
 
 
   public DataSourceVM editedTime(OffsetDateTime editedTime) {
-    
     this.editedTime = editedTime;
     return this;
   }
@@ -312,7 +310,6 @@ public class DataSourceVM {
 
   public DataSourceVM editorUserId(String editorUserId) {
     this.editorUserId = JsonNullable.<String>of(editorUserId);
-    
     return this;
   }
 
@@ -345,7 +342,6 @@ public class DataSourceVM {
 
 
   public DataSourceVM createdTime(OffsetDateTime createdTime) {
-    
     this.createdTime = createdTime;
     return this;
   }
@@ -372,7 +368,6 @@ public class DataSourceVM {
 
   public DataSourceVM creatorUserId(String creatorUserId) {
     this.creatorUserId = JsonNullable.<String>of(creatorUserId);
-    
     return this;
   }
 
@@ -405,7 +400,6 @@ public class DataSourceVM {
 
 
   public DataSourceVM status(DataSourceStatus status) {
-    
     this.status = status;
     return this;
   }
@@ -432,7 +426,6 @@ public class DataSourceVM {
 
   public DataSourceVM errorMessage(String errorMessage) {
     this.errorMessage = JsonNullable.<String>of(errorMessage);
-    
     return this;
   }
 
@@ -463,6 +456,10 @@ public class DataSourceVM {
     this.errorMessage = JsonNullable.<String>of(errorMessage);
   }
 
+
+  /**
+   * Return true if this DataSourceVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -533,5 +530,99 @@ public class DataSourceVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `connectionType` to the URL query string
+    if (getConnectionType() != null) {
+      joiner.add(String.format("%sconnectionType%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getConnectionType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `connectionString` to the URL query string
+    if (getConnectionString() != null) {
+      joiner.add(String.format("%sconnectionString%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getConnectionString()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `dataStructure` to the URL query string
+    if (getDataStructure() != null) {
+      joiner.add(String.format("%sdataStructure%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDataStructure()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `subscriptionId` to the URL query string
+    if (getSubscriptionId() != null) {
+      joiner.add(String.format("%ssubscriptionId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubscriptionId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `editedTime` to the URL query string
+    if (getEditedTime() != null) {
+      joiner.add(String.format("%seditedTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEditedTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `editorUserId` to the URL query string
+    if (getEditorUserId() != null) {
+      joiner.add(String.format("%seditorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEditorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `createdTime` to the URL query string
+    if (getCreatedTime() != null) {
+      joiner.add(String.format("%screatedTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatedTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `creatorUserId` to the URL query string
+    if (getCreatorUserId() != null) {
+      joiner.add(String.format("%screatorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format("%sstatus%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `errorMessage` to the URL query string
+    if (getErrorMessage() != null) {
+      joiner.add(String.format("%serrorMessage%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getErrorMessage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

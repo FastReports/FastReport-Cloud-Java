@@ -13,19 +13,24 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * AuthConfigVM
@@ -46,11 +51,10 @@ public class AuthConfigVM {
   public static final String JSON_PROPERTY_AUTHORITY = "authority";
   private JsonNullable<String> authority = JsonNullable.<String>undefined();
 
-  public AuthConfigVM() {
+  public AuthConfigVM() { 
   }
 
   public AuthConfigVM useLocal(Boolean useLocal) {
-    
     this.useLocal = useLocal;
     return this;
   }
@@ -76,7 +80,6 @@ public class AuthConfigVM {
 
 
   public AuthConfigVM useOpenId(Boolean useOpenId) {
-    
     this.useOpenId = useOpenId;
     return this;
   }
@@ -103,7 +106,6 @@ public class AuthConfigVM {
 
   public AuthConfigVM authority(String authority) {
     this.authority = JsonNullable.<String>of(authority);
-    
     return this;
   }
 
@@ -134,6 +136,10 @@ public class AuthConfigVM {
     this.authority = JsonNullable.<String>of(authority);
   }
 
+
+  /**
+   * Return true if this AuthConfigVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -186,5 +192,54 @@ public class AuthConfigVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `useLocal` to the URL query string
+    if (getUseLocal() != null) {
+      joiner.add(String.format("%suseLocal%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUseLocal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `useOpenId` to the URL query string
+    if (getUseOpenId() != null) {
+      joiner.add(String.format("%suseOpenId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUseOpenId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `authority` to the URL query string
+    if (getAuthority() != null) {
+      joiner.add(String.format("%sauthority%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAuthority()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

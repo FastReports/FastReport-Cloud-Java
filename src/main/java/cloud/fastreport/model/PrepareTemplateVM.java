@@ -13,13 +13,18 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -27,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * PrepareTemplateVM
@@ -56,12 +61,11 @@ public class PrepareTemplateVM {
   public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
   private JsonNullable<Map<String, String>> reportParameters = JsonNullable.<Map<String, String>>undefined();
 
-  public PrepareTemplateVM() {
+  public PrepareTemplateVM() { 
   }
 
   public PrepareTemplateVM name(String name) {
     this.name = JsonNullable.<String>of(name);
-    
     return this;
   }
 
@@ -95,7 +99,6 @@ public class PrepareTemplateVM {
 
   public PrepareTemplateVM locale(String locale) {
     this.locale = JsonNullable.<String>of(locale);
-    
     return this;
   }
 
@@ -129,7 +132,6 @@ public class PrepareTemplateVM {
 
   public PrepareTemplateVM folderId(String folderId) {
     this.folderId = JsonNullable.<String>of(folderId);
-    
     return this;
   }
 
@@ -163,7 +165,6 @@ public class PrepareTemplateVM {
 
   public PrepareTemplateVM pagesCount(Integer pagesCount) {
     this.pagesCount = JsonNullable.<Integer>of(pagesCount);
-    
     return this;
   }
 
@@ -199,7 +200,6 @@ public class PrepareTemplateVM {
 
   public PrepareTemplateVM reportParameters(Map<String, String> reportParameters) {
     this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
-    
     return this;
   }
 
@@ -242,6 +242,10 @@ public class PrepareTemplateVM {
     this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
   }
 
+
+  /**
+   * Return true if this PrepareTemplateVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -298,5 +302,68 @@ public class PrepareTemplateVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `locale` to the URL query string
+    if (getLocale() != null) {
+      joiner.add(String.format("%slocale%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLocale()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `folderId` to the URL query string
+    if (getFolderId() != null) {
+      joiner.add(String.format("%sfolderId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFolderId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `pagesCount` to the URL query string
+    if (getPagesCount() != null) {
+      joiner.add(String.format("%spagesCount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPagesCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `reportParameters` to the URL query string
+    if (getReportParameters() != null) {
+      for (String _key : getReportParameters().keySet()) {
+        joiner.add(String.format("%sreportParameters%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getReportParameters().get(_key), URLEncoder.encode(String.valueOf(getReportParameters().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    return joiner.toString();
+  }
 }
 

@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.SaveMode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,12 +26,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ReportInfo
@@ -84,12 +89,11 @@ public class ReportInfo {
   public static final String JSON_PROPERTY_VERSION = "version";
   private JsonNullable<String> version = JsonNullable.<String>undefined();
 
-  public ReportInfo() {
+  public ReportInfo() { 
   }
 
   public ReportInfo author(String author) {
     this.author = JsonNullable.<String>of(author);
-    
     return this;
   }
 
@@ -122,7 +126,6 @@ public class ReportInfo {
 
 
   public ReportInfo created(OffsetDateTime created) {
-    
     this.created = created;
     return this;
   }
@@ -149,7 +152,6 @@ public class ReportInfo {
 
   public ReportInfo creatorVersion(String creatorVersion) {
     this.creatorVersion = JsonNullable.<String>of(creatorVersion);
-    
     return this;
   }
 
@@ -183,7 +185,6 @@ public class ReportInfo {
 
   public ReportInfo description(String description) {
     this.description = JsonNullable.<String>of(description);
-    
     return this;
   }
 
@@ -216,7 +217,6 @@ public class ReportInfo {
 
 
   public ReportInfo modified(OffsetDateTime modified) {
-    
     this.modified = modified;
     return this;
   }
@@ -243,7 +243,6 @@ public class ReportInfo {
 
   public ReportInfo name(String name) {
     this.name = JsonNullable.<String>of(name);
-    
     return this;
   }
 
@@ -277,7 +276,6 @@ public class ReportInfo {
 
   public ReportInfo picture(byte[] picture) {
     this.picture = JsonNullable.<byte[]>of(picture);
-    
     return this;
   }
 
@@ -310,7 +308,6 @@ public class ReportInfo {
 
 
   public ReportInfo previewPictureRatio(Float previewPictureRatio) {
-    
     this.previewPictureRatio = previewPictureRatio;
     return this;
   }
@@ -336,7 +333,6 @@ public class ReportInfo {
 
 
   public ReportInfo saveMode(SaveMode saveMode) {
-    
     this.saveMode = saveMode;
     return this;
   }
@@ -362,7 +358,6 @@ public class ReportInfo {
 
 
   public ReportInfo savePreviewPicture(Boolean savePreviewPicture) {
-    
     this.savePreviewPicture = savePreviewPicture;
     return this;
   }
@@ -389,7 +384,6 @@ public class ReportInfo {
 
   public ReportInfo tag(String tag) {
     this.tag = JsonNullable.<String>of(tag);
-    
     return this;
   }
 
@@ -423,7 +417,6 @@ public class ReportInfo {
 
   public ReportInfo version(String version) {
     this.version = JsonNullable.<String>of(version);
-    
     return this;
   }
 
@@ -454,6 +447,10 @@ public class ReportInfo {
     this.version = JsonNullable.<String>of(version);
   }
 
+
+  /**
+   * Return true if this ReportInfo object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -524,5 +521,99 @@ public class ReportInfo {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `author` to the URL query string
+    if (getAuthor() != null) {
+      joiner.add(String.format("%sauthor%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAuthor()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `created` to the URL query string
+    if (getCreated() != null) {
+      joiner.add(String.format("%screated%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `creatorVersion` to the URL query string
+    if (getCreatorVersion() != null) {
+      joiner.add(String.format("%screatorVersion%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatorVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `description` to the URL query string
+    if (getDescription() != null) {
+      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDescription()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `modified` to the URL query string
+    if (getModified() != null) {
+      joiner.add(String.format("%smodified%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getModified()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `picture` to the URL query string
+    if (getPicture() != null) {
+      joiner.add(String.format("%spicture%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPicture()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `previewPictureRatio` to the URL query string
+    if (getPreviewPictureRatio() != null) {
+      joiner.add(String.format("%spreviewPictureRatio%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPreviewPictureRatio()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `saveMode` to the URL query string
+    if (getSaveMode() != null) {
+      joiner.add(String.format("%ssaveMode%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSaveMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `savePreviewPicture` to the URL query string
+    if (getSavePreviewPicture() != null) {
+      joiner.add(String.format("%ssavePreviewPicture%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSavePreviewPicture()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `tag` to the URL query string
+    if (getTag() != null) {
+      joiner.add(String.format("%stag%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTag()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `version` to the URL query string
+    if (getVersion() != null) {
+      joiner.add(String.format("%sversion%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

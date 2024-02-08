@@ -13,17 +13,17 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.ServerConfigurationVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for ConfigurationApi
@@ -39,13 +39,14 @@ public class ConfigurationApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void configurationGetTest() throws IOException {
-        ServerConfigurationVM response = api.configurationGet();
-
+    public void configurationGetTest() throws ApiException {
+        ServerConfigurationVM response = 
+        api.configurationGet();
+        
         // TODO: test validations
     }
     

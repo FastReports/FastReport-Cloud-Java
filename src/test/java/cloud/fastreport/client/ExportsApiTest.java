@@ -13,6 +13,7 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.AuditActionsVM;
 import cloud.fastreport.model.BreadcrumbsVM;
 import cloud.fastreport.model.CountVM;
@@ -37,13 +38,12 @@ import cloud.fastreport.model.UpdateFilePermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for ExportsApi
@@ -59,14 +59,15 @@ public class ExportsApiTest {
      *
      * User with a Delete RecycleBin permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFolderAndFileClearRecycleBinTest() throws IOException {
+    public void exportFolderAndFileClearRecycleBinTest() throws ApiException {
         String subscriptionId = null;
+        
         api.exportFolderAndFileClearRecycleBin(subscriptionId);
-
+        
         // TODO: test validations
     }
     
@@ -75,15 +76,16 @@ public class ExportsApiTest {
      *
      * User with a Get permission for a files and Create permission for a destination folder can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFolderAndFileCopyFilesTest() throws IOException {
+    public void exportFolderAndFileCopyFilesTest() throws ApiException {
         String subscriptionId = null;
         SelectedFilesVM selectedFilesVM = null;
+        
         api.exportFolderAndFileCopyFiles(subscriptionId, selectedFilesVM);
-
+        
         // TODO: test validations
     }
     
@@ -92,15 +94,16 @@ public class ExportsApiTest {
      *
      * User with a Delete permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFolderAndFileDeleteFilesTest() throws IOException {
+    public void exportFolderAndFileDeleteFilesTest() throws ApiException {
         String subscriptionId = null;
         SelectedFilesVM selectedFilesVM = null;
+        
         api.exportFolderAndFileDeleteFiles(subscriptionId, selectedFilesVM);
-
+        
         // TODO: test validations
     }
     
@@ -109,16 +112,17 @@ public class ExportsApiTest {
      *
      * User with a Get Count permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFolderAndFileGetCountTest() throws IOException {
+    public void exportFolderAndFileGetCountTest() throws ApiException {
         String id = null;
         String searchPattern = null;
         Boolean useRegex = null;
-        CountVM response = api.exportFolderAndFileGetCount(id, searchPattern, useRegex);
-
+        CountVM response = 
+        api.exportFolderAndFileGetCount(id, searchPattern, useRegex);
+        
         // TODO: test validations
     }
     
@@ -127,11 +131,11 @@ public class ExportsApiTest {
      *
      * User with a Get Entity permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFolderAndFileGetFoldersAndFilesTest() throws IOException {
+    public void exportFolderAndFileGetFoldersAndFilesTest() throws ApiException {
         String id = null;
         Integer skip = null;
         Integer take = null;
@@ -139,8 +143,9 @@ public class ExportsApiTest {
         Boolean desc = null;
         String searchPattern = null;
         Boolean useRegex = null;
-        FilesVM response = api.exportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern, useRegex);
-
+        FilesVM response = 
+        api.exportFolderAndFileGetFoldersAndFiles(id, skip, take, orderBy, desc, searchPattern, useRegex);
+        
         // TODO: test validations
     }
     
@@ -149,11 +154,11 @@ public class ExportsApiTest {
      *
      * User with a Get DeletedFiles permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFolderAndFileGetRecycleBinFoldersAndFilesTest() throws IOException {
+    public void exportFolderAndFileGetRecycleBinFoldersAndFilesTest() throws ApiException {
         String subscriptionId = null;
         Integer skip = null;
         Integer take = null;
@@ -161,8 +166,9 @@ public class ExportsApiTest {
         Boolean desc = null;
         String searchPattern = null;
         Boolean useRegex = null;
-        FilesVM response = api.exportFolderAndFileGetRecycleBinFoldersAndFiles(subscriptionId, skip, take, orderBy, desc, searchPattern, useRegex);
-
+        FilesVM response = 
+        api.exportFolderAndFileGetRecycleBinFoldersAndFiles(subscriptionId, skip, take, orderBy, desc, searchPattern, useRegex);
+        
         // TODO: test validations
     }
     
@@ -171,15 +177,16 @@ public class ExportsApiTest {
      *
      * User with a Update Place permission for a files and Create permission for a destination folder can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFolderAndFileMoveFilesTest() throws IOException {
+    public void exportFolderAndFileMoveFilesTest() throws ApiException {
         String subscriptionId = null;
         SelectedFilesVM selectedFilesVM = null;
+        
         api.exportFolderAndFileMoveFiles(subscriptionId, selectedFilesVM);
-
+        
         // TODO: test validations
     }
     
@@ -188,15 +195,16 @@ public class ExportsApiTest {
      *
      * User with a Delete permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFolderAndFileMoveFilesToBinTest() throws IOException {
+    public void exportFolderAndFileMoveFilesToBinTest() throws ApiException {
         String subscriptionId = null;
         SelectedFilesVM selectedFilesVM = null;
+        
         api.exportFolderAndFileMoveFilesToBin(subscriptionId, selectedFilesVM);
-
+        
         // TODO: test validations
     }
     
@@ -205,14 +213,15 @@ public class ExportsApiTest {
      *
      * User with a Create RecycleBin permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFolderAndFileRecoverAllFromRecycleBinTest() throws IOException {
+    public void exportFolderAndFileRecoverAllFromRecycleBinTest() throws ApiException {
         String subscriptionId = null;
+        
         api.exportFolderAndFileRecoverAllFromRecycleBin(subscriptionId);
-
+        
         // TODO: test validations
     }
     
@@ -221,15 +230,16 @@ public class ExportsApiTest {
      *
      * User with a SubscriptionCreate permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFolderAndFileRecoverFilesTest() throws IOException {
+    public void exportFolderAndFileRecoverFilesTest() throws ApiException {
         String subscriptionId = null;
         SelectedFilesVM selectedFilesVM = null;
+        
         api.exportFolderAndFileRecoverFiles(subscriptionId, selectedFilesVM);
-
+        
         // TODO: test validations
     }
     
@@ -238,14 +248,15 @@ public class ExportsApiTest {
      *
      * User with a Get Entity permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersCalculateFolderSizeTest() throws IOException {
+    public void exportFoldersCalculateFolderSizeTest() throws ApiException {
         String id = null;
-        FolderSizeVM response = api.exportFoldersCalculateFolderSize(id);
-
+        FolderSizeVM response = 
+        api.exportFoldersCalculateFolderSize(id);
+        
         // TODO: test validations
     }
     
@@ -254,15 +265,16 @@ public class ExportsApiTest {
      *
      * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersCopyFolderTest() throws IOException {
+    public void exportFoldersCopyFolderTest() throws ApiException {
         String id = null;
         String folderId = null;
-        FileVM response = api.exportFoldersCopyFolder(id, folderId);
-
+        FileVM response = 
+        api.exportFoldersCopyFolder(id, folderId);
+        
         // TODO: test validations
     }
     
@@ -271,14 +283,15 @@ public class ExportsApiTest {
      *
      * User with a Delete Entity permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersDeleteFolderTest() throws IOException {
+    public void exportFoldersDeleteFolderTest() throws ApiException {
         String id = null;
+        
         api.exportFoldersDeleteFolder(id);
-
+        
         // TODO: test validations
     }
     
@@ -287,14 +300,15 @@ public class ExportsApiTest {
      *
      * User with a Get Entity permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersGetBreadcrumbsTest() throws IOException {
+    public void exportFoldersGetBreadcrumbsTest() throws ApiException {
         String id = null;
-        BreadcrumbsVM response = api.exportFoldersGetBreadcrumbs(id);
-
+        BreadcrumbsVM response = 
+        api.exportFoldersGetBreadcrumbs(id);
+        
         // TODO: test validations
     }
     
@@ -303,14 +317,15 @@ public class ExportsApiTest {
      *
      * User with a Get Entity permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersGetFolderTest() throws IOException {
+    public void exportFoldersGetFolderTest() throws ApiException {
         String id = null;
-        FileVM response = api.exportFoldersGetFolder(id);
-
+        FileVM response = 
+        api.exportFoldersGetFolder(id);
+        
         // TODO: test validations
     }
     
@@ -319,11 +334,11 @@ public class ExportsApiTest {
      *
      * User with a Get Entity permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersGetFoldersTest() throws IOException {
+    public void exportFoldersGetFoldersTest() throws ApiException {
         String id = null;
         Integer skip = null;
         Integer take = null;
@@ -331,8 +346,9 @@ public class ExportsApiTest {
         Boolean desc = null;
         String searchPattern = null;
         Boolean useRegex = null;
-        FilesVM response = api.exportFoldersGetFolders(id, skip, take, orderBy, desc, searchPattern, useRegex);
-
+        FilesVM response = 
+        api.exportFoldersGetFolders(id, skip, take, orderBy, desc, searchPattern, useRegex);
+        
         // TODO: test validations
     }
     
@@ -341,14 +357,15 @@ public class ExportsApiTest {
      *
      * User with a Get Count permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersGetFoldersCountTest() throws IOException {
+    public void exportFoldersGetFoldersCountTest() throws ApiException {
         String id = null;
-        CountVM response = api.exportFoldersGetFoldersCount(id);
-
+        CountVM response = 
+        api.exportFoldersGetFoldersCount(id);
+        
         // TODO: test validations
     }
     
@@ -357,16 +374,17 @@ public class ExportsApiTest {
      *
      * User with a Get Entity permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersGetOrCreateTest() throws IOException {
+    public void exportFoldersGetOrCreateTest() throws ApiException {
         String name = null;
         String subscriptionId = null;
         String parentId = null;
-        FileVM response = api.exportFoldersGetOrCreate(name, subscriptionId, parentId);
-
+        FileVM response = 
+        api.exportFoldersGetOrCreate(name, subscriptionId, parentId);
+        
         // TODO: test validations
     }
     
@@ -375,14 +393,15 @@ public class ExportsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersGetPermissionsTest() throws IOException {
+    public void exportFoldersGetPermissionsTest() throws ApiException {
         String id = null;
-        FilePermissionsVM response = api.exportFoldersGetPermissions(id);
-
+        FilePermissionsVM response = 
+        api.exportFoldersGetPermissions(id);
+        
         // TODO: test validations
     }
     
@@ -391,14 +410,15 @@ public class ExportsApiTest {
      *
      * &gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersGetRootFolderTest() throws IOException {
+    public void exportFoldersGetRootFolderTest() throws ApiException {
         String subscriptionId = null;
-        FileVM response = api.exportFoldersGetRootFolder(subscriptionId);
-
+        FileVM response = 
+        api.exportFoldersGetRootFolder(subscriptionId);
+        
         // TODO: test validations
     }
     
@@ -407,15 +427,16 @@ public class ExportsApiTest {
      *
      * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersMoveFolderTest() throws IOException {
+    public void exportFoldersMoveFolderTest() throws ApiException {
         String id = null;
         String folderId = null;
-        FileVM response = api.exportFoldersMoveFolder(id, folderId);
-
+        FileVM response = 
+        api.exportFoldersMoveFolder(id, folderId);
+        
         // TODO: test validations
     }
     
@@ -424,14 +445,15 @@ public class ExportsApiTest {
      *
      * User with a Delete Entity permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersMoveFolderToBinTest() throws IOException {
+    public void exportFoldersMoveFolderToBinTest() throws ApiException {
         String id = null;
+        
         api.exportFoldersMoveFolderToBin(id);
-
+        
         // TODO: test validations
     }
     
@@ -440,15 +462,16 @@ public class ExportsApiTest {
      *
      * User with a Create Entity permisison can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersPostFolderTest() throws IOException {
+    public void exportFoldersPostFolderTest() throws ApiException {
         String id = null;
         ExportFolderCreateVM exportFolderCreateVM = null;
-        FileVM response = api.exportFoldersPostFolder(id, exportFolderCreateVM);
-
+        FileVM response = 
+        api.exportFoldersPostFolder(id, exportFolderCreateVM);
+        
         // TODO: test validations
     }
     
@@ -457,15 +480,16 @@ public class ExportsApiTest {
      *
      * User with a Delete Entity permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersRecoverFolderTest() throws IOException {
+    public void exportFoldersRecoverFolderTest() throws ApiException {
         String id = null;
         String recoveryPath = null;
+        
         api.exportFoldersRecoverFolder(id, recoveryPath);
-
+        
         // TODO: test validations
     }
     
@@ -474,15 +498,16 @@ public class ExportsApiTest {
      *
      * User with a Update Name permision can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersRenameFolderTest() throws IOException {
+    public void exportFoldersRenameFolderTest() throws ApiException {
         String id = null;
         FolderRenameVM folderRenameVM = null;
-        FileVM response = api.exportFoldersRenameFolder(id, folderRenameVM);
-
+        FileVM response = 
+        api.exportFoldersRenameFolder(id, folderRenameVM);
+        
         // TODO: test validations
     }
     
@@ -491,15 +516,16 @@ public class ExportsApiTest {
      *
      * User with a Update Icon permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersUpdateIconTest() throws IOException {
+    public void exportFoldersUpdateIconTest() throws ApiException {
         String id = null;
         FolderIconVM folderIconVM = null;
-        FileVM response = api.exportFoldersUpdateIcon(id, folderIconVM);
-
+        FileVM response = 
+        api.exportFoldersUpdateIcon(id, folderIconVM);
+        
         // TODO: test validations
     }
     
@@ -508,15 +534,16 @@ public class ExportsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersUpdatePermissionsTest() throws IOException {
+    public void exportFoldersUpdatePermissionsTest() throws ApiException {
         String id = null;
         UpdateFilePermissionsVM updateFilePermissionsVM = null;
+        
         api.exportFoldersUpdatePermissions(id, updateFilePermissionsVM);
-
+        
         // TODO: test validations
     }
     
@@ -525,15 +552,16 @@ public class ExportsApiTest {
      *
      * User with a Update Tags permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportFoldersUpdateTagsTest() throws IOException {
+    public void exportFoldersUpdateTagsTest() throws ApiException {
         String id = null;
         FolderTagsUpdateVM folderTagsUpdateVM = null;
-        FileVM response = api.exportFoldersUpdateTags(id, folderTagsUpdateVM);
-
+        FileVM response = 
+        api.exportFoldersUpdateTags(id, folderTagsUpdateVM);
+        
         // TODO: test validations
     }
     
@@ -542,15 +570,16 @@ public class ExportsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsCopyFileTest() throws IOException {
+    public void exportsCopyFileTest() throws ApiException {
         String id = null;
         String folderId = null;
-        ExportVM response = api.exportsCopyFile(id, folderId);
-
+        ExportVM response = 
+        api.exportsCopyFile(id, folderId);
+        
         // TODO: test validations
     }
     
@@ -559,14 +588,15 @@ public class ExportsApiTest {
      *
      * User with Delete permission can access the method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsDeleteFileTest() throws IOException {
+    public void exportsDeleteFileTest() throws ApiException {
         String id = null;
+        
         api.exportsDeleteFile(id);
-
+        
         // TODO: test validations
     }
     
@@ -575,14 +605,15 @@ public class ExportsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsGetFileTest() throws IOException {
+    public void exportsGetFileTest() throws ApiException {
         String id = null;
-        ExportVM response = api.exportsGetFile(id);
-
+        ExportVM response = 
+        api.exportsGetFile(id);
+        
         // TODO: test validations
     }
     
@@ -591,16 +622,17 @@ public class ExportsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsGetFileHistoryTest() throws IOException {
+    public void exportsGetFileHistoryTest() throws ApiException {
         String id = null;
         Integer skip = null;
         Integer take = null;
-        AuditActionsVM response = api.exportsGetFileHistory(id, skip, take);
-
+        AuditActionsVM response = 
+        api.exportsGetFileHistory(id, skip, take);
+        
         // TODO: test validations
     }
     
@@ -609,14 +641,15 @@ public class ExportsApiTest {
      *
      * User with Get Count permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsGetFilesCountTest() throws IOException {
+    public void exportsGetFilesCountTest() throws ApiException {
         String id = null;
-        CountVM response = api.exportsGetFilesCount(id);
-
+        CountVM response = 
+        api.exportsGetFilesCount(id);
+        
         // TODO: test validations
     }
     
@@ -625,11 +658,11 @@ public class ExportsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsGetFilesListTest() throws IOException {
+    public void exportsGetFilesListTest() throws ApiException {
         String id = null;
         Integer skip = null;
         Integer take = null;
@@ -637,8 +670,9 @@ public class ExportsApiTest {
         FileSorting orderBy = null;
         Boolean desc = null;
         Boolean useRegex = null;
-        ExportsVM response = api.exportsGetFilesList(id, skip, take, searchPattern, orderBy, desc, useRegex);
-
+        ExportsVM response = 
+        api.exportsGetFilesList(id, skip, take, searchPattern, orderBy, desc, useRegex);
+        
         // TODO: test validations
     }
     
@@ -647,14 +681,15 @@ public class ExportsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsGetPermissionsTest() throws IOException {
+    public void exportsGetPermissionsTest() throws ApiException {
         String id = null;
-        FilePermissionsVM response = api.exportsGetPermissions(id);
-
+        FilePermissionsVM response = 
+        api.exportsGetPermissions(id);
+        
         // TODO: test validations
     }
     
@@ -663,15 +698,16 @@ public class ExportsApiTest {
      *
      * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsMoveFileTest() throws IOException {
+    public void exportsMoveFileTest() throws ApiException {
         String id = null;
         String folderId = null;
-        ExportVM response = api.exportsMoveFile(id, folderId);
-
+        ExportVM response = 
+        api.exportsMoveFile(id, folderId);
+        
         // TODO: test validations
     }
     
@@ -680,14 +716,15 @@ public class ExportsApiTest {
      *
      * User with Delete permission can access the method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsMoveFileToBinTest() throws IOException {
+    public void exportsMoveFileToBinTest() throws ApiException {
         String id = null;
+        
         api.exportsMoveFileToBin(id);
-
+        
         // TODO: test validations
     }
     
@@ -696,15 +733,16 @@ public class ExportsApiTest {
      *
      * User with Delete permission can access the method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsRecoverFileTest() throws IOException {
+    public void exportsRecoverFileTest() throws ApiException {
         String id = null;
         String recoveryPath = null;
+        
         api.exportsRecoverFile(id, recoveryPath);
-
+        
         // TODO: test validations
     }
     
@@ -713,15 +751,16 @@ public class ExportsApiTest {
      *
      * User with Update Name permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsRenameFileTest() throws IOException {
+    public void exportsRenameFileTest() throws ApiException {
         String id = null;
         FileRenameVM fileRenameVM = null;
-        ExportVM response = api.exportsRenameFile(id, fileRenameVM);
-
+        ExportVM response = 
+        api.exportsRenameFile(id, fileRenameVM);
+        
         // TODO: test validations
     }
     
@@ -730,15 +769,16 @@ public class ExportsApiTest {
      *
      * User with Update Icon permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsUpdateIconTest() throws IOException {
+    public void exportsUpdateIconTest() throws ApiException {
         String id = null;
         FileIconVM fileIconVM = null;
-        ExportVM response = api.exportsUpdateIcon(id, fileIconVM);
-
+        ExportVM response = 
+        api.exportsUpdateIcon(id, fileIconVM);
+        
         // TODO: test validations
     }
     
@@ -747,15 +787,16 @@ public class ExportsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsUpdatePermissionsTest() throws IOException {
+    public void exportsUpdatePermissionsTest() throws ApiException {
         String id = null;
         UpdateFilePermissionsVM updateFilePermissionsVM = null;
+        
         api.exportsUpdatePermissions(id, updateFilePermissionsVM);
-
+        
         // TODO: test validations
     }
     
@@ -764,15 +805,16 @@ public class ExportsApiTest {
      *
      * User with Update Tags permission can access this method.
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void exportsUpdateTagsTest() throws IOException {
+    public void exportsUpdateTagsTest() throws ApiException {
         String id = null;
         FileTagsUpdateVM fileTagsUpdateVM = null;
-        ExportVM response = api.exportsUpdateTags(id, fileTagsUpdateVM);
-
+        ExportVM response = 
+        api.exportsUpdateTags(id, fileTagsUpdateVM);
+        
         // TODO: test validations
     }
     

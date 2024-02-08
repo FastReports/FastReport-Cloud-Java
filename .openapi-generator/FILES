@@ -272,10 +272,14 @@ pom.xml
 settings.gradle
 src/main/AndroidManifest.xml
 src/main/java/cloud/fastreport/ApiClient.java
+src/main/java/cloud/fastreport/ApiException.java
+src/main/java/cloud/fastreport/ApiResponse.java
+src/main/java/cloud/fastreport/Configuration.java
+src/main/java/cloud/fastreport/JSON.java
+src/main/java/cloud/fastreport/Pair.java
 src/main/java/cloud/fastreport/RFC3339DateFormat.java
 src/main/java/cloud/fastreport/ServerConfiguration.java
 src/main/java/cloud/fastreport/ServerVariable.java
-src/main/java/cloud/fastreport/StringUtil.java
 src/main/java/cloud/fastreport/client/ApiKeysApi.java
 src/main/java/cloud/fastreport/client/ConfigurationApi.java
 src/main/java/cloud/fastreport/client/ContactGroupsApi.java
@@ -297,6 +301,7 @@ src/main/java/cloud/fastreport/client/TemplatesApi.java
 src/main/java/cloud/fastreport/client/UserNotificationsApi.java
 src/main/java/cloud/fastreport/client/UserProfileApi.java
 src/main/java/cloud/fastreport/client/UserSettingsApi.java
+src/main/java/cloud/fastreport/model/AbstractOpenApiSchema.java
 src/main/java/cloud/fastreport/model/AcceptAgreementsVM.java
 src/main/java/cloud/fastreport/model/AdminExportFolderCreateVM.java
 src/main/java/cloud/fastreport/model/AdminFolderCreateVM.java

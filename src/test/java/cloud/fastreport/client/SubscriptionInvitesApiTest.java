@@ -13,6 +13,7 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.CreateSubscriptionInviteVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.SubscriptionInviteVM;
@@ -20,13 +21,12 @@ import cloud.fastreport.model.SubscriptionInvitesVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for SubscriptionInvitesApi
@@ -42,15 +42,16 @@ public class SubscriptionInvitesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionInvitesAcceptInviteTest() throws IOException {
+    public void subscriptionInvitesAcceptInviteTest() throws ApiException {
         String subscriptionId = null;
         String accessToken = null;
+        
         api.subscriptionInvitesAcceptInvite(subscriptionId, accessToken);
-
+        
         // TODO: test validations
     }
     
@@ -59,15 +60,16 @@ public class SubscriptionInvitesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionInvitesCreateInviteTest() throws IOException {
+    public void subscriptionInvitesCreateInviteTest() throws ApiException {
         String subscriptionId = null;
         CreateSubscriptionInviteVM createSubscriptionInviteVM = null;
-        SubscriptionInviteVM response = api.subscriptionInvitesCreateInvite(subscriptionId, createSubscriptionInviteVM);
-
+        SubscriptionInviteVM response = 
+        api.subscriptionInvitesCreateInvite(subscriptionId, createSubscriptionInviteVM);
+        
         // TODO: test validations
     }
     
@@ -76,15 +78,16 @@ public class SubscriptionInvitesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionInvitesDeleteInviteTest() throws IOException {
+    public void subscriptionInvitesDeleteInviteTest() throws ApiException {
         String subscriptionId = null;
         String accesstoken = null;
+        
         api.subscriptionInvitesDeleteInvite(subscriptionId, accesstoken);
-
+        
         // TODO: test validations
     }
     
@@ -93,14 +96,15 @@ public class SubscriptionInvitesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionInvitesGetInvitesTest() throws IOException {
+    public void subscriptionInvitesGetInvitesTest() throws ApiException {
         String subscriptionId = null;
-        SubscriptionInvitesVM response = api.subscriptionInvitesGetInvites(subscriptionId);
-
+        SubscriptionInvitesVM response = 
+        api.subscriptionInvitesGetInvites(subscriptionId);
+        
         // TODO: test validations
     }
     

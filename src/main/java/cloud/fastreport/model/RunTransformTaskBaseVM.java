@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.OutputFileVM;
 import cloud.fastreport.model.RunInputFileVM;
 import cloud.fastreport.model.RunTaskBaseVM;
@@ -35,8 +39,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
+
+import cloud.fastreport.JSON;
 /**
  * RunTransformTaskBaseVM
  */
@@ -73,14 +78,12 @@ public class RunTransformTaskBaseVM extends RunTaskBaseVM {
   private JsonNullable<List<RunTransportTaskBaseVM>> transports = JsonNullable.<List<RunTransportTaskBaseVM>>undefined();
 
   public static final String JSON_PROPERTY_$_T = "$t";
-  protected String $t;
+  private String $t;
 
-  public RunTransformTaskBaseVM() {
-
+  public RunTransformTaskBaseVM() { 
   }
 
   public RunTransformTaskBaseVM inputFile(RunInputFileVM inputFile) {
-    
     this.inputFile = inputFile;
     return this;
   }
@@ -107,7 +110,6 @@ public class RunTransformTaskBaseVM extends RunTaskBaseVM {
 
   public RunTransformTaskBaseVM locale(String locale) {
     this.locale = JsonNullable.<String>of(locale);
-    
     return this;
   }
 
@@ -140,7 +142,6 @@ public class RunTransformTaskBaseVM extends RunTaskBaseVM {
 
 
   public RunTransformTaskBaseVM outputFile(OutputFileVM outputFile) {
-    
     this.outputFile = outputFile;
     return this;
   }
@@ -167,7 +168,6 @@ public class RunTransformTaskBaseVM extends RunTaskBaseVM {
 
   public RunTransformTaskBaseVM transports(List<RunTransportTaskBaseVM> transports) {
     this.transports = JsonNullable.<List<RunTransportTaskBaseVM>>of(transports);
-    
     return this;
   }
 
@@ -212,7 +212,6 @@ public class RunTransformTaskBaseVM extends RunTaskBaseVM {
 
 
   public RunTransformTaskBaseVM $t(String $t) {
-    
     this.$t = $t;
     return this;
   }
@@ -236,12 +235,16 @@ public class RunTransformTaskBaseVM extends RunTaskBaseVM {
     this.$t = $t;
   }
 
+
   @Override
   public RunTransformTaskBaseVM subscriptionId(String subscriptionId) {
     this.setSubscriptionId(subscriptionId);
     return this;
   }
 
+  /**
+   * Return true if this RunTransformTaskBaseVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -300,5 +303,58 @@ public class RunTransformTaskBaseVM extends RunTaskBaseVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `subscriptionId` to the URL query string
+    if (getSubscriptionId() != null) {
+      joiner.add(String.format("%ssubscriptionId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubscriptionId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `$t` to the URL query string
+    if (get$T() != null) {
+      joiner.add(String.format("%s$t%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(get$T()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("RunExportReportTaskVM", RunExportReportTaskVM.class);
+  mappings.put("RunExportTemplateTaskVM", RunExportTemplateTaskVM.class);
+  mappings.put("RunPrepareTemplateTaskVM", RunPrepareTemplateTaskVM.class);
+  mappings.put("RunTransformTaskBaseVM", RunTransformTaskBaseVM.class);
+  JSON.registerDiscriminator(RunTransformTaskBaseVM.class, "$t", mappings);
+}
 }
 

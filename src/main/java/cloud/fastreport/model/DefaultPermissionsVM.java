@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.DataSourcePermissions;
 import cloud.fastreport.model.FilePermissions;
 import cloud.fastreport.model.GroupPermissions;
@@ -24,8 +28,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * DefaultPermissionsVM
@@ -50,11 +55,10 @@ public class DefaultPermissionsVM {
   public static final String JSON_PROPERTY_TASK_PERMISSIONS = "taskPermissions";
   private TaskPermissions taskPermissions;
 
-  public DefaultPermissionsVM() {
+  public DefaultPermissionsVM() { 
   }
 
   public DefaultPermissionsVM filePermissions(FilePermissions filePermissions) {
-    
     this.filePermissions = filePermissions;
     return this;
   }
@@ -80,7 +84,6 @@ public class DefaultPermissionsVM {
 
 
   public DefaultPermissionsVM dataSourcePermissions(DataSourcePermissions dataSourcePermissions) {
-    
     this.dataSourcePermissions = dataSourcePermissions;
     return this;
   }
@@ -106,7 +109,6 @@ public class DefaultPermissionsVM {
 
 
   public DefaultPermissionsVM groupPermissions(GroupPermissions groupPermissions) {
-    
     this.groupPermissions = groupPermissions;
     return this;
   }
@@ -132,7 +134,6 @@ public class DefaultPermissionsVM {
 
 
   public DefaultPermissionsVM taskPermissions(TaskPermissions taskPermissions) {
-    
     this.taskPermissions = taskPermissions;
     return this;
   }
@@ -156,6 +157,10 @@ public class DefaultPermissionsVM {
     this.taskPermissions = taskPermissions;
   }
 
+
+  /**
+   * Return true if this DefaultPermissionsVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -199,5 +204,59 @@ public class DefaultPermissionsVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `filePermissions` to the URL query string
+    if (getFilePermissions() != null) {
+      joiner.add(getFilePermissions().toUrlQueryString(prefix + "filePermissions" + suffix));
+    }
+
+    // add `dataSourcePermissions` to the URL query string
+    if (getDataSourcePermissions() != null) {
+      joiner.add(getDataSourcePermissions().toUrlQueryString(prefix + "dataSourcePermissions" + suffix));
+    }
+
+    // add `groupPermissions` to the URL query string
+    if (getGroupPermissions() != null) {
+      joiner.add(getGroupPermissions().toUrlQueryString(prefix + "groupPermissions" + suffix));
+    }
+
+    // add `taskPermissions` to the URL query string
+    if (getTaskPermissions() != null) {
+      joiner.add(getTaskPermissions().toUrlQueryString(prefix + "taskPermissions" + suffix));
+    }
+
+    return joiner.toString();
+  }
 }
 

@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -29,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ContactVM
@@ -74,12 +78,11 @@ public class ContactVM {
   public static final String JSON_PROPERTY_EDITOR_USER_ID = "editorUserId";
   private JsonNullable<String> editorUserId = JsonNullable.<String>undefined();
 
-  public ContactVM() {
+  public ContactVM() { 
   }
 
   public ContactVM id(String id) {
     this.id = JsonNullable.<String>of(id);
-    
     return this;
   }
 
@@ -113,7 +116,6 @@ public class ContactVM {
 
   public ContactVM name(String name) {
     this.name = JsonNullable.<String>of(name);
-    
     return this;
   }
 
@@ -147,7 +149,6 @@ public class ContactVM {
 
   public ContactVM email(String email) {
     this.email = JsonNullable.<String>of(email);
-    
     return this;
   }
 
@@ -181,7 +182,6 @@ public class ContactVM {
 
   public ContactVM groups(List<String> groups) {
     this.groups = JsonNullable.<List<String>>of(groups);
-    
     return this;
   }
 
@@ -227,7 +227,6 @@ public class ContactVM {
 
   public ContactVM subscriptionId(String subscriptionId) {
     this.subscriptionId = JsonNullable.<String>of(subscriptionId);
-    
     return this;
   }
 
@@ -260,7 +259,6 @@ public class ContactVM {
 
 
   public ContactVM createdTime(OffsetDateTime createdTime) {
-    
     this.createdTime = createdTime;
     return this;
   }
@@ -287,7 +285,6 @@ public class ContactVM {
 
   public ContactVM creatorUserId(String creatorUserId) {
     this.creatorUserId = JsonNullable.<String>of(creatorUserId);
-    
     return this;
   }
 
@@ -320,7 +317,6 @@ public class ContactVM {
 
 
   public ContactVM editedTime(OffsetDateTime editedTime) {
-    
     this.editedTime = editedTime;
     return this;
   }
@@ -347,7 +343,6 @@ public class ContactVM {
 
   public ContactVM editorUserId(String editorUserId) {
     this.editorUserId = JsonNullable.<String>of(editorUserId);
-    
     return this;
   }
 
@@ -378,6 +373,10 @@ public class ContactVM {
     this.editorUserId = JsonNullable.<String>of(editorUserId);
   }
 
+
+  /**
+   * Return true if this ContactVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -442,5 +441,88 @@ public class ContactVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `email` to the URL query string
+    if (getEmail() != null) {
+      joiner.add(String.format("%semail%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEmail()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `groups` to the URL query string
+    if (getGroups() != null) {
+      for (int i = 0; i < getGroups().size(); i++) {
+        joiner.add(String.format("%sgroups%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(String.valueOf(getGroups().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `subscriptionId` to the URL query string
+    if (getSubscriptionId() != null) {
+      joiner.add(String.format("%ssubscriptionId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubscriptionId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `createdTime` to the URL query string
+    if (getCreatedTime() != null) {
+      joiner.add(String.format("%screatedTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatedTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `creatorUserId` to the URL query string
+    if (getCreatorUserId() != null) {
+      joiner.add(String.format("%screatorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `editedTime` to the URL query string
+    if (getEditedTime() != null) {
+      joiner.add(String.format("%seditedTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEditedTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `editorUserId` to the URL query string
+    if (getEditorUserId() != null) {
+      joiner.add(String.format("%seditorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEditorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

@@ -13,18 +13,18 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import java.io.File;
 import cloud.fastreport.model.ProblemDetails;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for DownloadApi
@@ -40,15 +40,16 @@ public class DownloadApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void downloadGetExportTest() throws IOException {
+    public void downloadGetExportTest() throws ApiException {
         String id = null;
         Boolean preview = null;
-        File response = api.downloadGetExport(id, preview);
-
+        File response = 
+        api.downloadGetExport(id, preview);
+        
         // TODO: test validations
     }
     
@@ -57,14 +58,15 @@ public class DownloadApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void downloadGetExportThumbnailTest() throws IOException {
+    public void downloadGetExportThumbnailTest() throws ApiException {
         String id = null;
-        File response = api.downloadGetExportThumbnail(id);
-
+        File response = 
+        api.downloadGetExportThumbnail(id);
+        
         // TODO: test validations
     }
     
@@ -73,16 +75,17 @@ public class DownloadApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void downloadGetExportsTest() throws IOException {
+    public void downloadGetExportsTest() throws ApiException {
         String archiveName = null;
         String fileIds = null;
         String folderIds = null;
-        File response = api.downloadGetExports(archiveName, fileIds, folderIds);
-
+        File response = 
+        api.downloadGetExports(archiveName, fileIds, folderIds);
+        
         // TODO: test validations
     }
     
@@ -91,14 +94,15 @@ public class DownloadApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void downloadGetLastSVGExportTest() throws IOException {
+    public void downloadGetLastSVGExportTest() throws ApiException {
         String reportId = null;
-        File response = api.downloadGetLastSVGExport(reportId);
-
+        File response = 
+        api.downloadGetLastSVGExport(reportId);
+        
         // TODO: test validations
     }
     
@@ -107,14 +111,15 @@ public class DownloadApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void downloadGetReportTest() throws IOException {
+    public void downloadGetReportTest() throws ApiException {
         String id = null;
-        File response = api.downloadGetReport(id);
-
+        File response = 
+        api.downloadGetReport(id);
+        
         // TODO: test validations
     }
     
@@ -123,14 +128,15 @@ public class DownloadApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void downloadGetReportThumbnailTest() throws IOException {
+    public void downloadGetReportThumbnailTest() throws ApiException {
         String id = null;
-        File response = api.downloadGetReportThumbnail(id);
-
+        File response = 
+        api.downloadGetReportThumbnail(id);
+        
         // TODO: test validations
     }
     
@@ -139,16 +145,17 @@ public class DownloadApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void downloadGetReportsTest() throws IOException {
+    public void downloadGetReportsTest() throws ApiException {
         String archiveName = null;
         String fileIds = null;
         String folderIds = null;
-        File response = api.downloadGetReports(archiveName, fileIds, folderIds);
-
+        File response = 
+        api.downloadGetReports(archiveName, fileIds, folderIds);
+        
         // TODO: test validations
     }
     
@@ -157,14 +164,15 @@ public class DownloadApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void downloadGetTemplateTest() throws IOException {
+    public void downloadGetTemplateTest() throws ApiException {
         String id = null;
-        File response = api.downloadGetTemplate(id);
-
+        File response = 
+        api.downloadGetTemplate(id);
+        
         // TODO: test validations
     }
     
@@ -173,14 +181,15 @@ public class DownloadApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void downloadGetTemplateThumbnailTest() throws IOException {
+    public void downloadGetTemplateThumbnailTest() throws ApiException {
         String id = null;
-        File response = api.downloadGetTemplateThumbnail(id);
-
+        File response = 
+        api.downloadGetTemplateThumbnail(id);
+        
         // TODO: test validations
     }
     
@@ -189,16 +198,17 @@ public class DownloadApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void downloadGetTemplatesTest() throws IOException {
+    public void downloadGetTemplatesTest() throws ApiException {
         String archiveName = null;
         String fileIds = null;
         String folderIds = null;
-        File response = api.downloadGetTemplates(archiveName, fileIds, folderIds);
-
+        File response = 
+        api.downloadGetTemplates(archiveName, fileIds, folderIds);
+        
         // TODO: test validations
     }
     

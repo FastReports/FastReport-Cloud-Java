@@ -13,19 +13,19 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.SubscriptionPlanVM;
 import cloud.fastreport.model.SubscriptionPlansVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for SubscriptionPlansApi
@@ -41,14 +41,15 @@ public class SubscriptionPlansApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionPlansGetSubscriptionPlanTest() throws IOException {
+    public void subscriptionPlansGetSubscriptionPlanTest() throws ApiException {
         String id = null;
-        SubscriptionPlanVM response = api.subscriptionPlansGetSubscriptionPlan(id);
-
+        SubscriptionPlanVM response = 
+        api.subscriptionPlansGetSubscriptionPlan(id);
+        
         // TODO: test validations
     }
     
@@ -57,15 +58,16 @@ public class SubscriptionPlansApiTest {
      *
      * If no active subscription plans, then the endpoint will return empty list
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionPlansGetSubscriptionPlansTest() throws IOException {
+    public void subscriptionPlansGetSubscriptionPlansTest() throws ApiException {
         Integer skip = null;
         Integer take = null;
-        SubscriptionPlansVM response = api.subscriptionPlansGetSubscriptionPlans(skip, take);
-
+        SubscriptionPlansVM response = 
+        api.subscriptionPlansGetSubscriptionPlans(skip, take);
+        
         // TODO: test validations
     }
     

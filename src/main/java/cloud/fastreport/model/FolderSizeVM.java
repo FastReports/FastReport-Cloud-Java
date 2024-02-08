@@ -13,15 +13,20 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * FolderSizeVM
@@ -42,11 +47,10 @@ public class FolderSizeVM {
   public static final String JSON_PROPERTY_DOCUMENTS_COUNT = "documentsCount";
   private Long documentsCount;
 
-  public FolderSizeVM() {
+  public FolderSizeVM() { 
   }
 
   public FolderSizeVM size(Long size) {
-    
     this.size = size;
     return this;
   }
@@ -72,7 +76,6 @@ public class FolderSizeVM {
 
 
   public FolderSizeVM realSize(Long realSize) {
-    
     this.realSize = realSize;
     return this;
   }
@@ -98,7 +101,6 @@ public class FolderSizeVM {
 
 
   public FolderSizeVM documentsCount(Long documentsCount) {
-    
     this.documentsCount = documentsCount;
     return this;
   }
@@ -122,6 +124,10 @@ public class FolderSizeVM {
     this.documentsCount = documentsCount;
   }
 
+
+  /**
+   * Return true if this FolderSizeVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -163,5 +169,54 @@ public class FolderSizeVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(String.format("%ssize%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `realSize` to the URL query string
+    if (getRealSize() != null) {
+      joiner.add(String.format("%srealSize%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getRealSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `documentsCount` to the URL query string
+    if (getDocumentsCount() != null) {
+      joiner.add(String.format("%sdocumentsCount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDocumentsCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

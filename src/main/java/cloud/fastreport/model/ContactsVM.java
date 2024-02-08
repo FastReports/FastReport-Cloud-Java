@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.ContactVM;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ContactsVM
@@ -54,12 +58,11 @@ public class ContactsVM {
   public static final String JSON_PROPERTY_COUNT = "count";
   private Long count;
 
-  public ContactsVM() {
+  public ContactsVM() { 
   }
 
   public ContactsVM contacts(List<ContactVM> contacts) {
     this.contacts = JsonNullable.<List<ContactVM>>of(contacts);
-    
     return this;
   }
 
@@ -104,7 +107,6 @@ public class ContactsVM {
 
 
   public ContactsVM skip(Integer skip) {
-    
     this.skip = skip;
     return this;
   }
@@ -130,7 +132,6 @@ public class ContactsVM {
 
 
   public ContactsVM take(Integer take) {
-    
     this.take = take;
     return this;
   }
@@ -156,7 +157,6 @@ public class ContactsVM {
 
 
   public ContactsVM count(Long count) {
-    
     this.count = count;
     return this;
   }
@@ -180,6 +180,10 @@ public class ContactsVM {
     this.count = count;
   }
 
+
+  /**
+   * Return true if this ContactsVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -234,5 +238,64 @@ public class ContactsVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `contacts` to the URL query string
+    if (getContacts() != null) {
+      for (int i = 0; i < getContacts().size(); i++) {
+        if (getContacts().get(i) != null) {
+          joiner.add(getContacts().get(i).toUrlQueryString(String.format("%scontacts%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `skip` to the URL query string
+    if (getSkip() != null) {
+      joiner.add(String.format("%sskip%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSkip()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `take` to the URL query string
+    if (getTake() != null) {
+      joiner.add(String.format("%stake%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTake()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `count` to the URL query string
+    if (getCount() != null) {
+      joiner.add(String.format("%scount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

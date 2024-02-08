@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.CreateTransportTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -33,8 +37,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
+
+import cloud.fastreport.JSON;
 /**
  * CreateEmailTaskVM
  */
@@ -88,13 +93,11 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
   public static final String JSON_PROPERTY_USERNAME = "username";
   private JsonNullable<String> username = JsonNullable.<String>undefined();
 
-  public CreateEmailTaskVM() {
-
+  public CreateEmailTaskVM() { 
   }
 
   public CreateEmailTaskVM body(String body) {
     this.body = JsonNullable.<String>of(body);
-    
     return this;
   }
 
@@ -127,7 +130,6 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
 
 
   public CreateEmailTaskVM enableSsl(Boolean enableSsl) {
-    
     this.enableSsl = enableSsl;
     return this;
   }
@@ -154,7 +156,6 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
 
   public CreateEmailTaskVM from(String from) {
     this.from = JsonNullable.<String>of(from);
-    
     return this;
   }
 
@@ -187,7 +188,6 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
 
 
   public CreateEmailTaskVM isBodyHtml(Boolean isBodyHtml) {
-    
     this.isBodyHtml = isBodyHtml;
     return this;
   }
@@ -214,7 +214,6 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
 
   public CreateEmailTaskVM password(String password) {
     this.password = JsonNullable.<String>of(password);
-    
     return this;
   }
 
@@ -247,7 +246,6 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
 
 
   public CreateEmailTaskVM port(Integer port) {
-    
     this.port = port;
     return this;
   }
@@ -276,7 +274,6 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
 
   public CreateEmailTaskVM server(String server) {
     this.server = JsonNullable.<String>of(server);
-    
     return this;
   }
 
@@ -310,7 +307,6 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
 
   public CreateEmailTaskVM subject(String subject) {
     this.subject = JsonNullable.<String>of(subject);
-    
     return this;
   }
 
@@ -344,7 +340,6 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
 
   public CreateEmailTaskVM to(List<String> to) {
     this.to = JsonNullable.<List<String>>of(to);
-    
     return this;
   }
 
@@ -390,7 +385,6 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
 
   public CreateEmailTaskVM username(String username) {
     this.username = JsonNullable.<String>of(username);
-    
     return this;
   }
 
@@ -421,6 +415,7 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
     this.username = JsonNullable.<String>of(username);
   }
 
+
   @Override
   public CreateEmailTaskVM cronExpression(String cronExpression) {
     this.setCronExpression(cronExpression);
@@ -445,6 +440,9 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
     return this;
   }
 
+  /**
+   * Return true if this CreateEmailTaskVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -513,5 +511,70 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `cronExpression` to the URL query string
+    if (getCronExpression() != null) {
+      joiner.add(String.format("%scronExpression%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCronExpression()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `delayedRunTime` to the URL query string
+    if (getDelayedRunTime() != null) {
+      joiner.add(String.format("%sdelayedRunTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDelayedRunTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `subscriptionId` to the URL query string
+    if (getSubscriptionId() != null) {
+      joiner.add(String.format("%ssubscriptionId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSubscriptionId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `$t` to the URL query string
+    if (get$T() != null) {
+      joiner.add(String.format("%s$t%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(get$T()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("CreateEmailTaskVM", CreateEmailTaskVM.class);
+  JSON.registerDiscriminator(CreateEmailTaskVM.class, "$t", mappings);
+}
 }
 

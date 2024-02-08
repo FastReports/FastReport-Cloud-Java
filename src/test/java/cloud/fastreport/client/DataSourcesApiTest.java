@@ -13,6 +13,7 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.CreateDataSourceVM;
 import cloud.fastreport.model.DataSourcePermissionsVM;
 import cloud.fastreport.model.DataSourceSorting;
@@ -26,13 +27,12 @@ import cloud.fastreport.model.UpdateDataSourceSubscriptionVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for DataSourcesApi
@@ -48,14 +48,15 @@ public class DataSourcesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void dataSourcesCountDataSourcesAsyncTest() throws IOException {
+    public void dataSourcesCountDataSourcesAsyncTest() throws ApiException {
         String subscriptionId = null;
-        Long response = api.dataSourcesCountDataSourcesAsync(subscriptionId);
-
+        Long response = 
+        api.dataSourcesCountDataSourcesAsync(subscriptionId);
+        
         // TODO: test validations
     }
     
@@ -64,14 +65,15 @@ public class DataSourcesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void dataSourcesCreateDataSourceTest() throws IOException {
+    public void dataSourcesCreateDataSourceTest() throws ApiException {
         CreateDataSourceVM createDataSourceVM = null;
-        DataSourceVM response = api.dataSourcesCreateDataSource(createDataSourceVM);
-
+        DataSourceVM response = 
+        api.dataSourcesCreateDataSource(createDataSourceVM);
+        
         // TODO: test validations
     }
     
@@ -80,14 +82,15 @@ public class DataSourcesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void dataSourcesDeleteDataSourceTest() throws IOException {
+    public void dataSourcesDeleteDataSourceTest() throws ApiException {
         String id = null;
+        
         api.dataSourcesDeleteDataSource(id);
-
+        
         // TODO: test validations
     }
     
@@ -96,14 +99,15 @@ public class DataSourcesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void dataSourcesFetchDataTest() throws IOException {
+    public void dataSourcesFetchDataTest() throws ApiException {
         String id = null;
+        
         api.dataSourcesFetchData(id);
-
+        
         // TODO: test validations
     }
     
@@ -112,18 +116,19 @@ public class DataSourcesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void dataSourcesGetAvailableDataSourcesTest() throws IOException {
+    public void dataSourcesGetAvailableDataSourcesTest() throws ApiException {
         String subscriptionId = null;
         Integer skip = null;
         Integer take = null;
         DataSourceSorting orderBy = null;
         Boolean desc = null;
-        DataSourcesVM response = api.dataSourcesGetAvailableDataSources(subscriptionId, skip, take, orderBy, desc);
-
+        DataSourcesVM response = 
+        api.dataSourcesGetAvailableDataSources(subscriptionId, skip, take, orderBy, desc);
+        
         // TODO: test validations
     }
     
@@ -132,14 +137,15 @@ public class DataSourcesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void dataSourcesGetDataSourceTest() throws IOException {
+    public void dataSourcesGetDataSourceTest() throws ApiException {
         String id = null;
-        DataSourceVM response = api.dataSourcesGetDataSource(id);
-
+        DataSourceVM response = 
+        api.dataSourcesGetDataSource(id);
+        
         // TODO: test validations
     }
     
@@ -148,14 +154,15 @@ public class DataSourcesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void dataSourcesGetPermissionsTest() throws IOException {
+    public void dataSourcesGetPermissionsTest() throws ApiException {
         String id = null;
-        DataSourcePermissionsVM response = api.dataSourcesGetPermissions(id);
-
+        DataSourcePermissionsVM response = 
+        api.dataSourcesGetPermissions(id);
+        
         // TODO: test validations
     }
     
@@ -164,15 +171,16 @@ public class DataSourcesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void dataSourcesRenameDataSourceTest() throws IOException {
+    public void dataSourcesRenameDataSourceTest() throws ApiException {
         String id = null;
         RenameDataSourceVM renameDataSourceVM = null;
-        DataSourceVM response = api.dataSourcesRenameDataSource(id, renameDataSourceVM);
-
+        DataSourceVM response = 
+        api.dataSourcesRenameDataSource(id, renameDataSourceVM);
+        
         // TODO: test validations
     }
     
@@ -181,15 +189,16 @@ public class DataSourcesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void dataSourcesUpdateConnectionStringTest() throws IOException {
+    public void dataSourcesUpdateConnectionStringTest() throws ApiException {
         String id = null;
         UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM = null;
-        DataSourceVM response = api.dataSourcesUpdateConnectionString(id, updateDataSourceConnectionStringVM);
-
+        DataSourceVM response = 
+        api.dataSourcesUpdateConnectionString(id, updateDataSourceConnectionStringVM);
+        
         // TODO: test validations
     }
     
@@ -198,15 +207,16 @@ public class DataSourcesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void dataSourcesUpdatePermissionsTest() throws IOException {
+    public void dataSourcesUpdatePermissionsTest() throws ApiException {
         String id = null;
         UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM = null;
+        
         api.dataSourcesUpdatePermissions(id, updateDataSourcePermissionsVM);
-
+        
         // TODO: test validations
     }
     
@@ -215,15 +225,16 @@ public class DataSourcesApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void dataSourcesUpdateSubscriptionDataSourceTest() throws IOException {
+    public void dataSourcesUpdateSubscriptionDataSourceTest() throws ApiException {
         String id = null;
         UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM = null;
+        
         api.dataSourcesUpdateSubscriptionDataSource(id, updateDataSourceSubscriptionVM);
-
+        
         // TODO: test validations
     }
     

@@ -13,19 +13,19 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.AuditActionsVM;
 import cloud.fastreport.model.ClearNotificationsVM;
 import cloud.fastreport.model.ProblemDetails;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for UserNotificationsApi
@@ -41,14 +41,15 @@ public class UserNotificationsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void userNotificationsClearNotificationsTest() throws IOException {
+    public void userNotificationsClearNotificationsTest() throws ApiException {
         ClearNotificationsVM clearNotificationsVM = null;
+        
         api.userNotificationsClearNotifications(clearNotificationsVM);
-
+        
         // TODO: test validations
     }
     
@@ -57,16 +58,17 @@ public class UserNotificationsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void userNotificationsGetNotificationsTest() throws IOException {
+    public void userNotificationsGetNotificationsTest() throws ApiException {
         Integer skip = null;
         Integer take = null;
         String subscriptionId = null;
-        AuditActionsVM response = api.userNotificationsGetNotifications(skip, take, subscriptionId);
-
+        AuditActionsVM response = 
+        api.userNotificationsGetNotifications(skip, take, subscriptionId);
+        
         // TODO: test validations
     }
     

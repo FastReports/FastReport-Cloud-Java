@@ -13,18 +13,18 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.SubscriptionUsersVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for SubscriptionUsersApi
@@ -40,15 +40,16 @@ public class SubscriptionUsersApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionUsersAddUserTest() throws IOException {
+    public void subscriptionUsersAddUserTest() throws ApiException {
         String subscriptionId = null;
         String userId = null;
+        
         api.subscriptionUsersAddUser(subscriptionId, userId);
-
+        
         // TODO: test validations
     }
     
@@ -57,14 +58,15 @@ public class SubscriptionUsersApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionUsersCountUsersAsyncTest() throws IOException {
+    public void subscriptionUsersCountUsersAsyncTest() throws ApiException {
         String subscriptionId = null;
-        Long response = api.subscriptionUsersCountUsersAsync(subscriptionId);
-
+        Long response = 
+        api.subscriptionUsersCountUsersAsync(subscriptionId);
+        
         // TODO: test validations
     }
     
@@ -73,16 +75,17 @@ public class SubscriptionUsersApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionUsersGetUsersTest() throws IOException {
+    public void subscriptionUsersGetUsersTest() throws ApiException {
         String subscriptionId = null;
         Integer skip = null;
         Integer take = null;
-        SubscriptionUsersVM response = api.subscriptionUsersGetUsers(subscriptionId, skip, take);
-
+        SubscriptionUsersVM response = 
+        api.subscriptionUsersGetUsers(subscriptionId, skip, take);
+        
         // TODO: test validations
     }
     
@@ -91,14 +94,15 @@ public class SubscriptionUsersApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionUsersLeaveSubscripitonTest() throws IOException {
+    public void subscriptionUsersLeaveSubscripitonTest() throws ApiException {
         String subscriptionId = null;
+        
         api.subscriptionUsersLeaveSubscripiton(subscriptionId);
-
+        
         // TODO: test validations
     }
     
@@ -107,15 +111,16 @@ public class SubscriptionUsersApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionUsersRemoveUserTest() throws IOException {
+    public void subscriptionUsersRemoveUserTest() throws ApiException {
         String subscriptionId = null;
         String userId = null;
+        
         api.subscriptionUsersRemoveUser(subscriptionId, userId);
-
+        
         // TODO: test validations
     }
     

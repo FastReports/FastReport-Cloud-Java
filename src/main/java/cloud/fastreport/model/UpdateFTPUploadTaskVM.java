@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.UpdateTransportTaskBaseVM;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,13 +29,15 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
+
+import cloud.fastreport.JSON;
 /**
  * UpdateFTPUploadTaskVM
  */
@@ -77,13 +83,11 @@ public class UpdateFTPUploadTaskVM extends UpdateTransportTaskBaseVM {
   public static final String JSON_PROPERTY_USE_S_F_T_P = "useSFTP";
   private JsonNullable<Boolean> useSFTP = JsonNullable.<Boolean>undefined();
 
-  public UpdateFTPUploadTaskVM() {
-
+  public UpdateFTPUploadTaskVM() { 
   }
 
   public UpdateFTPUploadTaskVM archive(Boolean archive) {
     this.archive = JsonNullable.<Boolean>of(archive);
-    
     return this;
   }
 
@@ -117,7 +121,6 @@ public class UpdateFTPUploadTaskVM extends UpdateTransportTaskBaseVM {
 
   public UpdateFTPUploadTaskVM archiveName(String archiveName) {
     this.archiveName = JsonNullable.<String>of(archiveName);
-    
     return this;
   }
 
@@ -151,7 +154,6 @@ public class UpdateFTPUploadTaskVM extends UpdateTransportTaskBaseVM {
 
   public UpdateFTPUploadTaskVM destinationFolder(String destinationFolder) {
     this.destinationFolder = JsonNullable.<String>of(destinationFolder);
-    
     return this;
   }
 
@@ -185,7 +187,6 @@ public class UpdateFTPUploadTaskVM extends UpdateTransportTaskBaseVM {
 
   public UpdateFTPUploadTaskVM ftpHost(String ftpHost) {
     this.ftpHost = JsonNullable.<String>of(ftpHost);
-    
     return this;
   }
 
@@ -219,7 +220,6 @@ public class UpdateFTPUploadTaskVM extends UpdateTransportTaskBaseVM {
 
   public UpdateFTPUploadTaskVM ftpPassword(String ftpPassword) {
     this.ftpPassword = JsonNullable.<String>of(ftpPassword);
-    
     return this;
   }
 
@@ -253,7 +253,6 @@ public class UpdateFTPUploadTaskVM extends UpdateTransportTaskBaseVM {
 
   public UpdateFTPUploadTaskVM ftpPort(Integer ftpPort) {
     this.ftpPort = JsonNullable.<Integer>of(ftpPort);
-    
     return this;
   }
 
@@ -287,7 +286,6 @@ public class UpdateFTPUploadTaskVM extends UpdateTransportTaskBaseVM {
 
   public UpdateFTPUploadTaskVM ftpUsername(String ftpUsername) {
     this.ftpUsername = JsonNullable.<String>of(ftpUsername);
-    
     return this;
   }
 
@@ -321,7 +319,6 @@ public class UpdateFTPUploadTaskVM extends UpdateTransportTaskBaseVM {
 
   public UpdateFTPUploadTaskVM useSFTP(Boolean useSFTP) {
     this.useSFTP = JsonNullable.<Boolean>of(useSFTP);
-    
     return this;
   }
 
@@ -352,6 +349,7 @@ public class UpdateFTPUploadTaskVM extends UpdateTransportTaskBaseVM {
     this.useSFTP = JsonNullable.<Boolean>of(useSFTP);
   }
 
+
   @Override
   public UpdateFTPUploadTaskVM cronExpression(String cronExpression) {
     this.setCronExpression(cronExpression);
@@ -370,6 +368,9 @@ public class UpdateFTPUploadTaskVM extends UpdateTransportTaskBaseVM {
     return this;
   }
 
+  /**
+   * Return true if this UpdateFTPUploadTaskVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -434,5 +435,65 @@ public class UpdateFTPUploadTaskVM extends UpdateTransportTaskBaseVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `cronExpression` to the URL query string
+    if (getCronExpression() != null) {
+      joiner.add(String.format("%scronExpression%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCronExpression()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `delayedRunTime` to the URL query string
+    if (getDelayedRunTime() != null) {
+      joiner.add(String.format("%sdelayedRunTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDelayedRunTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `$t` to the URL query string
+    if (get$T() != null) {
+      joiner.add(String.format("%s$t%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(get$T()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("UpdateFTPUploadTaskVM", UpdateFTPUploadTaskVM.class);
+  JSON.registerDiscriminator(UpdateFTPUploadTaskVM.class, "$t", mappings);
+}
 }
 

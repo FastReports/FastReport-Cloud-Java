@@ -13,19 +13,24 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * UpdateUserProfileVM
@@ -54,12 +59,11 @@ public class UpdateUserProfileVM {
   public static final String JSON_PROPERTY_PASSWORD_NEW2 = "passwordNew2";
   private JsonNullable<String> passwordNew2 = JsonNullable.<String>undefined();
 
-  public UpdateUserProfileVM() {
+  public UpdateUserProfileVM() { 
   }
 
   public UpdateUserProfileVM name(String name) {
     this.name = JsonNullable.<String>of(name);
-    
     return this;
   }
 
@@ -93,7 +97,6 @@ public class UpdateUserProfileVM {
 
   public UpdateUserProfileVM username(String username) {
     this.username = JsonNullable.<String>of(username);
-    
     return this;
   }
 
@@ -127,7 +130,6 @@ public class UpdateUserProfileVM {
 
   public UpdateUserProfileVM email(String email) {
     this.email = JsonNullable.<String>of(email);
-    
     return this;
   }
 
@@ -161,7 +163,6 @@ public class UpdateUserProfileVM {
 
   public UpdateUserProfileVM passwordNew(String passwordNew) {
     this.passwordNew = JsonNullable.<String>of(passwordNew);
-    
     return this;
   }
 
@@ -195,7 +196,6 @@ public class UpdateUserProfileVM {
 
   public UpdateUserProfileVM passwordNew2(String passwordNew2) {
     this.passwordNew2 = JsonNullable.<String>of(passwordNew2);
-    
     return this;
   }
 
@@ -226,6 +226,10 @@ public class UpdateUserProfileVM {
     this.passwordNew2 = JsonNullable.<String>of(passwordNew2);
   }
 
+
+  /**
+   * Return true if this UpdateUserProfileVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -282,5 +286,64 @@ public class UpdateUserProfileVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `username` to the URL query string
+    if (getUsername() != null) {
+      joiner.add(String.format("%susername%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUsername()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `email` to the URL query string
+    if (getEmail() != null) {
+      joiner.add(String.format("%semail%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEmail()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `passwordNew` to the URL query string
+    if (getPasswordNew() != null) {
+      joiner.add(String.format("%spasswordNew%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPasswordNew()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `passwordNew2` to the URL query string
+    if (getPasswordNew2() != null) {
+      joiner.add(String.format("%spasswordNew2%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPasswordNew2()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

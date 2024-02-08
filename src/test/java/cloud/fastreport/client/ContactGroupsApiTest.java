@@ -13,6 +13,7 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.ContactGroupVM;
 import cloud.fastreport.model.ContactGroupsVM;
 import cloud.fastreport.model.CreateContactGroupVM;
@@ -21,13 +22,12 @@ import cloud.fastreport.model.UpdateContactGroupVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for ContactGroupsApi
@@ -43,14 +43,15 @@ public class ContactGroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void contactGroupsCreateTest() throws IOException {
+    public void contactGroupsCreateTest() throws ApiException {
         CreateContactGroupVM createContactGroupVM = null;
-        ContactGroupVM response = api.contactGroupsCreate(createContactGroupVM);
-
+        ContactGroupVM response = 
+        api.contactGroupsCreate(createContactGroupVM);
+        
         // TODO: test validations
     }
     
@@ -59,14 +60,15 @@ public class ContactGroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void contactGroupsDeleteTest() throws IOException {
+    public void contactGroupsDeleteTest() throws ApiException {
         String id = null;
+        
         api.contactGroupsDelete(id);
-
+        
         // TODO: test validations
     }
     
@@ -75,14 +77,15 @@ public class ContactGroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void contactGroupsGetTest() throws IOException {
+    public void contactGroupsGetTest() throws ApiException {
         String id = null;
-        ContactGroupVM response = api.contactGroupsGet(id);
-
+        ContactGroupVM response = 
+        api.contactGroupsGet(id);
+        
         // TODO: test validations
     }
     
@@ -91,16 +94,17 @@ public class ContactGroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void contactGroupsGetListTest() throws IOException {
+    public void contactGroupsGetListTest() throws ApiException {
         String subscriptionId = null;
         Integer skip = null;
         Integer take = null;
-        ContactGroupsVM response = api.contactGroupsGetList(subscriptionId, skip, take);
-
+        ContactGroupsVM response = 
+        api.contactGroupsGetList(subscriptionId, skip, take);
+        
         // TODO: test validations
     }
     
@@ -109,15 +113,16 @@ public class ContactGroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void contactGroupsUpdateTest() throws IOException {
+    public void contactGroupsUpdateTest() throws ApiException {
         String id = null;
         UpdateContactGroupVM updateContactGroupVM = null;
-        ContactGroupVM response = api.contactGroupsUpdate(id, updateContactGroupVM);
-
+        ContactGroupVM response = 
+        api.contactGroupsUpdate(id, updateContactGroupVM);
+        
         // TODO: test validations
     }
     

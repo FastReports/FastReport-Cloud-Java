@@ -13,6 +13,7 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.CreateGroupVM;
 import cloud.fastreport.model.GroupPermissionsVM;
 import cloud.fastreport.model.GroupVM;
@@ -23,13 +24,12 @@ import cloud.fastreport.model.UpdateGroupPermissionsVM;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for GroupsApi
@@ -45,14 +45,15 @@ public class GroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void groupsCreateGroupTest() throws IOException {
+    public void groupsCreateGroupTest() throws ApiException {
         CreateGroupVM createGroupVM = null;
-        GroupVM response = api.groupsCreateGroup(createGroupVM);
-
+        GroupVM response = 
+        api.groupsCreateGroup(createGroupVM);
+        
         // TODO: test validations
     }
     
@@ -61,14 +62,15 @@ public class GroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void groupsDeleteGroupTest() throws IOException {
+    public void groupsDeleteGroupTest() throws ApiException {
         String id = null;
+        
         api.groupsDeleteGroup(id);
-
+        
         // TODO: test validations
     }
     
@@ -77,14 +79,15 @@ public class GroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void groupsGetGroupTest() throws IOException {
+    public void groupsGetGroupTest() throws ApiException {
         String id = null;
-        GroupVM response = api.groupsGetGroup(id);
-
+        GroupVM response = 
+        api.groupsGetGroup(id);
+        
         // TODO: test validations
     }
     
@@ -93,15 +96,16 @@ public class GroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void groupsGetGroupListTest() throws IOException {
+    public void groupsGetGroupListTest() throws ApiException {
         Integer skip = null;
         Integer take = null;
-        GroupsVM response = api.groupsGetGroupList(skip, take);
-
+        GroupsVM response = 
+        api.groupsGetGroupList(skip, take);
+        
         // TODO: test validations
     }
     
@@ -110,14 +114,15 @@ public class GroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void groupsGetPermissionsTest() throws IOException {
+    public void groupsGetPermissionsTest() throws ApiException {
         String id = null;
-        GroupPermissionsVM response = api.groupsGetPermissions(id);
-
+        GroupPermissionsVM response = 
+        api.groupsGetPermissions(id);
+        
         // TODO: test validations
     }
     
@@ -126,15 +131,16 @@ public class GroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void groupsRenameGroupTest() throws IOException {
+    public void groupsRenameGroupTest() throws ApiException {
         String id = null;
         RenameGroupVM renameGroupVM = null;
-        GroupVM response = api.groupsRenameGroup(id, renameGroupVM);
-
+        GroupVM response = 
+        api.groupsRenameGroup(id, renameGroupVM);
+        
         // TODO: test validations
     }
     
@@ -143,15 +149,16 @@ public class GroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void groupsUpdatePermissionsTest() throws IOException {
+    public void groupsUpdatePermissionsTest() throws ApiException {
         String id = null;
         UpdateGroupPermissionsVM updateGroupPermissionsVM = null;
+        
         api.groupsUpdatePermissions(id, updateGroupPermissionsVM);
-
+        
         // TODO: test validations
     }
     

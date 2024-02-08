@@ -13,18 +13,18 @@
 
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiException;
 import cloud.fastreport.model.GroupsVM;
 import cloud.fastreport.model.ProblemDetails;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 
 /**
  * API tests for SubscriptionGroupsApi
@@ -40,14 +40,15 @@ public class SubscriptionGroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionGroupsCountGroupsAsyncTest() throws IOException {
+    public void subscriptionGroupsCountGroupsAsyncTest() throws ApiException {
         String subscriptionId = null;
-        Long response = api.subscriptionGroupsCountGroupsAsync(subscriptionId);
-
+        Long response = 
+        api.subscriptionGroupsCountGroupsAsync(subscriptionId);
+        
         // TODO: test validations
     }
     
@@ -56,15 +57,16 @@ public class SubscriptionGroupsApiTest {
      *
      * 
      *
-     * @throws IOException
+     * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void subscriptionGroupsGetGroupsListTest() throws IOException {
+    public void subscriptionGroupsGetGroupsListTest() throws ApiException {
         String subscriptionId = null;
         String userId = null;
-        GroupsVM response = api.subscriptionGroupsGetGroupsList(subscriptionId, userId);
-
+        GroupsVM response = 
+        api.subscriptionGroupsGetGroupsList(subscriptionId, userId);
+        
         // TODO: test validations
     }
     

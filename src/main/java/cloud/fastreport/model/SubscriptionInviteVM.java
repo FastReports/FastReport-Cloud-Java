@@ -13,8 +13,12 @@
 
 package cloud.fastreport.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import cloud.fastreport.model.InvitedUser;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * SubscriptionInviteVM
@@ -63,11 +67,10 @@ public class SubscriptionInviteVM {
   public static final String JSON_PROPERTY_CREATOR_USER_ID = "creatorUserId";
   private JsonNullable<String> creatorUserId = JsonNullable.<String>undefined();
 
-  public SubscriptionInviteVM() {
+  public SubscriptionInviteVM() { 
   }
 
   public SubscriptionInviteVM usages(Long usages) {
-    
     this.usages = usages;
     return this;
   }
@@ -93,7 +96,6 @@ public class SubscriptionInviteVM {
 
 
   public SubscriptionInviteVM durable(Boolean durable) {
-    
     this.durable = durable;
     return this;
   }
@@ -120,7 +122,6 @@ public class SubscriptionInviteVM {
 
   public SubscriptionInviteVM accessToken(String accessToken) {
     this.accessToken = JsonNullable.<String>of(accessToken);
-    
     return this;
   }
 
@@ -153,7 +154,6 @@ public class SubscriptionInviteVM {
 
 
   public SubscriptionInviteVM expiredDate(OffsetDateTime expiredDate) {
-    
     this.expiredDate = expiredDate;
     return this;
   }
@@ -180,7 +180,6 @@ public class SubscriptionInviteVM {
 
   public SubscriptionInviteVM addedUsers(List<InvitedUser> addedUsers) {
     this.addedUsers = JsonNullable.<List<InvitedUser>>of(addedUsers);
-    
     return this;
   }
 
@@ -226,7 +225,6 @@ public class SubscriptionInviteVM {
 
   public SubscriptionInviteVM creatorUserId(String creatorUserId) {
     this.creatorUserId = JsonNullable.<String>of(creatorUserId);
-    
     return this;
   }
 
@@ -257,6 +255,10 @@ public class SubscriptionInviteVM {
     this.creatorUserId = JsonNullable.<String>of(creatorUserId);
   }
 
+
+  /**
+   * Return true if this SubscriptionInviteVM object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -315,5 +317,74 @@ public class SubscriptionInviteVM {
     return o.toString().replace("\n", "\n    ");
   }
 
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
+  }
+
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @param prefix prefix of the query string
+   * @return URL query string
+   */
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
+    }
+
+    StringJoiner joiner = new StringJoiner("&");
+
+    // add `usages` to the URL query string
+    if (getUsages() != null) {
+      joiner.add(String.format("%susages%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUsages()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `durable` to the URL query string
+    if (getDurable() != null) {
+      joiner.add(String.format("%sdurable%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDurable()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `accessToken` to the URL query string
+    if (getAccessToken() != null) {
+      joiner.add(String.format("%saccessToken%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAccessToken()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `expiredDate` to the URL query string
+    if (getExpiredDate() != null) {
+      joiner.add(String.format("%sexpiredDate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExpiredDate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `addedUsers` to the URL query string
+    if (getAddedUsers() != null) {
+      for (int i = 0; i < getAddedUsers().size(); i++) {
+        if (getAddedUsers().get(i) != null) {
+          joiner.add(getAddedUsers().get(i).toUrlQueryString(String.format("%saddedUsers%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `creatorUserId` to the URL query string
+    if (getCreatorUserId() != null) {
+      joiner.add(String.format("%screatorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
+  }
 }
 

@@ -172,6 +172,12 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
   }
 
   @Override
+  public AuditSubscriptionActionVM id(String id) {
+    this.setId(id);
+    return this;
+  }
+
+  @Override
   public AuditSubscriptionActionVM createdTime(OffsetDateTime createdTime) {
     this.setCreatedTime(createdTime);
     return this;
@@ -184,14 +190,14 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
   }
 
   @Override
-  public AuditSubscriptionActionVM adminAction(Boolean adminAction) {
-    this.setAdminAction(adminAction);
+  public AuditSubscriptionActionVM name(String name) {
+    this.setName(name);
     return this;
   }
 
   @Override
-  public AuditSubscriptionActionVM $t(String $t) {
-    this.set$T($t);
+  public AuditSubscriptionActionVM adminAction(Boolean adminAction) {
+    this.setAdminAction(adminAction);
     return this;
   }
 

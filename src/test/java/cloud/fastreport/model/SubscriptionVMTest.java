@@ -15,9 +15,12 @@ package cloud.fastreport.model;
 
 import cloud.fastreport.model.SubscriptionFolder;
 import cloud.fastreport.model.SubscriptionPeriodVM;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
@@ -107,6 +110,14 @@ public class SubscriptionVMTest {
     @Test
     public void exportsFolderTest() {
         // TODO: test exportsFolder
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

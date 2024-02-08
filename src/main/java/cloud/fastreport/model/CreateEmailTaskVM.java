@@ -446,12 +446,6 @@ public class CreateEmailTaskVM extends CreateTransportTaskBaseVM {
   }
 
   @Override
-  public CreateEmailTaskVM $t(String $t) {
-    this.set$T($t);
-    return this;
-  }
-
-  @Override
   public boolean equals(Object o) {
     if (this == o) {
       return true;

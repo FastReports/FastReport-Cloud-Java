@@ -7,6 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**id** | **String** |  |  [optional] |
+|**createdTime** | **OffsetDateTime** |  |  [optional] |
+|**creatorUserId** | **String** |  |  [optional] |
+|**editedTime** | **OffsetDateTime** |  |  [optional] |
+|**editorUserId** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**parentId** | **String** |  |  [optional] |
 |**tags** | **List&lt;String&gt;** |  |  [optional] |

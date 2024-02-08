@@ -34,7 +34,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>cloud.fastreport.sdk</groupId>
   <artifactId>fastreport-cloud-sdk</artifactId>
-  <version>2024.1.16</version>
+  <version>2024.1.17</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -44,7 +44,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2024.1.16"
+compile "cloud.fastreport.sdk:fastreport-cloud-sdk:2024.1.17"
 ```
 
 ### Others
@@ -57,7 +57,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/fastreport-cloud-sdk-2024.1.16.jar`
+- `target/fastreport-cloud-sdk-2024.1.17.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -398,7 +398,6 @@ Class | Method | HTTP request | Description
  - [DeleteApiKeyVM](docs/DeleteApiKeyVM.md)
  - [EmailTaskVM](docs/EmailTaskVM.md)
  - [EntityType](docs/EntityType.md)
- - [EntityVM](docs/EntityVM.md)
  - [ExportCreateAdminVM](docs/ExportCreateAdminVM.md)
  - [ExportCreateVM](docs/ExportCreateVM.md)
  - [ExportFolderCreateVM](docs/ExportFolderCreateVM.md)

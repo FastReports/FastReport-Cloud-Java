@@ -13,18 +13,19 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.ReportCreateVM;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -73,6 +74,14 @@ public class ReportCreateAdminVMTest {
     @Test
     public void contentTest() {
         // TODO: test content
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

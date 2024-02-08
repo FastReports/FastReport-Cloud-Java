@@ -219,6 +219,12 @@ public class AuditFilePropertyChangedVM extends AuditActionVM {
   }
 
   @Override
+  public AuditFilePropertyChangedVM id(String id) {
+    this.setId(id);
+    return this;
+  }
+
+  @Override
   public AuditFilePropertyChangedVM createdTime(OffsetDateTime createdTime) {
     this.setCreatedTime(createdTime);
     return this;
@@ -231,14 +237,14 @@ public class AuditFilePropertyChangedVM extends AuditActionVM {
   }
 
   @Override
-  public AuditFilePropertyChangedVM adminAction(Boolean adminAction) {
-    this.setAdminAction(adminAction);
+  public AuditFilePropertyChangedVM name(String name) {
+    this.setName(name);
     return this;
   }
 
   @Override
-  public AuditFilePropertyChangedVM $t(String $t) {
-    this.set$T($t);
+  public AuditFilePropertyChangedVM adminAction(Boolean adminAction) {
+    this.setAdminAction(adminAction);
     return this;
   }
 

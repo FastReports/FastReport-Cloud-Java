@@ -13,68 +13,77 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.GroupUserVM;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * GroupUsersVM
  */
-@JsonPropertyOrder({
-  GroupUsersVM.JSON_PROPERTY_USERS,
-  GroupUsersVM.JSON_PROPERTY_COUNT,
-  GroupUsersVM.JSON_PROPERTY_TAKE,
-  GroupUsersVM.JSON_PROPERTY_SKIP
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GroupUsersVM {
-  public static final String JSON_PROPERTY_USERS = "users";
-  private JsonNullable<List<GroupUserVM>> users = JsonNullable.<List<GroupUserVM>>undefined();
+  public static final String SERIALIZED_NAME_USERS = "users";
+  @SerializedName(SERIALIZED_NAME_USERS)
+  private List<GroupUserVM> users;
 
-  public static final String JSON_PROPERTY_COUNT = "count";
+  public static final String SERIALIZED_NAME_COUNT = "count";
+  @SerializedName(SERIALIZED_NAME_COUNT)
   private Long count;
 
-  public static final String JSON_PROPERTY_TAKE = "take";
+  public static final String SERIALIZED_NAME_TAKE = "take";
+  @SerializedName(SERIALIZED_NAME_TAKE)
   private Integer take;
 
-  public static final String JSON_PROPERTY_SKIP = "skip";
+  public static final String SERIALIZED_NAME_SKIP = "skip";
+  @SerializedName(SERIALIZED_NAME_SKIP)
   private Integer skip;
 
-  public GroupUsersVM() { 
+  public GroupUsersVM() {
   }
 
   public GroupUsersVM users(List<GroupUserVM> users) {
-    this.users = JsonNullable.<List<GroupUserVM>>of(users);
+    this.users = users;
     return this;
   }
 
   public GroupUsersVM addUsersItem(GroupUserVM usersItem) {
-    if (this.users == null || !this.users.isPresent()) {
-      this.users = JsonNullable.<List<GroupUserVM>>of(new ArrayList<>());
+    if (this.users == null) {
+      this.users = new ArrayList<>();
     }
-    try {
-      this.users.get().add(usersItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.users.add(usersItem);
     return this;
   }
 
@@ -83,26 +92,12 @@ public class GroupUsersVM {
    * @return users
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<GroupUserVM> getUsers() {
-        return users.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_USERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<GroupUserVM>> getUsers_JsonNullable() {
     return users;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_USERS)
-  public void setUsers_JsonNullable(JsonNullable<List<GroupUserVM>> users) {
-    this.users = users;
   }
 
   public void setUsers(List<GroupUserVM> users) {
-    this.users = JsonNullable.<List<GroupUserVM>>of(users);
+    this.users = users;
   }
 
 
@@ -116,16 +111,10 @@ public class GroupUsersVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Long getCount() {
     return count;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCount(Long count) {
     this.count = count;
   }
@@ -141,16 +130,10 @@ public class GroupUsersVM {
    * @return take
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getTake() {
     return take;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTake(Integer take) {
     this.take = take;
   }
@@ -166,24 +149,16 @@ public class GroupUsersVM {
    * @return skip
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getSkip() {
     return skip;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSkip(Integer skip) {
     this.skip = skip;
   }
 
 
-  /**
-   * Return true if this GroupUsersVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -193,7 +168,7 @@ public class GroupUsersVM {
       return false;
     }
     GroupUsersVM groupUsersVM = (GroupUsersVM) o;
-    return equalsNullable(this.users, groupUsersVM.users) &&
+    return Objects.equals(this.users, groupUsersVM.users) &&
         Objects.equals(this.count, groupUsersVM.count) &&
         Objects.equals(this.take, groupUsersVM.take) &&
         Objects.equals(this.skip, groupUsersVM.skip);
@@ -205,7 +180,7 @@ public class GroupUsersVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(users), count, take, skip);
+    return Objects.hash(users, count, take, skip);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -238,64 +213,106 @@ public class GroupUsersVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("users");
+    openapiFields.add("count");
+    openapiFields.add("take");
+    openapiFields.add("skip");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `users` to the URL query string
-    if (getUsers() != null) {
-      for (int i = 0; i < getUsers().size(); i++) {
-        if (getUsers().get(i) != null) {
-          joiner.add(getUsers().get(i).toUrlQueryString(String.format("%susers%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to GroupUsersVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!GroupUsersVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in GroupUsersVM is not found in the empty JSON string", GroupUsersVM.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    // add `count` to the URL query string
-    if (getCount() != null) {
-      joiner.add(String.format("%scount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!GroupUsersVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GroupUsersVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (jsonObj.get("users") != null && !jsonObj.get("users").isJsonNull()) {
+        JsonArray jsonArrayusers = jsonObj.getAsJsonArray("users");
+        if (jsonArrayusers != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("users").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `users` to be an array in the JSON string but got `%s`", jsonObj.get("users").toString()));
+          }
 
-    // add `take` to the URL query string
-    if (getTake() != null) {
-      joiner.add(String.format("%stake%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTake()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+          // validate the optional field `users` (array)
+          for (int i = 0; i < jsonArrayusers.size(); i++) {
+            GroupUserVM.validateJsonElement(jsonArrayusers.get(i));
+          };
+        }
+      }
+  }
 
-    // add `skip` to the URL query string
-    if (getSkip() != null) {
-      joiner.add(String.format("%sskip%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSkip()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!GroupUsersVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'GroupUsersVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<GroupUsersVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(GroupUsersVM.class));
 
-    return joiner.toString();
+       return (TypeAdapter<T>) new TypeAdapter<GroupUsersVM>() {
+           @Override
+           public void write(JsonWriter out, GroupUsersVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public GroupUsersVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of GroupUsersVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of GroupUsersVM
+  * @throws IOException if the JSON string is invalid with respect to GroupUsersVM
+  */
+  public static GroupUsersVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, GroupUsersVM.class);
+  }
+
+ /**
+  * Convert an instance of GroupUsersVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

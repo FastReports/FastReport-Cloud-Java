@@ -10,12 +10,22 @@
  * Do not edit the class manually.
  */
 
+
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiCallback;
 import cloud.fastreport.ApiClient;
 import cloud.fastreport.ApiException;
 import cloud.fastreport.ApiResponse;
+import cloud.fastreport.Configuration;
 import cloud.fastreport.Pair;
+import cloud.fastreport.ProgressRequestBody;
+import cloud.fastreport.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
 
 import cloud.fastreport.model.AuditActionsVM;
 import cloud.fastreport.model.BreadcrumbsVM;
@@ -39,3527 +49,6223 @@ import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.SelectedFilesVM;
 import cloud.fastreport.model.UpdateFilePermissionsVM;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.http.HttpRequest;
-import java.nio.channels.Channels;
-import java.nio.channels.Pipe;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.StringJoiner;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ExportsApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public ExportsApi() {
-    this(new ApiClient());
-  }
-
-  public ExportsApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public ExportsApi() {
+        this(Configuration.getDefaultApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Delete all folders and files from recycle bin
-   * User with a Delete RecycleBin permission can access this method.
-   * @param subscriptionId subscription id (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportFolderAndFileClearRecycleBin(String subscriptionId) throws ApiException {
-    exportFolderAndFileClearRecycleBinWithHttpInfo(subscriptionId);
-  }
+    public ExportsApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
 
-  /**
-   * Delete all folders and files from recycle bin
-   * User with a Delete RecycleBin permission can access this method.
-   * @param subscriptionId subscription id (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportFolderAndFileClearRecycleBinWithHttpInfo(String subscriptionId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFolderAndFileClearRecycleBinRequestBuilder(subscriptionId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFolderAndFileClearRecycleBin", localVarResponse);
+    public ApiClient getApiClient() {
+        return localVarApiClient;
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for exportFolderAndFileClearRecycleBin
+     * @param subscriptionId subscription id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files in bin have been deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileClearRecycleBinCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/ClearRecycleBin"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFolderAndFileClearRecycleBinRequestBuilder(String subscriptionId) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling exportFolderAndFileClearRecycleBin");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/ClearRecycleBin"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Copy folders and files to a specified folder
-   * User with a Get permission for a files and Create permission for a destination folder can access this method.
-   * @param subscriptionId id of current subscription (required)
-   * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportFolderAndFileCopyFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    exportFolderAndFileCopyFilesWithHttpInfo(subscriptionId, selectedFilesVM);
-  }
-
-  /**
-   * Copy folders and files to a specified folder
-   * User with a Get permission for a files and Create permission for a destination folder can access this method.
-   * @param subscriptionId id of current subscription (required)
-   * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportFolderAndFileCopyFilesWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFolderAndFileCopyFilesRequestBuilder(subscriptionId, selectedFilesVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFolderAndFileCopyFiles", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFolderAndFileClearRecycleBinValidateBeforeCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileClearRecycleBin(Async)");
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFolderAndFileCopyFilesRequestBuilder(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling exportFolderAndFileCopyFiles");
+        return exportFolderAndFileClearRecycleBinCall(subscriptionId, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/CopyFiles"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(selectedFilesVM);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
+    /**
+     * Delete all folders and files from recycle bin
+     * User with a Delete RecycleBin permission can access this method.
+     * @param subscriptionId subscription id (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files in bin have been deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportFolderAndFileClearRecycleBin(String subscriptionId) throws ApiException {
+        exportFolderAndFileClearRecycleBinWithHttpInfo(subscriptionId);
     }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Delete folders and files
-   * User with a Delete permission can access this method.
-   * @param subscriptionId id of current subscription (required)
-   * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportFolderAndFileDeleteFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    exportFolderAndFileDeleteFilesWithHttpInfo(subscriptionId, selectedFilesVM);
-  }
 
-  /**
-   * Delete folders and files
-   * User with a Delete permission can access this method.
-   * @param subscriptionId id of current subscription (required)
-   * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportFolderAndFileDeleteFilesWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFolderAndFileDeleteFilesRequestBuilder(subscriptionId, selectedFilesVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFolderAndFileDeleteFiles", localVarResponse);
+    /**
+     * Delete all folders and files from recycle bin
+     * User with a Delete RecycleBin permission can access this method.
+     * @param subscriptionId subscription id (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files in bin have been deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportFolderAndFileClearRecycleBinWithHttpInfo(String subscriptionId) throws ApiException {
+        okhttp3.Call localVarCall = exportFolderAndFileClearRecycleBinValidateBeforeCall(subscriptionId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Delete all folders and files from recycle bin (asynchronously)
+     * User with a Delete RecycleBin permission can access this method.
+     * @param subscriptionId subscription id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files in bin have been deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileClearRecycleBinAsync(String subscriptionId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFolderAndFileClearRecycleBinValidateBeforeCall(subscriptionId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFolderAndFileCopyFiles
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been copied </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileCopyFilesCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        Object localVarPostBody = selectedFilesVM;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/CopyFiles"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFolderAndFileDeleteFilesRequestBuilder(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling exportFolderAndFileDeleteFiles");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/DeleteFiles"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(selectedFilesVM);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get count of files and folders what contains in a specified folder
-   * User with a Get Count permission can access this method.
-   * @param id folder id (required)
-   * @param searchPattern string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders) (optional)
-   * @param useRegex set this to true if you want to use regular expression to search (optional, default to false)
-   * @return CountVM
-   * @throws ApiException if fails to make API call
-   */
-  public CountVM exportFolderAndFileGetCount(String id, String searchPattern, Boolean useRegex) throws ApiException {
-    ApiResponse<CountVM> localVarResponse = exportFolderAndFileGetCountWithHttpInfo(id, searchPattern, useRegex);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get count of files and folders what contains in a specified folder
-   * User with a Get Count permission can access this method.
-   * @param id folder id (required)
-   * @param searchPattern string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders) (optional)
-   * @param useRegex set this to true if you want to use regular expression to search (optional, default to false)
-   * @return ApiResponse&lt;CountVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CountVM> exportFolderAndFileGetCountWithHttpInfo(String id, String searchPattern, Boolean useRegex) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFolderAndFileGetCountRequestBuilder(id, searchPattern, useRegex);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFolderAndFileGetCount", localVarResponse);
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<CountVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<CountVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFolderAndFileGetCountRequestBuilder(String id, String searchPattern, Boolean useRegex) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFolderAndFileGetCount");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/CountFolderAndFiles"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "searchPattern";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("searchPattern", searchPattern));
-    localVarQueryParameterBaseName = "useRegex";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("useRegex", useRegex));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get all folders and files from specified folder
-   * User with a Get Entity permission can access this method.
-   * @param id folder id (required)
-   * @param skip number of folder and files, that have to be skipped (optional, default to 0)
-   * @param take number of folder and files, that have to be returned (optional, default to 10)
-   * @param orderBy indicates a field to sort by (optional)
-   * @param desc indicates if sorting is descending (optional, default to false)
-   * @param searchPattern  (optional, default to )
-   * @param useRegex  (optional, default to false)
-   * @return FilesVM
-   * @throws ApiException if fails to make API call
-   */
-  public FilesVM exportFolderAndFileGetFoldersAndFiles(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
-    ApiResponse<FilesVM> localVarResponse = exportFolderAndFileGetFoldersAndFilesWithHttpInfo(id, skip, take, orderBy, desc, searchPattern, useRegex);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get all folders and files from specified folder
-   * User with a Get Entity permission can access this method.
-   * @param id folder id (required)
-   * @param skip number of folder and files, that have to be skipped (optional, default to 0)
-   * @param take number of folder and files, that have to be returned (optional, default to 10)
-   * @param orderBy indicates a field to sort by (optional)
-   * @param desc indicates if sorting is descending (optional, default to false)
-   * @param searchPattern  (optional, default to )
-   * @param useRegex  (optional, default to false)
-   * @return ApiResponse&lt;FilesVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FilesVM> exportFolderAndFileGetFoldersAndFilesWithHttpInfo(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFolderAndFileGetFoldersAndFilesRequestBuilder(id, skip, take, orderBy, desc, searchPattern, useRegex);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFolderAndFileGetFoldersAndFiles", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFolderAndFileCopyFilesValidateBeforeCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileCopyFiles(Async)");
         }
-        return new ApiResponse<FilesVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FilesVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFolderAndFileGetFoldersAndFilesRequestBuilder(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFolderAndFileGetFoldersAndFiles");
+        return exportFolderAndFileCopyFilesCall(subscriptionId, selectedFilesVM, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/ListFolderAndFiles"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "skip";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("skip", skip));
-    localVarQueryParameterBaseName = "take";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("take", take));
-    localVarQueryParameterBaseName = "orderBy";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("orderBy", orderBy));
-    localVarQueryParameterBaseName = "desc";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("desc", desc));
-    localVarQueryParameterBaseName = "searchPattern";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("searchPattern", searchPattern));
-    localVarQueryParameterBaseName = "useRegex";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("useRegex", useRegex));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    /**
+     * Copy folders and files to a specified folder
+     * User with a Get permission for a files and Create permission for a destination folder can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been copied </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportFolderAndFileCopyFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
+        exportFolderAndFileCopyFilesWithHttpInfo(subscriptionId, selectedFilesVM);
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Copy folders and files to a specified folder
+     * User with a Get permission for a files and Create permission for a destination folder can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been copied </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportFolderAndFileCopyFilesWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
+        okhttp3.Call localVarCall = exportFolderAndFileCopyFilesValidateBeforeCall(subscriptionId, selectedFilesVM, null);
+        return localVarApiClient.execute(localVarCall);
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get all folders and files from recycle bin
-   * User with a Get DeletedFiles permission can access this method.
-   * @param subscriptionId subscription id (required)
-   * @param skip number of folder and files, that have to be skipped (optional, default to 0)
-   * @param take number of folder and files, that have to be returned (optional, default to 10)
-   * @param orderBy indicates a field to sort by (optional)
-   * @param desc indicates if sorting is descending (optional, default to false)
-   * @param searchPattern  (optional, default to )
-   * @param useRegex  (optional, default to false)
-   * @return FilesVM
-   * @throws ApiException if fails to make API call
-   */
-  public FilesVM exportFolderAndFileGetRecycleBinFoldersAndFiles(String subscriptionId, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
-    ApiResponse<FilesVM> localVarResponse = exportFolderAndFileGetRecycleBinFoldersAndFilesWithHttpInfo(subscriptionId, skip, take, orderBy, desc, searchPattern, useRegex);
-    return localVarResponse.getData();
-  }
 
-  /**
-   * Get all folders and files from recycle bin
-   * User with a Get DeletedFiles permission can access this method.
-   * @param subscriptionId subscription id (required)
-   * @param skip number of folder and files, that have to be skipped (optional, default to 0)
-   * @param take number of folder and files, that have to be returned (optional, default to 10)
-   * @param orderBy indicates a field to sort by (optional)
-   * @param desc indicates if sorting is descending (optional, default to false)
-   * @param searchPattern  (optional, default to )
-   * @param useRegex  (optional, default to false)
-   * @return ApiResponse&lt;FilesVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FilesVM> exportFolderAndFileGetRecycleBinFoldersAndFilesWithHttpInfo(String subscriptionId, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFolderAndFileGetRecycleBinFoldersAndFilesRequestBuilder(subscriptionId, skip, take, orderBy, desc, searchPattern, useRegex);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFolderAndFileGetRecycleBinFoldersAndFiles", localVarResponse);
+    /**
+     * Copy folders and files to a specified folder (asynchronously)
+     * User with a Get permission for a files and Create permission for a destination folder can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been copied </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileCopyFilesAsync(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFolderAndFileCopyFilesValidateBeforeCall(subscriptionId, selectedFilesVM, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFolderAndFileDeleteFiles
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileDeleteFilesCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<FilesVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FilesVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFolderAndFileGetRecycleBinFoldersAndFilesRequestBuilder(String subscriptionId, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling exportFolderAndFileGetRecycleBinFoldersAndFiles");
-    }
+        Object localVarPostBody = selectedFilesVM;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/DeleteFiles"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
 
-    String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/ListRecycleBinFolderAndFiles"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "skip";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("skip", skip));
-    localVarQueryParameterBaseName = "take";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("take", take));
-    localVarQueryParameterBaseName = "orderBy";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("orderBy", orderBy));
-    localVarQueryParameterBaseName = "desc";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("desc", desc));
-    localVarQueryParameterBaseName = "searchPattern";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("searchPattern", searchPattern));
-    localVarQueryParameterBaseName = "useRegex";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("useRegex", useRegex));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Move folders and files to a specified folder
-   * User with a Update Place permission for a files and Create permission for a destination folder can access this method.
-   * @param subscriptionId id of current subscription (required)
-   * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportFolderAndFileMoveFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    exportFolderAndFileMoveFilesWithHttpInfo(subscriptionId, selectedFilesVM);
-  }
-
-  /**
-   * Move folders and files to a specified folder
-   * User with a Update Place permission for a files and Create permission for a destination folder can access this method.
-   * @param subscriptionId id of current subscription (required)
-   * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportFolderAndFileMoveFilesWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFolderAndFileMoveFilesRequestBuilder(subscriptionId, selectedFilesVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFolderAndFileMoveFiles", localVarResponse);
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFolderAndFileMoveFilesRequestBuilder(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling exportFolderAndFileMoveFiles");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/MoveFiles"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(selectedFilesVM);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Move folders and files to bin
-   * User with a Delete permission can access this method.
-   * @param subscriptionId id of current subscription (required)
-   * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportFolderAndFileMoveFilesToBin(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    exportFolderAndFileMoveFilesToBinWithHttpInfo(subscriptionId, selectedFilesVM);
-  }
-
-  /**
-   * Move folders and files to bin
-   * User with a Delete permission can access this method.
-   * @param subscriptionId id of current subscription (required)
-   * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportFolderAndFileMoveFilesToBinWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFolderAndFileMoveFilesToBinRequestBuilder(subscriptionId, selectedFilesVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFolderAndFileMoveFilesToBin", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFolderAndFileDeleteFilesValidateBeforeCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileDeleteFiles(Async)");
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        return exportFolderAndFileDeleteFilesCall(subscriptionId, selectedFilesVM, _callback);
+
+    }
+
+    /**
+     * Delete folders and files
+     * User with a Delete permission can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportFolderAndFileDeleteFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
+        exportFolderAndFileDeleteFilesWithHttpInfo(subscriptionId, selectedFilesVM);
+    }
+
+    /**
+     * Delete folders and files
+     * User with a Delete permission can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportFolderAndFileDeleteFilesWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
+        okhttp3.Call localVarCall = exportFolderAndFileDeleteFilesValidateBeforeCall(subscriptionId, selectedFilesVM, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Delete folders and files (asynchronously)
+     * User with a Delete permission can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileDeleteFilesAsync(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFolderAndFileDeleteFilesValidateBeforeCall(subscriptionId, selectedFilesVM, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFolderAndFileGetCount
+     * @param id folder id (required)
+     * @param searchPattern string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders) (optional)
+     * @param useRegex set this to true if you want to use regular expression to search (optional, default to false)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileGetCountCall(String id, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFolderAndFileMoveFilesToBinRequestBuilder(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling exportFolderAndFileMoveFilesToBin");
-    }
+        Object localVarPostBody = null;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/CountFolderAndFiles"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
-    String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/ToBin"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(selectedFilesVM);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Recover all folders and files from recycle bin
-   * User with a Create RecycleBin permission can access this method.
-   * @param subscriptionId subscription id (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportFolderAndFileRecoverAllFromRecycleBin(String subscriptionId) throws ApiException {
-    exportFolderAndFileRecoverAllFromRecycleBinWithHttpInfo(subscriptionId);
-  }
-
-  /**
-   * Recover all folders and files from recycle bin
-   * User with a Create RecycleBin permission can access this method.
-   * @param subscriptionId subscription id (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportFolderAndFileRecoverAllFromRecycleBinWithHttpInfo(String subscriptionId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFolderAndFileRecoverAllFromRecycleBinRequestBuilder(subscriptionId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFolderAndFileRecoverAllFromRecycleBin", localVarResponse);
+        if (searchPattern != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("searchPattern", searchPattern));
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        if (useRegex != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("useRegex", useRegex));
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFolderAndFileRecoverAllFromRecycleBinRequestBuilder(String subscriptionId) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling exportFolderAndFileRecoverAllFromRecycleBin");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/RecoverRecycleBin"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Recover folders and files from bin
-   * User with a SubscriptionCreate permission can access this method.
-   * @param subscriptionId id of current subscription (required)
-   * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportFolderAndFileRecoverFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    exportFolderAndFileRecoverFilesWithHttpInfo(subscriptionId, selectedFilesVM);
-  }
-
-  /**
-   * Recover folders and files from bin
-   * User with a SubscriptionCreate permission can access this method.
-   * @param subscriptionId id of current subscription (required)
-   * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportFolderAndFileRecoverFilesWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFolderAndFileRecoverFilesRequestBuilder(subscriptionId, selectedFilesVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFolderAndFileRecoverFiles", localVarResponse);
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFolderAndFileRecoverFilesRequestBuilder(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling exportFolderAndFileRecoverFiles");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/RecoverFiles"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(selectedFilesVM);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get specified folder, calculate it&#39;s size
-   * User with a Get Entity permission can access this method.
-   * @param id folder id (required)
-   * @return FolderSizeVM
-   * @throws ApiException if fails to make API call
-   */
-  public FolderSizeVM exportFoldersCalculateFolderSize(String id) throws ApiException {
-    ApiResponse<FolderSizeVM> localVarResponse = exportFoldersCalculateFolderSizeWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get specified folder, calculate it&#39;s size
-   * User with a Get Entity permission can access this method.
-   * @param id folder id (required)
-   * @return ApiResponse&lt;FolderSizeVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FolderSizeVM> exportFoldersCalculateFolderSizeWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersCalculateFolderSizeRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersCalculateFolderSize", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFolderAndFileGetCountValidateBeforeCall(String id, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFolderAndFileGetCount(Async)");
         }
-        return new ApiResponse<FolderSizeVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FolderSizeVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersCalculateFolderSizeRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersCalculateFolderSize");
+        return exportFolderAndFileGetCountCall(id, searchPattern, useRegex, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/size"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Get count of files and folders what contains in a specified folder
+     * User with a Get Count permission can access this method.
+     * @param id folder id (required)
+     * @param searchPattern string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders) (optional)
+     * @param useRegex set this to true if you want to use regular expression to search (optional, default to false)
+     * @return CountVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public CountVM exportFolderAndFileGetCount(String id, String searchPattern, Boolean useRegex) throws ApiException {
+        ApiResponse<CountVM> localVarResp = exportFolderAndFileGetCountWithHttpInfo(id, searchPattern, useRegex);
+        return localVarResp.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Move folder to a specified folder
-   * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
-   * @param id moving folder id (required)
-   * @param folderId destination folder id (required)
-   * @return FileVM
-   * @throws ApiException if fails to make API call
-   */
-  public FileVM exportFoldersCopyFolder(String id, String folderId) throws ApiException {
-    ApiResponse<FileVM> localVarResponse = exportFoldersCopyFolderWithHttpInfo(id, folderId);
-    return localVarResponse.getData();
-  }
 
-  /**
-   * Move folder to a specified folder
-   * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
-   * @param id moving folder id (required)
-   * @param folderId destination folder id (required)
-   * @return ApiResponse&lt;FileVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FileVM> exportFoldersCopyFolderWithHttpInfo(String id, String folderId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersCopyFolderRequestBuilder(id, folderId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersCopyFolder", localVarResponse);
+    /**
+     * Get count of files and folders what contains in a specified folder
+     * User with a Get Count permission can access this method.
+     * @param id folder id (required)
+     * @param searchPattern string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders) (optional)
+     * @param useRegex set this to true if you want to use regular expression to search (optional, default to false)
+     * @return ApiResponse&lt;CountVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<CountVM> exportFolderAndFileGetCountWithHttpInfo(String id, String searchPattern, Boolean useRegex) throws ApiException {
+        okhttp3.Call localVarCall = exportFolderAndFileGetCountValidateBeforeCall(id, searchPattern, useRegex, null);
+        Type localVarReturnType = new TypeToken<CountVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get count of files and folders what contains in a specified folder (asynchronously)
+     * User with a Get Count permission can access this method.
+     * @param id folder id (required)
+     * @param searchPattern string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders) (optional)
+     * @param useRegex set this to true if you want to use regular expression to search (optional, default to false)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileGetCountAsync(String id, String searchPattern, Boolean useRegex, final ApiCallback<CountVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFolderAndFileGetCountValidateBeforeCall(id, searchPattern, useRegex, _callback);
+        Type localVarReturnType = new TypeToken<CountVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFolderAndFileGetFoldersAndFiles
+     * @param id folder id (required)
+     * @param skip number of folder and files, that have to be skipped (optional, default to 0)
+     * @param take number of folder and files, that have to be returned (optional, default to 10)
+     * @param orderBy indicates a field to sort by (optional)
+     * @param desc indicates if sorting is descending (optional, default to false)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileGetFoldersAndFilesCall(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<FileVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FileVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersCopyFolderRequestBuilder(String id, String folderId) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersCopyFolder");
-    }
-    // verify the required parameter 'folderId' is set
-    if (folderId == null) {
-      throw new ApiException(400, "Missing the required parameter 'folderId' when calling exportFoldersCopyFolder");
-    }
+        Object localVarPostBody = null;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/ListFolderAndFiles"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Copy/{folderId}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()))
-        .replace("{folderId}", ApiClient.urlEncode(folderId.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Delete specified folder
-   * User with a Delete Entity permission can access this method.
-   * @param id folder id (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportFoldersDeleteFolder(String id) throws ApiException {
-    exportFoldersDeleteFolderWithHttpInfo(id);
-  }
-
-  /**
-   * Delete specified folder
-   * User with a Delete Entity permission can access this method.
-   * @param id folder id (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportFoldersDeleteFolderWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersDeleteFolderRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersDeleteFolder", localVarResponse);
+        if (skip != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("skip", skip));
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        if (take != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("take", take));
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersDeleteFolderRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersDeleteFolder");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get specified folder breadcrumbs
-   * User with a Get Entity permission can access this method.
-   * @param id folder id (required)
-   * @return BreadcrumbsVM
-   * @throws ApiException if fails to make API call
-   */
-  public BreadcrumbsVM exportFoldersGetBreadcrumbs(String id) throws ApiException {
-    ApiResponse<BreadcrumbsVM> localVarResponse = exportFoldersGetBreadcrumbsWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get specified folder breadcrumbs
-   * User with a Get Entity permission can access this method.
-   * @param id folder id (required)
-   * @return ApiResponse&lt;BreadcrumbsVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<BreadcrumbsVM> exportFoldersGetBreadcrumbsWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersGetBreadcrumbsRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersGetBreadcrumbs", localVarResponse);
+        if (orderBy != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderBy", orderBy));
         }
-        return new ApiResponse<BreadcrumbsVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<BreadcrumbsVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersGetBreadcrumbsRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersGetBreadcrumbs");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Breadcrumbs"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get specified folder
-   * User with a Get Entity permission can access this method.
-   * @param id folder id (required)
-   * @return FileVM
-   * @throws ApiException if fails to make API call
-   */
-  public FileVM exportFoldersGetFolder(String id) throws ApiException {
-    ApiResponse<FileVM> localVarResponse = exportFoldersGetFolderWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get specified folder
-   * User with a Get Entity permission can access this method.
-   * @param id folder id (required)
-   * @return ApiResponse&lt;FileVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FileVM> exportFoldersGetFolderWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersGetFolderRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersGetFolder", localVarResponse);
+        if (desc != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("desc", desc));
         }
-        return new ApiResponse<FileVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FileVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersGetFolderRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersGetFolder");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get all folders from specified folder
-   * User with a Get Entity permission can access this method.
-   * @param id folder id (required)
-   * @param skip number of files, that have to be skipped (optional, default to 0)
-   * @param take number of files, that have to be returned (optional, default to 10)
-   * @param orderBy  (optional)
-   * @param desc  (optional, default to false)
-   * @param searchPattern  (optional, default to )
-   * @param useRegex  (optional, default to false)
-   * @return FilesVM
-   * @throws ApiException if fails to make API call
-   */
-  public FilesVM exportFoldersGetFolders(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
-    ApiResponse<FilesVM> localVarResponse = exportFoldersGetFoldersWithHttpInfo(id, skip, take, orderBy, desc, searchPattern, useRegex);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get all folders from specified folder
-   * User with a Get Entity permission can access this method.
-   * @param id folder id (required)
-   * @param skip number of files, that have to be skipped (optional, default to 0)
-   * @param take number of files, that have to be returned (optional, default to 10)
-   * @param orderBy  (optional)
-   * @param desc  (optional, default to false)
-   * @param searchPattern  (optional, default to )
-   * @param useRegex  (optional, default to false)
-   * @return ApiResponse&lt;FilesVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FilesVM> exportFoldersGetFoldersWithHttpInfo(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersGetFoldersRequestBuilder(id, skip, take, orderBy, desc, searchPattern, useRegex);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersGetFolders", localVarResponse);
+        if (searchPattern != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("searchPattern", searchPattern));
         }
-        return new ApiResponse<FilesVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FilesVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersGetFoldersRequestBuilder(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersGetFolders");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/ListFolders"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "skip";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("skip", skip));
-    localVarQueryParameterBaseName = "take";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("take", take));
-    localVarQueryParameterBaseName = "orderBy";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("orderBy", orderBy));
-    localVarQueryParameterBaseName = "desc";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("desc", desc));
-    localVarQueryParameterBaseName = "searchPattern";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("searchPattern", searchPattern));
-    localVarQueryParameterBaseName = "useRegex";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("useRegex", useRegex));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get count of folders what contains in a specified folder
-   * User with a Get Count permission can access this method.
-   * @param id folder id (required)
-   * @return CountVM
-   * @throws ApiException if fails to make API call
-   */
-  public CountVM exportFoldersGetFoldersCount(String id) throws ApiException {
-    ApiResponse<CountVM> localVarResponse = exportFoldersGetFoldersCountWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get count of folders what contains in a specified folder
-   * User with a Get Count permission can access this method.
-   * @param id folder id (required)
-   * @return ApiResponse&lt;CountVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CountVM> exportFoldersGetFoldersCountWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersGetFoldersCountRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersGetFoldersCount", localVarResponse);
+        if (useRegex != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("useRegex", useRegex));
         }
-        return new ApiResponse<CountVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<CountVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersGetFoldersCountRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersGetFoldersCount");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/CountFolders"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get specified folder
-   * User with a Get Entity permission can access this method.
-   * @param name folder name (optional)
-   * @param subscriptionId subscriptionId (optional)
-   * @param parentId parent folder id (optional)
-   * @return FileVM
-   * @throws ApiException if fails to make API call
-   */
-  public FileVM exportFoldersGetOrCreate(String name, String subscriptionId, String parentId) throws ApiException {
-    ApiResponse<FileVM> localVarResponse = exportFoldersGetOrCreateWithHttpInfo(name, subscriptionId, parentId);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get specified folder
-   * User with a Get Entity permission can access this method.
-   * @param name folder name (optional)
-   * @param subscriptionId subscriptionId (optional)
-   * @param parentId parent folder id (optional)
-   * @return ApiResponse&lt;FileVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FileVM> exportFoldersGetOrCreateWithHttpInfo(String name, String subscriptionId, String parentId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersGetOrCreateRequestBuilder(name, subscriptionId, parentId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersGetOrCreate", localVarResponse);
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<FileVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FileVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersGetOrCreateRequestBuilder(String name, String subscriptionId, String parentId) throws ApiException {
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/getOrCreate";
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "name";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("name", name));
-    localVarQueryParameterBaseName = "subscriptionId";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("subscriptionId", subscriptionId));
-    localVarQueryParameterBaseName = "parentId";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("parentId", parentId));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get all folder permissions
-   * 
-   * @param id  (required)
-   * @return FilePermissionsVM
-   * @throws ApiException if fails to make API call
-   */
-  public FilePermissionsVM exportFoldersGetPermissions(String id) throws ApiException {
-    ApiResponse<FilePermissionsVM> localVarResponse = exportFoldersGetPermissionsWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get all folder permissions
-   * 
-   * @param id  (required)
-   * @return ApiResponse&lt;FilePermissionsVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FilePermissionsVM> exportFoldersGetPermissionsWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersGetPermissionsRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersGetPermissions", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<FilePermissionsVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FilePermissionsVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersGetPermissionsRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersGetPermissions");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/permissions"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get user&#39;s root folder (without parents)
-   * &gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
-   * @param subscriptionId  (optional)
-   * @return FileVM
-   * @throws ApiException if fails to make API call
-   */
-  public FileVM exportFoldersGetRootFolder(String subscriptionId) throws ApiException {
-    ApiResponse<FileVM> localVarResponse = exportFoldersGetRootFolderWithHttpInfo(subscriptionId);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get user&#39;s root folder (without parents)
-   * &gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
-   * @param subscriptionId  (optional)
-   * @return ApiResponse&lt;FileVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FileVM> exportFoldersGetRootFolderWithHttpInfo(String subscriptionId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersGetRootFolderRequestBuilder(subscriptionId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersGetRootFolder", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFolderAndFileGetFoldersAndFilesValidateBeforeCall(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFolderAndFileGetFoldersAndFiles(Async)");
         }
-        return new ApiResponse<FileVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FileVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersGetRootFolderRequestBuilder(String subscriptionId) throws ApiException {
+        return exportFolderAndFileGetFoldersAndFilesCall(id, skip, take, orderBy, desc, searchPattern, useRegex, _callback);
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Root";
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "subscriptionId";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("subscriptionId", subscriptionId));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Get all folders and files from specified folder
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @param skip number of folder and files, that have to be skipped (optional, default to 0)
+     * @param take number of folder and files, that have to be returned (optional, default to 10)
+     * @param orderBy indicates a field to sort by (optional)
+     * @param desc indicates if sorting is descending (optional, default to false)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @return FilesVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FilesVM exportFolderAndFileGetFoldersAndFiles(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
+        ApiResponse<FilesVM> localVarResp = exportFolderAndFileGetFoldersAndFilesWithHttpInfo(id, skip, take, orderBy, desc, searchPattern, useRegex);
+        return localVarResp.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Move folder to a specified folder
-   * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
-   * @param id moving folder id (required)
-   * @param folderId destination folder id (required)
-   * @return FileVM
-   * @throws ApiException if fails to make API call
-   */
-  public FileVM exportFoldersMoveFolder(String id, String folderId) throws ApiException {
-    ApiResponse<FileVM> localVarResponse = exportFoldersMoveFolderWithHttpInfo(id, folderId);
-    return localVarResponse.getData();
-  }
 
-  /**
-   * Move folder to a specified folder
-   * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
-   * @param id moving folder id (required)
-   * @param folderId destination folder id (required)
-   * @return ApiResponse&lt;FileVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FileVM> exportFoldersMoveFolderWithHttpInfo(String id, String folderId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersMoveFolderRequestBuilder(id, folderId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersMoveFolder", localVarResponse);
+    /**
+     * Get all folders and files from specified folder
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @param skip number of folder and files, that have to be skipped (optional, default to 0)
+     * @param take number of folder and files, that have to be returned (optional, default to 10)
+     * @param orderBy indicates a field to sort by (optional)
+     * @param desc indicates if sorting is descending (optional, default to false)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @return ApiResponse&lt;FilesVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FilesVM> exportFolderAndFileGetFoldersAndFilesWithHttpInfo(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
+        okhttp3.Call localVarCall = exportFolderAndFileGetFoldersAndFilesValidateBeforeCall(id, skip, take, orderBy, desc, searchPattern, useRegex, null);
+        Type localVarReturnType = new TypeToken<FilesVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get all folders and files from specified folder (asynchronously)
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @param skip number of folder and files, that have to be skipped (optional, default to 0)
+     * @param take number of folder and files, that have to be returned (optional, default to 10)
+     * @param orderBy indicates a field to sort by (optional)
+     * @param desc indicates if sorting is descending (optional, default to false)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileGetFoldersAndFilesAsync(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback<FilesVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFolderAndFileGetFoldersAndFilesValidateBeforeCall(id, skip, take, orderBy, desc, searchPattern, useRegex, _callback);
+        Type localVarReturnType = new TypeToken<FilesVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFolderAndFileGetRecycleBinFoldersAndFiles
+     * @param subscriptionId subscription id (required)
+     * @param skip number of folder and files, that have to be skipped (optional, default to 0)
+     * @param take number of folder and files, that have to be returned (optional, default to 10)
+     * @param orderBy indicates a field to sort by (optional)
+     * @param desc indicates if sorting is descending (optional, default to false)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileGetRecycleBinFoldersAndFilesCall(String subscriptionId, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<FileVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FileVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersMoveFolderRequestBuilder(String id, String folderId) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersMoveFolder");
-    }
-    // verify the required parameter 'folderId' is set
-    if (folderId == null) {
-      throw new ApiException(400, "Missing the required parameter 'folderId' when calling exportFoldersMoveFolder");
-    }
+        Object localVarPostBody = null;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/ListRecycleBinFolderAndFiles"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
 
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Move/{folderId}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()))
-        .replace("{folderId}", ApiClient.urlEncode(folderId.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Move specified folder to recycle bin
-   * User with a Delete Entity permission can access this method.
-   * @param id folder id (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportFoldersMoveFolderToBin(String id) throws ApiException {
-    exportFoldersMoveFolderToBinWithHttpInfo(id);
-  }
-
-  /**
-   * Move specified folder to recycle bin
-   * User with a Delete Entity permission can access this method.
-   * @param id folder id (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportFoldersMoveFolderToBinWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersMoveFolderToBinRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersMoveFolderToBin", localVarResponse);
+        if (skip != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("skip", skip));
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        if (take != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("take", take));
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersMoveFolderToBinRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersMoveFolderToBin");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/ToBin"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Create folder
-   * User with a Create Entity permisison can access this method.
-   * @param id Identifier of parent folder id (required)
-   * @param exportFolderCreateVM create VM (optional)
-   * @return FileVM
-   * @throws ApiException if fails to make API call
-   */
-  public FileVM exportFoldersPostFolder(String id, ExportFolderCreateVM exportFolderCreateVM) throws ApiException {
-    ApiResponse<FileVM> localVarResponse = exportFoldersPostFolderWithHttpInfo(id, exportFolderCreateVM);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Create folder
-   * User with a Create Entity permisison can access this method.
-   * @param id Identifier of parent folder id (required)
-   * @param exportFolderCreateVM create VM (optional)
-   * @return ApiResponse&lt;FileVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FileVM> exportFoldersPostFolderWithHttpInfo(String id, ExportFolderCreateVM exportFolderCreateVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersPostFolderRequestBuilder(id, exportFolderCreateVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersPostFolder", localVarResponse);
+        if (orderBy != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderBy", orderBy));
         }
-        return new ApiResponse<FileVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FileVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersPostFolderRequestBuilder(String id, ExportFolderCreateVM exportFolderCreateVM) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersPostFolder");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Folder"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(exportFolderCreateVM);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Recover specified folder
-   * User with a Delete Entity permission can access this method.
-   * @param id folder id (required)
-   * @param recoveryPath  (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportFoldersRecoverFolder(String id, String recoveryPath) throws ApiException {
-    exportFoldersRecoverFolderWithHttpInfo(id, recoveryPath);
-  }
-
-  /**
-   * Recover specified folder
-   * User with a Delete Entity permission can access this method.
-   * @param id folder id (required)
-   * @param recoveryPath  (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportFoldersRecoverFolderWithHttpInfo(String id, String recoveryPath) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersRecoverFolderRequestBuilder(id, recoveryPath);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersRecoverFolder", localVarResponse);
+        if (desc != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("desc", desc));
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        if (searchPattern != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("searchPattern", searchPattern));
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersRecoverFolderRequestBuilder(String id, String recoveryPath) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersRecoverFolder");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Recover"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "recoveryPath";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("recoveryPath", recoveryPath));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Rename a folder
-   * User with a Update Name permision can access this method.
-   * @param id  (required)
-   * @param folderRenameVM  (optional)
-   * @return FileVM
-   * @throws ApiException if fails to make API call
-   */
-  public FileVM exportFoldersRenameFolder(String id, FolderRenameVM folderRenameVM) throws ApiException {
-    ApiResponse<FileVM> localVarResponse = exportFoldersRenameFolderWithHttpInfo(id, folderRenameVM);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Rename a folder
-   * User with a Update Name permision can access this method.
-   * @param id  (required)
-   * @param folderRenameVM  (optional)
-   * @return ApiResponse&lt;FileVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FileVM> exportFoldersRenameFolderWithHttpInfo(String id, FolderRenameVM folderRenameVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersRenameFolderRequestBuilder(id, folderRenameVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersRenameFolder", localVarResponse);
+        if (useRegex != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("useRegex", useRegex));
         }
-        return new ApiResponse<FileVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FileVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersRenameFolderRequestBuilder(String id, FolderRenameVM folderRenameVM) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersRenameFolder");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Rename"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(folderRenameVM);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Update a folder&#39;s icon
-   * User with a Update Icon permission can access this method.
-   * @param id Identifier of folder (required)
-   * @param folderIconVM Update icon model (optional)
-   * @return FileVM
-   * @throws ApiException if fails to make API call
-   */
-  public FileVM exportFoldersUpdateIcon(String id, FolderIconVM folderIconVM) throws ApiException {
-    ApiResponse<FileVM> localVarResponse = exportFoldersUpdateIconWithHttpInfo(id, folderIconVM);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Update a folder&#39;s icon
-   * User with a Update Icon permission can access this method.
-   * @param id Identifier of folder (required)
-   * @param folderIconVM Update icon model (optional)
-   * @return ApiResponse&lt;FileVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FileVM> exportFoldersUpdateIconWithHttpInfo(String id, FolderIconVM folderIconVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersUpdateIconRequestBuilder(id, folderIconVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersUpdateIcon", localVarResponse);
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<FileVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FileVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersUpdateIconRequestBuilder(String id, FolderIconVM folderIconVM) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersUpdateIcon");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Icon"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(folderIconVM);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Update permissions
-   * 
-   * @param id  (required)
-   * @param updateFilePermissionsVM  (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportFoldersUpdatePermissions(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
-    exportFoldersUpdatePermissionsWithHttpInfo(id, updateFilePermissionsVM);
-  }
-
-  /**
-   * Update permissions
-   * 
-   * @param id  (required)
-   * @param updateFilePermissionsVM  (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportFoldersUpdatePermissionsWithHttpInfo(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersUpdatePermissionsRequestBuilder(id, updateFilePermissionsVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersUpdatePermissions", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFolderAndFileGetRecycleBinFoldersAndFilesValidateBeforeCall(String subscriptionId, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileGetRecycleBinFoldersAndFiles(Async)");
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersUpdatePermissionsRequestBuilder(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersUpdatePermissions");
+        return exportFolderAndFileGetRecycleBinFoldersAndFilesCall(subscriptionId, skip, take, orderBy, desc, searchPattern, useRegex, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/{id}/permissions"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateFilePermissionsVM);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
+    /**
+     * Get all folders and files from recycle bin
+     * User with a Get DeletedFiles permission can access this method.
+     * @param subscriptionId subscription id (required)
+     * @param skip number of folder and files, that have to be skipped (optional, default to 0)
+     * @param take number of folder and files, that have to be returned (optional, default to 10)
+     * @param orderBy indicates a field to sort by (optional)
+     * @param desc indicates if sorting is descending (optional, default to false)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @return FilesVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FilesVM exportFolderAndFileGetRecycleBinFoldersAndFiles(String subscriptionId, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
+        ApiResponse<FilesVM> localVarResp = exportFolderAndFileGetRecycleBinFoldersAndFilesWithHttpInfo(subscriptionId, skip, take, orderBy, desc, searchPattern, useRegex);
+        return localVarResp.getData();
     }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Update tags
-   * User with a Update Tags permission can access this method.
-   * @param id  (required)
-   * @param folderTagsUpdateVM  (optional)
-   * @return FileVM
-   * @throws ApiException if fails to make API call
-   */
-  public FileVM exportFoldersUpdateTags(String id, FolderTagsUpdateVM folderTagsUpdateVM) throws ApiException {
-    ApiResponse<FileVM> localVarResponse = exportFoldersUpdateTagsWithHttpInfo(id, folderTagsUpdateVM);
-    return localVarResponse.getData();
-  }
 
-  /**
-   * Update tags
-   * User with a Update Tags permission can access this method.
-   * @param id  (required)
-   * @param folderTagsUpdateVM  (optional)
-   * @return ApiResponse&lt;FileVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FileVM> exportFoldersUpdateTagsWithHttpInfo(String id, FolderTagsUpdateVM folderTagsUpdateVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportFoldersUpdateTagsRequestBuilder(id, folderTagsUpdateVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportFoldersUpdateTags", localVarResponse);
+    /**
+     * Get all folders and files from recycle bin
+     * User with a Get DeletedFiles permission can access this method.
+     * @param subscriptionId subscription id (required)
+     * @param skip number of folder and files, that have to be skipped (optional, default to 0)
+     * @param take number of folder and files, that have to be returned (optional, default to 10)
+     * @param orderBy indicates a field to sort by (optional)
+     * @param desc indicates if sorting is descending (optional, default to false)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @return ApiResponse&lt;FilesVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FilesVM> exportFolderAndFileGetRecycleBinFoldersAndFilesWithHttpInfo(String subscriptionId, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
+        okhttp3.Call localVarCall = exportFolderAndFileGetRecycleBinFoldersAndFilesValidateBeforeCall(subscriptionId, skip, take, orderBy, desc, searchPattern, useRegex, null);
+        Type localVarReturnType = new TypeToken<FilesVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get all folders and files from recycle bin (asynchronously)
+     * User with a Get DeletedFiles permission can access this method.
+     * @param subscriptionId subscription id (required)
+     * @param skip number of folder and files, that have to be skipped (optional, default to 0)
+     * @param take number of folder and files, that have to be returned (optional, default to 10)
+     * @param orderBy indicates a field to sort by (optional)
+     * @param desc indicates if sorting is descending (optional, default to false)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileGetRecycleBinFoldersAndFilesAsync(String subscriptionId, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback<FilesVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFolderAndFileGetRecycleBinFoldersAndFilesValidateBeforeCall(subscriptionId, skip, take, orderBy, desc, searchPattern, useRegex, _callback);
+        Type localVarReturnType = new TypeToken<FilesVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFolderAndFileMoveFiles
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been moved </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileMoveFilesCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<FileVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FileVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportFoldersUpdateTagsRequestBuilder(String id, FolderTagsUpdateVM folderTagsUpdateVM) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportFoldersUpdateTags");
-    }
+        Object localVarPostBody = selectedFilesVM;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/MoveFiles"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
 
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/UpdateTags"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(folderTagsUpdateVM);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Copy file to a specified folder
-   * 
-   * @param id file id (required)
-   * @param folderId folder id (required)
-   * @return ExportVM
-   * @throws ApiException if fails to make API call
-   */
-  public ExportVM exportsCopyFile(String id, String folderId) throws ApiException {
-    ApiResponse<ExportVM> localVarResponse = exportsCopyFileWithHttpInfo(id, folderId);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Copy file to a specified folder
-   * 
-   * @param id file id (required)
-   * @param folderId folder id (required)
-   * @return ApiResponse&lt;ExportVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ExportVM> exportsCopyFileWithHttpInfo(String id, String folderId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsCopyFileRequestBuilder(id, folderId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsCopyFile", localVarResponse);
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<ExportVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ExportVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsCopyFileRequestBuilder(String id, String folderId) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsCopyFile");
-    }
-    // verify the required parameter 'folderId' is set
-    if (folderId == null) {
-      throw new ApiException(400, "Missing the required parameter 'folderId' when calling exportsCopyFile");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/File/{id}/Copy/{folderId}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()))
-        .replace("{folderId}", ApiClient.urlEncode(folderId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Delete specified file
-   * User with Delete permission can access the method.
-   * @param id file id (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportsDeleteFile(String id) throws ApiException {
-    exportsDeleteFileWithHttpInfo(id);
-  }
-
-  /**
-   * Delete specified file
-   * User with Delete permission can access the method.
-   * @param id file id (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportsDeleteFileWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsDeleteFileRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsDeleteFile", localVarResponse);
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFolderAndFileMoveFilesValidateBeforeCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileMoveFiles(Async)");
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsDeleteFileRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsDeleteFile");
+        return exportFolderAndFileMoveFilesCall(subscriptionId, selectedFilesVM, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/File/{id}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Move folders and files to a specified folder
+     * User with a Update Place permission for a files and Create permission for a destination folder can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been moved </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportFolderAndFileMoveFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
+        exportFolderAndFileMoveFilesWithHttpInfo(subscriptionId, selectedFilesVM);
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * 
-   * 
-   * @param id  (required)
-   * @return ExportVM
-   * @throws ApiException if fails to make API call
-   */
-  public ExportVM exportsGetFile(String id) throws ApiException {
-    ApiResponse<ExportVM> localVarResponse = exportsGetFileWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
 
-  /**
-   * 
-   * 
-   * @param id  (required)
-   * @return ApiResponse&lt;ExportVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ExportVM> exportsGetFileWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsGetFileRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsGetFile", localVarResponse);
+    /**
+     * Move folders and files to a specified folder
+     * User with a Update Place permission for a files and Create permission for a destination folder can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been moved </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportFolderAndFileMoveFilesWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
+        okhttp3.Call localVarCall = exportFolderAndFileMoveFilesValidateBeforeCall(subscriptionId, selectedFilesVM, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Move folders and files to a specified folder (asynchronously)
+     * User with a Update Place permission for a files and Create permission for a destination folder can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been moved </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileMoveFilesAsync(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFolderAndFileMoveFilesValidateBeforeCall(subscriptionId, selectedFilesVM, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFolderAndFileMoveFilesToBin
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been moved to bin </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileMoveFilesToBinCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<ExportVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ExportVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsGetFileRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsGetFile");
-    }
+        Object localVarPostBody = selectedFilesVM;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/ToBin"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
 
-    String localVarPath = "/api/rp/v1/Exports/File/{id}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns list of actions, performed on this file
-   * 
-   * @param id  (required)
-   * @param skip  (optional, default to 0)
-   * @param take  (optional, default to 10)
-   * @return AuditActionsVM
-   * @throws ApiException if fails to make API call
-   */
-  public AuditActionsVM exportsGetFileHistory(String id, Integer skip, Integer take) throws ApiException {
-    ApiResponse<AuditActionsVM> localVarResponse = exportsGetFileHistoryWithHttpInfo(id, skip, take);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Returns list of actions, performed on this file
-   * 
-   * @param id  (required)
-   * @param skip  (optional, default to 0)
-   * @param take  (optional, default to 10)
-   * @return ApiResponse&lt;AuditActionsVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<AuditActionsVM> exportsGetFileHistoryWithHttpInfo(String id, Integer skip, Integer take) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsGetFileHistoryRequestBuilder(id, skip, take);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsGetFileHistory", localVarResponse);
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<AuditActionsVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<AuditActionsVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsGetFileHistoryRequestBuilder(String id, Integer skip, Integer take) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsGetFileHistory");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/File/{id}/History"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "skip";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("skip", skip));
-    localVarQueryParameterBaseName = "take";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("take", take));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get count of files what contains in a specified folder
-   * User with Get Count permission can access this method.
-   * @param id folder id (required)
-   * @return CountVM
-   * @throws ApiException if fails to make API call
-   */
-  public CountVM exportsGetFilesCount(String id) throws ApiException {
-    ApiResponse<CountVM> localVarResponse = exportsGetFilesCountWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get count of files what contains in a specified folder
-   * User with Get Count permission can access this method.
-   * @param id folder id (required)
-   * @return ApiResponse&lt;CountVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CountVM> exportsGetFilesCountWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsGetFilesCountRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsGetFilesCount", localVarResponse);
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<CountVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<CountVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsGetFilesCountRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsGetFilesCount");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/CountFiles"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
-   * 
-   * @param id folder id (required)
-   * @param skip number of files, that have to be skipped (optional, default to 0)
-   * @param take number of files, that have to be returned (optional, default to 10)
-   * @param searchPattern  (optional)
-   * @param orderBy  (optional)
-   * @param desc  (optional, default to false)
-   * @param useRegex  (optional, default to false)
-   * @return ExportsVM
-   * @throws ApiException if fails to make API call
-   */
-  public ExportsVM exportsGetFilesList(String id, Integer skip, Integer take, String searchPattern, FileSorting orderBy, Boolean desc, Boolean useRegex) throws ApiException {
-    ApiResponse<ExportsVM> localVarResponse = exportsGetFilesListWithHttpInfo(id, skip, take, searchPattern, orderBy, desc, useRegex);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
-   * 
-   * @param id folder id (required)
-   * @param skip number of files, that have to be skipped (optional, default to 0)
-   * @param take number of files, that have to be returned (optional, default to 10)
-   * @param searchPattern  (optional)
-   * @param orderBy  (optional)
-   * @param desc  (optional, default to false)
-   * @param useRegex  (optional, default to false)
-   * @return ApiResponse&lt;ExportsVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ExportsVM> exportsGetFilesListWithHttpInfo(String id, Integer skip, Integer take, String searchPattern, FileSorting orderBy, Boolean desc, Boolean useRegex) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsGetFilesListRequestBuilder(id, skip, take, searchPattern, orderBy, desc, useRegex);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsGetFilesList", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFolderAndFileMoveFilesToBinValidateBeforeCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileMoveFilesToBin(Async)");
         }
-        return new ApiResponse<ExportsVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ExportsVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsGetFilesListRequestBuilder(String id, Integer skip, Integer take, String searchPattern, FileSorting orderBy, Boolean desc, Boolean useRegex) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsGetFilesList");
+        return exportFolderAndFileMoveFilesToBinCall(subscriptionId, selectedFilesVM, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/Folder/{id}/ListFiles"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "skip";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("skip", skip));
-    localVarQueryParameterBaseName = "take";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("take", take));
-    localVarQueryParameterBaseName = "searchPattern";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("searchPattern", searchPattern));
-    localVarQueryParameterBaseName = "orderBy";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("orderBy", orderBy));
-    localVarQueryParameterBaseName = "desc";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("desc", desc));
-    localVarQueryParameterBaseName = "useRegex";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("useRegex", useRegex));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    /**
+     * Move folders and files to bin
+     * User with a Delete permission can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been moved to bin </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportFolderAndFileMoveFilesToBin(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
+        exportFolderAndFileMoveFilesToBinWithHttpInfo(subscriptionId, selectedFilesVM);
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Move folders and files to bin
+     * User with a Delete permission can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been moved to bin </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportFolderAndFileMoveFilesToBinWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
+        okhttp3.Call localVarCall = exportFolderAndFileMoveFilesToBinValidateBeforeCall(subscriptionId, selectedFilesVM, null);
+        return localVarApiClient.execute(localVarCall);
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get all file permissions
-   * 
-   * @param id  (required)
-   * @return FilePermissionsVM
-   * @throws ApiException if fails to make API call
-   */
-  public FilePermissionsVM exportsGetPermissions(String id) throws ApiException {
-    ApiResponse<FilePermissionsVM> localVarResponse = exportsGetPermissionsWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
 
-  /**
-   * Get all file permissions
-   * 
-   * @param id  (required)
-   * @return ApiResponse&lt;FilePermissionsVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<FilePermissionsVM> exportsGetPermissionsWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsGetPermissionsRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsGetPermissions", localVarResponse);
+    /**
+     * Move folders and files to bin (asynchronously)
+     * User with a Delete permission can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been moved to bin </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileMoveFilesToBinAsync(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFolderAndFileMoveFilesToBinValidateBeforeCall(subscriptionId, selectedFilesVM, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFolderAndFileRecoverAllFromRecycleBin
+     * @param subscriptionId subscription id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files in bin have been restored </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileRecoverAllFromRecycleBinCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<FilePermissionsVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<FilePermissionsVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsGetPermissionsRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsGetPermissions");
-    }
+        Object localVarPostBody = null;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/RecoverRecycleBin"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
 
-    String localVarPath = "/api/rp/v1/Exports/File/{id}/permissions"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Move file to a specified folder
-   * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
-   * @param id file id (required)
-   * @param folderId folder id (required)
-   * @return ExportVM
-   * @throws ApiException if fails to make API call
-   */
-  public ExportVM exportsMoveFile(String id, String folderId) throws ApiException {
-    ApiResponse<ExportVM> localVarResponse = exportsMoveFileWithHttpInfo(id, folderId);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Move file to a specified folder
-   * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
-   * @param id file id (required)
-   * @param folderId folder id (required)
-   * @return ApiResponse&lt;ExportVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ExportVM> exportsMoveFileWithHttpInfo(String id, String folderId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsMoveFileRequestBuilder(id, folderId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsMoveFile", localVarResponse);
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<ExportVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ExportVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsMoveFileRequestBuilder(String id, String folderId) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsMoveFile");
-    }
-    // verify the required parameter 'folderId' is set
-    if (folderId == null) {
-      throw new ApiException(400, "Missing the required parameter 'folderId' when calling exportsMoveFile");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/File/{id}/Move/{folderId}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()))
-        .replace("{folderId}", ApiClient.urlEncode(folderId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Move specified file to recycle bin
-   * User with Delete permission can access the method.
-   * @param id file id (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportsMoveFileToBin(String id) throws ApiException {
-    exportsMoveFileToBinWithHttpInfo(id);
-  }
-
-  /**
-   * Move specified file to recycle bin
-   * User with Delete permission can access the method.
-   * @param id file id (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportsMoveFileToBinWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsMoveFileToBinRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsMoveFileToBin", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFolderAndFileRecoverAllFromRecycleBinValidateBeforeCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileRecoverAllFromRecycleBin(Async)");
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsMoveFileToBinRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsMoveFileToBin");
+        return exportFolderAndFileRecoverAllFromRecycleBinCall(subscriptionId, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/File/{id}/ToBin"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Recover all folders and files from recycle bin
+     * User with a Create RecycleBin permission can access this method.
+     * @param subscriptionId subscription id (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files in bin have been restored </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportFolderAndFileRecoverAllFromRecycleBin(String subscriptionId) throws ApiException {
+        exportFolderAndFileRecoverAllFromRecycleBinWithHttpInfo(subscriptionId);
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Recover specified file from bin
-   * User with Delete permission can access the method.
-   * @param id file id (required)
-   * @param recoveryPath  (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportsRecoverFile(String id, String recoveryPath) throws ApiException {
-    exportsRecoverFileWithHttpInfo(id, recoveryPath);
-  }
 
-  /**
-   * Recover specified file from bin
-   * User with Delete permission can access the method.
-   * @param id file id (required)
-   * @param recoveryPath  (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportsRecoverFileWithHttpInfo(String id, String recoveryPath) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsRecoverFileRequestBuilder(id, recoveryPath);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsRecoverFile", localVarResponse);
+    /**
+     * Recover all folders and files from recycle bin
+     * User with a Create RecycleBin permission can access this method.
+     * @param subscriptionId subscription id (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files in bin have been restored </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportFolderAndFileRecoverAllFromRecycleBinWithHttpInfo(String subscriptionId) throws ApiException {
+        okhttp3.Call localVarCall = exportFolderAndFileRecoverAllFromRecycleBinValidateBeforeCall(subscriptionId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Recover all folders and files from recycle bin (asynchronously)
+     * User with a Create RecycleBin permission can access this method.
+     * @param subscriptionId subscription id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files in bin have been restored </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileRecoverAllFromRecycleBinAsync(String subscriptionId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFolderAndFileRecoverAllFromRecycleBinValidateBeforeCall(subscriptionId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFolderAndFileRecoverFiles
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been recovered </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileRecoverFilesCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        Object localVarPostBody = selectedFilesVM;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/RecoverFiles"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsRecoverFileRequestBuilder(String id, String recoveryPath) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsRecoverFile");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/File/{id}/Recover"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "recoveryPath";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("recoveryPath", recoveryPath));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Rename a file
-   * User with Update Name permission can access this method.
-   * @param id  (required)
-   * @param fileRenameVM  (optional)
-   * @return ExportVM
-   * @throws ApiException if fails to make API call
-   */
-  public ExportVM exportsRenameFile(String id, FileRenameVM fileRenameVM) throws ApiException {
-    ApiResponse<ExportVM> localVarResponse = exportsRenameFileWithHttpInfo(id, fileRenameVM);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Rename a file
-   * User with Update Name permission can access this method.
-   * @param id  (required)
-   * @param fileRenameVM  (optional)
-   * @return ApiResponse&lt;ExportVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ExportVM> exportsRenameFileWithHttpInfo(String id, FileRenameVM fileRenameVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsRenameFileRequestBuilder(id, fileRenameVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsRenameFile", localVarResponse);
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<ExportVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ExportVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsRenameFileRequestBuilder(String id, FileRenameVM fileRenameVM) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsRenameFile");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/File/{id}/Rename"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(fileRenameVM);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Update a files&#39;s icon
-   * User with Update Icon permission can access this method.
-   * @param id  (required)
-   * @param fileIconVM  (optional)
-   * @return ExportVM
-   * @throws ApiException if fails to make API call
-   */
-  public ExportVM exportsUpdateIcon(String id, FileIconVM fileIconVM) throws ApiException {
-    ApiResponse<ExportVM> localVarResponse = exportsUpdateIconWithHttpInfo(id, fileIconVM);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Update a files&#39;s icon
-   * User with Update Icon permission can access this method.
-   * @param id  (required)
-   * @param fileIconVM  (optional)
-   * @return ApiResponse&lt;ExportVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ExportVM> exportsUpdateIconWithHttpInfo(String id, FileIconVM fileIconVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsUpdateIconRequestBuilder(id, fileIconVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsUpdateIcon", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFolderAndFileRecoverFilesValidateBeforeCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileRecoverFiles(Async)");
         }
-        return new ApiResponse<ExportVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ExportVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsUpdateIconRequestBuilder(String id, FileIconVM fileIconVM) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsUpdateIcon");
+        return exportFolderAndFileRecoverFilesCall(subscriptionId, selectedFilesVM, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/File/{id}/Icon"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(fileIconVM);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
+    /**
+     * Recover folders and files from bin
+     * User with a SubscriptionCreate permission can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been recovered </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportFolderAndFileRecoverFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
+        exportFolderAndFileRecoverFilesWithHttpInfo(subscriptionId, selectedFilesVM);
     }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Update permissions
-   * 
-   * @param id  (required)
-   * @param updateFilePermissionsVM  (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void exportsUpdatePermissions(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
-    exportsUpdatePermissionsWithHttpInfo(id, updateFilePermissionsVM);
-  }
 
-  /**
-   * Update permissions
-   * 
-   * @param id  (required)
-   * @param updateFilePermissionsVM  (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> exportsUpdatePermissionsWithHttpInfo(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsUpdatePermissionsRequestBuilder(id, updateFilePermissionsVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsUpdatePermissions", localVarResponse);
+    /**
+     * Recover folders and files from bin
+     * User with a SubscriptionCreate permission can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been recovered </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportFolderAndFileRecoverFilesWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
+        okhttp3.Call localVarCall = exportFolderAndFileRecoverFilesValidateBeforeCall(subscriptionId, selectedFilesVM, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Recover folders and files from bin (asynchronously)
+     * User with a SubscriptionCreate permission can access this method.
+     * @param subscriptionId id of current subscription (required)
+     * @param selectedFilesVM VM with files&#39; ids and params of their destination (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> All folders and files have been recovered </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileRecoverFilesAsync(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFolderAndFileRecoverFilesValidateBeforeCall(subscriptionId, selectedFilesVM, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersCalculateFolderSize
+     * @param id folder id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersCalculateFolderSizeCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/size"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsUpdatePermissionsRequestBuilder(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsUpdatePermissions");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/rp/v1/Exports/File/{id}/permissions"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateFilePermissionsVM);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Update tags
-   * User with Update Tags permission can access this method.
-   * @param id  (required)
-   * @param fileTagsUpdateVM  (optional)
-   * @return ExportVM
-   * @throws ApiException if fails to make API call
-   */
-  public ExportVM exportsUpdateTags(String id, FileTagsUpdateVM fileTagsUpdateVM) throws ApiException {
-    ApiResponse<ExportVM> localVarResponse = exportsUpdateTagsWithHttpInfo(id, fileTagsUpdateVM);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Update tags
-   * User with Update Tags permission can access this method.
-   * @param id  (required)
-   * @param fileTagsUpdateVM  (optional)
-   * @return ApiResponse&lt;ExportVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ExportVM> exportsUpdateTagsWithHttpInfo(String id, FileTagsUpdateVM fileTagsUpdateVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportsUpdateTagsRequestBuilder(id, fileTagsUpdateVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("exportsUpdateTags", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<ExportVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ExportVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder exportsUpdateTagsRequestBuilder(String id, FileTagsUpdateVM fileTagsUpdateVM) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling exportsUpdateTags");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersCalculateFolderSizeValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersCalculateFolderSize(Async)");
+        }
 
-    String localVarPath = "/api/rp/v1/Exports/File/{id}/UpdateTags"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
+        return exportFoldersCalculateFolderSizeCall(id, _callback);
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(fileTagsUpdateVM);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
     }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+
+    /**
+     * Get specified folder, calculate it&#39;s size
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @return FolderSizeVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FolderSizeVM exportFoldersCalculateFolderSize(String id) throws ApiException {
+        ApiResponse<FolderSizeVM> localVarResp = exportFoldersCalculateFolderSizeWithHttpInfo(id);
+        return localVarResp.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Get specified folder, calculate it&#39;s size
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @return ApiResponse&lt;FolderSizeVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FolderSizeVM> exportFoldersCalculateFolderSizeWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersCalculateFolderSizeValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<FolderSizeVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
-    return localVarRequestBuilder;
-  }
+
+    /**
+     * Get specified folder, calculate it&#39;s size (asynchronously)
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersCalculateFolderSizeAsync(String id, final ApiCallback<FolderSizeVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersCalculateFolderSizeValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<FolderSizeVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersCopyFolder
+     * @param id moving folder id (required)
+     * @param folderId destination folder id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersCopyFolderCall(String id, String folderId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Copy/{folderId}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()))
+            .replace("{" + "folderId" + "}", localVarApiClient.escapeString(folderId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersCopyFolderValidateBeforeCall(String id, String folderId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersCopyFolder(Async)");
+        }
+
+        // verify the required parameter 'folderId' is set
+        if (folderId == null) {
+            throw new ApiException("Missing the required parameter 'folderId' when calling exportFoldersCopyFolder(Async)");
+        }
+
+        return exportFoldersCopyFolderCall(id, folderId, _callback);
+
+    }
+
+    /**
+     * Move folder to a specified folder
+     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
+     * @param id moving folder id (required)
+     * @param folderId destination folder id (required)
+     * @return FileVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FileVM exportFoldersCopyFolder(String id, String folderId) throws ApiException {
+        ApiResponse<FileVM> localVarResp = exportFoldersCopyFolderWithHttpInfo(id, folderId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Move folder to a specified folder
+     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
+     * @param id moving folder id (required)
+     * @param folderId destination folder id (required)
+     * @return ApiResponse&lt;FileVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FileVM> exportFoldersCopyFolderWithHttpInfo(String id, String folderId) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersCopyFolderValidateBeforeCall(id, folderId, null);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Move folder to a specified folder (asynchronously)
+     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
+     * @param id moving folder id (required)
+     * @param folderId destination folder id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersCopyFolderAsync(String id, String folderId, final ApiCallback<FileVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersCopyFolderValidateBeforeCall(id, folderId, _callback);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersDeleteFolder
+     * @param id folder id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersDeleteFolderCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersDeleteFolderValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersDeleteFolder(Async)");
+        }
+
+        return exportFoldersDeleteFolderCall(id, _callback);
+
+    }
+
+    /**
+     * Delete specified folder
+     * User with a Delete Entity permission can access this method.
+     * @param id folder id (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportFoldersDeleteFolder(String id) throws ApiException {
+        exportFoldersDeleteFolderWithHttpInfo(id);
+    }
+
+    /**
+     * Delete specified folder
+     * User with a Delete Entity permission can access this method.
+     * @param id folder id (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportFoldersDeleteFolderWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersDeleteFolderValidateBeforeCall(id, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Delete specified folder (asynchronously)
+     * User with a Delete Entity permission can access this method.
+     * @param id folder id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersDeleteFolderAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersDeleteFolderValidateBeforeCall(id, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersGetBreadcrumbs
+     * @param id folder id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns breadcrumbs parents list (starts from root folder) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetBreadcrumbsCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Breadcrumbs"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersGetBreadcrumbsValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersGetBreadcrumbs(Async)");
+        }
+
+        return exportFoldersGetBreadcrumbsCall(id, _callback);
+
+    }
+
+    /**
+     * Get specified folder breadcrumbs
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @return BreadcrumbsVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns breadcrumbs parents list (starts from root folder) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public BreadcrumbsVM exportFoldersGetBreadcrumbs(String id) throws ApiException {
+        ApiResponse<BreadcrumbsVM> localVarResp = exportFoldersGetBreadcrumbsWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get specified folder breadcrumbs
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @return ApiResponse&lt;BreadcrumbsVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns breadcrumbs parents list (starts from root folder) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<BreadcrumbsVM> exportFoldersGetBreadcrumbsWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersGetBreadcrumbsValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<BreadcrumbsVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get specified folder breadcrumbs (asynchronously)
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns breadcrumbs parents list (starts from root folder) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetBreadcrumbsAsync(String id, final ApiCallback<BreadcrumbsVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersGetBreadcrumbsValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<BreadcrumbsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersGetFolder
+     * @param id folder id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetFolderCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersGetFolderValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersGetFolder(Async)");
+        }
+
+        return exportFoldersGetFolderCall(id, _callback);
+
+    }
+
+    /**
+     * Get specified folder
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @return FileVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FileVM exportFoldersGetFolder(String id) throws ApiException {
+        ApiResponse<FileVM> localVarResp = exportFoldersGetFolderWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get specified folder
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @return ApiResponse&lt;FileVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FileVM> exportFoldersGetFolderWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersGetFolderValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get specified folder (asynchronously)
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetFolderAsync(String id, final ApiCallback<FileVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersGetFolderValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersGetFolders
+     * @param id folder id (required)
+     * @param skip number of files, that have to be skipped (optional, default to 0)
+     * @param take number of files, that have to be returned (optional, default to 10)
+     * @param orderBy  (optional)
+     * @param desc  (optional, default to false)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Gets all folders from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetFoldersCall(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/ListFolders"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (skip != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("skip", skip));
+        }
+
+        if (take != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("take", take));
+        }
+
+        if (orderBy != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderBy", orderBy));
+        }
+
+        if (desc != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("desc", desc));
+        }
+
+        if (searchPattern != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("searchPattern", searchPattern));
+        }
+
+        if (useRegex != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("useRegex", useRegex));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersGetFoldersValidateBeforeCall(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersGetFolders(Async)");
+        }
+
+        return exportFoldersGetFoldersCall(id, skip, take, orderBy, desc, searchPattern, useRegex, _callback);
+
+    }
+
+    /**
+     * Get all folders from specified folder
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @param skip number of files, that have to be skipped (optional, default to 0)
+     * @param take number of files, that have to be returned (optional, default to 10)
+     * @param orderBy  (optional)
+     * @param desc  (optional, default to false)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @return FilesVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Gets all folders from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FilesVM exportFoldersGetFolders(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
+        ApiResponse<FilesVM> localVarResp = exportFoldersGetFoldersWithHttpInfo(id, skip, take, orderBy, desc, searchPattern, useRegex);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get all folders from specified folder
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @param skip number of files, that have to be skipped (optional, default to 0)
+     * @param take number of files, that have to be returned (optional, default to 10)
+     * @param orderBy  (optional)
+     * @param desc  (optional, default to false)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @return ApiResponse&lt;FilesVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Gets all folders from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FilesVM> exportFoldersGetFoldersWithHttpInfo(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersGetFoldersValidateBeforeCall(id, skip, take, orderBy, desc, searchPattern, useRegex, null);
+        Type localVarReturnType = new TypeToken<FilesVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get all folders from specified folder (asynchronously)
+     * User with a Get Entity permission can access this method.
+     * @param id folder id (required)
+     * @param skip number of files, that have to be skipped (optional, default to 0)
+     * @param take number of files, that have to be returned (optional, default to 10)
+     * @param orderBy  (optional)
+     * @param desc  (optional, default to false)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Gets all folders from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetFoldersAsync(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback<FilesVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersGetFoldersValidateBeforeCall(id, skip, take, orderBy, desc, searchPattern, useRegex, _callback);
+        Type localVarReturnType = new TypeToken<FilesVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersGetFoldersCount
+     * @param id folder id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns count of folders in a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetFoldersCountCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/CountFolders"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersGetFoldersCountValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersGetFoldersCount(Async)");
+        }
+
+        return exportFoldersGetFoldersCountCall(id, _callback);
+
+    }
+
+    /**
+     * Get count of folders what contains in a specified folder
+     * User with a Get Count permission can access this method.
+     * @param id folder id (required)
+     * @return CountVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns count of folders in a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public CountVM exportFoldersGetFoldersCount(String id) throws ApiException {
+        ApiResponse<CountVM> localVarResp = exportFoldersGetFoldersCountWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get count of folders what contains in a specified folder
+     * User with a Get Count permission can access this method.
+     * @param id folder id (required)
+     * @return ApiResponse&lt;CountVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns count of folders in a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<CountVM> exportFoldersGetFoldersCountWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersGetFoldersCountValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<CountVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get count of folders what contains in a specified folder (asynchronously)
+     * User with a Get Count permission can access this method.
+     * @param id folder id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns count of folders in a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetFoldersCountAsync(String id, final ApiCallback<CountVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersGetFoldersCountValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<CountVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersGetOrCreate
+     * @param name folder name (optional)
+     * @param subscriptionId subscriptionId (optional)
+     * @param parentId parent folder id (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetOrCreateCall(String name, String subscriptionId, String parentId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/getOrCreate";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (name != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("name", name));
+        }
+
+        if (subscriptionId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("subscriptionId", subscriptionId));
+        }
+
+        if (parentId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("parentId", parentId));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersGetOrCreateValidateBeforeCall(String name, String subscriptionId, String parentId, final ApiCallback _callback) throws ApiException {
+        return exportFoldersGetOrCreateCall(name, subscriptionId, parentId, _callback);
+
+    }
+
+    /**
+     * Get specified folder
+     * User with a Get Entity permission can access this method.
+     * @param name folder name (optional)
+     * @param subscriptionId subscriptionId (optional)
+     * @param parentId parent folder id (optional)
+     * @return FileVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FileVM exportFoldersGetOrCreate(String name, String subscriptionId, String parentId) throws ApiException {
+        ApiResponse<FileVM> localVarResp = exportFoldersGetOrCreateWithHttpInfo(name, subscriptionId, parentId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get specified folder
+     * User with a Get Entity permission can access this method.
+     * @param name folder name (optional)
+     * @param subscriptionId subscriptionId (optional)
+     * @param parentId parent folder id (optional)
+     * @return ApiResponse&lt;FileVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FileVM> exportFoldersGetOrCreateWithHttpInfo(String name, String subscriptionId, String parentId) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersGetOrCreateValidateBeforeCall(name, subscriptionId, parentId, null);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get specified folder (asynchronously)
+     * User with a Get Entity permission can access this method.
+     * @param name folder name (optional)
+     * @param subscriptionId subscriptionId (optional)
+     * @param parentId parent folder id (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetOrCreateAsync(String name, String subscriptionId, String parentId, final ApiCallback<FileVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersGetOrCreateValidateBeforeCall(name, subscriptionId, parentId, _callback);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersGetPermissions
+     * @param id  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> returned permissions </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> folder is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetPermissionsCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/permissions"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersGetPermissionsValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersGetPermissions(Async)");
+        }
+
+        return exportFoldersGetPermissionsCall(id, _callback);
+
+    }
+
+    /**
+     * Get all folder permissions
+     * 
+     * @param id  (required)
+     * @return FilePermissionsVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> returned permissions </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> folder is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FilePermissionsVM exportFoldersGetPermissions(String id) throws ApiException {
+        ApiResponse<FilePermissionsVM> localVarResp = exportFoldersGetPermissionsWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get all folder permissions
+     * 
+     * @param id  (required)
+     * @return ApiResponse&lt;FilePermissionsVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> returned permissions </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> folder is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FilePermissionsVM> exportFoldersGetPermissionsWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersGetPermissionsValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<FilePermissionsVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get all folder permissions (asynchronously)
+     * 
+     * @param id  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> returned permissions </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> folder is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetPermissionsAsync(String id, final ApiCallback<FilePermissionsVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersGetPermissionsValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<FilePermissionsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersGetRootFolder
+     * @param subscriptionId  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Gets user&#39;s root folder (without parents) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error with the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found subscription </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> No permissions to get root folder </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetRootFolderCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Root";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (subscriptionId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("subscriptionId", subscriptionId));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersGetRootFolderValidateBeforeCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
+        return exportFoldersGetRootFolderCall(subscriptionId, _callback);
+
+    }
+
+    /**
+     * Get user&#39;s root folder (without parents)
+     * &gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
+     * @param subscriptionId  (optional)
+     * @return FileVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Gets user&#39;s root folder (without parents) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error with the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found subscription </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> No permissions to get root folder </td><td>  -  </td></tr>
+     </table>
+     */
+    public FileVM exportFoldersGetRootFolder(String subscriptionId) throws ApiException {
+        ApiResponse<FileVM> localVarResp = exportFoldersGetRootFolderWithHttpInfo(subscriptionId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get user&#39;s root folder (without parents)
+     * &gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
+     * @param subscriptionId  (optional)
+     * @return ApiResponse&lt;FileVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Gets user&#39;s root folder (without parents) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error with the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found subscription </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> No permissions to get root folder </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FileVM> exportFoldersGetRootFolderWithHttpInfo(String subscriptionId) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersGetRootFolderValidateBeforeCall(subscriptionId, null);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get user&#39;s root folder (without parents) (asynchronously)
+     * &gt; Breakchange. Now user model doesn&#39;t contain a root folders.  This method can return error 400 and 404 when subscription is not found.
+     * @param subscriptionId  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Gets user&#39;s root folder (without parents) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Error with the request. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found subscription </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> No permissions to get root folder </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersGetRootFolderAsync(String subscriptionId, final ApiCallback<FileVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersGetRootFolderValidateBeforeCall(subscriptionId, _callback);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersMoveFolder
+     * @param id moving folder id (required)
+     * @param folderId destination folder id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersMoveFolderCall(String id, String folderId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Move/{folderId}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()))
+            .replace("{" + "folderId" + "}", localVarApiClient.escapeString(folderId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersMoveFolderValidateBeforeCall(String id, String folderId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersMoveFolder(Async)");
+        }
+
+        // verify the required parameter 'folderId' is set
+        if (folderId == null) {
+            throw new ApiException("Missing the required parameter 'folderId' when calling exportFoldersMoveFolder(Async)");
+        }
+
+        return exportFoldersMoveFolderCall(id, folderId, _callback);
+
+    }
+
+    /**
+     * Move folder to a specified folder
+     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
+     * @param id moving folder id (required)
+     * @param folderId destination folder id (required)
+     * @return FileVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FileVM exportFoldersMoveFolder(String id, String folderId) throws ApiException {
+        ApiResponse<FileVM> localVarResp = exportFoldersMoveFolderWithHttpInfo(id, folderId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Move folder to a specified folder
+     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
+     * @param id moving folder id (required)
+     * @param folderId destination folder id (required)
+     * @return ApiResponse&lt;FileVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FileVM> exportFoldersMoveFolderWithHttpInfo(String id, String folderId) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersMoveFolderValidateBeforeCall(id, folderId, null);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Move folder to a specified folder (asynchronously)
+     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
+     * @param id moving folder id (required)
+     * @param folderId destination folder id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersMoveFolderAsync(String id, String folderId, final ApiCallback<FileVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersMoveFolderValidateBeforeCall(id, folderId, _callback);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersMoveFolderToBin
+     * @param id folder id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersMoveFolderToBinCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/ToBin"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersMoveFolderToBinValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersMoveFolderToBin(Async)");
+        }
+
+        return exportFoldersMoveFolderToBinCall(id, _callback);
+
+    }
+
+    /**
+     * Move specified folder to recycle bin
+     * User with a Delete Entity permission can access this method.
+     * @param id folder id (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportFoldersMoveFolderToBin(String id) throws ApiException {
+        exportFoldersMoveFolderToBinWithHttpInfo(id);
+    }
+
+    /**
+     * Move specified folder to recycle bin
+     * User with a Delete Entity permission can access this method.
+     * @param id folder id (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportFoldersMoveFolderToBinWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersMoveFolderToBinValidateBeforeCall(id, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Move specified folder to recycle bin (asynchronously)
+     * User with a Delete Entity permission can access this method.
+     * @param id folder id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersMoveFolderToBinAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersMoveFolderToBinValidateBeforeCall(id, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersPostFolder
+     * @param id Identifier of parent folder id (required)
+     * @param exportFolderCreateVM create VM (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> New folder has been created) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Parent folder id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> parent folder/subscription not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersPostFolderCall(String id, ExportFolderCreateVM exportFolderCreateVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = exportFolderCreateVM;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Folder"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersPostFolderValidateBeforeCall(String id, ExportFolderCreateVM exportFolderCreateVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersPostFolder(Async)");
+        }
+
+        return exportFoldersPostFolderCall(id, exportFolderCreateVM, _callback);
+
+    }
+
+    /**
+     * Create folder
+     * User with a Create Entity permisison can access this method.
+     * @param id Identifier of parent folder id (required)
+     * @param exportFolderCreateVM create VM (optional)
+     * @return FileVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> New folder has been created) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Parent folder id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> parent folder/subscription not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FileVM exportFoldersPostFolder(String id, ExportFolderCreateVM exportFolderCreateVM) throws ApiException {
+        ApiResponse<FileVM> localVarResp = exportFoldersPostFolderWithHttpInfo(id, exportFolderCreateVM);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Create folder
+     * User with a Create Entity permisison can access this method.
+     * @param id Identifier of parent folder id (required)
+     * @param exportFolderCreateVM create VM (optional)
+     * @return ApiResponse&lt;FileVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> New folder has been created) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Parent folder id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> parent folder/subscription not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FileVM> exportFoldersPostFolderWithHttpInfo(String id, ExportFolderCreateVM exportFolderCreateVM) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersPostFolderValidateBeforeCall(id, exportFolderCreateVM, null);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Create folder (asynchronously)
+     * User with a Create Entity permisison can access this method.
+     * @param id Identifier of parent folder id (required)
+     * @param exportFolderCreateVM create VM (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> New folder has been created) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Parent folder id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> parent folder/subscription not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersPostFolderAsync(String id, ExportFolderCreateVM exportFolderCreateVM, final ApiCallback<FileVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersPostFolderValidateBeforeCall(id, exportFolderCreateVM, _callback);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersRecoverFolder
+     * @param id folder id (required)
+     * @param recoveryPath  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Folder succesfully restored from bin </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersRecoverFolderCall(String id, String recoveryPath, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Recover"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (recoveryPath != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recoveryPath", recoveryPath));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersRecoverFolderValidateBeforeCall(String id, String recoveryPath, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersRecoverFolder(Async)");
+        }
+
+        return exportFoldersRecoverFolderCall(id, recoveryPath, _callback);
+
+    }
+
+    /**
+     * Recover specified folder
+     * User with a Delete Entity permission can access this method.
+     * @param id folder id (required)
+     * @param recoveryPath  (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Folder succesfully restored from bin </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportFoldersRecoverFolder(String id, String recoveryPath) throws ApiException {
+        exportFoldersRecoverFolderWithHttpInfo(id, recoveryPath);
+    }
+
+    /**
+     * Recover specified folder
+     * User with a Delete Entity permission can access this method.
+     * @param id folder id (required)
+     * @param recoveryPath  (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Folder succesfully restored from bin </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportFoldersRecoverFolderWithHttpInfo(String id, String recoveryPath) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersRecoverFolderValidateBeforeCall(id, recoveryPath, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Recover specified folder (asynchronously)
+     * User with a Delete Entity permission can access this method.
+     * @param id folder id (required)
+     * @param recoveryPath  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Folder succesfully restored from bin </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersRecoverFolderAsync(String id, String recoveryPath, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersRecoverFolderValidateBeforeCall(id, recoveryPath, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersRenameFolder
+     * @param id  (required)
+     * @param folderRenameVM  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder name has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersRenameFolderCall(String id, FolderRenameVM folderRenameVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = folderRenameVM;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Rename"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersRenameFolderValidateBeforeCall(String id, FolderRenameVM folderRenameVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersRenameFolder(Async)");
+        }
+
+        return exportFoldersRenameFolderCall(id, folderRenameVM, _callback);
+
+    }
+
+    /**
+     * Rename a folder
+     * User with a Update Name permision can access this method.
+     * @param id  (required)
+     * @param folderRenameVM  (optional)
+     * @return FileVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder name has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FileVM exportFoldersRenameFolder(String id, FolderRenameVM folderRenameVM) throws ApiException {
+        ApiResponse<FileVM> localVarResp = exportFoldersRenameFolderWithHttpInfo(id, folderRenameVM);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Rename a folder
+     * User with a Update Name permision can access this method.
+     * @param id  (required)
+     * @param folderRenameVM  (optional)
+     * @return ApiResponse&lt;FileVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder name has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FileVM> exportFoldersRenameFolderWithHttpInfo(String id, FolderRenameVM folderRenameVM) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersRenameFolderValidateBeforeCall(id, folderRenameVM, null);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Rename a folder (asynchronously)
+     * User with a Update Name permision can access this method.
+     * @param id  (required)
+     * @param folderRenameVM  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder name has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersRenameFolderAsync(String id, FolderRenameVM folderRenameVM, final ApiCallback<FileVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersRenameFolderValidateBeforeCall(id, folderRenameVM, _callback);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersUpdateIcon
+     * @param id Identifier of folder (required)
+     * @param folderIconVM Update icon model (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder&#39;s icon has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersUpdateIconCall(String id, FolderIconVM folderIconVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = folderIconVM;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/Icon"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersUpdateIconValidateBeforeCall(String id, FolderIconVM folderIconVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersUpdateIcon(Async)");
+        }
+
+        return exportFoldersUpdateIconCall(id, folderIconVM, _callback);
+
+    }
+
+    /**
+     * Update a folder&#39;s icon
+     * User with a Update Icon permission can access this method.
+     * @param id Identifier of folder (required)
+     * @param folderIconVM Update icon model (optional)
+     * @return FileVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder&#39;s icon has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FileVM exportFoldersUpdateIcon(String id, FolderIconVM folderIconVM) throws ApiException {
+        ApiResponse<FileVM> localVarResp = exportFoldersUpdateIconWithHttpInfo(id, folderIconVM);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update a folder&#39;s icon
+     * User with a Update Icon permission can access this method.
+     * @param id Identifier of folder (required)
+     * @param folderIconVM Update icon model (optional)
+     * @return ApiResponse&lt;FileVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder&#39;s icon has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FileVM> exportFoldersUpdateIconWithHttpInfo(String id, FolderIconVM folderIconVM) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersUpdateIconValidateBeforeCall(id, folderIconVM, null);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update a folder&#39;s icon (asynchronously)
+     * User with a Update Icon permission can access this method.
+     * @param id Identifier of folder (required)
+     * @param folderIconVM Update icon model (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Folder&#39;s icon has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersUpdateIconAsync(String id, FolderIconVM folderIconVM, final ApiCallback<FileVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersUpdateIconValidateBeforeCall(id, folderIconVM, _callback);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersUpdatePermissions
+     * @param id  (required)
+     * @param updateFilePermissionsVM  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersUpdatePermissionsCall(String id, UpdateFilePermissionsVM updateFilePermissionsVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateFilePermissionsVM;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/{id}/permissions"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersUpdatePermissionsValidateBeforeCall(String id, UpdateFilePermissionsVM updateFilePermissionsVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersUpdatePermissions(Async)");
+        }
+
+        return exportFoldersUpdatePermissionsCall(id, updateFilePermissionsVM, _callback);
+
+    }
+
+    /**
+     * Update permissions
+     * 
+     * @param id  (required)
+     * @param updateFilePermissionsVM  (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportFoldersUpdatePermissions(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
+        exportFoldersUpdatePermissionsWithHttpInfo(id, updateFilePermissionsVM);
+    }
+
+    /**
+     * Update permissions
+     * 
+     * @param id  (required)
+     * @param updateFilePermissionsVM  (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportFoldersUpdatePermissionsWithHttpInfo(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersUpdatePermissionsValidateBeforeCall(id, updateFilePermissionsVM, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Update permissions (asynchronously)
+     * 
+     * @param id  (required)
+     * @param updateFilePermissionsVM  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersUpdatePermissionsAsync(String id, UpdateFilePermissionsVM updateFilePermissionsVM, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersUpdatePermissionsValidateBeforeCall(id, updateFilePermissionsVM, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFoldersUpdateTags
+     * @param id  (required)
+     * @param folderTagsUpdateVM  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Tags has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or Tags is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersUpdateTagsCall(String id, FolderTagsUpdateVM folderTagsUpdateVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = folderTagsUpdateVM;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/UpdateTags"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFoldersUpdateTagsValidateBeforeCall(String id, FolderTagsUpdateVM folderTagsUpdateVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportFoldersUpdateTags(Async)");
+        }
+
+        return exportFoldersUpdateTagsCall(id, folderTagsUpdateVM, _callback);
+
+    }
+
+    /**
+     * Update tags
+     * User with a Update Tags permission can access this method.
+     * @param id  (required)
+     * @param folderTagsUpdateVM  (optional)
+     * @return FileVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Tags has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or Tags is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FileVM exportFoldersUpdateTags(String id, FolderTagsUpdateVM folderTagsUpdateVM) throws ApiException {
+        ApiResponse<FileVM> localVarResp = exportFoldersUpdateTagsWithHttpInfo(id, folderTagsUpdateVM);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update tags
+     * User with a Update Tags permission can access this method.
+     * @param id  (required)
+     * @param folderTagsUpdateVM  (optional)
+     * @return ApiResponse&lt;FileVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Tags has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or Tags is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FileVM> exportFoldersUpdateTagsWithHttpInfo(String id, FolderTagsUpdateVM folderTagsUpdateVM) throws ApiException {
+        okhttp3.Call localVarCall = exportFoldersUpdateTagsValidateBeforeCall(id, folderTagsUpdateVM, null);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update tags (asynchronously)
+     * User with a Update Tags permission can access this method.
+     * @param id  (required)
+     * @param folderTagsUpdateVM  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Tags has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or Tags is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFoldersUpdateTagsAsync(String id, FolderTagsUpdateVM folderTagsUpdateVM, final ApiCallback<FileVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFoldersUpdateTagsValidateBeforeCall(id, folderTagsUpdateVM, _callback);
+        Type localVarReturnType = new TypeToken<FileVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsCopyFile
+     * @param id file id (required)
+     * @param folderId folder id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been copied </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsCopyFileCall(String id, String folderId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/Copy/{folderId}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()))
+            .replace("{" + "folderId" + "}", localVarApiClient.escapeString(folderId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsCopyFileValidateBeforeCall(String id, String folderId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsCopyFile(Async)");
+        }
+
+        // verify the required parameter 'folderId' is set
+        if (folderId == null) {
+            throw new ApiException("Missing the required parameter 'folderId' when calling exportsCopyFile(Async)");
+        }
+
+        return exportsCopyFileCall(id, folderId, _callback);
+
+    }
+
+    /**
+     * Copy file to a specified folder
+     * 
+     * @param id file id (required)
+     * @param folderId folder id (required)
+     * @return ExportVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been copied </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ExportVM exportsCopyFile(String id, String folderId) throws ApiException {
+        ApiResponse<ExportVM> localVarResp = exportsCopyFileWithHttpInfo(id, folderId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Copy file to a specified folder
+     * 
+     * @param id file id (required)
+     * @param folderId folder id (required)
+     * @return ApiResponse&lt;ExportVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been copied </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ExportVM> exportsCopyFileWithHttpInfo(String id, String folderId) throws ApiException {
+        okhttp3.Call localVarCall = exportsCopyFileValidateBeforeCall(id, folderId, null);
+        Type localVarReturnType = new TypeToken<ExportVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Copy file to a specified folder (asynchronously)
+     * 
+     * @param id file id (required)
+     * @param folderId folder id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been copied </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsCopyFileAsync(String id, String folderId, final ApiCallback<ExportVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsCopyFileValidateBeforeCall(id, folderId, _callback);
+        Type localVarReturnType = new TypeToken<ExportVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsDeleteFile
+     * @param id file id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsDeleteFileCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsDeleteFileValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsDeleteFile(Async)");
+        }
+
+        return exportsDeleteFileCall(id, _callback);
+
+    }
+
+    /**
+     * Delete specified file
+     * User with Delete permission can access the method.
+     * @param id file id (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportsDeleteFile(String id) throws ApiException {
+        exportsDeleteFileWithHttpInfo(id);
+    }
+
+    /**
+     * Delete specified file
+     * User with Delete permission can access the method.
+     * @param id file id (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportsDeleteFileWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportsDeleteFileValidateBeforeCall(id, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Delete specified file (asynchronously)
+     * User with Delete permission can access the method.
+     * @param id file id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsDeleteFileAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsDeleteFileValidateBeforeCall(id, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsGetFile
+     * @param id  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsGetFileCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsGetFileValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsGetFile(Async)");
+        }
+
+        return exportsGetFileCall(id, _callback);
+
+    }
+
+    /**
+     * 
+     * 
+     * @param id  (required)
+     * @return ExportVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ExportVM exportsGetFile(String id) throws ApiException {
+        ApiResponse<ExportVM> localVarResp = exportsGetFileWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * 
+     * @param id  (required)
+     * @return ApiResponse&lt;ExportVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ExportVM> exportsGetFileWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportsGetFileValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<ExportVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * 
+     * @param id  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsGetFileAsync(String id, final ApiCallback<ExportVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsGetFileValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<ExportVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsGetFileHistory
+     * @param id  (required)
+     * @param skip  (optional, default to 0)
+     * @param take  (optional, default to 10)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsGetFileHistoryCall(String id, Integer skip, Integer take, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/History"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (skip != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("skip", skip));
+        }
+
+        if (take != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("take", take));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsGetFileHistoryValidateBeforeCall(String id, Integer skip, Integer take, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsGetFileHistory(Async)");
+        }
+
+        return exportsGetFileHistoryCall(id, skip, take, _callback);
+
+    }
+
+    /**
+     * Returns list of actions, performed on this file
+     * 
+     * @param id  (required)
+     * @param skip  (optional, default to 0)
+     * @param take  (optional, default to 10)
+     * @return AuditActionsVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public AuditActionsVM exportsGetFileHistory(String id, Integer skip, Integer take) throws ApiException {
+        ApiResponse<AuditActionsVM> localVarResp = exportsGetFileHistoryWithHttpInfo(id, skip, take);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Returns list of actions, performed on this file
+     * 
+     * @param id  (required)
+     * @param skip  (optional, default to 0)
+     * @param take  (optional, default to 10)
+     * @return ApiResponse&lt;AuditActionsVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<AuditActionsVM> exportsGetFileHistoryWithHttpInfo(String id, Integer skip, Integer take) throws ApiException {
+        okhttp3.Call localVarCall = exportsGetFileHistoryValidateBeforeCall(id, skip, take, null);
+        Type localVarReturnType = new TypeToken<AuditActionsVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns list of actions, performed on this file (asynchronously)
+     * 
+     * @param id  (required)
+     * @param skip  (optional, default to 0)
+     * @param take  (optional, default to 10)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsGetFileHistoryAsync(String id, Integer skip, Integer take, final ApiCallback<AuditActionsVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsGetFileHistoryValidateBeforeCall(id, skip, take, _callback);
+        Type localVarReturnType = new TypeToken<AuditActionsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsGetFilesCount
+     * @param id folder id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsGetFilesCountCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/CountFiles"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsGetFilesCountValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsGetFilesCount(Async)");
+        }
+
+        return exportsGetFilesCountCall(id, _callback);
+
+    }
+
+    /**
+     * Get count of files what contains in a specified folder
+     * User with Get Count permission can access this method.
+     * @param id folder id (required)
+     * @return CountVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public CountVM exportsGetFilesCount(String id) throws ApiException {
+        ApiResponse<CountVM> localVarResp = exportsGetFilesCountWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get count of files what contains in a specified folder
+     * User with Get Count permission can access this method.
+     * @param id folder id (required)
+     * @return ApiResponse&lt;CountVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<CountVM> exportsGetFilesCountWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportsGetFilesCountValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<CountVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get count of files what contains in a specified folder (asynchronously)
+     * User with Get Count permission can access this method.
+     * @param id folder id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsGetFilesCountAsync(String id, final ApiCallback<CountVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsGetFilesCountValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<CountVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsGetFilesList
+     * @param id folder id (required)
+     * @param skip number of files, that have to be skipped (optional, default to 0)
+     * @param take number of files, that have to be returned (optional, default to 10)
+     * @param searchPattern  (optional)
+     * @param orderBy  (optional)
+     * @param desc  (optional, default to false)
+     * @param useRegex  (optional, default to false)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsGetFilesListCall(String id, Integer skip, Integer take, String searchPattern, FileSorting orderBy, Boolean desc, Boolean useRegex, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/Folder/{id}/ListFiles"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (skip != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("skip", skip));
+        }
+
+        if (take != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("take", take));
+        }
+
+        if (searchPattern != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("searchPattern", searchPattern));
+        }
+
+        if (orderBy != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderBy", orderBy));
+        }
+
+        if (desc != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("desc", desc));
+        }
+
+        if (useRegex != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("useRegex", useRegex));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsGetFilesListValidateBeforeCall(String id, Integer skip, Integer take, String searchPattern, FileSorting orderBy, Boolean desc, Boolean useRegex, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsGetFilesList(Async)");
+        }
+
+        return exportsGetFilesListCall(id, skip, take, searchPattern, orderBy, desc, useRegex, _callback);
+
+    }
+
+    /**
+     * Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
+     * 
+     * @param id folder id (required)
+     * @param skip number of files, that have to be skipped (optional, default to 0)
+     * @param take number of files, that have to be returned (optional, default to 10)
+     * @param searchPattern  (optional)
+     * @param orderBy  (optional)
+     * @param desc  (optional, default to false)
+     * @param useRegex  (optional, default to false)
+     * @return ExportsVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ExportsVM exportsGetFilesList(String id, Integer skip, Integer take, String searchPattern, FileSorting orderBy, Boolean desc, Boolean useRegex) throws ApiException {
+        ApiResponse<ExportsVM> localVarResp = exportsGetFilesListWithHttpInfo(id, skip, take, searchPattern, orderBy, desc, useRegex);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
+     * 
+     * @param id folder id (required)
+     * @param skip number of files, that have to be skipped (optional, default to 0)
+     * @param take number of files, that have to be returned (optional, default to 10)
+     * @param searchPattern  (optional)
+     * @param orderBy  (optional)
+     * @param desc  (optional, default to false)
+     * @param useRegex  (optional, default to false)
+     * @return ApiResponse&lt;ExportsVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ExportsVM> exportsGetFilesListWithHttpInfo(String id, Integer skip, Integer take, String searchPattern, FileSorting orderBy, Boolean desc, Boolean useRegex) throws ApiException {
+        okhttp3.Call localVarCall = exportsGetFilesListValidateBeforeCall(id, skip, take, searchPattern, orderBy, desc, useRegex, null);
+        Type localVarReturnType = new TypeToken<ExportsVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason. (asynchronously)
+     * 
+     * @param id folder id (required)
+     * @param skip number of files, that have to be skipped (optional, default to 0)
+     * @param take number of files, that have to be returned (optional, default to 10)
+     * @param searchPattern  (optional)
+     * @param orderBy  (optional)
+     * @param desc  (optional, default to false)
+     * @param useRegex  (optional, default to false)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsGetFilesListAsync(String id, Integer skip, Integer take, String searchPattern, FileSorting orderBy, Boolean desc, Boolean useRegex, final ApiCallback<ExportsVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsGetFilesListValidateBeforeCall(id, skip, take, searchPattern, orderBy, desc, useRegex, _callback);
+        Type localVarReturnType = new TypeToken<ExportsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsGetPermissions
+     * @param id  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> got permissions successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> file is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsGetPermissionsCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/permissions"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsGetPermissionsValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsGetPermissions(Async)");
+        }
+
+        return exportsGetPermissionsCall(id, _callback);
+
+    }
+
+    /**
+     * Get all file permissions
+     * 
+     * @param id  (required)
+     * @return FilePermissionsVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> got permissions successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> file is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public FilePermissionsVM exportsGetPermissions(String id) throws ApiException {
+        ApiResponse<FilePermissionsVM> localVarResp = exportsGetPermissionsWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get all file permissions
+     * 
+     * @param id  (required)
+     * @return ApiResponse&lt;FilePermissionsVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> got permissions successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> file is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FilePermissionsVM> exportsGetPermissionsWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportsGetPermissionsValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<FilePermissionsVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get all file permissions (asynchronously)
+     * 
+     * @param id  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> got permissions successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> file is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsGetPermissionsAsync(String id, final ApiCallback<FilePermissionsVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsGetPermissionsValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<FilePermissionsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsMoveFile
+     * @param id file id (required)
+     * @param folderId folder id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been moved </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsMoveFileCall(String id, String folderId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/Move/{folderId}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()))
+            .replace("{" + "folderId" + "}", localVarApiClient.escapeString(folderId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsMoveFileValidateBeforeCall(String id, String folderId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsMoveFile(Async)");
+        }
+
+        // verify the required parameter 'folderId' is set
+        if (folderId == null) {
+            throw new ApiException("Missing the required parameter 'folderId' when calling exportsMoveFile(Async)");
+        }
+
+        return exportsMoveFileCall(id, folderId, _callback);
+
+    }
+
+    /**
+     * Move file to a specified folder
+     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
+     * @param id file id (required)
+     * @param folderId folder id (required)
+     * @return ExportVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been moved </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ExportVM exportsMoveFile(String id, String folderId) throws ApiException {
+        ApiResponse<ExportVM> localVarResp = exportsMoveFileWithHttpInfo(id, folderId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Move file to a specified folder
+     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
+     * @param id file id (required)
+     * @param folderId folder id (required)
+     * @return ApiResponse&lt;ExportVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been moved </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ExportVM> exportsMoveFileWithHttpInfo(String id, String folderId) throws ApiException {
+        okhttp3.Call localVarCall = exportsMoveFileValidateBeforeCall(id, folderId, null);
+        Type localVarReturnType = new TypeToken<ExportVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Move file to a specified folder (asynchronously)
+     * User with a Update Place permission for a folder and Create Entity  for a Parent Folder can access this method.
+     * @param id file id (required)
+     * @param folderId folder id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been moved </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsMoveFileAsync(String id, String folderId, final ApiCallback<ExportVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsMoveFileValidateBeforeCall(id, folderId, _callback);
+        Type localVarReturnType = new TypeToken<ExportVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsMoveFileToBin
+     * @param id file id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsMoveFileToBinCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/ToBin"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsMoveFileToBinValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsMoveFileToBin(Async)");
+        }
+
+        return exportsMoveFileToBinCall(id, _callback);
+
+    }
+
+    /**
+     * Move specified file to recycle bin
+     * User with Delete permission can access the method.
+     * @param id file id (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportsMoveFileToBin(String id) throws ApiException {
+        exportsMoveFileToBinWithHttpInfo(id);
+    }
+
+    /**
+     * Move specified file to recycle bin
+     * User with Delete permission can access the method.
+     * @param id file id (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportsMoveFileToBinWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportsMoveFileToBinValidateBeforeCall(id, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Move specified file to recycle bin (asynchronously)
+     * User with Delete permission can access the method.
+     * @param id file id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsMoveFileToBinAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsMoveFileToBinValidateBeforeCall(id, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsRecoverFile
+     * @param id file id (required)
+     * @param recoveryPath  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> File succesfully recovered </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsRecoverFileCall(String id, String recoveryPath, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/Recover"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (recoveryPath != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("recoveryPath", recoveryPath));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsRecoverFileValidateBeforeCall(String id, String recoveryPath, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsRecoverFile(Async)");
+        }
+
+        return exportsRecoverFileCall(id, recoveryPath, _callback);
+
+    }
+
+    /**
+     * Recover specified file from bin
+     * User with Delete permission can access the method.
+     * @param id file id (required)
+     * @param recoveryPath  (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> File succesfully recovered </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportsRecoverFile(String id, String recoveryPath) throws ApiException {
+        exportsRecoverFileWithHttpInfo(id, recoveryPath);
+    }
+
+    /**
+     * Recover specified file from bin
+     * User with Delete permission can access the method.
+     * @param id file id (required)
+     * @param recoveryPath  (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> File succesfully recovered </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportsRecoverFileWithHttpInfo(String id, String recoveryPath) throws ApiException {
+        okhttp3.Call localVarCall = exportsRecoverFileValidateBeforeCall(id, recoveryPath, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Recover specified file from bin (asynchronously)
+     * User with Delete permission can access the method.
+     * @param id file id (required)
+     * @param recoveryPath  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> File succesfully recovered </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsRecoverFileAsync(String id, String recoveryPath, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsRecoverFileValidateBeforeCall(id, recoveryPath, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsRenameFile
+     * @param id  (required)
+     * @param fileRenameVM  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File name has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsRenameFileCall(String id, FileRenameVM fileRenameVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = fileRenameVM;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/Rename"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsRenameFileValidateBeforeCall(String id, FileRenameVM fileRenameVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsRenameFile(Async)");
+        }
+
+        return exportsRenameFileCall(id, fileRenameVM, _callback);
+
+    }
+
+    /**
+     * Rename a file
+     * User with Update Name permission can access this method.
+     * @param id  (required)
+     * @param fileRenameVM  (optional)
+     * @return ExportVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File name has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ExportVM exportsRenameFile(String id, FileRenameVM fileRenameVM) throws ApiException {
+        ApiResponse<ExportVM> localVarResp = exportsRenameFileWithHttpInfo(id, fileRenameVM);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Rename a file
+     * User with Update Name permission can access this method.
+     * @param id  (required)
+     * @param fileRenameVM  (optional)
+     * @return ApiResponse&lt;ExportVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File name has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ExportVM> exportsRenameFileWithHttpInfo(String id, FileRenameVM fileRenameVM) throws ApiException {
+        okhttp3.Call localVarCall = exportsRenameFileValidateBeforeCall(id, fileRenameVM, null);
+        Type localVarReturnType = new TypeToken<ExportVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Rename a file (asynchronously)
+     * User with Update Name permission can access this method.
+     * @param id  (required)
+     * @param fileRenameVM  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File name has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsRenameFileAsync(String id, FileRenameVM fileRenameVM, final ApiCallback<ExportVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsRenameFileValidateBeforeCall(id, fileRenameVM, _callback);
+        Type localVarReturnType = new TypeToken<ExportVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsUpdateIcon
+     * @param id  (required)
+     * @param fileIconVM  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File&#39;s icon has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsUpdateIconCall(String id, FileIconVM fileIconVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = fileIconVM;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/Icon"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsUpdateIconValidateBeforeCall(String id, FileIconVM fileIconVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsUpdateIcon(Async)");
+        }
+
+        return exportsUpdateIconCall(id, fileIconVM, _callback);
+
+    }
+
+    /**
+     * Update a files&#39;s icon
+     * User with Update Icon permission can access this method.
+     * @param id  (required)
+     * @param fileIconVM  (optional)
+     * @return ExportVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File&#39;s icon has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ExportVM exportsUpdateIcon(String id, FileIconVM fileIconVM) throws ApiException {
+        ApiResponse<ExportVM> localVarResp = exportsUpdateIconWithHttpInfo(id, fileIconVM);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update a files&#39;s icon
+     * User with Update Icon permission can access this method.
+     * @param id  (required)
+     * @param fileIconVM  (optional)
+     * @return ApiResponse&lt;ExportVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File&#39;s icon has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ExportVM> exportsUpdateIconWithHttpInfo(String id, FileIconVM fileIconVM) throws ApiException {
+        okhttp3.Call localVarCall = exportsUpdateIconValidateBeforeCall(id, fileIconVM, null);
+        Type localVarReturnType = new TypeToken<ExportVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update a files&#39;s icon (asynchronously)
+     * User with Update Icon permission can access this method.
+     * @param id  (required)
+     * @param fileIconVM  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File&#39;s icon has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsUpdateIconAsync(String id, FileIconVM fileIconVM, final ApiCallback<ExportVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsUpdateIconValidateBeforeCall(id, fileIconVM, _callback);
+        Type localVarReturnType = new TypeToken<ExportVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsUpdatePermissions
+     * @param id  (required)
+     * @param updateFilePermissionsVM  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsUpdatePermissionsCall(String id, UpdateFilePermissionsVM updateFilePermissionsVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateFilePermissionsVM;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/permissions"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsUpdatePermissionsValidateBeforeCall(String id, UpdateFilePermissionsVM updateFilePermissionsVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsUpdatePermissions(Async)");
+        }
+
+        return exportsUpdatePermissionsCall(id, updateFilePermissionsVM, _callback);
+
+    }
+
+    /**
+     * Update permissions
+     * 
+     * @param id  (required)
+     * @param updateFilePermissionsVM  (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportsUpdatePermissions(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
+        exportsUpdatePermissionsWithHttpInfo(id, updateFilePermissionsVM);
+    }
+
+    /**
+     * Update permissions
+     * 
+     * @param id  (required)
+     * @param updateFilePermissionsVM  (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportsUpdatePermissionsWithHttpInfo(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
+        okhttp3.Call localVarCall = exportsUpdatePermissionsValidateBeforeCall(id, updateFilePermissionsVM, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Update permissions (asynchronously)
+     * 
+     * @param id  (required)
+     * @param updateFilePermissionsVM  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsUpdatePermissionsAsync(String id, UpdateFilePermissionsVM updateFilePermissionsVM, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsUpdatePermissionsValidateBeforeCall(id, updateFilePermissionsVM, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsUpdateTags
+     * @param id  (required)
+     * @param fileTagsUpdateVM  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Tags has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsUpdateTagsCall(String id, FileTagsUpdateVM fileTagsUpdateVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = fileTagsUpdateVM;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/UpdateTags"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsUpdateTagsValidateBeforeCall(String id, FileTagsUpdateVM fileTagsUpdateVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsUpdateTags(Async)");
+        }
+
+        return exportsUpdateTagsCall(id, fileTagsUpdateVM, _callback);
+
+    }
+
+    /**
+     * Update tags
+     * User with Update Tags permission can access this method.
+     * @param id  (required)
+     * @param fileTagsUpdateVM  (optional)
+     * @return ExportVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Tags has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ExportVM exportsUpdateTags(String id, FileTagsUpdateVM fileTagsUpdateVM) throws ApiException {
+        ApiResponse<ExportVM> localVarResp = exportsUpdateTagsWithHttpInfo(id, fileTagsUpdateVM);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update tags
+     * User with Update Tags permission can access this method.
+     * @param id  (required)
+     * @param fileTagsUpdateVM  (optional)
+     * @return ApiResponse&lt;ExportVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Tags has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ExportVM> exportsUpdateTagsWithHttpInfo(String id, FileTagsUpdateVM fileTagsUpdateVM) throws ApiException {
+        okhttp3.Call localVarCall = exportsUpdateTagsValidateBeforeCall(id, fileTagsUpdateVM, null);
+        Type localVarReturnType = new TypeToken<ExportVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update tags (asynchronously)
+     * User with Update Tags permission can access this method.
+     * @param id  (required)
+     * @param fileTagsUpdateVM  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Tags has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsUpdateTagsAsync(String id, FileTagsUpdateVM fileTagsUpdateVM, final ApiCallback<ExportVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsUpdateTagsValidateBeforeCall(id, fileTagsUpdateVM, _callback);
+        Type localVarReturnType = new TypeToken<ExportVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
 }

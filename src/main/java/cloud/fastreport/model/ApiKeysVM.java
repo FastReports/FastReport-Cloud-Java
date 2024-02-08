@@ -13,60 +13,69 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.ApiKeyVM;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * ApiKeysVM
  */
-@JsonPropertyOrder({
-  ApiKeysVM.JSON_PROPERTY_API_KEYS,
-  ApiKeysVM.JSON_PROPERTY_COUNT
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiKeysVM {
-  public static final String JSON_PROPERTY_API_KEYS = "apiKeys";
-  private JsonNullable<List<ApiKeyVM>> apiKeys = JsonNullable.<List<ApiKeyVM>>undefined();
+  public static final String SERIALIZED_NAME_API_KEYS = "apiKeys";
+  @SerializedName(SERIALIZED_NAME_API_KEYS)
+  private List<ApiKeyVM> apiKeys;
 
-  public static final String JSON_PROPERTY_COUNT = "count";
+  public static final String SERIALIZED_NAME_COUNT = "count";
+  @SerializedName(SERIALIZED_NAME_COUNT)
   private Long count;
 
-  public ApiKeysVM() { 
+  public ApiKeysVM() {
   }
 
   public ApiKeysVM apiKeys(List<ApiKeyVM> apiKeys) {
-    this.apiKeys = JsonNullable.<List<ApiKeyVM>>of(apiKeys);
+    this.apiKeys = apiKeys;
     return this;
   }
 
   public ApiKeysVM addApiKeysItem(ApiKeyVM apiKeysItem) {
-    if (this.apiKeys == null || !this.apiKeys.isPresent()) {
-      this.apiKeys = JsonNullable.<List<ApiKeyVM>>of(new ArrayList<>());
+    if (this.apiKeys == null) {
+      this.apiKeys = new ArrayList<>();
     }
-    try {
-      this.apiKeys.get().add(apiKeysItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.apiKeys.add(apiKeysItem);
     return this;
   }
 
@@ -75,26 +84,12 @@ public class ApiKeysVM {
    * @return apiKeys
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<ApiKeyVM> getApiKeys() {
-        return apiKeys.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_API_KEYS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<ApiKeyVM>> getApiKeys_JsonNullable() {
     return apiKeys;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_API_KEYS)
-  public void setApiKeys_JsonNullable(JsonNullable<List<ApiKeyVM>> apiKeys) {
-    this.apiKeys = apiKeys;
   }
 
   public void setApiKeys(List<ApiKeyVM> apiKeys) {
-    this.apiKeys = JsonNullable.<List<ApiKeyVM>>of(apiKeys);
+    this.apiKeys = apiKeys;
   }
 
 
@@ -108,24 +103,16 @@ public class ApiKeysVM {
    * @return count
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Long getCount() {
     return count;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCount(Long count) {
     this.count = count;
   }
 
 
-  /**
-   * Return true if this ApiKeysVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -135,7 +122,7 @@ public class ApiKeysVM {
       return false;
     }
     ApiKeysVM apiKeysVM = (ApiKeysVM) o;
-    return equalsNullable(this.apiKeys, apiKeysVM.apiKeys) &&
+    return Objects.equals(this.apiKeys, apiKeysVM.apiKeys) &&
         Objects.equals(this.count, apiKeysVM.count);
   }
 
@@ -145,7 +132,7 @@ public class ApiKeysVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(apiKeys), count);
+    return Objects.hash(apiKeys, count);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -176,54 +163,104 @@ public class ApiKeysVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("apiKeys");
+    openapiFields.add("count");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `apiKeys` to the URL query string
-    if (getApiKeys() != null) {
-      for (int i = 0; i < getApiKeys().size(); i++) {
-        if (getApiKeys().get(i) != null) {
-          joiner.add(getApiKeys().get(i).toUrlQueryString(String.format("%sapiKeys%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ApiKeysVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ApiKeysVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ApiKeysVM is not found in the empty JSON string", ApiKeysVM.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    // add `count` to the URL query string
-    if (getCount() != null) {
-      joiner.add(String.format("%scount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ApiKeysVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ApiKeysVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (jsonObj.get("apiKeys") != null && !jsonObj.get("apiKeys").isJsonNull()) {
+        JsonArray jsonArrayapiKeys = jsonObj.getAsJsonArray("apiKeys");
+        if (jsonArrayapiKeys != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("apiKeys").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `apiKeys` to be an array in the JSON string but got `%s`", jsonObj.get("apiKeys").toString()));
+          }
 
-    return joiner.toString();
+          // validate the optional field `apiKeys` (array)
+          for (int i = 0; i < jsonArrayapiKeys.size(); i++) {
+            ApiKeyVM.validateJsonElement(jsonArrayapiKeys.get(i));
+          };
+        }
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ApiKeysVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ApiKeysVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ApiKeysVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ApiKeysVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ApiKeysVM>() {
+           @Override
+           public void write(JsonWriter out, ApiKeysVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ApiKeysVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of ApiKeysVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ApiKeysVM
+  * @throws IOException if the JSON string is invalid with respect to ApiKeysVM
+  */
+  public static ApiKeysVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ApiKeysVM.class);
+  }
+
+ /**
+  * Convert an instance of ApiKeysVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

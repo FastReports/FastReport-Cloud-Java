@@ -10,408 +10,655 @@
  * Do not edit the class manually.
  */
 
+
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiCallback;
 import cloud.fastreport.ApiClient;
 import cloud.fastreport.ApiException;
 import cloud.fastreport.ApiResponse;
+import cloud.fastreport.Configuration;
 import cloud.fastreport.Pair;
+import cloud.fastreport.ProgressRequestBody;
+import cloud.fastreport.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
 
 import cloud.fastreport.model.GroupUsersVM;
 import cloud.fastreport.model.ProblemDetails;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.http.HttpRequest;
-import java.nio.channels.Channels;
-import java.nio.channels.Pipe;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.StringJoiner;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GroupUsersApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public GroupUsersApi() {
-    this(new ApiClient());
-  }
-
-  public GroupUsersApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public GroupUsersApi() {
+        this(Configuration.getDefaultApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Add user to the group by identifier
-   * 
-   * @param id Identifier of group (required)
-   * @param userId Identifier of user (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void groupUsersAddUserToGroup(String id, String userId) throws ApiException {
-    groupUsersAddUserToGroupWithHttpInfo(id, userId);
-  }
+    public GroupUsersApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
 
-  /**
-   * Add user to the group by identifier
-   * 
-   * @param id Identifier of group (required)
-   * @param userId Identifier of user (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> groupUsersAddUserToGroupWithHttpInfo(String id, String userId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = groupUsersAddUserToGroupRequestBuilder(id, userId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("groupUsersAddUserToGroup", localVarResponse);
+    public ApiClient getApiClient() {
+        return localVarApiClient;
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for groupUsersAddUserToGroup
+     * @param id Identifier of group (required)
+     * @param userId Identifier of user (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully retured </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call groupUsersAddUserToGroupCall(String id, String userId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Groups/{id}/Users/{userId}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()))
+            .replace("{" + "userId" + "}", localVarApiClient.escapeString(userId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder groupUsersAddUserToGroupRequestBuilder(String id, String userId) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling groupUsersAddUserToGroup");
-    }
-    // verify the required parameter 'userId' is set
-    if (userId == null) {
-      throw new ApiException(400, "Missing the required parameter 'userId' when calling groupUsersAddUserToGroup");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Groups/{id}/Users/{userId}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()))
-        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns users in the group by identifier
-   * 
-   * @param id Identifier of group (required)
-   * @param skip how many to skip (optional, default to 0)
-   * @param take how many to take (optional, default to 10)
-   * @return GroupUsersVM
-   * @throws ApiException if fails to make API call
-   */
-  public GroupUsersVM groupUsersGetUsersInGroup(String id, Integer skip, Integer take) throws ApiException {
-    ApiResponse<GroupUsersVM> localVarResponse = groupUsersGetUsersInGroupWithHttpInfo(id, skip, take);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Returns users in the group by identifier
-   * 
-   * @param id Identifier of group (required)
-   * @param skip how many to skip (optional, default to 0)
-   * @param take how many to take (optional, default to 10)
-   * @return ApiResponse&lt;GroupUsersVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<GroupUsersVM> groupUsersGetUsersInGroupWithHttpInfo(String id, Integer skip, Integer take) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = groupUsersGetUsersInGroupRequestBuilder(id, skip, take);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("groupUsersGetUsersInGroup", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<GroupUsersVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<GroupUsersVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder groupUsersGetUsersInGroupRequestBuilder(String id, Integer skip, Integer take) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling groupUsersGetUsersInGroup");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Groups/{id}/Users"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "skip";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("skip", skip));
-    localVarQueryParameterBaseName = "take";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("take", take));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Leave from the group
-   * 
-   * @param id Identifier of group (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void groupUsersLeaveFromGroup(String id) throws ApiException {
-    groupUsersLeaveFromGroupWithHttpInfo(id);
-  }
-
-  /**
-   * Leave from the group
-   * 
-   * @param id Identifier of group (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> groupUsersLeaveFromGroupWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = groupUsersLeaveFromGroupRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("groupUsersLeaveFromGroup", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call groupUsersAddUserToGroupValidateBeforeCall(String id, String userId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling groupUsersAddUserToGroup(Async)");
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        // verify the required parameter 'userId' is set
+        if (userId == null) {
+            throw new ApiException("Missing the required parameter 'userId' when calling groupUsersAddUserToGroup(Async)");
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder groupUsersLeaveFromGroupRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling groupUsersLeaveFromGroup");
+        return groupUsersAddUserToGroupCall(id, userId, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Groups/{id}/leave"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Add user to the group by identifier
+     * 
+     * @param id Identifier of group (required)
+     * @param userId Identifier of user (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully retured </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public void groupUsersAddUserToGroup(String id, String userId) throws ApiException {
+        groupUsersAddUserToGroupWithHttpInfo(id, userId);
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Remove user from the group by identifier
-   * 
-   * @param id Identifier of group (required)
-   * @param userId Identifier of user (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void groupUsersRemoveFromGroup(String id, String userId) throws ApiException {
-    groupUsersRemoveFromGroupWithHttpInfo(id, userId);
-  }
 
-  /**
-   * Remove user from the group by identifier
-   * 
-   * @param id Identifier of group (required)
-   * @param userId Identifier of user (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> groupUsersRemoveFromGroupWithHttpInfo(String id, String userId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = groupUsersRemoveFromGroupRequestBuilder(id, userId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("groupUsersRemoveFromGroup", localVarResponse);
+    /**
+     * Add user to the group by identifier
+     * 
+     * @param id Identifier of group (required)
+     * @param userId Identifier of user (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully retured </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> groupUsersAddUserToGroupWithHttpInfo(String id, String userId) throws ApiException {
+        okhttp3.Call localVarCall = groupUsersAddUserToGroupValidateBeforeCall(id, userId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Add user to the group by identifier (asynchronously)
+     * 
+     * @param id Identifier of group (required)
+     * @param userId Identifier of user (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully retured </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call groupUsersAddUserToGroupAsync(String id, String userId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = groupUsersAddUserToGroupValidateBeforeCall(id, userId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for groupUsersGetUsersInGroup
+     * @param id Identifier of group (required)
+     * @param skip how many to skip (optional, default to 0)
+     * @param take how many to take (optional, default to 10)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call groupUsersGetUsersInGroupCall(String id, Integer skip, Integer take, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Groups/{id}/Users"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (skip != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("skip", skip));
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder groupUsersRemoveFromGroupRequestBuilder(String id, String userId) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling groupUsersRemoveFromGroup");
+        if (take != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("take", take));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
-    // verify the required parameter 'userId' is set
-    if (userId == null) {
-      throw new ApiException(400, "Missing the required parameter 'userId' when calling groupUsersRemoveFromGroup");
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call groupUsersGetUsersInGroupValidateBeforeCall(String id, Integer skip, Integer take, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling groupUsersGetUsersInGroup(Async)");
+        }
+
+        return groupUsersGetUsersInGroupCall(id, skip, take, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Groups/{id}/Users/{userId}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()))
-        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Returns users in the group by identifier
+     * 
+     * @param id Identifier of group (required)
+     * @param skip how many to skip (optional, default to 0)
+     * @param take how many to take (optional, default to 10)
+     * @return GroupUsersVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public GroupUsersVM groupUsersGetUsersInGroup(String id, Integer skip, Integer take) throws ApiException {
+        ApiResponse<GroupUsersVM> localVarResp = groupUsersGetUsersInGroupWithHttpInfo(id, skip, take);
+        return localVarResp.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Returns users in the group by identifier
+     * 
+     * @param id Identifier of group (required)
+     * @param skip how many to skip (optional, default to 0)
+     * @param take how many to take (optional, default to 10)
+     * @return ApiResponse&lt;GroupUsersVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<GroupUsersVM> groupUsersGetUsersInGroupWithHttpInfo(String id, Integer skip, Integer take) throws ApiException {
+        okhttp3.Call localVarCall = groupUsersGetUsersInGroupValidateBeforeCall(id, skip, take, null);
+        Type localVarReturnType = new TypeToken<GroupUsersVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
-    return localVarRequestBuilder;
-  }
+
+    /**
+     * Returns users in the group by identifier (asynchronously)
+     * 
+     * @param id Identifier of group (required)
+     * @param skip how many to skip (optional, default to 0)
+     * @param take how many to take (optional, default to 10)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call groupUsersGetUsersInGroupAsync(String id, Integer skip, Integer take, final ApiCallback<GroupUsersVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = groupUsersGetUsersInGroupValidateBeforeCall(id, skip, take, _callback);
+        Type localVarReturnType = new TypeToken<GroupUsersVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for groupUsersLeaveFromGroup
+     * @param id Identifier of group (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call groupUsersLeaveFromGroupCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Groups/{id}/leave"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call groupUsersLeaveFromGroupValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling groupUsersLeaveFromGroup(Async)");
+        }
+
+        return groupUsersLeaveFromGroupCall(id, _callback);
+
+    }
+
+    /**
+     * Leave from the group
+     * 
+     * @param id Identifier of group (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public void groupUsersLeaveFromGroup(String id) throws ApiException {
+        groupUsersLeaveFromGroupWithHttpInfo(id);
+    }
+
+    /**
+     * Leave from the group
+     * 
+     * @param id Identifier of group (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> groupUsersLeaveFromGroupWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = groupUsersLeaveFromGroupValidateBeforeCall(id, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Leave from the group (asynchronously)
+     * 
+     * @param id Identifier of group (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call groupUsersLeaveFromGroupAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = groupUsersLeaveFromGroupValidateBeforeCall(id, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for groupUsersRemoveFromGroup
+     * @param id Identifier of group (required)
+     * @param userId Identifier of user (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call groupUsersRemoveFromGroupCall(String id, String userId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Groups/{id}/Users/{userId}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()))
+            .replace("{" + "userId" + "}", localVarApiClient.escapeString(userId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call groupUsersRemoveFromGroupValidateBeforeCall(String id, String userId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling groupUsersRemoveFromGroup(Async)");
+        }
+
+        // verify the required parameter 'userId' is set
+        if (userId == null) {
+            throw new ApiException("Missing the required parameter 'userId' when calling groupUsersRemoveFromGroup(Async)");
+        }
+
+        return groupUsersRemoveFromGroupCall(id, userId, _callback);
+
+    }
+
+    /**
+     * Remove user from the group by identifier
+     * 
+     * @param id Identifier of group (required)
+     * @param userId Identifier of user (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public void groupUsersRemoveFromGroup(String id, String userId) throws ApiException {
+        groupUsersRemoveFromGroupWithHttpInfo(id, userId);
+    }
+
+    /**
+     * Remove user from the group by identifier
+     * 
+     * @param id Identifier of group (required)
+     * @param userId Identifier of user (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> groupUsersRemoveFromGroupWithHttpInfo(String id, String userId) throws ApiException {
+        okhttp3.Call localVarCall = groupUsersRemoveFromGroupValidateBeforeCall(id, userId, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Remove user from the group by identifier (asynchronously)
+     * 
+     * @param id Identifier of group (required)
+     * @param userId Identifier of user (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call groupUsersRemoveFromGroupAsync(String id, String userId, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = groupUsersRemoveFromGroupValidateBeforeCall(id, userId, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
 }

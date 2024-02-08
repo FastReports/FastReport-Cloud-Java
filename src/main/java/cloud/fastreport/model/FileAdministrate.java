@@ -13,21 +13,20 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.SerializedName;
 
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.JsonElement;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
 /**
  * Gets or Sets FileAdministrate
  */
+@JsonAdapter(FileAdministrate.Adapter.class)
 public enum FileAdministrate {
   
   NUMBER_0(0),
@@ -48,7 +47,6 @@ public enum FileAdministrate {
     this.value = value;
   }
 
-  @JsonValue
   public Integer getValue() {
     return value;
   }
@@ -58,7 +56,6 @@ public enum FileAdministrate {
     return String.valueOf(value);
   }
 
-  @JsonCreator
   public static FileAdministrate fromValue(Integer value) {
     for (FileAdministrate b : FileAdministrate.values()) {
       if (b.value.equals(value)) {
@@ -68,19 +65,22 @@ public enum FileAdministrate {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    if (prefix == null) {
-      prefix = "";
+  public static class Adapter extends TypeAdapter<FileAdministrate> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final FileAdministrate enumeration) throws IOException {
+      jsonWriter.value(enumeration.getValue());
     }
 
-    return String.format("%s=%s", prefix, this.toString());
+    @Override
+    public FileAdministrate read(final JsonReader jsonReader) throws IOException {
+      Integer value = jsonReader.nextInt();
+      return FileAdministrate.fromValue(value);
+    }
   }
 
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    Integer value = jsonElement.getAsInt();
+    FileAdministrate.fromValue(value);
+  }
 }
 

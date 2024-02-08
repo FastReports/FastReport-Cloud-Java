@@ -13,63 +13,70 @@
 
 package cloud.fastreport.model;
 
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * ProblemDetails
  */
-@JsonPropertyOrder({
-  ProblemDetails.JSON_PROPERTY_TYPE,
-  ProblemDetails.JSON_PROPERTY_TITLE,
-  ProblemDetails.JSON_PROPERTY_STATUS,
-  ProblemDetails.JSON_PROPERTY_DETAIL,
-  ProblemDetails.JSON_PROPERTY_INSTANCE
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ProblemDetails extends HashMap<String, Object> {
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private JsonNullable<String> type = JsonNullable.<String>undefined();
+public class ProblemDetails {
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
 
-  public static final String JSON_PROPERTY_TITLE = "title";
-  private JsonNullable<String> title = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_TITLE = "title";
+  @SerializedName(SERIALIZED_NAME_TITLE)
+  private String title;
 
-  public static final String JSON_PROPERTY_STATUS = "status";
-  private JsonNullable<Integer> status = JsonNullable.<Integer>undefined();
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private Integer status;
 
-  public static final String JSON_PROPERTY_DETAIL = "detail";
-  private JsonNullable<String> detail = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_DETAIL = "detail";
+  @SerializedName(SERIALIZED_NAME_DETAIL)
+  private String detail;
 
-  public static final String JSON_PROPERTY_INSTANCE = "instance";
-  private JsonNullable<String> instance = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_INSTANCE = "instance";
+  @SerializedName(SERIALIZED_NAME_INSTANCE)
+  private String instance;
 
-  public ProblemDetails() { 
+  public ProblemDetails() {
   }
 
   public ProblemDetails type(String type) {
-    this.type = JsonNullable.<String>of(type);
+    this.type = type;
     return this;
   }
 
@@ -78,31 +85,17 @@ public class ProblemDetails extends HashMap<String, Object> {
    * @return type
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getType() {
-        return type.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getType_JsonNullable() {
     return type;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  public void setType_JsonNullable(JsonNullable<String> type) {
-    this.type = type;
   }
 
   public void setType(String type) {
-    this.type = JsonNullable.<String>of(type);
+    this.type = type;
   }
 
 
   public ProblemDetails title(String title) {
-    this.title = JsonNullable.<String>of(title);
+    this.title = title;
     return this;
   }
 
@@ -111,31 +104,17 @@ public class ProblemDetails extends HashMap<String, Object> {
    * @return title
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getTitle() {
-        return title.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_TITLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getTitle_JsonNullable() {
     return title;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_TITLE)
-  public void setTitle_JsonNullable(JsonNullable<String> title) {
-    this.title = title;
   }
 
   public void setTitle(String title) {
-    this.title = JsonNullable.<String>of(title);
+    this.title = title;
   }
 
 
   public ProblemDetails status(Integer status) {
-    this.status = JsonNullable.<Integer>of(status);
+    this.status = status;
     return this;
   }
 
@@ -144,31 +123,17 @@ public class ProblemDetails extends HashMap<String, Object> {
    * @return status
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Integer getStatus() {
-        return status.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getStatus_JsonNullable() {
     return status;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  public void setStatus_JsonNullable(JsonNullable<Integer> status) {
-    this.status = status;
   }
 
   public void setStatus(Integer status) {
-    this.status = JsonNullable.<Integer>of(status);
+    this.status = status;
   }
 
 
   public ProblemDetails detail(String detail) {
-    this.detail = JsonNullable.<String>of(detail);
+    this.detail = detail;
     return this;
   }
 
@@ -177,31 +142,17 @@ public class ProblemDetails extends HashMap<String, Object> {
    * @return detail
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getDetail() {
-        return detail.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_DETAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getDetail_JsonNullable() {
     return detail;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_DETAIL)
-  public void setDetail_JsonNullable(JsonNullable<String> detail) {
-    this.detail = detail;
   }
 
   public void setDetail(String detail) {
-    this.detail = JsonNullable.<String>of(detail);
+    this.detail = detail;
   }
 
 
   public ProblemDetails instance(String instance) {
-    this.instance = JsonNullable.<String>of(instance);
+    this.instance = instance;
     return this;
   }
 
@@ -210,26 +161,12 @@ public class ProblemDetails extends HashMap<String, Object> {
    * @return instance
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getInstance() {
-        return instance.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_INSTANCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getInstance_JsonNullable() {
     return instance;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_INSTANCE)
-  public void setInstance_JsonNullable(JsonNullable<String> instance) {
-    this.instance = instance;
   }
 
   public void setInstance(String instance) {
-    this.instance = JsonNullable.<String>of(instance);
+    this.instance = instance;
   }
 
   /**
@@ -242,11 +179,11 @@ public class ProblemDetails extends HashMap<String, Object> {
   /**
    * Set the additional (undeclared) property with the specified name and value.
    * If the property does not already exist, create it otherwise replace it.
-   * @param key the name of the property
-   * @param value the value of the property
-   * @return self reference
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the ProblemDetails instance itself
    */
-  @JsonAnySetter
   public ProblemDetails putAdditionalProperty(String key, Object value) {
     if (this.additionalProperties == null) {
         this.additionalProperties = new HashMap<String, Object>();
@@ -256,18 +193,19 @@ public class ProblemDetails extends HashMap<String, Object> {
   }
 
   /**
-   * Return the additional (undeclared) properties.
-   * @return the additional (undeclared) properties
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
    */
-  @JsonAnyGetter
   public Map<String, Object> getAdditionalProperties() {
     return additionalProperties;
   }
 
   /**
    * Return the additional (undeclared) property with the specified name.
-   * @param key the name of the property
-   * @return the additional (undeclared) property with the specified name
+   *
+   * @param key name of the property
+   * @return an object
    */
   public Object getAdditionalProperty(String key) {
     if (this.additionalProperties == null) {
@@ -276,9 +214,7 @@ public class ProblemDetails extends HashMap<String, Object> {
     return this.additionalProperties.get(key);
   }
 
-  /**
-   * Return true if this ProblemDetails object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -288,13 +224,12 @@ public class ProblemDetails extends HashMap<String, Object> {
       return false;
     }
     ProblemDetails problemDetails = (ProblemDetails) o;
-    return equalsNullable(this.type, problemDetails.type) &&
-        equalsNullable(this.title, problemDetails.title) &&
-        equalsNullable(this.status, problemDetails.status) &&
-        equalsNullable(this.detail, problemDetails.detail) &&
-        equalsNullable(this.instance, problemDetails.instance)&&
-        Objects.equals(this.additionalProperties, problemDetails.additionalProperties) &&
-        super.equals(o);
+    return Objects.equals(this.type, problemDetails.type) &&
+        Objects.equals(this.title, problemDetails.title) &&
+        Objects.equals(this.status, problemDetails.status) &&
+        Objects.equals(this.detail, problemDetails.detail) &&
+        Objects.equals(this.instance, problemDetails.instance)&&
+        Objects.equals(this.additionalProperties, problemDetails.additionalProperties);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -303,7 +238,7 @@ public class ProblemDetails extends HashMap<String, Object> {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(type), hashCodeNullable(title), hashCodeNullable(status), hashCodeNullable(detail), hashCodeNullable(instance), super.hashCode(), additionalProperties);
+    return Objects.hash(type, title, status, detail, instance, additionalProperties);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -317,7 +252,6 @@ public class ProblemDetails extends HashMap<String, Object> {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProblemDetails {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
@@ -339,64 +273,140 @@ public class ProblemDetails extends HashMap<String, Object> {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("type");
+    openapiFields.add("title");
+    openapiFields.add("status");
+    openapiFields.add("detail");
+    openapiFields.add("instance");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ProblemDetails
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ProblemDetails.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ProblemDetails is not found in the empty JSON string", ProblemDetails.openapiRequiredFields.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
+      }
+      if ((jsonObj.get("title") != null && !jsonObj.get("title").isJsonNull()) && !jsonObj.get("title").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
+      }
+      if ((jsonObj.get("detail") != null && !jsonObj.get("detail").isJsonNull()) && !jsonObj.get("detail").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `detail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("detail").toString()));
+      }
+      if ((jsonObj.get("instance") != null && !jsonObj.get("instance").isJsonNull()) && !jsonObj.get("instance").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `instance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("instance").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ProblemDetails.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ProblemDetails' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ProblemDetails> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ProblemDetails.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ProblemDetails>() {
+           @Override
+           public void write(JsonWriter out, ProblemDetails value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ProblemDetails read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             ProblemDetails instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of ProblemDetails given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ProblemDetails
+  * @throws IOException if the JSON string is invalid with respect to ProblemDetails
+  */
+  public static ProblemDetails fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ProblemDetails.class);
+  }
 
-    // add `type` to the URL query string
-    if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `title` to the URL query string
-    if (getTitle() != null) {
-      joiner.add(String.format("%stitle%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTitle()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `status` to the URL query string
-    if (getStatus() != null) {
-      joiner.add(String.format("%sstatus%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `detail` to the URL query string
-    if (getDetail() != null) {
-      joiner.add(String.format("%sdetail%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDetail()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `instance` to the URL query string
-    if (getInstance() != null) {
-      joiner.add(String.format("%sinstance%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getInstance()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of ProblemDetails to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

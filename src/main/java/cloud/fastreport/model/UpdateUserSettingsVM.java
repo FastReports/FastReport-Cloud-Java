@@ -13,57 +13,70 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.AuditType;
 import cloud.fastreport.model.ProfileVisibility;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * UpdateUserSettingsVM
  */
-@JsonPropertyOrder({
-  UpdateUserSettingsVM.JSON_PROPERTY_PROFILE_VISIBILITY,
-  UpdateUserSettingsVM.JSON_PROPERTY_DEFAULT_SUBSCRIPTION,
-  UpdateUserSettingsVM.JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS,
-  UpdateUserSettingsVM.JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateUserSettingsVM {
-  public static final String JSON_PROPERTY_PROFILE_VISIBILITY = "profileVisibility";
-  private JsonNullable<ProfileVisibility> profileVisibility = JsonNullable.<ProfileVisibility>undefined();
+  public static final String SERIALIZED_NAME_PROFILE_VISIBILITY = "profileVisibility";
+  @SerializedName(SERIALIZED_NAME_PROFILE_VISIBILITY)
+  private ProfileVisibility profileVisibility;
 
-  public static final String JSON_PROPERTY_DEFAULT_SUBSCRIPTION = "defaultSubscription";
-  private JsonNullable<String> defaultSubscription = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_DEFAULT_SUBSCRIPTION = "defaultSubscription";
+  @SerializedName(SERIALIZED_NAME_DEFAULT_SUBSCRIPTION)
+  private String defaultSubscription;
 
-  public static final String JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS = "showHiddenFilesAndFolders";
-  private JsonNullable<Boolean> showHiddenFilesAndFolders = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_SHOW_HIDDEN_FILES_AND_FOLDERS = "showHiddenFilesAndFolders";
+  @SerializedName(SERIALIZED_NAME_SHOW_HIDDEN_FILES_AND_FOLDERS)
+  private Boolean showHiddenFilesAndFolders;
 
-  public static final String JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS = "subscribedNotifications";
-  private JsonNullable<List<AuditType>> subscribedNotifications = JsonNullable.<List<AuditType>>undefined();
+  public static final String SERIALIZED_NAME_SUBSCRIBED_NOTIFICATIONS = "subscribedNotifications";
+  @SerializedName(SERIALIZED_NAME_SUBSCRIBED_NOTIFICATIONS)
+  private List<AuditType> subscribedNotifications;
 
-  public UpdateUserSettingsVM() { 
+  public UpdateUserSettingsVM() {
   }
 
   public UpdateUserSettingsVM profileVisibility(ProfileVisibility profileVisibility) {
-    this.profileVisibility = JsonNullable.<ProfileVisibility>of(profileVisibility);
+    this.profileVisibility = profileVisibility;
     return this;
   }
 
@@ -72,31 +85,17 @@ public class UpdateUserSettingsVM {
    * @return profileVisibility
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public ProfileVisibility getProfileVisibility() {
-        return profileVisibility.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_PROFILE_VISIBILITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<ProfileVisibility> getProfileVisibility_JsonNullable() {
     return profileVisibility;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_PROFILE_VISIBILITY)
-  public void setProfileVisibility_JsonNullable(JsonNullable<ProfileVisibility> profileVisibility) {
-    this.profileVisibility = profileVisibility;
   }
 
   public void setProfileVisibility(ProfileVisibility profileVisibility) {
-    this.profileVisibility = JsonNullable.<ProfileVisibility>of(profileVisibility);
+    this.profileVisibility = profileVisibility;
   }
 
 
   public UpdateUserSettingsVM defaultSubscription(String defaultSubscription) {
-    this.defaultSubscription = JsonNullable.<String>of(defaultSubscription);
+    this.defaultSubscription = defaultSubscription;
     return this;
   }
 
@@ -105,31 +104,17 @@ public class UpdateUserSettingsVM {
    * @return defaultSubscription
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getDefaultSubscription() {
-        return defaultSubscription.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_DEFAULT_SUBSCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getDefaultSubscription_JsonNullable() {
     return defaultSubscription;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_DEFAULT_SUBSCRIPTION)
-  public void setDefaultSubscription_JsonNullable(JsonNullable<String> defaultSubscription) {
-    this.defaultSubscription = defaultSubscription;
   }
 
   public void setDefaultSubscription(String defaultSubscription) {
-    this.defaultSubscription = JsonNullable.<String>of(defaultSubscription);
+    this.defaultSubscription = defaultSubscription;
   }
 
 
   public UpdateUserSettingsVM showHiddenFilesAndFolders(Boolean showHiddenFilesAndFolders) {
-    this.showHiddenFilesAndFolders = JsonNullable.<Boolean>of(showHiddenFilesAndFolders);
+    this.showHiddenFilesAndFolders = showHiddenFilesAndFolders;
     return this;
   }
 
@@ -138,43 +123,25 @@ public class UpdateUserSettingsVM {
    * @return showHiddenFilesAndFolders
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getShowHiddenFilesAndFolders() {
-        return showHiddenFilesAndFolders.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getShowHiddenFilesAndFolders_JsonNullable() {
     return showHiddenFilesAndFolders;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SHOW_HIDDEN_FILES_AND_FOLDERS)
-  public void setShowHiddenFilesAndFolders_JsonNullable(JsonNullable<Boolean> showHiddenFilesAndFolders) {
-    this.showHiddenFilesAndFolders = showHiddenFilesAndFolders;
   }
 
   public void setShowHiddenFilesAndFolders(Boolean showHiddenFilesAndFolders) {
-    this.showHiddenFilesAndFolders = JsonNullable.<Boolean>of(showHiddenFilesAndFolders);
+    this.showHiddenFilesAndFolders = showHiddenFilesAndFolders;
   }
 
 
   public UpdateUserSettingsVM subscribedNotifications(List<AuditType> subscribedNotifications) {
-    this.subscribedNotifications = JsonNullable.<List<AuditType>>of(subscribedNotifications);
+    this.subscribedNotifications = subscribedNotifications;
     return this;
   }
 
   public UpdateUserSettingsVM addSubscribedNotificationsItem(AuditType subscribedNotificationsItem) {
-    if (this.subscribedNotifications == null || !this.subscribedNotifications.isPresent()) {
-      this.subscribedNotifications = JsonNullable.<List<AuditType>>of(new ArrayList<>());
+    if (this.subscribedNotifications == null) {
+      this.subscribedNotifications = new ArrayList<>();
     }
-    try {
-      this.subscribedNotifications.get().add(subscribedNotificationsItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.subscribedNotifications.add(subscribedNotificationsItem);
     return this;
   }
 
@@ -183,32 +150,16 @@ public class UpdateUserSettingsVM {
    * @return subscribedNotifications
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<AuditType> getSubscribedNotifications() {
-        return subscribedNotifications.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<AuditType>> getSubscribedNotifications_JsonNullable() {
     return subscribedNotifications;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SUBSCRIBED_NOTIFICATIONS)
-  public void setSubscribedNotifications_JsonNullable(JsonNullable<List<AuditType>> subscribedNotifications) {
-    this.subscribedNotifications = subscribedNotifications;
   }
 
   public void setSubscribedNotifications(List<AuditType> subscribedNotifications) {
-    this.subscribedNotifications = JsonNullable.<List<AuditType>>of(subscribedNotifications);
+    this.subscribedNotifications = subscribedNotifications;
   }
 
 
-  /**
-   * Return true if this UpdateUserSettingsVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -218,10 +169,10 @@ public class UpdateUserSettingsVM {
       return false;
     }
     UpdateUserSettingsVM updateUserSettingsVM = (UpdateUserSettingsVM) o;
-    return equalsNullable(this.profileVisibility, updateUserSettingsVM.profileVisibility) &&
-        equalsNullable(this.defaultSubscription, updateUserSettingsVM.defaultSubscription) &&
-        equalsNullable(this.showHiddenFilesAndFolders, updateUserSettingsVM.showHiddenFilesAndFolders) &&
-        equalsNullable(this.subscribedNotifications, updateUserSettingsVM.subscribedNotifications);
+    return Objects.equals(this.profileVisibility, updateUserSettingsVM.profileVisibility) &&
+        Objects.equals(this.defaultSubscription, updateUserSettingsVM.defaultSubscription) &&
+        Objects.equals(this.showHiddenFilesAndFolders, updateUserSettingsVM.showHiddenFilesAndFolders) &&
+        Objects.equals(this.subscribedNotifications, updateUserSettingsVM.subscribedNotifications);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -230,7 +181,7 @@ public class UpdateUserSettingsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(profileVisibility), hashCodeNullable(defaultSubscription), hashCodeNullable(showHiddenFilesAndFolders), hashCodeNullable(subscribedNotifications));
+    return Objects.hash(profileVisibility, defaultSubscription, showHiddenFilesAndFolders, subscribedNotifications);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -263,65 +214,103 @@ public class UpdateUserSettingsVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("profileVisibility");
+    openapiFields.add("defaultSubscription");
+    openapiFields.add("showHiddenFilesAndFolders");
+    openapiFields.add("subscribedNotifications");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `profileVisibility` to the URL query string
-    if (getProfileVisibility() != null) {
-      joiner.add(String.format("%sprofileVisibility%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getProfileVisibility()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `defaultSubscription` to the URL query string
-    if (getDefaultSubscription() != null) {
-      joiner.add(String.format("%sdefaultSubscription%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDefaultSubscription()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `showHiddenFilesAndFolders` to the URL query string
-    if (getShowHiddenFilesAndFolders() != null) {
-      joiner.add(String.format("%sshowHiddenFilesAndFolders%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getShowHiddenFilesAndFolders()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `subscribedNotifications` to the URL query string
-    if (getSubscribedNotifications() != null) {
-      for (int i = 0; i < getSubscribedNotifications().size(); i++) {
-        if (getSubscribedNotifications().get(i) != null) {
-          joiner.add(String.format("%ssubscribedNotifications%s%s=%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-              URLEncoder.encode(String.valueOf(getSubscribedNotifications().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to UpdateUserSettingsVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdateUserSettingsVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateUserSettingsVM is not found in the empty JSON string", UpdateUserSettingsVM.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    return joiner.toString();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!UpdateUserSettingsVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateUserSettingsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `profileVisibility`
+      if (jsonObj.get("profileVisibility") != null && !jsonObj.get("profileVisibility").isJsonNull()) {
+        ProfileVisibility.validateJsonElement(jsonObj.get("profileVisibility"));
+      }
+      if ((jsonObj.get("defaultSubscription") != null && !jsonObj.get("defaultSubscription").isJsonNull()) && !jsonObj.get("defaultSubscription").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `defaultSubscription` to be a primitive type in the JSON string but got `%s`", jsonObj.get("defaultSubscription").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("subscribedNotifications") != null && !jsonObj.get("subscribedNotifications").isJsonNull() && !jsonObj.get("subscribedNotifications").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `subscribedNotifications` to be an array in the JSON string but got `%s`", jsonObj.get("subscribedNotifications").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UpdateUserSettingsVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdateUserSettingsVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UpdateUserSettingsVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdateUserSettingsVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UpdateUserSettingsVM>() {
+           @Override
+           public void write(JsonWriter out, UpdateUserSettingsVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UpdateUserSettingsVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of UpdateUserSettingsVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of UpdateUserSettingsVM
+  * @throws IOException if the JSON string is invalid with respect to UpdateUserSettingsVM
+  */
+  public static UpdateUserSettingsVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateUserSettingsVM.class);
+  }
+
+ /**
+  * Convert an instance of UpdateUserSettingsVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

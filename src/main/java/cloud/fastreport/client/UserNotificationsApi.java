@@ -10,249 +10,333 @@
  * Do not edit the class manually.
  */
 
+
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiCallback;
 import cloud.fastreport.ApiClient;
 import cloud.fastreport.ApiException;
 import cloud.fastreport.ApiResponse;
+import cloud.fastreport.Configuration;
 import cloud.fastreport.Pair;
+import cloud.fastreport.ProgressRequestBody;
+import cloud.fastreport.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
 
 import cloud.fastreport.model.AuditActionsVM;
 import cloud.fastreport.model.ClearNotificationsVM;
 import cloud.fastreport.model.ProblemDetails;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.http.HttpRequest;
-import java.nio.channels.Channels;
-import java.nio.channels.Pipe;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.StringJoiner;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UserNotificationsApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public UserNotificationsApi() {
-    this(new ApiClient());
-  }
-
-  public UserNotificationsApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public UserNotificationsApi() {
+        this(Configuration.getDefaultApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Use this endpoint to \&quot;clear\&quot; your notifications
-   * 
-   * @param clearNotificationsVM  (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void userNotificationsClearNotifications(ClearNotificationsVM clearNotificationsVM) throws ApiException {
-    userNotificationsClearNotificationsWithHttpInfo(clearNotificationsVM);
-  }
+    public UserNotificationsApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
 
-  /**
-   * Use this endpoint to \&quot;clear\&quot; your notifications
-   * 
-   * @param clearNotificationsVM  (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> userNotificationsClearNotificationsWithHttpInfo(ClearNotificationsVM clearNotificationsVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = userNotificationsClearNotificationsRequestBuilder(clearNotificationsVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("userNotificationsClearNotifications", localVarResponse);
+    public ApiClient getApiClient() {
+        return localVarApiClient;
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for userNotificationsClearNotifications
+     * @param clearNotificationsVM  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call userNotificationsClearNotificationsCall(ClearNotificationsVM clearNotificationsVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        Object localVarPostBody = clearNotificationsVM;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/notifications";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder userNotificationsClearNotificationsRequestBuilder(ClearNotificationsVM clearNotificationsVM) throws ApiException {
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/notifications";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(clearNotificationsVM);
-      localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Use this endpoint to recieve notifications
-   * 
-   * @param skip  (optional, default to 0)
-   * @param take  (optional, default to 5)
-   * @param subscriptionId  (optional, default to )
-   * @return AuditActionsVM
-   * @throws ApiException if fails to make API call
-   */
-  public AuditActionsVM userNotificationsGetNotifications(Integer skip, Integer take, String subscriptionId) throws ApiException {
-    ApiResponse<AuditActionsVM> localVarResponse = userNotificationsGetNotificationsWithHttpInfo(skip, take, subscriptionId);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Use this endpoint to recieve notifications
-   * 
-   * @param skip  (optional, default to 0)
-   * @param take  (optional, default to 5)
-   * @param subscriptionId  (optional, default to )
-   * @return ApiResponse&lt;AuditActionsVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<AuditActionsVM> userNotificationsGetNotificationsWithHttpInfo(Integer skip, Integer take, String subscriptionId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = userNotificationsGetNotificationsRequestBuilder(skip, take, subscriptionId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("userNotificationsGetNotifications", localVarResponse);
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<AuditActionsVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<AuditActionsVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder userNotificationsGetNotificationsRequestBuilder(Integer skip, Integer take, String subscriptionId) throws ApiException {
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/notifications";
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "skip";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("skip", skip));
-    localVarQueryParameterBaseName = "take";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("take", take));
-    localVarQueryParameterBaseName = "subscriptionId";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("subscriptionId", subscriptionId));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call userNotificationsClearNotificationsValidateBeforeCall(ClearNotificationsVM clearNotificationsVM, final ApiCallback _callback) throws ApiException {
+        return userNotificationsClearNotificationsCall(clearNotificationsVM, _callback);
 
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Use this endpoint to \&quot;clear\&quot; your notifications
+     * 
+     * @param clearNotificationsVM  (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public void userNotificationsClearNotifications(ClearNotificationsVM clearNotificationsVM) throws ApiException {
+        userNotificationsClearNotificationsWithHttpInfo(clearNotificationsVM);
     }
-    return localVarRequestBuilder;
-  }
+
+    /**
+     * Use this endpoint to \&quot;clear\&quot; your notifications
+     * 
+     * @param clearNotificationsVM  (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> userNotificationsClearNotificationsWithHttpInfo(ClearNotificationsVM clearNotificationsVM) throws ApiException {
+        okhttp3.Call localVarCall = userNotificationsClearNotificationsValidateBeforeCall(clearNotificationsVM, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Use this endpoint to \&quot;clear\&quot; your notifications (asynchronously)
+     * 
+     * @param clearNotificationsVM  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call userNotificationsClearNotificationsAsync(ClearNotificationsVM clearNotificationsVM, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = userNotificationsClearNotificationsValidateBeforeCall(clearNotificationsVM, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for userNotificationsGetNotifications
+     * @param skip  (optional, default to 0)
+     * @param take  (optional, default to 5)
+     * @param subscriptionId  (optional, default to )
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call userNotificationsGetNotificationsCall(Integer skip, Integer take, String subscriptionId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/notifications";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (skip != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("skip", skip));
+        }
+
+        if (take != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("take", take));
+        }
+
+        if (subscriptionId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("subscriptionId", subscriptionId));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call userNotificationsGetNotificationsValidateBeforeCall(Integer skip, Integer take, String subscriptionId, final ApiCallback _callback) throws ApiException {
+        return userNotificationsGetNotificationsCall(skip, take, subscriptionId, _callback);
+
+    }
+
+    /**
+     * Use this endpoint to recieve notifications
+     * 
+     * @param skip  (optional, default to 0)
+     * @param take  (optional, default to 5)
+     * @param subscriptionId  (optional, default to )
+     * @return AuditActionsVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+     </table>
+     */
+    public AuditActionsVM userNotificationsGetNotifications(Integer skip, Integer take, String subscriptionId) throws ApiException {
+        ApiResponse<AuditActionsVM> localVarResp = userNotificationsGetNotificationsWithHttpInfo(skip, take, subscriptionId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Use this endpoint to recieve notifications
+     * 
+     * @param skip  (optional, default to 0)
+     * @param take  (optional, default to 5)
+     * @param subscriptionId  (optional, default to )
+     * @return ApiResponse&lt;AuditActionsVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<AuditActionsVM> userNotificationsGetNotificationsWithHttpInfo(Integer skip, Integer take, String subscriptionId) throws ApiException {
+        okhttp3.Call localVarCall = userNotificationsGetNotificationsValidateBeforeCall(skip, take, subscriptionId, null);
+        Type localVarReturnType = new TypeToken<AuditActionsVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Use this endpoint to recieve notifications (asynchronously)
+     * 
+     * @param skip  (optional, default to 0)
+     * @param take  (optional, default to 5)
+     * @param subscriptionId  (optional, default to )
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call userNotificationsGetNotificationsAsync(Integer skip, Integer take, String subscriptionId, final ApiCallback<AuditActionsVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = userNotificationsGetNotificationsValidateBeforeCall(skip, take, subscriptionId, _callback);
+        Type localVarReturnType = new TypeToken<AuditActionsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
 }

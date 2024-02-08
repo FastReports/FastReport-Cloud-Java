@@ -13,43 +13,59 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.SubscriptionPlanVM;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * SubscriptionPeriodVM
  */
-@JsonPropertyOrder({
-  SubscriptionPeriodVM.JSON_PROPERTY_START_TIME,
-  SubscriptionPeriodVM.JSON_PROPERTY_END_TIME,
-  SubscriptionPeriodVM.JSON_PROPERTY_PLAN
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionPeriodVM {
-  public static final String JSON_PROPERTY_START_TIME = "startTime";
+  public static final String SERIALIZED_NAME_START_TIME = "startTime";
+  @SerializedName(SERIALIZED_NAME_START_TIME)
   private OffsetDateTime startTime;
 
-  public static final String JSON_PROPERTY_END_TIME = "endTime";
+  public static final String SERIALIZED_NAME_END_TIME = "endTime";
+  @SerializedName(SERIALIZED_NAME_END_TIME)
   private OffsetDateTime endTime;
 
-  public static final String JSON_PROPERTY_PLAN = "plan";
+  public static final String SERIALIZED_NAME_PLAN = "plan";
+  @SerializedName(SERIALIZED_NAME_PLAN)
   private SubscriptionPlanVM plan;
 
-  public SubscriptionPeriodVM() { 
+  public SubscriptionPeriodVM() {
   }
 
   public SubscriptionPeriodVM startTime(OffsetDateTime startTime) {
@@ -62,16 +78,10 @@ public class SubscriptionPeriodVM {
    * @return startTime
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_START_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public OffsetDateTime getStartTime() {
     return startTime;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_START_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartTime(OffsetDateTime startTime) {
     this.startTime = startTime;
   }
@@ -87,16 +97,10 @@ public class SubscriptionPeriodVM {
    * @return endTime
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_END_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public OffsetDateTime getEndTime() {
     return endTime;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_END_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEndTime(OffsetDateTime endTime) {
     this.endTime = endTime;
   }
@@ -112,24 +116,16 @@ public class SubscriptionPeriodVM {
    * @return plan
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PLAN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public SubscriptionPlanVM getPlan() {
     return plan;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_PLAN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPlan(SubscriptionPlanVM plan) {
     this.plan = plan;
   }
 
 
-  /**
-   * Return true if this SubscriptionPeriodVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -171,54 +167,95 @@ public class SubscriptionPeriodVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("startTime");
+    openapiFields.add("endTime");
+    openapiFields.add("plan");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to SubscriptionPeriodVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SubscriptionPeriodVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SubscriptionPeriodVM is not found in the empty JSON string", SubscriptionPeriodVM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!SubscriptionPeriodVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SubscriptionPeriodVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `plan`
+      if (jsonObj.get("plan") != null && !jsonObj.get("plan").isJsonNull()) {
+        SubscriptionPlanVM.validateJsonElement(jsonObj.get("plan"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SubscriptionPeriodVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SubscriptionPeriodVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SubscriptionPeriodVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SubscriptionPeriodVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SubscriptionPeriodVM>() {
+           @Override
+           public void write(JsonWriter out, SubscriptionPeriodVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SubscriptionPeriodVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of SubscriptionPeriodVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SubscriptionPeriodVM
+  * @throws IOException if the JSON string is invalid with respect to SubscriptionPeriodVM
+  */
+  public static SubscriptionPeriodVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SubscriptionPeriodVM.class);
+  }
 
-    // add `startTime` to the URL query string
-    if (getStartTime() != null) {
-      joiner.add(String.format("%sstartTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStartTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `endTime` to the URL query string
-    if (getEndTime() != null) {
-      joiner.add(String.format("%sendTime%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEndTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `plan` to the URL query string
-    if (getPlan() != null) {
-      joiner.add(getPlan().toUrlQueryString(prefix + "plan" + suffix));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of SubscriptionPeriodVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

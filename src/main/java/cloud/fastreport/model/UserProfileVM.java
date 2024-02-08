@@ -13,57 +13,70 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * UserProfileVM
  */
-@JsonPropertyOrder({
-  UserProfileVM.JSON_PROPERTY_ID,
-  UserProfileVM.JSON_PROPERTY_NAME,
-  UserProfileVM.JSON_PROPERTY_USERNAME,
-  UserProfileVM.JSON_PROPERTY_EMAIL,
-  UserProfileVM.JSON_PROPERTY_IS_READ_ONLY
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UserProfileVM {
-  public static final String JSON_PROPERTY_ID = "id";
-  private JsonNullable<String> id = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  private JsonNullable<String> name = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
-  public static final String JSON_PROPERTY_USERNAME = "username";
-  private JsonNullable<String> username = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_USERNAME = "username";
+  @SerializedName(SERIALIZED_NAME_USERNAME)
+  private String username;
 
-  public static final String JSON_PROPERTY_EMAIL = "email";
-  private JsonNullable<String> email = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_EMAIL = "email";
+  @SerializedName(SERIALIZED_NAME_EMAIL)
+  private String email;
 
-  public static final String JSON_PROPERTY_IS_READ_ONLY = "isReadOnly";
+  public static final String SERIALIZED_NAME_IS_READ_ONLY = "isReadOnly";
+  @SerializedName(SERIALIZED_NAME_IS_READ_ONLY)
   private Boolean isReadOnly;
 
-  public UserProfileVM() { 
+  public UserProfileVM() {
   }
 
   public UserProfileVM id(String id) {
-    this.id = JsonNullable.<String>of(id);
+    this.id = id;
     return this;
   }
 
@@ -72,31 +85,17 @@ public class UserProfileVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getId() {
-        return id.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getId_JsonNullable() {
     return id;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ID)
-  public void setId_JsonNullable(JsonNullable<String> id) {
-    this.id = id;
   }
 
   public void setId(String id) {
-    this.id = JsonNullable.<String>of(id);
+    this.id = id;
   }
 
 
   public UserProfileVM name(String name) {
-    this.name = JsonNullable.<String>of(name);
+    this.name = name;
     return this;
   }
 
@@ -105,31 +104,17 @@ public class UserProfileVM {
    * @return name
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getName() {
-        return name.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getName_JsonNullable() {
     return name;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_NAME)
-  public void setName_JsonNullable(JsonNullable<String> name) {
-    this.name = name;
   }
 
   public void setName(String name) {
-    this.name = JsonNullable.<String>of(name);
+    this.name = name;
   }
 
 
   public UserProfileVM username(String username) {
-    this.username = JsonNullable.<String>of(username);
+    this.username = username;
     return this;
   }
 
@@ -138,31 +123,17 @@ public class UserProfileVM {
    * @return username
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getUsername() {
-        return username.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_USERNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getUsername_JsonNullable() {
     return username;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_USERNAME)
-  public void setUsername_JsonNullable(JsonNullable<String> username) {
-    this.username = username;
   }
 
   public void setUsername(String username) {
-    this.username = JsonNullable.<String>of(username);
+    this.username = username;
   }
 
 
   public UserProfileVM email(String email) {
-    this.email = JsonNullable.<String>of(email);
+    this.email = email;
     return this;
   }
 
@@ -171,26 +142,12 @@ public class UserProfileVM {
    * @return email
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getEmail() {
-        return email.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_EMAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getEmail_JsonNullable() {
     return email;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_EMAIL)
-  public void setEmail_JsonNullable(JsonNullable<String> email) {
-    this.email = email;
   }
 
   public void setEmail(String email) {
-    this.email = JsonNullable.<String>of(email);
+    this.email = email;
   }
 
 
@@ -204,24 +161,16 @@ public class UserProfileVM {
    * @return isReadOnly
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS_READ_ONLY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getIsReadOnly() {
     return isReadOnly;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_IS_READ_ONLY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsReadOnly(Boolean isReadOnly) {
     this.isReadOnly = isReadOnly;
   }
 
 
-  /**
-   * Return true if this UserProfileVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -231,10 +180,10 @@ public class UserProfileVM {
       return false;
     }
     UserProfileVM userProfileVM = (UserProfileVM) o;
-    return equalsNullable(this.id, userProfileVM.id) &&
-        equalsNullable(this.name, userProfileVM.name) &&
-        equalsNullable(this.username, userProfileVM.username) &&
-        equalsNullable(this.email, userProfileVM.email) &&
+    return Objects.equals(this.id, userProfileVM.id) &&
+        Objects.equals(this.name, userProfileVM.name) &&
+        Objects.equals(this.username, userProfileVM.username) &&
+        Objects.equals(this.email, userProfileVM.email) &&
         Objects.equals(this.isReadOnly, userProfileVM.isReadOnly);
   }
 
@@ -244,7 +193,7 @@ public class UserProfileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(id), hashCodeNullable(name), hashCodeNullable(username), hashCodeNullable(email), isReadOnly);
+    return Objects.hash(id, name, username, email, isReadOnly);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -278,64 +227,105 @@ public class UserProfileVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("id");
+    openapiFields.add("name");
+    openapiFields.add("username");
+    openapiFields.add("email");
+    openapiFields.add("isReadOnly");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to UserProfileVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UserProfileVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UserProfileVM is not found in the empty JSON string", UserProfileVM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!UserProfileVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UserProfileVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("username") != null && !jsonObj.get("username").isJsonNull()) && !jsonObj.get("username").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `username` to be a primitive type in the JSON string but got `%s`", jsonObj.get("username").toString()));
+      }
+      if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UserProfileVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UserProfileVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UserProfileVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UserProfileVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UserProfileVM>() {
+           @Override
+           public void write(JsonWriter out, UserProfileVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UserProfileVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of UserProfileVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of UserProfileVM
+  * @throws IOException if the JSON string is invalid with respect to UserProfileVM
+  */
+  public static UserProfileVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UserProfileVM.class);
+  }
 
-    // add `id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `username` to the URL query string
-    if (getUsername() != null) {
-      joiner.add(String.format("%susername%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUsername()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `email` to the URL query string
-    if (getEmail() != null) {
-      joiner.add(String.format("%semail%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEmail()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `isReadOnly` to the URL query string
-    if (getIsReadOnly() != null) {
-      joiner.add(String.format("%sisReadOnly%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsReadOnly()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of UserProfileVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

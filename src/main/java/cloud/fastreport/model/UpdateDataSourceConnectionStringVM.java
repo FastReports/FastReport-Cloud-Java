@@ -13,33 +13,49 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * UpdateDataSourceConnectionStringVM
  */
-@JsonPropertyOrder({
-  UpdateDataSourceConnectionStringVM.JSON_PROPERTY_CONNECTION_STRING
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateDataSourceConnectionStringVM {
-  public static final String JSON_PROPERTY_CONNECTION_STRING = "connectionString";
+  public static final String SERIALIZED_NAME_CONNECTION_STRING = "connectionString";
+  @SerializedName(SERIALIZED_NAME_CONNECTION_STRING)
   private String connectionString;
 
-  public UpdateDataSourceConnectionStringVM() { 
+  public UpdateDataSourceConnectionStringVM() {
   }
 
   public UpdateDataSourceConnectionStringVM connectionString(String connectionString) {
@@ -52,24 +68,16 @@ public class UpdateDataSourceConnectionStringVM {
    * @return connectionString
   **/
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public String getConnectionString() {
     return connectionString;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setConnectionString(String connectionString) {
     this.connectionString = connectionString;
   }
 
 
-  /**
-   * Return true if this UpdateDataSourceConnectionStringVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -107,44 +115,100 @@ public class UpdateDataSourceConnectionStringVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("connectionString");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("connectionString");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to UpdateDataSourceConnectionStringVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UpdateDataSourceConnectionStringVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateDataSourceConnectionStringVM is not found in the empty JSON string", UpdateDataSourceConnectionStringVM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!UpdateDataSourceConnectionStringVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateDataSourceConnectionStringVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : UpdateDataSourceConnectionStringVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("connectionString").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `connectionString` to be a primitive type in the JSON string but got `%s`", jsonObj.get("connectionString").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UpdateDataSourceConnectionStringVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UpdateDataSourceConnectionStringVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UpdateDataSourceConnectionStringVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UpdateDataSourceConnectionStringVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UpdateDataSourceConnectionStringVM>() {
+           @Override
+           public void write(JsonWriter out, UpdateDataSourceConnectionStringVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UpdateDataSourceConnectionStringVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of UpdateDataSourceConnectionStringVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of UpdateDataSourceConnectionStringVM
+  * @throws IOException if the JSON string is invalid with respect to UpdateDataSourceConnectionStringVM
+  */
+  public static UpdateDataSourceConnectionStringVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UpdateDataSourceConnectionStringVM.class);
+  }
 
-    // add `connectionString` to the URL query string
-    if (getConnectionString() != null) {
-      joiner.add(String.format("%sconnectionString%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getConnectionString()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of UpdateDataSourceConnectionStringVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

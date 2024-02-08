@@ -13,21 +13,20 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.SerializedName;
 
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.JsonElement;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
 /**
  * Gets or Sets ExportFormat
  */
+@JsonAdapter(ExportFormat.Adapter.class)
 public enum ExportFormat {
   
   PDF("Pdf"),
@@ -82,7 +81,6 @@ public enum ExportFormat {
     this.value = value;
   }
 
-  @JsonValue
   public String getValue() {
     return value;
   }
@@ -92,7 +90,6 @@ public enum ExportFormat {
     return String.valueOf(value);
   }
 
-  @JsonCreator
   public static ExportFormat fromValue(String value) {
     for (ExportFormat b : ExportFormat.values()) {
       if (b.value.equals(value)) {
@@ -102,19 +99,22 @@ public enum ExportFormat {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    if (prefix == null) {
-      prefix = "";
+  public static class Adapter extends TypeAdapter<ExportFormat> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final ExportFormat enumeration) throws IOException {
+      jsonWriter.value(enumeration.getValue());
     }
 
-    return String.format("%s=%s", prefix, this.toString());
+    @Override
+    public ExportFormat read(final JsonReader jsonReader) throws IOException {
+      String value = jsonReader.nextString();
+      return ExportFormat.fromValue(value);
+    }
   }
 
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    String value = jsonElement.getAsString();
+    ExportFormat.fromValue(value);
+  }
 }
 

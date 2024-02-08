@@ -13,68 +13,81 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.ExportFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * ExportTemplateVM
  */
-@JsonPropertyOrder({
-  ExportTemplateVM.JSON_PROPERTY_FILE_NAME,
-  ExportTemplateVM.JSON_PROPERTY_FOLDER_ID,
-  ExportTemplateVM.JSON_PROPERTY_LOCALE,
-  ExportTemplateVM.JSON_PROPERTY_PAGES_COUNT,
-  ExportTemplateVM.JSON_PROPERTY_FORMAT,
-  ExportTemplateVM.JSON_PROPERTY_EXPORT_PARAMETERS,
-  ExportTemplateVM.JSON_PROPERTY_REPORT_PARAMETERS
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ExportTemplateVM {
-  public static final String JSON_PROPERTY_FILE_NAME = "fileName";
-  private JsonNullable<String> fileName = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_FILE_NAME = "fileName";
+  @SerializedName(SERIALIZED_NAME_FILE_NAME)
+  private String fileName;
 
-  public static final String JSON_PROPERTY_FOLDER_ID = "folderId";
-  private JsonNullable<String> folderId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_FOLDER_ID = "folderId";
+  @SerializedName(SERIALIZED_NAME_FOLDER_ID)
+  private String folderId;
 
-  public static final String JSON_PROPERTY_LOCALE = "locale";
-  private JsonNullable<String> locale = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_LOCALE = "locale";
+  @SerializedName(SERIALIZED_NAME_LOCALE)
+  private String locale;
 
-  public static final String JSON_PROPERTY_PAGES_COUNT = "pagesCount";
-  private JsonNullable<Integer> pagesCount = JsonNullable.<Integer>undefined();
+  public static final String SERIALIZED_NAME_PAGES_COUNT = "pagesCount";
+  @SerializedName(SERIALIZED_NAME_PAGES_COUNT)
+  private Integer pagesCount;
 
-  public static final String JSON_PROPERTY_FORMAT = "format";
+  public static final String SERIALIZED_NAME_FORMAT = "format";
+  @SerializedName(SERIALIZED_NAME_FORMAT)
   private ExportFormat format;
 
-  public static final String JSON_PROPERTY_EXPORT_PARAMETERS = "exportParameters";
-  private JsonNullable<Map<String, String>> exportParameters = JsonNullable.<Map<String, String>>undefined();
+  public static final String SERIALIZED_NAME_EXPORT_PARAMETERS = "exportParameters";
+  @SerializedName(SERIALIZED_NAME_EXPORT_PARAMETERS)
+  private Map<String, String> exportParameters;
 
-  public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
-  private JsonNullable<Map<String, String>> reportParameters = JsonNullable.<Map<String, String>>undefined();
+  public static final String SERIALIZED_NAME_REPORT_PARAMETERS = "reportParameters";
+  @SerializedName(SERIALIZED_NAME_REPORT_PARAMETERS)
+  private Map<String, String> reportParameters;
 
-  public ExportTemplateVM() { 
+  public ExportTemplateVM() {
   }
 
   public ExportTemplateVM fileName(String fileName) {
-    this.fileName = JsonNullable.<String>of(fileName);
+    this.fileName = fileName;
     return this;
   }
 
@@ -83,31 +96,17 @@ public class ExportTemplateVM {
    * @return fileName
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getFileName() {
-        return fileName.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FILE_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getFileName_JsonNullable() {
     return fileName;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FILE_NAME)
-  public void setFileName_JsonNullable(JsonNullable<String> fileName) {
-    this.fileName = fileName;
   }
 
   public void setFileName(String fileName) {
-    this.fileName = JsonNullable.<String>of(fileName);
+    this.fileName = fileName;
   }
 
 
   public ExportTemplateVM folderId(String folderId) {
-    this.folderId = JsonNullable.<String>of(folderId);
+    this.folderId = folderId;
     return this;
   }
 
@@ -116,31 +115,17 @@ public class ExportTemplateVM {
    * @return folderId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getFolderId() {
-        return folderId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getFolderId_JsonNullable() {
     return folderId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
-  public void setFolderId_JsonNullable(JsonNullable<String> folderId) {
-    this.folderId = folderId;
   }
 
   public void setFolderId(String folderId) {
-    this.folderId = JsonNullable.<String>of(folderId);
+    this.folderId = folderId;
   }
 
 
   public ExportTemplateVM locale(String locale) {
-    this.locale = JsonNullable.<String>of(locale);
+    this.locale = locale;
     return this;
   }
 
@@ -149,31 +134,17 @@ public class ExportTemplateVM {
    * @return locale
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getLocale() {
-        return locale.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_LOCALE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getLocale_JsonNullable() {
     return locale;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_LOCALE)
-  public void setLocale_JsonNullable(JsonNullable<String> locale) {
-    this.locale = locale;
   }
 
   public void setLocale(String locale) {
-    this.locale = JsonNullable.<String>of(locale);
+    this.locale = locale;
   }
 
 
   public ExportTemplateVM pagesCount(Integer pagesCount) {
-    this.pagesCount = JsonNullable.<Integer>of(pagesCount);
+    this.pagesCount = pagesCount;
     return this;
   }
 
@@ -184,26 +155,12 @@ public class ExportTemplateVM {
    * @return pagesCount
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Integer getPagesCount() {
-        return pagesCount.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_PAGES_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getPagesCount_JsonNullable() {
     return pagesCount;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_PAGES_COUNT)
-  public void setPagesCount_JsonNullable(JsonNullable<Integer> pagesCount) {
-    this.pagesCount = pagesCount;
   }
 
   public void setPagesCount(Integer pagesCount) {
-    this.pagesCount = JsonNullable.<Integer>of(pagesCount);
+    this.pagesCount = pagesCount;
   }
 
 
@@ -217,35 +174,25 @@ public class ExportTemplateVM {
    * @return format
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FORMAT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public ExportFormat getFormat() {
     return format;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_FORMAT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFormat(ExportFormat format) {
     this.format = format;
   }
 
 
   public ExportTemplateVM exportParameters(Map<String, String> exportParameters) {
-    this.exportParameters = JsonNullable.<Map<String, String>>of(exportParameters);
+    this.exportParameters = exportParameters;
     return this;
   }
 
   public ExportTemplateVM putExportParametersItem(String key, String exportParametersItem) {
-    if (this.exportParameters == null || !this.exportParameters.isPresent()) {
-      this.exportParameters = JsonNullable.<Map<String, String>>of(new HashMap<>());
+    if (this.exportParameters == null) {
+      this.exportParameters = new HashMap<>();
     }
-    try {
-      this.exportParameters.get().put(key, exportParametersItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.exportParameters.put(key, exportParametersItem);
     return this;
   }
 
@@ -254,43 +201,25 @@ public class ExportTemplateVM {
    * @return exportParameters
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Map<String, String> getExportParameters() {
-        return exportParameters.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_EXPORT_PARAMETERS)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Map<String, String>> getExportParameters_JsonNullable() {
     return exportParameters;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_EXPORT_PARAMETERS)
-  public void setExportParameters_JsonNullable(JsonNullable<Map<String, String>> exportParameters) {
-    this.exportParameters = exportParameters;
   }
 
   public void setExportParameters(Map<String, String> exportParameters) {
-    this.exportParameters = JsonNullable.<Map<String, String>>of(exportParameters);
+    this.exportParameters = exportParameters;
   }
 
 
   public ExportTemplateVM reportParameters(Map<String, String> reportParameters) {
-    this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
+    this.reportParameters = reportParameters;
     return this;
   }
 
   public ExportTemplateVM putReportParametersItem(String key, String reportParametersItem) {
-    if (this.reportParameters == null || !this.reportParameters.isPresent()) {
-      this.reportParameters = JsonNullable.<Map<String, String>>of(new HashMap<>());
+    if (this.reportParameters == null) {
+      this.reportParameters = new HashMap<>();
     }
-    try {
-      this.reportParameters.get().put(key, reportParametersItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.reportParameters.put(key, reportParametersItem);
     return this;
   }
 
@@ -299,32 +228,16 @@ public class ExportTemplateVM {
    * @return reportParameters
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Map<String, String> getReportParameters() {
-        return reportParameters.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Map<String, String>> getReportParameters_JsonNullable() {
     return reportParameters;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
-  public void setReportParameters_JsonNullable(JsonNullable<Map<String, String>> reportParameters) {
-    this.reportParameters = reportParameters;
   }
 
   public void setReportParameters(Map<String, String> reportParameters) {
-    this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
+    this.reportParameters = reportParameters;
   }
 
 
-  /**
-   * Return true if this ExportTemplateVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -334,13 +247,13 @@ public class ExportTemplateVM {
       return false;
     }
     ExportTemplateVM exportTemplateVM = (ExportTemplateVM) o;
-    return equalsNullable(this.fileName, exportTemplateVM.fileName) &&
-        equalsNullable(this.folderId, exportTemplateVM.folderId) &&
-        equalsNullable(this.locale, exportTemplateVM.locale) &&
-        equalsNullable(this.pagesCount, exportTemplateVM.pagesCount) &&
+    return Objects.equals(this.fileName, exportTemplateVM.fileName) &&
+        Objects.equals(this.folderId, exportTemplateVM.folderId) &&
+        Objects.equals(this.locale, exportTemplateVM.locale) &&
+        Objects.equals(this.pagesCount, exportTemplateVM.pagesCount) &&
         Objects.equals(this.format, exportTemplateVM.format) &&
-        equalsNullable(this.exportParameters, exportTemplateVM.exportParameters) &&
-        equalsNullable(this.reportParameters, exportTemplateVM.reportParameters);
+        Objects.equals(this.exportParameters, exportTemplateVM.exportParameters) &&
+        Objects.equals(this.reportParameters, exportTemplateVM.reportParameters);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -349,7 +262,7 @@ public class ExportTemplateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(fileName), hashCodeNullable(folderId), hashCodeNullable(locale), hashCodeNullable(pagesCount), format, hashCodeNullable(exportParameters), hashCodeNullable(reportParameters));
+    return Objects.hash(fileName, folderId, locale, pagesCount, format, exportParameters, reportParameters);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -385,82 +298,108 @@ public class ExportTemplateVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("fileName");
+    openapiFields.add("folderId");
+    openapiFields.add("locale");
+    openapiFields.add("pagesCount");
+    openapiFields.add("format");
+    openapiFields.add("exportParameters");
+    openapiFields.add("reportParameters");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `fileName` to the URL query string
-    if (getFileName() != null) {
-      joiner.add(String.format("%sfileName%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFileName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `folderId` to the URL query string
-    if (getFolderId() != null) {
-      joiner.add(String.format("%sfolderId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFolderId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `locale` to the URL query string
-    if (getLocale() != null) {
-      joiner.add(String.format("%slocale%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLocale()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `pagesCount` to the URL query string
-    if (getPagesCount() != null) {
-      joiner.add(String.format("%spagesCount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPagesCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `format` to the URL query string
-    if (getFormat() != null) {
-      joiner.add(String.format("%sformat%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFormat()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `exportParameters` to the URL query string
-    if (getExportParameters() != null) {
-      for (String _key : getExportParameters().keySet()) {
-        joiner.add(String.format("%sexportParameters%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getExportParameters().get(_key), URLEncoder.encode(String.valueOf(getExportParameters().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ExportTemplateVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ExportTemplateVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ExportTemplateVM is not found in the empty JSON string", ExportTemplateVM.openapiRequiredFields.toString()));
+        }
       }
-    }
 
-    // add `reportParameters` to the URL query string
-    if (getReportParameters() != null) {
-      for (String _key : getReportParameters().keySet()) {
-        joiner.add(String.format("%sreportParameters%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getReportParameters().get(_key), URLEncoder.encode(String.valueOf(getReportParameters().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ExportTemplateVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ExportTemplateVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
       }
-    }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("fileName") != null && !jsonObj.get("fileName").isJsonNull()) && !jsonObj.get("fileName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `fileName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fileName").toString()));
+      }
+      if ((jsonObj.get("folderId") != null && !jsonObj.get("folderId").isJsonNull()) && !jsonObj.get("folderId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `folderId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("folderId").toString()));
+      }
+      if ((jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull()) && !jsonObj.get("locale").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `locale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("locale").toString()));
+      }
+      // validate the optional field `format`
+      if (jsonObj.get("format") != null && !jsonObj.get("format").isJsonNull()) {
+        ExportFormat.validateJsonElement(jsonObj.get("format"));
+      }
+  }
 
-    return joiner.toString();
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ExportTemplateVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ExportTemplateVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ExportTemplateVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ExportTemplateVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ExportTemplateVM>() {
+           @Override
+           public void write(JsonWriter out, ExportTemplateVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ExportTemplateVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of ExportTemplateVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ExportTemplateVM
+  * @throws IOException if the JSON string is invalid with respect to ExportTemplateVM
+  */
+  public static ExportTemplateVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ExportTemplateVM.class);
+  }
+
+ /**
+  * Convert an instance of ExportTemplateVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

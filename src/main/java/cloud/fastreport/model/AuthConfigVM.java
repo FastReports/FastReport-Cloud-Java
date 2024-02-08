@@ -13,45 +13,58 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * AuthConfigVM
  */
-@JsonPropertyOrder({
-  AuthConfigVM.JSON_PROPERTY_USE_LOCAL,
-  AuthConfigVM.JSON_PROPERTY_USE_OPEN_ID,
-  AuthConfigVM.JSON_PROPERTY_AUTHORITY
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AuthConfigVM {
-  public static final String JSON_PROPERTY_USE_LOCAL = "useLocal";
+  public static final String SERIALIZED_NAME_USE_LOCAL = "useLocal";
+  @SerializedName(SERIALIZED_NAME_USE_LOCAL)
   private Boolean useLocal;
 
-  public static final String JSON_PROPERTY_USE_OPEN_ID = "useOpenId";
+  public static final String SERIALIZED_NAME_USE_OPEN_ID = "useOpenId";
+  @SerializedName(SERIALIZED_NAME_USE_OPEN_ID)
   private Boolean useOpenId;
 
-  public static final String JSON_PROPERTY_AUTHORITY = "authority";
-  private JsonNullable<String> authority = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_AUTHORITY = "authority";
+  @SerializedName(SERIALIZED_NAME_AUTHORITY)
+  private String authority;
 
-  public AuthConfigVM() { 
+  public AuthConfigVM() {
   }
 
   public AuthConfigVM useLocal(Boolean useLocal) {
@@ -64,16 +77,10 @@ public class AuthConfigVM {
    * @return useLocal
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USE_LOCAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getUseLocal() {
     return useLocal;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_USE_LOCAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUseLocal(Boolean useLocal) {
     this.useLocal = useLocal;
   }
@@ -89,23 +96,17 @@ public class AuthConfigVM {
    * @return useOpenId
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USE_OPEN_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getUseOpenId() {
     return useOpenId;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_USE_OPEN_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUseOpenId(Boolean useOpenId) {
     this.useOpenId = useOpenId;
   }
 
 
   public AuthConfigVM authority(String authority) {
-    this.authority = JsonNullable.<String>of(authority);
+    this.authority = authority;
     return this;
   }
 
@@ -114,32 +115,16 @@ public class AuthConfigVM {
    * @return authority
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getAuthority() {
-        return authority.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_AUTHORITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getAuthority_JsonNullable() {
     return authority;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_AUTHORITY)
-  public void setAuthority_JsonNullable(JsonNullable<String> authority) {
-    this.authority = authority;
   }
 
   public void setAuthority(String authority) {
-    this.authority = JsonNullable.<String>of(authority);
+    this.authority = authority;
   }
 
 
-  /**
-   * Return true if this AuthConfigVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -151,7 +136,7 @@ public class AuthConfigVM {
     AuthConfigVM authConfigVM = (AuthConfigVM) o;
     return Objects.equals(this.useLocal, authConfigVM.useLocal) &&
         Objects.equals(this.useOpenId, authConfigVM.useOpenId) &&
-        equalsNullable(this.authority, authConfigVM.authority);
+        Objects.equals(this.authority, authConfigVM.authority);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -160,7 +145,7 @@ public class AuthConfigVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(useLocal, useOpenId, hashCodeNullable(authority));
+    return Objects.hash(useLocal, useOpenId, authority);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -192,54 +177,94 @@ public class AuthConfigVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("useLocal");
+    openapiFields.add("useOpenId");
+    openapiFields.add("authority");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to AuthConfigVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!AuthConfigVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in AuthConfigVM is not found in the empty JSON string", AuthConfigVM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!AuthConfigVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthConfigVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("authority") != null && !jsonObj.get("authority").isJsonNull()) && !jsonObj.get("authority").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `authority` to be a primitive type in the JSON string but got `%s`", jsonObj.get("authority").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!AuthConfigVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'AuthConfigVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<AuthConfigVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(AuthConfigVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<AuthConfigVM>() {
+           @Override
+           public void write(JsonWriter out, AuthConfigVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public AuthConfigVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of AuthConfigVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of AuthConfigVM
+  * @throws IOException if the JSON string is invalid with respect to AuthConfigVM
+  */
+  public static AuthConfigVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AuthConfigVM.class);
+  }
 
-    // add `useLocal` to the URL query string
-    if (getUseLocal() != null) {
-      joiner.add(String.format("%suseLocal%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUseLocal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `useOpenId` to the URL query string
-    if (getUseOpenId() != null) {
-      joiner.add(String.format("%suseOpenId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUseOpenId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `authority` to the URL query string
-    if (getAuthority() != null) {
-      joiner.add(String.format("%sauthority%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAuthority()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of AuthConfigVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

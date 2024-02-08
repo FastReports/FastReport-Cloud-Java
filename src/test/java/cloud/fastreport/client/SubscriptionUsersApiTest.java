@@ -16,112 +16,84 @@ package cloud.fastreport.client;
 import cloud.fastreport.ApiException;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.SubscriptionUsersVM;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for SubscriptionUsersApi
  */
-@Ignore
+@Disabled
 public class SubscriptionUsersApiTest {
 
     private final SubscriptionUsersApi api = new SubscriptionUsersApi();
 
-    
     /**
      * Add a user to the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionUsersAddUserTest() throws ApiException {
         String subscriptionId = null;
         String userId = null;
-        
         api.subscriptionUsersAddUser(subscriptionId, userId);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Returns a number of users in subscription
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionUsersCountUsersAsyncTest() throws ApiException {
         String subscriptionId = null;
-        Long response = 
-        api.subscriptionUsersCountUsersAsync(subscriptionId);
-        
+        Long response = api.subscriptionUsersCountUsersAsync(subscriptionId);
         // TODO: test validations
     }
-    
+
     /**
      * Returns all users of subscription
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionUsersGetUsersTest() throws ApiException {
         String subscriptionId = null;
         Integer skip = null;
         Integer take = null;
-        SubscriptionUsersVM response = 
-        api.subscriptionUsersGetUsers(subscriptionId, skip, take);
-        
+        SubscriptionUsersVM response = api.subscriptionUsersGetUsers(subscriptionId, skip, take);
         // TODO: test validations
     }
-    
+
     /**
      * Allows user to leave subscription,.
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionUsersLeaveSubscripitonTest() throws ApiException {
         String subscriptionId = null;
-        
         api.subscriptionUsersLeaveSubscripiton(subscriptionId);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Delete a user from the subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void subscriptionUsersRemoveUserTest() throws ApiException {
         String subscriptionId = null;
         String userId = null;
-        
         api.subscriptionUsersRemoveUser(subscriptionId, userId);
-        
         // TODO: test validations
     }
-    
+
 }

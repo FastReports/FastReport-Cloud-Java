@@ -13,41 +13,57 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * FolderSizeVM
  */
-@JsonPropertyOrder({
-  FolderSizeVM.JSON_PROPERTY_SIZE,
-  FolderSizeVM.JSON_PROPERTY_REAL_SIZE,
-  FolderSizeVM.JSON_PROPERTY_DOCUMENTS_COUNT
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FolderSizeVM {
-  public static final String JSON_PROPERTY_SIZE = "size";
+  public static final String SERIALIZED_NAME_SIZE = "size";
+  @SerializedName(SERIALIZED_NAME_SIZE)
   private Long size;
 
-  public static final String JSON_PROPERTY_REAL_SIZE = "realSize";
+  public static final String SERIALIZED_NAME_REAL_SIZE = "realSize";
+  @SerializedName(SERIALIZED_NAME_REAL_SIZE)
   private Long realSize;
 
-  public static final String JSON_PROPERTY_DOCUMENTS_COUNT = "documentsCount";
+  public static final String SERIALIZED_NAME_DOCUMENTS_COUNT = "documentsCount";
+  @SerializedName(SERIALIZED_NAME_DOCUMENTS_COUNT)
   private Long documentsCount;
 
-  public FolderSizeVM() { 
+  public FolderSizeVM() {
   }
 
   public FolderSizeVM size(Long size) {
@@ -60,16 +76,10 @@ public class FolderSizeVM {
    * @return size
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Long getSize() {
     return size;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSize(Long size) {
     this.size = size;
   }
@@ -85,16 +95,10 @@ public class FolderSizeVM {
    * @return realSize
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REAL_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Long getRealSize() {
     return realSize;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_REAL_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRealSize(Long realSize) {
     this.realSize = realSize;
   }
@@ -110,24 +114,16 @@ public class FolderSizeVM {
    * @return documentsCount
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DOCUMENTS_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Long getDocumentsCount() {
     return documentsCount;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_DOCUMENTS_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDocumentsCount(Long documentsCount) {
     this.documentsCount = documentsCount;
   }
 
 
-  /**
-   * Return true if this FolderSizeVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -169,54 +165,91 @@ public class FolderSizeVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("size");
+    openapiFields.add("realSize");
+    openapiFields.add("documentsCount");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to FolderSizeVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!FolderSizeVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in FolderSizeVM is not found in the empty JSON string", FolderSizeVM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!FolderSizeVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FolderSizeVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!FolderSizeVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FolderSizeVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<FolderSizeVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FolderSizeVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<FolderSizeVM>() {
+           @Override
+           public void write(JsonWriter out, FolderSizeVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public FolderSizeVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of FolderSizeVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of FolderSizeVM
+  * @throws IOException if the JSON string is invalid with respect to FolderSizeVM
+  */
+  public static FolderSizeVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FolderSizeVM.class);
+  }
 
-    // add `size` to the URL query string
-    if (getSize() != null) {
-      joiner.add(String.format("%ssize%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `realSize` to the URL query string
-    if (getRealSize() != null) {
-      joiner.add(String.format("%srealSize%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getRealSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `documentsCount` to the URL query string
-    if (getDocumentsCount() != null) {
-      joiner.add(String.format("%sdocumentsCount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDocumentsCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of FolderSizeVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

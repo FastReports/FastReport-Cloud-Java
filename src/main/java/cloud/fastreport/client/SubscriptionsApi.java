@@ -10,12 +10,22 @@
  * Do not edit the class manually.
  */
 
+
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiCallback;
 import cloud.fastreport.ApiClient;
 import cloud.fastreport.ApiException;
 import cloud.fastreport.ApiResponse;
+import cloud.fastreport.Configuration;
 import cloud.fastreport.Pair;
+import cloud.fastreport.ProgressRequestBody;
+import cloud.fastreport.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
 
 import cloud.fastreport.model.DefaultPermissionsVM;
 import cloud.fastreport.model.MyPermissionsVM;
@@ -28,781 +38,1303 @@ import cloud.fastreport.model.UpdateDefaultPermissionsVM;
 import cloud.fastreport.model.UpdateSubscriptionLocaleVM;
 import cloud.fastreport.model.UpdateSubscriptionPermissionsVM;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.http.HttpRequest;
-import java.nio.channels.Channels;
-import java.nio.channels.Pipe;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.StringJoiner;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionsApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public SubscriptionsApi() {
-    this(new ApiClient());
-  }
-
-  public SubscriptionsApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public SubscriptionsApi() {
+        this(Configuration.getDefaultApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Get subscription&#39;s default permissions for new entities
-   * 
-   * @param subscriptionId id (required)
-   * @return DefaultPermissionsVM
-   * @throws ApiException if fails to make API call
-   */
-  public DefaultPermissionsVM subscriptionsGetDefaultPermissions(String subscriptionId) throws ApiException {
-    ApiResponse<DefaultPermissionsVM> localVarResponse = subscriptionsGetDefaultPermissionsWithHttpInfo(subscriptionId);
-    return localVarResponse.getData();
-  }
+    public SubscriptionsApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
 
-  /**
-   * Get subscription&#39;s default permissions for new entities
-   * 
-   * @param subscriptionId id (required)
-   * @return ApiResponse&lt;DefaultPermissionsVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<DefaultPermissionsVM> subscriptionsGetDefaultPermissionsWithHttpInfo(String subscriptionId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionsGetDefaultPermissionsRequestBuilder(subscriptionId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionsGetDefaultPermissions", localVarResponse);
+    public ApiClient getApiClient() {
+        return localVarApiClient;
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for subscriptionsGetDefaultPermissions
+     * @param subscriptionId id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsGetDefaultPermissionsCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<DefaultPermissionsVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<DefaultPermissionsVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionsGetDefaultPermissionsRequestBuilder(String subscriptionId) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling subscriptionsGetDefaultPermissions");
-    }
+        Object localVarPostBody = null;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
 
-    String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get user&#39;s permissions for a subscription by id
-   * 
-   * @param subId subscription id (required)
-   * @return MyPermissionsVM
-   * @throws ApiException if fails to make API call
-   */
-  public MyPermissionsVM subscriptionsGetMyPermissions(String subId) throws ApiException {
-    ApiResponse<MyPermissionsVM> localVarResponse = subscriptionsGetMyPermissionsWithHttpInfo(subId);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get user&#39;s permissions for a subscription by id
-   * 
-   * @param subId subscription id (required)
-   * @return ApiResponse&lt;MyPermissionsVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<MyPermissionsVM> subscriptionsGetMyPermissionsWithHttpInfo(String subId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionsGetMyPermissionsRequestBuilder(subId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionsGetMyPermissions", localVarResponse);
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<MyPermissionsVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<MyPermissionsVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionsGetMyPermissionsRequestBuilder(String subId) throws ApiException {
-    // verify the required parameter 'subId' is set
-    if (subId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subId' when calling subscriptionsGetMyPermissions");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Subscriptions/{subId}/mypermissions"
-        .replace("{subId}", ApiClient.urlEncode(subId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Get permissions for a subscription by id
-   * 
-   * @param id  (required)
-   * @return SubscriptionPermissionsVM
-   * @throws ApiException if fails to make API call
-   */
-  public SubscriptionPermissionsVM subscriptionsGetPermissions(String id) throws ApiException {
-    ApiResponse<SubscriptionPermissionsVM> localVarResponse = subscriptionsGetPermissionsWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Get permissions for a subscription by id
-   * 
-   * @param id  (required)
-   * @return ApiResponse&lt;SubscriptionPermissionsVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SubscriptionPermissionsVM> subscriptionsGetPermissionsWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionsGetPermissionsRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionsGetPermissions", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<SubscriptionPermissionsVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SubscriptionPermissionsVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionsGetPermissionsRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling subscriptionsGetPermissions");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Subscriptions/{id}/permissions"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns the subscription by id
-   * 
-   * @param id Identifier of subscription (required)
-   * @return SubscriptionVM
-   * @throws ApiException if fails to make API call
-   */
-  public SubscriptionVM subscriptionsGetSubscription(String id) throws ApiException {
-    ApiResponse<SubscriptionVM> localVarResponse = subscriptionsGetSubscriptionWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Returns the subscription by id
-   * 
-   * @param id Identifier of subscription (required)
-   * @return ApiResponse&lt;SubscriptionVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SubscriptionVM> subscriptionsGetSubscriptionWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionsGetSubscriptionRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionsGetSubscription", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionsGetDefaultPermissionsValidateBeforeCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling subscriptionsGetDefaultPermissions(Async)");
         }
-        return new ApiResponse<SubscriptionVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SubscriptionVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionsGetSubscriptionRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling subscriptionsGetSubscription");
+        return subscriptionsGetDefaultPermissionsCall(subscriptionId, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Subscriptions/{id}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Get subscription&#39;s default permissions for new entities
+     * 
+     * @param subscriptionId id (required)
+     * @return DefaultPermissionsVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+     </table>
+     */
+    public DefaultPermissionsVM subscriptionsGetDefaultPermissions(String subscriptionId) throws ApiException {
+        ApiResponse<DefaultPermissionsVM> localVarResp = subscriptionsGetDefaultPermissionsWithHttpInfo(subscriptionId);
+        return localVarResp.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns a list of all subscriptions of current user
-   * 
-   * @param skip Variable for pagination, defautl value is 0 (optional, default to 0)
-   * @param take Variable for pagination, default value is 10 (optional, default to 10)
-   * @return SubscriptionsVM
-   * @throws ApiException if fails to make API call
-   */
-  public SubscriptionsVM subscriptionsGetSubscriptions(Integer skip, Integer take) throws ApiException {
-    ApiResponse<SubscriptionsVM> localVarResponse = subscriptionsGetSubscriptionsWithHttpInfo(skip, take);
-    return localVarResponse.getData();
-  }
 
-  /**
-   * Returns a list of all subscriptions of current user
-   * 
-   * @param skip Variable for pagination, defautl value is 0 (optional, default to 0)
-   * @param take Variable for pagination, default value is 10 (optional, default to 10)
-   * @return ApiResponse&lt;SubscriptionsVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SubscriptionsVM> subscriptionsGetSubscriptionsWithHttpInfo(Integer skip, Integer take) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionsGetSubscriptionsRequestBuilder(skip, take);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionsGetSubscriptions", localVarResponse);
+    /**
+     * Get subscription&#39;s default permissions for new entities
+     * 
+     * @param subscriptionId id (required)
+     * @return ApiResponse&lt;DefaultPermissionsVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<DefaultPermissionsVM> subscriptionsGetDefaultPermissionsWithHttpInfo(String subscriptionId) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionsGetDefaultPermissionsValidateBeforeCall(subscriptionId, null);
+        Type localVarReturnType = new TypeToken<DefaultPermissionsVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get subscription&#39;s default permissions for new entities (asynchronously)
+     * 
+     * @param subscriptionId id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsGetDefaultPermissionsAsync(String subscriptionId, final ApiCallback<DefaultPermissionsVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionsGetDefaultPermissionsValidateBeforeCall(subscriptionId, _callback);
+        Type localVarReturnType = new TypeToken<DefaultPermissionsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for subscriptionsGetMyPermissions
+     * @param subId subscription id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsGetMyPermissionsCall(String subId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<SubscriptionsVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SubscriptionsVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionsGetSubscriptionsRequestBuilder(Integer skip, Integer take) throws ApiException {
+        Object localVarPostBody = null;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{subId}/mypermissions"
+            .replace("{" + "subId" + "}", localVarApiClient.escapeString(subId.toString()));
 
-    String localVarPath = "/api/manage/v1/Subscriptions";
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "skip";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("skip", skip));
-    localVarQueryParameterBaseName = "take";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("take", take));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Rename subscription
-   * 
-   * @param subscriptionId id (required)
-   * @param renameSubscriptionVM rename VM (required)
-   * @return SubscriptionVM
-   * @throws ApiException if fails to make API call
-   */
-  public SubscriptionVM subscriptionsRenameSubscription(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM) throws ApiException {
-    ApiResponse<SubscriptionVM> localVarResponse = subscriptionsRenameSubscriptionWithHttpInfo(subscriptionId, renameSubscriptionVM);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Rename subscription
-   * 
-   * @param subscriptionId id (required)
-   * @param renameSubscriptionVM rename VM (required)
-   * @return ApiResponse&lt;SubscriptionVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SubscriptionVM> subscriptionsRenameSubscriptionWithHttpInfo(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionsRenameSubscriptionRequestBuilder(subscriptionId, renameSubscriptionVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionsRenameSubscription", localVarResponse);
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<SubscriptionVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SubscriptionVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionsRenameSubscriptionRequestBuilder(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling subscriptionsRenameSubscription");
-    }
-    // verify the required parameter 'renameSubscriptionVM' is set
-    if (renameSubscriptionVM == null) {
-      throw new ApiException(400, "Missing the required parameter 'renameSubscriptionVM' when calling subscriptionsRenameSubscription");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/rename"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(renameSubscriptionVM);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Change subscription&#39;s default permissions for new entities
-   * 
-   * @param subscriptionId id (required)
-   * @param updateDefaultPermissionsVM update default permissions VM (required)
-   * @return DefaultPermissionsVM
-   * @throws ApiException if fails to make API call
-   */
-  public DefaultPermissionsVM subscriptionsUpdateDefaultPermissions(String subscriptionId, UpdateDefaultPermissionsVM updateDefaultPermissionsVM) throws ApiException {
-    ApiResponse<DefaultPermissionsVM> localVarResponse = subscriptionsUpdateDefaultPermissionsWithHttpInfo(subscriptionId, updateDefaultPermissionsVM);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Change subscription&#39;s default permissions for new entities
-   * 
-   * @param subscriptionId id (required)
-   * @param updateDefaultPermissionsVM update default permissions VM (required)
-   * @return ApiResponse&lt;DefaultPermissionsVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<DefaultPermissionsVM> subscriptionsUpdateDefaultPermissionsWithHttpInfo(String subscriptionId, UpdateDefaultPermissionsVM updateDefaultPermissionsVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionsUpdateDefaultPermissionsRequestBuilder(subscriptionId, updateDefaultPermissionsVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionsUpdateDefaultPermissions", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<DefaultPermissionsVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<DefaultPermissionsVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionsUpdateDefaultPermissionsRequestBuilder(String subscriptionId, UpdateDefaultPermissionsVM updateDefaultPermissionsVM) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling subscriptionsUpdateDefaultPermissions");
-    }
-    // verify the required parameter 'updateDefaultPermissionsVM' is set
-    if (updateDefaultPermissionsVM == null) {
-      throw new ApiException(400, "Missing the required parameter 'updateDefaultPermissionsVM' when calling subscriptionsUpdateDefaultPermissions");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateDefaultPermissionsVM);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Update subscription&#39;s default locale
-   * 
-   * @param subscriptionId id (required)
-   * @param updateSubscriptionLocaleVM update VM (required)
-   * @return SubscriptionVM
-   * @throws ApiException if fails to make API call
-   */
-  public SubscriptionVM subscriptionsUpdateLocale(String subscriptionId, UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM) throws ApiException {
-    ApiResponse<SubscriptionVM> localVarResponse = subscriptionsUpdateLocaleWithHttpInfo(subscriptionId, updateSubscriptionLocaleVM);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Update subscription&#39;s default locale
-   * 
-   * @param subscriptionId id (required)
-   * @param updateSubscriptionLocaleVM update VM (required)
-   * @return ApiResponse&lt;SubscriptionVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SubscriptionVM> subscriptionsUpdateLocaleWithHttpInfo(String subscriptionId, UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionsUpdateLocaleRequestBuilder(subscriptionId, updateSubscriptionLocaleVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionsUpdateLocale", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionsGetMyPermissionsValidateBeforeCall(String subId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subId' is set
+        if (subId == null) {
+            throw new ApiException("Missing the required parameter 'subId' when calling subscriptionsGetMyPermissions(Async)");
         }
-        return new ApiResponse<SubscriptionVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SubscriptionVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionsUpdateLocaleRequestBuilder(String subscriptionId, UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling subscriptionsUpdateLocale");
-    }
-    // verify the required parameter 'updateSubscriptionLocaleVM' is set
-    if (updateSubscriptionLocaleVM == null) {
-      throw new ApiException(400, "Missing the required parameter 'updateSubscriptionLocaleVM' when calling subscriptionsUpdateLocale");
+        return subscriptionsGetMyPermissionsCall(subId, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/Locale"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateSubscriptionLocaleVM);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
+    /**
+     * Get user&#39;s permissions for a subscription by id
+     * 
+     * @param subId subscription id (required)
+     * @return MyPermissionsVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+     </table>
+     */
+    public MyPermissionsVM subscriptionsGetMyPermissions(String subId) throws ApiException {
+        ApiResponse<MyPermissionsVM> localVarResp = subscriptionsGetMyPermissionsWithHttpInfo(subId);
+        return localVarResp.getData();
     }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Update permissions
-   * 
-   * @param id  (required)
-   * @param updateSubscriptionPermissionsVM  (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void subscriptionsUpdatePermissions(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM) throws ApiException {
-    subscriptionsUpdatePermissionsWithHttpInfo(id, updateSubscriptionPermissionsVM);
-  }
 
-  /**
-   * Update permissions
-   * 
-   * @param id  (required)
-   * @param updateSubscriptionPermissionsVM  (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> subscriptionsUpdatePermissionsWithHttpInfo(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionsUpdatePermissionsRequestBuilder(id, updateSubscriptionPermissionsVM);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionsUpdatePermissions", localVarResponse);
+    /**
+     * Get user&#39;s permissions for a subscription by id
+     * 
+     * @param subId subscription id (required)
+     * @return ApiResponse&lt;MyPermissionsVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<MyPermissionsVM> subscriptionsGetMyPermissionsWithHttpInfo(String subId) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionsGetMyPermissionsValidateBeforeCall(subId, null);
+        Type localVarReturnType = new TypeToken<MyPermissionsVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get user&#39;s permissions for a subscription by id (asynchronously)
+     * 
+     * @param subId subscription id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsGetMyPermissionsAsync(String subId, final ApiCallback<MyPermissionsVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionsGetMyPermissionsValidateBeforeCall(subId, _callback);
+        Type localVarReturnType = new TypeToken<MyPermissionsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for subscriptionsGetPermissions
+     * @param id  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsGetPermissionsCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{id}/permissions"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionsUpdatePermissionsRequestBuilder(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling subscriptionsUpdatePermissions");
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionsGetPermissionsValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling subscriptionsGetPermissions(Async)");
+        }
 
-    String localVarPath = "/api/manage/v1/Subscriptions/{id}/permissions"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
+        return subscriptionsGetPermissionsCall(id, _callback);
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateSubscriptionPermissionsVM);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
     }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+
+    /**
+     * Get permissions for a subscription by id
+     * 
+     * @param id  (required)
+     * @return SubscriptionPermissionsVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public SubscriptionPermissionsVM subscriptionsGetPermissions(String id) throws ApiException {
+        ApiResponse<SubscriptionPermissionsVM> localVarResp = subscriptionsGetPermissionsWithHttpInfo(id);
+        return localVarResp.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Get permissions for a subscription by id
+     * 
+     * @param id  (required)
+     * @return ApiResponse&lt;SubscriptionPermissionsVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SubscriptionPermissionsVM> subscriptionsGetPermissionsWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionsGetPermissionsValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<SubscriptionPermissionsVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
-    return localVarRequestBuilder;
-  }
+
+    /**
+     * Get permissions for a subscription by id (asynchronously)
+     * 
+     * @param id  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsGetPermissionsAsync(String id, final ApiCallback<SubscriptionPermissionsVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionsGetPermissionsValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<SubscriptionPermissionsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for subscriptionsGetSubscription
+     * @param id Identifier of subscription (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsGetSubscriptionCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{id}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionsGetSubscriptionValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling subscriptionsGetSubscription(Async)");
+        }
+
+        return subscriptionsGetSubscriptionCall(id, _callback);
+
+    }
+
+    /**
+     * Returns the subscription by id
+     * 
+     * @param id Identifier of subscription (required)
+     * @return SubscriptionVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public SubscriptionVM subscriptionsGetSubscription(String id) throws ApiException {
+        ApiResponse<SubscriptionVM> localVarResp = subscriptionsGetSubscriptionWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Returns the subscription by id
+     * 
+     * @param id Identifier of subscription (required)
+     * @return ApiResponse&lt;SubscriptionVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SubscriptionVM> subscriptionsGetSubscriptionWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionsGetSubscriptionValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<SubscriptionVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns the subscription by id (asynchronously)
+     * 
+     * @param id Identifier of subscription (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsGetSubscriptionAsync(String id, final ApiCallback<SubscriptionVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionsGetSubscriptionValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<SubscriptionVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for subscriptionsGetSubscriptions
+     * @param skip Variable for pagination, defautl value is 0 (optional, default to 0)
+     * @param take Variable for pagination, default value is 10 (optional, default to 10)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> unrealistic skip &#39;n take provided </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsGetSubscriptionsCall(Integer skip, Integer take, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (skip != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("skip", skip));
+        }
+
+        if (take != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("take", take));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionsGetSubscriptionsValidateBeforeCall(Integer skip, Integer take, final ApiCallback _callback) throws ApiException {
+        return subscriptionsGetSubscriptionsCall(skip, take, _callback);
+
+    }
+
+    /**
+     * Returns a list of all subscriptions of current user
+     * 
+     * @param skip Variable for pagination, defautl value is 0 (optional, default to 0)
+     * @param take Variable for pagination, default value is 10 (optional, default to 10)
+     * @return SubscriptionsVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> unrealistic skip &#39;n take provided </td><td>  -  </td></tr>
+     </table>
+     */
+    public SubscriptionsVM subscriptionsGetSubscriptions(Integer skip, Integer take) throws ApiException {
+        ApiResponse<SubscriptionsVM> localVarResp = subscriptionsGetSubscriptionsWithHttpInfo(skip, take);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Returns a list of all subscriptions of current user
+     * 
+     * @param skip Variable for pagination, defautl value is 0 (optional, default to 0)
+     * @param take Variable for pagination, default value is 10 (optional, default to 10)
+     * @return ApiResponse&lt;SubscriptionsVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> unrealistic skip &#39;n take provided </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SubscriptionsVM> subscriptionsGetSubscriptionsWithHttpInfo(Integer skip, Integer take) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionsGetSubscriptionsValidateBeforeCall(skip, take, null);
+        Type localVarReturnType = new TypeToken<SubscriptionsVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns a list of all subscriptions of current user (asynchronously)
+     * 
+     * @param skip Variable for pagination, defautl value is 0 (optional, default to 0)
+     * @param take Variable for pagination, default value is 10 (optional, default to 10)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> unrealistic skip &#39;n take provided </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsGetSubscriptionsAsync(Integer skip, Integer take, final ApiCallback<SubscriptionsVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionsGetSubscriptionsValidateBeforeCall(skip, take, _callback);
+        Type localVarReturnType = new TypeToken<SubscriptionsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for subscriptionsRenameSubscription
+     * @param subscriptionId id (required)
+     * @param renameSubscriptionVM rename VM (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully renamed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsRenameSubscriptionCall(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = renameSubscriptionVM;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/rename"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionsRenameSubscriptionValidateBeforeCall(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling subscriptionsRenameSubscription(Async)");
+        }
+
+        // verify the required parameter 'renameSubscriptionVM' is set
+        if (renameSubscriptionVM == null) {
+            throw new ApiException("Missing the required parameter 'renameSubscriptionVM' when calling subscriptionsRenameSubscription(Async)");
+        }
+
+        return subscriptionsRenameSubscriptionCall(subscriptionId, renameSubscriptionVM, _callback);
+
+    }
+
+    /**
+     * Rename subscription
+     * 
+     * @param subscriptionId id (required)
+     * @param renameSubscriptionVM rename VM (required)
+     * @return SubscriptionVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully renamed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+     </table>
+     */
+    public SubscriptionVM subscriptionsRenameSubscription(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM) throws ApiException {
+        ApiResponse<SubscriptionVM> localVarResp = subscriptionsRenameSubscriptionWithHttpInfo(subscriptionId, renameSubscriptionVM);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Rename subscription
+     * 
+     * @param subscriptionId id (required)
+     * @param renameSubscriptionVM rename VM (required)
+     * @return ApiResponse&lt;SubscriptionVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully renamed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SubscriptionVM> subscriptionsRenameSubscriptionWithHttpInfo(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionsRenameSubscriptionValidateBeforeCall(subscriptionId, renameSubscriptionVM, null);
+        Type localVarReturnType = new TypeToken<SubscriptionVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Rename subscription (asynchronously)
+     * 
+     * @param subscriptionId id (required)
+     * @param renameSubscriptionVM rename VM (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully renamed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsRenameSubscriptionAsync(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM, final ApiCallback<SubscriptionVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionsRenameSubscriptionValidateBeforeCall(subscriptionId, renameSubscriptionVM, _callback);
+        Type localVarReturnType = new TypeToken<SubscriptionVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for subscriptionsUpdateDefaultPermissions
+     * @param subscriptionId id (required)
+     * @param updateDefaultPermissionsVM update default permissions VM (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully changed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsUpdateDefaultPermissionsCall(String subscriptionId, UpdateDefaultPermissionsVM updateDefaultPermissionsVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateDefaultPermissionsVM;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionsUpdateDefaultPermissionsValidateBeforeCall(String subscriptionId, UpdateDefaultPermissionsVM updateDefaultPermissionsVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling subscriptionsUpdateDefaultPermissions(Async)");
+        }
+
+        // verify the required parameter 'updateDefaultPermissionsVM' is set
+        if (updateDefaultPermissionsVM == null) {
+            throw new ApiException("Missing the required parameter 'updateDefaultPermissionsVM' when calling subscriptionsUpdateDefaultPermissions(Async)");
+        }
+
+        return subscriptionsUpdateDefaultPermissionsCall(subscriptionId, updateDefaultPermissionsVM, _callback);
+
+    }
+
+    /**
+     * Change subscription&#39;s default permissions for new entities
+     * 
+     * @param subscriptionId id (required)
+     * @param updateDefaultPermissionsVM update default permissions VM (required)
+     * @return DefaultPermissionsVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully changed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+     </table>
+     */
+    public DefaultPermissionsVM subscriptionsUpdateDefaultPermissions(String subscriptionId, UpdateDefaultPermissionsVM updateDefaultPermissionsVM) throws ApiException {
+        ApiResponse<DefaultPermissionsVM> localVarResp = subscriptionsUpdateDefaultPermissionsWithHttpInfo(subscriptionId, updateDefaultPermissionsVM);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Change subscription&#39;s default permissions for new entities
+     * 
+     * @param subscriptionId id (required)
+     * @param updateDefaultPermissionsVM update default permissions VM (required)
+     * @return ApiResponse&lt;DefaultPermissionsVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully changed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<DefaultPermissionsVM> subscriptionsUpdateDefaultPermissionsWithHttpInfo(String subscriptionId, UpdateDefaultPermissionsVM updateDefaultPermissionsVM) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionsUpdateDefaultPermissionsValidateBeforeCall(subscriptionId, updateDefaultPermissionsVM, null);
+        Type localVarReturnType = new TypeToken<DefaultPermissionsVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Change subscription&#39;s default permissions for new entities (asynchronously)
+     * 
+     * @param subscriptionId id (required)
+     * @param updateDefaultPermissionsVM update default permissions VM (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully changed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsUpdateDefaultPermissionsAsync(String subscriptionId, UpdateDefaultPermissionsVM updateDefaultPermissionsVM, final ApiCallback<DefaultPermissionsVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionsUpdateDefaultPermissionsValidateBeforeCall(subscriptionId, updateDefaultPermissionsVM, _callback);
+        Type localVarReturnType = new TypeToken<DefaultPermissionsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for subscriptionsUpdateLocale
+     * @param subscriptionId id (required)
+     * @param updateSubscriptionLocaleVM update VM (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully renamed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsUpdateLocaleCall(String subscriptionId, UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateSubscriptionLocaleVM;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/Locale"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionsUpdateLocaleValidateBeforeCall(String subscriptionId, UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling subscriptionsUpdateLocale(Async)");
+        }
+
+        // verify the required parameter 'updateSubscriptionLocaleVM' is set
+        if (updateSubscriptionLocaleVM == null) {
+            throw new ApiException("Missing the required parameter 'updateSubscriptionLocaleVM' when calling subscriptionsUpdateLocale(Async)");
+        }
+
+        return subscriptionsUpdateLocaleCall(subscriptionId, updateSubscriptionLocaleVM, _callback);
+
+    }
+
+    /**
+     * Update subscription&#39;s default locale
+     * 
+     * @param subscriptionId id (required)
+     * @param updateSubscriptionLocaleVM update VM (required)
+     * @return SubscriptionVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully renamed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+     </table>
+     */
+    public SubscriptionVM subscriptionsUpdateLocale(String subscriptionId, UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM) throws ApiException {
+        ApiResponse<SubscriptionVM> localVarResp = subscriptionsUpdateLocaleWithHttpInfo(subscriptionId, updateSubscriptionLocaleVM);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update subscription&#39;s default locale
+     * 
+     * @param subscriptionId id (required)
+     * @param updateSubscriptionLocaleVM update VM (required)
+     * @return ApiResponse&lt;SubscriptionVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully renamed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SubscriptionVM> subscriptionsUpdateLocaleWithHttpInfo(String subscriptionId, UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionsUpdateLocaleValidateBeforeCall(subscriptionId, updateSubscriptionLocaleVM, null);
+        Type localVarReturnType = new TypeToken<SubscriptionVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update subscription&#39;s default locale (asynchronously)
+     * 
+     * @param subscriptionId id (required)
+     * @param updateSubscriptionLocaleVM update VM (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully renamed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsUpdateLocaleAsync(String subscriptionId, UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM, final ApiCallback<SubscriptionVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionsUpdateLocaleValidateBeforeCall(subscriptionId, updateSubscriptionLocaleVM, _callback);
+        Type localVarReturnType = new TypeToken<SubscriptionVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for subscriptionsUpdatePermissions
+     * @param id  (required)
+     * @param updateSubscriptionPermissionsVM  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsUpdatePermissionsCall(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateSubscriptionPermissionsVM;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{id}/permissions"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionsUpdatePermissionsValidateBeforeCall(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling subscriptionsUpdatePermissions(Async)");
+        }
+
+        return subscriptionsUpdatePermissionsCall(id, updateSubscriptionPermissionsVM, _callback);
+
+    }
+
+    /**
+     * Update permissions
+     * 
+     * @param id  (required)
+     * @param updateSubscriptionPermissionsVM  (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public void subscriptionsUpdatePermissions(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM) throws ApiException {
+        subscriptionsUpdatePermissionsWithHttpInfo(id, updateSubscriptionPermissionsVM);
+    }
+
+    /**
+     * Update permissions
+     * 
+     * @param id  (required)
+     * @param updateSubscriptionPermissionsVM  (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> subscriptionsUpdatePermissionsWithHttpInfo(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionsUpdatePermissionsValidateBeforeCall(id, updateSubscriptionPermissionsVM, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Update permissions (asynchronously)
+     * 
+     * @param id  (required)
+     * @param updateSubscriptionPermissionsVM  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionsUpdatePermissionsAsync(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionsUpdatePermissionsValidateBeforeCall(id, updateSubscriptionPermissionsVM, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
 }

@@ -13,23 +13,18 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.RunInputFileVM;
 import cloud.fastreport.model.RunTransportTaskBaseVM;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for RunFTPUploadTaskVM
@@ -46,11 +41,11 @@ public class RunFTPUploadTaskVMTest {
     }
 
     /**
-     * Test the property 'subscriptionId'
+     * Test the property 'inputFile'
      */
     @Test
-    public void subscriptionIdTest() {
-        // TODO: test subscriptionId
+    public void inputFileTest() {
+        // TODO: test inputFile
     }
 
     /**
@@ -59,6 +54,14 @@ public class RunFTPUploadTaskVMTest {
     @Test
     public void $tTest() {
         // TODO: test $t
+    }
+
+    /**
+     * Test the property 'subscriptionId'
+     */
+    @Test
+    public void subscriptionIdTest() {
+        // TODO: test subscriptionId
     }
 
 }

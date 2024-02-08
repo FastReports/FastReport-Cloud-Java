@@ -13,73 +13,86 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * TaskSettingsVM
  */
-@JsonPropertyOrder({
-  TaskSettingsVM.JSON_PROPERTY_PREPARE,
-  TaskSettingsVM.JSON_PROPERTY_EXPORT_TEMPLATE,
-  TaskSettingsVM.JSON_PROPERTY_EXPORT_REPORT,
-  TaskSettingsVM.JSON_PROPERTY_SEND_VIA_EMAIL,
-  TaskSettingsVM.JSON_PROPERTY_UPLOAD_TO_F_T_P,
-  TaskSettingsVM.JSON_PROPERTY_SEND_VIA_WEBHOOK,
-  TaskSettingsVM.JSON_PROPERTY_FETCH_DATA,
-  TaskSettingsVM.JSON_PROPERTY_THUMBNAIL_REPORT,
-  TaskSettingsVM.JSON_PROPERTY_THUMBNAIL_TEMPLATE
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TaskSettingsVM {
-  public static final String JSON_PROPERTY_PREPARE = "prepare";
-  private JsonNullable<Boolean> prepare = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_PREPARE = "prepare";
+  @SerializedName(SERIALIZED_NAME_PREPARE)
+  private Boolean prepare;
 
-  public static final String JSON_PROPERTY_EXPORT_TEMPLATE = "exportTemplate";
-  private JsonNullable<Boolean> exportTemplate = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_EXPORT_TEMPLATE = "exportTemplate";
+  @SerializedName(SERIALIZED_NAME_EXPORT_TEMPLATE)
+  private Boolean exportTemplate;
 
-  public static final String JSON_PROPERTY_EXPORT_REPORT = "exportReport";
-  private JsonNullable<Boolean> exportReport = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_EXPORT_REPORT = "exportReport";
+  @SerializedName(SERIALIZED_NAME_EXPORT_REPORT)
+  private Boolean exportReport;
 
-  public static final String JSON_PROPERTY_SEND_VIA_EMAIL = "sendViaEmail";
-  private JsonNullable<Boolean> sendViaEmail = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_SEND_VIA_EMAIL = "sendViaEmail";
+  @SerializedName(SERIALIZED_NAME_SEND_VIA_EMAIL)
+  private Boolean sendViaEmail;
 
-  public static final String JSON_PROPERTY_UPLOAD_TO_F_T_P = "uploadToFTP";
-  private JsonNullable<Boolean> uploadToFTP = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_UPLOAD_TO_F_T_P = "uploadToFTP";
+  @SerializedName(SERIALIZED_NAME_UPLOAD_TO_F_T_P)
+  private Boolean uploadToFTP;
 
-  public static final String JSON_PROPERTY_SEND_VIA_WEBHOOK = "sendViaWebhook";
-  private JsonNullable<Boolean> sendViaWebhook = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_SEND_VIA_WEBHOOK = "sendViaWebhook";
+  @SerializedName(SERIALIZED_NAME_SEND_VIA_WEBHOOK)
+  private Boolean sendViaWebhook;
 
-  public static final String JSON_PROPERTY_FETCH_DATA = "fetchData";
-  private JsonNullable<Boolean> fetchData = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_FETCH_DATA = "fetchData";
+  @SerializedName(SERIALIZED_NAME_FETCH_DATA)
+  private Boolean fetchData;
 
-  public static final String JSON_PROPERTY_THUMBNAIL_REPORT = "thumbnailReport";
-  private JsonNullable<Boolean> thumbnailReport = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_THUMBNAIL_REPORT = "thumbnailReport";
+  @SerializedName(SERIALIZED_NAME_THUMBNAIL_REPORT)
+  private Boolean thumbnailReport;
 
-  public static final String JSON_PROPERTY_THUMBNAIL_TEMPLATE = "thumbnailTemplate";
-  private JsonNullable<Boolean> thumbnailTemplate = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_THUMBNAIL_TEMPLATE = "thumbnailTemplate";
+  @SerializedName(SERIALIZED_NAME_THUMBNAIL_TEMPLATE)
+  private Boolean thumbnailTemplate;
 
-  public TaskSettingsVM() { 
+  public TaskSettingsVM() {
   }
 
   public TaskSettingsVM prepare(Boolean prepare) {
-    this.prepare = JsonNullable.<Boolean>of(prepare);
+    this.prepare = prepare;
     return this;
   }
 
@@ -88,31 +101,17 @@ public class TaskSettingsVM {
    * @return prepare
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getPrepare() {
-        return prepare.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_PREPARE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getPrepare_JsonNullable() {
     return prepare;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_PREPARE)
-  public void setPrepare_JsonNullable(JsonNullable<Boolean> prepare) {
-    this.prepare = prepare;
   }
 
   public void setPrepare(Boolean prepare) {
-    this.prepare = JsonNullable.<Boolean>of(prepare);
+    this.prepare = prepare;
   }
 
 
   public TaskSettingsVM exportTemplate(Boolean exportTemplate) {
-    this.exportTemplate = JsonNullable.<Boolean>of(exportTemplate);
+    this.exportTemplate = exportTemplate;
     return this;
   }
 
@@ -121,31 +120,17 @@ public class TaskSettingsVM {
    * @return exportTemplate
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getExportTemplate() {
-        return exportTemplate.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_EXPORT_TEMPLATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getExportTemplate_JsonNullable() {
     return exportTemplate;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_EXPORT_TEMPLATE)
-  public void setExportTemplate_JsonNullable(JsonNullable<Boolean> exportTemplate) {
-    this.exportTemplate = exportTemplate;
   }
 
   public void setExportTemplate(Boolean exportTemplate) {
-    this.exportTemplate = JsonNullable.<Boolean>of(exportTemplate);
+    this.exportTemplate = exportTemplate;
   }
 
 
   public TaskSettingsVM exportReport(Boolean exportReport) {
-    this.exportReport = JsonNullable.<Boolean>of(exportReport);
+    this.exportReport = exportReport;
     return this;
   }
 
@@ -154,31 +139,17 @@ public class TaskSettingsVM {
    * @return exportReport
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getExportReport() {
-        return exportReport.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_EXPORT_REPORT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getExportReport_JsonNullable() {
     return exportReport;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_EXPORT_REPORT)
-  public void setExportReport_JsonNullable(JsonNullable<Boolean> exportReport) {
-    this.exportReport = exportReport;
   }
 
   public void setExportReport(Boolean exportReport) {
-    this.exportReport = JsonNullable.<Boolean>of(exportReport);
+    this.exportReport = exportReport;
   }
 
 
   public TaskSettingsVM sendViaEmail(Boolean sendViaEmail) {
-    this.sendViaEmail = JsonNullable.<Boolean>of(sendViaEmail);
+    this.sendViaEmail = sendViaEmail;
     return this;
   }
 
@@ -187,31 +158,17 @@ public class TaskSettingsVM {
    * @return sendViaEmail
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getSendViaEmail() {
-        return sendViaEmail.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SEND_VIA_EMAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getSendViaEmail_JsonNullable() {
     return sendViaEmail;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SEND_VIA_EMAIL)
-  public void setSendViaEmail_JsonNullable(JsonNullable<Boolean> sendViaEmail) {
-    this.sendViaEmail = sendViaEmail;
   }
 
   public void setSendViaEmail(Boolean sendViaEmail) {
-    this.sendViaEmail = JsonNullable.<Boolean>of(sendViaEmail);
+    this.sendViaEmail = sendViaEmail;
   }
 
 
   public TaskSettingsVM uploadToFTP(Boolean uploadToFTP) {
-    this.uploadToFTP = JsonNullable.<Boolean>of(uploadToFTP);
+    this.uploadToFTP = uploadToFTP;
     return this;
   }
 
@@ -220,31 +177,17 @@ public class TaskSettingsVM {
    * @return uploadToFTP
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getUploadToFTP() {
-        return uploadToFTP.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_UPLOAD_TO_F_T_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getUploadToFTP_JsonNullable() {
     return uploadToFTP;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_UPLOAD_TO_F_T_P)
-  public void setUploadToFTP_JsonNullable(JsonNullable<Boolean> uploadToFTP) {
-    this.uploadToFTP = uploadToFTP;
   }
 
   public void setUploadToFTP(Boolean uploadToFTP) {
-    this.uploadToFTP = JsonNullable.<Boolean>of(uploadToFTP);
+    this.uploadToFTP = uploadToFTP;
   }
 
 
   public TaskSettingsVM sendViaWebhook(Boolean sendViaWebhook) {
-    this.sendViaWebhook = JsonNullable.<Boolean>of(sendViaWebhook);
+    this.sendViaWebhook = sendViaWebhook;
     return this;
   }
 
@@ -253,31 +196,17 @@ public class TaskSettingsVM {
    * @return sendViaWebhook
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getSendViaWebhook() {
-        return sendViaWebhook.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SEND_VIA_WEBHOOK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getSendViaWebhook_JsonNullable() {
     return sendViaWebhook;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SEND_VIA_WEBHOOK)
-  public void setSendViaWebhook_JsonNullable(JsonNullable<Boolean> sendViaWebhook) {
-    this.sendViaWebhook = sendViaWebhook;
   }
 
   public void setSendViaWebhook(Boolean sendViaWebhook) {
-    this.sendViaWebhook = JsonNullable.<Boolean>of(sendViaWebhook);
+    this.sendViaWebhook = sendViaWebhook;
   }
 
 
   public TaskSettingsVM fetchData(Boolean fetchData) {
-    this.fetchData = JsonNullable.<Boolean>of(fetchData);
+    this.fetchData = fetchData;
     return this;
   }
 
@@ -286,31 +215,17 @@ public class TaskSettingsVM {
    * @return fetchData
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getFetchData() {
-        return fetchData.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FETCH_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getFetchData_JsonNullable() {
     return fetchData;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FETCH_DATA)
-  public void setFetchData_JsonNullable(JsonNullable<Boolean> fetchData) {
-    this.fetchData = fetchData;
   }
 
   public void setFetchData(Boolean fetchData) {
-    this.fetchData = JsonNullable.<Boolean>of(fetchData);
+    this.fetchData = fetchData;
   }
 
 
   public TaskSettingsVM thumbnailReport(Boolean thumbnailReport) {
-    this.thumbnailReport = JsonNullable.<Boolean>of(thumbnailReport);
+    this.thumbnailReport = thumbnailReport;
     return this;
   }
 
@@ -319,31 +234,17 @@ public class TaskSettingsVM {
    * @return thumbnailReport
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getThumbnailReport() {
-        return thumbnailReport.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_THUMBNAIL_REPORT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getThumbnailReport_JsonNullable() {
     return thumbnailReport;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_THUMBNAIL_REPORT)
-  public void setThumbnailReport_JsonNullable(JsonNullable<Boolean> thumbnailReport) {
-    this.thumbnailReport = thumbnailReport;
   }
 
   public void setThumbnailReport(Boolean thumbnailReport) {
-    this.thumbnailReport = JsonNullable.<Boolean>of(thumbnailReport);
+    this.thumbnailReport = thumbnailReport;
   }
 
 
   public TaskSettingsVM thumbnailTemplate(Boolean thumbnailTemplate) {
-    this.thumbnailTemplate = JsonNullable.<Boolean>of(thumbnailTemplate);
+    this.thumbnailTemplate = thumbnailTemplate;
     return this;
   }
 
@@ -352,32 +253,16 @@ public class TaskSettingsVM {
    * @return thumbnailTemplate
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getThumbnailTemplate() {
-        return thumbnailTemplate.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_THUMBNAIL_TEMPLATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getThumbnailTemplate_JsonNullable() {
     return thumbnailTemplate;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_THUMBNAIL_TEMPLATE)
-  public void setThumbnailTemplate_JsonNullable(JsonNullable<Boolean> thumbnailTemplate) {
-    this.thumbnailTemplate = thumbnailTemplate;
   }
 
   public void setThumbnailTemplate(Boolean thumbnailTemplate) {
-    this.thumbnailTemplate = JsonNullable.<Boolean>of(thumbnailTemplate);
+    this.thumbnailTemplate = thumbnailTemplate;
   }
 
 
-  /**
-   * Return true if this TaskSettingsVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -387,15 +272,15 @@ public class TaskSettingsVM {
       return false;
     }
     TaskSettingsVM taskSettingsVM = (TaskSettingsVM) o;
-    return equalsNullable(this.prepare, taskSettingsVM.prepare) &&
-        equalsNullable(this.exportTemplate, taskSettingsVM.exportTemplate) &&
-        equalsNullable(this.exportReport, taskSettingsVM.exportReport) &&
-        equalsNullable(this.sendViaEmail, taskSettingsVM.sendViaEmail) &&
-        equalsNullable(this.uploadToFTP, taskSettingsVM.uploadToFTP) &&
-        equalsNullable(this.sendViaWebhook, taskSettingsVM.sendViaWebhook) &&
-        equalsNullable(this.fetchData, taskSettingsVM.fetchData) &&
-        equalsNullable(this.thumbnailReport, taskSettingsVM.thumbnailReport) &&
-        equalsNullable(this.thumbnailTemplate, taskSettingsVM.thumbnailTemplate);
+    return Objects.equals(this.prepare, taskSettingsVM.prepare) &&
+        Objects.equals(this.exportTemplate, taskSettingsVM.exportTemplate) &&
+        Objects.equals(this.exportReport, taskSettingsVM.exportReport) &&
+        Objects.equals(this.sendViaEmail, taskSettingsVM.sendViaEmail) &&
+        Objects.equals(this.uploadToFTP, taskSettingsVM.uploadToFTP) &&
+        Objects.equals(this.sendViaWebhook, taskSettingsVM.sendViaWebhook) &&
+        Objects.equals(this.fetchData, taskSettingsVM.fetchData) &&
+        Objects.equals(this.thumbnailReport, taskSettingsVM.thumbnailReport) &&
+        Objects.equals(this.thumbnailTemplate, taskSettingsVM.thumbnailTemplate);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -404,7 +289,7 @@ public class TaskSettingsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(prepare), hashCodeNullable(exportTemplate), hashCodeNullable(exportReport), hashCodeNullable(sendViaEmail), hashCodeNullable(uploadToFTP), hashCodeNullable(sendViaWebhook), hashCodeNullable(fetchData), hashCodeNullable(thumbnailReport), hashCodeNullable(thumbnailTemplate));
+    return Objects.hash(prepare, exportTemplate, exportReport, sendViaEmail, uploadToFTP, sendViaWebhook, fetchData, thumbnailReport, thumbnailTemplate);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -442,84 +327,97 @@ public class TaskSettingsVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("prepare");
+    openapiFields.add("exportTemplate");
+    openapiFields.add("exportReport");
+    openapiFields.add("sendViaEmail");
+    openapiFields.add("uploadToFTP");
+    openapiFields.add("sendViaWebhook");
+    openapiFields.add("fetchData");
+    openapiFields.add("thumbnailReport");
+    openapiFields.add("thumbnailTemplate");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to TaskSettingsVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TaskSettingsVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TaskSettingsVM is not found in the empty JSON string", TaskSettingsVM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TaskSettingsVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TaskSettingsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TaskSettingsVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TaskSettingsVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TaskSettingsVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TaskSettingsVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<TaskSettingsVM>() {
+           @Override
+           public void write(JsonWriter out, TaskSettingsVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TaskSettingsVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of TaskSettingsVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of TaskSettingsVM
+  * @throws IOException if the JSON string is invalid with respect to TaskSettingsVM
+  */
+  public static TaskSettingsVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TaskSettingsVM.class);
+  }
 
-    // add `prepare` to the URL query string
-    if (getPrepare() != null) {
-      joiner.add(String.format("%sprepare%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPrepare()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `exportTemplate` to the URL query string
-    if (getExportTemplate() != null) {
-      joiner.add(String.format("%sexportTemplate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExportTemplate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `exportReport` to the URL query string
-    if (getExportReport() != null) {
-      joiner.add(String.format("%sexportReport%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExportReport()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `sendViaEmail` to the URL query string
-    if (getSendViaEmail() != null) {
-      joiner.add(String.format("%ssendViaEmail%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSendViaEmail()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `uploadToFTP` to the URL query string
-    if (getUploadToFTP() != null) {
-      joiner.add(String.format("%suploadToFTP%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUploadToFTP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `sendViaWebhook` to the URL query string
-    if (getSendViaWebhook() != null) {
-      joiner.add(String.format("%ssendViaWebhook%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSendViaWebhook()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `fetchData` to the URL query string
-    if (getFetchData() != null) {
-      joiner.add(String.format("%sfetchData%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFetchData()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `thumbnailReport` to the URL query string
-    if (getThumbnailReport() != null) {
-      joiner.add(String.format("%sthumbnailReport%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getThumbnailReport()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `thumbnailTemplate` to the URL query string
-    if (getThumbnailTemplate() != null) {
-      joiner.add(String.format("%sthumbnailTemplate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getThumbnailTemplate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of TaskSettingsVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

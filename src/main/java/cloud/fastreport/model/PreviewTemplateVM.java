@@ -13,51 +13,64 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * PreviewTemplateVM
  */
-@JsonPropertyOrder({
-  PreviewTemplateVM.JSON_PROPERTY_LOCALE,
-  PreviewTemplateVM.JSON_PROPERTY_REPORT_PARAMETERS,
-  PreviewTemplateVM.JSON_PROPERTY_CACHE_TOLERANCE
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PreviewTemplateVM {
-  public static final String JSON_PROPERTY_LOCALE = "locale";
-  private JsonNullable<String> locale = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_LOCALE = "locale";
+  @SerializedName(SERIALIZED_NAME_LOCALE)
+  private String locale;
 
-  public static final String JSON_PROPERTY_REPORT_PARAMETERS = "reportParameters";
-  private JsonNullable<Map<String, String>> reportParameters = JsonNullable.<Map<String, String>>undefined();
+  public static final String SERIALIZED_NAME_REPORT_PARAMETERS = "reportParameters";
+  @SerializedName(SERIALIZED_NAME_REPORT_PARAMETERS)
+  private Map<String, String> reportParameters;
 
-  public static final String JSON_PROPERTY_CACHE_TOLERANCE = "cacheTolerance";
+  public static final String SERIALIZED_NAME_CACHE_TOLERANCE = "cacheTolerance";
+  @SerializedName(SERIALIZED_NAME_CACHE_TOLERANCE)
   private Double cacheTolerance = 300d;
 
-  public PreviewTemplateVM() { 
+  public PreviewTemplateVM() {
   }
 
   public PreviewTemplateVM locale(String locale) {
-    this.locale = JsonNullable.<String>of(locale);
+    this.locale = locale;
     return this;
   }
 
@@ -66,43 +79,25 @@ public class PreviewTemplateVM {
    * @return locale
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getLocale() {
-        return locale.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_LOCALE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getLocale_JsonNullable() {
     return locale;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_LOCALE)
-  public void setLocale_JsonNullable(JsonNullable<String> locale) {
-    this.locale = locale;
   }
 
   public void setLocale(String locale) {
-    this.locale = JsonNullable.<String>of(locale);
+    this.locale = locale;
   }
 
 
   public PreviewTemplateVM reportParameters(Map<String, String> reportParameters) {
-    this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
+    this.reportParameters = reportParameters;
     return this;
   }
 
   public PreviewTemplateVM putReportParametersItem(String key, String reportParametersItem) {
-    if (this.reportParameters == null || !this.reportParameters.isPresent()) {
-      this.reportParameters = JsonNullable.<Map<String, String>>of(new HashMap<>());
+    if (this.reportParameters == null) {
+      this.reportParameters = new HashMap<>();
     }
-    try {
-      this.reportParameters.get().put(key, reportParametersItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.reportParameters.put(key, reportParametersItem);
     return this;
   }
 
@@ -111,26 +106,12 @@ public class PreviewTemplateVM {
    * @return reportParameters
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Map<String, String> getReportParameters() {
-        return reportParameters.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Map<String, String>> getReportParameters_JsonNullable() {
     return reportParameters;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_REPORT_PARAMETERS)
-  public void setReportParameters_JsonNullable(JsonNullable<Map<String, String>> reportParameters) {
-    this.reportParameters = reportParameters;
   }
 
   public void setReportParameters(Map<String, String> reportParameters) {
-    this.reportParameters = JsonNullable.<Map<String, String>>of(reportParameters);
+    this.reportParameters = reportParameters;
   }
 
 
@@ -144,24 +125,16 @@ public class PreviewTemplateVM {
    * @return cacheTolerance
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CACHE_TOLERANCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Double getCacheTolerance() {
     return cacheTolerance;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_CACHE_TOLERANCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCacheTolerance(Double cacheTolerance) {
     this.cacheTolerance = cacheTolerance;
   }
 
 
-  /**
-   * Return true if this PreviewTemplateVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -171,8 +144,8 @@ public class PreviewTemplateVM {
       return false;
     }
     PreviewTemplateVM previewTemplateVM = (PreviewTemplateVM) o;
-    return equalsNullable(this.locale, previewTemplateVM.locale) &&
-        equalsNullable(this.reportParameters, previewTemplateVM.reportParameters) &&
+    return Objects.equals(this.locale, previewTemplateVM.locale) &&
+        Objects.equals(this.reportParameters, previewTemplateVM.reportParameters) &&
         Objects.equals(this.cacheTolerance, previewTemplateVM.cacheTolerance);
   }
 
@@ -182,7 +155,7 @@ public class PreviewTemplateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(locale), hashCodeNullable(reportParameters), cacheTolerance);
+    return Objects.hash(locale, reportParameters, cacheTolerance);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -214,58 +187,94 @@ public class PreviewTemplateVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("locale");
+    openapiFields.add("reportParameters");
+    openapiFields.add("cacheTolerance");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `locale` to the URL query string
-    if (getLocale() != null) {
-      joiner.add(String.format("%slocale%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLocale()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `reportParameters` to the URL query string
-    if (getReportParameters() != null) {
-      for (String _key : getReportParameters().keySet()) {
-        joiner.add(String.format("%sreportParameters%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getReportParameters().get(_key), URLEncoder.encode(String.valueOf(getReportParameters().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to PreviewTemplateVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PreviewTemplateVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PreviewTemplateVM is not found in the empty JSON string", PreviewTemplateVM.openapiRequiredFields.toString()));
+        }
       }
-    }
 
-    // add `cacheTolerance` to the URL query string
-    if (getCacheTolerance() != null) {
-      joiner.add(String.format("%scacheTolerance%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCacheTolerance()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!PreviewTemplateVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PreviewTemplateVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull()) && !jsonObj.get("locale").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `locale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("locale").toString()));
+      }
+  }
 
-    return joiner.toString();
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PreviewTemplateVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PreviewTemplateVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PreviewTemplateVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PreviewTemplateVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PreviewTemplateVM>() {
+           @Override
+           public void write(JsonWriter out, PreviewTemplateVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PreviewTemplateVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of PreviewTemplateVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of PreviewTemplateVM
+  * @throws IOException if the JSON string is invalid with respect to PreviewTemplateVM
+  */
+  public static PreviewTemplateVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PreviewTemplateVM.class);
+  }
+
+ /**
+  * Convert an instance of PreviewTemplateVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

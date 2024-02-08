@@ -13,68 +13,77 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.AuditActionVM;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * AuditActionsVM
  */
-@JsonPropertyOrder({
-  AuditActionsVM.JSON_PROPERTY_ITEMS,
-  AuditActionsVM.JSON_PROPERTY_HAS_MORE,
-  AuditActionsVM.JSON_PROPERTY_SKIP,
-  AuditActionsVM.JSON_PROPERTY_TAKE
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AuditActionsVM {
-  public static final String JSON_PROPERTY_ITEMS = "items";
-  private JsonNullable<List<AuditActionVM>> items = JsonNullable.<List<AuditActionVM>>undefined();
+  public static final String SERIALIZED_NAME_ITEMS = "items";
+  @SerializedName(SERIALIZED_NAME_ITEMS)
+  private List<AuditActionVM> items;
 
-  public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
+  public static final String SERIALIZED_NAME_HAS_MORE = "hasMore";
+  @SerializedName(SERIALIZED_NAME_HAS_MORE)
   private Boolean hasMore;
 
-  public static final String JSON_PROPERTY_SKIP = "skip";
+  public static final String SERIALIZED_NAME_SKIP = "skip";
+  @SerializedName(SERIALIZED_NAME_SKIP)
   private Integer skip;
 
-  public static final String JSON_PROPERTY_TAKE = "take";
+  public static final String SERIALIZED_NAME_TAKE = "take";
+  @SerializedName(SERIALIZED_NAME_TAKE)
   private Integer take;
 
-  public AuditActionsVM() { 
+  public AuditActionsVM() {
   }
 
   public AuditActionsVM items(List<AuditActionVM> items) {
-    this.items = JsonNullable.<List<AuditActionVM>>of(items);
+    this.items = items;
     return this;
   }
 
   public AuditActionsVM addItemsItem(AuditActionVM itemsItem) {
-    if (this.items == null || !this.items.isPresent()) {
-      this.items = JsonNullable.<List<AuditActionVM>>of(new ArrayList<>());
+    if (this.items == null) {
+      this.items = new ArrayList<>();
     }
-    try {
-      this.items.get().add(itemsItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.items.add(itemsItem);
     return this;
   }
 
@@ -83,26 +92,12 @@ public class AuditActionsVM {
    * @return items
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<AuditActionVM> getItems() {
-        return items.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<AuditActionVM>> getItems_JsonNullable() {
     return items;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ITEMS)
-  public void setItems_JsonNullable(JsonNullable<List<AuditActionVM>> items) {
-    this.items = items;
   }
 
   public void setItems(List<AuditActionVM> items) {
-    this.items = JsonNullable.<List<AuditActionVM>>of(items);
+    this.items = items;
   }
 
 
@@ -116,16 +111,10 @@ public class AuditActionsVM {
    * @return hasMore
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_HAS_MORE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getHasMore() {
     return hasMore;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_HAS_MORE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHasMore(Boolean hasMore) {
     this.hasMore = hasMore;
   }
@@ -141,16 +130,10 @@ public class AuditActionsVM {
    * @return skip
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getSkip() {
     return skip;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_SKIP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSkip(Integer skip) {
     this.skip = skip;
   }
@@ -166,24 +149,16 @@ public class AuditActionsVM {
    * @return take
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getTake() {
     return take;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_TAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTake(Integer take) {
     this.take = take;
   }
 
 
-  /**
-   * Return true if this AuditActionsVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -193,7 +168,7 @@ public class AuditActionsVM {
       return false;
     }
     AuditActionsVM auditActionsVM = (AuditActionsVM) o;
-    return equalsNullable(this.items, auditActionsVM.items) &&
+    return Objects.equals(this.items, auditActionsVM.items) &&
         Objects.equals(this.hasMore, auditActionsVM.hasMore) &&
         Objects.equals(this.skip, auditActionsVM.skip) &&
         Objects.equals(this.take, auditActionsVM.take);
@@ -205,7 +180,7 @@ public class AuditActionsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(items), hasMore, skip, take);
+    return Objects.hash(items, hasMore, skip, take);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -238,64 +213,106 @@ public class AuditActionsVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("items");
+    openapiFields.add("hasMore");
+    openapiFields.add("skip");
+    openapiFields.add("take");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `items` to the URL query string
-    if (getItems() != null) {
-      for (int i = 0; i < getItems().size(); i++) {
-        if (getItems().get(i) != null) {
-          joiner.add(getItems().get(i).toUrlQueryString(String.format("%sitems%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to AuditActionsVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!AuditActionsVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in AuditActionsVM is not found in the empty JSON string", AuditActionsVM.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    // add `hasMore` to the URL query string
-    if (getHasMore() != null) {
-      joiner.add(String.format("%shasMore%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getHasMore()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!AuditActionsVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuditActionsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (jsonObj.get("items") != null && !jsonObj.get("items").isJsonNull()) {
+        JsonArray jsonArrayitems = jsonObj.getAsJsonArray("items");
+        if (jsonArrayitems != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("items").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `items` to be an array in the JSON string but got `%s`", jsonObj.get("items").toString()));
+          }
 
-    // add `skip` to the URL query string
-    if (getSkip() != null) {
-      joiner.add(String.format("%sskip%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSkip()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+          // validate the optional field `items` (array)
+          for (int i = 0; i < jsonArrayitems.size(); i++) {
+            AuditActionVM.validateJsonElement(jsonArrayitems.get(i));
+          };
+        }
+      }
+  }
 
-    // add `take` to the URL query string
-    if (getTake() != null) {
-      joiner.add(String.format("%stake%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTake()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!AuditActionsVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'AuditActionsVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<AuditActionsVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(AuditActionsVM.class));
 
-    return joiner.toString();
+       return (TypeAdapter<T>) new TypeAdapter<AuditActionsVM>() {
+           @Override
+           public void write(JsonWriter out, AuditActionsVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public AuditActionsVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of AuditActionsVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of AuditActionsVM
+  * @throws IOException if the JSON string is invalid with respect to AuditActionsVM
+  */
+  public static AuditActionsVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AuditActionsVM.class);
+  }
+
+ /**
+  * Convert an instance of AuditActionsVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

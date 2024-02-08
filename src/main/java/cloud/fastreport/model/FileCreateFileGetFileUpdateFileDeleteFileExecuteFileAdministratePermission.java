@@ -13,59 +13,75 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.FileAdministrate;
 import cloud.fastreport.model.FileCreate;
 import cloud.fastreport.model.FileDelete;
 import cloud.fastreport.model.FileExecute;
 import cloud.fastreport.model.FileGet;
 import cloud.fastreport.model.FileUpdate;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission
  */
-@JsonPropertyOrder({
-  FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.JSON_PROPERTY_CREATE,
-  FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.JSON_PROPERTY_DELETE,
-  FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.JSON_PROPERTY_EXECUTE,
-  FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.JSON_PROPERTY_GET,
-  FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.JSON_PROPERTY_UPDATE,
-  FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.JSON_PROPERTY_ADMINISTRATE
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission {
-  public static final String JSON_PROPERTY_CREATE = "create";
+  public static final String SERIALIZED_NAME_CREATE = "create";
+  @SerializedName(SERIALIZED_NAME_CREATE)
   private FileCreate create;
 
-  public static final String JSON_PROPERTY_DELETE = "delete";
+  public static final String SERIALIZED_NAME_DELETE = "delete";
+  @SerializedName(SERIALIZED_NAME_DELETE)
   private FileDelete delete;
 
-  public static final String JSON_PROPERTY_EXECUTE = "execute";
+  public static final String SERIALIZED_NAME_EXECUTE = "execute";
+  @SerializedName(SERIALIZED_NAME_EXECUTE)
   private FileExecute execute;
 
-  public static final String JSON_PROPERTY_GET = "get";
+  public static final String SERIALIZED_NAME_GET = "get";
+  @SerializedName(SERIALIZED_NAME_GET)
   private FileGet get;
 
-  public static final String JSON_PROPERTY_UPDATE = "update";
+  public static final String SERIALIZED_NAME_UPDATE = "update";
+  @SerializedName(SERIALIZED_NAME_UPDATE)
   private FileUpdate update;
 
-  public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
+  public static final String SERIALIZED_NAME_ADMINISTRATE = "administrate";
+  @SerializedName(SERIALIZED_NAME_ADMINISTRATE)
   private FileAdministrate administrate;
 
-  public FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission() { 
+  public FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission() {
   }
 
   public FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission create(FileCreate create) {
@@ -78,16 +94,10 @@ public class FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePer
    * @return create
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CREATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public FileCreate getCreate() {
     return create;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_CREATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreate(FileCreate create) {
     this.create = create;
   }
@@ -103,16 +113,10 @@ public class FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePer
    * @return delete
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DELETE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public FileDelete getDelete() {
     return delete;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_DELETE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDelete(FileDelete delete) {
     this.delete = delete;
   }
@@ -128,16 +132,10 @@ public class FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePer
    * @return execute
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EXECUTE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public FileExecute getExecute() {
     return execute;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_EXECUTE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExecute(FileExecute execute) {
     this.execute = execute;
   }
@@ -153,16 +151,10 @@ public class FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePer
    * @return get
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_GET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public FileGet getGet() {
     return get;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_GET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGet(FileGet get) {
     this.get = get;
   }
@@ -178,16 +170,10 @@ public class FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePer
    * @return update
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public FileUpdate getUpdate() {
     return update;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUpdate(FileUpdate update) {
     this.update = update;
   }
@@ -203,24 +189,16 @@ public class FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePer
    * @return administrate
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public FileAdministrate getAdministrate() {
     return administrate;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAdministrate(FileAdministrate administrate) {
     this.administrate = administrate;
   }
 
 
-  /**
-   * Return true if this FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -268,69 +246,118 @@ public class FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePer
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("create");
+    openapiFields.add("delete");
+    openapiFields.add("execute");
+    openapiFields.add("get");
+    openapiFields.add("update");
+    openapiFields.add("administrate");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission is not found in the empty JSON string", FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `create`
+      if (jsonObj.get("create") != null && !jsonObj.get("create").isJsonNull()) {
+        FileCreate.validateJsonElement(jsonObj.get("create"));
+      }
+      // validate the optional field `delete`
+      if (jsonObj.get("delete") != null && !jsonObj.get("delete").isJsonNull()) {
+        FileDelete.validateJsonElement(jsonObj.get("delete"));
+      }
+      // validate the optional field `execute`
+      if (jsonObj.get("execute") != null && !jsonObj.get("execute").isJsonNull()) {
+        FileExecute.validateJsonElement(jsonObj.get("execute"));
+      }
+      // validate the optional field `get`
+      if (jsonObj.get("get") != null && !jsonObj.get("get").isJsonNull()) {
+        FileGet.validateJsonElement(jsonObj.get("get"));
+      }
+      // validate the optional field `update`
+      if (jsonObj.get("update") != null && !jsonObj.get("update").isJsonNull()) {
+        FileUpdate.validateJsonElement(jsonObj.get("update"));
+      }
+      // validate the optional field `administrate`
+      if (jsonObj.get("administrate") != null && !jsonObj.get("administrate").isJsonNull()) {
+        FileAdministrate.validateJsonElement(jsonObj.get("administrate"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission>() {
+           @Override
+           public void write(JsonWriter out, FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission
+  * @throws IOException if the JSON string is invalid with respect to FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission
+  */
+  public static FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.class);
+  }
 
-    // add `create` to the URL query string
-    if (getCreate() != null) {
-      joiner.add(String.format("%screate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `delete` to the URL query string
-    if (getDelete() != null) {
-      joiner.add(String.format("%sdelete%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDelete()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `execute` to the URL query string
-    if (getExecute() != null) {
-      joiner.add(String.format("%sexecute%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExecute()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `get` to the URL query string
-    if (getGet() != null) {
-      joiner.add(String.format("%sget%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getGet()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `update` to the URL query string
-    if (getUpdate() != null) {
-      joiner.add(String.format("%supdate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUpdate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `administrate` to the URL query string
-    if (getAdministrate() != null) {
-      joiner.add(String.format("%sadministrate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAdministrate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

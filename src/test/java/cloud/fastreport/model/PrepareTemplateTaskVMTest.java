@@ -13,15 +13,15 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.InputFileVM;
+import cloud.fastreport.model.OutputFileVM;
 import cloud.fastreport.model.TransformTaskBaseVM;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,12 +29,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PrepareTemplateTaskVM
@@ -48,6 +44,46 @@ public class PrepareTemplateTaskVMTest {
     @Test
     public void testPrepareTemplateTaskVM() {
         // TODO: test PrepareTemplateTaskVM
+    }
+
+    /**
+     * Test the property 'inputFile'
+     */
+    @Test
+    public void inputFileTest() {
+        // TODO: test inputFile
+    }
+
+    /**
+     * Test the property 'locale'
+     */
+    @Test
+    public void localeTest() {
+        // TODO: test locale
+    }
+
+    /**
+     * Test the property 'outputFile'
+     */
+    @Test
+    public void outputFileTest() {
+        // TODO: test outputFile
+    }
+
+    /**
+     * Test the property 'transportIds'
+     */
+    @Test
+    public void transportIdsTest() {
+        // TODO: test transportIds
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
     /**
@@ -112,14 +148,6 @@ public class PrepareTemplateTaskVMTest {
     @Test
     public void subscriptionIdTest() {
         // TODO: test subscriptionId
-    }
-
-    /**
-     * Test the property '$t'
-     */
-    @Test
-    public void $tTest() {
-        // TODO: test $t
     }
 
 }

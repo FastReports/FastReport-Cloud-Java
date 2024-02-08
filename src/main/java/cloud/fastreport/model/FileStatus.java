@@ -13,21 +13,20 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.SerializedName;
 
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.JsonElement;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
 /**
  * Gets or Sets FileStatus
  */
+@JsonAdapter(FileStatus.Adapter.class)
 public enum FileStatus {
   
   NONE("None"),
@@ -46,7 +45,6 @@ public enum FileStatus {
     this.value = value;
   }
 
-  @JsonValue
   public String getValue() {
     return value;
   }
@@ -56,7 +54,6 @@ public enum FileStatus {
     return String.valueOf(value);
   }
 
-  @JsonCreator
   public static FileStatus fromValue(String value) {
     for (FileStatus b : FileStatus.values()) {
       if (b.value.equals(value)) {
@@ -66,19 +63,22 @@ public enum FileStatus {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    if (prefix == null) {
-      prefix = "";
+  public static class Adapter extends TypeAdapter<FileStatus> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final FileStatus enumeration) throws IOException {
+      jsonWriter.value(enumeration.getValue());
     }
 
-    return String.format("%s=%s", prefix, this.toString());
+    @Override
+    public FileStatus read(final JsonReader jsonReader) throws IOException {
+      String value = jsonReader.nextString();
+      return FileStatus.fromValue(value);
+    }
   }
 
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    String value = jsonElement.getAsString();
+    FileStatus.fromValue(value);
+  }
 }
 

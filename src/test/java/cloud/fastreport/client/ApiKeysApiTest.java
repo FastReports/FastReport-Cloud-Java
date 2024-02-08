@@ -19,73 +19,57 @@ import cloud.fastreport.model.ApiKeysVM;
 import cloud.fastreport.model.CreateApiKeyVM;
 import cloud.fastreport.model.DeleteApiKeyVM;
 import cloud.fastreport.model.ProblemDetails;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for ApiKeysApi
  */
-@Ignore
+@Disabled
 public class ApiKeysApiTest {
 
     private final ApiKeysApi api = new ApiKeysApi();
 
-    
     /**
      * Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void apiKeysCreateApiKeyTest() throws ApiException {
         CreateApiKeyVM createApiKeyVM = null;
-        ApiKeyVM response = 
-        api.apiKeysCreateApiKey(createApiKeyVM);
-        
+        ApiKeyVM response = api.apiKeysCreateApiKey(createApiKeyVM);
         // TODO: test validations
     }
-    
+
     /**
      * Delete an apikey
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void apiKeysDeleteApiKeyTest() throws ApiException {
         DeleteApiKeyVM deleteApiKeyVM = null;
-        
         api.apiKeysDeleteApiKey(deleteApiKeyVM);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Returns list with all api keys of current user
      *
      * Always work, it should make only 200 response (except if user is not authorized).
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void apiKeysGetApiKeysTest() throws ApiException {
-        ApiKeysVM response = 
-        api.apiKeysGetApiKeys();
-        
+        ApiKeysVM response = api.apiKeysGetApiKeys();
         // TODO: test validations
     }
-    
+
 }

@@ -13,104 +13,117 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.AuthConfigVM;
 import cloud.fastreport.model.FrontendApp;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * ServerConfigurationVM
  */
-@JsonPropertyOrder({
-  ServerConfigurationVM.JSON_PROPERTY_TITLE,
-  ServerConfigurationVM.JSON_PROPERTY_LOGO_LINK,
-  ServerConfigurationVM.JSON_PROPERTY_COPYRIGHT,
-  ServerConfigurationVM.JSON_PROPERTY_CORPORATE_SERVER_MODE,
-  ServerConfigurationVM.JSON_PROPERTY_LAST_S_L_A_VERSION,
-  ServerConfigurationVM.JSON_PROPERTY_IS_DISABLED,
-  ServerConfigurationVM.JSON_PROPERTY_FRONTEND,
-  ServerConfigurationVM.JSON_PROPERTY_INVARIANT_LOCALE,
-  ServerConfigurationVM.JSON_PROPERTY_AUTH,
-  ServerConfigurationVM.JSON_PROPERTY_DESIGNER_FOR_ANONS,
-  ServerConfigurationVM.JSON_PROPERTY_SLA_LINK,
-  ServerConfigurationVM.JSON_PROPERTY_FIRST_STEPS_VIDEO_LINK,
-  ServerConfigurationVM.JSON_PROPERTY_ABOUT_LINK,
-  ServerConfigurationVM.JSON_PROPERTY_HOME_PAGE_LINK,
-  ServerConfigurationVM.JSON_PROPERTY_AUTH_SERVER_NAME,
-  ServerConfigurationVM.JSON_PROPERTY_UPDATE_WORKSPACE_LINK
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ServerConfigurationVM {
-  public static final String JSON_PROPERTY_TITLE = "title";
-  private JsonNullable<String> title = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_TITLE = "title";
+  @SerializedName(SERIALIZED_NAME_TITLE)
+  private String title;
 
-  public static final String JSON_PROPERTY_LOGO_LINK = "logoLink";
-  private JsonNullable<String> logoLink = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_LOGO_LINK = "logoLink";
+  @SerializedName(SERIALIZED_NAME_LOGO_LINK)
+  private String logoLink;
 
-  public static final String JSON_PROPERTY_COPYRIGHT = "copyright";
-  private JsonNullable<String> copyright = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_COPYRIGHT = "copyright";
+  @SerializedName(SERIALIZED_NAME_COPYRIGHT)
+  private String copyright;
 
-  public static final String JSON_PROPERTY_CORPORATE_SERVER_MODE = "corporateServerMode";
+  public static final String SERIALIZED_NAME_CORPORATE_SERVER_MODE = "corporateServerMode";
+  @SerializedName(SERIALIZED_NAME_CORPORATE_SERVER_MODE)
   private Boolean corporateServerMode;
 
-  public static final String JSON_PROPERTY_LAST_S_L_A_VERSION = "lastSLAVersion";
-  private JsonNullable<OffsetDateTime> lastSLAVersion = JsonNullable.<OffsetDateTime>undefined();
+  public static final String SERIALIZED_NAME_LAST_S_L_A_VERSION = "lastSLAVersion";
+  @SerializedName(SERIALIZED_NAME_LAST_S_L_A_VERSION)
+  private OffsetDateTime lastSLAVersion;
 
-  public static final String JSON_PROPERTY_IS_DISABLED = "isDisabled";
+  public static final String SERIALIZED_NAME_IS_DISABLED = "isDisabled";
+  @SerializedName(SERIALIZED_NAME_IS_DISABLED)
   private Boolean isDisabled;
 
-  public static final String JSON_PROPERTY_FRONTEND = "frontend";
+  public static final String SERIALIZED_NAME_FRONTEND = "frontend";
+  @SerializedName(SERIALIZED_NAME_FRONTEND)
   private FrontendApp frontend;
 
-  public static final String JSON_PROPERTY_INVARIANT_LOCALE = "invariantLocale";
-  private JsonNullable<String> invariantLocale = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_INVARIANT_LOCALE = "invariantLocale";
+  @SerializedName(SERIALIZED_NAME_INVARIANT_LOCALE)
+  private String invariantLocale;
 
-  public static final String JSON_PROPERTY_AUTH = "auth";
+  public static final String SERIALIZED_NAME_AUTH = "auth";
+  @SerializedName(SERIALIZED_NAME_AUTH)
   private AuthConfigVM auth;
 
-  public static final String JSON_PROPERTY_DESIGNER_FOR_ANONS = "designerForAnons";
+  public static final String SERIALIZED_NAME_DESIGNER_FOR_ANONS = "designerForAnons";
+  @SerializedName(SERIALIZED_NAME_DESIGNER_FOR_ANONS)
   private Boolean designerForAnons;
 
-  public static final String JSON_PROPERTY_SLA_LINK = "slaLink";
-  private JsonNullable<String> slaLink = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_SLA_LINK = "slaLink";
+  @SerializedName(SERIALIZED_NAME_SLA_LINK)
+  private String slaLink;
 
-  public static final String JSON_PROPERTY_FIRST_STEPS_VIDEO_LINK = "firstStepsVideoLink";
-  private JsonNullable<String> firstStepsVideoLink = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_FIRST_STEPS_VIDEO_LINK = "firstStepsVideoLink";
+  @SerializedName(SERIALIZED_NAME_FIRST_STEPS_VIDEO_LINK)
+  private String firstStepsVideoLink;
 
-  public static final String JSON_PROPERTY_ABOUT_LINK = "aboutLink";
-  private JsonNullable<String> aboutLink = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_ABOUT_LINK = "aboutLink";
+  @SerializedName(SERIALIZED_NAME_ABOUT_LINK)
+  private String aboutLink;
 
-  public static final String JSON_PROPERTY_HOME_PAGE_LINK = "homePageLink";
-  private JsonNullable<String> homePageLink = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_HOME_PAGE_LINK = "homePageLink";
+  @SerializedName(SERIALIZED_NAME_HOME_PAGE_LINK)
+  private String homePageLink;
 
-  public static final String JSON_PROPERTY_AUTH_SERVER_NAME = "authServerName";
-  private JsonNullable<String> authServerName = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_AUTH_SERVER_NAME = "authServerName";
+  @SerializedName(SERIALIZED_NAME_AUTH_SERVER_NAME)
+  private String authServerName;
 
-  public static final String JSON_PROPERTY_UPDATE_WORKSPACE_LINK = "updateWorkspaceLink";
-  private JsonNullable<String> updateWorkspaceLink = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_UPDATE_WORKSPACE_LINK = "updateWorkspaceLink";
+  @SerializedName(SERIALIZED_NAME_UPDATE_WORKSPACE_LINK)
+  private String updateWorkspaceLink;
 
-  public ServerConfigurationVM() { 
+  public ServerConfigurationVM() {
   }
 
   public ServerConfigurationVM title(String title) {
-    this.title = JsonNullable.<String>of(title);
+    this.title = title;
     return this;
   }
 
@@ -119,31 +132,17 @@ public class ServerConfigurationVM {
    * @return title
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getTitle() {
-        return title.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_TITLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getTitle_JsonNullable() {
     return title;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_TITLE)
-  public void setTitle_JsonNullable(JsonNullable<String> title) {
-    this.title = title;
   }
 
   public void setTitle(String title) {
-    this.title = JsonNullable.<String>of(title);
+    this.title = title;
   }
 
 
   public ServerConfigurationVM logoLink(String logoLink) {
-    this.logoLink = JsonNullable.<String>of(logoLink);
+    this.logoLink = logoLink;
     return this;
   }
 
@@ -152,31 +151,17 @@ public class ServerConfigurationVM {
    * @return logoLink
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getLogoLink() {
-        return logoLink.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_LOGO_LINK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getLogoLink_JsonNullable() {
     return logoLink;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_LOGO_LINK)
-  public void setLogoLink_JsonNullable(JsonNullable<String> logoLink) {
-    this.logoLink = logoLink;
   }
 
   public void setLogoLink(String logoLink) {
-    this.logoLink = JsonNullable.<String>of(logoLink);
+    this.logoLink = logoLink;
   }
 
 
   public ServerConfigurationVM copyright(String copyright) {
-    this.copyright = JsonNullable.<String>of(copyright);
+    this.copyright = copyright;
     return this;
   }
 
@@ -185,26 +170,12 @@ public class ServerConfigurationVM {
    * @return copyright
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getCopyright() {
-        return copyright.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_COPYRIGHT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getCopyright_JsonNullable() {
     return copyright;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_COPYRIGHT)
-  public void setCopyright_JsonNullable(JsonNullable<String> copyright) {
-    this.copyright = copyright;
   }
 
   public void setCopyright(String copyright) {
-    this.copyright = JsonNullable.<String>of(copyright);
+    this.copyright = copyright;
   }
 
 
@@ -218,23 +189,17 @@ public class ServerConfigurationVM {
    * @return corporateServerMode
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CORPORATE_SERVER_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getCorporateServerMode() {
     return corporateServerMode;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_CORPORATE_SERVER_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCorporateServerMode(Boolean corporateServerMode) {
     this.corporateServerMode = corporateServerMode;
   }
 
 
   public ServerConfigurationVM lastSLAVersion(OffsetDateTime lastSLAVersion) {
-    this.lastSLAVersion = JsonNullable.<OffsetDateTime>of(lastSLAVersion);
+    this.lastSLAVersion = lastSLAVersion;
     return this;
   }
 
@@ -243,26 +208,12 @@ public class ServerConfigurationVM {
    * @return lastSLAVersion
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public OffsetDateTime getLastSLAVersion() {
-        return lastSLAVersion.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_LAST_S_L_A_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<OffsetDateTime> getLastSLAVersion_JsonNullable() {
     return lastSLAVersion;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_LAST_S_L_A_VERSION)
-  public void setLastSLAVersion_JsonNullable(JsonNullable<OffsetDateTime> lastSLAVersion) {
-    this.lastSLAVersion = lastSLAVersion;
   }
 
   public void setLastSLAVersion(OffsetDateTime lastSLAVersion) {
-    this.lastSLAVersion = JsonNullable.<OffsetDateTime>of(lastSLAVersion);
+    this.lastSLAVersion = lastSLAVersion;
   }
 
 
@@ -276,16 +227,10 @@ public class ServerConfigurationVM {
    * @return isDisabled
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS_DISABLED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getIsDisabled() {
     return isDisabled;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_IS_DISABLED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsDisabled(Boolean isDisabled) {
     this.isDisabled = isDisabled;
   }
@@ -301,23 +246,17 @@ public class ServerConfigurationVM {
    * @return frontend
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FRONTEND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public FrontendApp getFrontend() {
     return frontend;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_FRONTEND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFrontend(FrontendApp frontend) {
     this.frontend = frontend;
   }
 
 
   public ServerConfigurationVM invariantLocale(String invariantLocale) {
-    this.invariantLocale = JsonNullable.<String>of(invariantLocale);
+    this.invariantLocale = invariantLocale;
     return this;
   }
 
@@ -326,26 +265,12 @@ public class ServerConfigurationVM {
    * @return invariantLocale
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getInvariantLocale() {
-        return invariantLocale.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_INVARIANT_LOCALE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getInvariantLocale_JsonNullable() {
     return invariantLocale;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_INVARIANT_LOCALE)
-  public void setInvariantLocale_JsonNullable(JsonNullable<String> invariantLocale) {
-    this.invariantLocale = invariantLocale;
   }
 
   public void setInvariantLocale(String invariantLocale) {
-    this.invariantLocale = JsonNullable.<String>of(invariantLocale);
+    this.invariantLocale = invariantLocale;
   }
 
 
@@ -359,16 +284,10 @@ public class ServerConfigurationVM {
    * @return auth
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_AUTH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public AuthConfigVM getAuth() {
     return auth;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_AUTH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAuth(AuthConfigVM auth) {
     this.auth = auth;
   }
@@ -384,23 +303,17 @@ public class ServerConfigurationVM {
    * @return designerForAnons
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESIGNER_FOR_ANONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getDesignerForAnons() {
     return designerForAnons;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_DESIGNER_FOR_ANONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDesignerForAnons(Boolean designerForAnons) {
     this.designerForAnons = designerForAnons;
   }
 
 
   public ServerConfigurationVM slaLink(String slaLink) {
-    this.slaLink = JsonNullable.<String>of(slaLink);
+    this.slaLink = slaLink;
     return this;
   }
 
@@ -409,31 +322,17 @@ public class ServerConfigurationVM {
    * @return slaLink
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getSlaLink() {
-        return slaLink.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SLA_LINK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getSlaLink_JsonNullable() {
     return slaLink;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SLA_LINK)
-  public void setSlaLink_JsonNullable(JsonNullable<String> slaLink) {
-    this.slaLink = slaLink;
   }
 
   public void setSlaLink(String slaLink) {
-    this.slaLink = JsonNullable.<String>of(slaLink);
+    this.slaLink = slaLink;
   }
 
 
   public ServerConfigurationVM firstStepsVideoLink(String firstStepsVideoLink) {
-    this.firstStepsVideoLink = JsonNullable.<String>of(firstStepsVideoLink);
+    this.firstStepsVideoLink = firstStepsVideoLink;
     return this;
   }
 
@@ -442,31 +341,17 @@ public class ServerConfigurationVM {
    * @return firstStepsVideoLink
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getFirstStepsVideoLink() {
-        return firstStepsVideoLink.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FIRST_STEPS_VIDEO_LINK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getFirstStepsVideoLink_JsonNullable() {
     return firstStepsVideoLink;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FIRST_STEPS_VIDEO_LINK)
-  public void setFirstStepsVideoLink_JsonNullable(JsonNullable<String> firstStepsVideoLink) {
-    this.firstStepsVideoLink = firstStepsVideoLink;
   }
 
   public void setFirstStepsVideoLink(String firstStepsVideoLink) {
-    this.firstStepsVideoLink = JsonNullable.<String>of(firstStepsVideoLink);
+    this.firstStepsVideoLink = firstStepsVideoLink;
   }
 
 
   public ServerConfigurationVM aboutLink(String aboutLink) {
-    this.aboutLink = JsonNullable.<String>of(aboutLink);
+    this.aboutLink = aboutLink;
     return this;
   }
 
@@ -475,31 +360,17 @@ public class ServerConfigurationVM {
    * @return aboutLink
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getAboutLink() {
-        return aboutLink.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ABOUT_LINK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getAboutLink_JsonNullable() {
     return aboutLink;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ABOUT_LINK)
-  public void setAboutLink_JsonNullable(JsonNullable<String> aboutLink) {
-    this.aboutLink = aboutLink;
   }
 
   public void setAboutLink(String aboutLink) {
-    this.aboutLink = JsonNullable.<String>of(aboutLink);
+    this.aboutLink = aboutLink;
   }
 
 
   public ServerConfigurationVM homePageLink(String homePageLink) {
-    this.homePageLink = JsonNullable.<String>of(homePageLink);
+    this.homePageLink = homePageLink;
     return this;
   }
 
@@ -508,31 +379,17 @@ public class ServerConfigurationVM {
    * @return homePageLink
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getHomePageLink() {
-        return homePageLink.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_HOME_PAGE_LINK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getHomePageLink_JsonNullable() {
     return homePageLink;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_HOME_PAGE_LINK)
-  public void setHomePageLink_JsonNullable(JsonNullable<String> homePageLink) {
-    this.homePageLink = homePageLink;
   }
 
   public void setHomePageLink(String homePageLink) {
-    this.homePageLink = JsonNullable.<String>of(homePageLink);
+    this.homePageLink = homePageLink;
   }
 
 
   public ServerConfigurationVM authServerName(String authServerName) {
-    this.authServerName = JsonNullable.<String>of(authServerName);
+    this.authServerName = authServerName;
     return this;
   }
 
@@ -541,31 +398,17 @@ public class ServerConfigurationVM {
    * @return authServerName
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getAuthServerName() {
-        return authServerName.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_AUTH_SERVER_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getAuthServerName_JsonNullable() {
     return authServerName;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_AUTH_SERVER_NAME)
-  public void setAuthServerName_JsonNullable(JsonNullable<String> authServerName) {
-    this.authServerName = authServerName;
   }
 
   public void setAuthServerName(String authServerName) {
-    this.authServerName = JsonNullable.<String>of(authServerName);
+    this.authServerName = authServerName;
   }
 
 
   public ServerConfigurationVM updateWorkspaceLink(String updateWorkspaceLink) {
-    this.updateWorkspaceLink = JsonNullable.<String>of(updateWorkspaceLink);
+    this.updateWorkspaceLink = updateWorkspaceLink;
     return this;
   }
 
@@ -574,32 +417,16 @@ public class ServerConfigurationVM {
    * @return updateWorkspaceLink
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getUpdateWorkspaceLink() {
-        return updateWorkspaceLink.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_UPDATE_WORKSPACE_LINK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getUpdateWorkspaceLink_JsonNullable() {
     return updateWorkspaceLink;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_UPDATE_WORKSPACE_LINK)
-  public void setUpdateWorkspaceLink_JsonNullable(JsonNullable<String> updateWorkspaceLink) {
-    this.updateWorkspaceLink = updateWorkspaceLink;
   }
 
   public void setUpdateWorkspaceLink(String updateWorkspaceLink) {
-    this.updateWorkspaceLink = JsonNullable.<String>of(updateWorkspaceLink);
+    this.updateWorkspaceLink = updateWorkspaceLink;
   }
 
 
-  /**
-   * Return true if this ServerConfigurationVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -609,22 +436,22 @@ public class ServerConfigurationVM {
       return false;
     }
     ServerConfigurationVM serverConfigurationVM = (ServerConfigurationVM) o;
-    return equalsNullable(this.title, serverConfigurationVM.title) &&
-        equalsNullable(this.logoLink, serverConfigurationVM.logoLink) &&
-        equalsNullable(this.copyright, serverConfigurationVM.copyright) &&
+    return Objects.equals(this.title, serverConfigurationVM.title) &&
+        Objects.equals(this.logoLink, serverConfigurationVM.logoLink) &&
+        Objects.equals(this.copyright, serverConfigurationVM.copyright) &&
         Objects.equals(this.corporateServerMode, serverConfigurationVM.corporateServerMode) &&
-        equalsNullable(this.lastSLAVersion, serverConfigurationVM.lastSLAVersion) &&
+        Objects.equals(this.lastSLAVersion, serverConfigurationVM.lastSLAVersion) &&
         Objects.equals(this.isDisabled, serverConfigurationVM.isDisabled) &&
         Objects.equals(this.frontend, serverConfigurationVM.frontend) &&
-        equalsNullable(this.invariantLocale, serverConfigurationVM.invariantLocale) &&
+        Objects.equals(this.invariantLocale, serverConfigurationVM.invariantLocale) &&
         Objects.equals(this.auth, serverConfigurationVM.auth) &&
         Objects.equals(this.designerForAnons, serverConfigurationVM.designerForAnons) &&
-        equalsNullable(this.slaLink, serverConfigurationVM.slaLink) &&
-        equalsNullable(this.firstStepsVideoLink, serverConfigurationVM.firstStepsVideoLink) &&
-        equalsNullable(this.aboutLink, serverConfigurationVM.aboutLink) &&
-        equalsNullable(this.homePageLink, serverConfigurationVM.homePageLink) &&
-        equalsNullable(this.authServerName, serverConfigurationVM.authServerName) &&
-        equalsNullable(this.updateWorkspaceLink, serverConfigurationVM.updateWorkspaceLink);
+        Objects.equals(this.slaLink, serverConfigurationVM.slaLink) &&
+        Objects.equals(this.firstStepsVideoLink, serverConfigurationVM.firstStepsVideoLink) &&
+        Objects.equals(this.aboutLink, serverConfigurationVM.aboutLink) &&
+        Objects.equals(this.homePageLink, serverConfigurationVM.homePageLink) &&
+        Objects.equals(this.authServerName, serverConfigurationVM.authServerName) &&
+        Objects.equals(this.updateWorkspaceLink, serverConfigurationVM.updateWorkspaceLink);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -633,7 +460,7 @@ public class ServerConfigurationVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(title), hashCodeNullable(logoLink), hashCodeNullable(copyright), corporateServerMode, hashCodeNullable(lastSLAVersion), isDisabled, frontend, hashCodeNullable(invariantLocale), auth, designerForAnons, hashCodeNullable(slaLink), hashCodeNullable(firstStepsVideoLink), hashCodeNullable(aboutLink), hashCodeNullable(homePageLink), hashCodeNullable(authServerName), hashCodeNullable(updateWorkspaceLink));
+    return Objects.hash(title, logoLink, copyright, corporateServerMode, lastSLAVersion, isDisabled, frontend, invariantLocale, auth, designerForAnons, slaLink, firstStepsVideoLink, aboutLink, homePageLink, authServerName, updateWorkspaceLink);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -678,119 +505,142 @@ public class ServerConfigurationVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("title");
+    openapiFields.add("logoLink");
+    openapiFields.add("copyright");
+    openapiFields.add("corporateServerMode");
+    openapiFields.add("lastSLAVersion");
+    openapiFields.add("isDisabled");
+    openapiFields.add("frontend");
+    openapiFields.add("invariantLocale");
+    openapiFields.add("auth");
+    openapiFields.add("designerForAnons");
+    openapiFields.add("slaLink");
+    openapiFields.add("firstStepsVideoLink");
+    openapiFields.add("aboutLink");
+    openapiFields.add("homePageLink");
+    openapiFields.add("authServerName");
+    openapiFields.add("updateWorkspaceLink");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ServerConfigurationVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ServerConfigurationVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ServerConfigurationVM is not found in the empty JSON string", ServerConfigurationVM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ServerConfigurationVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ServerConfigurationVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("title") != null && !jsonObj.get("title").isJsonNull()) && !jsonObj.get("title").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
+      }
+      if ((jsonObj.get("logoLink") != null && !jsonObj.get("logoLink").isJsonNull()) && !jsonObj.get("logoLink").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `logoLink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("logoLink").toString()));
+      }
+      if ((jsonObj.get("copyright") != null && !jsonObj.get("copyright").isJsonNull()) && !jsonObj.get("copyright").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `copyright` to be a primitive type in the JSON string but got `%s`", jsonObj.get("copyright").toString()));
+      }
+      // validate the optional field `frontend`
+      if (jsonObj.get("frontend") != null && !jsonObj.get("frontend").isJsonNull()) {
+        FrontendApp.validateJsonElement(jsonObj.get("frontend"));
+      }
+      if ((jsonObj.get("invariantLocale") != null && !jsonObj.get("invariantLocale").isJsonNull()) && !jsonObj.get("invariantLocale").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `invariantLocale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invariantLocale").toString()));
+      }
+      // validate the optional field `auth`
+      if (jsonObj.get("auth") != null && !jsonObj.get("auth").isJsonNull()) {
+        AuthConfigVM.validateJsonElement(jsonObj.get("auth"));
+      }
+      if ((jsonObj.get("slaLink") != null && !jsonObj.get("slaLink").isJsonNull()) && !jsonObj.get("slaLink").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `slaLink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("slaLink").toString()));
+      }
+      if ((jsonObj.get("firstStepsVideoLink") != null && !jsonObj.get("firstStepsVideoLink").isJsonNull()) && !jsonObj.get("firstStepsVideoLink").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `firstStepsVideoLink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("firstStepsVideoLink").toString()));
+      }
+      if ((jsonObj.get("aboutLink") != null && !jsonObj.get("aboutLink").isJsonNull()) && !jsonObj.get("aboutLink").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `aboutLink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("aboutLink").toString()));
+      }
+      if ((jsonObj.get("homePageLink") != null && !jsonObj.get("homePageLink").isJsonNull()) && !jsonObj.get("homePageLink").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `homePageLink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("homePageLink").toString()));
+      }
+      if ((jsonObj.get("authServerName") != null && !jsonObj.get("authServerName").isJsonNull()) && !jsonObj.get("authServerName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `authServerName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("authServerName").toString()));
+      }
+      if ((jsonObj.get("updateWorkspaceLink") != null && !jsonObj.get("updateWorkspaceLink").isJsonNull()) && !jsonObj.get("updateWorkspaceLink").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `updateWorkspaceLink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("updateWorkspaceLink").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ServerConfigurationVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ServerConfigurationVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ServerConfigurationVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ServerConfigurationVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ServerConfigurationVM>() {
+           @Override
+           public void write(JsonWriter out, ServerConfigurationVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ServerConfigurationVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of ServerConfigurationVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ServerConfigurationVM
+  * @throws IOException if the JSON string is invalid with respect to ServerConfigurationVM
+  */
+  public static ServerConfigurationVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ServerConfigurationVM.class);
+  }
 
-    // add `title` to the URL query string
-    if (getTitle() != null) {
-      joiner.add(String.format("%stitle%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTitle()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `logoLink` to the URL query string
-    if (getLogoLink() != null) {
-      joiner.add(String.format("%slogoLink%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLogoLink()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `copyright` to the URL query string
-    if (getCopyright() != null) {
-      joiner.add(String.format("%scopyright%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCopyright()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `corporateServerMode` to the URL query string
-    if (getCorporateServerMode() != null) {
-      joiner.add(String.format("%scorporateServerMode%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCorporateServerMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `lastSLAVersion` to the URL query string
-    if (getLastSLAVersion() != null) {
-      joiner.add(String.format("%slastSLAVersion%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLastSLAVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `isDisabled` to the URL query string
-    if (getIsDisabled() != null) {
-      joiner.add(String.format("%sisDisabled%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsDisabled()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `frontend` to the URL query string
-    if (getFrontend() != null) {
-      joiner.add(getFrontend().toUrlQueryString(prefix + "frontend" + suffix));
-    }
-
-    // add `invariantLocale` to the URL query string
-    if (getInvariantLocale() != null) {
-      joiner.add(String.format("%sinvariantLocale%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getInvariantLocale()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `auth` to the URL query string
-    if (getAuth() != null) {
-      joiner.add(getAuth().toUrlQueryString(prefix + "auth" + suffix));
-    }
-
-    // add `designerForAnons` to the URL query string
-    if (getDesignerForAnons() != null) {
-      joiner.add(String.format("%sdesignerForAnons%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDesignerForAnons()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `slaLink` to the URL query string
-    if (getSlaLink() != null) {
-      joiner.add(String.format("%sslaLink%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSlaLink()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `firstStepsVideoLink` to the URL query string
-    if (getFirstStepsVideoLink() != null) {
-      joiner.add(String.format("%sfirstStepsVideoLink%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFirstStepsVideoLink()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `aboutLink` to the URL query string
-    if (getAboutLink() != null) {
-      joiner.add(String.format("%saboutLink%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAboutLink()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `homePageLink` to the URL query string
-    if (getHomePageLink() != null) {
-      joiner.add(String.format("%shomePageLink%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getHomePageLink()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `authServerName` to the URL query string
-    if (getAuthServerName() != null) {
-      joiner.add(String.format("%sauthServerName%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAuthServerName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `updateWorkspaceLink` to the URL query string
-    if (getUpdateWorkspaceLink() != null) {
-      joiner.add(String.format("%supdateWorkspaceLink%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUpdateWorkspaceLink()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of ServerConfigurationVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

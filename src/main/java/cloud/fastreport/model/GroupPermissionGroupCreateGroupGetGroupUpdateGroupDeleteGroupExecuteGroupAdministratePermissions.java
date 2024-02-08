@@ -13,60 +13,73 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.GroupPermission;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions
  */
-@JsonPropertyOrder({
-  GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.JSON_PROPERTY_OWNER_ID,
-  GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.JSON_PROPERTY_OWNER,
-  GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.JSON_PROPERTY_GROUPS,
-  GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.JSON_PROPERTY_OTHER,
-  GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.JSON_PROPERTY_ANON
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions {
-  public static final String JSON_PROPERTY_OWNER_ID = "ownerId";
-  private JsonNullable<String> ownerId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
+  @SerializedName(SERIALIZED_NAME_OWNER_ID)
+  private String ownerId;
 
-  public static final String JSON_PROPERTY_OWNER = "owner";
+  public static final String SERIALIZED_NAME_OWNER = "owner";
+  @SerializedName(SERIALIZED_NAME_OWNER)
   private GroupPermission owner;
 
-  public static final String JSON_PROPERTY_GROUPS = "groups";
-  private JsonNullable<Map<String, GroupPermission>> groups = JsonNullable.<Map<String, GroupPermission>>undefined();
+  public static final String SERIALIZED_NAME_GROUPS = "groups";
+  @SerializedName(SERIALIZED_NAME_GROUPS)
+  private Map<String, GroupPermission> groups;
 
-  public static final String JSON_PROPERTY_OTHER = "other";
+  public static final String SERIALIZED_NAME_OTHER = "other";
+  @SerializedName(SERIALIZED_NAME_OTHER)
   private GroupPermission other;
 
-  public static final String JSON_PROPERTY_ANON = "anon";
+  public static final String SERIALIZED_NAME_ANON = "anon";
+  @SerializedName(SERIALIZED_NAME_ANON)
   private GroupPermission anon;
 
-  public GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions() { 
+  public GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions() {
   }
 
   public GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions ownerId(String ownerId) {
-    this.ownerId = JsonNullable.<String>of(ownerId);
+    this.ownerId = ownerId;
     return this;
   }
 
@@ -75,26 +88,12 @@ public class GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecut
    * @return ownerId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getOwnerId() {
-        return ownerId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_OWNER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getOwnerId_JsonNullable() {
     return ownerId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_OWNER_ID)
-  public void setOwnerId_JsonNullable(JsonNullable<String> ownerId) {
-    this.ownerId = ownerId;
   }
 
   public void setOwnerId(String ownerId) {
-    this.ownerId = JsonNullable.<String>of(ownerId);
+    this.ownerId = ownerId;
   }
 
 
@@ -108,35 +107,25 @@ public class GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecut
    * @return owner
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public GroupPermission getOwner() {
     return owner;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOwner(GroupPermission owner) {
     this.owner = owner;
   }
 
 
   public GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions groups(Map<String, GroupPermission> groups) {
-    this.groups = JsonNullable.<Map<String, GroupPermission>>of(groups);
+    this.groups = groups;
     return this;
   }
 
   public GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions putGroupsItem(String key, GroupPermission groupsItem) {
-    if (this.groups == null || !this.groups.isPresent()) {
-      this.groups = JsonNullable.<Map<String, GroupPermission>>of(new HashMap<>());
+    if (this.groups == null) {
+      this.groups = new HashMap<>();
     }
-    try {
-      this.groups.get().put(key, groupsItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.groups.put(key, groupsItem);
     return this;
   }
 
@@ -145,26 +134,12 @@ public class GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecut
    * @return groups
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Map<String, GroupPermission> getGroups() {
-        return groups.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Map<String, GroupPermission>> getGroups_JsonNullable() {
     return groups;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  public void setGroups_JsonNullable(JsonNullable<Map<String, GroupPermission>> groups) {
-    this.groups = groups;
   }
 
   public void setGroups(Map<String, GroupPermission> groups) {
-    this.groups = JsonNullable.<Map<String, GroupPermission>>of(groups);
+    this.groups = groups;
   }
 
 
@@ -178,16 +153,10 @@ public class GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecut
    * @return other
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OTHER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public GroupPermission getOther() {
     return other;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_OTHER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOther(GroupPermission other) {
     this.other = other;
   }
@@ -203,24 +172,16 @@ public class GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecut
    * @return anon
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ANON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public GroupPermission getAnon() {
     return anon;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_ANON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAnon(GroupPermission anon) {
     this.anon = anon;
   }
 
 
-  /**
-   * Return true if this GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -230,9 +191,9 @@ public class GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecut
       return false;
     }
     GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions groupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions = (GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions) o;
-    return equalsNullable(this.ownerId, groupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.ownerId) &&
+    return Objects.equals(this.ownerId, groupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.ownerId) &&
         Objects.equals(this.owner, groupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.owner) &&
-        equalsNullable(this.groups, groupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.groups) &&
+        Objects.equals(this.groups, groupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.groups) &&
         Objects.equals(this.other, groupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.other) &&
         Objects.equals(this.anon, groupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.anon);
   }
@@ -243,7 +204,7 @@ public class GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecut
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(ownerId), owner, hashCodeNullable(groups), other, anon);
+    return Objects.hash(ownerId, owner, groups, other, anon);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -277,69 +238,108 @@ public class GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecut
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("ownerId");
+    openapiFields.add("owner");
+    openapiFields.add("groups");
+    openapiFields.add("other");
+    openapiFields.add("anon");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `ownerId` to the URL query string
-    if (getOwnerId() != null) {
-      joiner.add(String.format("%sownerId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getOwnerId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `owner` to the URL query string
-    if (getOwner() != null) {
-      joiner.add(getOwner().toUrlQueryString(prefix + "owner" + suffix));
-    }
-
-    // add `groups` to the URL query string
-    if (getGroups() != null) {
-      for (String _key : getGroups().keySet()) {
-        if (getGroups().get(_key) != null) {
-          joiner.add(getGroups().get(_key).toUrlQueryString(String.format("%sgroups%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions is not found in the empty JSON string", GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    // add `other` to the URL query string
-    if (getOther() != null) {
-      joiner.add(getOther().toUrlQueryString(prefix + "other" + suffix));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("ownerId") != null && !jsonObj.get("ownerId").isJsonNull()) && !jsonObj.get("ownerId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ownerId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ownerId").toString()));
+      }
+      // validate the optional field `owner`
+      if (jsonObj.get("owner") != null && !jsonObj.get("owner").isJsonNull()) {
+        GroupPermission.validateJsonElement(jsonObj.get("owner"));
+      }
+      // validate the optional field `other`
+      if (jsonObj.get("other") != null && !jsonObj.get("other").isJsonNull()) {
+        GroupPermission.validateJsonElement(jsonObj.get("other"));
+      }
+      // validate the optional field `anon`
+      if (jsonObj.get("anon") != null && !jsonObj.get("anon").isJsonNull()) {
+        GroupPermission.validateJsonElement(jsonObj.get("anon"));
+      }
+  }
 
-    // add `anon` to the URL query string
-    if (getAnon() != null) {
-      joiner.add(getAnon().toUrlQueryString(prefix + "anon" + suffix));
-    }
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.class));
 
-    return joiner.toString();
+       return (TypeAdapter<T>) new TypeAdapter<GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions>() {
+           @Override
+           public void write(JsonWriter out, GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions
+  * @throws IOException if the JSON string is invalid with respect to GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions
+  */
+  public static GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.class);
+  }
+
+ /**
+  * Convert an instance of GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

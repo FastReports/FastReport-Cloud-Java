@@ -10,876 +10,1537 @@
  * Do not edit the class manually.
  */
 
+
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiCallback;
 import cloud.fastreport.ApiClient;
 import cloud.fastreport.ApiException;
 import cloud.fastreport.ApiResponse;
+import cloud.fastreport.Configuration;
 import cloud.fastreport.Pair;
+import cloud.fastreport.ProgressRequestBody;
+import cloud.fastreport.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
 
 import java.io.File;
 import cloud.fastreport.model.ProblemDetails;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.http.HttpRequest;
-import java.nio.channels.Channels;
-import java.nio.channels.Pipe;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.StringJoiner;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DownloadApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public DownloadApi() {
-    this(new ApiClient());
-  }
-
-  public DownloadApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public DownloadApi() {
+        this(Configuration.getDefaultApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Returns a export file with specified id
-   * 
-   * @param id  (required)
-   * @param preview  (optional, default to false)
-   * @return File
-   * @throws ApiException if fails to make API call
-   */
-  public File downloadGetExport(String id, Boolean preview) throws ApiException {
-    ApiResponse<File> localVarResponse = downloadGetExportWithHttpInfo(id, preview);
-    return localVarResponse.getData();
-  }
+    public DownloadApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
 
-  /**
-   * Returns a export file with specified id
-   * 
-   * @param id  (required)
-   * @param preview  (optional, default to false)
-   * @return ApiResponse&lt;File&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<File> downloadGetExportWithHttpInfo(String id, Boolean preview) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = downloadGetExportRequestBuilder(id, preview);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("downloadGetExport", localVarResponse);
+    public ApiClient getApiClient() {
+        return localVarApiClient;
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for downloadGetExport
+     * @param id  (required)
+     * @param preview  (optional, default to false)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetExportCall(String id, Boolean preview, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<File>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<File>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder downloadGetExportRequestBuilder(String id, Boolean preview) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling downloadGetExport");
-    }
+        Object localVarPostBody = null;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/download/e/{id}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
-    String localVarPath = "/download/e/{id}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "preview";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("preview", preview));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "text/plain, application/json, application/octet-stream, application/pdf");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns export&#39;s thumbnail
-   * 
-   * @param id  (required)
-   * @return File
-   * @throws ApiException if fails to make API call
-   */
-  public File downloadGetExportThumbnail(String id) throws ApiException {
-    ApiResponse<File> localVarResponse = downloadGetExportThumbnailWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Returns export&#39;s thumbnail
-   * 
-   * @param id  (required)
-   * @return ApiResponse&lt;File&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<File> downloadGetExportThumbnailWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = downloadGetExportThumbnailRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("downloadGetExportThumbnail", localVarResponse);
+        if (preview != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("preview", preview));
         }
-        return new ApiResponse<File>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<File>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder downloadGetExportThumbnailRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling downloadGetExportThumbnail");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/download/e/{id}/thumbnail"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "text/plain, application/json, image/png, image/jpeg");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns a zip archive with selected ids
-   * 
-   * @param archiveName name of the created archive (required)
-   * @param fileIds ids separated with a &#39;,&#39; sign (optional)
-   * @param folderIds ids separated with a &#39;,&#39; sign (optional)
-   * @return File
-   * @throws ApiException if fails to make API call
-   */
-  public File downloadGetExports(String archiveName, String fileIds, String folderIds) throws ApiException {
-    ApiResponse<File> localVarResponse = downloadGetExportsWithHttpInfo(archiveName, fileIds, folderIds);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Returns a zip archive with selected ids
-   * 
-   * @param archiveName name of the created archive (required)
-   * @param fileIds ids separated with a &#39;,&#39; sign (optional)
-   * @param folderIds ids separated with a &#39;,&#39; sign (optional)
-   * @return ApiResponse&lt;File&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<File> downloadGetExportsWithHttpInfo(String archiveName, String fileIds, String folderIds) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = downloadGetExportsRequestBuilder(archiveName, fileIds, folderIds);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("downloadGetExports", localVarResponse);
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "application/octet-stream",
+            "application/pdf"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<File>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<File>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder downloadGetExportsRequestBuilder(String archiveName, String fileIds, String folderIds) throws ApiException {
-    // verify the required parameter 'archiveName' is set
-    if (archiveName == null) {
-      throw new ApiException(400, "Missing the required parameter 'archiveName' when calling downloadGetExports");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/download/es/{archiveName}"
-        .replace("{archiveName}", ApiClient.urlEncode(archiveName.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "fileIds";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("fileIds", fileIds));
-    localVarQueryParameterBaseName = "folderIds";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("folderIds", folderIds));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "text/plain, application/json, application/zip");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
-   * 
-   * @param reportId  (required)
-   * @return File
-   * @throws ApiException if fails to make API call
-   */
-  public File downloadGetLastSVGExport(String reportId) throws ApiException {
-    ApiResponse<File> localVarResponse = downloadGetLastSVGExportWithHttpInfo(reportId);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
-   * 
-   * @param reportId  (required)
-   * @return ApiResponse&lt;File&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<File> downloadGetLastSVGExportWithHttpInfo(String reportId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = downloadGetLastSVGExportRequestBuilder(reportId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("downloadGetLastSVGExport", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<File>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<File>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder downloadGetLastSVGExportRequestBuilder(String reportId) throws ApiException {
-    // verify the required parameter 'reportId' is set
-    if (reportId == null) {
-      throw new ApiException(400, "Missing the required parameter 'reportId' when calling downloadGetLastSVGExport");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/download/lastPreview/{reportId}"
-        .replace("{reportId}", ApiClient.urlEncode(reportId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "text/plain, application/json, application/octet-stream");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns a prepared file with specified id
-   * 
-   * @param id  (required)
-   * @return File
-   * @throws ApiException if fails to make API call
-   */
-  public File downloadGetReport(String id) throws ApiException {
-    ApiResponse<File> localVarResponse = downloadGetReportWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Returns a prepared file with specified id
-   * 
-   * @param id  (required)
-   * @return ApiResponse&lt;File&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<File> downloadGetReportWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = downloadGetReportRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("downloadGetReport", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadGetExportValidateBeforeCall(String id, Boolean preview, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling downloadGetExport(Async)");
         }
-        return new ApiResponse<File>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<File>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder downloadGetReportRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling downloadGetReport");
+        return downloadGetExportCall(id, preview, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/download/r/{id}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "text/plain, application/json, application/octet-stream");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Returns a export file with specified id
+     * 
+     * @param id  (required)
+     * @param preview  (optional, default to false)
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public File downloadGetExport(String id, Boolean preview) throws ApiException {
+        ApiResponse<File> localVarResp = downloadGetExportWithHttpInfo(id, preview);
+        return localVarResp.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns report&#39;s thumbnail
-   * 
-   * @param id  (required)
-   * @return File
-   * @throws ApiException if fails to make API call
-   */
-  public File downloadGetReportThumbnail(String id) throws ApiException {
-    ApiResponse<File> localVarResponse = downloadGetReportThumbnailWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
 
-  /**
-   * Returns report&#39;s thumbnail
-   * 
-   * @param id  (required)
-   * @return ApiResponse&lt;File&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<File> downloadGetReportThumbnailWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = downloadGetReportThumbnailRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("downloadGetReportThumbnail", localVarResponse);
+    /**
+     * Returns a export file with specified id
+     * 
+     * @param id  (required)
+     * @param preview  (optional, default to false)
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<File> downloadGetExportWithHttpInfo(String id, Boolean preview) throws ApiException {
+        okhttp3.Call localVarCall = downloadGetExportValidateBeforeCall(id, preview, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns a export file with specified id (asynchronously)
+     * 
+     * @param id  (required)
+     * @param preview  (optional, default to false)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetExportAsync(String id, Boolean preview, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadGetExportValidateBeforeCall(id, preview, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for downloadGetExportThumbnail
+     * @param id  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetExportThumbnailCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<File>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<File>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder downloadGetReportThumbnailRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling downloadGetReportThumbnail");
-    }
+        Object localVarPostBody = null;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/download/e/{id}/thumbnail"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
-    String localVarPath = "/download/r/{id}/thumbnail"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "text/plain, application/json, image/png, image/jpeg");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns a zip archive with selected files
-   * 
-   * @param archiveName name of the created archive (required)
-   * @param fileIds ids separated with a &#39;,&#39; sign (optional)
-   * @param folderIds ids separated with a &#39;,&#39; sign (optional)
-   * @return File
-   * @throws ApiException if fails to make API call
-   */
-  public File downloadGetReports(String archiveName, String fileIds, String folderIds) throws ApiException {
-    ApiResponse<File> localVarResponse = downloadGetReportsWithHttpInfo(archiveName, fileIds, folderIds);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Returns a zip archive with selected files
-   * 
-   * @param archiveName name of the created archive (required)
-   * @param fileIds ids separated with a &#39;,&#39; sign (optional)
-   * @param folderIds ids separated with a &#39;,&#39; sign (optional)
-   * @return ApiResponse&lt;File&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<File> downloadGetReportsWithHttpInfo(String archiveName, String fileIds, String folderIds) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = downloadGetReportsRequestBuilder(archiveName, fileIds, folderIds);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("downloadGetReports", localVarResponse);
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "image/png",
+            "image/jpeg"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<File>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<File>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder downloadGetReportsRequestBuilder(String archiveName, String fileIds, String folderIds) throws ApiException {
-    // verify the required parameter 'archiveName' is set
-    if (archiveName == null) {
-      throw new ApiException(400, "Missing the required parameter 'archiveName' when calling downloadGetReports");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/download/rs/{archiveName}"
-        .replace("{archiveName}", ApiClient.urlEncode(archiveName.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "fileIds";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("fileIds", fileIds));
-    localVarQueryParameterBaseName = "folderIds";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("folderIds", folderIds));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "text/plain, application/json, application/zip");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns a Template file with specified id
-   * 
-   * @param id template id (required)
-   * @return File
-   * @throws ApiException if fails to make API call
-   */
-  public File downloadGetTemplate(String id) throws ApiException {
-    ApiResponse<File> localVarResponse = downloadGetTemplateWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Returns a Template file with specified id
-   * 
-   * @param id template id (required)
-   * @return ApiResponse&lt;File&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<File> downloadGetTemplateWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = downloadGetTemplateRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("downloadGetTemplate", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<File>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<File>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder downloadGetTemplateRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling downloadGetTemplate");
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/download/t/{id}"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "text/plain, application/json, application/octet-stream");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns template&#39;s thumbnail
-   * 
-   * @param id  (required)
-   * @return File
-   * @throws ApiException if fails to make API call
-   */
-  public File downloadGetTemplateThumbnail(String id) throws ApiException {
-    ApiResponse<File> localVarResponse = downloadGetTemplateThumbnailWithHttpInfo(id);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Returns template&#39;s thumbnail
-   * 
-   * @param id  (required)
-   * @return ApiResponse&lt;File&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<File> downloadGetTemplateThumbnailWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = downloadGetTemplateThumbnailRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("downloadGetTemplateThumbnail", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadGetExportThumbnailValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling downloadGetExportThumbnail(Async)");
         }
-        return new ApiResponse<File>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<File>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder downloadGetTemplateThumbnailRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling downloadGetTemplateThumbnail");
+        return downloadGetExportThumbnailCall(id, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/download/t/{id}/thumbnail"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "text/plain, application/json, image/png, image/jpeg");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Returns export&#39;s thumbnail
+     * 
+     * @param id  (required)
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public File downloadGetExportThumbnail(String id) throws ApiException {
+        ApiResponse<File> localVarResp = downloadGetExportThumbnailWithHttpInfo(id);
+        return localVarResp.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * Returns a zip archive with selected files
-   * 
-   * @param archiveName name of the created archive (required)
-   * @param fileIds ids separated with a &#39;,&#39; sign (optional)
-   * @param folderIds ids separated with a &#39;,&#39; sign (optional)
-   * @return File
-   * @throws ApiException if fails to make API call
-   */
-  public File downloadGetTemplates(String archiveName, String fileIds, String folderIds) throws ApiException {
-    ApiResponse<File> localVarResponse = downloadGetTemplatesWithHttpInfo(archiveName, fileIds, folderIds);
-    return localVarResponse.getData();
-  }
 
-  /**
-   * Returns a zip archive with selected files
-   * 
-   * @param archiveName name of the created archive (required)
-   * @param fileIds ids separated with a &#39;,&#39; sign (optional)
-   * @param folderIds ids separated with a &#39;,&#39; sign (optional)
-   * @return ApiResponse&lt;File&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<File> downloadGetTemplatesWithHttpInfo(String archiveName, String fileIds, String folderIds) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = downloadGetTemplatesRequestBuilder(archiveName, fileIds, folderIds);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("downloadGetTemplates", localVarResponse);
+    /**
+     * Returns export&#39;s thumbnail
+     * 
+     * @param id  (required)
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<File> downloadGetExportThumbnailWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = downloadGetExportThumbnailValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns export&#39;s thumbnail (asynchronously)
+     * 
+     * @param id  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetExportThumbnailAsync(String id, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadGetExportThumbnailValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for downloadGetExports
+     * @param archiveName name of the created archive (required)
+     * @param fileIds ids separated with a &#39;,&#39; sign (optional)
+     * @param folderIds ids separated with a &#39;,&#39; sign (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetExportsCall(String archiveName, String fileIds, String folderIds, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<File>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<File>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder downloadGetTemplatesRequestBuilder(String archiveName, String fileIds, String folderIds) throws ApiException {
-    // verify the required parameter 'archiveName' is set
-    if (archiveName == null) {
-      throw new ApiException(400, "Missing the required parameter 'archiveName' when calling downloadGetTemplates");
-    }
+        Object localVarPostBody = null;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/download/es/{archiveName}"
+            .replace("{" + "archiveName" + "}", localVarApiClient.escapeString(archiveName.toString()));
 
-    String localVarPath = "/download/ts/{archiveName}"
-        .replace("{archiveName}", ApiClient.urlEncode(archiveName.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "fileIds";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("fileIds", fileIds));
-    localVarQueryParameterBaseName = "folderIds";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("folderIds", folderIds));
+        if (fileIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("fileIds", fileIds));
+        }
 
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+        if (folderIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("folderIds", folderIds));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "application/zip"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    localVarRequestBuilder.header("Accept", "text/plain, application/json, application/zip");
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadGetExportsValidateBeforeCall(String archiveName, String fileIds, String folderIds, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'archiveName' is set
+        if (archiveName == null) {
+            throw new ApiException("Missing the required parameter 'archiveName' when calling downloadGetExports(Async)");
+        }
 
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+        return downloadGetExportsCall(archiveName, fileIds, folderIds, _callback);
+
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Returns a zip archive with selected ids
+     * 
+     * @param archiveName name of the created archive (required)
+     * @param fileIds ids separated with a &#39;,&#39; sign (optional)
+     * @param folderIds ids separated with a &#39;,&#39; sign (optional)
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+     </table>
+     */
+    public File downloadGetExports(String archiveName, String fileIds, String folderIds) throws ApiException {
+        ApiResponse<File> localVarResp = downloadGetExportsWithHttpInfo(archiveName, fileIds, folderIds);
+        return localVarResp.getData();
     }
-    return localVarRequestBuilder;
-  }
+
+    /**
+     * Returns a zip archive with selected ids
+     * 
+     * @param archiveName name of the created archive (required)
+     * @param fileIds ids separated with a &#39;,&#39; sign (optional)
+     * @param folderIds ids separated with a &#39;,&#39; sign (optional)
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<File> downloadGetExportsWithHttpInfo(String archiveName, String fileIds, String folderIds) throws ApiException {
+        okhttp3.Call localVarCall = downloadGetExportsValidateBeforeCall(archiveName, fileIds, folderIds, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns a zip archive with selected ids (asynchronously)
+     * 
+     * @param archiveName name of the created archive (required)
+     * @param fileIds ids separated with a &#39;,&#39; sign (optional)
+     * @param folderIds ids separated with a &#39;,&#39; sign (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetExportsAsync(String archiveName, String fileIds, String folderIds, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadGetExportsValidateBeforeCall(archiveName, fileIds, folderIds, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for downloadGetLastSVGExport
+     * @param reportId  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetLastSVGExportCall(String reportId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/download/lastPreview/{reportId}"
+            .replace("{" + "reportId" + "}", localVarApiClient.escapeString(reportId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "application/octet-stream"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadGetLastSVGExportValidateBeforeCall(String reportId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'reportId' is set
+        if (reportId == null) {
+            throw new ApiException("Missing the required parameter 'reportId' when calling downloadGetLastSVGExport(Async)");
+        }
+
+        return downloadGetLastSVGExportCall(reportId, _callback);
+
+    }
+
+    /**
+     * returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
+     * 
+     * @param reportId  (required)
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public File downloadGetLastSVGExport(String reportId) throws ApiException {
+        ApiResponse<File> localVarResp = downloadGetLastSVGExportWithHttpInfo(reportId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
+     * 
+     * @param reportId  (required)
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<File> downloadGetLastSVGExportWithHttpInfo(String reportId) throws ApiException {
+        okhttp3.Call localVarCall = downloadGetLastSVGExportValidateBeforeCall(reportId, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * returns export, that was created from report with specified id.  INTERNAL USAGE ONLY! (asynchronously)
+     * 
+     * @param reportId  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetLastSVGExportAsync(String reportId, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadGetLastSVGExportValidateBeforeCall(reportId, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for downloadGetReport
+     * @param id  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetReportCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/download/r/{id}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "application/octet-stream"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadGetReportValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling downloadGetReport(Async)");
+        }
+
+        return downloadGetReportCall(id, _callback);
+
+    }
+
+    /**
+     * Returns a prepared file with specified id
+     * 
+     * @param id  (required)
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+     </table>
+     */
+    public File downloadGetReport(String id) throws ApiException {
+        ApiResponse<File> localVarResp = downloadGetReportWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Returns a prepared file with specified id
+     * 
+     * @param id  (required)
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<File> downloadGetReportWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = downloadGetReportValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns a prepared file with specified id (asynchronously)
+     * 
+     * @param id  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetReportAsync(String id, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadGetReportValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for downloadGetReportThumbnail
+     * @param id  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetReportThumbnailCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/download/r/{id}/thumbnail"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "image/png",
+            "image/jpeg"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadGetReportThumbnailValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling downloadGetReportThumbnail(Async)");
+        }
+
+        return downloadGetReportThumbnailCall(id, _callback);
+
+    }
+
+    /**
+     * Returns report&#39;s thumbnail
+     * 
+     * @param id  (required)
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public File downloadGetReportThumbnail(String id) throws ApiException {
+        ApiResponse<File> localVarResp = downloadGetReportThumbnailWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Returns report&#39;s thumbnail
+     * 
+     * @param id  (required)
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<File> downloadGetReportThumbnailWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = downloadGetReportThumbnailValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns report&#39;s thumbnail (asynchronously)
+     * 
+     * @param id  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetReportThumbnailAsync(String id, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadGetReportThumbnailValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for downloadGetReports
+     * @param archiveName name of the created archive (required)
+     * @param fileIds ids separated with a &#39;,&#39; sign (optional)
+     * @param folderIds ids separated with a &#39;,&#39; sign (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetReportsCall(String archiveName, String fileIds, String folderIds, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/download/rs/{archiveName}"
+            .replace("{" + "archiveName" + "}", localVarApiClient.escapeString(archiveName.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (fileIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("fileIds", fileIds));
+        }
+
+        if (folderIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("folderIds", folderIds));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "application/zip"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadGetReportsValidateBeforeCall(String archiveName, String fileIds, String folderIds, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'archiveName' is set
+        if (archiveName == null) {
+            throw new ApiException("Missing the required parameter 'archiveName' when calling downloadGetReports(Async)");
+        }
+
+        return downloadGetReportsCall(archiveName, fileIds, folderIds, _callback);
+
+    }
+
+    /**
+     * Returns a zip archive with selected files
+     * 
+     * @param archiveName name of the created archive (required)
+     * @param fileIds ids separated with a &#39;,&#39; sign (optional)
+     * @param folderIds ids separated with a &#39;,&#39; sign (optional)
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public File downloadGetReports(String archiveName, String fileIds, String folderIds) throws ApiException {
+        ApiResponse<File> localVarResp = downloadGetReportsWithHttpInfo(archiveName, fileIds, folderIds);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Returns a zip archive with selected files
+     * 
+     * @param archiveName name of the created archive (required)
+     * @param fileIds ids separated with a &#39;,&#39; sign (optional)
+     * @param folderIds ids separated with a &#39;,&#39; sign (optional)
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<File> downloadGetReportsWithHttpInfo(String archiveName, String fileIds, String folderIds) throws ApiException {
+        okhttp3.Call localVarCall = downloadGetReportsValidateBeforeCall(archiveName, fileIds, folderIds, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns a zip archive with selected files (asynchronously)
+     * 
+     * @param archiveName name of the created archive (required)
+     * @param fileIds ids separated with a &#39;,&#39; sign (optional)
+     * @param folderIds ids separated with a &#39;,&#39; sign (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetReportsAsync(String archiveName, String fileIds, String folderIds, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadGetReportsValidateBeforeCall(archiveName, fileIds, folderIds, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for downloadGetTemplate
+     * @param id template id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetTemplateCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/download/t/{id}"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "application/octet-stream"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadGetTemplateValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling downloadGetTemplate(Async)");
+        }
+
+        return downloadGetTemplateCall(id, _callback);
+
+    }
+
+    /**
+     * Returns a Template file with specified id
+     * 
+     * @param id template id (required)
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+     </table>
+     */
+    public File downloadGetTemplate(String id) throws ApiException {
+        ApiResponse<File> localVarResp = downloadGetTemplateWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Returns a Template file with specified id
+     * 
+     * @param id template id (required)
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<File> downloadGetTemplateWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = downloadGetTemplateValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns a Template file with specified id (asynchronously)
+     * 
+     * @param id template id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetTemplateAsync(String id, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadGetTemplateValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for downloadGetTemplateThumbnail
+     * @param id  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetTemplateThumbnailCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/download/t/{id}/thumbnail"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "image/png",
+            "image/jpeg"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadGetTemplateThumbnailValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling downloadGetTemplateThumbnail(Async)");
+        }
+
+        return downloadGetTemplateThumbnailCall(id, _callback);
+
+    }
+
+    /**
+     * Returns template&#39;s thumbnail
+     * 
+     * @param id  (required)
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public File downloadGetTemplateThumbnail(String id) throws ApiException {
+        ApiResponse<File> localVarResp = downloadGetTemplateThumbnailWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Returns template&#39;s thumbnail
+     * 
+     * @param id  (required)
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<File> downloadGetTemplateThumbnailWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = downloadGetTemplateThumbnailValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns template&#39;s thumbnail (asynchronously)
+     * 
+     * @param id  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetTemplateThumbnailAsync(String id, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadGetTemplateThumbnailValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for downloadGetTemplates
+     * @param archiveName name of the created archive (required)
+     * @param fileIds ids separated with a &#39;,&#39; sign (optional)
+     * @param folderIds ids separated with a &#39;,&#39; sign (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetTemplatesCall(String archiveName, String fileIds, String folderIds, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/download/ts/{archiveName}"
+            .replace("{" + "archiveName" + "}", localVarApiClient.escapeString(archiveName.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (fileIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("fileIds", fileIds));
+        }
+
+        if (folderIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("folderIds", folderIds));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "application/zip"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadGetTemplatesValidateBeforeCall(String archiveName, String fileIds, String folderIds, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'archiveName' is set
+        if (archiveName == null) {
+            throw new ApiException("Missing the required parameter 'archiveName' when calling downloadGetTemplates(Async)");
+        }
+
+        return downloadGetTemplatesCall(archiveName, fileIds, folderIds, _callback);
+
+    }
+
+    /**
+     * Returns a zip archive with selected files
+     * 
+     * @param archiveName name of the created archive (required)
+     * @param fileIds ids separated with a &#39;,&#39; sign (optional)
+     * @param folderIds ids separated with a &#39;,&#39; sign (optional)
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public File downloadGetTemplates(String archiveName, String fileIds, String folderIds) throws ApiException {
+        ApiResponse<File> localVarResp = downloadGetTemplatesWithHttpInfo(archiveName, fileIds, folderIds);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Returns a zip archive with selected files
+     * 
+     * @param archiveName name of the created archive (required)
+     * @param fileIds ids separated with a &#39;,&#39; sign (optional)
+     * @param folderIds ids separated with a &#39;,&#39; sign (optional)
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<File> downloadGetTemplatesWithHttpInfo(String archiveName, String fileIds, String folderIds) throws ApiException {
+        okhttp3.Call localVarCall = downloadGetTemplatesValidateBeforeCall(archiveName, fileIds, folderIds, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns a zip archive with selected files (asynchronously)
+     * 
+     * @param archiveName name of the created archive (required)
+     * @param fileIds ids separated with a &#39;,&#39; sign (optional)
+     * @param folderIds ids separated with a &#39;,&#39; sign (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call downloadGetTemplatesAsync(String archiveName, String fileIds, String folderIds, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadGetTemplatesValidateBeforeCall(archiveName, fileIds, folderIds, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
 }

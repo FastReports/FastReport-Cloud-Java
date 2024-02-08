@@ -13,67 +13,80 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * SelectedFilesVM
  */
-@JsonPropertyOrder({
-  SelectedFilesVM.JSON_PROPERTY_IS_ALL_SELECTED,
-  SelectedFilesVM.JSON_PROPERTY_FOLDER_ID,
-  SelectedFilesVM.JSON_PROPERTY_SEARCH_PATTERN,
-  SelectedFilesVM.JSON_PROPERTY_USE_REGEX,
-  SelectedFilesVM.JSON_PROPERTY_FILES,
-  SelectedFilesVM.JSON_PROPERTY_FOLDERS,
-  SelectedFilesVM.JSON_PROPERTY_PATH,
-  SelectedFilesVM.JSON_PROPERTY_IS_BIN
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SelectedFilesVM {
-  public static final String JSON_PROPERTY_IS_ALL_SELECTED = "isAllSelected";
+  public static final String SERIALIZED_NAME_IS_ALL_SELECTED = "isAllSelected";
+  @SerializedName(SERIALIZED_NAME_IS_ALL_SELECTED)
   private Boolean isAllSelected;
 
-  public static final String JSON_PROPERTY_FOLDER_ID = "folderId";
-  private JsonNullable<String> folderId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_FOLDER_ID = "folderId";
+  @SerializedName(SERIALIZED_NAME_FOLDER_ID)
+  private String folderId;
 
-  public static final String JSON_PROPERTY_SEARCH_PATTERN = "searchPattern";
-  private JsonNullable<String> searchPattern = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_SEARCH_PATTERN = "searchPattern";
+  @SerializedName(SERIALIZED_NAME_SEARCH_PATTERN)
+  private String searchPattern;
 
-  public static final String JSON_PROPERTY_USE_REGEX = "useRegex";
+  public static final String SERIALIZED_NAME_USE_REGEX = "useRegex";
+  @SerializedName(SERIALIZED_NAME_USE_REGEX)
   private Boolean useRegex;
 
-  public static final String JSON_PROPERTY_FILES = "files";
-  private JsonNullable<List<String>> files = JsonNullable.<List<String>>undefined();
+  public static final String SERIALIZED_NAME_FILES = "files";
+  @SerializedName(SERIALIZED_NAME_FILES)
+  private List<String> files;
 
-  public static final String JSON_PROPERTY_FOLDERS = "folders";
-  private JsonNullable<List<String>> folders = JsonNullable.<List<String>>undefined();
+  public static final String SERIALIZED_NAME_FOLDERS = "folders";
+  @SerializedName(SERIALIZED_NAME_FOLDERS)
+  private List<String> folders;
 
-  public static final String JSON_PROPERTY_PATH = "path";
-  private JsonNullable<String> path = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_PATH = "path";
+  @SerializedName(SERIALIZED_NAME_PATH)
+  private String path;
 
-  public static final String JSON_PROPERTY_IS_BIN = "isBin";
+  public static final String SERIALIZED_NAME_IS_BIN = "isBin";
+  @SerializedName(SERIALIZED_NAME_IS_BIN)
   private Boolean isBin;
 
-  public SelectedFilesVM() { 
+  public SelectedFilesVM() {
   }
 
   public SelectedFilesVM isAllSelected(Boolean isAllSelected) {
@@ -86,23 +99,17 @@ public class SelectedFilesVM {
    * @return isAllSelected
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS_ALL_SELECTED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getIsAllSelected() {
     return isAllSelected;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_IS_ALL_SELECTED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsAllSelected(Boolean isAllSelected) {
     this.isAllSelected = isAllSelected;
   }
 
 
   public SelectedFilesVM folderId(String folderId) {
-    this.folderId = JsonNullable.<String>of(folderId);
+    this.folderId = folderId;
     return this;
   }
 
@@ -111,31 +118,17 @@ public class SelectedFilesVM {
    * @return folderId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getFolderId() {
-        return folderId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getFolderId_JsonNullable() {
     return folderId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FOLDER_ID)
-  public void setFolderId_JsonNullable(JsonNullable<String> folderId) {
-    this.folderId = folderId;
   }
 
   public void setFolderId(String folderId) {
-    this.folderId = JsonNullable.<String>of(folderId);
+    this.folderId = folderId;
   }
 
 
   public SelectedFilesVM searchPattern(String searchPattern) {
-    this.searchPattern = JsonNullable.<String>of(searchPattern);
+    this.searchPattern = searchPattern;
     return this;
   }
 
@@ -144,26 +137,12 @@ public class SelectedFilesVM {
    * @return searchPattern
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getSearchPattern() {
-        return searchPattern.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_SEARCH_PATTERN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getSearchPattern_JsonNullable() {
     return searchPattern;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_SEARCH_PATTERN)
-  public void setSearchPattern_JsonNullable(JsonNullable<String> searchPattern) {
-    this.searchPattern = searchPattern;
   }
 
   public void setSearchPattern(String searchPattern) {
-    this.searchPattern = JsonNullable.<String>of(searchPattern);
+    this.searchPattern = searchPattern;
   }
 
 
@@ -177,35 +156,25 @@ public class SelectedFilesVM {
    * @return useRegex
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USE_REGEX)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getUseRegex() {
     return useRegex;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_USE_REGEX)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUseRegex(Boolean useRegex) {
     this.useRegex = useRegex;
   }
 
 
   public SelectedFilesVM files(List<String> files) {
-    this.files = JsonNullable.<List<String>>of(files);
+    this.files = files;
     return this;
   }
 
   public SelectedFilesVM addFilesItem(String filesItem) {
-    if (this.files == null || !this.files.isPresent()) {
-      this.files = JsonNullable.<List<String>>of(new ArrayList<>());
+    if (this.files == null) {
+      this.files = new ArrayList<>();
     }
-    try {
-      this.files.get().add(filesItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.files.add(filesItem);
     return this;
   }
 
@@ -214,43 +183,25 @@ public class SelectedFilesVM {
    * @return files
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<String> getFiles() {
-        return files.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FILES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<String>> getFiles_JsonNullable() {
     return files;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FILES)
-  public void setFiles_JsonNullable(JsonNullable<List<String>> files) {
-    this.files = files;
   }
 
   public void setFiles(List<String> files) {
-    this.files = JsonNullable.<List<String>>of(files);
+    this.files = files;
   }
 
 
   public SelectedFilesVM folders(List<String> folders) {
-    this.folders = JsonNullable.<List<String>>of(folders);
+    this.folders = folders;
     return this;
   }
 
   public SelectedFilesVM addFoldersItem(String foldersItem) {
-    if (this.folders == null || !this.folders.isPresent()) {
-      this.folders = JsonNullable.<List<String>>of(new ArrayList<>());
+    if (this.folders == null) {
+      this.folders = new ArrayList<>();
     }
-    try {
-      this.folders.get().add(foldersItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.folders.add(foldersItem);
     return this;
   }
 
@@ -259,31 +210,17 @@ public class SelectedFilesVM {
    * @return folders
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<String> getFolders() {
-        return folders.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FOLDERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<String>> getFolders_JsonNullable() {
     return folders;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FOLDERS)
-  public void setFolders_JsonNullable(JsonNullable<List<String>> folders) {
-    this.folders = folders;
   }
 
   public void setFolders(List<String> folders) {
-    this.folders = JsonNullable.<List<String>>of(folders);
+    this.folders = folders;
   }
 
 
   public SelectedFilesVM path(String path) {
-    this.path = JsonNullable.<String>of(path);
+    this.path = path;
     return this;
   }
 
@@ -292,26 +229,12 @@ public class SelectedFilesVM {
    * @return path
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getPath() {
-        return path.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getPath_JsonNullable() {
     return path;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_PATH)
-  public void setPath_JsonNullable(JsonNullable<String> path) {
-    this.path = path;
   }
 
   public void setPath(String path) {
-    this.path = JsonNullable.<String>of(path);
+    this.path = path;
   }
 
 
@@ -325,24 +248,16 @@ public class SelectedFilesVM {
    * @return isBin
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS_BIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getIsBin() {
     return isBin;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_IS_BIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsBin(Boolean isBin) {
     this.isBin = isBin;
   }
 
 
-  /**
-   * Return true if this SelectedFilesVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -353,12 +268,12 @@ public class SelectedFilesVM {
     }
     SelectedFilesVM selectedFilesVM = (SelectedFilesVM) o;
     return Objects.equals(this.isAllSelected, selectedFilesVM.isAllSelected) &&
-        equalsNullable(this.folderId, selectedFilesVM.folderId) &&
-        equalsNullable(this.searchPattern, selectedFilesVM.searchPattern) &&
+        Objects.equals(this.folderId, selectedFilesVM.folderId) &&
+        Objects.equals(this.searchPattern, selectedFilesVM.searchPattern) &&
         Objects.equals(this.useRegex, selectedFilesVM.useRegex) &&
-        equalsNullable(this.files, selectedFilesVM.files) &&
-        equalsNullable(this.folders, selectedFilesVM.folders) &&
-        equalsNullable(this.path, selectedFilesVM.path) &&
+        Objects.equals(this.files, selectedFilesVM.files) &&
+        Objects.equals(this.folders, selectedFilesVM.folders) &&
+        Objects.equals(this.path, selectedFilesVM.path) &&
         Objects.equals(this.isBin, selectedFilesVM.isBin);
   }
 
@@ -368,7 +283,7 @@ public class SelectedFilesVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(isAllSelected, hashCodeNullable(folderId), hashCodeNullable(searchPattern), useRegex, hashCodeNullable(files), hashCodeNullable(folders), hashCodeNullable(path), isBin);
+    return Objects.hash(isAllSelected, folderId, searchPattern, useRegex, files, folders, path, isBin);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -405,87 +320,113 @@ public class SelectedFilesVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("isAllSelected");
+    openapiFields.add("folderId");
+    openapiFields.add("searchPattern");
+    openapiFields.add("useRegex");
+    openapiFields.add("files");
+    openapiFields.add("folders");
+    openapiFields.add("path");
+    openapiFields.add("isBin");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `isAllSelected` to the URL query string
-    if (getIsAllSelected() != null) {
-      joiner.add(String.format("%sisAllSelected%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsAllSelected()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `folderId` to the URL query string
-    if (getFolderId() != null) {
-      joiner.add(String.format("%sfolderId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFolderId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `searchPattern` to the URL query string
-    if (getSearchPattern() != null) {
-      joiner.add(String.format("%ssearchPattern%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSearchPattern()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `useRegex` to the URL query string
-    if (getUseRegex() != null) {
-      joiner.add(String.format("%suseRegex%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUseRegex()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `files` to the URL query string
-    if (getFiles() != null) {
-      for (int i = 0; i < getFiles().size(); i++) {
-        joiner.add(String.format("%sfiles%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(String.valueOf(getFiles().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to SelectedFilesVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SelectedFilesVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SelectedFilesVM is not found in the empty JSON string", SelectedFilesVM.openapiRequiredFields.toString()));
+        }
       }
-    }
 
-    // add `folders` to the URL query string
-    if (getFolders() != null) {
-      for (int i = 0; i < getFolders().size(); i++) {
-        joiner.add(String.format("%sfolders%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(String.valueOf(getFolders().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!SelectedFilesVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SelectedFilesVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
       }
-    }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("folderId") != null && !jsonObj.get("folderId").isJsonNull()) && !jsonObj.get("folderId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `folderId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("folderId").toString()));
+      }
+      if ((jsonObj.get("searchPattern") != null && !jsonObj.get("searchPattern").isJsonNull()) && !jsonObj.get("searchPattern").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `searchPattern` to be a primitive type in the JSON string but got `%s`", jsonObj.get("searchPattern").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("files") != null && !jsonObj.get("files").isJsonNull() && !jsonObj.get("files").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `files` to be an array in the JSON string but got `%s`", jsonObj.get("files").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("folders") != null && !jsonObj.get("folders").isJsonNull() && !jsonObj.get("folders").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `folders` to be an array in the JSON string but got `%s`", jsonObj.get("folders").toString()));
+      }
+      if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull()) && !jsonObj.get("path").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("path").toString()));
+      }
+  }
 
-    // add `path` to the URL query string
-    if (getPath() != null) {
-      joiner.add(String.format("%spath%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SelectedFilesVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SelectedFilesVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SelectedFilesVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SelectedFilesVM.class));
 
-    // add `isBin` to the URL query string
-    if (getIsBin() != null) {
-      joiner.add(String.format("%sisBin%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsBin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+       return (TypeAdapter<T>) new TypeAdapter<SelectedFilesVM>() {
+           @Override
+           public void write(JsonWriter out, SelectedFilesVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
 
-    return joiner.toString();
+           @Override
+           public SelectedFilesVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of SelectedFilesVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SelectedFilesVM
+  * @throws IOException if the JSON string is invalid with respect to SelectedFilesVM
+  */
+  public static SelectedFilesVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SelectedFilesVM.class);
+  }
+
+ /**
+  * Convert an instance of SelectedFilesVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

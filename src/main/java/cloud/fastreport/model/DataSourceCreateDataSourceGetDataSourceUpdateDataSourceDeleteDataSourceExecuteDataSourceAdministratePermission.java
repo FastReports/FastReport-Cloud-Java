@@ -13,59 +13,75 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.DataSourceAdministrate;
 import cloud.fastreport.model.DataSourceCreate;
 import cloud.fastreport.model.DataSourceDelete;
 import cloud.fastreport.model.DataSourceExecute;
 import cloud.fastreport.model.DataSourceGet;
 import cloud.fastreport.model.DataSourceUpdate;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission
  */
-@JsonPropertyOrder({
-  DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.JSON_PROPERTY_CREATE,
-  DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.JSON_PROPERTY_DELETE,
-  DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.JSON_PROPERTY_EXECUTE,
-  DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.JSON_PROPERTY_GET,
-  DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.JSON_PROPERTY_UPDATE,
-  DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.JSON_PROPERTY_ADMINISTRATE
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission {
-  public static final String JSON_PROPERTY_CREATE = "create";
+  public static final String SERIALIZED_NAME_CREATE = "create";
+  @SerializedName(SERIALIZED_NAME_CREATE)
   private DataSourceCreate create;
 
-  public static final String JSON_PROPERTY_DELETE = "delete";
+  public static final String SERIALIZED_NAME_DELETE = "delete";
+  @SerializedName(SERIALIZED_NAME_DELETE)
   private DataSourceDelete delete;
 
-  public static final String JSON_PROPERTY_EXECUTE = "execute";
+  public static final String SERIALIZED_NAME_EXECUTE = "execute";
+  @SerializedName(SERIALIZED_NAME_EXECUTE)
   private DataSourceExecute execute;
 
-  public static final String JSON_PROPERTY_GET = "get";
+  public static final String SERIALIZED_NAME_GET = "get";
+  @SerializedName(SERIALIZED_NAME_GET)
   private DataSourceGet get;
 
-  public static final String JSON_PROPERTY_UPDATE = "update";
+  public static final String SERIALIZED_NAME_UPDATE = "update";
+  @SerializedName(SERIALIZED_NAME_UPDATE)
   private DataSourceUpdate update;
 
-  public static final String JSON_PROPERTY_ADMINISTRATE = "administrate";
+  public static final String SERIALIZED_NAME_ADMINISTRATE = "administrate";
+  @SerializedName(SERIALIZED_NAME_ADMINISTRATE)
   private DataSourceAdministrate administrate;
 
-  public DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission() { 
+  public DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission() {
   }
 
   public DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission create(DataSourceCreate create) {
@@ -78,16 +94,10 @@ public class DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSo
    * @return create
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CREATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public DataSourceCreate getCreate() {
     return create;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_CREATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreate(DataSourceCreate create) {
     this.create = create;
   }
@@ -103,16 +113,10 @@ public class DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSo
    * @return delete
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DELETE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public DataSourceDelete getDelete() {
     return delete;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_DELETE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDelete(DataSourceDelete delete) {
     this.delete = delete;
   }
@@ -128,16 +132,10 @@ public class DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSo
    * @return execute
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EXECUTE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public DataSourceExecute getExecute() {
     return execute;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_EXECUTE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExecute(DataSourceExecute execute) {
     this.execute = execute;
   }
@@ -153,16 +151,10 @@ public class DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSo
    * @return get
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_GET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public DataSourceGet getGet() {
     return get;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_GET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGet(DataSourceGet get) {
     this.get = get;
   }
@@ -178,16 +170,10 @@ public class DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSo
    * @return update
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public DataSourceUpdate getUpdate() {
     return update;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUpdate(DataSourceUpdate update) {
     this.update = update;
   }
@@ -203,24 +189,16 @@ public class DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSo
    * @return administrate
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public DataSourceAdministrate getAdministrate() {
     return administrate;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_ADMINISTRATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAdministrate(DataSourceAdministrate administrate) {
     this.administrate = administrate;
   }
 
 
-  /**
-   * Return true if this DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -268,69 +246,118 @@ public class DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSo
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("create");
+    openapiFields.add("delete");
+    openapiFields.add("execute");
+    openapiFields.add("get");
+    openapiFields.add("update");
+    openapiFields.add("administrate");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission is not found in the empty JSON string", DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `create`
+      if (jsonObj.get("create") != null && !jsonObj.get("create").isJsonNull()) {
+        DataSourceCreate.validateJsonElement(jsonObj.get("create"));
+      }
+      // validate the optional field `delete`
+      if (jsonObj.get("delete") != null && !jsonObj.get("delete").isJsonNull()) {
+        DataSourceDelete.validateJsonElement(jsonObj.get("delete"));
+      }
+      // validate the optional field `execute`
+      if (jsonObj.get("execute") != null && !jsonObj.get("execute").isJsonNull()) {
+        DataSourceExecute.validateJsonElement(jsonObj.get("execute"));
+      }
+      // validate the optional field `get`
+      if (jsonObj.get("get") != null && !jsonObj.get("get").isJsonNull()) {
+        DataSourceGet.validateJsonElement(jsonObj.get("get"));
+      }
+      // validate the optional field `update`
+      if (jsonObj.get("update") != null && !jsonObj.get("update").isJsonNull()) {
+        DataSourceUpdate.validateJsonElement(jsonObj.get("update"));
+      }
+      // validate the optional field `administrate`
+      if (jsonObj.get("administrate") != null && !jsonObj.get("administrate").isJsonNull()) {
+        DataSourceAdministrate.validateJsonElement(jsonObj.get("administrate"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission>() {
+           @Override
+           public void write(JsonWriter out, DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission
+  * @throws IOException if the JSON string is invalid with respect to DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission
+  */
+  public static DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.class);
+  }
 
-    // add `create` to the URL query string
-    if (getCreate() != null) {
-      joiner.add(String.format("%screate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `delete` to the URL query string
-    if (getDelete() != null) {
-      joiner.add(String.format("%sdelete%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDelete()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `execute` to the URL query string
-    if (getExecute() != null) {
-      joiner.add(String.format("%sexecute%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExecute()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `get` to the URL query string
-    if (getGet() != null) {
-      joiner.add(String.format("%sget%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getGet()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `update` to the URL query string
-    if (getUpdate() != null) {
-      joiner.add(String.format("%supdate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUpdate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `administrate` to the URL query string
-    if (getAdministrate() != null) {
-      joiner.add(String.format("%sadministrate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAdministrate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

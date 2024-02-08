@@ -13,48 +13,61 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.GroupVM;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * SubscriptionUserVM
  */
-@JsonPropertyOrder({
-  SubscriptionUserVM.JSON_PROPERTY_USER_ID,
-  SubscriptionUserVM.JSON_PROPERTY_GROUPS
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionUserVM {
-  public static final String JSON_PROPERTY_USER_ID = "userId";
-  private JsonNullable<String> userId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_USER_ID = "userId";
+  @SerializedName(SERIALIZED_NAME_USER_ID)
+  private String userId;
 
-  public static final String JSON_PROPERTY_GROUPS = "groups";
-  private JsonNullable<List<GroupVM>> groups = JsonNullable.<List<GroupVM>>undefined();
+  public static final String SERIALIZED_NAME_GROUPS = "groups";
+  @SerializedName(SERIALIZED_NAME_GROUPS)
+  private List<GroupVM> groups;
 
-  public SubscriptionUserVM() { 
+  public SubscriptionUserVM() {
   }
 
   public SubscriptionUserVM userId(String userId) {
-    this.userId = JsonNullable.<String>of(userId);
+    this.userId = userId;
     return this;
   }
 
@@ -63,43 +76,25 @@ public class SubscriptionUserVM {
    * @return userId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getUserId() {
-        return userId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getUserId_JsonNullable() {
     return userId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_USER_ID)
-  public void setUserId_JsonNullable(JsonNullable<String> userId) {
-    this.userId = userId;
   }
 
   public void setUserId(String userId) {
-    this.userId = JsonNullable.<String>of(userId);
+    this.userId = userId;
   }
 
 
   public SubscriptionUserVM groups(List<GroupVM> groups) {
-    this.groups = JsonNullable.<List<GroupVM>>of(groups);
+    this.groups = groups;
     return this;
   }
 
   public SubscriptionUserVM addGroupsItem(GroupVM groupsItem) {
-    if (this.groups == null || !this.groups.isPresent()) {
-      this.groups = JsonNullable.<List<GroupVM>>of(new ArrayList<>());
+    if (this.groups == null) {
+      this.groups = new ArrayList<>();
     }
-    try {
-      this.groups.get().add(groupsItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.groups.add(groupsItem);
     return this;
   }
 
@@ -108,32 +103,16 @@ public class SubscriptionUserVM {
    * @return groups
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<GroupVM> getGroups() {
-        return groups.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<GroupVM>> getGroups_JsonNullable() {
     return groups;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  public void setGroups_JsonNullable(JsonNullable<List<GroupVM>> groups) {
-    this.groups = groups;
   }
 
   public void setGroups(List<GroupVM> groups) {
-    this.groups = JsonNullable.<List<GroupVM>>of(groups);
+    this.groups = groups;
   }
 
 
-  /**
-   * Return true if this SubscriptionUserVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -143,8 +122,8 @@ public class SubscriptionUserVM {
       return false;
     }
     SubscriptionUserVM subscriptionUserVM = (SubscriptionUserVM) o;
-    return equalsNullable(this.userId, subscriptionUserVM.userId) &&
-        equalsNullable(this.groups, subscriptionUserVM.groups);
+    return Objects.equals(this.userId, subscriptionUserVM.userId) &&
+        Objects.equals(this.groups, subscriptionUserVM.groups);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -153,7 +132,7 @@ public class SubscriptionUserVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(userId), hashCodeNullable(groups));
+    return Objects.hash(userId, groups);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -184,54 +163,107 @@ public class SubscriptionUserVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("userId");
+    openapiFields.add("groups");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `userId` to the URL query string
-    if (getUserId() != null) {
-      joiner.add(String.format("%suserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `groups` to the URL query string
-    if (getGroups() != null) {
-      for (int i = 0; i < getGroups().size(); i++) {
-        if (getGroups().get(i) != null) {
-          joiner.add(getGroups().get(i).toUrlQueryString(String.format("%sgroups%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to SubscriptionUserVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SubscriptionUserVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SubscriptionUserVM is not found in the empty JSON string", SubscriptionUserVM.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    return joiner.toString();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!SubscriptionUserVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SubscriptionUserVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull()) && !jsonObj.get("userId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `userId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("userId").toString()));
+      }
+      if (jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull()) {
+        JsonArray jsonArraygroups = jsonObj.getAsJsonArray("groups");
+        if (jsonArraygroups != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("groups").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `groups` to be an array in the JSON string but got `%s`", jsonObj.get("groups").toString()));
+          }
+
+          // validate the optional field `groups` (array)
+          for (int i = 0; i < jsonArraygroups.size(); i++) {
+            GroupVM.validateJsonElement(jsonArraygroups.get(i));
+          };
+        }
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SubscriptionUserVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SubscriptionUserVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SubscriptionUserVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SubscriptionUserVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SubscriptionUserVM>() {
+           @Override
+           public void write(JsonWriter out, SubscriptionUserVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SubscriptionUserVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of SubscriptionUserVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SubscriptionUserVM
+  * @throws IOException if the JSON string is invalid with respect to SubscriptionUserVM
+  */
+  public static SubscriptionUserVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SubscriptionUserVM.class);
+  }
+
+ /**
+  * Convert an instance of SubscriptionUserVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

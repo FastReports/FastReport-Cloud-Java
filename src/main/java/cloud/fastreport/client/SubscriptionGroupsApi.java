@@ -10,243 +10,345 @@
  * Do not edit the class manually.
  */
 
+
 package cloud.fastreport.client;
 
+import cloud.fastreport.ApiCallback;
 import cloud.fastreport.ApiClient;
 import cloud.fastreport.ApiException;
 import cloud.fastreport.ApiResponse;
+import cloud.fastreport.Configuration;
 import cloud.fastreport.Pair;
+import cloud.fastreport.ProgressRequestBody;
+import cloud.fastreport.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
 
 import cloud.fastreport.model.GroupsVM;
 import cloud.fastreport.model.ProblemDetails;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.http.HttpRequest;
-import java.nio.channels.Channels;
-import java.nio.channels.Pipe;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.StringJoiner;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionGroupsApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public SubscriptionGroupsApi() {
-    this(new ApiClient());
-  }
-
-  public SubscriptionGroupsApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public SubscriptionGroupsApi() {
+        this(Configuration.getDefaultApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Returns a number of groups in subscription
-   * 
-   * @param subscriptionId subscripiton id (required)
-   * @return Long
-   * @throws ApiException if fails to make API call
-   */
-  public Long subscriptionGroupsCountGroupsAsync(String subscriptionId) throws ApiException {
-    ApiResponse<Long> localVarResponse = subscriptionGroupsCountGroupsAsyncWithHttpInfo(subscriptionId);
-    return localVarResponse.getData();
-  }
+    public SubscriptionGroupsApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
 
-  /**
-   * Returns a number of groups in subscription
-   * 
-   * @param subscriptionId subscripiton id (required)
-   * @return ApiResponse&lt;Long&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Long> subscriptionGroupsCountGroupsAsyncWithHttpInfo(String subscriptionId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionGroupsCountGroupsAsyncRequestBuilder(subscriptionId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionGroupsCountGroupsAsync", localVarResponse);
+    public ApiClient getApiClient() {
+        return localVarApiClient;
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for subscriptionGroupsCountGroupsAsync
+     * @param subscriptionId subscripiton id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionGroupsCountGroupsAsyncCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Long>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Long>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionGroupsCountGroupsAsyncRequestBuilder(String subscriptionId) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling subscriptionGroupsCountGroupsAsync");
-    }
+        Object localVarPostBody = null;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/count"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
 
-    String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/count"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * returns groups of the subscription or subscription user
-   * 
-   * @param subscriptionId subscripiton id (required)
-   * @param userId user Id (optional) (optional)
-   * @return GroupsVM
-   * @throws ApiException if fails to make API call
-   */
-  public GroupsVM subscriptionGroupsGetGroupsList(String subscriptionId, String userId) throws ApiException {
-    ApiResponse<GroupsVM> localVarResponse = subscriptionGroupsGetGroupsListWithHttpInfo(subscriptionId, userId);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * returns groups of the subscription or subscription user
-   * 
-   * @param subscriptionId subscripiton id (required)
-   * @param userId user Id (optional) (optional)
-   * @return ApiResponse&lt;GroupsVM&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<GroupsVM> subscriptionGroupsGetGroupsListWithHttpInfo(String subscriptionId, String userId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = subscriptionGroupsGetGroupsListRequestBuilder(subscriptionId, userId);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("subscriptionGroupsGetGroupsList", localVarResponse);
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<GroupsVM>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<GroupsVM>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder subscriptionGroupsGetGroupsListRequestBuilder(String subscriptionId, String userId) throws ApiException {
-    // verify the required parameter 'subscriptionId' is set
-    if (subscriptionId == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling subscriptionGroupsGetGroupsList");
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionGroupsCountGroupsAsyncValidateBeforeCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling subscriptionGroupsCountGroupsAsync(Async)");
+        }
 
-    String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/groups"
-        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
+        return subscriptionGroupsCountGroupsAsyncCall(subscriptionId, _callback);
 
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "userId";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("userId", userId));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    /**
+     * Returns a number of groups in subscription
+     * 
+     * @param subscriptionId subscripiton id (required)
+     * @return Long
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
+     </table>
+     */
+    public Long subscriptionGroupsCountGroupsAsync(String subscriptionId) throws ApiException {
+        ApiResponse<Long> localVarResp = subscriptionGroupsCountGroupsAsyncWithHttpInfo(subscriptionId);
+        return localVarResp.getData();
+    }
 
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Returns a number of groups in subscription
+     * 
+     * @param subscriptionId subscripiton id (required)
+     * @return ApiResponse&lt;Long&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Long> subscriptionGroupsCountGroupsAsyncWithHttpInfo(String subscriptionId) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionGroupsCountGroupsAsyncValidateBeforeCall(subscriptionId, null);
+        Type localVarReturnType = new TypeToken<Long>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Returns a number of groups in subscription (asynchronously)
+     * 
+     * @param subscriptionId subscripiton id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionGroupsCountGroupsAsyncAsync(String subscriptionId, final ApiCallback<Long> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionGroupsCountGroupsAsyncValidateBeforeCall(subscriptionId, _callback);
+        Type localVarReturnType = new TypeToken<Long>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
     }
-    return localVarRequestBuilder;
-  }
+    /**
+     * Build call for subscriptionGroupsGetGroupsList
+     * @param subscriptionId subscripiton id (required)
+     * @param userId user Id (optional) (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right (list of groups may be empty) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionGroupsGetGroupsListCall(String subscriptionId, String userId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/manage/v1/Subscriptions/{subscriptionId}/groups"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (userId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("userId", userId));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call subscriptionGroupsGetGroupsListValidateBeforeCall(String subscriptionId, String userId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling subscriptionGroupsGetGroupsList(Async)");
+        }
+
+        return subscriptionGroupsGetGroupsListCall(subscriptionId, userId, _callback);
+
+    }
+
+    /**
+     * returns groups of the subscription or subscription user
+     * 
+     * @param subscriptionId subscripiton id (required)
+     * @param userId user Id (optional) (optional)
+     * @return GroupsVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right (list of groups may be empty) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
+     </table>
+     */
+    public GroupsVM subscriptionGroupsGetGroupsList(String subscriptionId, String userId) throws ApiException {
+        ApiResponse<GroupsVM> localVarResp = subscriptionGroupsGetGroupsListWithHttpInfo(subscriptionId, userId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * returns groups of the subscription or subscription user
+     * 
+     * @param subscriptionId subscripiton id (required)
+     * @param userId user Id (optional) (optional)
+     * @return ApiResponse&lt;GroupsVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right (list of groups may be empty) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<GroupsVM> subscriptionGroupsGetGroupsListWithHttpInfo(String subscriptionId, String userId) throws ApiException {
+        okhttp3.Call localVarCall = subscriptionGroupsGetGroupsListValidateBeforeCall(subscriptionId, userId, null);
+        Type localVarReturnType = new TypeToken<GroupsVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * returns groups of the subscription or subscription user (asynchronously)
+     * 
+     * @param subscriptionId subscripiton id (required)
+     * @param userId user Id (optional) (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right (list of groups may be empty) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call subscriptionGroupsGetGroupsListAsync(String subscriptionId, String userId, final ApiCallback<GroupsVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = subscriptionGroupsGetGroupsListValidateBeforeCall(subscriptionId, userId, _callback);
+        Type localVarReturnType = new TypeToken<GroupsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
 }

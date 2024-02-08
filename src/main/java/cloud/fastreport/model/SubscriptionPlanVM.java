@@ -13,119 +13,132 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.TaskSettingsVM;
 import cloud.fastreport.model.TimePeriodType;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * SubscriptionPlanVM
  */
-@JsonPropertyOrder({
-  SubscriptionPlanVM.JSON_PROPERTY_ID,
-  SubscriptionPlanVM.JSON_PROPERTY_IS_ACTIVE,
-  SubscriptionPlanVM.JSON_PROPERTY_DISPLAY_NAME,
-  SubscriptionPlanVM.JSON_PROPERTY_TIME_PERIOD_TYPE,
-  SubscriptionPlanVM.JSON_PROPERTY_TIME_PERIOD,
-  SubscriptionPlanVM.JSON_PROPERTY_READONLY_TIME_LIMIT_TYPE,
-  SubscriptionPlanVM.JSON_PROPERTY_READONLY_TIME_LIMIT,
-  SubscriptionPlanVM.JSON_PROPERTY_TEMPLATES_SPACE_LIMIT,
-  SubscriptionPlanVM.JSON_PROPERTY_REPORTS_SPACE_LIMIT,
-  SubscriptionPlanVM.JSON_PROPERTY_EXPORTS_SPACE_LIMIT,
-  SubscriptionPlanVM.JSON_PROPERTY_FILE_UPLOAD_SIZE_LIMIT,
-  SubscriptionPlanVM.JSON_PROPERTY_DATA_SOURCE_LIMIT,
-  SubscriptionPlanVM.JSON_PROPERTY_MAX_USERS_COUNT,
-  SubscriptionPlanVM.JSON_PROPERTY_GROUP_LIMIT,
-  SubscriptionPlanVM.JSON_PROPERTY_ONLINE_DESIGNER,
-  SubscriptionPlanVM.JSON_PROPERTY_IS_DEMO,
-  SubscriptionPlanVM.JSON_PROPERTY_URL_TO_BUY,
-  SubscriptionPlanVM.JSON_PROPERTY_UNLIMITED_PAGE,
-  SubscriptionPlanVM.JSON_PROPERTY_PAGE_LIMIT,
-  SubscriptionPlanVM.JSON_PROPERTY_TASKS
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionPlanVM {
-  public static final String JSON_PROPERTY_ID = "id";
-  private JsonNullable<String> id = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
 
-  public static final String JSON_PROPERTY_IS_ACTIVE = "isActive";
-  private JsonNullable<Boolean> isActive = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_IS_ACTIVE = "isActive";
+  @SerializedName(SERIALIZED_NAME_IS_ACTIVE)
+  private Boolean isActive;
 
-  public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
-  private JsonNullable<String> displayName = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_DISPLAY_NAME = "displayName";
+  @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
+  private String displayName;
 
-  public static final String JSON_PROPERTY_TIME_PERIOD_TYPE = "timePeriodType";
-  private JsonNullable<TimePeriodType> timePeriodType = JsonNullable.<TimePeriodType>undefined();
+  public static final String SERIALIZED_NAME_TIME_PERIOD_TYPE = "timePeriodType";
+  @SerializedName(SERIALIZED_NAME_TIME_PERIOD_TYPE)
+  private TimePeriodType timePeriodType;
 
-  public static final String JSON_PROPERTY_TIME_PERIOD = "timePeriod";
-  private JsonNullable<Integer> timePeriod = JsonNullable.<Integer>undefined();
+  public static final String SERIALIZED_NAME_TIME_PERIOD = "timePeriod";
+  @SerializedName(SERIALIZED_NAME_TIME_PERIOD)
+  private Integer timePeriod;
 
-  public static final String JSON_PROPERTY_READONLY_TIME_LIMIT_TYPE = "readonlyTimeLimitType";
+  public static final String SERIALIZED_NAME_READONLY_TIME_LIMIT_TYPE = "readonlyTimeLimitType";
+  @SerializedName(SERIALIZED_NAME_READONLY_TIME_LIMIT_TYPE)
   private TimePeriodType readonlyTimeLimitType;
 
-  public static final String JSON_PROPERTY_READONLY_TIME_LIMIT = "readonlyTimeLimit";
+  public static final String SERIALIZED_NAME_READONLY_TIME_LIMIT = "readonlyTimeLimit";
+  @SerializedName(SERIALIZED_NAME_READONLY_TIME_LIMIT)
   private Integer readonlyTimeLimit;
 
-  public static final String JSON_PROPERTY_TEMPLATES_SPACE_LIMIT = "templatesSpaceLimit";
-  private JsonNullable<Long> templatesSpaceLimit = JsonNullable.<Long>undefined();
+  public static final String SERIALIZED_NAME_TEMPLATES_SPACE_LIMIT = "templatesSpaceLimit";
+  @SerializedName(SERIALIZED_NAME_TEMPLATES_SPACE_LIMIT)
+  private Long templatesSpaceLimit;
 
-  public static final String JSON_PROPERTY_REPORTS_SPACE_LIMIT = "reportsSpaceLimit";
-  private JsonNullable<Long> reportsSpaceLimit = JsonNullable.<Long>undefined();
+  public static final String SERIALIZED_NAME_REPORTS_SPACE_LIMIT = "reportsSpaceLimit";
+  @SerializedName(SERIALIZED_NAME_REPORTS_SPACE_LIMIT)
+  private Long reportsSpaceLimit;
 
-  public static final String JSON_PROPERTY_EXPORTS_SPACE_LIMIT = "exportsSpaceLimit";
-  private JsonNullable<Long> exportsSpaceLimit = JsonNullable.<Long>undefined();
+  public static final String SERIALIZED_NAME_EXPORTS_SPACE_LIMIT = "exportsSpaceLimit";
+  @SerializedName(SERIALIZED_NAME_EXPORTS_SPACE_LIMIT)
+  private Long exportsSpaceLimit;
 
-  public static final String JSON_PROPERTY_FILE_UPLOAD_SIZE_LIMIT = "fileUploadSizeLimit";
-  private JsonNullable<Long> fileUploadSizeLimit = JsonNullable.<Long>undefined();
+  public static final String SERIALIZED_NAME_FILE_UPLOAD_SIZE_LIMIT = "fileUploadSizeLimit";
+  @SerializedName(SERIALIZED_NAME_FILE_UPLOAD_SIZE_LIMIT)
+  private Long fileUploadSizeLimit;
 
-  public static final String JSON_PROPERTY_DATA_SOURCE_LIMIT = "dataSourceLimit";
-  private JsonNullable<Integer> dataSourceLimit = JsonNullable.<Integer>undefined();
+  public static final String SERIALIZED_NAME_DATA_SOURCE_LIMIT = "dataSourceLimit";
+  @SerializedName(SERIALIZED_NAME_DATA_SOURCE_LIMIT)
+  private Integer dataSourceLimit;
 
-  public static final String JSON_PROPERTY_MAX_USERS_COUNT = "maxUsersCount";
-  private JsonNullable<Integer> maxUsersCount = JsonNullable.<Integer>undefined();
+  public static final String SERIALIZED_NAME_MAX_USERS_COUNT = "maxUsersCount";
+  @SerializedName(SERIALIZED_NAME_MAX_USERS_COUNT)
+  private Integer maxUsersCount;
 
-  public static final String JSON_PROPERTY_GROUP_LIMIT = "groupLimit";
-  private JsonNullable<Integer> groupLimit = JsonNullable.<Integer>undefined();
+  public static final String SERIALIZED_NAME_GROUP_LIMIT = "groupLimit";
+  @SerializedName(SERIALIZED_NAME_GROUP_LIMIT)
+  private Integer groupLimit;
 
-  public static final String JSON_PROPERTY_ONLINE_DESIGNER = "onlineDesigner";
-  private JsonNullable<Boolean> onlineDesigner = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_ONLINE_DESIGNER = "onlineDesigner";
+  @SerializedName(SERIALIZED_NAME_ONLINE_DESIGNER)
+  private Boolean onlineDesigner;
 
-  public static final String JSON_PROPERTY_IS_DEMO = "isDemo";
-  private JsonNullable<Boolean> isDemo = JsonNullable.<Boolean>undefined();
+  public static final String SERIALIZED_NAME_IS_DEMO = "isDemo";
+  @SerializedName(SERIALIZED_NAME_IS_DEMO)
+  private Boolean isDemo;
 
-  public static final String JSON_PROPERTY_URL_TO_BUY = "urlToBuy";
-  private JsonNullable<String> urlToBuy = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_URL_TO_BUY = "urlToBuy";
+  @SerializedName(SERIALIZED_NAME_URL_TO_BUY)
+  private String urlToBuy;
 
-  public static final String JSON_PROPERTY_UNLIMITED_PAGE = "unlimitedPage";
+  public static final String SERIALIZED_NAME_UNLIMITED_PAGE = "unlimitedPage";
+  @SerializedName(SERIALIZED_NAME_UNLIMITED_PAGE)
   private Boolean unlimitedPage;
 
-  public static final String JSON_PROPERTY_PAGE_LIMIT = "pageLimit";
+  public static final String SERIALIZED_NAME_PAGE_LIMIT = "pageLimit";
+  @SerializedName(SERIALIZED_NAME_PAGE_LIMIT)
   private Integer pageLimit;
 
-  public static final String JSON_PROPERTY_TASKS = "tasks";
+  public static final String SERIALIZED_NAME_TASKS = "tasks";
+  @SerializedName(SERIALIZED_NAME_TASKS)
   private TaskSettingsVM tasks;
 
-  public SubscriptionPlanVM() { 
+  public SubscriptionPlanVM() {
   }
 
   public SubscriptionPlanVM id(String id) {
-    this.id = JsonNullable.<String>of(id);
+    this.id = id;
     return this;
   }
 
@@ -134,31 +147,17 @@ public class SubscriptionPlanVM {
    * @return id
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getId() {
-        return id.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getId_JsonNullable() {
     return id;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ID)
-  public void setId_JsonNullable(JsonNullable<String> id) {
-    this.id = id;
   }
 
   public void setId(String id) {
-    this.id = JsonNullable.<String>of(id);
+    this.id = id;
   }
 
 
   public SubscriptionPlanVM isActive(Boolean isActive) {
-    this.isActive = JsonNullable.<Boolean>of(isActive);
+    this.isActive = isActive;
     return this;
   }
 
@@ -167,31 +166,17 @@ public class SubscriptionPlanVM {
    * @return isActive
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getIsActive() {
-        return isActive.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_IS_ACTIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getIsActive_JsonNullable() {
     return isActive;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_IS_ACTIVE)
-  public void setIsActive_JsonNullable(JsonNullable<Boolean> isActive) {
-    this.isActive = isActive;
   }
 
   public void setIsActive(Boolean isActive) {
-    this.isActive = JsonNullable.<Boolean>of(isActive);
+    this.isActive = isActive;
   }
 
 
   public SubscriptionPlanVM displayName(String displayName) {
-    this.displayName = JsonNullable.<String>of(displayName);
+    this.displayName = displayName;
     return this;
   }
 
@@ -200,31 +185,17 @@ public class SubscriptionPlanVM {
    * @return displayName
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getDisplayName() {
-        return displayName.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getDisplayName_JsonNullable() {
     return displayName;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
-  public void setDisplayName_JsonNullable(JsonNullable<String> displayName) {
-    this.displayName = displayName;
   }
 
   public void setDisplayName(String displayName) {
-    this.displayName = JsonNullable.<String>of(displayName);
+    this.displayName = displayName;
   }
 
 
   public SubscriptionPlanVM timePeriodType(TimePeriodType timePeriodType) {
-    this.timePeriodType = JsonNullable.<TimePeriodType>of(timePeriodType);
+    this.timePeriodType = timePeriodType;
     return this;
   }
 
@@ -233,31 +204,17 @@ public class SubscriptionPlanVM {
    * @return timePeriodType
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public TimePeriodType getTimePeriodType() {
-        return timePeriodType.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_TIME_PERIOD_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<TimePeriodType> getTimePeriodType_JsonNullable() {
     return timePeriodType;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_TIME_PERIOD_TYPE)
-  public void setTimePeriodType_JsonNullable(JsonNullable<TimePeriodType> timePeriodType) {
-    this.timePeriodType = timePeriodType;
   }
 
   public void setTimePeriodType(TimePeriodType timePeriodType) {
-    this.timePeriodType = JsonNullable.<TimePeriodType>of(timePeriodType);
+    this.timePeriodType = timePeriodType;
   }
 
 
   public SubscriptionPlanVM timePeriod(Integer timePeriod) {
-    this.timePeriod = JsonNullable.<Integer>of(timePeriod);
+    this.timePeriod = timePeriod;
     return this;
   }
 
@@ -266,26 +223,12 @@ public class SubscriptionPlanVM {
    * @return timePeriod
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Integer getTimePeriod() {
-        return timePeriod.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_TIME_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getTimePeriod_JsonNullable() {
     return timePeriod;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_TIME_PERIOD)
-  public void setTimePeriod_JsonNullable(JsonNullable<Integer> timePeriod) {
-    this.timePeriod = timePeriod;
   }
 
   public void setTimePeriod(Integer timePeriod) {
-    this.timePeriod = JsonNullable.<Integer>of(timePeriod);
+    this.timePeriod = timePeriod;
   }
 
 
@@ -299,16 +242,10 @@ public class SubscriptionPlanVM {
    * @return readonlyTimeLimitType
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_READONLY_TIME_LIMIT_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public TimePeriodType getReadonlyTimeLimitType() {
     return readonlyTimeLimitType;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_READONLY_TIME_LIMIT_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReadonlyTimeLimitType(TimePeriodType readonlyTimeLimitType) {
     this.readonlyTimeLimitType = readonlyTimeLimitType;
   }
@@ -324,23 +261,17 @@ public class SubscriptionPlanVM {
    * @return readonlyTimeLimit
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_READONLY_TIME_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getReadonlyTimeLimit() {
     return readonlyTimeLimit;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_READONLY_TIME_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReadonlyTimeLimit(Integer readonlyTimeLimit) {
     this.readonlyTimeLimit = readonlyTimeLimit;
   }
 
 
   public SubscriptionPlanVM templatesSpaceLimit(Long templatesSpaceLimit) {
-    this.templatesSpaceLimit = JsonNullable.<Long>of(templatesSpaceLimit);
+    this.templatesSpaceLimit = templatesSpaceLimit;
     return this;
   }
 
@@ -349,31 +280,17 @@ public class SubscriptionPlanVM {
    * @return templatesSpaceLimit
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Long getTemplatesSpaceLimit() {
-        return templatesSpaceLimit.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_TEMPLATES_SPACE_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Long> getTemplatesSpaceLimit_JsonNullable() {
     return templatesSpaceLimit;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_TEMPLATES_SPACE_LIMIT)
-  public void setTemplatesSpaceLimit_JsonNullable(JsonNullable<Long> templatesSpaceLimit) {
-    this.templatesSpaceLimit = templatesSpaceLimit;
   }
 
   public void setTemplatesSpaceLimit(Long templatesSpaceLimit) {
-    this.templatesSpaceLimit = JsonNullable.<Long>of(templatesSpaceLimit);
+    this.templatesSpaceLimit = templatesSpaceLimit;
   }
 
 
   public SubscriptionPlanVM reportsSpaceLimit(Long reportsSpaceLimit) {
-    this.reportsSpaceLimit = JsonNullable.<Long>of(reportsSpaceLimit);
+    this.reportsSpaceLimit = reportsSpaceLimit;
     return this;
   }
 
@@ -382,31 +299,17 @@ public class SubscriptionPlanVM {
    * @return reportsSpaceLimit
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Long getReportsSpaceLimit() {
-        return reportsSpaceLimit.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_REPORTS_SPACE_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Long> getReportsSpaceLimit_JsonNullable() {
     return reportsSpaceLimit;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_REPORTS_SPACE_LIMIT)
-  public void setReportsSpaceLimit_JsonNullable(JsonNullable<Long> reportsSpaceLimit) {
-    this.reportsSpaceLimit = reportsSpaceLimit;
   }
 
   public void setReportsSpaceLimit(Long reportsSpaceLimit) {
-    this.reportsSpaceLimit = JsonNullable.<Long>of(reportsSpaceLimit);
+    this.reportsSpaceLimit = reportsSpaceLimit;
   }
 
 
   public SubscriptionPlanVM exportsSpaceLimit(Long exportsSpaceLimit) {
-    this.exportsSpaceLimit = JsonNullable.<Long>of(exportsSpaceLimit);
+    this.exportsSpaceLimit = exportsSpaceLimit;
     return this;
   }
 
@@ -415,31 +318,17 @@ public class SubscriptionPlanVM {
    * @return exportsSpaceLimit
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Long getExportsSpaceLimit() {
-        return exportsSpaceLimit.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_EXPORTS_SPACE_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Long> getExportsSpaceLimit_JsonNullable() {
     return exportsSpaceLimit;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_EXPORTS_SPACE_LIMIT)
-  public void setExportsSpaceLimit_JsonNullable(JsonNullable<Long> exportsSpaceLimit) {
-    this.exportsSpaceLimit = exportsSpaceLimit;
   }
 
   public void setExportsSpaceLimit(Long exportsSpaceLimit) {
-    this.exportsSpaceLimit = JsonNullable.<Long>of(exportsSpaceLimit);
+    this.exportsSpaceLimit = exportsSpaceLimit;
   }
 
 
   public SubscriptionPlanVM fileUploadSizeLimit(Long fileUploadSizeLimit) {
-    this.fileUploadSizeLimit = JsonNullable.<Long>of(fileUploadSizeLimit);
+    this.fileUploadSizeLimit = fileUploadSizeLimit;
     return this;
   }
 
@@ -448,31 +337,17 @@ public class SubscriptionPlanVM {
    * @return fileUploadSizeLimit
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Long getFileUploadSizeLimit() {
-        return fileUploadSizeLimit.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_FILE_UPLOAD_SIZE_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Long> getFileUploadSizeLimit_JsonNullable() {
     return fileUploadSizeLimit;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_FILE_UPLOAD_SIZE_LIMIT)
-  public void setFileUploadSizeLimit_JsonNullable(JsonNullable<Long> fileUploadSizeLimit) {
-    this.fileUploadSizeLimit = fileUploadSizeLimit;
   }
 
   public void setFileUploadSizeLimit(Long fileUploadSizeLimit) {
-    this.fileUploadSizeLimit = JsonNullable.<Long>of(fileUploadSizeLimit);
+    this.fileUploadSizeLimit = fileUploadSizeLimit;
   }
 
 
   public SubscriptionPlanVM dataSourceLimit(Integer dataSourceLimit) {
-    this.dataSourceLimit = JsonNullable.<Integer>of(dataSourceLimit);
+    this.dataSourceLimit = dataSourceLimit;
     return this;
   }
 
@@ -481,31 +356,17 @@ public class SubscriptionPlanVM {
    * @return dataSourceLimit
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Integer getDataSourceLimit() {
-        return dataSourceLimit.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_DATA_SOURCE_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getDataSourceLimit_JsonNullable() {
     return dataSourceLimit;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_DATA_SOURCE_LIMIT)
-  public void setDataSourceLimit_JsonNullable(JsonNullable<Integer> dataSourceLimit) {
-    this.dataSourceLimit = dataSourceLimit;
   }
 
   public void setDataSourceLimit(Integer dataSourceLimit) {
-    this.dataSourceLimit = JsonNullable.<Integer>of(dataSourceLimit);
+    this.dataSourceLimit = dataSourceLimit;
   }
 
 
   public SubscriptionPlanVM maxUsersCount(Integer maxUsersCount) {
-    this.maxUsersCount = JsonNullable.<Integer>of(maxUsersCount);
+    this.maxUsersCount = maxUsersCount;
     return this;
   }
 
@@ -514,31 +375,17 @@ public class SubscriptionPlanVM {
    * @return maxUsersCount
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Integer getMaxUsersCount() {
-        return maxUsersCount.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_MAX_USERS_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getMaxUsersCount_JsonNullable() {
     return maxUsersCount;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_MAX_USERS_COUNT)
-  public void setMaxUsersCount_JsonNullable(JsonNullable<Integer> maxUsersCount) {
-    this.maxUsersCount = maxUsersCount;
   }
 
   public void setMaxUsersCount(Integer maxUsersCount) {
-    this.maxUsersCount = JsonNullable.<Integer>of(maxUsersCount);
+    this.maxUsersCount = maxUsersCount;
   }
 
 
   public SubscriptionPlanVM groupLimit(Integer groupLimit) {
-    this.groupLimit = JsonNullable.<Integer>of(groupLimit);
+    this.groupLimit = groupLimit;
     return this;
   }
 
@@ -547,31 +394,17 @@ public class SubscriptionPlanVM {
    * @return groupLimit
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Integer getGroupLimit() {
-        return groupLimit.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_GROUP_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Integer> getGroupLimit_JsonNullable() {
     return groupLimit;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_GROUP_LIMIT)
-  public void setGroupLimit_JsonNullable(JsonNullable<Integer> groupLimit) {
-    this.groupLimit = groupLimit;
   }
 
   public void setGroupLimit(Integer groupLimit) {
-    this.groupLimit = JsonNullable.<Integer>of(groupLimit);
+    this.groupLimit = groupLimit;
   }
 
 
   public SubscriptionPlanVM onlineDesigner(Boolean onlineDesigner) {
-    this.onlineDesigner = JsonNullable.<Boolean>of(onlineDesigner);
+    this.onlineDesigner = onlineDesigner;
     return this;
   }
 
@@ -580,31 +413,17 @@ public class SubscriptionPlanVM {
    * @return onlineDesigner
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getOnlineDesigner() {
-        return onlineDesigner.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ONLINE_DESIGNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getOnlineDesigner_JsonNullable() {
     return onlineDesigner;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ONLINE_DESIGNER)
-  public void setOnlineDesigner_JsonNullable(JsonNullable<Boolean> onlineDesigner) {
-    this.onlineDesigner = onlineDesigner;
   }
 
   public void setOnlineDesigner(Boolean onlineDesigner) {
-    this.onlineDesigner = JsonNullable.<Boolean>of(onlineDesigner);
+    this.onlineDesigner = onlineDesigner;
   }
 
 
   public SubscriptionPlanVM isDemo(Boolean isDemo) {
-    this.isDemo = JsonNullable.<Boolean>of(isDemo);
+    this.isDemo = isDemo;
     return this;
   }
 
@@ -613,31 +432,17 @@ public class SubscriptionPlanVM {
    * @return isDemo
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public Boolean getIsDemo() {
-        return isDemo.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_IS_DEMO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Boolean> getIsDemo_JsonNullable() {
     return isDemo;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_IS_DEMO)
-  public void setIsDemo_JsonNullable(JsonNullable<Boolean> isDemo) {
-    this.isDemo = isDemo;
   }
 
   public void setIsDemo(Boolean isDemo) {
-    this.isDemo = JsonNullable.<Boolean>of(isDemo);
+    this.isDemo = isDemo;
   }
 
 
   public SubscriptionPlanVM urlToBuy(String urlToBuy) {
-    this.urlToBuy = JsonNullable.<String>of(urlToBuy);
+    this.urlToBuy = urlToBuy;
     return this;
   }
 
@@ -646,26 +451,12 @@ public class SubscriptionPlanVM {
    * @return urlToBuy
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getUrlToBuy() {
-        return urlToBuy.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_URL_TO_BUY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getUrlToBuy_JsonNullable() {
     return urlToBuy;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_URL_TO_BUY)
-  public void setUrlToBuy_JsonNullable(JsonNullable<String> urlToBuy) {
-    this.urlToBuy = urlToBuy;
   }
 
   public void setUrlToBuy(String urlToBuy) {
-    this.urlToBuy = JsonNullable.<String>of(urlToBuy);
+    this.urlToBuy = urlToBuy;
   }
 
 
@@ -679,16 +470,10 @@ public class SubscriptionPlanVM {
    * @return unlimitedPage
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_UNLIMITED_PAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getUnlimitedPage() {
     return unlimitedPage;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_UNLIMITED_PAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUnlimitedPage(Boolean unlimitedPage) {
     this.unlimitedPage = unlimitedPage;
   }
@@ -704,16 +489,10 @@ public class SubscriptionPlanVM {
    * @return pageLimit
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PAGE_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getPageLimit() {
     return pageLimit;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_PAGE_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPageLimit(Integer pageLimit) {
     this.pageLimit = pageLimit;
   }
@@ -729,24 +508,16 @@ public class SubscriptionPlanVM {
    * @return tasks
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TASKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public TaskSettingsVM getTasks() {
     return tasks;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_TASKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTasks(TaskSettingsVM tasks) {
     this.tasks = tasks;
   }
 
 
-  /**
-   * Return true if this SubscriptionPlanVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -756,23 +527,23 @@ public class SubscriptionPlanVM {
       return false;
     }
     SubscriptionPlanVM subscriptionPlanVM = (SubscriptionPlanVM) o;
-    return equalsNullable(this.id, subscriptionPlanVM.id) &&
-        equalsNullable(this.isActive, subscriptionPlanVM.isActive) &&
-        equalsNullable(this.displayName, subscriptionPlanVM.displayName) &&
-        equalsNullable(this.timePeriodType, subscriptionPlanVM.timePeriodType) &&
-        equalsNullable(this.timePeriod, subscriptionPlanVM.timePeriod) &&
+    return Objects.equals(this.id, subscriptionPlanVM.id) &&
+        Objects.equals(this.isActive, subscriptionPlanVM.isActive) &&
+        Objects.equals(this.displayName, subscriptionPlanVM.displayName) &&
+        Objects.equals(this.timePeriodType, subscriptionPlanVM.timePeriodType) &&
+        Objects.equals(this.timePeriod, subscriptionPlanVM.timePeriod) &&
         Objects.equals(this.readonlyTimeLimitType, subscriptionPlanVM.readonlyTimeLimitType) &&
         Objects.equals(this.readonlyTimeLimit, subscriptionPlanVM.readonlyTimeLimit) &&
-        equalsNullable(this.templatesSpaceLimit, subscriptionPlanVM.templatesSpaceLimit) &&
-        equalsNullable(this.reportsSpaceLimit, subscriptionPlanVM.reportsSpaceLimit) &&
-        equalsNullable(this.exportsSpaceLimit, subscriptionPlanVM.exportsSpaceLimit) &&
-        equalsNullable(this.fileUploadSizeLimit, subscriptionPlanVM.fileUploadSizeLimit) &&
-        equalsNullable(this.dataSourceLimit, subscriptionPlanVM.dataSourceLimit) &&
-        equalsNullable(this.maxUsersCount, subscriptionPlanVM.maxUsersCount) &&
-        equalsNullable(this.groupLimit, subscriptionPlanVM.groupLimit) &&
-        equalsNullable(this.onlineDesigner, subscriptionPlanVM.onlineDesigner) &&
-        equalsNullable(this.isDemo, subscriptionPlanVM.isDemo) &&
-        equalsNullable(this.urlToBuy, subscriptionPlanVM.urlToBuy) &&
+        Objects.equals(this.templatesSpaceLimit, subscriptionPlanVM.templatesSpaceLimit) &&
+        Objects.equals(this.reportsSpaceLimit, subscriptionPlanVM.reportsSpaceLimit) &&
+        Objects.equals(this.exportsSpaceLimit, subscriptionPlanVM.exportsSpaceLimit) &&
+        Objects.equals(this.fileUploadSizeLimit, subscriptionPlanVM.fileUploadSizeLimit) &&
+        Objects.equals(this.dataSourceLimit, subscriptionPlanVM.dataSourceLimit) &&
+        Objects.equals(this.maxUsersCount, subscriptionPlanVM.maxUsersCount) &&
+        Objects.equals(this.groupLimit, subscriptionPlanVM.groupLimit) &&
+        Objects.equals(this.onlineDesigner, subscriptionPlanVM.onlineDesigner) &&
+        Objects.equals(this.isDemo, subscriptionPlanVM.isDemo) &&
+        Objects.equals(this.urlToBuy, subscriptionPlanVM.urlToBuy) &&
         Objects.equals(this.unlimitedPage, subscriptionPlanVM.unlimitedPage) &&
         Objects.equals(this.pageLimit, subscriptionPlanVM.pageLimit) &&
         Objects.equals(this.tasks, subscriptionPlanVM.tasks);
@@ -784,7 +555,7 @@ public class SubscriptionPlanVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(id), hashCodeNullable(isActive), hashCodeNullable(displayName), hashCodeNullable(timePeriodType), hashCodeNullable(timePeriod), readonlyTimeLimitType, readonlyTimeLimit, hashCodeNullable(templatesSpaceLimit), hashCodeNullable(reportsSpaceLimit), hashCodeNullable(exportsSpaceLimit), hashCodeNullable(fileUploadSizeLimit), hashCodeNullable(dataSourceLimit), hashCodeNullable(maxUsersCount), hashCodeNullable(groupLimit), hashCodeNullable(onlineDesigner), hashCodeNullable(isDemo), hashCodeNullable(urlToBuy), unlimitedPage, pageLimit, tasks);
+    return Objects.hash(id, isActive, displayName, timePeriodType, timePeriod, readonlyTimeLimitType, readonlyTimeLimit, templatesSpaceLimit, reportsSpaceLimit, exportsSpaceLimit, fileUploadSizeLimit, dataSourceLimit, maxUsersCount, groupLimit, onlineDesigner, isDemo, urlToBuy, unlimitedPage, pageLimit, tasks);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -833,139 +604,129 @@ public class SubscriptionPlanVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("id");
+    openapiFields.add("isActive");
+    openapiFields.add("displayName");
+    openapiFields.add("timePeriodType");
+    openapiFields.add("timePeriod");
+    openapiFields.add("readonlyTimeLimitType");
+    openapiFields.add("readonlyTimeLimit");
+    openapiFields.add("templatesSpaceLimit");
+    openapiFields.add("reportsSpaceLimit");
+    openapiFields.add("exportsSpaceLimit");
+    openapiFields.add("fileUploadSizeLimit");
+    openapiFields.add("dataSourceLimit");
+    openapiFields.add("maxUsersCount");
+    openapiFields.add("groupLimit");
+    openapiFields.add("onlineDesigner");
+    openapiFields.add("isDemo");
+    openapiFields.add("urlToBuy");
+    openapiFields.add("unlimitedPage");
+    openapiFields.add("pageLimit");
+    openapiFields.add("tasks");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to SubscriptionPlanVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SubscriptionPlanVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SubscriptionPlanVM is not found in the empty JSON string", SubscriptionPlanVM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!SubscriptionPlanVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SubscriptionPlanVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if ((jsonObj.get("displayName") != null && !jsonObj.get("displayName").isJsonNull()) && !jsonObj.get("displayName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `displayName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("displayName").toString()));
+      }
+      // validate the optional field `timePeriodType`
+      if (jsonObj.get("timePeriodType") != null && !jsonObj.get("timePeriodType").isJsonNull()) {
+        TimePeriodType.validateJsonElement(jsonObj.get("timePeriodType"));
+      }
+      // validate the optional field `readonlyTimeLimitType`
+      if (jsonObj.get("readonlyTimeLimitType") != null && !jsonObj.get("readonlyTimeLimitType").isJsonNull()) {
+        TimePeriodType.validateJsonElement(jsonObj.get("readonlyTimeLimitType"));
+      }
+      if ((jsonObj.get("urlToBuy") != null && !jsonObj.get("urlToBuy").isJsonNull()) && !jsonObj.get("urlToBuy").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `urlToBuy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("urlToBuy").toString()));
+      }
+      // validate the optional field `tasks`
+      if (jsonObj.get("tasks") != null && !jsonObj.get("tasks").isJsonNull()) {
+        TaskSettingsVM.validateJsonElement(jsonObj.get("tasks"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SubscriptionPlanVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SubscriptionPlanVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SubscriptionPlanVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SubscriptionPlanVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SubscriptionPlanVM>() {
+           @Override
+           public void write(JsonWriter out, SubscriptionPlanVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SubscriptionPlanVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of SubscriptionPlanVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SubscriptionPlanVM
+  * @throws IOException if the JSON string is invalid with respect to SubscriptionPlanVM
+  */
+  public static SubscriptionPlanVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SubscriptionPlanVM.class);
+  }
 
-    // add `id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `isActive` to the URL query string
-    if (getIsActive() != null) {
-      joiner.add(String.format("%sisActive%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsActive()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `displayName` to the URL query string
-    if (getDisplayName() != null) {
-      joiner.add(String.format("%sdisplayName%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDisplayName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `timePeriodType` to the URL query string
-    if (getTimePeriodType() != null) {
-      joiner.add(String.format("%stimePeriodType%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTimePeriodType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `timePeriod` to the URL query string
-    if (getTimePeriod() != null) {
-      joiner.add(String.format("%stimePeriod%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTimePeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `readonlyTimeLimitType` to the URL query string
-    if (getReadonlyTimeLimitType() != null) {
-      joiner.add(String.format("%sreadonlyTimeLimitType%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getReadonlyTimeLimitType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `readonlyTimeLimit` to the URL query string
-    if (getReadonlyTimeLimit() != null) {
-      joiner.add(String.format("%sreadonlyTimeLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getReadonlyTimeLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `templatesSpaceLimit` to the URL query string
-    if (getTemplatesSpaceLimit() != null) {
-      joiner.add(String.format("%stemplatesSpaceLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTemplatesSpaceLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `reportsSpaceLimit` to the URL query string
-    if (getReportsSpaceLimit() != null) {
-      joiner.add(String.format("%sreportsSpaceLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getReportsSpaceLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `exportsSpaceLimit` to the URL query string
-    if (getExportsSpaceLimit() != null) {
-      joiner.add(String.format("%sexportsSpaceLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExportsSpaceLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `fileUploadSizeLimit` to the URL query string
-    if (getFileUploadSizeLimit() != null) {
-      joiner.add(String.format("%sfileUploadSizeLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getFileUploadSizeLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `dataSourceLimit` to the URL query string
-    if (getDataSourceLimit() != null) {
-      joiner.add(String.format("%sdataSourceLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDataSourceLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `maxUsersCount` to the URL query string
-    if (getMaxUsersCount() != null) {
-      joiner.add(String.format("%smaxUsersCount%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getMaxUsersCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `groupLimit` to the URL query string
-    if (getGroupLimit() != null) {
-      joiner.add(String.format("%sgroupLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getGroupLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `onlineDesigner` to the URL query string
-    if (getOnlineDesigner() != null) {
-      joiner.add(String.format("%sonlineDesigner%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getOnlineDesigner()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `isDemo` to the URL query string
-    if (getIsDemo() != null) {
-      joiner.add(String.format("%sisDemo%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIsDemo()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `urlToBuy` to the URL query string
-    if (getUrlToBuy() != null) {
-      joiner.add(String.format("%surlToBuy%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUrlToBuy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `unlimitedPage` to the URL query string
-    if (getUnlimitedPage() != null) {
-      joiner.add(String.format("%sunlimitedPage%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUnlimitedPage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `pageLimit` to the URL query string
-    if (getPageLimit() != null) {
-      joiner.add(String.format("%spageLimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPageLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `tasks` to the URL query string
-    if (getTasks() != null) {
-      joiner.add(getTasks().toUrlQueryString(prefix + "tasks" + suffix));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of SubscriptionPlanVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

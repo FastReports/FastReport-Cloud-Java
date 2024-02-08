@@ -13,61 +13,74 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import cloud.fastreport.model.InvitedUser;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * SubscriptionInviteVM
  */
-@JsonPropertyOrder({
-  SubscriptionInviteVM.JSON_PROPERTY_USAGES,
-  SubscriptionInviteVM.JSON_PROPERTY_DURABLE,
-  SubscriptionInviteVM.JSON_PROPERTY_ACCESS_TOKEN,
-  SubscriptionInviteVM.JSON_PROPERTY_EXPIRED_DATE,
-  SubscriptionInviteVM.JSON_PROPERTY_ADDED_USERS,
-  SubscriptionInviteVM.JSON_PROPERTY_CREATOR_USER_ID
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SubscriptionInviteVM {
-  public static final String JSON_PROPERTY_USAGES = "usages";
+  public static final String SERIALIZED_NAME_USAGES = "usages";
+  @SerializedName(SERIALIZED_NAME_USAGES)
   private Long usages;
 
-  public static final String JSON_PROPERTY_DURABLE = "durable";
+  public static final String SERIALIZED_NAME_DURABLE = "durable";
+  @SerializedName(SERIALIZED_NAME_DURABLE)
   private Boolean durable;
 
-  public static final String JSON_PROPERTY_ACCESS_TOKEN = "accessToken";
-  private JsonNullable<String> accessToken = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_ACCESS_TOKEN = "accessToken";
+  @SerializedName(SERIALIZED_NAME_ACCESS_TOKEN)
+  private String accessToken;
 
-  public static final String JSON_PROPERTY_EXPIRED_DATE = "expiredDate";
+  public static final String SERIALIZED_NAME_EXPIRED_DATE = "expiredDate";
+  @SerializedName(SERIALIZED_NAME_EXPIRED_DATE)
   private OffsetDateTime expiredDate;
 
-  public static final String JSON_PROPERTY_ADDED_USERS = "addedUsers";
-  private JsonNullable<List<InvitedUser>> addedUsers = JsonNullable.<List<InvitedUser>>undefined();
+  public static final String SERIALIZED_NAME_ADDED_USERS = "addedUsers";
+  @SerializedName(SERIALIZED_NAME_ADDED_USERS)
+  private List<InvitedUser> addedUsers;
 
-  public static final String JSON_PROPERTY_CREATOR_USER_ID = "creatorUserId";
-  private JsonNullable<String> creatorUserId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_CREATOR_USER_ID = "creatorUserId";
+  @SerializedName(SERIALIZED_NAME_CREATOR_USER_ID)
+  private String creatorUserId;
 
-  public SubscriptionInviteVM() { 
+  public SubscriptionInviteVM() {
   }
 
   public SubscriptionInviteVM usages(Long usages) {
@@ -80,16 +93,10 @@ public class SubscriptionInviteVM {
    * @return usages
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Long getUsages() {
     return usages;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_USAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsages(Long usages) {
     this.usages = usages;
   }
@@ -105,23 +112,17 @@ public class SubscriptionInviteVM {
    * @return durable
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DURABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getDurable() {
     return durable;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_DURABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDurable(Boolean durable) {
     this.durable = durable;
   }
 
 
   public SubscriptionInviteVM accessToken(String accessToken) {
-    this.accessToken = JsonNullable.<String>of(accessToken);
+    this.accessToken = accessToken;
     return this;
   }
 
@@ -130,26 +131,12 @@ public class SubscriptionInviteVM {
    * @return accessToken
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getAccessToken() {
-        return accessToken.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ACCESS_TOKEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getAccessToken_JsonNullable() {
     return accessToken;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ACCESS_TOKEN)
-  public void setAccessToken_JsonNullable(JsonNullable<String> accessToken) {
-    this.accessToken = accessToken;
   }
 
   public void setAccessToken(String accessToken) {
-    this.accessToken = JsonNullable.<String>of(accessToken);
+    this.accessToken = accessToken;
   }
 
 
@@ -163,35 +150,25 @@ public class SubscriptionInviteVM {
    * @return expiredDate
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EXPIRED_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public OffsetDateTime getExpiredDate() {
     return expiredDate;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_EXPIRED_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExpiredDate(OffsetDateTime expiredDate) {
     this.expiredDate = expiredDate;
   }
 
 
   public SubscriptionInviteVM addedUsers(List<InvitedUser> addedUsers) {
-    this.addedUsers = JsonNullable.<List<InvitedUser>>of(addedUsers);
+    this.addedUsers = addedUsers;
     return this;
   }
 
   public SubscriptionInviteVM addAddedUsersItem(InvitedUser addedUsersItem) {
-    if (this.addedUsers == null || !this.addedUsers.isPresent()) {
-      this.addedUsers = JsonNullable.<List<InvitedUser>>of(new ArrayList<>());
+    if (this.addedUsers == null) {
+      this.addedUsers = new ArrayList<>();
     }
-    try {
-      this.addedUsers.get().add(addedUsersItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.addedUsers.add(addedUsersItem);
     return this;
   }
 
@@ -200,31 +177,17 @@ public class SubscriptionInviteVM {
    * @return addedUsers
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public List<InvitedUser> getAddedUsers() {
-        return addedUsers.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ADDED_USERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<InvitedUser>> getAddedUsers_JsonNullable() {
     return addedUsers;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ADDED_USERS)
-  public void setAddedUsers_JsonNullable(JsonNullable<List<InvitedUser>> addedUsers) {
-    this.addedUsers = addedUsers;
   }
 
   public void setAddedUsers(List<InvitedUser> addedUsers) {
-    this.addedUsers = JsonNullable.<List<InvitedUser>>of(addedUsers);
+    this.addedUsers = addedUsers;
   }
 
 
   public SubscriptionInviteVM creatorUserId(String creatorUserId) {
-    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
+    this.creatorUserId = creatorUserId;
     return this;
   }
 
@@ -233,32 +196,16 @@ public class SubscriptionInviteVM {
    * @return creatorUserId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getCreatorUserId() {
-        return creatorUserId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getCreatorUserId_JsonNullable() {
     return creatorUserId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_CREATOR_USER_ID)
-  public void setCreatorUserId_JsonNullable(JsonNullable<String> creatorUserId) {
-    this.creatorUserId = creatorUserId;
   }
 
   public void setCreatorUserId(String creatorUserId) {
-    this.creatorUserId = JsonNullable.<String>of(creatorUserId);
+    this.creatorUserId = creatorUserId;
   }
 
 
-  /**
-   * Return true if this SubscriptionInviteVM object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -270,10 +217,10 @@ public class SubscriptionInviteVM {
     SubscriptionInviteVM subscriptionInviteVM = (SubscriptionInviteVM) o;
     return Objects.equals(this.usages, subscriptionInviteVM.usages) &&
         Objects.equals(this.durable, subscriptionInviteVM.durable) &&
-        equalsNullable(this.accessToken, subscriptionInviteVM.accessToken) &&
+        Objects.equals(this.accessToken, subscriptionInviteVM.accessToken) &&
         Objects.equals(this.expiredDate, subscriptionInviteVM.expiredDate) &&
-        equalsNullable(this.addedUsers, subscriptionInviteVM.addedUsers) &&
-        equalsNullable(this.creatorUserId, subscriptionInviteVM.creatorUserId);
+        Objects.equals(this.addedUsers, subscriptionInviteVM.addedUsers) &&
+        Objects.equals(this.creatorUserId, subscriptionInviteVM.creatorUserId);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -282,7 +229,7 @@ public class SubscriptionInviteVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(usages, durable, hashCodeNullable(accessToken), expiredDate, hashCodeNullable(addedUsers), hashCodeNullable(creatorUserId));
+    return Objects.hash(usages, durable, accessToken, expiredDate, addedUsers, creatorUserId);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -317,74 +264,114 @@ public class SubscriptionInviteVM {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("usages");
+    openapiFields.add("durable");
+    openapiFields.add("accessToken");
+    openapiFields.add("expiredDate");
+    openapiFields.add("addedUsers");
+    openapiFields.add("creatorUserId");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
-    }
-
-    StringJoiner joiner = new StringJoiner("&");
-
-    // add `usages` to the URL query string
-    if (getUsages() != null) {
-      joiner.add(String.format("%susages%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUsages()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `durable` to the URL query string
-    if (getDurable() != null) {
-      joiner.add(String.format("%sdurable%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDurable()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `accessToken` to the URL query string
-    if (getAccessToken() != null) {
-      joiner.add(String.format("%saccessToken%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAccessToken()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `expiredDate` to the URL query string
-    if (getExpiredDate() != null) {
-      joiner.add(String.format("%sexpiredDate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExpiredDate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `addedUsers` to the URL query string
-    if (getAddedUsers() != null) {
-      for (int i = 0; i < getAddedUsers().size(); i++) {
-        if (getAddedUsers().get(i) != null) {
-          joiner.add(getAddedUsers().get(i).toUrlQueryString(String.format("%saddedUsers%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to SubscriptionInviteVM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SubscriptionInviteVM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SubscriptionInviteVM is not found in the empty JSON string", SubscriptionInviteVM.openapiRequiredFields.toString()));
         }
       }
-    }
 
-    // add `creatorUserId` to the URL query string
-    if (getCreatorUserId() != null) {
-      joiner.add(String.format("%screatorUserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreatorUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!SubscriptionInviteVM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SubscriptionInviteVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("accessToken") != null && !jsonObj.get("accessToken").isJsonNull()) && !jsonObj.get("accessToken").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accessToken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accessToken").toString()));
+      }
+      if (jsonObj.get("addedUsers") != null && !jsonObj.get("addedUsers").isJsonNull()) {
+        JsonArray jsonArrayaddedUsers = jsonObj.getAsJsonArray("addedUsers");
+        if (jsonArrayaddedUsers != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("addedUsers").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `addedUsers` to be an array in the JSON string but got `%s`", jsonObj.get("addedUsers").toString()));
+          }
 
-    return joiner.toString();
+          // validate the optional field `addedUsers` (array)
+          for (int i = 0; i < jsonArrayaddedUsers.size(); i++) {
+            InvitedUser.validateJsonElement(jsonArrayaddedUsers.get(i));
+          };
+        }
+      }
+      if ((jsonObj.get("creatorUserId") != null && !jsonObj.get("creatorUserId").isJsonNull()) && !jsonObj.get("creatorUserId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `creatorUserId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("creatorUserId").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SubscriptionInviteVM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SubscriptionInviteVM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SubscriptionInviteVM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SubscriptionInviteVM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SubscriptionInviteVM>() {
+           @Override
+           public void write(JsonWriter out, SubscriptionInviteVM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SubscriptionInviteVM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of SubscriptionInviteVM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of SubscriptionInviteVM
+  * @throws IOException if the JSON string is invalid with respect to SubscriptionInviteVM
+  */
+  public static SubscriptionInviteVM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SubscriptionInviteVM.class);
+  }
+
+ /**
+  * Convert an instance of SubscriptionInviteVM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

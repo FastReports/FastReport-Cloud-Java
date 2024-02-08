@@ -14,23 +14,18 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.CreateTransportTaskBaseVM;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import cloud.fastreport.model.InputFileVM;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for CreateFTPUploadTaskVM
@@ -44,6 +39,22 @@ public class CreateFTPUploadTaskVMTest {
     @Test
     public void testCreateFTPUploadTaskVM() {
         // TODO: test CreateFTPUploadTaskVM
+    }
+
+    /**
+     * Test the property 'inputFile'
+     */
+    @Test
+    public void inputFileTest() {
+        // TODO: test inputFile
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
     /**
@@ -76,14 +87,6 @@ public class CreateFTPUploadTaskVMTest {
     @Test
     public void subscriptionIdTest() {
         // TODO: test subscriptionId
-    }
-
-    /**
-     * Test the property '$t'
-     */
-    @Test
-    public void $tTest() {
-        // TODO: test $t
     }
 
 }

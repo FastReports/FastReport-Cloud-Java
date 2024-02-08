@@ -13,46 +13,59 @@
 
 package cloud.fastreport.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import cloud.fastreport.JSON;
 
 /**
  * InvitedUser
  */
-@JsonPropertyOrder({
-  InvitedUser.JSON_PROPERTY_USER_ID,
-  InvitedUser.JSON_PROPERTY_INVITED_AT
-})
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InvitedUser {
-  public static final String JSON_PROPERTY_USER_ID = "userId";
-  private JsonNullable<String> userId = JsonNullable.<String>undefined();
+  public static final String SERIALIZED_NAME_USER_ID = "userId";
+  @SerializedName(SERIALIZED_NAME_USER_ID)
+  private String userId;
 
-  public static final String JSON_PROPERTY_INVITED_AT = "invitedAt";
+  public static final String SERIALIZED_NAME_INVITED_AT = "invitedAt";
+  @SerializedName(SERIALIZED_NAME_INVITED_AT)
   private OffsetDateTime invitedAt;
 
-  public InvitedUser() { 
+  public InvitedUser() {
   }
 
   public InvitedUser userId(String userId) {
-    this.userId = JsonNullable.<String>of(userId);
+    this.userId = userId;
     return this;
   }
 
@@ -61,26 +74,12 @@ public class InvitedUser {
    * @return userId
   **/
   @javax.annotation.Nullable
-  @JsonIgnore
-
   public String getUserId() {
-        return userId.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_USER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getUserId_JsonNullable() {
     return userId;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_USER_ID)
-  public void setUserId_JsonNullable(JsonNullable<String> userId) {
-    this.userId = userId;
   }
 
   public void setUserId(String userId) {
-    this.userId = JsonNullable.<String>of(userId);
+    this.userId = userId;
   }
 
 
@@ -94,24 +93,16 @@ public class InvitedUser {
    * @return invitedAt
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_INVITED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public OffsetDateTime getInvitedAt() {
     return invitedAt;
   }
 
-
-  @JsonProperty(JSON_PROPERTY_INVITED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInvitedAt(OffsetDateTime invitedAt) {
     this.invitedAt = invitedAt;
   }
 
 
-  /**
-   * Return true if this InvitedUser object is equal to o.
-   */
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -121,7 +112,7 @@ public class InvitedUser {
       return false;
     }
     InvitedUser invitedUser = (InvitedUser) o;
-    return equalsNullable(this.userId, invitedUser.userId) &&
+    return Objects.equals(this.userId, invitedUser.userId) &&
         Objects.equals(this.invitedAt, invitedUser.invitedAt);
   }
 
@@ -131,7 +122,7 @@ public class InvitedUser {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(userId), invitedAt);
+    return Objects.hash(userId, invitedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -162,49 +153,93 @@ public class InvitedUser {
     return o.toString().replace("\n", "\n    ");
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("userId");
+    openapiFields.add("invitedAt");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
   }
 
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to InvitedUser
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!InvitedUser.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in InvitedUser is not found in the empty JSON string", InvitedUser.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!InvitedUser.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InvitedUser` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull()) && !jsonObj.get("userId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `userId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("userId").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!InvitedUser.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'InvitedUser' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<InvitedUser> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(InvitedUser.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<InvitedUser>() {
+           @Override
+           public void write(JsonWriter out, InvitedUser value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public InvitedUser read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    StringJoiner joiner = new StringJoiner("&");
+ /**
+  * Create an instance of InvitedUser given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of InvitedUser
+  * @throws IOException if the JSON string is invalid with respect to InvitedUser
+  */
+  public static InvitedUser fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, InvitedUser.class);
+  }
 
-    // add `userId` to the URL query string
-    if (getUserId() != null) {
-      joiner.add(String.format("%suserId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUserId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `invitedAt` to the URL query string
-    if (getInvitedAt() != null) {
-      joiner.add(String.format("%sinvitedAt%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getInvitedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    return joiner.toString();
+ /**
+  * Convert an instance of InvitedUser to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
   }
 }
 

@@ -19,102 +19,76 @@ import cloud.fastreport.model.ContactsVM;
 import cloud.fastreport.model.CreateContactVM;
 import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.UpdateContactVM;
-import org.junit.Test;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  * API tests for ContactsApi
  */
-@Ignore
+@Disabled
 public class ContactsApiTest {
 
     private final ContactsApi api = new ContactsApi();
 
-    
     /**
      * Creates new contact
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void contactsCreateTest() throws ApiException {
         CreateContactVM createContactVM = null;
-        ContactVM response = 
-        api.contactsCreate(createContactVM);
-        
+        ContactVM response = api.contactsCreate(createContactVM);
         // TODO: test validations
     }
-    
+
     /**
      * Removes contact by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void contactsDeleteTest() throws ApiException {
         String id = null;
-        
         api.contactsDelete(id);
-        
         // TODO: test validations
     }
-    
+
     /**
      * Returns contact group by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void contactsGetTest() throws ApiException {
         String id = null;
-        ContactVM response = 
-        api.contactsGet(id);
-        
+        ContactVM response = api.contactsGet(id);
         // TODO: test validations
     }
-    
+
     /**
      * Returns contacts by group id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void contactsGetByGroupTest() throws ApiException {
         String groupId = null;
         Integer skip = null;
         Integer take = null;
-        ContactsVM response = 
-        api.contactsGetByGroup(groupId, skip, take);
-        
+        ContactsVM response = api.contactsGetByGroup(groupId, skip, take);
         // TODO: test validations
     }
-    
+
     /**
      * Allows to search for contacts
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void contactsGetListTest() throws ApiException {
@@ -122,28 +96,21 @@ public class ContactsApiTest {
         Integer skip = null;
         Integer take = null;
         String searchPattern = null;
-        ContactsVM response = 
-        api.contactsGetList(subscriptionId, skip, take, searchPattern);
-        
+        ContactsVM response = api.contactsGetList(subscriptionId, skip, take, searchPattern);
         // TODO: test validations
     }
-    
+
     /**
      * Updates contact by id
      *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void contactsUpdateTest() throws ApiException {
         String id = null;
         UpdateContactVM updateContactVM = null;
-        ContactVM response = 
-        api.contactsUpdate(id, updateContactVM);
-        
+        ContactVM response = api.contactsUpdate(id, updateContactVM);
         // TODO: test validations
     }
-    
+
 }

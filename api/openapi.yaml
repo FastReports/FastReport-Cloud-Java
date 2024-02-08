@@ -1484,7 +1484,7 @@ paths:
       summary: Returns export's thumbnail
       tags:
       - Download
-      x-accepts: application/json
+      x-accepts: "application/json,image/jpeg,image/png,text/plain"
   /download/e/{id}:
     get:
       operationId: Download_GetExport
@@ -1591,7 +1591,7 @@ paths:
       summary: Returns a export file with specified id
       tags:
       - Download
-      x-accepts: application/json
+      x-accepts: "application/json,application/octet-stream,application/pdf,text/plain"
   /download/es/{archiveName}:
     get:
       operationId: Download_GetExports
@@ -1688,7 +1688,7 @@ paths:
       summary: Returns a zip archive with selected ids
       tags:
       - Download
-      x-accepts: application/json
+      x-accepts: "application/json,application/zip,text/plain"
   /download/lastPreview/{reportId}:
     get:
       operationId: Download_GetLastSVGExport
@@ -1769,7 +1769,7 @@ paths:
         INTERNAL USAGE ONLY!"
       tags:
       - Download
-      x-accepts: application/json
+      x-accepts: "application/json,application/octet-stream,text/plain"
   /download/r/{id}/thumbnail:
     get:
       operationId: Download_GetReportThumbnail
@@ -1867,7 +1867,7 @@ paths:
       summary: Returns report's thumbnail
       tags:
       - Download
-      x-accepts: application/json
+      x-accepts: "application/json,image/jpeg,image/png,text/plain"
   /download/r/{id}:
     get:
       operationId: Download_GetReport
@@ -1949,7 +1949,7 @@ paths:
       summary: Returns a prepared file with specified id
       tags:
       - Download
-      x-accepts: application/json
+      x-accepts: "application/json,application/octet-stream,text/plain"
   /download/rs/{archiveName}:
     get:
       operationId: Download_GetReports
@@ -2045,7 +2045,7 @@ paths:
       summary: Returns a zip archive with selected files
       tags:
       - Download
-      x-accepts: application/json
+      x-accepts: "application/json,application/zip,text/plain"
   /download/t/{id}/thumbnail:
     get:
       operationId: Download_GetTemplateThumbnail
@@ -2143,7 +2143,7 @@ paths:
       summary: Returns template's thumbnail
       tags:
       - Download
-      x-accepts: application/json
+      x-accepts: "application/json,image/jpeg,image/png,text/plain"
   /download/t/{id}:
     get:
       operationId: Download_GetTemplate
@@ -2225,7 +2225,7 @@ paths:
       summary: Returns a Template file with specified id
       tags:
       - Download
-      x-accepts: application/json
+      x-accepts: "application/json,application/octet-stream,text/plain"
   /download/ts/{archiveName}:
     get:
       operationId: Download_GetTemplates
@@ -2321,7 +2321,7 @@ paths:
       summary: Returns a zip archive with selected files
       tags:
       - Download
-      x-accepts: application/json
+      x-accepts: "application/json,application/zip,text/plain"
   /api/rp/v1/Exports/Folder/{id}/CountFolderAndFiles:
     get:
       description: User with a Get Count permission can access this method.
@@ -14169,6 +14169,13 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission'
+      example:
+        get: null
+        create: null
+        update: null
+        administrate: null
+        delete: null
+        execute: null
       type: object
     ? DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions
     : additionalProperties: false
@@ -14194,11 +14201,72 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions'
+      example:
+        owner:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        anon:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        other:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        groups:
+          key:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+        ownerId: ownerId
       type: object
     DataSourcePermissionsVM:
       additionalProperties: false
       example:
-        permissions: null
+        permissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
       properties:
         permissions:
           $ref: '#/components/schemas/DataSourcePermissions'
@@ -14338,10 +14406,130 @@ components:
     DefaultPermissionsVM:
       additionalProperties: false
       example:
-        taskPermissions: null
-        groupPermissions: null
-        filePermissions: null
-        dataSourcePermissions: null
+        taskPermissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
+        groupPermissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
+        filePermissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
+        dataSourcePermissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
       properties:
         filePermissions:
           $ref: '#/components/schemas/FilePermissions'
@@ -14464,6 +14652,14 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/FolderCreateVM'
+      example:
+        $t: $t
+        name: name
+        icon: icon
+        tags:
+        - tags
+        - tags
+        - tags
       type: object
     ExportFormat:
       enum:
@@ -14663,6 +14859,17 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/ExportVMFilesVMBase'
+      example:
+        take: 1
+        count: 0
+        files:
+        - reportId: reportId
+          format: null
+          templateId: templateId
+        - reportId: reportId
+          format: null
+          templateId: templateId
+        skip: 6
       type: object
     FTPUploadTaskVM:
       additionalProperties: false
@@ -14869,6 +15076,13 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission'
+      example:
+        get: null
+        create: null
+        update: null
+        administrate: null
+        delete: null
+        execute: null
       type: object
     FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions:
       additionalProperties: false
@@ -14894,11 +15108,72 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions'
+      example:
+        owner:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        anon:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        other:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        groups:
+          key:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+        ownerId: ownerId
       type: object
     FilePermissionsVM:
       additionalProperties: false
       example:
-        permissions: null
+        permissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
       properties:
         permissions:
           $ref: '#/components/schemas/FilePermissions'
@@ -15091,6 +15366,49 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/FileVMFilesVMBase'
+      example:
+        take: 5
+        count: 6
+        files:
+        - creatorUserId: creatorUserId
+          icon: icon
+          errorMessage: errorMessage
+          type: null
+          parentId: parentId
+          tags:
+          - tags
+          - tags
+          $t: $t
+          editedTime: 2000-01-23T04:56:07.000+00:00
+          statusReason: null
+          size: 0
+          isDeleted: true
+          editorUserId: editorUserId
+          name: name
+          createdTime: 2000-01-23T04:56:07.000+00:00
+          id: id
+          subscriptionId: subscriptionId
+          status: null
+        - creatorUserId: creatorUserId
+          icon: icon
+          errorMessage: errorMessage
+          type: null
+          parentId: parentId
+          tags:
+          - tags
+          - tags
+          $t: $t
+          editedTime: 2000-01-23T04:56:07.000+00:00
+          statusReason: null
+          size: 0
+          isDeleted: true
+          editorUserId: editorUserId
+          name: name
+          createdTime: 2000-01-23T04:56:07.000+00:00
+          id: id
+          subscriptionId: subscriptionId
+          status: null
+        skip: 1
       type: object
     FolderCreateVM:
       additionalProperties: false
@@ -15292,6 +15610,13 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission'
+      example:
+        get: null
+        create: null
+        update: null
+        administrate: null
+        delete: null
+        execute: null
       type: object
     GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions:
       additionalProperties: false
@@ -15317,11 +15642,72 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions'
+      example:
+        owner:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        anon:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        other:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        groups:
+          key:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+        ownerId: ownerId
       type: object
     GroupPermissionsVM:
       additionalProperties: false
       example:
-        permissions: null
+        permissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
       properties:
         permissions:
           $ref: '#/components/schemas/GroupPermissions'
@@ -15458,11 +15844,41 @@ components:
     MyPermissionsVM:
       additionalProperties: false
       example:
-        datasources: null
-        files: null
-        groups: null
-        subscription: null
-        tasks: null
+        datasources:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        files:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        groups:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        subscription:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        tasks:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
       properties:
         subscription:
           $ref: '#/components/schemas/SubscriptionPermission'
@@ -15593,6 +16009,12 @@ components:
       type: object
     ProblemDetails:
       additionalProperties: {}
+      example:
+        instance: instance
+        detail: detail
+        type: type
+        title: title
+        status: 6
       properties:
         type:
           nullable: true
@@ -15705,6 +16127,14 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/FolderCreateVM'
+      example:
+        $t: $t
+        name: name
+        icon: icon
+        tags:
+        - tags
+        - tags
+        - tags
       type: object
     ReportInfo:
       additionalProperties: false
@@ -15806,6 +16236,39 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/ReportVMFilesVMBase'
+      example:
+        take: 1
+        count: 0
+        files:
+        - reportInfo:
+            saveMode: null
+            author: author
+            created: 2000-01-23T04:56:07.000+00:00
+            name: name
+            description: description
+            modified: 2000-01-23T04:56:07.000+00:00
+            previewPictureRatio: 0.8008282
+            tag: tag
+            savePreviewPicture: true
+            version: version
+            creatorVersion: creatorVersion
+            picture: picture
+          templateId: templateId
+        - reportInfo:
+            saveMode: null
+            author: author
+            created: 2000-01-23T04:56:07.000+00:00
+            name: name
+            description: description
+            modified: 2000-01-23T04:56:07.000+00:00
+            previewPictureRatio: 0.8008282
+            tag: tag
+            savePreviewPicture: true
+            version: version
+            creatorVersion: creatorVersion
+            picture: picture
+          templateId: templateId
+        skip: 6
       type: object
     RunEmailTaskVM:
       additionalProperties: false
@@ -16480,6 +16943,13 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission'
+      example:
+        get: null
+        create: null
+        update: null
+        administrate: null
+        delete: null
+        execute: null
       type: object
     ? SubscriptionPermissionSubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermissions
     : additionalProperties: false
@@ -16505,11 +16975,72 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/SubscriptionPermissionSubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermissions'
+      example:
+        owner:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        anon:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        other:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        groups:
+          key:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+        ownerId: ownerId
       type: object
     SubscriptionPermissionsVM:
       additionalProperties: false
       example:
-        permissions: null
+        permissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
       properties:
         permissions:
           $ref: '#/components/schemas/SubscriptionPermissions'
@@ -17323,6 +17854,13 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/TaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermission'
+      example:
+        get: null
+        create: null
+        update: null
+        administrate: null
+        delete: null
+        execute: null
       type: object
     TaskPermissionTaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermissions:
       additionalProperties: false
@@ -17348,11 +17886,72 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/TaskPermissionTaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermissions'
+      example:
+        owner:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        anon:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        other:
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        groups:
+          key:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+        ownerId: ownerId
       type: object
     TaskPermissionsVM:
       additionalProperties: false
       example:
-        permissions: null
+        permissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
       properties:
         permissions:
           $ref: '#/components/schemas/TaskPermissions'
@@ -17492,6 +18091,14 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/FolderCreateVM'
+      example:
+        $t: $t
+        name: name
+        icon: icon
+        tags:
+        - tags
+        - tags
+        - tags
       type: object
     TemplateVM:
       additionalProperties: false
@@ -17537,6 +18144,37 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/TemplateVMFilesVMBase'
+      example:
+        take: 1
+        count: 0
+        files:
+        - reportInfo:
+            saveMode: null
+            author: author
+            created: 2000-01-23T04:56:07.000+00:00
+            name: name
+            description: description
+            modified: 2000-01-23T04:56:07.000+00:00
+            previewPictureRatio: 0.8008282
+            tag: tag
+            savePreviewPicture: true
+            version: version
+            creatorVersion: creatorVersion
+            picture: picture
+        - reportInfo:
+            saveMode: null
+            author: author
+            created: 2000-01-23T04:56:07.000+00:00
+            name: name
+            description: description
+            modified: 2000-01-23T04:56:07.000+00:00
+            previewPictureRatio: 0.8008282
+            tag: tag
+            savePreviewPicture: true
+            version: version
+            creatorVersion: creatorVersion
+            picture: picture
+        skip: 6
       type: object
     ThumbnailReportTaskVM:
       additionalProperties: false
@@ -17675,7 +18313,37 @@ components:
     UpdateDataSourcePermissionsVM:
       additionalProperties: false
       example:
-        newPermissions: null
+        newPermissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
         administrate: null
       properties:
         newPermissions:
@@ -17703,15 +18371,135 @@ components:
       example:
         taskPermissions:
           administrate: null
-          newPermissions: null
+          newPermissions:
+            owner:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+            anon:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+            other:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+            groups:
+              key:
+                get: null
+                create: null
+                update: null
+                administrate: null
+                delete: null
+                execute: null
+            ownerId: ownerId
         groupPermissions:
-          newPermissions: null
+          newPermissions:
+            owner:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+            anon:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+            other:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+            groups:
+              key:
+                get: null
+                create: null
+                update: null
+                administrate: null
+                delete: null
+                execute: null
+            ownerId: ownerId
           administrate: null
         filePermissions:
-          newPermissions: null
+          newPermissions:
+            owner:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+            anon:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+            other:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+            groups:
+              key:
+                get: null
+                create: null
+                update: null
+                administrate: null
+                delete: null
+                execute: null
+            ownerId: ownerId
           administrate: null
         dataSourcePermissions:
-          newPermissions: null
+          newPermissions:
+            owner:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+            anon:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+            other:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+            groups:
+              key:
+                get: null
+                create: null
+                update: null
+                administrate: null
+                delete: null
+                execute: null
+            ownerId: ownerId
           administrate: null
       properties:
         filePermissions:
@@ -17883,7 +18671,37 @@ components:
     UpdateFilePermissionsVM:
       additionalProperties: false
       example:
-        newPermissions: null
+        newPermissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
         administrate: null
       properties:
         newPermissions:
@@ -17897,7 +18715,37 @@ components:
     UpdateGroupPermissionsVM:
       additionalProperties: false
       example:
-        newPermissions: null
+        newPermissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
         administrate: null
       properties:
         newPermissions:
@@ -17948,7 +18796,37 @@ components:
     UpdateSubscriptionPermissionsVM:
       additionalProperties: false
       example:
-        newPermissions: null
+        newPermissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
         administrate: null
       properties:
         newPermissions:
@@ -18001,7 +18879,37 @@ components:
       additionalProperties: false
       example:
         administrate: null
-        newPermissions: null
+        newPermissions:
+          owner:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          anon:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          other:
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          groups:
+            key:
+              get: null
+              create: null
+              update: null
+              administrate: null
+              delete: null
+              execute: null
+          ownerId: ownerId
       properties:
         administrate:
           $ref: '#/components/schemas/TaskAdministrate'

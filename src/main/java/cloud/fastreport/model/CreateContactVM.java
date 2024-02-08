@@ -285,7 +285,8 @@ public class CreateContactVM {
            @Override
            public CreateContactVM read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
+             // comment by Detrav, do not need to validate JSON while parse
+             //validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

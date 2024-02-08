@@ -223,7 +223,8 @@ public class CreateExportTemplateTaskVM extends CreateExportReportTaskVM {
            @Override
            public CreateExportTemplateTaskVM read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
+             // comment by Detrav, do not need to validate JSON while parse
+             //validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

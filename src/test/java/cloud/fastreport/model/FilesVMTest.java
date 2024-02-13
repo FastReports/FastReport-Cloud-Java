@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.FileVM;
+import cloud.fastreport.model.FilesVMBase;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -71,6 +72,14 @@ public class FilesVMTest {
     @Test
     public void takeTest() {
         // TODO: test take
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

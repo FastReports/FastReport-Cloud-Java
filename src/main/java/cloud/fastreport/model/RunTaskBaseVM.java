@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,7 +52,7 @@ import cloud.fastreport.JSON;
  * RunTaskBaseVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RunTaskBaseVM {
+public class RunTaskBaseVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_SUBSCRIPTION_ID = "subscriptionId";
   @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_ID)
   private String subscriptionId;
@@ -113,7 +114,8 @@ public class RunTaskBaseVM {
     }
     RunTaskBaseVM runTaskBaseVM = (RunTaskBaseVM) o;
     return Objects.equals(this.subscriptionId, runTaskBaseVM.subscriptionId) &&
-        Objects.equals(this.$t, runTaskBaseVM.$t);
+        Objects.equals(this.$t, runTaskBaseVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -122,7 +124,7 @@ public class RunTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(subscriptionId, $t);
+    return Objects.hash(subscriptionId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -136,6 +138,7 @@ public class RunTaskBaseVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RunTaskBaseVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
@@ -160,7 +163,6 @@ public class RunTaskBaseVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("subscriptionId");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
@@ -201,20 +203,23 @@ public class RunTaskBaseVM {
         case "RunPrepareTemplateTaskVM":
           RunPrepareTemplateTaskVM.validateJsonElement(jsonElement);
           break;
+        case "RunTaskBaseVM":
+          RunTaskBaseVM.validateJsonElement(jsonElement);
+          break;
         case "RunThumbnailReportTaskVM":
           RunThumbnailReportTaskVM.validateJsonElement(jsonElement);
           break;
         case "RunThumbnailTemplateTaskVM":
           RunThumbnailTemplateTaskVM.validateJsonElement(jsonElement);
           break;
-        case "RunWebhookTaskVM":
-          RunWebhookTaskVM.validateJsonElement(jsonElement);
-          break;
         case "RunTransformTaskBaseVM":
           RunTransformTaskBaseVM.validateJsonElement(jsonElement);
           break;
         case "RunTransportTaskBaseVM":
           RunTransportTaskBaseVM.validateJsonElement(jsonElement);
+          break;
+        case "RunWebhookTaskVM":
+          RunWebhookTaskVM.validateJsonElement(jsonElement);
           break;
         default:
           throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));

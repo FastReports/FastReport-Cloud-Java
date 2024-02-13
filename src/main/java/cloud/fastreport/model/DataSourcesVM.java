@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.DataSourceVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * DataSourcesVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class DataSourcesVM {
+public class DataSourcesVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_DATA_SOURCES = "dataSources";
   @SerializedName(SERIALIZED_NAME_DATA_SOURCES)
   private List<DataSourceVM> dataSources;
@@ -71,7 +72,12 @@ public class DataSourcesVM {
   @SerializedName(SERIALIZED_NAME_TAKE)
   private Integer take;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public DataSourcesVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public DataSourcesVM dataSources(List<DataSourceVM> dataSources) {
@@ -158,6 +164,25 @@ public class DataSourcesVM {
   }
 
 
+  public DataSourcesVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -171,7 +196,9 @@ public class DataSourcesVM {
     return Objects.equals(this.dataSources, dataSourcesVM.dataSources) &&
         Objects.equals(this.count, dataSourcesVM.count) &&
         Objects.equals(this.skip, dataSourcesVM.skip) &&
-        Objects.equals(this.take, dataSourcesVM.take);
+        Objects.equals(this.take, dataSourcesVM.take) &&
+        Objects.equals(this.$t, dataSourcesVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -180,7 +207,7 @@ public class DataSourcesVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(dataSources, count, skip, take);
+    return Objects.hash(dataSources, count, skip, take, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -194,10 +221,12 @@ public class DataSourcesVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DataSourcesVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    dataSources: ").append(toIndentedString(dataSources)).append("\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("    skip: ").append(toIndentedString(skip)).append("\n");
     sb.append("    take: ").append(toIndentedString(take)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -220,13 +249,11 @@ public class DataSourcesVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("dataSources");
-    openapiFields.add("count");
-    openapiFields.add("skip");
-    openapiFields.add("take");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -249,19 +276,11 @@ public class DataSourcesVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DataSourcesVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("dataSources") != null && !jsonObj.get("dataSources").isJsonNull()) {
-        JsonArray jsonArraydataSources = jsonObj.getAsJsonArray("dataSources");
-        if (jsonArraydataSources != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("dataSources").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `dataSources` to be an array in the JSON string but got `%s`", jsonObj.get("dataSources").toString()));
-          }
 
-          // validate the optional field `dataSources` (array)
-          for (int i = 0; i < jsonArraydataSources.size(); i++) {
-            DataSourceVM.validateJsonElement(jsonArraydataSources.get(i));
-          };
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : DataSourcesVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }

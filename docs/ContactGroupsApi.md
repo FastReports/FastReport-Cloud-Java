@@ -79,12 +79,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Contact group was created |  -  |
+| **400** | Bad VM provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="contactGroupsDelete"></a>
 # **contactGroupsDelete**
@@ -153,12 +153,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **204** | Contact group was deleted |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or group was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="contactGroupsGet"></a>
 # **contactGroupsGet**
@@ -228,12 +228,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Contact group was found |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or group was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="contactGroupsGetList"></a>
 # **contactGroupsGetList**
@@ -307,12 +307,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Contact groups were found |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription was not found |  -  |
+| **402** | Subscription is outdated |  -  |
+| **400** | Bad id provided |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="contactGroupsUpdate"></a>
 # **contactGroupsUpdate**
@@ -384,10 +384,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **200** | Contact group was updated |  -  |
+| **400** | Bad VM or id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or group was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 

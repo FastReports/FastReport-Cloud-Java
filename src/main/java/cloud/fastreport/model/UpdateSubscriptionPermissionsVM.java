@@ -14,8 +14,9 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.SubscriptionAdministrate;
-import cloud.fastreport.model.SubscriptionPermissions;
+import cloud.fastreport.model.SubscriptionPermissionsCRUDVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,19 +53,24 @@ import cloud.fastreport.JSON;
  * UpdateSubscriptionPermissionsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdateSubscriptionPermissionsVM {
+public class UpdateSubscriptionPermissionsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_NEW_PERMISSIONS = "newPermissions";
   @SerializedName(SERIALIZED_NAME_NEW_PERMISSIONS)
-  private SubscriptionPermissions newPermissions;
+  private SubscriptionPermissionsCRUDVM newPermissions;
 
   public static final String SERIALIZED_NAME_ADMINISTRATE = "administrate";
   @SerializedName(SERIALIZED_NAME_ADMINISTRATE)
   private SubscriptionAdministrate administrate;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public UpdateSubscriptionPermissionsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
-  public UpdateSubscriptionPermissionsVM newPermissions(SubscriptionPermissions newPermissions) {
+  public UpdateSubscriptionPermissionsVM newPermissions(SubscriptionPermissionsCRUDVM newPermissions) {
     this.newPermissions = newPermissions;
     return this;
   }
@@ -74,11 +80,11 @@ public class UpdateSubscriptionPermissionsVM {
    * @return newPermissions
   **/
   @javax.annotation.Nonnull
-  public SubscriptionPermissions getNewPermissions() {
+  public SubscriptionPermissionsCRUDVM getNewPermissions() {
     return newPermissions;
   }
 
-  public void setNewPermissions(SubscriptionPermissions newPermissions) {
+  public void setNewPermissions(SubscriptionPermissionsCRUDVM newPermissions) {
     this.newPermissions = newPermissions;
   }
 
@@ -102,6 +108,25 @@ public class UpdateSubscriptionPermissionsVM {
   }
 
 
+  public UpdateSubscriptionPermissionsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -113,20 +138,24 @@ public class UpdateSubscriptionPermissionsVM {
     }
     UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM = (UpdateSubscriptionPermissionsVM) o;
     return Objects.equals(this.newPermissions, updateSubscriptionPermissionsVM.newPermissions) &&
-        Objects.equals(this.administrate, updateSubscriptionPermissionsVM.administrate);
+        Objects.equals(this.administrate, updateSubscriptionPermissionsVM.administrate) &&
+        Objects.equals(this.$t, updateSubscriptionPermissionsVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(newPermissions, administrate);
+    return Objects.hash(newPermissions, administrate, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateSubscriptionPermissionsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    newPermissions: ").append(toIndentedString(newPermissions)).append("\n");
     sb.append("    administrate: ").append(toIndentedString(administrate)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -149,13 +178,13 @@ public class UpdateSubscriptionPermissionsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("newPermissions");
-    openapiFields.add("administrate");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("newPermissions");
     openapiRequiredFields.add("administrate");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -185,11 +214,6 @@ public class UpdateSubscriptionPermissionsVM {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `newPermissions`
-      SubscriptionPermissions.validateJsonElement(jsonObj.get("newPermissions"));
-      // validate the required field `administrate`
-      SubscriptionAdministrate.validateJsonElement(jsonObj.get("administrate"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

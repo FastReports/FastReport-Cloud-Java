@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.BreadcrumbsModel;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -42,11 +43,11 @@ public class BreadcrumbsVMTest {
     }
 
     /**
-     * Test the property 'breadcrumbs'
+     * Test the property '$t'
      */
     @Test
-    public void breadcrumbsTest() {
-        // TODO: test breadcrumbs
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

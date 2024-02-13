@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,12 +51,17 @@ import cloud.fastreport.JSON;
  * UpdateDataSourceSubscriptionVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdateDataSourceSubscriptionVM {
+public class UpdateDataSourceSubscriptionVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_SUBSCRIPTION_ID = "subscriptionId";
   @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_ID)
   private String subscriptionId;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public UpdateDataSourceSubscriptionVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public UpdateDataSourceSubscriptionVM subscriptionId(String subscriptionId) {
@@ -77,6 +83,25 @@ public class UpdateDataSourceSubscriptionVM {
   }
 
 
+  public UpdateDataSourceSubscriptionVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -87,19 +112,23 @@ public class UpdateDataSourceSubscriptionVM {
       return false;
     }
     UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM = (UpdateDataSourceSubscriptionVM) o;
-    return Objects.equals(this.subscriptionId, updateDataSourceSubscriptionVM.subscriptionId);
+    return Objects.equals(this.subscriptionId, updateDataSourceSubscriptionVM.subscriptionId) &&
+        Objects.equals(this.$t, updateDataSourceSubscriptionVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subscriptionId);
+    return Objects.hash(subscriptionId, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateDataSourceSubscriptionVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -122,11 +151,12 @@ public class UpdateDataSourceSubscriptionVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("subscriptionId");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("subscriptionId");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -155,10 +185,6 @@ public class UpdateDataSourceSubscriptionVM {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("subscriptionId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `subscriptionId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subscriptionId").toString()));
       }
   }
 

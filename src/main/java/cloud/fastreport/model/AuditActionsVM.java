@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import cloud.fastreport.model.AuditActionVM;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * AuditActionsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AuditActionsVM {
+public class AuditActionsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
   private List<AuditActionVM> items;
@@ -71,7 +72,12 @@ public class AuditActionsVM {
   @SerializedName(SERIALIZED_NAME_TAKE)
   private Integer take;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public AuditActionsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public AuditActionsVM items(List<AuditActionVM> items) {
@@ -158,6 +164,25 @@ public class AuditActionsVM {
   }
 
 
+  public AuditActionsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -171,7 +196,9 @@ public class AuditActionsVM {
     return Objects.equals(this.items, auditActionsVM.items) &&
         Objects.equals(this.hasMore, auditActionsVM.hasMore) &&
         Objects.equals(this.skip, auditActionsVM.skip) &&
-        Objects.equals(this.take, auditActionsVM.take);
+        Objects.equals(this.take, auditActionsVM.take) &&
+        Objects.equals(this.$t, auditActionsVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -180,7 +207,7 @@ public class AuditActionsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, hasMore, skip, take);
+    return Objects.hash(items, hasMore, skip, take, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -194,10 +221,12 @@ public class AuditActionsVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AuditActionsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("    skip: ").append(toIndentedString(skip)).append("\n");
     sb.append("    take: ").append(toIndentedString(take)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -220,13 +249,11 @@ public class AuditActionsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("items");
-    openapiFields.add("hasMore");
-    openapiFields.add("skip");
-    openapiFields.add("take");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -249,19 +276,11 @@ public class AuditActionsVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuditActionsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("items") != null && !jsonObj.get("items").isJsonNull()) {
-        JsonArray jsonArrayitems = jsonObj.getAsJsonArray("items");
-        if (jsonArrayitems != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("items").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `items` to be an array in the JSON string but got `%s`", jsonObj.get("items").toString()));
-          }
 
-          // validate the optional field `items` (array)
-          for (int i = 0; i < jsonArrayitems.size(); i++) {
-            AuditActionVM.validateJsonElement(jsonArrayitems.get(i));
-          };
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : AuditActionsVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }

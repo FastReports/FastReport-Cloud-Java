@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**invites** | [**List&lt;SubscriptionInviteVM&gt;**](SubscriptionInviteVM.md) |  |  [optional] |
 |**count** | **Long** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

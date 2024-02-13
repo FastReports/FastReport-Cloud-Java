@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.AuditActionVM;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -42,35 +43,11 @@ public class AuditActionsVMTest {
     }
 
     /**
-     * Test the property 'items'
+     * Test the property '$t'
      */
     @Test
-    public void itemsTest() {
-        // TODO: test items
-    }
-
-    /**
-     * Test the property 'hasMore'
-     */
-    @Test
-    public void hasMoreTest() {
-        // TODO: test hasMore
-    }
-
-    /**
-     * Test the property 'skip'
-     */
-    @Test
-    public void skipTest() {
-        // TODO: test skip
-    }
-
-    /**
-     * Test the property 'take'
-     */
-    @Test
-    public void takeTest() {
-        // TODO: test take
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

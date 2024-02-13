@@ -55,9 +55,32 @@ import cloud.fastreport.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportFolderCreateVM extends FolderCreateVM {
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public ReportFolderCreateVM() {
     this.$t = this.getClass().getSimpleName();
   }
+
+  public ReportFolderCreateVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
 
 
   @Override
@@ -68,7 +91,9 @@ public class ReportFolderCreateVM extends FolderCreateVM {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    return super.equals(o);
+    ReportFolderCreateVM reportFolderCreateVM = (ReportFolderCreateVM) o;
+    return Objects.equals(this.$t, reportFolderCreateVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -77,7 +102,7 @@ public class ReportFolderCreateVM extends FolderCreateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode());
+    return Objects.hash($t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -92,6 +117,7 @@ public class ReportFolderCreateVM extends FolderCreateVM {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReportFolderCreateVM {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

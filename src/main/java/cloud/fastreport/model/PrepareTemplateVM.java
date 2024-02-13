@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,7 +54,7 @@ import cloud.fastreport.JSON;
  * PrepareTemplateVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class PrepareTemplateVM {
+public class PrepareTemplateVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
@@ -74,7 +75,12 @@ public class PrepareTemplateVM {
   @SerializedName(SERIALIZED_NAME_REPORT_PARAMETERS)
   private Map<String, String> reportParameters;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public PrepareTemplateVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public PrepareTemplateVM name(String name) {
@@ -182,6 +188,25 @@ public class PrepareTemplateVM {
   }
 
 
+  public PrepareTemplateVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -196,7 +221,9 @@ public class PrepareTemplateVM {
         Objects.equals(this.locale, prepareTemplateVM.locale) &&
         Objects.equals(this.folderId, prepareTemplateVM.folderId) &&
         Objects.equals(this.pagesCount, prepareTemplateVM.pagesCount) &&
-        Objects.equals(this.reportParameters, prepareTemplateVM.reportParameters);
+        Objects.equals(this.reportParameters, prepareTemplateVM.reportParameters) &&
+        Objects.equals(this.$t, prepareTemplateVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -205,7 +232,7 @@ public class PrepareTemplateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, locale, folderId, pagesCount, reportParameters);
+    return Objects.hash(name, locale, folderId, pagesCount, reportParameters, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -219,11 +246,13 @@ public class PrepareTemplateVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PrepareTemplateVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     sb.append("    folderId: ").append(toIndentedString(folderId)).append("\n");
     sb.append("    pagesCount: ").append(toIndentedString(pagesCount)).append("\n");
     sb.append("    reportParameters: ").append(toIndentedString(reportParameters)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -246,14 +275,11 @@ public class PrepareTemplateVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("name");
-    openapiFields.add("locale");
-    openapiFields.add("folderId");
-    openapiFields.add("pagesCount");
-    openapiFields.add("reportParameters");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -276,15 +302,12 @@ public class PrepareTemplateVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PrepareTemplateVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if ((jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull()) && !jsonObj.get("locale").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `locale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("locale").toString()));
-      }
-      if ((jsonObj.get("folderId") != null && !jsonObj.get("folderId").isJsonNull()) && !jsonObj.get("folderId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `folderId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("folderId").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : PrepareTemplateVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

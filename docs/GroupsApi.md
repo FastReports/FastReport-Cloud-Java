@@ -83,8 +83,8 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Succesfully created |  -  |
 | **400** | The reqeust is wrong |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | subscription is outdated |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Information from view model is not found |  -  |
 
 <a id="groupsDeleteGroup"></a>
@@ -156,9 +156,9 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Succesfully delete |  -  |
 | **400** | The reqeust is wrong |  -  |
+| **402** | Subscripiton is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **402** | subscripiton is outdated |  -  |
-| **404** | Group with this identifier is not found |  -  |
+| **404** | Group with this identifier or subscription is not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="groupsGetGroup"></a>
@@ -232,7 +232,7 @@ public class Example {
 | **200** | Succesfully retured |  -  |
 | **400** | The reqeust is wrong |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Group with this identifier is not found |  -  |
+| **404** | Group with this identifier or subscription is not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="groupsGetGroupList"></a>
@@ -307,8 +307,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Succesfully retured |  -  |
 | **400** | The reqeust is wrong |  -  |
+| **401** | User is unauthorized |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Current user is not found |  -  |
+| **404** | Subscription is not found |  -  |
 
 <a id="groupsGetPermissions"></a>
 # **groupsGetPermissions**
@@ -381,7 +382,7 @@ public class Example {
 | **200** | Succesfully retured |  -  |
 | **400** | The reqeust is wrong |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Group with this identifier is not found |  -  |
+| **404** | Group with this identifier or subscription is not found |  -  |
 
 <a id="groupsRenameGroup"></a>
 # **groupsRenameGroup**
@@ -455,9 +456,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Succesfully renamed |  -  |
 | **400** | The reqeust is wrong |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | subscription is outdated |  -  |
-| **404** | Group with this identifier is not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Group with this identifier or subscription is not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="groupsUpdatePermissions"></a>
@@ -529,10 +530,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **204** | Permissions are updated |  -  |
+| **400** | id or VM is not valid |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | You have no permissions to work with groups |  -  |
+| **404** | Group or subscription is not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 

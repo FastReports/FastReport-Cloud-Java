@@ -74,7 +74,6 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Succesfully returned |  -  |
-| **400** | Bad Request |  -  |
 
 <a id="userProfileGetUserProfile"></a>
 # **userProfileGetUserProfile**

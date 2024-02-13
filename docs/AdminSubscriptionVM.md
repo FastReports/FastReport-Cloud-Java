@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**defaultPermissions** | [**DefaultPermissionsVM**](DefaultPermissionsVM.md) |  |  [optional] |
 |**ownerId** | **String** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

@@ -80,12 +80,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Contact was created |  -  |
+| **400** | Bad VM provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="contactsDelete"></a>
 # **contactsDelete**
@@ -155,11 +155,12 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | No Content |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or contact was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
+| **200** | Contact was deleted |  -  |
 
 <a id="contactsGet"></a>
 # **contactsGet**
@@ -229,12 +230,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Contact was found |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or contact was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="contactsGetByGroup"></a>
 # **contactsGetByGroup**
@@ -308,12 +309,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Contacts were found |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or group was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="contactsGetList"></a>
 # **contactsGetList**
@@ -389,12 +390,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Contacts were found |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="contactsUpdate"></a>
 # **contactsUpdate**
@@ -466,10 +467,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Contact was updated |  -  |
+| **400** | Bad VM or id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or contact was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 

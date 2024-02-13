@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,12 +51,17 @@ import cloud.fastreport.JSON;
  * DeleteApiKeyVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class DeleteApiKeyVM {
+public class DeleteApiKeyVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_API_KEY = "apiKey";
   @SerializedName(SERIALIZED_NAME_API_KEY)
   private String apiKey;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public DeleteApiKeyVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public DeleteApiKeyVM apiKey(String apiKey) {
@@ -77,6 +83,25 @@ public class DeleteApiKeyVM {
   }
 
 
+  public DeleteApiKeyVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -87,19 +112,23 @@ public class DeleteApiKeyVM {
       return false;
     }
     DeleteApiKeyVM deleteApiKeyVM = (DeleteApiKeyVM) o;
-    return Objects.equals(this.apiKey, deleteApiKeyVM.apiKey);
+    return Objects.equals(this.apiKey, deleteApiKeyVM.apiKey) &&
+        Objects.equals(this.$t, deleteApiKeyVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(apiKey);
+    return Objects.hash(apiKey, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DeleteApiKeyVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -122,11 +151,12 @@ public class DeleteApiKeyVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("apiKey");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("apiKey");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -155,10 +185,6 @@ public class DeleteApiKeyVM {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("apiKey").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `apiKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("apiKey").toString()));
       }
   }
 

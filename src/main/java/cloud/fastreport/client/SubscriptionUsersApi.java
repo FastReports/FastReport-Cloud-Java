@@ -85,8 +85,8 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully added </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
@@ -164,8 +164,8 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully added </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
@@ -186,8 +186,8 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully added </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
@@ -210,8 +210,8 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully added </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
@@ -233,6 +233,7 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
@@ -305,6 +306,7 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
@@ -326,6 +328,7 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
@@ -349,6 +352,7 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
@@ -374,6 +378,7 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
@@ -456,6 +461,7 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
@@ -479,6 +485,7 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
@@ -504,6 +511,7 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
@@ -527,7 +535,8 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription id outdated </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is unauthorized </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription id outdated </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
@@ -598,7 +607,8 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription id outdated </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is unauthorized </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription id outdated </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
@@ -618,7 +628,8 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription id outdated </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is unauthorized </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription id outdated </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
@@ -640,7 +651,8 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription id outdated </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is unauthorized </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription id outdated </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
@@ -663,8 +675,8 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription id outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription id outdated </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
@@ -742,8 +754,8 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription id outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription id outdated </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
@@ -764,8 +776,8 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription id outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription id outdated </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
@@ -788,8 +800,8 @@ public class SubscriptionUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription id outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription id outdated </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>

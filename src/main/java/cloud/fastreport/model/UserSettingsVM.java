@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import cloud.fastreport.model.AuditType;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.ProfileVisibility;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -56,7 +57,7 @@ import cloud.fastreport.JSON;
  * UserSettingsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UserSettingsVM {
+public class UserSettingsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_PROFILE_VISIBILITY = "profileVisibility";
   @SerializedName(SERIALIZED_NAME_PROFILE_VISIBILITY)
   private ProfileVisibility profileVisibility;
@@ -77,7 +78,12 @@ public class UserSettingsVM {
   @SerializedName(SERIALIZED_NAME_SUBSCRIBED_NOTIFICATIONS)
   private List<AuditType> subscribedNotifications;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public UserSettingsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public UserSettingsVM profileVisibility(ProfileVisibility profileVisibility) {
@@ -183,6 +189,25 @@ public class UserSettingsVM {
   }
 
 
+  public UserSettingsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -197,7 +222,9 @@ public class UserSettingsVM {
         Objects.equals(this.defaultSubscription, userSettingsVM.defaultSubscription) &&
         Objects.equals(this.showHiddenFilesAndFolders, userSettingsVM.showHiddenFilesAndFolders) &&
         Objects.equals(this.slaAcceptedDateTime, userSettingsVM.slaAcceptedDateTime) &&
-        Objects.equals(this.subscribedNotifications, userSettingsVM.subscribedNotifications);
+        Objects.equals(this.subscribedNotifications, userSettingsVM.subscribedNotifications) &&
+        Objects.equals(this.$t, userSettingsVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -206,7 +233,7 @@ public class UserSettingsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileVisibility, defaultSubscription, showHiddenFilesAndFolders, slaAcceptedDateTime, subscribedNotifications);
+    return Objects.hash(profileVisibility, defaultSubscription, showHiddenFilesAndFolders, slaAcceptedDateTime, subscribedNotifications, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -220,11 +247,13 @@ public class UserSettingsVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserSettingsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    profileVisibility: ").append(toIndentedString(profileVisibility)).append("\n");
     sb.append("    defaultSubscription: ").append(toIndentedString(defaultSubscription)).append("\n");
     sb.append("    showHiddenFilesAndFolders: ").append(toIndentedString(showHiddenFilesAndFolders)).append("\n");
     sb.append("    slaAcceptedDateTime: ").append(toIndentedString(slaAcceptedDateTime)).append("\n");
     sb.append("    subscribedNotifications: ").append(toIndentedString(subscribedNotifications)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -247,14 +276,11 @@ public class UserSettingsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("profileVisibility");
-    openapiFields.add("defaultSubscription");
-    openapiFields.add("showHiddenFilesAndFolders");
-    openapiFields.add("slaAcceptedDateTime");
-    openapiFields.add("subscribedNotifications");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -277,17 +303,12 @@ public class UserSettingsVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UserSettingsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `profileVisibility`
-      if (jsonObj.get("profileVisibility") != null && !jsonObj.get("profileVisibility").isJsonNull()) {
-        ProfileVisibility.validateJsonElement(jsonObj.get("profileVisibility"));
-      }
-      if ((jsonObj.get("defaultSubscription") != null && !jsonObj.get("defaultSubscription").isJsonNull()) && !jsonObj.get("defaultSubscription").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `defaultSubscription` to be a primitive type in the JSON string but got `%s`", jsonObj.get("defaultSubscription").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("subscribedNotifications") != null && !jsonObj.get("subscribedNotifications").isJsonNull() && !jsonObj.get("subscribedNotifications").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `subscribedNotifications` to be an array in the JSON string but got `%s`", jsonObj.get("subscribedNotifications").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : UserSettingsVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

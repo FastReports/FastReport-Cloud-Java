@@ -66,6 +66,10 @@ public class AdminSubscriptionVM extends SubscriptionVM {
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public AdminSubscriptionVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -108,6 +112,25 @@ public class AdminSubscriptionVM extends SubscriptionVM {
   }
 
 
+  public AdminSubscriptionVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -120,6 +143,7 @@ public class AdminSubscriptionVM extends SubscriptionVM {
     AdminSubscriptionVM adminSubscriptionVM = (AdminSubscriptionVM) o;
     return Objects.equals(this.defaultPermissions, adminSubscriptionVM.defaultPermissions) &&
         Objects.equals(this.ownerId, adminSubscriptionVM.ownerId) &&
+        Objects.equals(this.$t, adminSubscriptionVM.$t) &&
         super.equals(o);
   }
 
@@ -129,7 +153,7 @@ public class AdminSubscriptionVM extends SubscriptionVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultPermissions, ownerId, super.hashCode());
+    return Objects.hash(defaultPermissions, ownerId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -146,6 +170,7 @@ public class AdminSubscriptionVM extends SubscriptionVM {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    defaultPermissions: ").append(toIndentedString(defaultPermissions)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

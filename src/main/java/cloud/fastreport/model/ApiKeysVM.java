@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import cloud.fastreport.model.ApiKeyVM;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * ApiKeysVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ApiKeysVM {
+public class ApiKeysVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_API_KEYS = "apiKeys";
   @SerializedName(SERIALIZED_NAME_API_KEYS)
   private List<ApiKeyVM> apiKeys;
@@ -63,7 +64,12 @@ public class ApiKeysVM {
   @SerializedName(SERIALIZED_NAME_COUNT)
   private Long count;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public ApiKeysVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public ApiKeysVM apiKeys(List<ApiKeyVM> apiKeys) {
@@ -112,6 +118,25 @@ public class ApiKeysVM {
   }
 
 
+  public ApiKeysVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -123,7 +148,9 @@ public class ApiKeysVM {
     }
     ApiKeysVM apiKeysVM = (ApiKeysVM) o;
     return Objects.equals(this.apiKeys, apiKeysVM.apiKeys) &&
-        Objects.equals(this.count, apiKeysVM.count);
+        Objects.equals(this.count, apiKeysVM.count) &&
+        Objects.equals(this.$t, apiKeysVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -132,7 +159,7 @@ public class ApiKeysVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(apiKeys, count);
+    return Objects.hash(apiKeys, count, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -146,8 +173,10 @@ public class ApiKeysVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ApiKeysVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    apiKeys: ").append(toIndentedString(apiKeys)).append("\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -170,11 +199,11 @@ public class ApiKeysVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("apiKeys");
-    openapiFields.add("count");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -197,19 +226,11 @@ public class ApiKeysVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ApiKeysVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("apiKeys") != null && !jsonObj.get("apiKeys").isJsonNull()) {
-        JsonArray jsonArrayapiKeys = jsonObj.getAsJsonArray("apiKeys");
-        if (jsonArrayapiKeys != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("apiKeys").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `apiKeys` to be an array in the JSON string but got `%s`", jsonObj.get("apiKeys").toString()));
-          }
 
-          // validate the optional field `apiKeys` (array)
-          for (int i = 0; i < jsonArrayapiKeys.size(); i++) {
-            ApiKeyVM.validateJsonElement(jsonArrayapiKeys.get(i));
-          };
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ApiKeysVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }

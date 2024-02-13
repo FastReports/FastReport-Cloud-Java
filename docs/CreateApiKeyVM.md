@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**description** | **String** |  |  [optional] |
 |**expired** | **OffsetDateTime** |  |  |
+|**$t** | **String** |  |  |
 
 
 

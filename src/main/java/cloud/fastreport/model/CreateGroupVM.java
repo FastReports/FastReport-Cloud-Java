@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,7 +52,7 @@ import cloud.fastreport.JSON;
  * CreateGroupVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateGroupVM {
+public class CreateGroupVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
@@ -137,7 +138,8 @@ public class CreateGroupVM {
     CreateGroupVM createGroupVM = (CreateGroupVM) o;
     return Objects.equals(this.name, createGroupVM.name) &&
         Objects.equals(this.subscriptionId, createGroupVM.subscriptionId) &&
-        Objects.equals(this.$t, createGroupVM.$t);
+        Objects.equals(this.$t, createGroupVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -146,7 +148,7 @@ public class CreateGroupVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, subscriptionId, $t);
+    return Objects.hash(name, subscriptionId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -160,6 +162,7 @@ public class CreateGroupVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateGroupVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    $t: ").append(toIndentedString($t)).append("\n");
@@ -185,8 +188,6 @@ public class CreateGroupVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("name");
-    openapiFields.add("subscriptionId");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)

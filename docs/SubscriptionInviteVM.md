@@ -13,6 +13,7 @@
 |**expiredDate** | **OffsetDateTime** |  |  [optional] |
 |**addedUsers** | [**List&lt;InvitedUser&gt;**](InvitedUser.md) |  |  [optional] |
 |**creatorUserId** | **String** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

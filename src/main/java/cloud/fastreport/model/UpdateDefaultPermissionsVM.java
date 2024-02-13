@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.UpdateDataSourcePermissionsVM;
 import cloud.fastreport.model.UpdateFilePermissionsVM;
 import cloud.fastreport.model.UpdateGroupPermissionsVM;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * UpdateDefaultPermissionsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdateDefaultPermissionsVM {
+public class UpdateDefaultPermissionsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_FILE_PERMISSIONS = "filePermissions";
   @SerializedName(SERIALIZED_NAME_FILE_PERMISSIONS)
   private UpdateFilePermissionsVM filePermissions;
@@ -71,7 +72,12 @@ public class UpdateDefaultPermissionsVM {
   @SerializedName(SERIALIZED_NAME_TASK_PERMISSIONS)
   private UpdateTaskPermissionsVM taskPermissions;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public UpdateDefaultPermissionsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public UpdateDefaultPermissionsVM filePermissions(UpdateFilePermissionsVM filePermissions) {
@@ -150,6 +156,25 @@ public class UpdateDefaultPermissionsVM {
   }
 
 
+  public UpdateDefaultPermissionsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -163,22 +188,26 @@ public class UpdateDefaultPermissionsVM {
     return Objects.equals(this.filePermissions, updateDefaultPermissionsVM.filePermissions) &&
         Objects.equals(this.groupPermissions, updateDefaultPermissionsVM.groupPermissions) &&
         Objects.equals(this.dataSourcePermissions, updateDefaultPermissionsVM.dataSourcePermissions) &&
-        Objects.equals(this.taskPermissions, updateDefaultPermissionsVM.taskPermissions);
+        Objects.equals(this.taskPermissions, updateDefaultPermissionsVM.taskPermissions) &&
+        Objects.equals(this.$t, updateDefaultPermissionsVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filePermissions, groupPermissions, dataSourcePermissions, taskPermissions);
+    return Objects.hash(filePermissions, groupPermissions, dataSourcePermissions, taskPermissions, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateDefaultPermissionsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    filePermissions: ").append(toIndentedString(filePermissions)).append("\n");
     sb.append("    groupPermissions: ").append(toIndentedString(groupPermissions)).append("\n");
     sb.append("    dataSourcePermissions: ").append(toIndentedString(dataSourcePermissions)).append("\n");
     sb.append("    taskPermissions: ").append(toIndentedString(taskPermissions)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -201,13 +230,11 @@ public class UpdateDefaultPermissionsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("filePermissions");
-    openapiFields.add("groupPermissions");
-    openapiFields.add("dataSourcePermissions");
-    openapiFields.add("taskPermissions");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -230,22 +257,12 @@ public class UpdateDefaultPermissionsVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateDefaultPermissionsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `filePermissions`
-      if (jsonObj.get("filePermissions") != null && !jsonObj.get("filePermissions").isJsonNull()) {
-        UpdateFilePermissionsVM.validateJsonElement(jsonObj.get("filePermissions"));
-      }
-      // validate the optional field `groupPermissions`
-      if (jsonObj.get("groupPermissions") != null && !jsonObj.get("groupPermissions").isJsonNull()) {
-        UpdateGroupPermissionsVM.validateJsonElement(jsonObj.get("groupPermissions"));
-      }
-      // validate the optional field `dataSourcePermissions`
-      if (jsonObj.get("dataSourcePermissions") != null && !jsonObj.get("dataSourcePermissions").isJsonNull()) {
-        UpdateDataSourcePermissionsVM.validateJsonElement(jsonObj.get("dataSourcePermissions"));
-      }
-      // validate the optional field `taskPermissions`
-      if (jsonObj.get("taskPermissions") != null && !jsonObj.get("taskPermissions").isJsonNull()) {
-        UpdateTaskPermissionsVM.validateJsonElement(jsonObj.get("taskPermissions"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : UpdateDefaultPermissionsVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**locale** | **String** |  |  [optional] |
 |**cacheTolerance** | **Double** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,7 +54,7 @@ import cloud.fastreport.JSON;
  * PreviewTemplateVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class PreviewTemplateVM {
+public class PreviewTemplateVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_LOCALE = "locale";
   @SerializedName(SERIALIZED_NAME_LOCALE)
   private String locale;
@@ -66,7 +67,12 @@ public class PreviewTemplateVM {
   @SerializedName(SERIALIZED_NAME_CACHE_TOLERANCE)
   private Double cacheTolerance = 300d;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public PreviewTemplateVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public PreviewTemplateVM locale(String locale) {
@@ -134,6 +140,25 @@ public class PreviewTemplateVM {
   }
 
 
+  public PreviewTemplateVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -146,7 +171,9 @@ public class PreviewTemplateVM {
     PreviewTemplateVM previewTemplateVM = (PreviewTemplateVM) o;
     return Objects.equals(this.locale, previewTemplateVM.locale) &&
         Objects.equals(this.reportParameters, previewTemplateVM.reportParameters) &&
-        Objects.equals(this.cacheTolerance, previewTemplateVM.cacheTolerance);
+        Objects.equals(this.cacheTolerance, previewTemplateVM.cacheTolerance) &&
+        Objects.equals(this.$t, previewTemplateVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -155,7 +182,7 @@ public class PreviewTemplateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(locale, reportParameters, cacheTolerance);
+    return Objects.hash(locale, reportParameters, cacheTolerance, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -169,9 +196,11 @@ public class PreviewTemplateVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PreviewTemplateVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     sb.append("    reportParameters: ").append(toIndentedString(reportParameters)).append("\n");
     sb.append("    cacheTolerance: ").append(toIndentedString(cacheTolerance)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -194,12 +223,11 @@ public class PreviewTemplateVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("locale");
-    openapiFields.add("reportParameters");
-    openapiFields.add("cacheTolerance");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -222,9 +250,12 @@ public class PreviewTemplateVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PreviewTemplateVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull()) && !jsonObj.get("locale").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `locale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("locale").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : PreviewTemplateVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

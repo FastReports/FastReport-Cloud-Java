@@ -68,6 +68,10 @@ public class ReportVM extends FileVM {
   @SerializedName(SERIALIZED_NAME_REPORT_INFO)
   private ReportInfo reportInfo;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public ReportVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -110,6 +114,25 @@ public class ReportVM extends FileVM {
   }
 
 
+  public ReportVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -122,6 +145,7 @@ public class ReportVM extends FileVM {
     ReportVM reportVM = (ReportVM) o;
     return Objects.equals(this.templateId, reportVM.templateId) &&
         Objects.equals(this.reportInfo, reportVM.reportInfo) &&
+        Objects.equals(this.$t, reportVM.$t) &&
         super.equals(o);
   }
 
@@ -131,7 +155,7 @@ public class ReportVM extends FileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateId, reportInfo, super.hashCode());
+    return Objects.hash(templateId, reportInfo, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -148,6 +172,7 @@ public class ReportVM extends FileVM {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
     sb.append("    reportInfo: ").append(toIndentedString(reportInfo)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

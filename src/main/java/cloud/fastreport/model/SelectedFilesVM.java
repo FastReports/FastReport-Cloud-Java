@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,7 +54,7 @@ import cloud.fastreport.JSON;
  * SelectedFilesVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SelectedFilesVM {
+public class SelectedFilesVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_IS_ALL_SELECTED = "isAllSelected";
   @SerializedName(SERIALIZED_NAME_IS_ALL_SELECTED)
   private Boolean isAllSelected;
@@ -86,7 +87,12 @@ public class SelectedFilesVM {
   @SerializedName(SERIALIZED_NAME_IS_BIN)
   private Boolean isBin;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public SelectedFilesVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public SelectedFilesVM isAllSelected(Boolean isAllSelected) {
@@ -257,6 +263,25 @@ public class SelectedFilesVM {
   }
 
 
+  public SelectedFilesVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -274,7 +299,9 @@ public class SelectedFilesVM {
         Objects.equals(this.files, selectedFilesVM.files) &&
         Objects.equals(this.folders, selectedFilesVM.folders) &&
         Objects.equals(this.path, selectedFilesVM.path) &&
-        Objects.equals(this.isBin, selectedFilesVM.isBin);
+        Objects.equals(this.isBin, selectedFilesVM.isBin) &&
+        Objects.equals(this.$t, selectedFilesVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -283,7 +310,7 @@ public class SelectedFilesVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(isAllSelected, folderId, searchPattern, useRegex, files, folders, path, isBin);
+    return Objects.hash(isAllSelected, folderId, searchPattern, useRegex, files, folders, path, isBin, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -297,6 +324,7 @@ public class SelectedFilesVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SelectedFilesVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    isAllSelected: ").append(toIndentedString(isAllSelected)).append("\n");
     sb.append("    folderId: ").append(toIndentedString(folderId)).append("\n");
     sb.append("    searchPattern: ").append(toIndentedString(searchPattern)).append("\n");
@@ -305,6 +333,7 @@ public class SelectedFilesVM {
     sb.append("    folders: ").append(toIndentedString(folders)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    isBin: ").append(toIndentedString(isBin)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -327,17 +356,11 @@ public class SelectedFilesVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("isAllSelected");
-    openapiFields.add("folderId");
-    openapiFields.add("searchPattern");
-    openapiFields.add("useRegex");
-    openapiFields.add("files");
-    openapiFields.add("folders");
-    openapiFields.add("path");
-    openapiFields.add("isBin");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -360,23 +383,12 @@ public class SelectedFilesVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SelectedFilesVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("folderId") != null && !jsonObj.get("folderId").isJsonNull()) && !jsonObj.get("folderId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `folderId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("folderId").toString()));
-      }
-      if ((jsonObj.get("searchPattern") != null && !jsonObj.get("searchPattern").isJsonNull()) && !jsonObj.get("searchPattern").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `searchPattern` to be a primitive type in the JSON string but got `%s`", jsonObj.get("searchPattern").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("files") != null && !jsonObj.get("files").isJsonNull() && !jsonObj.get("files").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `files` to be an array in the JSON string but got `%s`", jsonObj.get("files").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("folders") != null && !jsonObj.get("folders").isJsonNull() && !jsonObj.get("folders").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `folders` to be an array in the JSON string but got `%s`", jsonObj.get("folders").toString()));
-      }
-      if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull()) && !jsonObj.get("path").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("path").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : SelectedFilesVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

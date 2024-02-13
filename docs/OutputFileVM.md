@@ -11,6 +11,7 @@
 |**folderId** | **String** |  |  [optional] |
 |**type** | **FileKind** |  |  [optional] |
 |**isTemporary** | **Boolean** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

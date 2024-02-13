@@ -58,6 +58,10 @@ public class UpdateFetchTaskVM extends UpdateTaskBaseVM {
   @SerializedName(SERIALIZED_NAME_DATA_SOURCE_ID)
   private String dataSourceId;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public UpdateFetchTaskVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -81,6 +85,25 @@ public class UpdateFetchTaskVM extends UpdateTaskBaseVM {
   }
 
 
+  public UpdateFetchTaskVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -92,6 +115,7 @@ public class UpdateFetchTaskVM extends UpdateTaskBaseVM {
     }
     UpdateFetchTaskVM updateFetchTaskVM = (UpdateFetchTaskVM) o;
     return Objects.equals(this.dataSourceId, updateFetchTaskVM.dataSourceId) &&
+        Objects.equals(this.$t, updateFetchTaskVM.$t) &&
         super.equals(o);
   }
 
@@ -101,7 +125,7 @@ public class UpdateFetchTaskVM extends UpdateTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(dataSourceId, super.hashCode());
+    return Objects.hash(dataSourceId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -117,6 +141,7 @@ public class UpdateFetchTaskVM extends UpdateTaskBaseVM {
     sb.append("class UpdateFetchTaskVM {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    dataSourceId: ").append(toIndentedString(dataSourceId)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

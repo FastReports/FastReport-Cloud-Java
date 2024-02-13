@@ -72,6 +72,10 @@ public class AuditFilePropertyChangedVM extends AuditActionVM {
   @SerializedName(SERIALIZED_NAME_ENTITY_TYPE)
   private EntityType entityType;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public AuditFilePropertyChangedVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -152,6 +156,25 @@ public class AuditFilePropertyChangedVM extends AuditActionVM {
   }
 
 
+  public AuditFilePropertyChangedVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -166,6 +189,7 @@ public class AuditFilePropertyChangedVM extends AuditActionVM {
         Objects.equals(this.oldValue, auditFilePropertyChangedVM.oldValue) &&
         Objects.equals(this.newValue, auditFilePropertyChangedVM.newValue) &&
         Objects.equals(this.entityType, auditFilePropertyChangedVM.entityType) &&
+        Objects.equals(this.$t, auditFilePropertyChangedVM.$t) &&
         super.equals(o);
   }
 
@@ -175,7 +199,7 @@ public class AuditFilePropertyChangedVM extends AuditActionVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(propertyName, oldValue, newValue, entityType, super.hashCode());
+    return Objects.hash(propertyName, oldValue, newValue, entityType, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -194,6 +218,7 @@ public class AuditFilePropertyChangedVM extends AuditActionVM {
     sb.append("    oldValue: ").append(toIndentedString(oldValue)).append("\n");
     sb.append("    newValue: ").append(toIndentedString(newValue)).append("\n");
     sb.append("    entityType: ").append(toIndentedString(entityType)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

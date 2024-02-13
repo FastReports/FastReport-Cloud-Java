@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.TaskBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * TasksVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TasksVM {
+public class TasksVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_COUNT = "count";
   @SerializedName(SERIALIZED_NAME_COUNT)
   private Long count;
@@ -71,7 +72,12 @@ public class TasksVM {
   @SerializedName(SERIALIZED_NAME_TASKS)
   private List<TaskBaseVM> tasks;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public TasksVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public TasksVM count(Long count) {
@@ -158,6 +164,25 @@ public class TasksVM {
   }
 
 
+  public TasksVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -171,7 +196,9 @@ public class TasksVM {
     return Objects.equals(this.count, tasksVM.count) &&
         Objects.equals(this.skip, tasksVM.skip) &&
         Objects.equals(this.take, tasksVM.take) &&
-        Objects.equals(this.tasks, tasksVM.tasks);
+        Objects.equals(this.tasks, tasksVM.tasks) &&
+        Objects.equals(this.$t, tasksVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -180,7 +207,7 @@ public class TasksVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(count, skip, take, tasks);
+    return Objects.hash(count, skip, take, tasks, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -194,10 +221,12 @@ public class TasksVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TasksVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("    skip: ").append(toIndentedString(skip)).append("\n");
     sb.append("    take: ").append(toIndentedString(take)).append("\n");
     sb.append("    tasks: ").append(toIndentedString(tasks)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -220,13 +249,11 @@ public class TasksVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("count");
-    openapiFields.add("skip");
-    openapiFields.add("take");
-    openapiFields.add("tasks");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -249,19 +276,11 @@ public class TasksVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TasksVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("tasks") != null && !jsonObj.get("tasks").isJsonNull()) {
-        JsonArray jsonArraytasks = jsonObj.getAsJsonArray("tasks");
-        if (jsonArraytasks != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("tasks").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `tasks` to be an array in the JSON string but got `%s`", jsonObj.get("tasks").toString()));
-          }
 
-          // validate the optional field `tasks` (array)
-          for (int i = 0; i < jsonArraytasks.size(); i++) {
-            TaskBaseVM.validateJsonElement(jsonArraytasks.get(i));
-          };
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : TasksVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }

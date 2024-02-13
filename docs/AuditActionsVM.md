@@ -11,6 +11,7 @@
 |**hasMore** | **Boolean** |  |  [optional] |
 |**skip** | **Integer** |  |  [optional] |
 |**take** | **Integer** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

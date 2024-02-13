@@ -14,6 +14,7 @@
 |**format** | **ExportFormat** |  |  [optional] |
 |**exportParameters** | **Map&lt;String, String&gt;** |  |  [optional] |
 |**reportParameters** | **Map&lt;String, String&gt;** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

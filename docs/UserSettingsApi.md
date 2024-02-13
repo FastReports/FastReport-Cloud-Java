@@ -143,6 +143,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Succesfully returned |  -  |
+| **400** | Current user is null |  -  |
 | **404** | User not found |  -  |
 
 <a id="userSettingsUpdateMySettings"></a>
@@ -214,6 +215,6 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Succesfully updated |  -  |
-| **400** | The reqeust is wrong |  -  |
-| **403** | Forbidden |  -  |
+| **400** | The request is wrong |  -  |
+| **403** | You have no permission for this action |  -  |
 

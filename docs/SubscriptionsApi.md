@@ -85,9 +85,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Successfully returned |  -  |
 | **400** | Request is wrong |  -  |
-| **402** | subscription is outdated |  -  |
+| **402** | Subscription is outdated |  -  |
 | **403** | Not enough permissions |  -  |
-| **404** | there is no subscription with such id |  -  |
+| **404** | There is no subscription with such id |  -  |
 
 <a id="subscriptionsGetMyPermissions"></a>
 # **subscriptionsGetMyPermissions**
@@ -228,7 +228,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Succesfully returned |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
+| **400** | Request is wrong |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions |  -  |
+| **404** | There is no subscription with such id |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="subscriptionsGetSubscription"></a>
 # **subscriptionsGetSubscription**
@@ -302,6 +306,7 @@ public class Example {
 | **400** | The reqeust is wrong |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Subscription is not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="subscriptionsGetSubscriptions"></a>
 # **subscriptionsGetSubscriptions**
@@ -450,7 +455,7 @@ public class Example {
 | **400** | Request is wrong |  -  |
 | **402** | Subscription is outdated |  -  |
 | **403** | Not enough permissions |  -  |
-| **404** | there is no subscription with such id (or user have no permission) |  -  |
+| **404** | There is no subscription with such id (or user have no permission) |  -  |
 
 <a id="subscriptionsUpdateDefaultPermissions"></a>
 # **subscriptionsUpdateDefaultPermissions**
@@ -524,9 +529,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Successfully changed |  -  |
 | **400** | Request is wrong |  -  |
-| **402** | subscription is outdated |  -  |
+| **402** | Subscription is outdated |  -  |
 | **403** | Not enough permissions |  -  |
-| **404** | there is no subscription with such id |  -  |
+| **404** | There is no subscription with such id |  -  |
 
 <a id="subscriptionsUpdateLocale"></a>
 # **subscriptionsUpdateLocale**
@@ -602,7 +607,7 @@ public class Example {
 | **400** | Request is wrong |  -  |
 | **402** | Subscription is outdated |  -  |
 | **403** | Not enough permissions |  -  |
-| **404** | there is no subscription with such id (or user have no permission) |  -  |
+| **404** | There is no subscription with such id (or user have no permission) |  -  |
 
 <a id="subscriptionsUpdatePermissions"></a>
 # **subscriptionsUpdatePermissions**
@@ -673,10 +678,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **204** | Succesfully updated |  -  |
+| **400** | Request is wrong |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions |  -  |
+| **404** | There is no subscription with such id |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 

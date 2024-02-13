@@ -199,6 +199,7 @@ public class UserSettingsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Current user is null </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
      </table>
      */
@@ -261,6 +262,7 @@ public class UserSettingsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Current user is null </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
      </table>
      */
@@ -278,6 +280,7 @@ public class UserSettingsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Current user is null </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
      </table>
      */
@@ -297,6 +300,7 @@ public class UserSettingsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Current user is null </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
      </table>
      */
@@ -317,8 +321,8 @@ public class UserSettingsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully updated </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The request is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You have no permission for this action </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call userSettingsUpdateMySettingsCall(UpdateUserSettingsVM updateUserSettingsVM, final ApiCallback _callback) throws ApiException {
@@ -384,8 +388,8 @@ public class UserSettingsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully updated </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The request is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You have no permission for this action </td><td>  -  </td></tr>
      </table>
      */
     public UserSettingsVM userSettingsUpdateMySettings(UpdateUserSettingsVM updateUserSettingsVM) throws ApiException {
@@ -403,8 +407,8 @@ public class UserSettingsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully updated </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The request is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You have no permission for this action </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<UserSettingsVM> userSettingsUpdateMySettingsWithHttpInfo(UpdateUserSettingsVM updateUserSettingsVM) throws ApiException {
@@ -424,8 +428,8 @@ public class UserSettingsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully updated </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The request is wrong </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You have no permission for this action </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call userSettingsUpdateMySettingsAsync(UpdateUserSettingsVM updateUserSettingsVM, final ApiCallback<UserSettingsVM> _callback) throws ApiException {

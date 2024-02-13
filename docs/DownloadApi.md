@@ -87,10 +87,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified file was found |  -  |
-| **404** | Specified file was not found or user do not has access to the file |  -  |
 | **400** | Bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions for the operation |  -  |
+| **404** | Specified file was not found or user do not has access to the file |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="downloadGetExportThumbnail"></a>
 # **downloadGetExportThumbnail**
@@ -161,10 +162,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified thumbnail was found |  -  |
-| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
 | **400** | Bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions for the operation |  -  |
+| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
 
 <a id="downloadGetExports"></a>
 # **downloadGetExports**
@@ -238,11 +239,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Specified file was found |  -  |
+| **200** | Specified files was found |  -  |
 | **400** | Bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions for the operation |  -  |
-| **404** | Specified file was not found or user do not has access to the file |  -  |
+| **404** | Specified files were not found or user do not has access to the file |  -  |
 
 <a id="downloadGetLastSVGExport"></a>
 # **downloadGetLastSVGExport**
@@ -312,11 +313,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **404** | Not Found |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
+| **200** | Specified file was found |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is blocked |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Specified file was not found or user do not has access to the file |  -  |
 
 <a id="downloadGetReport"></a>
 # **downloadGetReport**
@@ -387,10 +388,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified file was found |  -  |
-| **404** | Specified file was not found or user do not has access to the file |  -  |
-| **400** | bad id provided |  -  |
+| **400** | Bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions |  -  |
+| **404** | Specified file was not found or user do not has access to the file |  -  |
 
 <a id="downloadGetReportThumbnail"></a>
 # **downloadGetReportThumbnail**
@@ -461,10 +462,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified thumbnail was found |  -  |
-| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
 | **400** | Bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions for the operation |  -  |
+| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
 
 <a id="downloadGetReports"></a>
 # **downloadGetReports**
@@ -538,11 +539,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | File has been downloaded |  -  |
-| **404** | files is not found |  -  |
-| **400** | wrong parameters provided |  -  |
+| **200** | Files were downloaded |  -  |
+| **400** | Wrong parameters provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Files were not found |  -  |
 
 <a id="downloadGetTemplate"></a>
 # **downloadGetTemplate**
@@ -613,10 +614,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified file was found |  -  |
-| **404** | Specified file was not found or user do not has access to the file |  -  |
-| **400** | bad id provided |  -  |
+| **400** | Bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions |  -  |
+| **404** | Specified file was not found or user do not has access to the file |  -  |
 
 <a id="downloadGetTemplateThumbnail"></a>
 # **downloadGetTemplateThumbnail**
@@ -687,10 +688,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Specified thumbnail was found |  -  |
-| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
 | **400** | Bad id provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | Not enough permissions for the operation |  -  |
+| **404** | Specified thumbnail was not found or user do not has access to it |  -  |
 
 <a id="downloadGetTemplates"></a>
 # **downloadGetTemplates**
@@ -764,9 +765,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | File has been downloaded |  -  |
-| **400** | wrong parameters provided |  -  |
+| **200** | Files were downloaded |  -  |
+| **400** | Wrong parameters provided |  -  |
 | **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | files is not found |  -  |
+| **404** | Files were not found |  -  |
 

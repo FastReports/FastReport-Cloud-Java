@@ -85,7 +85,7 @@ public class SubscriptionInvitesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> User already in subscription </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Succesfully added </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
@@ -164,7 +164,7 @@ public class SubscriptionInvitesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> User already in subscription </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Succesfully added </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
@@ -186,7 +186,7 @@ public class SubscriptionInvitesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> User already in subscription </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Succesfully added </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
@@ -210,7 +210,7 @@ public class SubscriptionInvitesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Succesfully added </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> User already in subscription </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Succesfully added </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
@@ -455,7 +455,7 @@ public class SubscriptionInvitesApi {
     }
 
     /**
-     * Rename subscription
+     * Delete invite with specified token
      * 
      * @param subscriptionId id (required)
      * @param accesstoken invite&#39;s token (required)
@@ -476,7 +476,7 @@ public class SubscriptionInvitesApi {
     }
 
     /**
-     * Rename subscription
+     * Delete invite with specified token
      * 
      * @param subscriptionId id (required)
      * @param accesstoken invite&#39;s token (required)
@@ -499,7 +499,7 @@ public class SubscriptionInvitesApi {
     }
 
     /**
-     * Rename subscription (asynchronously)
+     * Delete invite with specified token (asynchronously)
      * 
      * @param subscriptionId id (required)
      * @param accesstoken invite&#39;s token (required)

@@ -27,7 +27,6 @@ import cloud.fastreport.model.FileSorting;
 import cloud.fastreport.model.FileTagsUpdateVM;
 import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.FilesVM;
-import cloud.fastreport.model.FolderCreateVM;
 import cloud.fastreport.model.FolderIconVM;
 import cloud.fastreport.model.FolderRenameVM;
 import cloud.fastreport.model.FolderSizeVM;
@@ -597,8 +596,6 @@ public class ReportsApiTest {
     }
 
     /**
-     * Get all file permissions
-     *
      * @throws ApiException if the Api call fails
      */
     @Test

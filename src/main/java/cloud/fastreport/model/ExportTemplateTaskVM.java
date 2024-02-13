@@ -65,6 +65,10 @@ public class ExportTemplateTaskVM extends ExportReportTaskVM {
   @SerializedName(SERIALIZED_NAME_REPORT_PARAMETERS)
   private Map<String, String> reportParameters;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public ExportTemplateTaskVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -96,6 +100,25 @@ public class ExportTemplateTaskVM extends ExportReportTaskVM {
   }
 
 
+  public ExportTemplateTaskVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -107,6 +130,7 @@ public class ExportTemplateTaskVM extends ExportReportTaskVM {
     }
     ExportTemplateTaskVM exportTemplateTaskVM = (ExportTemplateTaskVM) o;
     return Objects.equals(this.reportParameters, exportTemplateTaskVM.reportParameters) &&
+        Objects.equals(this.$t, exportTemplateTaskVM.$t) &&
         super.equals(o);
   }
 
@@ -116,7 +140,7 @@ public class ExportTemplateTaskVM extends ExportReportTaskVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(reportParameters, super.hashCode());
+    return Objects.hash(reportParameters, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -132,6 +156,7 @@ public class ExportTemplateTaskVM extends ExportReportTaskVM {
     sb.append("class ExportTemplateTaskVM {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    reportParameters: ").append(toIndentedString(reportParameters)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

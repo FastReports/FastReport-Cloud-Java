@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -39,75 +40,11 @@ public class TaskSettingsVMTest {
     }
 
     /**
-     * Test the property 'prepare'
+     * Test the property '$t'
      */
     @Test
-    public void prepareTest() {
-        // TODO: test prepare
-    }
-
-    /**
-     * Test the property 'exportTemplate'
-     */
-    @Test
-    public void exportTemplateTest() {
-        // TODO: test exportTemplate
-    }
-
-    /**
-     * Test the property 'exportReport'
-     */
-    @Test
-    public void exportReportTest() {
-        // TODO: test exportReport
-    }
-
-    /**
-     * Test the property 'sendViaEmail'
-     */
-    @Test
-    public void sendViaEmailTest() {
-        // TODO: test sendViaEmail
-    }
-
-    /**
-     * Test the property 'uploadToFTP'
-     */
-    @Test
-    public void uploadToFTPTest() {
-        // TODO: test uploadToFTP
-    }
-
-    /**
-     * Test the property 'sendViaWebhook'
-     */
-    @Test
-    public void sendViaWebhookTest() {
-        // TODO: test sendViaWebhook
-    }
-
-    /**
-     * Test the property 'fetchData'
-     */
-    @Test
-    public void fetchDataTest() {
-        // TODO: test fetchData
-    }
-
-    /**
-     * Test the property 'thumbnailReport'
-     */
-    @Test
-    public void thumbnailReportTest() {
-        // TODO: test thumbnailReport
-    }
-
-    /**
-     * Test the property 'thumbnailTemplate'
-     */
-    @Test
-    public void thumbnailTemplateTest() {
-        // TODO: test thumbnailTemplate
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

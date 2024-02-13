@@ -65,6 +65,15 @@ public class JSON {
     @SuppressWarnings("unchecked")
     public static GsonBuilder createGson() {
         GsonFireBuilder fireBuilder = new GsonFireBuilder()
+                .registerTypeSelector(cloud.fastreport.model.AcceptAgreementsVM.class, new TypeSelector<cloud.fastreport.model.AcceptAgreementsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.AcceptAgreementsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("AcceptAgreementsVM", cloud.fastreport.model.AcceptAgreementsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.AdminExportFolderCreateVM.class, new TypeSelector<cloud.fastreport.model.AdminExportFolderCreateVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.AdminExportFolderCreateVM> getClassForElement(JsonElement readElement) {
@@ -105,6 +114,15 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.AdminSubscriptionsVM.class, new TypeSelector<cloud.fastreport.model.AdminSubscriptionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.AdminSubscriptionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("AdminSubscriptionsVM", cloud.fastreport.model.AdminSubscriptionsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.AdminTemplateFolderCreateVM.class, new TypeSelector<cloud.fastreport.model.AdminTemplateFolderCreateVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.AdminTemplateFolderCreateVM> getClassForElement(JsonElement readElement) {
@@ -114,14 +132,78 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.AdminUpdateCurrentSubscriptionPlanVM.class, new TypeSelector<cloud.fastreport.model.AdminUpdateCurrentSubscriptionPlanVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.AdminUpdateCurrentSubscriptionPlanVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("AdminUpdateCurrentSubscriptionPlanVM", cloud.fastreport.model.AdminUpdateCurrentSubscriptionPlanVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.AnalysisResultVM.class, new TypeSelector<cloud.fastreport.model.AnalysisResultVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.AnalysisResultVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("AnalysisResultVM", cloud.fastreport.model.AnalysisResultVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.AnalysisResultsVM.class, new TypeSelector<cloud.fastreport.model.AnalysisResultsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.AnalysisResultsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("AnalysisResultsVM", cloud.fastreport.model.AnalysisResultsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.ApiKeyVM.class, new TypeSelector<cloud.fastreport.model.ApiKeyVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.ApiKeyVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("ApiKeyVM", cloud.fastreport.model.ApiKeyVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.ApiKeysVM.class, new TypeSelector<cloud.fastreport.model.ApiKeysVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.ApiKeysVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("ApiKeysVM", cloud.fastreport.model.ApiKeysVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.AppMixinsVM.class, new TypeSelector<cloud.fastreport.model.AppMixinsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.AppMixinsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("AppMixinsVM", cloud.fastreport.model.AppMixinsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.AuditActionVM.class, new TypeSelector<cloud.fastreport.model.AuditActionVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.AuditActionVM> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("AuditActionVM", cloud.fastreport.model.AuditActionVM.class);
                         classByDiscriminatorValue.put("AuditFilePropertyChangedVM", cloud.fastreport.model.AuditFilePropertyChangedVM.class);
                         classByDiscriminatorValue.put("AuditSubscriptionActionVM", cloud.fastreport.model.AuditSubscriptionActionVM.class);
                         classByDiscriminatorValue.put("AuditTaskActionVM", cloud.fastreport.model.AuditTaskActionVM.class);
                         classByDiscriminatorValue.put("AuditActionVM", cloud.fastreport.model.AuditActionVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.AuditActionsVM.class, new TypeSelector<cloud.fastreport.model.AuditActionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.AuditActionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("AuditActionsVM", cloud.fastreport.model.AuditActionsVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -131,6 +213,24 @@ public class JSON {
                     public Class<? extends cloud.fastreport.model.AuditFilePropertyChangedVM> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("AuditFilePropertyChangedVM", cloud.fastreport.model.AuditFilePropertyChangedVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.AuditStatVM.class, new TypeSelector<cloud.fastreport.model.AuditStatVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.AuditStatVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("AuditStatVM", cloud.fastreport.model.AuditStatVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.AuditStatsVM.class, new TypeSelector<cloud.fastreport.model.AuditStatsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.AuditStatsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("AuditStatsVM", cloud.fastreport.model.AuditStatsVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -149,6 +249,280 @@ public class JSON {
                     public Class<? extends cloud.fastreport.model.AuditTaskActionVM> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("AuditTaskActionVM", cloud.fastreport.model.AuditTaskActionVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.AuthConfigVM.class, new TypeSelector<cloud.fastreport.model.AuthConfigVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.AuthConfigVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("AuthConfigVM", cloud.fastreport.model.AuthConfigVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.BreadcrumbsVM.class, new TypeSelector<cloud.fastreport.model.BreadcrumbsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.BreadcrumbsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("BreadcrumbsVM", cloud.fastreport.model.BreadcrumbsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.CheckUserByPasswordInternalVM.class, new TypeSelector<cloud.fastreport.model.CheckUserByPasswordInternalVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.CheckUserByPasswordInternalVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CheckUserByPasswordInternalVM", cloud.fastreport.model.CheckUserByPasswordInternalVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.ClearNotificationsVM.class, new TypeSelector<cloud.fastreport.model.ClearNotificationsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.ClearNotificationsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("ClearNotificationsVM", cloud.fastreport.model.ClearNotificationsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.CloudBaseVM.class, new TypeSelector<cloud.fastreport.model.CloudBaseVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.CloudBaseVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("AcceptAgreementsVM", cloud.fastreport.model.AcceptAgreementsVM.class);
+                        classByDiscriminatorValue.put("AdminExportFolderCreateVM", cloud.fastreport.model.AdminExportFolderCreateVM.class);
+                        classByDiscriminatorValue.put("AdminFolderCreateVM", cloud.fastreport.model.AdminFolderCreateVM.class);
+                        classByDiscriminatorValue.put("AdminReportFolderCreateVM", cloud.fastreport.model.AdminReportFolderCreateVM.class);
+                        classByDiscriminatorValue.put("AdminSubscriptionVM", cloud.fastreport.model.AdminSubscriptionVM.class);
+                        classByDiscriminatorValue.put("AdminSubscriptionsVM", cloud.fastreport.model.AdminSubscriptionsVM.class);
+                        classByDiscriminatorValue.put("AdminTemplateFolderCreateVM", cloud.fastreport.model.AdminTemplateFolderCreateVM.class);
+                        classByDiscriminatorValue.put("AdminUpdateCurrentSubscriptionPlanVM", cloud.fastreport.model.AdminUpdateCurrentSubscriptionPlanVM.class);
+                        classByDiscriminatorValue.put("AnalysisResultVM", cloud.fastreport.model.AnalysisResultVM.class);
+                        classByDiscriminatorValue.put("AnalysisResultsVM", cloud.fastreport.model.AnalysisResultsVM.class);
+                        classByDiscriminatorValue.put("ApiKeyVM", cloud.fastreport.model.ApiKeyVM.class);
+                        classByDiscriminatorValue.put("ApiKeysVM", cloud.fastreport.model.ApiKeysVM.class);
+                        classByDiscriminatorValue.put("AppMixinsVM", cloud.fastreport.model.AppMixinsVM.class);
+                        classByDiscriminatorValue.put("AuditActionVM", cloud.fastreport.model.AuditActionVM.class);
+                        classByDiscriminatorValue.put("AuditActionsVM", cloud.fastreport.model.AuditActionsVM.class);
+                        classByDiscriminatorValue.put("AuditFilePropertyChangedVM", cloud.fastreport.model.AuditFilePropertyChangedVM.class);
+                        classByDiscriminatorValue.put("AuditStatVM", cloud.fastreport.model.AuditStatVM.class);
+                        classByDiscriminatorValue.put("AuditStatsVM", cloud.fastreport.model.AuditStatsVM.class);
+                        classByDiscriminatorValue.put("AuditSubscriptionActionVM", cloud.fastreport.model.AuditSubscriptionActionVM.class);
+                        classByDiscriminatorValue.put("AuditTaskActionVM", cloud.fastreport.model.AuditTaskActionVM.class);
+                        classByDiscriminatorValue.put("AuthConfigVM", cloud.fastreport.model.AuthConfigVM.class);
+                        classByDiscriminatorValue.put("BreadcrumbsVM", cloud.fastreport.model.BreadcrumbsVM.class);
+                        classByDiscriminatorValue.put("CheckUserByPasswordInternalVM", cloud.fastreport.model.CheckUserByPasswordInternalVM.class);
+                        classByDiscriminatorValue.put("ClearNotificationsVM", cloud.fastreport.model.ClearNotificationsVM.class);
+                        classByDiscriminatorValue.put("CloudBaseVM", cloud.fastreport.model.CloudBaseVM.class);
+                        classByDiscriminatorValue.put("CountVM", cloud.fastreport.model.CountVM.class);
+                        classByDiscriminatorValue.put("CreateApiKeyVM", cloud.fastreport.model.CreateApiKeyVM.class);
+                        classByDiscriminatorValue.put("CreateAuditActionVM", cloud.fastreport.model.CreateAuditActionVM.class);
+                        classByDiscriminatorValue.put("CreateDataSourceAdminVM", cloud.fastreport.model.CreateDataSourceAdminVM.class);
+                        classByDiscriminatorValue.put("CreateDataSourceVM", cloud.fastreport.model.CreateDataSourceVM.class);
+                        classByDiscriminatorValue.put("CreateEmailTaskVM", cloud.fastreport.model.CreateEmailTaskVM.class);
+                        classByDiscriminatorValue.put("CreateExportReportTaskVM", cloud.fastreport.model.CreateExportReportTaskVM.class);
+                        classByDiscriminatorValue.put("CreateExportTemplateTaskVM", cloud.fastreport.model.CreateExportTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("CreateFTPUploadTaskVM", cloud.fastreport.model.CreateFTPUploadTaskVM.class);
+                        classByDiscriminatorValue.put("CreateFetchTaskVM", cloud.fastreport.model.CreateFetchTaskVM.class);
+                        classByDiscriminatorValue.put("CreateGroupAdminVM", cloud.fastreport.model.CreateGroupAdminVM.class);
+                        classByDiscriminatorValue.put("CreateGroupVM", cloud.fastreport.model.CreateGroupVM.class);
+                        classByDiscriminatorValue.put("CreateIfNotExistInternalVM", cloud.fastreport.model.CreateIfNotExistInternalVM.class);
+                        classByDiscriminatorValue.put("CreatePrepareTemplateTaskVM", cloud.fastreport.model.CreatePrepareTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("CreateSubscriptionInviteVM", cloud.fastreport.model.CreateSubscriptionInviteVM.class);
+                        classByDiscriminatorValue.put("CreateSubscriptionPeriodVM", cloud.fastreport.model.CreateSubscriptionPeriodVM.class);
+                        classByDiscriminatorValue.put("CreateSubscriptionPlanVM", cloud.fastreport.model.CreateSubscriptionPlanVM.class);
+                        classByDiscriminatorValue.put("CreateSubscriptionVM", cloud.fastreport.model.CreateSubscriptionVM.class);
+                        classByDiscriminatorValue.put("CreateTaskBaseVM", cloud.fastreport.model.CreateTaskBaseVM.class);
+                        classByDiscriminatorValue.put("CreateThumbnailReportTaskVM", cloud.fastreport.model.CreateThumbnailReportTaskVM.class);
+                        classByDiscriminatorValue.put("CreateThumbnailTemplateTaskVM", cloud.fastreport.model.CreateThumbnailTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("CreateTransformTaskBaseVM", cloud.fastreport.model.CreateTransformTaskBaseVM.class);
+                        classByDiscriminatorValue.put("CreateTransportTaskBaseVM", cloud.fastreport.model.CreateTransportTaskBaseVM.class);
+                        classByDiscriminatorValue.put("CreateWebhookTaskVM", cloud.fastreport.model.CreateWebhookTaskVM.class);
+                        classByDiscriminatorValue.put("DataSourcePermissionCRUDVM", cloud.fastreport.model.DataSourcePermissionCRUDVM.class);
+                        classByDiscriminatorValue.put("DataSourcePermissionsCRUDVM", cloud.fastreport.model.DataSourcePermissionsCRUDVM.class);
+                        classByDiscriminatorValue.put("DataSourcePermissionsVM", cloud.fastreport.model.DataSourcePermissionsVM.class);
+                        classByDiscriminatorValue.put("DataSourceVM", cloud.fastreport.model.DataSourceVM.class);
+                        classByDiscriminatorValue.put("DataSourcesVM", cloud.fastreport.model.DataSourcesVM.class);
+                        classByDiscriminatorValue.put("DefaultPermissionsVM", cloud.fastreport.model.DefaultPermissionsVM.class);
+                        classByDiscriminatorValue.put("DeleteApiKeyVM", cloud.fastreport.model.DeleteApiKeyVM.class);
+                        classByDiscriminatorValue.put("EmailTaskVM", cloud.fastreport.model.EmailTaskVM.class);
+                        classByDiscriminatorValue.put("ExportCreateAdminVM", cloud.fastreport.model.ExportCreateAdminVM.class);
+                        classByDiscriminatorValue.put("ExportCreateVM", cloud.fastreport.model.ExportCreateVM.class);
+                        classByDiscriminatorValue.put("ExportFolderCreateVM", cloud.fastreport.model.ExportFolderCreateVM.class);
+                        classByDiscriminatorValue.put("ExportReportTaskVM", cloud.fastreport.model.ExportReportTaskVM.class);
+                        classByDiscriminatorValue.put("ExportReportVM", cloud.fastreport.model.ExportReportVM.class);
+                        classByDiscriminatorValue.put("ExportTemplateTaskVM", cloud.fastreport.model.ExportTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("ExportTemplateVM", cloud.fastreport.model.ExportTemplateVM.class);
+                        classByDiscriminatorValue.put("ExportVM", cloud.fastreport.model.ExportVM.class);
+                        classByDiscriminatorValue.put("ExportsVM", cloud.fastreport.model.ExportsVM.class);
+                        classByDiscriminatorValue.put("FTPUploadTaskVM", cloud.fastreport.model.FTPUploadTaskVM.class);
+                        classByDiscriminatorValue.put("FetchTaskVM", cloud.fastreport.model.FetchTaskVM.class);
+                        classByDiscriminatorValue.put("FileContentVM", cloud.fastreport.model.FileContentVM.class);
+                        classByDiscriminatorValue.put("FileCreateFormVM", cloud.fastreport.model.FileCreateFormVM.class);
+                        classByDiscriminatorValue.put("FileCreateVM", cloud.fastreport.model.FileCreateVM.class);
+                        classByDiscriminatorValue.put("FileIconVM", cloud.fastreport.model.FileIconVM.class);
+                        classByDiscriminatorValue.put("FilePermissionCRUDVM", cloud.fastreport.model.FilePermissionCRUDVM.class);
+                        classByDiscriminatorValue.put("FilePermissionsCRUDVM", cloud.fastreport.model.FilePermissionsCRUDVM.class);
+                        classByDiscriminatorValue.put("FilePermissionsVM", cloud.fastreport.model.FilePermissionsVM.class);
+                        classByDiscriminatorValue.put("FileRenameVM", cloud.fastreport.model.FileRenameVM.class);
+                        classByDiscriminatorValue.put("FileStatusUpdateInternalVM", cloud.fastreport.model.FileStatusUpdateInternalVM.class);
+                        classByDiscriminatorValue.put("FileStatusVM", cloud.fastreport.model.FileStatusVM.class);
+                        classByDiscriminatorValue.put("FileTagsUpdateVM", cloud.fastreport.model.FileTagsUpdateVM.class);
+                        classByDiscriminatorValue.put("FileThumbnailUpdateInternalVM", cloud.fastreport.model.FileThumbnailUpdateInternalVM.class);
+                        classByDiscriminatorValue.put("FileUpdateVM", cloud.fastreport.model.FileUpdateVM.class);
+                        classByDiscriminatorValue.put("FileVM", cloud.fastreport.model.FileVM.class);
+                        classByDiscriminatorValue.put("FilesVM", cloud.fastreport.model.FilesVM.class);
+                        classByDiscriminatorValue.put("FilesVMBase", cloud.fastreport.model.FilesVMBase.class);
+                        classByDiscriminatorValue.put("FolderCreateVM", cloud.fastreport.model.FolderCreateVM.class);
+                        classByDiscriminatorValue.put("FolderIconVM", cloud.fastreport.model.FolderIconVM.class);
+                        classByDiscriminatorValue.put("FolderRenameVM", cloud.fastreport.model.FolderRenameVM.class);
+                        classByDiscriminatorValue.put("FolderSizeVM", cloud.fastreport.model.FolderSizeVM.class);
+                        classByDiscriminatorValue.put("FolderTagsUpdateVM", cloud.fastreport.model.FolderTagsUpdateVM.class);
+                        classByDiscriminatorValue.put("FrontendAppVM", cloud.fastreport.model.FrontendAppVM.class);
+                        classByDiscriminatorValue.put("GroupPermissionCRUDVM", cloud.fastreport.model.GroupPermissionCRUDVM.class);
+                        classByDiscriminatorValue.put("GroupPermissionsCRUDVM", cloud.fastreport.model.GroupPermissionsCRUDVM.class);
+                        classByDiscriminatorValue.put("GroupPermissionsVM", cloud.fastreport.model.GroupPermissionsVM.class);
+                        classByDiscriminatorValue.put("GroupUserVM", cloud.fastreport.model.GroupUserVM.class);
+                        classByDiscriminatorValue.put("GroupUsersVM", cloud.fastreport.model.GroupUsersVM.class);
+                        classByDiscriminatorValue.put("GroupVM", cloud.fastreport.model.GroupVM.class);
+                        classByDiscriminatorValue.put("GroupsVM", cloud.fastreport.model.GroupsVM.class);
+                        classByDiscriminatorValue.put("InputFileVM", cloud.fastreport.model.InputFileVM.class);
+                        classByDiscriminatorValue.put("MyPermissionsVM", cloud.fastreport.model.MyPermissionsVM.class);
+                        classByDiscriminatorValue.put("OutputFileVM", cloud.fastreport.model.OutputFileVM.class);
+                        classByDiscriminatorValue.put("PrepareTemplateTaskVM", cloud.fastreport.model.PrepareTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("PrepareTemplateVM", cloud.fastreport.model.PrepareTemplateVM.class);
+                        classByDiscriminatorValue.put("PreviewReportVM", cloud.fastreport.model.PreviewReportVM.class);
+                        classByDiscriminatorValue.put("PreviewTemplateVM", cloud.fastreport.model.PreviewTemplateVM.class);
+                        classByDiscriminatorValue.put("RegisterUserVM", cloud.fastreport.model.RegisterUserVM.class);
+                        classByDiscriminatorValue.put("RenameDataSourceVM", cloud.fastreport.model.RenameDataSourceVM.class);
+                        classByDiscriminatorValue.put("RenameGroupVM", cloud.fastreport.model.RenameGroupVM.class);
+                        classByDiscriminatorValue.put("RenameSubscriptionVM", cloud.fastreport.model.RenameSubscriptionVM.class);
+                        classByDiscriminatorValue.put("ReportCreateAdminVM", cloud.fastreport.model.ReportCreateAdminVM.class);
+                        classByDiscriminatorValue.put("ReportCreateFormVM", cloud.fastreport.model.ReportCreateFormVM.class);
+                        classByDiscriminatorValue.put("ReportCreateVM", cloud.fastreport.model.ReportCreateVM.class);
+                        classByDiscriminatorValue.put("ReportFolderCreateVM", cloud.fastreport.model.ReportFolderCreateVM.class);
+                        classByDiscriminatorValue.put("ReportVM", cloud.fastreport.model.ReportVM.class);
+                        classByDiscriminatorValue.put("ReportsVM", cloud.fastreport.model.ReportsVM.class);
+                        classByDiscriminatorValue.put("RestOfSpaceVM", cloud.fastreport.model.RestOfSpaceVM.class);
+                        classByDiscriminatorValue.put("RunEmailTaskVM", cloud.fastreport.model.RunEmailTaskVM.class);
+                        classByDiscriminatorValue.put("RunExportReportTaskVM", cloud.fastreport.model.RunExportReportTaskVM.class);
+                        classByDiscriminatorValue.put("RunExportTemplateTaskVM", cloud.fastreport.model.RunExportTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("RunFTPUploadTaskVM", cloud.fastreport.model.RunFTPUploadTaskVM.class);
+                        classByDiscriminatorValue.put("RunFetchTaskVM", cloud.fastreport.model.RunFetchTaskVM.class);
+                        classByDiscriminatorValue.put("RunInputFileVM", cloud.fastreport.model.RunInputFileVM.class);
+                        classByDiscriminatorValue.put("RunPrepareTemplateTaskVM", cloud.fastreport.model.RunPrepareTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("RunTaskBaseVM", cloud.fastreport.model.RunTaskBaseVM.class);
+                        classByDiscriminatorValue.put("RunThumbnailReportTaskVM", cloud.fastreport.model.RunThumbnailReportTaskVM.class);
+                        classByDiscriminatorValue.put("RunThumbnailTemplateTaskVM", cloud.fastreport.model.RunThumbnailTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("RunTransformTaskBaseVM", cloud.fastreport.model.RunTransformTaskBaseVM.class);
+                        classByDiscriminatorValue.put("RunTransportTaskBaseVM", cloud.fastreport.model.RunTransportTaskBaseVM.class);
+                        classByDiscriminatorValue.put("RunWebhookTaskVM", cloud.fastreport.model.RunWebhookTaskVM.class);
+                        classByDiscriminatorValue.put("SelectedFilesVM", cloud.fastreport.model.SelectedFilesVM.class);
+                        classByDiscriminatorValue.put("ServerConfigurationVM", cloud.fastreport.model.ServerConfigurationVM.class);
+                        classByDiscriminatorValue.put("SolvationReportVM", cloud.fastreport.model.SolvationReportVM.class);
+                        classByDiscriminatorValue.put("SubscriptionInviteVM", cloud.fastreport.model.SubscriptionInviteVM.class);
+                        classByDiscriminatorValue.put("SubscriptionInvitesVM", cloud.fastreport.model.SubscriptionInvitesVM.class);
+                        classByDiscriminatorValue.put("SubscriptionPeriodVM", cloud.fastreport.model.SubscriptionPeriodVM.class);
+                        classByDiscriminatorValue.put("SubscriptionPermissionCRUDVM", cloud.fastreport.model.SubscriptionPermissionCRUDVM.class);
+                        classByDiscriminatorValue.put("SubscriptionPermissionsCRUDVM", cloud.fastreport.model.SubscriptionPermissionsCRUDVM.class);
+                        classByDiscriminatorValue.put("SubscriptionPermissionsVM", cloud.fastreport.model.SubscriptionPermissionsVM.class);
+                        classByDiscriminatorValue.put("SubscriptionPlanVM", cloud.fastreport.model.SubscriptionPlanVM.class);
+                        classByDiscriminatorValue.put("SubscriptionPlansVM", cloud.fastreport.model.SubscriptionPlansVM.class);
+                        classByDiscriminatorValue.put("SubscriptionUserVM", cloud.fastreport.model.SubscriptionUserVM.class);
+                        classByDiscriminatorValue.put("SubscriptionUsersVM", cloud.fastreport.model.SubscriptionUsersVM.class);
+                        classByDiscriminatorValue.put("SubscriptionVM", cloud.fastreport.model.SubscriptionVM.class);
+                        classByDiscriminatorValue.put("SubscriptionsVM", cloud.fastreport.model.SubscriptionsVM.class);
+                        classByDiscriminatorValue.put("TaskBaseVM", cloud.fastreport.model.TaskBaseVM.class);
+                        classByDiscriminatorValue.put("TaskIdsVM", cloud.fastreport.model.TaskIdsVM.class);
+                        classByDiscriminatorValue.put("TaskMessageIdVM", cloud.fastreport.model.TaskMessageIdVM.class);
+                        classByDiscriminatorValue.put("TaskPermissionCRUDVM", cloud.fastreport.model.TaskPermissionCRUDVM.class);
+                        classByDiscriminatorValue.put("TaskPermissionsCRUDVM", cloud.fastreport.model.TaskPermissionsCRUDVM.class);
+                        classByDiscriminatorValue.put("TaskPermissionsVM", cloud.fastreport.model.TaskPermissionsVM.class);
+                        classByDiscriminatorValue.put("TaskSettingsVM", cloud.fastreport.model.TaskSettingsVM.class);
+                        classByDiscriminatorValue.put("TasksVM", cloud.fastreport.model.TasksVM.class);
+                        classByDiscriminatorValue.put("TemplateContentVM", cloud.fastreport.model.TemplateContentVM.class);
+                        classByDiscriminatorValue.put("TemplateCreateAdminVM", cloud.fastreport.model.TemplateCreateAdminVM.class);
+                        classByDiscriminatorValue.put("TemplateCreateFormVM", cloud.fastreport.model.TemplateCreateFormVM.class);
+                        classByDiscriminatorValue.put("TemplateCreateVM", cloud.fastreport.model.TemplateCreateVM.class);
+                        classByDiscriminatorValue.put("TemplateFolderCreateVM", cloud.fastreport.model.TemplateFolderCreateVM.class);
+                        classByDiscriminatorValue.put("TemplateVM", cloud.fastreport.model.TemplateVM.class);
+                        classByDiscriminatorValue.put("TemplatesVM", cloud.fastreport.model.TemplatesVM.class);
+                        classByDiscriminatorValue.put("ThumbnailReportTaskVM", cloud.fastreport.model.ThumbnailReportTaskVM.class);
+                        classByDiscriminatorValue.put("ThumbnailTemplateTaskVM", cloud.fastreport.model.ThumbnailTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("TransformTaskBaseVM", cloud.fastreport.model.TransformTaskBaseVM.class);
+                        classByDiscriminatorValue.put("TransportTaskBaseVM", cloud.fastreport.model.TransportTaskBaseVM.class);
+                        classByDiscriminatorValue.put("UpdateContentInternalVM", cloud.fastreport.model.UpdateContentInternalVM.class);
+                        classByDiscriminatorValue.put("UpdateDataSourceConnectionStringVM", cloud.fastreport.model.UpdateDataSourceConnectionStringVM.class);
+                        classByDiscriminatorValue.put("UpdateDataSourcePermissionsVM", cloud.fastreport.model.UpdateDataSourcePermissionsVM.class);
+                        classByDiscriminatorValue.put("UpdateDataSourceSubscriptionVM", cloud.fastreport.model.UpdateDataSourceSubscriptionVM.class);
+                        classByDiscriminatorValue.put("UpdateDataSourceVM", cloud.fastreport.model.UpdateDataSourceVM.class);
+                        classByDiscriminatorValue.put("UpdateDataVM", cloud.fastreport.model.UpdateDataVM.class);
+                        classByDiscriminatorValue.put("UpdateDefaultPermissionsVM", cloud.fastreport.model.UpdateDefaultPermissionsVM.class);
+                        classByDiscriminatorValue.put("UpdateEmailTaskVM", cloud.fastreport.model.UpdateEmailTaskVM.class);
+                        classByDiscriminatorValue.put("UpdateExportReportTaskVM", cloud.fastreport.model.UpdateExportReportTaskVM.class);
+                        classByDiscriminatorValue.put("UpdateExportTemplateTaskVM", cloud.fastreport.model.UpdateExportTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("UpdateFTPUploadTaskVM", cloud.fastreport.model.UpdateFTPUploadTaskVM.class);
+                        classByDiscriminatorValue.put("UpdateFetchTaskVM", cloud.fastreport.model.UpdateFetchTaskVM.class);
+                        classByDiscriminatorValue.put("UpdateFileContentFormVM", cloud.fastreport.model.UpdateFileContentFormVM.class);
+                        classByDiscriminatorValue.put("UpdateFileContentInternalVM", cloud.fastreport.model.UpdateFileContentInternalVM.class);
+                        classByDiscriminatorValue.put("UpdateFileContentVM", cloud.fastreport.model.UpdateFileContentVM.class);
+                        classByDiscriminatorValue.put("UpdateFilePermissionsVM", cloud.fastreport.model.UpdateFilePermissionsVM.class);
+                        classByDiscriminatorValue.put("UpdateGroupPermissionsVM", cloud.fastreport.model.UpdateGroupPermissionsVM.class);
+                        classByDiscriminatorValue.put("UpdateGroupVM", cloud.fastreport.model.UpdateGroupVM.class);
+                        classByDiscriminatorValue.put("UpdatePrepareTemplateTaskVM", cloud.fastreport.model.UpdatePrepareTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("UpdateSubscriptionLocaleVM", cloud.fastreport.model.UpdateSubscriptionLocaleVM.class);
+                        classByDiscriminatorValue.put("UpdateSubscriptionPermissionsVM", cloud.fastreport.model.UpdateSubscriptionPermissionsVM.class);
+                        classByDiscriminatorValue.put("UpdateSubscriptionPlanVM", cloud.fastreport.model.UpdateSubscriptionPlanVM.class);
+                        classByDiscriminatorValue.put("UpdateSubscriptionVM", cloud.fastreport.model.UpdateSubscriptionVM.class);
+                        classByDiscriminatorValue.put("UpdateTaskBaseVM", cloud.fastreport.model.UpdateTaskBaseVM.class);
+                        classByDiscriminatorValue.put("UpdateTaskPermissionsVM", cloud.fastreport.model.UpdateTaskPermissionsVM.class);
+                        classByDiscriminatorValue.put("UpdateThumbnailReportTaskVM", cloud.fastreport.model.UpdateThumbnailReportTaskVM.class);
+                        classByDiscriminatorValue.put("UpdateThumbnailTemplateTaskVM", cloud.fastreport.model.UpdateThumbnailTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("UpdateTransformTaskBaseVM", cloud.fastreport.model.UpdateTransformTaskBaseVM.class);
+                        classByDiscriminatorValue.put("UpdateTransportTaskBaseVM", cloud.fastreport.model.UpdateTransportTaskBaseVM.class);
+                        classByDiscriminatorValue.put("UpdateUserProfileVM", cloud.fastreport.model.UpdateUserProfileVM.class);
+                        classByDiscriminatorValue.put("UpdateUserSettingsVM", cloud.fastreport.model.UpdateUserSettingsVM.class);
+                        classByDiscriminatorValue.put("UpdateUserVM", cloud.fastreport.model.UpdateUserVM.class);
+                        classByDiscriminatorValue.put("UpdateWebhookTaskVM", cloud.fastreport.model.UpdateWebhookTaskVM.class);
+                        classByDiscriminatorValue.put("UserIsAdminVM", cloud.fastreport.model.UserIsAdminVM.class);
+                        classByDiscriminatorValue.put("UserProfileVM", cloud.fastreport.model.UserProfileVM.class);
+                        classByDiscriminatorValue.put("UserResultVM", cloud.fastreport.model.UserResultVM.class);
+                        classByDiscriminatorValue.put("UserSettingsVM", cloud.fastreport.model.UserSettingsVM.class);
+                        classByDiscriminatorValue.put("UserVM", cloud.fastreport.model.UserVM.class);
+                        classByDiscriminatorValue.put("UsersVM", cloud.fastreport.model.UsersVM.class);
+                        classByDiscriminatorValue.put("WebhookTaskVM", cloud.fastreport.model.WebhookTaskVM.class);
+                        classByDiscriminatorValue.put("CloudBaseVM", cloud.fastreport.model.CloudBaseVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.CountVM.class, new TypeSelector<cloud.fastreport.model.CountVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.CountVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CountVM", cloud.fastreport.model.CountVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.CreateApiKeyVM.class, new TypeSelector<cloud.fastreport.model.CreateApiKeyVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.CreateApiKeyVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CreateApiKeyVM", cloud.fastreport.model.CreateApiKeyVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.CreateAuditActionVM.class, new TypeSelector<cloud.fastreport.model.CreateAuditActionVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.CreateAuditActionVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CreateAuditActionVM", cloud.fastreport.model.CreateAuditActionVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -240,11 +614,56 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.CreateIfNotExistInternalVM.class, new TypeSelector<cloud.fastreport.model.CreateIfNotExistInternalVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.CreateIfNotExistInternalVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CreateIfNotExistInternalVM", cloud.fastreport.model.CreateIfNotExistInternalVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.CreatePrepareTemplateTaskVM.class, new TypeSelector<cloud.fastreport.model.CreatePrepareTemplateTaskVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.CreatePrepareTemplateTaskVM> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("CreatePrepareTemplateTaskVM", cloud.fastreport.model.CreatePrepareTemplateTaskVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.CreateSubscriptionInviteVM.class, new TypeSelector<cloud.fastreport.model.CreateSubscriptionInviteVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.CreateSubscriptionInviteVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CreateSubscriptionInviteVM", cloud.fastreport.model.CreateSubscriptionInviteVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.CreateSubscriptionPeriodVM.class, new TypeSelector<cloud.fastreport.model.CreateSubscriptionPeriodVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.CreateSubscriptionPeriodVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CreateSubscriptionPeriodVM", cloud.fastreport.model.CreateSubscriptionPeriodVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.CreateSubscriptionPlanVM.class, new TypeSelector<cloud.fastreport.model.CreateSubscriptionPlanVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.CreateSubscriptionPlanVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CreateSubscriptionPlanVM", cloud.fastreport.model.CreateSubscriptionPlanVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.CreateSubscriptionVM.class, new TypeSelector<cloud.fastreport.model.CreateSubscriptionVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.CreateSubscriptionVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("CreateSubscriptionVM", cloud.fastreport.model.CreateSubscriptionVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -259,11 +678,12 @@ public class JSON {
                         classByDiscriminatorValue.put("CreateFTPUploadTaskVM", cloud.fastreport.model.CreateFTPUploadTaskVM.class);
                         classByDiscriminatorValue.put("CreateFetchTaskVM", cloud.fastreport.model.CreateFetchTaskVM.class);
                         classByDiscriminatorValue.put("CreatePrepareTemplateTaskVM", cloud.fastreport.model.CreatePrepareTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("CreateTaskBaseVM", cloud.fastreport.model.CreateTaskBaseVM.class);
                         classByDiscriminatorValue.put("CreateThumbnailReportTaskVM", cloud.fastreport.model.CreateThumbnailReportTaskVM.class);
                         classByDiscriminatorValue.put("CreateThumbnailTemplateTaskVM", cloud.fastreport.model.CreateThumbnailTemplateTaskVM.class);
-                        classByDiscriminatorValue.put("CreateWebhookTaskVM", cloud.fastreport.model.CreateWebhookTaskVM.class);
                         classByDiscriminatorValue.put("CreateTransformTaskBaseVM", cloud.fastreport.model.CreateTransformTaskBaseVM.class);
                         classByDiscriminatorValue.put("CreateTransportTaskBaseVM", cloud.fastreport.model.CreateTransportTaskBaseVM.class);
+                        classByDiscriminatorValue.put("CreateWebhookTaskVM", cloud.fastreport.model.CreateWebhookTaskVM.class);
                         classByDiscriminatorValue.put("CreateTaskBaseVM", cloud.fastreport.model.CreateTaskBaseVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
@@ -295,6 +715,7 @@ public class JSON {
                         classByDiscriminatorValue.put("CreateExportTemplateTaskVM", cloud.fastreport.model.CreateExportTemplateTaskVM.class);
                         classByDiscriminatorValue.put("CreatePrepareTemplateTaskVM", cloud.fastreport.model.CreatePrepareTemplateTaskVM.class);
                         classByDiscriminatorValue.put("CreateTransformTaskBaseVM", cloud.fastreport.model.CreateTransformTaskBaseVM.class);
+                        classByDiscriminatorValue.put("CreateTransformTaskBaseVM", cloud.fastreport.model.CreateTransformTaskBaseVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -305,6 +726,7 @@ public class JSON {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("CreateEmailTaskVM", cloud.fastreport.model.CreateEmailTaskVM.class);
                         classByDiscriminatorValue.put("CreateFTPUploadTaskVM", cloud.fastreport.model.CreateFTPUploadTaskVM.class);
+                        classByDiscriminatorValue.put("CreateTransportTaskBaseVM", cloud.fastreport.model.CreateTransportTaskBaseVM.class);
                         classByDiscriminatorValue.put("CreateWebhookTaskVM", cloud.fastreport.model.CreateWebhookTaskVM.class);
                         classByDiscriminatorValue.put("CreateTransportTaskBaseVM", cloud.fastreport.model.CreateTransportTaskBaseVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
@@ -316,6 +738,69 @@ public class JSON {
                     public Class<? extends cloud.fastreport.model.CreateWebhookTaskVM> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("CreateWebhookTaskVM", cloud.fastreport.model.CreateWebhookTaskVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.DataSourcePermissionCRUDVM.class, new TypeSelector<cloud.fastreport.model.DataSourcePermissionCRUDVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.DataSourcePermissionCRUDVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("DataSourcePermissionCRUDVM", cloud.fastreport.model.DataSourcePermissionCRUDVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.DataSourcePermissionsCRUDVM.class, new TypeSelector<cloud.fastreport.model.DataSourcePermissionsCRUDVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.DataSourcePermissionsCRUDVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("DataSourcePermissionsCRUDVM", cloud.fastreport.model.DataSourcePermissionsCRUDVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.DataSourcePermissionsVM.class, new TypeSelector<cloud.fastreport.model.DataSourcePermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.DataSourcePermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("DataSourcePermissionsVM", cloud.fastreport.model.DataSourcePermissionsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.DataSourceVM.class, new TypeSelector<cloud.fastreport.model.DataSourceVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.DataSourceVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("DataSourceVM", cloud.fastreport.model.DataSourceVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.DataSourcesVM.class, new TypeSelector<cloud.fastreport.model.DataSourcesVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.DataSourcesVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("DataSourcesVM", cloud.fastreport.model.DataSourcesVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.DefaultPermissionsVM.class, new TypeSelector<cloud.fastreport.model.DefaultPermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.DefaultPermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("DefaultPermissionsVM", cloud.fastreport.model.DefaultPermissionsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.DeleteApiKeyVM.class, new TypeSelector<cloud.fastreport.model.DeleteApiKeyVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.DeleteApiKeyVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("DeleteApiKeyVM", cloud.fastreport.model.DeleteApiKeyVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -369,6 +854,15 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.ExportReportVM.class, new TypeSelector<cloud.fastreport.model.ExportReportVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.ExportReportVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("ExportReportVM", cloud.fastreport.model.ExportReportVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.ExportTemplateTaskVM.class, new TypeSelector<cloud.fastreport.model.ExportTemplateTaskVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.ExportTemplateTaskVM> getClassForElement(JsonElement readElement) {
@@ -378,11 +872,29 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.ExportTemplateVM.class, new TypeSelector<cloud.fastreport.model.ExportTemplateVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.ExportTemplateVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("ExportTemplateVM", cloud.fastreport.model.ExportTemplateVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.ExportVM.class, new TypeSelector<cloud.fastreport.model.ExportVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.ExportVM> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("ExportVM", cloud.fastreport.model.ExportVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.ExportsVM.class, new TypeSelector<cloud.fastreport.model.ExportsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.ExportsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("ExportsVM", cloud.fastreport.model.ExportsVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -405,6 +917,27 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.FileContentVM.class, new TypeSelector<cloud.fastreport.model.FileContentVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FileContentVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FileContentVM", cloud.fastreport.model.FileContentVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FileCreateFormVM.class, new TypeSelector<cloud.fastreport.model.FileCreateFormVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FileCreateFormVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FileCreateFormVM", cloud.fastreport.model.FileCreateFormVM.class);
+                        classByDiscriminatorValue.put("ReportCreateFormVM", cloud.fastreport.model.ReportCreateFormVM.class);
+                        classByDiscriminatorValue.put("TemplateCreateFormVM", cloud.fastreport.model.TemplateCreateFormVM.class);
+                        classByDiscriminatorValue.put("FileCreateFormVM", cloud.fastreport.model.FileCreateFormVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.FileCreateVM.class, new TypeSelector<cloud.fastreport.model.FileCreateVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.FileCreateVM> getClassForElement(JsonElement readElement) {
@@ -421,6 +954,96 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.FileIconVM.class, new TypeSelector<cloud.fastreport.model.FileIconVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FileIconVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FileIconVM", cloud.fastreport.model.FileIconVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FilePermissionCRUDVM.class, new TypeSelector<cloud.fastreport.model.FilePermissionCRUDVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FilePermissionCRUDVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FilePermissionCRUDVM", cloud.fastreport.model.FilePermissionCRUDVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FilePermissionsCRUDVM.class, new TypeSelector<cloud.fastreport.model.FilePermissionsCRUDVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FilePermissionsCRUDVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FilePermissionsCRUDVM", cloud.fastreport.model.FilePermissionsCRUDVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FilePermissionsVM.class, new TypeSelector<cloud.fastreport.model.FilePermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FilePermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FilePermissionsVM", cloud.fastreport.model.FilePermissionsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FileRenameVM.class, new TypeSelector<cloud.fastreport.model.FileRenameVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FileRenameVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FileRenameVM", cloud.fastreport.model.FileRenameVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FileStatusUpdateInternalVM.class, new TypeSelector<cloud.fastreport.model.FileStatusUpdateInternalVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FileStatusUpdateInternalVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FileStatusUpdateInternalVM", cloud.fastreport.model.FileStatusUpdateInternalVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FileStatusVM.class, new TypeSelector<cloud.fastreport.model.FileStatusVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FileStatusVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FileStatusVM", cloud.fastreport.model.FileStatusVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FileTagsUpdateVM.class, new TypeSelector<cloud.fastreport.model.FileTagsUpdateVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FileTagsUpdateVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FileTagsUpdateVM", cloud.fastreport.model.FileTagsUpdateVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FileThumbnailUpdateInternalVM.class, new TypeSelector<cloud.fastreport.model.FileThumbnailUpdateInternalVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FileThumbnailUpdateInternalVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FileThumbnailUpdateInternalVM", cloud.fastreport.model.FileThumbnailUpdateInternalVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FileUpdateVM.class, new TypeSelector<cloud.fastreport.model.FileUpdateVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FileUpdateVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FileUpdateVM", cloud.fastreport.model.FileUpdateVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.FileVM.class, new TypeSelector<cloud.fastreport.model.FileVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.FileVM> getClassForElement(JsonElement readElement) {
@@ -430,6 +1053,29 @@ public class JSON {
                         classByDiscriminatorValue.put("ReportVM", cloud.fastreport.model.ReportVM.class);
                         classByDiscriminatorValue.put("TemplateVM", cloud.fastreport.model.TemplateVM.class);
                         classByDiscriminatorValue.put("FileVM", cloud.fastreport.model.FileVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FilesVM.class, new TypeSelector<cloud.fastreport.model.FilesVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FilesVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FilesVM", cloud.fastreport.model.FilesVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FilesVMBase.class, new TypeSelector<cloud.fastreport.model.FilesVMBase>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FilesVMBase> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("ExportsVM", cloud.fastreport.model.ExportsVM.class);
+                        classByDiscriminatorValue.put("FilesVM", cloud.fastreport.model.FilesVM.class);
+                        classByDiscriminatorValue.put("FilesVMBase", cloud.fastreport.model.FilesVMBase.class);
+                        classByDiscriminatorValue.put("ReportsVM", cloud.fastreport.model.ReportsVM.class);
+                        classByDiscriminatorValue.put("TemplatesVM", cloud.fastreport.model.TemplatesVM.class);
+                        classByDiscriminatorValue.put("FilesVMBase", cloud.fastreport.model.FilesVMBase.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -451,6 +1097,143 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.FolderIconVM.class, new TypeSelector<cloud.fastreport.model.FolderIconVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FolderIconVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FolderIconVM", cloud.fastreport.model.FolderIconVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FolderRenameVM.class, new TypeSelector<cloud.fastreport.model.FolderRenameVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FolderRenameVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FolderRenameVM", cloud.fastreport.model.FolderRenameVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FolderSizeVM.class, new TypeSelector<cloud.fastreport.model.FolderSizeVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FolderSizeVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FolderSizeVM", cloud.fastreport.model.FolderSizeVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FolderTagsUpdateVM.class, new TypeSelector<cloud.fastreport.model.FolderTagsUpdateVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FolderTagsUpdateVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FolderTagsUpdateVM", cloud.fastreport.model.FolderTagsUpdateVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.FrontendAppVM.class, new TypeSelector<cloud.fastreport.model.FrontendAppVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.FrontendAppVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("FrontendAppVM", cloud.fastreport.model.FrontendAppVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.GroupPermissionCRUDVM.class, new TypeSelector<cloud.fastreport.model.GroupPermissionCRUDVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.GroupPermissionCRUDVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("GroupPermissionCRUDVM", cloud.fastreport.model.GroupPermissionCRUDVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.GroupPermissionsCRUDVM.class, new TypeSelector<cloud.fastreport.model.GroupPermissionsCRUDVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.GroupPermissionsCRUDVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("GroupPermissionsCRUDVM", cloud.fastreport.model.GroupPermissionsCRUDVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.GroupPermissionsVM.class, new TypeSelector<cloud.fastreport.model.GroupPermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.GroupPermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("GroupPermissionsVM", cloud.fastreport.model.GroupPermissionsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.GroupUserVM.class, new TypeSelector<cloud.fastreport.model.GroupUserVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.GroupUserVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("GroupUserVM", cloud.fastreport.model.GroupUserVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.GroupUsersVM.class, new TypeSelector<cloud.fastreport.model.GroupUsersVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.GroupUsersVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("GroupUsersVM", cloud.fastreport.model.GroupUsersVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.GroupVM.class, new TypeSelector<cloud.fastreport.model.GroupVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.GroupVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("GroupVM", cloud.fastreport.model.GroupVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.GroupsVM.class, new TypeSelector<cloud.fastreport.model.GroupsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.GroupsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("GroupsVM", cloud.fastreport.model.GroupsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.InputFileVM.class, new TypeSelector<cloud.fastreport.model.InputFileVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.InputFileVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("InputFileVM", cloud.fastreport.model.InputFileVM.class);
+                        classByDiscriminatorValue.put("RunInputFileVM", cloud.fastreport.model.RunInputFileVM.class);
+                        classByDiscriminatorValue.put("InputFileVM", cloud.fastreport.model.InputFileVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.MyPermissionsVM.class, new TypeSelector<cloud.fastreport.model.MyPermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.MyPermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("MyPermissionsVM", cloud.fastreport.model.MyPermissionsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.OutputFileVM.class, new TypeSelector<cloud.fastreport.model.OutputFileVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.OutputFileVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("OutputFileVM", cloud.fastreport.model.OutputFileVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.PrepareTemplateTaskVM.class, new TypeSelector<cloud.fastreport.model.PrepareTemplateTaskVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.PrepareTemplateTaskVM> getClassForElement(JsonElement readElement) {
@@ -460,11 +1243,83 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.PrepareTemplateVM.class, new TypeSelector<cloud.fastreport.model.PrepareTemplateVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.PrepareTemplateVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("PrepareTemplateVM", cloud.fastreport.model.PrepareTemplateVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.PreviewReportVM.class, new TypeSelector<cloud.fastreport.model.PreviewReportVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.PreviewReportVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("PreviewReportVM", cloud.fastreport.model.PreviewReportVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.PreviewTemplateVM.class, new TypeSelector<cloud.fastreport.model.PreviewTemplateVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.PreviewTemplateVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("PreviewTemplateVM", cloud.fastreport.model.PreviewTemplateVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.RegisterUserVM.class, new TypeSelector<cloud.fastreport.model.RegisterUserVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.RegisterUserVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("RegisterUserVM", cloud.fastreport.model.RegisterUserVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.RenameDataSourceVM.class, new TypeSelector<cloud.fastreport.model.RenameDataSourceVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.RenameDataSourceVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("RenameDataSourceVM", cloud.fastreport.model.RenameDataSourceVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.RenameGroupVM.class, new TypeSelector<cloud.fastreport.model.RenameGroupVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.RenameGroupVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("RenameGroupVM", cloud.fastreport.model.RenameGroupVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.RenameSubscriptionVM.class, new TypeSelector<cloud.fastreport.model.RenameSubscriptionVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.RenameSubscriptionVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("RenameSubscriptionVM", cloud.fastreport.model.RenameSubscriptionVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.ReportCreateAdminVM.class, new TypeSelector<cloud.fastreport.model.ReportCreateAdminVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.ReportCreateAdminVM> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("ReportCreateAdminVM", cloud.fastreport.model.ReportCreateAdminVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.ReportCreateFormVM.class, new TypeSelector<cloud.fastreport.model.ReportCreateFormVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.ReportCreateFormVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("ReportCreateFormVM", cloud.fastreport.model.ReportCreateFormVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -494,6 +1349,24 @@ public class JSON {
                     public Class<? extends cloud.fastreport.model.ReportVM> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("ReportVM", cloud.fastreport.model.ReportVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.ReportsVM.class, new TypeSelector<cloud.fastreport.model.ReportsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.ReportsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("ReportsVM", cloud.fastreport.model.ReportsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.RestOfSpaceVM.class, new TypeSelector<cloud.fastreport.model.RestOfSpaceVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.RestOfSpaceVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("RestOfSpaceVM", cloud.fastreport.model.RestOfSpaceVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -545,6 +1418,15 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.RunInputFileVM.class, new TypeSelector<cloud.fastreport.model.RunInputFileVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.RunInputFileVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("RunInputFileVM", cloud.fastreport.model.RunInputFileVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.RunPrepareTemplateTaskVM.class, new TypeSelector<cloud.fastreport.model.RunPrepareTemplateTaskVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.RunPrepareTemplateTaskVM> getClassForElement(JsonElement readElement) {
@@ -564,11 +1446,12 @@ public class JSON {
                         classByDiscriminatorValue.put("RunFTPUploadTaskVM", cloud.fastreport.model.RunFTPUploadTaskVM.class);
                         classByDiscriminatorValue.put("RunFetchTaskVM", cloud.fastreport.model.RunFetchTaskVM.class);
                         classByDiscriminatorValue.put("RunPrepareTemplateTaskVM", cloud.fastreport.model.RunPrepareTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("RunTaskBaseVM", cloud.fastreport.model.RunTaskBaseVM.class);
                         classByDiscriminatorValue.put("RunThumbnailReportTaskVM", cloud.fastreport.model.RunThumbnailReportTaskVM.class);
                         classByDiscriminatorValue.put("RunThumbnailTemplateTaskVM", cloud.fastreport.model.RunThumbnailTemplateTaskVM.class);
-                        classByDiscriminatorValue.put("RunWebhookTaskVM", cloud.fastreport.model.RunWebhookTaskVM.class);
                         classByDiscriminatorValue.put("RunTransformTaskBaseVM", cloud.fastreport.model.RunTransformTaskBaseVM.class);
                         classByDiscriminatorValue.put("RunTransportTaskBaseVM", cloud.fastreport.model.RunTransportTaskBaseVM.class);
+                        classByDiscriminatorValue.put("RunWebhookTaskVM", cloud.fastreport.model.RunWebhookTaskVM.class);
                         classByDiscriminatorValue.put("RunTaskBaseVM", cloud.fastreport.model.RunTaskBaseVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
@@ -600,6 +1483,7 @@ public class JSON {
                         classByDiscriminatorValue.put("RunExportTemplateTaskVM", cloud.fastreport.model.RunExportTemplateTaskVM.class);
                         classByDiscriminatorValue.put("RunPrepareTemplateTaskVM", cloud.fastreport.model.RunPrepareTemplateTaskVM.class);
                         classByDiscriminatorValue.put("RunTransformTaskBaseVM", cloud.fastreport.model.RunTransformTaskBaseVM.class);
+                        classByDiscriminatorValue.put("RunTransformTaskBaseVM", cloud.fastreport.model.RunTransformTaskBaseVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -610,6 +1494,7 @@ public class JSON {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("RunEmailTaskVM", cloud.fastreport.model.RunEmailTaskVM.class);
                         classByDiscriminatorValue.put("RunFTPUploadTaskVM", cloud.fastreport.model.RunFTPUploadTaskVM.class);
+                        classByDiscriminatorValue.put("RunTransportTaskBaseVM", cloud.fastreport.model.RunTransportTaskBaseVM.class);
                         classByDiscriminatorValue.put("RunWebhookTaskVM", cloud.fastreport.model.RunWebhookTaskVM.class);
                         classByDiscriminatorValue.put("RunTransportTaskBaseVM", cloud.fastreport.model.RunTransportTaskBaseVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
@@ -625,6 +1510,123 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.SelectedFilesVM.class, new TypeSelector<cloud.fastreport.model.SelectedFilesVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SelectedFilesVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SelectedFilesVM", cloud.fastreport.model.SelectedFilesVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.ServerConfigurationVM.class, new TypeSelector<cloud.fastreport.model.ServerConfigurationVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.ServerConfigurationVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("ServerConfigurationVM", cloud.fastreport.model.ServerConfigurationVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.SolvationReportVM.class, new TypeSelector<cloud.fastreport.model.SolvationReportVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SolvationReportVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SolvationReportVM", cloud.fastreport.model.SolvationReportVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.SubscriptionInviteVM.class, new TypeSelector<cloud.fastreport.model.SubscriptionInviteVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SubscriptionInviteVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SubscriptionInviteVM", cloud.fastreport.model.SubscriptionInviteVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.SubscriptionInvitesVM.class, new TypeSelector<cloud.fastreport.model.SubscriptionInvitesVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SubscriptionInvitesVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SubscriptionInvitesVM", cloud.fastreport.model.SubscriptionInvitesVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.SubscriptionPeriodVM.class, new TypeSelector<cloud.fastreport.model.SubscriptionPeriodVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SubscriptionPeriodVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SubscriptionPeriodVM", cloud.fastreport.model.SubscriptionPeriodVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.SubscriptionPermissionCRUDVM.class, new TypeSelector<cloud.fastreport.model.SubscriptionPermissionCRUDVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SubscriptionPermissionCRUDVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SubscriptionPermissionCRUDVM", cloud.fastreport.model.SubscriptionPermissionCRUDVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.SubscriptionPermissionsCRUDVM.class, new TypeSelector<cloud.fastreport.model.SubscriptionPermissionsCRUDVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SubscriptionPermissionsCRUDVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SubscriptionPermissionsCRUDVM", cloud.fastreport.model.SubscriptionPermissionsCRUDVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.SubscriptionPermissionsVM.class, new TypeSelector<cloud.fastreport.model.SubscriptionPermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SubscriptionPermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SubscriptionPermissionsVM", cloud.fastreport.model.SubscriptionPermissionsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.SubscriptionPlanVM.class, new TypeSelector<cloud.fastreport.model.SubscriptionPlanVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SubscriptionPlanVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SubscriptionPlanVM", cloud.fastreport.model.SubscriptionPlanVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.SubscriptionPlansVM.class, new TypeSelector<cloud.fastreport.model.SubscriptionPlansVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SubscriptionPlansVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SubscriptionPlansVM", cloud.fastreport.model.SubscriptionPlansVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.SubscriptionUserVM.class, new TypeSelector<cloud.fastreport.model.SubscriptionUserVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SubscriptionUserVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SubscriptionUserVM", cloud.fastreport.model.SubscriptionUserVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.SubscriptionUsersVM.class, new TypeSelector<cloud.fastreport.model.SubscriptionUsersVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SubscriptionUsersVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SubscriptionUsersVM", cloud.fastreport.model.SubscriptionUsersVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.SubscriptionVM.class, new TypeSelector<cloud.fastreport.model.SubscriptionVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.SubscriptionVM> getClassForElement(JsonElement readElement) {
@@ -632,6 +1634,15 @@ public class JSON {
                         classByDiscriminatorValue.put("AdminSubscriptionVM", cloud.fastreport.model.AdminSubscriptionVM.class);
                         classByDiscriminatorValue.put("SubscriptionVM", cloud.fastreport.model.SubscriptionVM.class);
                         classByDiscriminatorValue.put("SubscriptionVM", cloud.fastreport.model.SubscriptionVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.SubscriptionsVM.class, new TypeSelector<cloud.fastreport.model.SubscriptionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.SubscriptionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("SubscriptionsVM", cloud.fastreport.model.SubscriptionsVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -646,12 +1657,85 @@ public class JSON {
                         classByDiscriminatorValue.put("FTPUploadTaskVM", cloud.fastreport.model.FTPUploadTaskVM.class);
                         classByDiscriminatorValue.put("FetchTaskVM", cloud.fastreport.model.FetchTaskVM.class);
                         classByDiscriminatorValue.put("PrepareTemplateTaskVM", cloud.fastreport.model.PrepareTemplateTaskVM.class);
+                        classByDiscriminatorValue.put("TaskBaseVM", cloud.fastreport.model.TaskBaseVM.class);
                         classByDiscriminatorValue.put("ThumbnailReportTaskVM", cloud.fastreport.model.ThumbnailReportTaskVM.class);
                         classByDiscriminatorValue.put("ThumbnailTemplateTaskVM", cloud.fastreport.model.ThumbnailTemplateTaskVM.class);
-                        classByDiscriminatorValue.put("WebhookTaskVM", cloud.fastreport.model.WebhookTaskVM.class);
                         classByDiscriminatorValue.put("TransformTaskBaseVM", cloud.fastreport.model.TransformTaskBaseVM.class);
                         classByDiscriminatorValue.put("TransportTaskBaseVM", cloud.fastreport.model.TransportTaskBaseVM.class);
+                        classByDiscriminatorValue.put("WebhookTaskVM", cloud.fastreport.model.WebhookTaskVM.class);
                         classByDiscriminatorValue.put("TaskBaseVM", cloud.fastreport.model.TaskBaseVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.TaskIdsVM.class, new TypeSelector<cloud.fastreport.model.TaskIdsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.TaskIdsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("TaskIdsVM", cloud.fastreport.model.TaskIdsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.TaskMessageIdVM.class, new TypeSelector<cloud.fastreport.model.TaskMessageIdVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.TaskMessageIdVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("TaskMessageIdVM", cloud.fastreport.model.TaskMessageIdVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.TaskPermissionCRUDVM.class, new TypeSelector<cloud.fastreport.model.TaskPermissionCRUDVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.TaskPermissionCRUDVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("TaskPermissionCRUDVM", cloud.fastreport.model.TaskPermissionCRUDVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.TaskPermissionsCRUDVM.class, new TypeSelector<cloud.fastreport.model.TaskPermissionsCRUDVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.TaskPermissionsCRUDVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("TaskPermissionsCRUDVM", cloud.fastreport.model.TaskPermissionsCRUDVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.TaskPermissionsVM.class, new TypeSelector<cloud.fastreport.model.TaskPermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.TaskPermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("TaskPermissionsVM", cloud.fastreport.model.TaskPermissionsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.TaskSettingsVM.class, new TypeSelector<cloud.fastreport.model.TaskSettingsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.TaskSettingsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("TaskSettingsVM", cloud.fastreport.model.TaskSettingsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.TasksVM.class, new TypeSelector<cloud.fastreport.model.TasksVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.TasksVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("TasksVM", cloud.fastreport.model.TasksVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.TemplateContentVM.class, new TypeSelector<cloud.fastreport.model.TemplateContentVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.TemplateContentVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("TemplateContentVM", cloud.fastreport.model.TemplateContentVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -661,6 +1745,15 @@ public class JSON {
                     public Class<? extends cloud.fastreport.model.TemplateCreateAdminVM> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("TemplateCreateAdminVM", cloud.fastreport.model.TemplateCreateAdminVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.TemplateCreateFormVM.class, new TypeSelector<cloud.fastreport.model.TemplateCreateFormVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.TemplateCreateFormVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("TemplateCreateFormVM", cloud.fastreport.model.TemplateCreateFormVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -694,6 +1787,15 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.TemplatesVM.class, new TypeSelector<cloud.fastreport.model.TemplatesVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.TemplatesVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("TemplatesVM", cloud.fastreport.model.TemplatesVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.ThumbnailReportTaskVM.class, new TypeSelector<cloud.fastreport.model.ThumbnailReportTaskVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.ThumbnailReportTaskVM> getClassForElement(JsonElement readElement) {
@@ -720,6 +1822,7 @@ public class JSON {
                         classByDiscriminatorValue.put("ExportTemplateTaskVM", cloud.fastreport.model.ExportTemplateTaskVM.class);
                         classByDiscriminatorValue.put("PrepareTemplateTaskVM", cloud.fastreport.model.PrepareTemplateTaskVM.class);
                         classByDiscriminatorValue.put("TransformTaskBaseVM", cloud.fastreport.model.TransformTaskBaseVM.class);
+                        classByDiscriminatorValue.put("TransformTaskBaseVM", cloud.fastreport.model.TransformTaskBaseVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -730,8 +1833,72 @@ public class JSON {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("EmailTaskVM", cloud.fastreport.model.EmailTaskVM.class);
                         classByDiscriminatorValue.put("FTPUploadTaskVM", cloud.fastreport.model.FTPUploadTaskVM.class);
+                        classByDiscriminatorValue.put("TransportTaskBaseVM", cloud.fastreport.model.TransportTaskBaseVM.class);
                         classByDiscriminatorValue.put("WebhookTaskVM", cloud.fastreport.model.WebhookTaskVM.class);
                         classByDiscriminatorValue.put("TransportTaskBaseVM", cloud.fastreport.model.TransportTaskBaseVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateContentInternalVM.class, new TypeSelector<cloud.fastreport.model.UpdateContentInternalVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateContentInternalVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateContentInternalVM", cloud.fastreport.model.UpdateContentInternalVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateDataSourceConnectionStringVM.class, new TypeSelector<cloud.fastreport.model.UpdateDataSourceConnectionStringVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateDataSourceConnectionStringVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateDataSourceConnectionStringVM", cloud.fastreport.model.UpdateDataSourceConnectionStringVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateDataSourcePermissionsVM.class, new TypeSelector<cloud.fastreport.model.UpdateDataSourcePermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateDataSourcePermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateDataSourcePermissionsVM", cloud.fastreport.model.UpdateDataSourcePermissionsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateDataSourceSubscriptionVM.class, new TypeSelector<cloud.fastreport.model.UpdateDataSourceSubscriptionVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateDataSourceSubscriptionVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateDataSourceSubscriptionVM", cloud.fastreport.model.UpdateDataSourceSubscriptionVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateDataSourceVM.class, new TypeSelector<cloud.fastreport.model.UpdateDataSourceVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateDataSourceVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateDataSourceVM", cloud.fastreport.model.UpdateDataSourceVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateDataVM.class, new TypeSelector<cloud.fastreport.model.UpdateDataVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateDataVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateDataVM", cloud.fastreport.model.UpdateDataVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateDefaultPermissionsVM.class, new TypeSelector<cloud.fastreport.model.UpdateDefaultPermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateDefaultPermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateDefaultPermissionsVM", cloud.fastreport.model.UpdateDefaultPermissionsVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -783,11 +1950,101 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "$t"));
                     }
           })
+                .registerTypeSelector(cloud.fastreport.model.UpdateFileContentFormVM.class, new TypeSelector<cloud.fastreport.model.UpdateFileContentFormVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateFileContentFormVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateFileContentFormVM", cloud.fastreport.model.UpdateFileContentFormVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateFileContentInternalVM.class, new TypeSelector<cloud.fastreport.model.UpdateFileContentInternalVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateFileContentInternalVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateFileContentInternalVM", cloud.fastreport.model.UpdateFileContentInternalVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateFileContentVM.class, new TypeSelector<cloud.fastreport.model.UpdateFileContentVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateFileContentVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateFileContentVM", cloud.fastreport.model.UpdateFileContentVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateFilePermissionsVM.class, new TypeSelector<cloud.fastreport.model.UpdateFilePermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateFilePermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateFilePermissionsVM", cloud.fastreport.model.UpdateFilePermissionsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateGroupPermissionsVM.class, new TypeSelector<cloud.fastreport.model.UpdateGroupPermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateGroupPermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateGroupPermissionsVM", cloud.fastreport.model.UpdateGroupPermissionsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateGroupVM.class, new TypeSelector<cloud.fastreport.model.UpdateGroupVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateGroupVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateGroupVM", cloud.fastreport.model.UpdateGroupVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
                 .registerTypeSelector(cloud.fastreport.model.UpdatePrepareTemplateTaskVM.class, new TypeSelector<cloud.fastreport.model.UpdatePrepareTemplateTaskVM>() {
                     @Override
                     public Class<? extends cloud.fastreport.model.UpdatePrepareTemplateTaskVM> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("UpdatePrepareTemplateTaskVM", cloud.fastreport.model.UpdatePrepareTemplateTaskVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateSubscriptionLocaleVM.class, new TypeSelector<cloud.fastreport.model.UpdateSubscriptionLocaleVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateSubscriptionLocaleVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateSubscriptionLocaleVM", cloud.fastreport.model.UpdateSubscriptionLocaleVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateSubscriptionPermissionsVM.class, new TypeSelector<cloud.fastreport.model.UpdateSubscriptionPermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateSubscriptionPermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateSubscriptionPermissionsVM", cloud.fastreport.model.UpdateSubscriptionPermissionsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateSubscriptionPlanVM.class, new TypeSelector<cloud.fastreport.model.UpdateSubscriptionPlanVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateSubscriptionPlanVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateSubscriptionPlanVM", cloud.fastreport.model.UpdateSubscriptionPlanVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateSubscriptionVM.class, new TypeSelector<cloud.fastreport.model.UpdateSubscriptionVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateSubscriptionVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateSubscriptionVM", cloud.fastreport.model.UpdateSubscriptionVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -805,10 +2062,19 @@ public class JSON {
                         classByDiscriminatorValue.put("UpdateTaskBaseVM", cloud.fastreport.model.UpdateTaskBaseVM.class);
                         classByDiscriminatorValue.put("UpdateThumbnailReportTaskVM", cloud.fastreport.model.UpdateThumbnailReportTaskVM.class);
                         classByDiscriminatorValue.put("UpdateThumbnailTemplateTaskVM", cloud.fastreport.model.UpdateThumbnailTemplateTaskVM.class);
-                        classByDiscriminatorValue.put("UpdateWebhookTaskVM", cloud.fastreport.model.UpdateWebhookTaskVM.class);
                         classByDiscriminatorValue.put("UpdateTransformTaskBaseVM", cloud.fastreport.model.UpdateTransformTaskBaseVM.class);
                         classByDiscriminatorValue.put("UpdateTransportTaskBaseVM", cloud.fastreport.model.UpdateTransportTaskBaseVM.class);
+                        classByDiscriminatorValue.put("UpdateWebhookTaskVM", cloud.fastreport.model.UpdateWebhookTaskVM.class);
                         classByDiscriminatorValue.put("UpdateTaskBaseVM", cloud.fastreport.model.UpdateTaskBaseVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateTaskPermissionsVM.class, new TypeSelector<cloud.fastreport.model.UpdateTaskPermissionsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateTaskPermissionsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateTaskPermissionsVM", cloud.fastreport.model.UpdateTaskPermissionsVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -839,6 +2105,7 @@ public class JSON {
                         classByDiscriminatorValue.put("UpdateExportTemplateTaskVM", cloud.fastreport.model.UpdateExportTemplateTaskVM.class);
                         classByDiscriminatorValue.put("UpdatePrepareTemplateTaskVM", cloud.fastreport.model.UpdatePrepareTemplateTaskVM.class);
                         classByDiscriminatorValue.put("UpdateTransformTaskBaseVM", cloud.fastreport.model.UpdateTransformTaskBaseVM.class);
+                        classByDiscriminatorValue.put("UpdateTransformTaskBaseVM", cloud.fastreport.model.UpdateTransformTaskBaseVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -849,8 +2116,36 @@ public class JSON {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("UpdateEmailTaskVM", cloud.fastreport.model.UpdateEmailTaskVM.class);
                         classByDiscriminatorValue.put("UpdateFTPUploadTaskVM", cloud.fastreport.model.UpdateFTPUploadTaskVM.class);
+                        classByDiscriminatorValue.put("UpdateTransportTaskBaseVM", cloud.fastreport.model.UpdateTransportTaskBaseVM.class);
                         classByDiscriminatorValue.put("UpdateWebhookTaskVM", cloud.fastreport.model.UpdateWebhookTaskVM.class);
                         classByDiscriminatorValue.put("UpdateTransportTaskBaseVM", cloud.fastreport.model.UpdateTransportTaskBaseVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateUserProfileVM.class, new TypeSelector<cloud.fastreport.model.UpdateUserProfileVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateUserProfileVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateUserProfileVM", cloud.fastreport.model.UpdateUserProfileVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateUserSettingsVM.class, new TypeSelector<cloud.fastreport.model.UpdateUserSettingsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateUserSettingsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateUserSettingsVM", cloud.fastreport.model.UpdateUserSettingsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UpdateUserVM.class, new TypeSelector<cloud.fastreport.model.UpdateUserVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UpdateUserVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UpdateUserVM", cloud.fastreport.model.UpdateUserVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -860,6 +2155,60 @@ public class JSON {
                     public Class<? extends cloud.fastreport.model.UpdateWebhookTaskVM> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("UpdateWebhookTaskVM", cloud.fastreport.model.UpdateWebhookTaskVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UserIsAdminVM.class, new TypeSelector<cloud.fastreport.model.UserIsAdminVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UserIsAdminVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UserIsAdminVM", cloud.fastreport.model.UserIsAdminVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UserProfileVM.class, new TypeSelector<cloud.fastreport.model.UserProfileVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UserProfileVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UserProfileVM", cloud.fastreport.model.UserProfileVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UserResultVM.class, new TypeSelector<cloud.fastreport.model.UserResultVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UserResultVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UserResultVM", cloud.fastreport.model.UserResultVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UserSettingsVM.class, new TypeSelector<cloud.fastreport.model.UserSettingsVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UserSettingsVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UserSettingsVM", cloud.fastreport.model.UserSettingsVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UserVM.class, new TypeSelector<cloud.fastreport.model.UserVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UserVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UserVM", cloud.fastreport.model.UserVM.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "$t"));
+                    }
+          })
+                .registerTypeSelector(cloud.fastreport.model.UsersVM.class, new TypeSelector<cloud.fastreport.model.UsersVM>() {
+                    @Override
+                    public Class<? extends cloud.fastreport.model.UsersVM> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("UsersVM", cloud.fastreport.model.UsersVM.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "$t"));
                     }
@@ -909,20 +2258,29 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AcceptAgreementsVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AdminCreateAdminGetAdminUpdateAdminDeleteAdminExecuteAdminAdministratePermission.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AdminExportFolderCreateVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AdminPermission.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AdminReportFolderCreateVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AdminSubscriptionVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AdminSubscriptionsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AdminTemplateFolderCreateVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AdminUpdateCurrentSubscriptionPlanVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AnalysisResultVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AnalysisResultsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ApiKeyVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ApiKeysVM.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AppMixins.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AppMixinsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AuditActionsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AuditFilePropertyChangedVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AuditStatVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AuditStatsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AuditSubscriptionActionVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AuditTaskActionVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.AuthConfigVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.BreadcrumbsModel.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.BreadcrumbsVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CheckUserByPasswordInternalVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ClearNotificationsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ContactGroupVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ContactGroupsVM.CustomTypeAdapterFactory());
@@ -930,6 +2288,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ContactsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CountVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateApiKeyVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateAuditActionVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateContactGroupVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateContactVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateDataSourceAdminVM.CustomTypeAdapterFactory());
@@ -938,15 +2297,17 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateFTPUploadTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateFetchTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateGroupAdminVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateIfNotExistInternalVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreatePrepareTemplateTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateSubscriptionInviteVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateSubscriptionPeriodVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateSubscriptionPlanVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateSubscriptionVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateThumbnailReportTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateThumbnailTemplateTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.CreateWebhookTaskVM.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.DataSourcePermission.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.DataSourcePermissions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.DataSourcePermissionCRUDVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.DataSourcePermissionsCRUDVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.DataSourcePermissionsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.DataSourceVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.DataSourcesVM.CustomTypeAdapterFactory());
@@ -959,36 +2320,34 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ExportTemplateTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ExportTemplateVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ExportVM.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ExportVMFilesVMBase.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ExportsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FTPUploadTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FetchTaskVM.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FileContentVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FileIconVM.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FilePermission.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FilePermissions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FilePermissionCRUDVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FilePermissionsCRUDVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FilePermissionsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FileRenameVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FileStatusUpdateInternalVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FileStatusVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FileTagsUpdateVM.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FileVMFilesVMBase.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FileThumbnailUpdateInternalVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FileUpdateVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FilesVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FolderIconVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FolderRenameVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FolderSizeVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FolderTagsUpdateVM.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FrontendApp.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.GroupPermission.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.GroupPermissions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.FrontendAppVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.GroupPermissionCRUDVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.GroupPermissionsCRUDVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.GroupPermissionsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.GroupUserVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.GroupUsersVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.GroupVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.GroupsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.HttpValidationProblemDetails.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.InputFileVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.InvitedUser.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.MyPermissionsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.OutputFileVM.CustomTypeAdapterFactory());
@@ -997,15 +2356,17 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.PreviewReportVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.PreviewTemplateVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ProblemDetails.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.RegisterUserVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.RenameDataSourceVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.RenameGroupVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.RenameSubscriptionVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ReportCreateAdminVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ReportCreateFormVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ReportFolderCreateVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ReportInfo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ReportVM.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ReportVMFilesVMBase.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ReportsVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.RestOfSpaceVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.RunEmailTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.RunExportTemplateTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.RunFTPUploadTaskVM.CustomTypeAdapterFactory());
@@ -1017,58 +2378,71 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.RunWebhookTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SelectedFilesVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ServerConfigurationVM.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SolvationReportVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionFolder.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionInviteVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionInvitesVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionPeriodVM.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionPermission.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionPermissionSubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermissions.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionPermissions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionPermissionCRUDVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionPermissionsCRUDVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionPermissionsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionPlanVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionPlansVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionUserVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionUsersVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.SubscriptionsVM.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermission.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TaskPermission.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TaskPermissionTaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermissions.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TaskPermissions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TaskIdsVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TaskMessageIdVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TaskPermissionCRUDVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TaskPermissionsCRUDVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TaskPermissionsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TaskSettingsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TasksVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TemplateContentVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TemplateCreateAdminVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TemplateCreateFormVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TemplateFolderCreateVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TemplateVM.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TemplateVMFilesVMBase.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.TemplatesVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ThumbnailReportTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.ThumbnailTemplateTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateContactGroupVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateContactVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateContentInternalVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateDataSourceConnectionStringVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateDataSourcePermissionsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateDataSourceSubscriptionVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateDataSourceVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateDataVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateDefaultPermissionsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateEmailTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateExportTemplateTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateFTPUploadTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateFetchTaskVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateFileContentFormVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateFileContentInternalVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateFileContentVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateFilePermissionsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateGroupPermissionsVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateGroupVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdatePrepareTemplateTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateSubscriptionLocaleVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateSubscriptionPermissionsVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateSubscriptionPlanVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateSubscriptionVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateTaskPermissionsVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateThumbnailReportTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateThumbnailTemplateTaskVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateUserProfileVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateUserSettingsVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateUserVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UpdateWebhookTaskVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UserIsAdminVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UserProfileVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UserResultVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UserSettingsVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UserVM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.UsersVM.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new cloud.fastreport.model.WebhookTaskVM.CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }

@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**permissions** | [**SubscriptionPermissions**](SubscriptionPermissions.md) |  |  [optional] |
+|**permissions** | [**SubscriptionPermissionsCRUDVM**](SubscriptionPermissionsCRUDVM.md) |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

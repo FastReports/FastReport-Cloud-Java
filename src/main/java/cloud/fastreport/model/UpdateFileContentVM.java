@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,12 +51,17 @@ import cloud.fastreport.JSON;
  * UpdateFileContentVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdateFileContentVM {
+public class UpdateFileContentVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)
   private byte[] content;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public UpdateFileContentVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public UpdateFileContentVM content(byte[] content) {
@@ -77,6 +83,25 @@ public class UpdateFileContentVM {
   }
 
 
+  public UpdateFileContentVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -87,19 +112,23 @@ public class UpdateFileContentVM {
       return false;
     }
     UpdateFileContentVM updateFileContentVM = (UpdateFileContentVM) o;
-    return Arrays.equals(this.content, updateFileContentVM.content);
+    return Arrays.equals(this.content, updateFileContentVM.content) &&
+        Objects.equals(this.$t, updateFileContentVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Arrays.hashCode(content));
+    return Objects.hash(Arrays.hashCode(content), $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateFileContentVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -122,11 +151,12 @@ public class UpdateFileContentVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("content");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("content");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -156,7 +186,6 @@ public class UpdateFileContentVM {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

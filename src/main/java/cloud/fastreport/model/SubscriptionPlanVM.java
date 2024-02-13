@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.TaskSettingsVM;
 import cloud.fastreport.model.TimePeriodType;
 import com.google.gson.TypeAdapter;
@@ -53,7 +54,7 @@ import cloud.fastreport.JSON;
  * SubscriptionPlanVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SubscriptionPlanVM {
+public class SubscriptionPlanVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
@@ -134,7 +135,12 @@ public class SubscriptionPlanVM {
   @SerializedName(SERIALIZED_NAME_TASKS)
   private TaskSettingsVM tasks;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public SubscriptionPlanVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public SubscriptionPlanVM id(String id) {
@@ -517,6 +523,25 @@ public class SubscriptionPlanVM {
   }
 
 
+  public SubscriptionPlanVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -546,7 +571,9 @@ public class SubscriptionPlanVM {
         Objects.equals(this.urlToBuy, subscriptionPlanVM.urlToBuy) &&
         Objects.equals(this.unlimitedPage, subscriptionPlanVM.unlimitedPage) &&
         Objects.equals(this.pageLimit, subscriptionPlanVM.pageLimit) &&
-        Objects.equals(this.tasks, subscriptionPlanVM.tasks);
+        Objects.equals(this.tasks, subscriptionPlanVM.tasks) &&
+        Objects.equals(this.$t, subscriptionPlanVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -555,7 +582,7 @@ public class SubscriptionPlanVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, isActive, displayName, timePeriodType, timePeriod, readonlyTimeLimitType, readonlyTimeLimit, templatesSpaceLimit, reportsSpaceLimit, exportsSpaceLimit, fileUploadSizeLimit, dataSourceLimit, maxUsersCount, groupLimit, onlineDesigner, isDemo, urlToBuy, unlimitedPage, pageLimit, tasks);
+    return Objects.hash(id, isActive, displayName, timePeriodType, timePeriod, readonlyTimeLimitType, readonlyTimeLimit, templatesSpaceLimit, reportsSpaceLimit, exportsSpaceLimit, fileUploadSizeLimit, dataSourceLimit, maxUsersCount, groupLimit, onlineDesigner, isDemo, urlToBuy, unlimitedPage, pageLimit, tasks, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -569,6 +596,7 @@ public class SubscriptionPlanVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SubscriptionPlanVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
@@ -589,6 +617,7 @@ public class SubscriptionPlanVM {
     sb.append("    unlimitedPage: ").append(toIndentedString(unlimitedPage)).append("\n");
     sb.append("    pageLimit: ").append(toIndentedString(pageLimit)).append("\n");
     sb.append("    tasks: ").append(toIndentedString(tasks)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -611,29 +640,11 @@ public class SubscriptionPlanVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("isActive");
-    openapiFields.add("displayName");
-    openapiFields.add("timePeriodType");
-    openapiFields.add("timePeriod");
-    openapiFields.add("readonlyTimeLimitType");
-    openapiFields.add("readonlyTimeLimit");
-    openapiFields.add("templatesSpaceLimit");
-    openapiFields.add("reportsSpaceLimit");
-    openapiFields.add("exportsSpaceLimit");
-    openapiFields.add("fileUploadSizeLimit");
-    openapiFields.add("dataSourceLimit");
-    openapiFields.add("maxUsersCount");
-    openapiFields.add("groupLimit");
-    openapiFields.add("onlineDesigner");
-    openapiFields.add("isDemo");
-    openapiFields.add("urlToBuy");
-    openapiFields.add("unlimitedPage");
-    openapiFields.add("pageLimit");
-    openapiFields.add("tasks");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -656,27 +667,12 @@ public class SubscriptionPlanVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SubscriptionPlanVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if ((jsonObj.get("displayName") != null && !jsonObj.get("displayName").isJsonNull()) && !jsonObj.get("displayName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `displayName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("displayName").toString()));
-      }
-      // validate the optional field `timePeriodType`
-      if (jsonObj.get("timePeriodType") != null && !jsonObj.get("timePeriodType").isJsonNull()) {
-        TimePeriodType.validateJsonElement(jsonObj.get("timePeriodType"));
-      }
-      // validate the optional field `readonlyTimeLimitType`
-      if (jsonObj.get("readonlyTimeLimitType") != null && !jsonObj.get("readonlyTimeLimitType").isJsonNull()) {
-        TimePeriodType.validateJsonElement(jsonObj.get("readonlyTimeLimitType"));
-      }
-      if ((jsonObj.get("urlToBuy") != null && !jsonObj.get("urlToBuy").isJsonNull()) && !jsonObj.get("urlToBuy").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `urlToBuy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("urlToBuy").toString()));
-      }
-      // validate the optional field `tasks`
-      if (jsonObj.get("tasks") != null && !jsonObj.get("tasks").isJsonNull()) {
-        TaskSettingsVM.validateJsonElement(jsonObj.get("tasks"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : SubscriptionPlanVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

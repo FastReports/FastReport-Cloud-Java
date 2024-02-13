@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.InvitedUser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -55,7 +56,7 @@ import cloud.fastreport.JSON;
  * SubscriptionInviteVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SubscriptionInviteVM {
+public class SubscriptionInviteVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_USAGES = "usages";
   @SerializedName(SERIALIZED_NAME_USAGES)
   private Long usages;
@@ -80,7 +81,12 @@ public class SubscriptionInviteVM {
   @SerializedName(SERIALIZED_NAME_CREATOR_USER_ID)
   private String creatorUserId;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public SubscriptionInviteVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public SubscriptionInviteVM usages(Long usages) {
@@ -205,6 +211,25 @@ public class SubscriptionInviteVM {
   }
 
 
+  public SubscriptionInviteVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -220,7 +245,9 @@ public class SubscriptionInviteVM {
         Objects.equals(this.accessToken, subscriptionInviteVM.accessToken) &&
         Objects.equals(this.expiredDate, subscriptionInviteVM.expiredDate) &&
         Objects.equals(this.addedUsers, subscriptionInviteVM.addedUsers) &&
-        Objects.equals(this.creatorUserId, subscriptionInviteVM.creatorUserId);
+        Objects.equals(this.creatorUserId, subscriptionInviteVM.creatorUserId) &&
+        Objects.equals(this.$t, subscriptionInviteVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -229,7 +256,7 @@ public class SubscriptionInviteVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(usages, durable, accessToken, expiredDate, addedUsers, creatorUserId);
+    return Objects.hash(usages, durable, accessToken, expiredDate, addedUsers, creatorUserId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -243,12 +270,14 @@ public class SubscriptionInviteVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SubscriptionInviteVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    usages: ").append(toIndentedString(usages)).append("\n");
     sb.append("    durable: ").append(toIndentedString(durable)).append("\n");
     sb.append("    accessToken: ").append(toIndentedString(accessToken)).append("\n");
     sb.append("    expiredDate: ").append(toIndentedString(expiredDate)).append("\n");
     sb.append("    addedUsers: ").append(toIndentedString(addedUsers)).append("\n");
     sb.append("    creatorUserId: ").append(toIndentedString(creatorUserId)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -271,15 +300,11 @@ public class SubscriptionInviteVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("usages");
-    openapiFields.add("durable");
-    openapiFields.add("accessToken");
-    openapiFields.add("expiredDate");
-    openapiFields.add("addedUsers");
-    openapiFields.add("creatorUserId");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -302,26 +327,12 @@ public class SubscriptionInviteVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SubscriptionInviteVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("accessToken") != null && !jsonObj.get("accessToken").isJsonNull()) && !jsonObj.get("accessToken").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `accessToken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accessToken").toString()));
-      }
-      if (jsonObj.get("addedUsers") != null && !jsonObj.get("addedUsers").isJsonNull()) {
-        JsonArray jsonArrayaddedUsers = jsonObj.getAsJsonArray("addedUsers");
-        if (jsonArrayaddedUsers != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("addedUsers").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `addedUsers` to be an array in the JSON string but got `%s`", jsonObj.get("addedUsers").toString()));
-          }
 
-          // validate the optional field `addedUsers` (array)
-          for (int i = 0; i < jsonArrayaddedUsers.size(); i++) {
-            InvitedUser.validateJsonElement(jsonArrayaddedUsers.get(i));
-          };
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : SubscriptionInviteVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
-      }
-      if ((jsonObj.get("creatorUserId") != null && !jsonObj.get("creatorUserId").isJsonNull()) && !jsonObj.get("creatorUserId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `creatorUserId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("creatorUserId").toString()));
       }
   }
 

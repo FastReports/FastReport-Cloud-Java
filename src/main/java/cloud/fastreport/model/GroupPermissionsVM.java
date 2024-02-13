@@ -14,7 +14,8 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
-import cloud.fastreport.model.GroupPermissions;
+import cloud.fastreport.model.CloudBaseVM;
+import cloud.fastreport.model.GroupPermissionsCRUDVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,15 +52,20 @@ import cloud.fastreport.JSON;
  * GroupPermissionsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class GroupPermissionsVM {
+public class GroupPermissionsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
-  private GroupPermissions permissions;
+  private GroupPermissionsCRUDVM permissions;
+
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
 
   public GroupPermissionsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
-  public GroupPermissionsVM permissions(GroupPermissions permissions) {
+  public GroupPermissionsVM permissions(GroupPermissionsCRUDVM permissions) {
     this.permissions = permissions;
     return this;
   }
@@ -69,12 +75,31 @@ public class GroupPermissionsVM {
    * @return permissions
   **/
   @javax.annotation.Nullable
-  public GroupPermissions getPermissions() {
+  public GroupPermissionsCRUDVM getPermissions() {
     return permissions;
   }
 
-  public void setPermissions(GroupPermissions permissions) {
+  public void setPermissions(GroupPermissionsCRUDVM permissions) {
     this.permissions = permissions;
+  }
+
+
+  public GroupPermissionsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
   }
 
 
@@ -88,19 +113,23 @@ public class GroupPermissionsVM {
       return false;
     }
     GroupPermissionsVM groupPermissionsVM = (GroupPermissionsVM) o;
-    return Objects.equals(this.permissions, groupPermissionsVM.permissions);
+    return Objects.equals(this.permissions, groupPermissionsVM.permissions) &&
+        Objects.equals(this.$t, groupPermissionsVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(permissions);
+    return Objects.hash(permissions, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GroupPermissionsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -123,10 +152,11 @@ public class GroupPermissionsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("permissions");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -149,10 +179,12 @@ public class GroupPermissionsVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GroupPermissionsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `permissions`
-      if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonNull()) {
-        GroupPermissions.validateJsonElement(jsonObj.get("permissions"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : GroupPermissionsVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

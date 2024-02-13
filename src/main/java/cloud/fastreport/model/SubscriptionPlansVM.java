@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.SubscriptionPlanVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * SubscriptionPlansVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SubscriptionPlansVM {
+public class SubscriptionPlansVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_SUBSCRIPTION_PLANS = "subscriptionPlans";
   @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_PLANS)
   private List<SubscriptionPlanVM> subscriptionPlans;
@@ -71,7 +72,12 @@ public class SubscriptionPlansVM {
   @SerializedName(SERIALIZED_NAME_TAKE)
   private Integer take;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public SubscriptionPlansVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public SubscriptionPlansVM subscriptionPlans(List<SubscriptionPlanVM> subscriptionPlans) {
@@ -158,6 +164,25 @@ public class SubscriptionPlansVM {
   }
 
 
+  public SubscriptionPlansVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -171,7 +196,9 @@ public class SubscriptionPlansVM {
     return Objects.equals(this.subscriptionPlans, subscriptionPlansVM.subscriptionPlans) &&
         Objects.equals(this.count, subscriptionPlansVM.count) &&
         Objects.equals(this.skip, subscriptionPlansVM.skip) &&
-        Objects.equals(this.take, subscriptionPlansVM.take);
+        Objects.equals(this.take, subscriptionPlansVM.take) &&
+        Objects.equals(this.$t, subscriptionPlansVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -180,7 +207,7 @@ public class SubscriptionPlansVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(subscriptionPlans, count, skip, take);
+    return Objects.hash(subscriptionPlans, count, skip, take, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -194,10 +221,12 @@ public class SubscriptionPlansVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SubscriptionPlansVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    subscriptionPlans: ").append(toIndentedString(subscriptionPlans)).append("\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("    skip: ").append(toIndentedString(skip)).append("\n");
     sb.append("    take: ").append(toIndentedString(take)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -220,13 +249,11 @@ public class SubscriptionPlansVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("subscriptionPlans");
-    openapiFields.add("count");
-    openapiFields.add("skip");
-    openapiFields.add("take");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -249,19 +276,11 @@ public class SubscriptionPlansVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SubscriptionPlansVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("subscriptionPlans") != null && !jsonObj.get("subscriptionPlans").isJsonNull()) {
-        JsonArray jsonArraysubscriptionPlans = jsonObj.getAsJsonArray("subscriptionPlans");
-        if (jsonArraysubscriptionPlans != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("subscriptionPlans").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `subscriptionPlans` to be an array in the JSON string but got `%s`", jsonObj.get("subscriptionPlans").toString()));
-          }
 
-          // validate the optional field `subscriptionPlans` (array)
-          for (int i = 0; i < jsonArraysubscriptionPlans.size(); i++) {
-            SubscriptionPlanVM.validateJsonElement(jsonArraysubscriptionPlans.get(i));
-          };
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : SubscriptionPlansVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }

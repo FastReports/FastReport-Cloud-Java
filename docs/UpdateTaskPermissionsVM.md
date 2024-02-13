@@ -8,7 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**administrate** | **TaskAdministrate** |  |  |
-|**newPermissions** | [**TaskPermissions**](TaskPermissions.md) |  |  |
+|**newPermissions** | [**TaskPermissionsCRUDVM**](TaskPermissionsCRUDVM.md) |  |  |
+|**$t** | **String** |  |  |
 
 
 

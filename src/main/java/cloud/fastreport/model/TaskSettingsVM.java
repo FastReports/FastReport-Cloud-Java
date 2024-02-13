@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,7 +52,7 @@ import cloud.fastreport.JSON;
  * TaskSettingsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TaskSettingsVM {
+public class TaskSettingsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_PREPARE = "prepare";
   @SerializedName(SERIALIZED_NAME_PREPARE)
   private Boolean prepare;
@@ -88,7 +89,12 @@ public class TaskSettingsVM {
   @SerializedName(SERIALIZED_NAME_THUMBNAIL_TEMPLATE)
   private Boolean thumbnailTemplate;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public TaskSettingsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public TaskSettingsVM prepare(Boolean prepare) {
@@ -262,6 +268,25 @@ public class TaskSettingsVM {
   }
 
 
+  public TaskSettingsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -280,7 +305,9 @@ public class TaskSettingsVM {
         Objects.equals(this.sendViaWebhook, taskSettingsVM.sendViaWebhook) &&
         Objects.equals(this.fetchData, taskSettingsVM.fetchData) &&
         Objects.equals(this.thumbnailReport, taskSettingsVM.thumbnailReport) &&
-        Objects.equals(this.thumbnailTemplate, taskSettingsVM.thumbnailTemplate);
+        Objects.equals(this.thumbnailTemplate, taskSettingsVM.thumbnailTemplate) &&
+        Objects.equals(this.$t, taskSettingsVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -289,7 +316,7 @@ public class TaskSettingsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(prepare, exportTemplate, exportReport, sendViaEmail, uploadToFTP, sendViaWebhook, fetchData, thumbnailReport, thumbnailTemplate);
+    return Objects.hash(prepare, exportTemplate, exportReport, sendViaEmail, uploadToFTP, sendViaWebhook, fetchData, thumbnailReport, thumbnailTemplate, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -303,6 +330,7 @@ public class TaskSettingsVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TaskSettingsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    prepare: ").append(toIndentedString(prepare)).append("\n");
     sb.append("    exportTemplate: ").append(toIndentedString(exportTemplate)).append("\n");
     sb.append("    exportReport: ").append(toIndentedString(exportReport)).append("\n");
@@ -312,6 +340,7 @@ public class TaskSettingsVM {
     sb.append("    fetchData: ").append(toIndentedString(fetchData)).append("\n");
     sb.append("    thumbnailReport: ").append(toIndentedString(thumbnailReport)).append("\n");
     sb.append("    thumbnailTemplate: ").append(toIndentedString(thumbnailTemplate)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -334,18 +363,11 @@ public class TaskSettingsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("prepare");
-    openapiFields.add("exportTemplate");
-    openapiFields.add("exportReport");
-    openapiFields.add("sendViaEmail");
-    openapiFields.add("uploadToFTP");
-    openapiFields.add("sendViaWebhook");
-    openapiFields.add("fetchData");
-    openapiFields.add("thumbnailReport");
-    openapiFields.add("thumbnailTemplate");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -368,7 +390,13 @@ public class TaskSettingsVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TaskSettingsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : TaskSettingsVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

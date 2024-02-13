@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>cloud.fastreport.sdk</groupId>
   <artifactId>fastreport-cloud-sdk</artifactId>
-  <version>2024.1.22</version>
+  <version>2024.1.23</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "cloud.fastreport.sdk:fastreport-cloud-sdk:2024.1.22"
+     implementation "cloud.fastreport.sdk:fastreport-cloud-sdk:2024.1.23"
   }
 ```
 
@@ -69,7 +69,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/fastreport-cloud-sdk-2024.1.22.jar`
+* `target/fastreport-cloud-sdk-2024.1.23.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -125,7 +125,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ApiKeysApi* | [**apiKeysCreateApiKey**](docs/ApiKeysApi.md#apiKeysCreateApiKey) | **POST** /api/manage/v1/ApiKeys | Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
 *ApiKeysApi* | [**apiKeysDeleteApiKey**](docs/ApiKeysApi.md#apiKeysDeleteApiKey) | **DELETE** /api/manage/v1/ApiKeys | Delete an apikey
-*ApiKeysApi* | [**apiKeysGetApiKeys**](docs/ApiKeysApi.md#apiKeysGetApiKeys) | **GET** /api/manage/v1/ApiKeys | Returns list with all api keys of current user
+*ApiKeysApi* | [**apiKeysGetApiKeys**](docs/ApiKeysApi.md#apiKeysGetApiKeys) | **GET** /api/manage/v1/ApiKeys | Returns list with all apikeys of current user
 *ConfigurationApi* | [**configurationGet**](docs/ConfigurationApi.md#configurationGet) | **GET** /api/v1/Configuration | returns information about server configuration
 *ContactGroupsApi* | [**contactGroupsCreate**](docs/ContactGroupsApi.md#contactGroupsCreate) | **POST** /api/v1/ContactGroups/group | Creates contact group
 *ContactGroupsApi* | [**contactGroupsDelete**](docs/ContactGroupsApi.md#contactGroupsDelete) | **DELETE** /api/v1/ContactGroups/{id} | Removes contact by id
@@ -189,11 +189,11 @@ Class | Method | HTTP request | Description
 *ExportsApi* | [**exportFoldersUpdateTags**](docs/ExportsApi.md#exportFoldersUpdateTags) | **PUT** /api/rp/v1/Exports/Folder/{id}/UpdateTags | Update tags
 *ExportsApi* | [**exportsCopyFile**](docs/ExportsApi.md#exportsCopyFile) | **POST** /api/rp/v1/Exports/File/{id}/Copy/{folderId} | Copy file to a specified folder
 *ExportsApi* | [**exportsDeleteFile**](docs/ExportsApi.md#exportsDeleteFile) | **DELETE** /api/rp/v1/Exports/File/{id} | Delete specified file
-*ExportsApi* | [**exportsGetFile**](docs/ExportsApi.md#exportsGetFile) | **GET** /api/rp/v1/Exports/File/{id} | 
+*ExportsApi* | [**exportsGetFile**](docs/ExportsApi.md#exportsGetFile) | **GET** /api/rp/v1/Exports/File/{id} | Get export by specified id
 *ExportsApi* | [**exportsGetFileHistory**](docs/ExportsApi.md#exportsGetFileHistory) | **GET** /api/rp/v1/Exports/File/{id}/History | Returns list of actions, performed on this file
 *ExportsApi* | [**exportsGetFilesCount**](docs/ExportsApi.md#exportsGetFilesCount) | **GET** /api/rp/v1/Exports/Folder/{id}/CountFiles | Get count of files what contains in a specified folder
 *ExportsApi* | [**exportsGetFilesList**](docs/ExportsApi.md#exportsGetFilesList) | **GET** /api/rp/v1/Exports/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
-*ExportsApi* | [**exportsGetPermissions**](docs/ExportsApi.md#exportsGetPermissions) | **GET** /api/rp/v1/Exports/File/{id}/permissions | Get all file permissions
+*ExportsApi* | [**exportsGetPermissions**](docs/ExportsApi.md#exportsGetPermissions) | **GET** /api/rp/v1/Exports/File/{id}/permissions | 
 *ExportsApi* | [**exportsMoveFile**](docs/ExportsApi.md#exportsMoveFile) | **POST** /api/rp/v1/Exports/File/{id}/Move/{folderId} | Move file to a specified folder
 *ExportsApi* | [**exportsMoveFileToBin**](docs/ExportsApi.md#exportsMoveFileToBin) | **DELETE** /api/rp/v1/Exports/File/{id}/ToBin | Move specified file to recycle bin
 *ExportsApi* | [**exportsRecoverFile**](docs/ExportsApi.md#exportsRecoverFile) | **POST** /api/rp/v1/Exports/File/{id}/Recover | Recover specified file from bin
@@ -249,7 +249,7 @@ Class | Method | HTTP request | Description
 *ReportsApi* | [**reportsGetFileHistory**](docs/ReportsApi.md#reportsGetFileHistory) | **GET** /api/rp/v1/Reports/File/{id}/History | Returns list of actions, performed on this file
 *ReportsApi* | [**reportsGetFilesCount**](docs/ReportsApi.md#reportsGetFilesCount) | **GET** /api/rp/v1/Reports/Folder/{id}/CountFiles | Get count of files what contains in a specified folder
 *ReportsApi* | [**reportsGetFilesList**](docs/ReportsApi.md#reportsGetFilesList) | **GET** /api/rp/v1/Reports/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
-*ReportsApi* | [**reportsGetPermissions**](docs/ReportsApi.md#reportsGetPermissions) | **GET** /api/rp/v1/Reports/File/{id}/permissions | Get all file permissions
+*ReportsApi* | [**reportsGetPermissions**](docs/ReportsApi.md#reportsGetPermissions) | **GET** /api/rp/v1/Reports/File/{id}/permissions | 
 *ReportsApi* | [**reportsMoveFile**](docs/ReportsApi.md#reportsMoveFile) | **POST** /api/rp/v1/Reports/File/{id}/Move/{folderId} | Move file to a specified folder
 *ReportsApi* | [**reportsMoveFileToBin**](docs/ReportsApi.md#reportsMoveFileToBin) | **DELETE** /api/rp/v1/Reports/File/{id}/ToBin | Move specified file to recycle bin
 *ReportsApi* | [**reportsRecoverFile**](docs/ReportsApi.md#reportsRecoverFile) | **POST** /api/rp/v1/Reports/File/{id}/Recover | Recover specified file from bin
@@ -264,7 +264,7 @@ Class | Method | HTTP request | Description
 *SubscriptionGroupsApi* | [**subscriptionGroupsGetGroupsList**](docs/SubscriptionGroupsApi.md#subscriptionGroupsGetGroupsList) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/groups | returns groups of the subscription or subscription user
 *SubscriptionInvitesApi* | [**subscriptionInvitesAcceptInvite**](docs/SubscriptionInvitesApi.md#subscriptionInvitesAcceptInvite) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/invite/{accessToken}/accept | Add a user to the subscription using invite,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
 *SubscriptionInvitesApi* | [**subscriptionInvitesCreateInvite**](docs/SubscriptionInvitesApi.md#subscriptionInvitesCreateInvite) | **POST** /api/manage/v1/Subscriptions/{subscriptionId}/invite | Create invite to subscription
-*SubscriptionInvitesApi* | [**subscriptionInvitesDeleteInvite**](docs/SubscriptionInvitesApi.md#subscriptionInvitesDeleteInvite) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/invite/{accesstoken} | Rename subscription
+*SubscriptionInvitesApi* | [**subscriptionInvitesDeleteInvite**](docs/SubscriptionInvitesApi.md#subscriptionInvitesDeleteInvite) | **DELETE** /api/manage/v1/Subscriptions/{subscriptionId}/invite/{accesstoken} | Delete invite with specified token
 *SubscriptionInvitesApi* | [**subscriptionInvitesGetInvites**](docs/SubscriptionInvitesApi.md#subscriptionInvitesGetInvites) | **GET** /api/manage/v1/Subscriptions/{subscriptionId}/invites | Get list of invites in a subscription,  the added users will be displayed in the list of users of the subscription,  and these users will also have an active subscription.
 *SubscriptionPlansApi* | [**subscriptionPlansGetSubscriptionPlan**](docs/SubscriptionPlansApi.md#subscriptionPlansGetSubscriptionPlan) | **GET** /api/manage/v1/SubscriptionPlans/{id} | Returns a subscription plan. Not all subscriptions can be issued for customer.
 *SubscriptionPlansApi* | [**subscriptionPlansGetSubscriptionPlans**](docs/SubscriptionPlansApi.md#subscriptionPlansGetSubscriptionPlans) | **GET** /api/manage/v1/SubscriptionPlans | Returns a list of active subscription plans that can be issued to the user.
@@ -329,7 +329,7 @@ Class | Method | HTTP request | Description
 *TemplatesApi* | [**templatesGetFileHistory**](docs/TemplatesApi.md#templatesGetFileHistory) | **GET** /api/rp/v1/Templates/File/{id}/History | Returns list of actions, performed on this file
 *TemplatesApi* | [**templatesGetFilesCount**](docs/TemplatesApi.md#templatesGetFilesCount) | **GET** /api/rp/v1/Templates/Folder/{id}/CountFiles | Get count of files what contains in a specified folder
 *TemplatesApi* | [**templatesGetFilesList**](docs/TemplatesApi.md#templatesGetFilesList) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
-*TemplatesApi* | [**templatesGetPermissions**](docs/TemplatesApi.md#templatesGetPermissions) | **GET** /api/rp/v1/Templates/File/{id}/permissions | Get all file permissions
+*TemplatesApi* | [**templatesGetPermissions**](docs/TemplatesApi.md#templatesGetPermissions) | **GET** /api/rp/v1/Templates/File/{id}/permissions | 
 *TemplatesApi* | [**templatesMoveFile**](docs/TemplatesApi.md#templatesMoveFile) | **POST** /api/rp/v1/Templates/File/{id}/Move/{folderId} | Move file to a specified folder
 *TemplatesApi* | [**templatesMoveFileToBin**](docs/TemplatesApi.md#templatesMoveFileToBin) | **DELETE** /api/rp/v1/Templates/File/{id}/ToBin | Move specified file to recycle bin
 *TemplatesApi* | [**templatesPrepare**](docs/TemplatesApi.md#templatesPrepare) | **POST** /api/rp/v1/Templates/File/{id}/Prepare | Prepare specified template to report
@@ -356,30 +356,47 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [AcceptAgreementsVM](docs/AcceptAgreementsVM.md)
+ - [AdminAdministrate](docs/AdminAdministrate.md)
+ - [AdminCreate](docs/AdminCreate.md)
+ - [AdminCreateAdminGetAdminUpdateAdminDeleteAdminExecuteAdminAdministratePermission](docs/AdminCreateAdminGetAdminUpdateAdminDeleteAdminExecuteAdminAdministratePermission.md)
+ - [AdminDelete](docs/AdminDelete.md)
+ - [AdminExecute](docs/AdminExecute.md)
  - [AdminExportFolderCreateVM](docs/AdminExportFolderCreateVM.md)
  - [AdminFolderCreateVM](docs/AdminFolderCreateVM.md)
+ - [AdminGet](docs/AdminGet.md)
+ - [AdminPermission](docs/AdminPermission.md)
  - [AdminReportFolderCreateVM](docs/AdminReportFolderCreateVM.md)
  - [AdminSubscriptionVM](docs/AdminSubscriptionVM.md)
+ - [AdminSubscriptionsVM](docs/AdminSubscriptionsVM.md)
  - [AdminTemplateFolderCreateVM](docs/AdminTemplateFolderCreateVM.md)
+ - [AdminUpdate](docs/AdminUpdate.md)
+ - [AdminUpdateCurrentSubscriptionPlanVM](docs/AdminUpdateCurrentSubscriptionPlanVM.md)
+ - [AnalysisResultVM](docs/AnalysisResultVM.md)
+ - [AnalysisResultsVM](docs/AnalysisResultsVM.md)
  - [ApiKeyVM](docs/ApiKeyVM.md)
  - [ApiKeysVM](docs/ApiKeysVM.md)
- - [AppMixins](docs/AppMixins.md)
+ - [AppMixinsVM](docs/AppMixinsVM.md)
  - [AuditActionVM](docs/AuditActionVM.md)
  - [AuditActionsVM](docs/AuditActionsVM.md)
  - [AuditFilePropertyChangedVM](docs/AuditFilePropertyChangedVM.md)
+ - [AuditStatVM](docs/AuditStatVM.md)
+ - [AuditStatsVM](docs/AuditStatsVM.md)
  - [AuditSubscriptionActionVM](docs/AuditSubscriptionActionVM.md)
  - [AuditTaskActionVM](docs/AuditTaskActionVM.md)
  - [AuditType](docs/AuditType.md)
  - [AuthConfigVM](docs/AuthConfigVM.md)
  - [BreadcrumbsModel](docs/BreadcrumbsModel.md)
  - [BreadcrumbsVM](docs/BreadcrumbsVM.md)
+ - [CheckUserByPasswordInternalVM](docs/CheckUserByPasswordInternalVM.md)
  - [ClearNotificationsVM](docs/ClearNotificationsVM.md)
+ - [CloudBaseVM](docs/CloudBaseVM.md)
  - [ContactGroupVM](docs/ContactGroupVM.md)
  - [ContactGroupsVM](docs/ContactGroupsVM.md)
  - [ContactVM](docs/ContactVM.md)
  - [ContactsVM](docs/ContactsVM.md)
  - [CountVM](docs/CountVM.md)
  - [CreateApiKeyVM](docs/CreateApiKeyVM.md)
+ - [CreateAuditActionVM](docs/CreateAuditActionVM.md)
  - [CreateContactGroupVM](docs/CreateContactGroupVM.md)
  - [CreateContactVM](docs/CreateContactVM.md)
  - [CreateDataSourceAdminVM](docs/CreateDataSourceAdminVM.md)
@@ -391,8 +408,12 @@ Class | Method | HTTP request | Description
  - [CreateFetchTaskVM](docs/CreateFetchTaskVM.md)
  - [CreateGroupAdminVM](docs/CreateGroupAdminVM.md)
  - [CreateGroupVM](docs/CreateGroupVM.md)
+ - [CreateIfNotExistInternalVM](docs/CreateIfNotExistInternalVM.md)
  - [CreatePrepareTemplateTaskVM](docs/CreatePrepareTemplateTaskVM.md)
  - [CreateSubscriptionInviteVM](docs/CreateSubscriptionInviteVM.md)
+ - [CreateSubscriptionPeriodVM](docs/CreateSubscriptionPeriodVM.md)
+ - [CreateSubscriptionPlanVM](docs/CreateSubscriptionPlanVM.md)
+ - [CreateSubscriptionVM](docs/CreateSubscriptionVM.md)
  - [CreateTaskBaseVM](docs/CreateTaskBaseVM.md)
  - [CreateThumbnailReportTaskVM](docs/CreateThumbnailReportTaskVM.md)
  - [CreateThumbnailTemplateTaskVM](docs/CreateThumbnailTemplateTaskVM.md)
@@ -402,13 +423,11 @@ Class | Method | HTTP request | Description
  - [DataSourceAdministrate](docs/DataSourceAdministrate.md)
  - [DataSourceConnectionType](docs/DataSourceConnectionType.md)
  - [DataSourceCreate](docs/DataSourceCreate.md)
- - [DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission](docs/DataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermission.md)
  - [DataSourceDelete](docs/DataSourceDelete.md)
  - [DataSourceExecute](docs/DataSourceExecute.md)
  - [DataSourceGet](docs/DataSourceGet.md)
- - [DataSourcePermission](docs/DataSourcePermission.md)
- - [DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions](docs/DataSourcePermissionDataSourceCreateDataSourceGetDataSourceUpdateDataSourceDeleteDataSourceExecuteDataSourceAdministratePermissions.md)
- - [DataSourcePermissions](docs/DataSourcePermissions.md)
+ - [DataSourcePermissionCRUDVM](docs/DataSourcePermissionCRUDVM.md)
+ - [DataSourcePermissionsCRUDVM](docs/DataSourcePermissionsCRUDVM.md)
  - [DataSourcePermissionsVM](docs/DataSourcePermissionsVM.md)
  - [DataSourceSorting](docs/DataSourceSorting.md)
  - [DataSourceStatus](docs/DataSourceStatus.md)
@@ -428,48 +447,49 @@ Class | Method | HTTP request | Description
  - [ExportTemplateTaskVM](docs/ExportTemplateTaskVM.md)
  - [ExportTemplateVM](docs/ExportTemplateVM.md)
  - [ExportVM](docs/ExportVM.md)
- - [ExportVMFilesVMBase](docs/ExportVMFilesVMBase.md)
  - [ExportsVM](docs/ExportsVM.md)
  - [FTPUploadTaskVM](docs/FTPUploadTaskVM.md)
  - [FetchTaskVM](docs/FetchTaskVM.md)
  - [FileAdministrate](docs/FileAdministrate.md)
+ - [FileContentVM](docs/FileContentVM.md)
  - [FileCreate](docs/FileCreate.md)
- - [FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission](docs/FileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermission.md)
+ - [FileCreateFormVM](docs/FileCreateFormVM.md)
  - [FileCreateVM](docs/FileCreateVM.md)
  - [FileDelete](docs/FileDelete.md)
  - [FileExecute](docs/FileExecute.md)
  - [FileGet](docs/FileGet.md)
  - [FileIconVM](docs/FileIconVM.md)
  - [FileKind](docs/FileKind.md)
- - [FilePermission](docs/FilePermission.md)
- - [FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions](docs/FilePermissionFileCreateFileGetFileUpdateFileDeleteFileExecuteFileAdministratePermissions.md)
- - [FilePermissions](docs/FilePermissions.md)
+ - [FilePermissionCRUDVM](docs/FilePermissionCRUDVM.md)
+ - [FilePermissionsCRUDVM](docs/FilePermissionsCRUDVM.md)
  - [FilePermissionsVM](docs/FilePermissionsVM.md)
  - [FileRenameVM](docs/FileRenameVM.md)
  - [FileSorting](docs/FileSorting.md)
  - [FileStatus](docs/FileStatus.md)
  - [FileStatusReason](docs/FileStatusReason.md)
+ - [FileStatusUpdateInternalVM](docs/FileStatusUpdateInternalVM.md)
+ - [FileStatusVM](docs/FileStatusVM.md)
  - [FileTagsUpdateVM](docs/FileTagsUpdateVM.md)
+ - [FileThumbnailUpdateInternalVM](docs/FileThumbnailUpdateInternalVM.md)
  - [FileType](docs/FileType.md)
  - [FileUpdate](docs/FileUpdate.md)
+ - [FileUpdateVM](docs/FileUpdateVM.md)
  - [FileVM](docs/FileVM.md)
- - [FileVMFilesVMBase](docs/FileVMFilesVMBase.md)
  - [FilesVM](docs/FilesVM.md)
+ - [FilesVMBase](docs/FilesVMBase.md)
  - [FolderCreateVM](docs/FolderCreateVM.md)
  - [FolderIconVM](docs/FolderIconVM.md)
  - [FolderRenameVM](docs/FolderRenameVM.md)
  - [FolderSizeVM](docs/FolderSizeVM.md)
  - [FolderTagsUpdateVM](docs/FolderTagsUpdateVM.md)
- - [FrontendApp](docs/FrontendApp.md)
+ - [FrontendAppVM](docs/FrontendAppVM.md)
  - [GroupAdministrate](docs/GroupAdministrate.md)
  - [GroupCreate](docs/GroupCreate.md)
- - [GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission](docs/GroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermission.md)
  - [GroupDelete](docs/GroupDelete.md)
  - [GroupExecute](docs/GroupExecute.md)
  - [GroupGet](docs/GroupGet.md)
- - [GroupPermission](docs/GroupPermission.md)
- - [GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions](docs/GroupPermissionGroupCreateGroupGetGroupUpdateGroupDeleteGroupExecuteGroupAdministratePermissions.md)
- - [GroupPermissions](docs/GroupPermissions.md)
+ - [GroupPermissionCRUDVM](docs/GroupPermissionCRUDVM.md)
+ - [GroupPermissionsCRUDVM](docs/GroupPermissionsCRUDVM.md)
  - [GroupPermissionsVM](docs/GroupPermissionsVM.md)
  - [GroupUpdate](docs/GroupUpdate.md)
  - [GroupUserVM](docs/GroupUserVM.md)
@@ -486,17 +506,21 @@ Class | Method | HTTP request | Description
  - [PreviewReportVM](docs/PreviewReportVM.md)
  - [PreviewTemplateVM](docs/PreviewTemplateVM.md)
  - [ProblemDetails](docs/ProblemDetails.md)
+ - [ProblemLevel](docs/ProblemLevel.md)
+ - [ProblemType](docs/ProblemType.md)
  - [ProfileVisibility](docs/ProfileVisibility.md)
+ - [RegisterUserVM](docs/RegisterUserVM.md)
  - [RenameDataSourceVM](docs/RenameDataSourceVM.md)
  - [RenameGroupVM](docs/RenameGroupVM.md)
  - [RenameSubscriptionVM](docs/RenameSubscriptionVM.md)
  - [ReportCreateAdminVM](docs/ReportCreateAdminVM.md)
+ - [ReportCreateFormVM](docs/ReportCreateFormVM.md)
  - [ReportCreateVM](docs/ReportCreateVM.md)
  - [ReportFolderCreateVM](docs/ReportFolderCreateVM.md)
  - [ReportInfo](docs/ReportInfo.md)
  - [ReportVM](docs/ReportVM.md)
- - [ReportVMFilesVMBase](docs/ReportVMFilesVMBase.md)
  - [ReportsVM](docs/ReportsVM.md)
+ - [RestOfSpaceVM](docs/RestOfSpaceVM.md)
  - [RunEmailTaskVM](docs/RunEmailTaskVM.md)
  - [RunExportReportTaskVM](docs/RunExportReportTaskVM.md)
  - [RunExportTemplateTaskVM](docs/RunExportTemplateTaskVM.md)
@@ -513,9 +537,9 @@ Class | Method | HTTP request | Description
  - [SaveMode](docs/SaveMode.md)
  - [SelectedFilesVM](docs/SelectedFilesVM.md)
  - [ServerConfigurationVM](docs/ServerConfigurationVM.md)
+ - [SolvationReportVM](docs/SolvationReportVM.md)
  - [SubscriptionAdministrate](docs/SubscriptionAdministrate.md)
  - [SubscriptionCreate](docs/SubscriptionCreate.md)
- - [SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission](docs/SubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermission.md)
  - [SubscriptionDelete](docs/SubscriptionDelete.md)
  - [SubscriptionExecute](docs/SubscriptionExecute.md)
  - [SubscriptionFolder](docs/SubscriptionFolder.md)
@@ -523,9 +547,8 @@ Class | Method | HTTP request | Description
  - [SubscriptionInviteVM](docs/SubscriptionInviteVM.md)
  - [SubscriptionInvitesVM](docs/SubscriptionInvitesVM.md)
  - [SubscriptionPeriodVM](docs/SubscriptionPeriodVM.md)
- - [SubscriptionPermission](docs/SubscriptionPermission.md)
- - [SubscriptionPermissionSubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermissions](docs/SubscriptionPermissionSubscriptionCreateSubscriptionGetSubscriptionUpdateSubscriptionDeleteSubscriptionExecuteSubscriptionAdministratePermissions.md)
- - [SubscriptionPermissions](docs/SubscriptionPermissions.md)
+ - [SubscriptionPermissionCRUDVM](docs/SubscriptionPermissionCRUDVM.md)
+ - [SubscriptionPermissionsCRUDVM](docs/SubscriptionPermissionsCRUDVM.md)
  - [SubscriptionPermissionsVM](docs/SubscriptionPermissionsVM.md)
  - [SubscriptionPlanVM](docs/SubscriptionPlanVM.md)
  - [SubscriptionPlansVM](docs/SubscriptionPlansVM.md)
@@ -537,22 +560,23 @@ Class | Method | HTTP request | Description
  - [TaskAdministrate](docs/TaskAdministrate.md)
  - [TaskBaseVM](docs/TaskBaseVM.md)
  - [TaskCreate](docs/TaskCreate.md)
- - [TaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermission](docs/TaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermission.md)
  - [TaskDelete](docs/TaskDelete.md)
  - [TaskExecute](docs/TaskExecute.md)
  - [TaskGet](docs/TaskGet.md)
- - [TaskPermission](docs/TaskPermission.md)
- - [TaskPermissionTaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermissions](docs/TaskPermissionTaskCreateTaskGetTaskUpdateTaskDeleteTaskExecuteTaskAdministratePermissions.md)
- - [TaskPermissions](docs/TaskPermissions.md)
+ - [TaskIdsVM](docs/TaskIdsVM.md)
+ - [TaskMessageIdVM](docs/TaskMessageIdVM.md)
+ - [TaskPermissionCRUDVM](docs/TaskPermissionCRUDVM.md)
+ - [TaskPermissionsCRUDVM](docs/TaskPermissionsCRUDVM.md)
  - [TaskPermissionsVM](docs/TaskPermissionsVM.md)
  - [TaskSettingsVM](docs/TaskSettingsVM.md)
  - [TaskUpdate](docs/TaskUpdate.md)
  - [TasksVM](docs/TasksVM.md)
+ - [TemplateContentVM](docs/TemplateContentVM.md)
  - [TemplateCreateAdminVM](docs/TemplateCreateAdminVM.md)
+ - [TemplateCreateFormVM](docs/TemplateCreateFormVM.md)
  - [TemplateCreateVM](docs/TemplateCreateVM.md)
  - [TemplateFolderCreateVM](docs/TemplateFolderCreateVM.md)
  - [TemplateVM](docs/TemplateVM.md)
- - [TemplateVMFilesVMBase](docs/TemplateVMFilesVMBase.md)
  - [TemplatesVM](docs/TemplatesVM.md)
  - [ThumbnailReportTaskVM](docs/ThumbnailReportTaskVM.md)
  - [ThumbnailTemplateTaskVM](docs/ThumbnailTemplateTaskVM.md)
@@ -561,21 +585,29 @@ Class | Method | HTTP request | Description
  - [TransportTaskBaseVM](docs/TransportTaskBaseVM.md)
  - [UpdateContactGroupVM](docs/UpdateContactGroupVM.md)
  - [UpdateContactVM](docs/UpdateContactVM.md)
+ - [UpdateContentInternalVM](docs/UpdateContentInternalVM.md)
  - [UpdateDataSourceConnectionStringVM](docs/UpdateDataSourceConnectionStringVM.md)
  - [UpdateDataSourcePermissionsVM](docs/UpdateDataSourcePermissionsVM.md)
  - [UpdateDataSourceSubscriptionVM](docs/UpdateDataSourceSubscriptionVM.md)
+ - [UpdateDataSourceVM](docs/UpdateDataSourceVM.md)
+ - [UpdateDataVM](docs/UpdateDataVM.md)
  - [UpdateDefaultPermissionsVM](docs/UpdateDefaultPermissionsVM.md)
  - [UpdateEmailTaskVM](docs/UpdateEmailTaskVM.md)
  - [UpdateExportReportTaskVM](docs/UpdateExportReportTaskVM.md)
  - [UpdateExportTemplateTaskVM](docs/UpdateExportTemplateTaskVM.md)
  - [UpdateFTPUploadTaskVM](docs/UpdateFTPUploadTaskVM.md)
  - [UpdateFetchTaskVM](docs/UpdateFetchTaskVM.md)
+ - [UpdateFileContentFormVM](docs/UpdateFileContentFormVM.md)
+ - [UpdateFileContentInternalVM](docs/UpdateFileContentInternalVM.md)
  - [UpdateFileContentVM](docs/UpdateFileContentVM.md)
  - [UpdateFilePermissionsVM](docs/UpdateFilePermissionsVM.md)
  - [UpdateGroupPermissionsVM](docs/UpdateGroupPermissionsVM.md)
+ - [UpdateGroupVM](docs/UpdateGroupVM.md)
  - [UpdatePrepareTemplateTaskVM](docs/UpdatePrepareTemplateTaskVM.md)
  - [UpdateSubscriptionLocaleVM](docs/UpdateSubscriptionLocaleVM.md)
  - [UpdateSubscriptionPermissionsVM](docs/UpdateSubscriptionPermissionsVM.md)
+ - [UpdateSubscriptionPlanVM](docs/UpdateSubscriptionPlanVM.md)
+ - [UpdateSubscriptionVM](docs/UpdateSubscriptionVM.md)
  - [UpdateTaskBaseVM](docs/UpdateTaskBaseVM.md)
  - [UpdateTaskPermissionsVM](docs/UpdateTaskPermissionsVM.md)
  - [UpdateThumbnailReportTaskVM](docs/UpdateThumbnailReportTaskVM.md)
@@ -584,9 +616,14 @@ Class | Method | HTTP request | Description
  - [UpdateTransportTaskBaseVM](docs/UpdateTransportTaskBaseVM.md)
  - [UpdateUserProfileVM](docs/UpdateUserProfileVM.md)
  - [UpdateUserSettingsVM](docs/UpdateUserSettingsVM.md)
+ - [UpdateUserVM](docs/UpdateUserVM.md)
  - [UpdateWebhookTaskVM](docs/UpdateWebhookTaskVM.md)
+ - [UserIsAdminVM](docs/UserIsAdminVM.md)
  - [UserProfileVM](docs/UserProfileVM.md)
+ - [UserResultVM](docs/UserResultVM.md)
  - [UserSettingsVM](docs/UserSettingsVM.md)
+ - [UserVM](docs/UserVM.md)
+ - [UsersVM](docs/UsersVM.md)
  - [WebhookTaskVM](docs/WebhookTaskVM.md)
 
 
@@ -614,3 +651,5 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 
 
 
+
+https://www.fast-report.com/en/

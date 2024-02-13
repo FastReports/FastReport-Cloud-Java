@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,7 +53,7 @@ import cloud.fastreport.JSON;
  * ApiKeyVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ApiKeyVM {
+public class ApiKeyVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
   private String value;
@@ -65,7 +66,12 @@ public class ApiKeyVM {
   @SerializedName(SERIALIZED_NAME_EXPIRED)
   private OffsetDateTime expired;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public ApiKeyVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public ApiKeyVM value(String value) {
@@ -125,6 +131,25 @@ public class ApiKeyVM {
   }
 
 
+  public ApiKeyVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -137,7 +162,9 @@ public class ApiKeyVM {
     ApiKeyVM apiKeyVM = (ApiKeyVM) o;
     return Objects.equals(this.value, apiKeyVM.value) &&
         Objects.equals(this.description, apiKeyVM.description) &&
-        Objects.equals(this.expired, apiKeyVM.expired);
+        Objects.equals(this.expired, apiKeyVM.expired) &&
+        Objects.equals(this.$t, apiKeyVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -146,7 +173,7 @@ public class ApiKeyVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(value, description, expired);
+    return Objects.hash(value, description, expired, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -160,9 +187,11 @@ public class ApiKeyVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ApiKeyVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    expired: ").append(toIndentedString(expired)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -185,12 +214,11 @@ public class ApiKeyVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("value");
-    openapiFields.add("description");
-    openapiFields.add("expired");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -213,12 +241,12 @@ public class ApiKeyVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ApiKeyVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull()) && !jsonObj.get("value").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
-      }
-      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ApiKeyVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

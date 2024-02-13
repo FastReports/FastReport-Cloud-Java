@@ -41,7 +41,7 @@ All URIs are relative to *http://localhost*
 | [**templatesGetFileHistory**](TemplatesApi.md#templatesGetFileHistory) | **GET** /api/rp/v1/Templates/File/{id}/History | Returns list of actions, performed on this file |
 | [**templatesGetFilesCount**](TemplatesApi.md#templatesGetFilesCount) | **GET** /api/rp/v1/Templates/Folder/{id}/CountFiles | Get count of files what contains in a specified folder |
 | [**templatesGetFilesList**](TemplatesApi.md#templatesGetFilesList) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason. |
-| [**templatesGetPermissions**](TemplatesApi.md#templatesGetPermissions) | **GET** /api/rp/v1/Templates/File/{id}/permissions | Get all file permissions |
+| [**templatesGetPermissions**](TemplatesApi.md#templatesGetPermissions) | **GET** /api/rp/v1/Templates/File/{id}/permissions |  |
 | [**templatesMoveFile**](TemplatesApi.md#templatesMoveFile) | **POST** /api/rp/v1/Templates/File/{id}/Move/{folderId} | Move file to a specified folder |
 | [**templatesMoveFileToBin**](TemplatesApi.md#templatesMoveFileToBin) | **DELETE** /api/rp/v1/Templates/File/{id}/ToBin | Move specified file to recycle bin |
 | [**templatesPrepare**](TemplatesApi.md#templatesPrepare) | **POST** /api/rp/v1/Templates/File/{id}/Prepare | Prepare specified template to report |
@@ -127,10 +127,10 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | All folders and files in bin have been deleted |  -  |
-| **400** | FolderId is null |  -  |
-| **402** | Payment required, subscription is blocked |  -  |
+| **400** | Subscription id is not valid |  -  |
+| **402** | Payment required, subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="templateFolderAndFileCopyFiles"></a>
 # **templateFolderAndFileCopyFiles**
@@ -282,10 +282,10 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | All folders and files have been deleted |  -  |
-| **400** | FolderId is null |  -  |
-| **402** | Payment required, subscription is blocked |  -  |
+| **400** | Subscription id or VM is not valid |  -  |
+| **402** | Payment required, subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="templateFolderAndFileGetCount"></a>
 # **templateFolderAndFileGetCount**
@@ -362,10 +362,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Returns count of the files in a specified folder |  -  |
-| **400** | FolderId is null |  -  |
+| **400** | Params are not valid |  -  |
 | **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFolderAndFileGetFoldersAndFiles"></a>
 # **templateFolderAndFileGetFoldersAndFiles**
@@ -450,10 +451,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Returns list of the files from a specified folder |  -  |
-| **400** | FolderId is null |  -  |
+| **400** | Params are not valid |  -  |
 | **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription or folder not found |  -  |
 
 <a id="templateFolderAndFileGetRecycleBinFoldersAndFiles"></a>
 # **templateFolderAndFileGetRecycleBinFoldersAndFiles**
@@ -538,10 +539,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Returns list of the files from a specified folder |  -  |
-| **400** | FolderId is null |  -  |
+| **400** | Params are not valid |  -  |
 | **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="templateFolderAndFileMoveFiles"></a>
 # **templateFolderAndFileMoveFiles**
@@ -693,10 +694,10 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | All folders and files have been moved to bin |  -  |
-| **400** | FolderId is null |  -  |
-| **402** | Payment required, subscription is blocked |  -  |
+| **400** | Subscription id or VM is not valid |  -  |
+| **402** | Payment required, subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="templateFolderAndFileRecoverAllFromRecycleBin"></a>
 # **templateFolderAndFileRecoverAllFromRecycleBin**
@@ -768,10 +769,10 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | All folders and files in bin have been restored |  -  |
-| **400** | FolderId is null |  -  |
-| **402** | Payment required, subscription is blocked |  -  |
+| **400** | Subscription id is not valid |  -  |
+| **402** | Payment required, subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="templateFolderAndFileRecoverFiles"></a>
 # **templateFolderAndFileRecoverFiles**
@@ -845,10 +846,10 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | All folders and files have been recovered |  -  |
-| **400** | FolderId is null |  -  |
-| **402** | Payment required, subscription is blocked |  -  |
+| **400** | Subscription id or VM is not valid |  -  |
+| **402** | Payment required, subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="templateFoldersCalculateFolderSize"></a>
 # **templateFoldersCalculateFolderSize**
@@ -922,8 +923,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns specified folder |  -  |
 | **400** | Id is null |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersCopyFolder"></a>
 # **templateFoldersCopyFolder**
@@ -999,9 +1002,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Folder has been moved to a specified folder |  -  |
 | **400** | folderId or parentFolderId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersDeleteFolder"></a>
 # **templateFoldersDeleteFolder**
@@ -1074,9 +1078,10 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Folder succesfully deleted |  -  |
 | **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersExport"></a>
 # **templateFoldersExport**
@@ -1228,8 +1233,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns breadcrumbs parents list (starts from root folder) |  -  |
 | **400** | folderId is null |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersGetFolder"></a>
 # **templateFoldersGetFolder**
@@ -1303,8 +1310,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns specified folder |  -  |
 | **400** | Id is null |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersGetFolders"></a>
 # **templateFoldersGetFolders**
@@ -1389,9 +1398,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Gets all folders from a specified folder |  -  |
-| **400** | folderId is null |  -  |
+| **400** | 1 of params is not valid |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersGetFoldersCount"></a>
 # **templateFoldersGetFoldersCount**
@@ -1465,8 +1476,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns count of folders in a specified folder |  -  |
 | **400** | folderId is null |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersGetOrCreate"></a>
 # **templateFoldersGetOrCreate**
@@ -1543,9 +1556,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Returns specified folder |  -  |
-| **400** | Id is null |  -  |
+| **400** | Name or 1 of ids is not valid |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersGetPermissions"></a>
 # **templateFoldersGetPermissions**
@@ -1617,8 +1632,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | returned permissions |  -  |
 | **400** | id is not valid |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | folder is not found |  -  |
+| **404** | Folder or subscription not found |  -  |
 
 <a id="templateFoldersGetRootFolder"></a>
 # **templateFoldersGetRootFolder**
@@ -1691,9 +1707,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Gets user&#39;s root folder (without parents) |  -  |
-| **400** | Error with the request. |  -  |
-| **404** | Not found subscription |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | No permissions to get root folder |  -  |
+| **404** | Not found subscription |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersMoveFolder"></a>
 # **templateFoldersMoveFolder**
@@ -1769,9 +1786,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Folder has been moved to a specified folder |  -  |
 | **400** | folderId or parentFolderId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersMoveFolderToBin"></a>
 # **templateFoldersMoveFolderToBin**
@@ -1844,9 +1862,10 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Folder succesfully deleted |  -  |
 | **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersPostFolder"></a>
 # **templateFoldersPostFolder**
@@ -1921,9 +1940,9 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | New folder has been created) |  -  |
-| **400** | Parent folder id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
+| **400** | Parent folder id or VM is not valid |  -  |
 | **402** | subscription is outdated |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | parent folder/subscription not found |  -  |
 
 <a id="templateFoldersPrepare"></a>
@@ -2077,9 +2096,10 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Folder succesfully restored from bin |  -  |
 | **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersRenameFolder"></a>
 # **templateFoldersRenameFolder**
@@ -2154,10 +2174,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Folder name has been updated |  -  |
-| **400** | folderId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
+| **400** | folderId or VM is not valid |  -  |
 | **402** | subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersUpdateIcon"></a>
 # **templateFoldersUpdateIcon**
@@ -2232,10 +2253,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Folder&#39;s icon has been updated |  -  |
-| **400** | folderId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
+| **400** | folderId or VM is not valid |  -  |
 | **402** | subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersUpdatePermissions"></a>
 # **templateFoldersUpdatePermissions**
@@ -2306,12 +2328,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **204** | Folder&#39;s permissions has been updated |  -  |
+| **400** | Id or VM is not valid |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templateFoldersUpdateTags"></a>
 # **templateFoldersUpdateTags**
@@ -2389,7 +2411,8 @@ public class Example {
 | **400** | folderId or Tags is null |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templatesCopyFile"></a>
 # **templatesCopyFile**
@@ -2462,10 +2485,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | File has been copied |  -  |
-| **400** | fileId or folderId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
+| **400** | FileId or folderId is null |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File or folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File, subscription or folder not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="templatesDeleteFile"></a>
@@ -2539,9 +2562,9 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | File succesfully deleted |  -  |
 | **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="templatesExport"></a>
@@ -2619,8 +2642,8 @@ public class Example {
 | **200** | Specified report has been exported |  -  |
 | **204** | Specified report has been exported |  -  |
 | **400** | Report Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Exports folder not found |  -  |
 
 <a id="templatesGetFile"></a>
@@ -2695,8 +2718,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns the specified file |  -  |
 | **400** | Id is null |  -  |
+| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File not found |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="templatesGetFileHistory"></a>
@@ -2771,10 +2795,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **200** | Returns the actions |  -  |
+| **400** | Id is null |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 
 <a id="templatesGetFilesCount"></a>
 # **templatesGetFilesCount**
@@ -2848,8 +2873,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns count of the files in a specified folder |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="templatesGetFilesList"></a>
@@ -2933,16 +2959,17 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Returns list of the files from a specified folder |  -  |
-| **400** | FolderId is null |  -  |
+| **400** | Invalid params |  -  |
+| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | File, subscription or folder not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="templatesGetPermissions"></a>
 # **templatesGetPermissions**
 > FilePermissionsVM templatesGetPermissions(id)
 
-Get all file permissions
+
 
 ### Example
 ```java
@@ -3006,10 +3033,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | got permissions successfully |  -  |
-| **400** | id is not valid |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | file is not found |  -  |
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **402** | Client Error |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
 
 <a id="templatesMoveFile"></a>
 # **templatesMoveFile**
@@ -3085,9 +3113,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | File has been moved |  -  |
 | **400** | fileId or folderId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File or folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File, subscription or folder not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="templatesMoveFileToBin"></a>
@@ -3161,9 +3189,9 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | File succesfully deleted |  -  |
 | **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="templatesPrepare"></a>
@@ -3241,8 +3269,8 @@ public class Example {
 | **200** | Specified template has been prepared |  -  |
 | **204** | Specified template has been prepared |  -  |
 | **400** | Report Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | subscription is outdated |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Template or folder not found |  -  |
 
 <a id="templatesRecoverFile"></a>
@@ -3318,9 +3346,9 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | File succesfully recovered |  -  |
 | **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="templatesRenameFile"></a>
@@ -3397,9 +3425,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | File name has been updated |  -  |
 | **400** | FileId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="templatesStaticPreview"></a>
@@ -3475,8 +3503,8 @@ public class Example {
 | **200** | Specified template has been prepared |  -  |
 | **204** | Specified template has been prepared |  -  |
 | **400** | Template Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Template or folder not found |  -  |
 
 <a id="templatesUpdateContent"></a>
@@ -3549,10 +3577,11 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | No Content |  -  |
-| **404** | Not Found |  -  |
 | **400** | Bad Request |  -  |
-| **403** | Forbidden |  -  |
 | **402** | Client Error |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
 
 <a id="templatesUpdateContentV2"></a>
 # **templatesUpdateContentV2**
@@ -3623,11 +3652,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **404** | Not Found |  -  |
-| **400** | Bad Request |  -  |
-| **403** | Forbidden |  -  |
-| **402** | Client Error |  -  |
+| **204** | Template has been updated |  -  |
+| **404** | Template or subscription are not found |  -  |
+| **400** | Id or VM is not valid |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **402** | subscription is outdated |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="templatesUpdateIcon"></a>
 # **templatesUpdateIcon**
@@ -3703,9 +3733,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | File&#39;s icon has been updated |  -  |
 | **400** | FileId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="templatesUpdatePermissions"></a>
@@ -3777,12 +3807,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **204** | File&#39;s permissions has been updated |  -  |
+| **400** | FileId or VM is not valid |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
+| **500** | Exception thrown |  -  |
 
 <a id="templatesUpdateTags"></a>
 # **templatesUpdateTags**
@@ -3858,9 +3888,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Tags has been updated |  -  |
 | **400** | FileId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="templatesUploadFile"></a>

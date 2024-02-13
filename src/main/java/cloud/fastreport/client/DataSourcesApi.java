@@ -92,6 +92,7 @@ public class DataSourcesApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
      </table>
@@ -163,6 +164,7 @@ public class DataSourcesApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
      </table>
@@ -183,6 +185,7 @@ public class DataSourcesApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
      </table>
@@ -205,6 +208,7 @@ public class DataSourcesApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
      </table>
@@ -225,12 +229,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to create data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesCreateDataSourceCall(CreateDataSourceVM createDataSourceVM, final ApiCallback _callback) throws ApiException {
@@ -295,12 +299,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to create data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public DataSourceVM dataSourcesCreateDataSource(CreateDataSourceVM createDataSourceVM) throws ApiException {
@@ -317,12 +321,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to create data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<DataSourceVM> dataSourcesCreateDataSourceWithHttpInfo(CreateDataSourceVM createDataSourceVM) throws ApiException {
@@ -341,12 +345,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to create data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesCreateDataSourceAsync(CreateDataSourceVM createDataSourceVM, final ApiCallback<DataSourceVM> _callback) throws ApiException {
@@ -365,12 +369,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to delete data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesDeleteDataSourceCall(String id, final ApiCallback _callback) throws ApiException {
@@ -437,12 +441,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to delete data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void dataSourcesDeleteDataSource(String id) throws ApiException {
@@ -458,12 +462,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to delete data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> dataSourcesDeleteDataSourceWithHttpInfo(String id) throws ApiException {
@@ -481,12 +485,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to delete data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesDeleteDataSourceAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
@@ -504,12 +508,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to fetch data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesFetchDataCall(String id, final ApiCallback _callback) throws ApiException {
@@ -576,12 +580,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to fetch data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void dataSourcesFetchData(String id) throws ApiException {
@@ -597,12 +601,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to fetch data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> dataSourcesFetchDataWithHttpInfo(String id) throws ApiException {
@@ -620,12 +624,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to fetch data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesFetchDataAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
@@ -647,11 +651,11 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> One of params is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with provided id found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesGetAvailableDataSourcesCall(String subscriptionId, Integer skip, Integer take, DataSourceSorting orderBy, Boolean desc, final ApiCallback _callback) throws ApiException {
@@ -737,11 +741,11 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> One of params is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with provided id found </td><td>  -  </td></tr>
      </table>
      */
     public DataSourcesVM dataSourcesGetAvailableDataSources(String subscriptionId, Integer skip, Integer take, DataSourceSorting orderBy, Boolean desc) throws ApiException {
@@ -762,11 +766,11 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> One of params is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with provided id found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<DataSourcesVM> dataSourcesGetAvailableDataSourcesWithHttpInfo(String subscriptionId, Integer skip, Integer take, DataSourceSorting orderBy, Boolean desc) throws ApiException {
@@ -789,11 +793,11 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> One of params is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with provided id found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesGetAvailableDataSourcesAsync(String subscriptionId, Integer skip, Integer take, DataSourceSorting orderBy, Boolean desc, final ApiCallback<DataSourcesVM> _callback) throws ApiException {
@@ -812,12 +816,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesGetDataSourceCall(String id, final ApiCallback _callback) throws ApiException {
@@ -885,12 +889,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public DataSourceVM dataSourcesGetDataSource(String id) throws ApiException {
@@ -907,12 +911,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<DataSourceVM> dataSourcesGetDataSourceWithHttpInfo(String id) throws ApiException {
@@ -931,12 +935,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesGetDataSourceAsync(String id, final ApiCallback<DataSourceVM> _callback) throws ApiException {
@@ -955,12 +959,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources&#39; permissions from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesGetPermissionsCall(String id, final ApiCallback _callback) throws ApiException {
@@ -1028,12 +1032,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources&#39; permissions from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public DataSourcePermissionsVM dataSourcesGetPermissions(String id) throws ApiException {
@@ -1050,12 +1054,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources&#39; permissions from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<DataSourcePermissionsVM> dataSourcesGetPermissionsWithHttpInfo(String id) throws ApiException {
@@ -1074,12 +1078,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources&#39; permissions from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesGetPermissionsAsync(String id, final ApiCallback<DataSourcePermissionsVM> _callback) throws ApiException {
@@ -1099,12 +1103,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; name from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesRenameDataSourceCall(String id, RenameDataSourceVM renameDataSourceVM, final ApiCallback _callback) throws ApiException {
@@ -1176,12 +1180,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; name from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public DataSourceVM dataSourcesRenameDataSource(String id, RenameDataSourceVM renameDataSourceVM) throws ApiException {
@@ -1199,12 +1203,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; name from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<DataSourceVM> dataSourcesRenameDataSourceWithHttpInfo(String id, RenameDataSourceVM renameDataSourceVM) throws ApiException {
@@ -1224,12 +1228,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; name from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesRenameDataSourceAsync(String id, RenameDataSourceVM renameDataSourceVM, final ApiCallback<DataSourceVM> _callback) throws ApiException {
@@ -1249,12 +1253,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; connection string from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesUpdateConnectionStringCall(String id, UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM, final ApiCallback _callback) throws ApiException {
@@ -1326,12 +1330,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; connection string from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public DataSourceVM dataSourcesUpdateConnectionString(String id, UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM) throws ApiException {
@@ -1349,12 +1353,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; connection string from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<DataSourceVM> dataSourcesUpdateConnectionStringWithHttpInfo(String id, UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM) throws ApiException {
@@ -1374,12 +1378,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; connection string from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesUpdateConnectionStringAsync(String id, UpdateDataSourceConnectionStringVM updateDataSourceConnectionStringVM, final ApiCallback<DataSourceVM> _callback) throws ApiException {
@@ -1399,12 +1403,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; permissions from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesUpdatePermissionsCall(String id, UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM, final ApiCallback _callback) throws ApiException {
@@ -1475,12 +1479,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; permissions from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void dataSourcesUpdatePermissions(String id, UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM) throws ApiException {
@@ -1497,12 +1501,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; permissions from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> dataSourcesUpdatePermissionsWithHttpInfo(String id, UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM) throws ApiException {
@@ -1521,12 +1525,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; permissions from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesUpdatePermissionsAsync(String id, UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM, final ApiCallback<Void> _callback) throws ApiException {
@@ -1545,12 +1549,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources or create them in new subscription </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesUpdateSubscriptionDataSourceCall(String id, UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM, final ApiCallback _callback) throws ApiException {
@@ -1621,12 +1625,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources or create them in new subscription </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void dataSourcesUpdateSubscriptionDataSource(String id, UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM) throws ApiException {
@@ -1643,12 +1647,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources or create them in new subscription </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> dataSourcesUpdateSubscriptionDataSourceWithHttpInfo(String id, UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM) throws ApiException {
@@ -1667,12 +1671,12 @@ public class DataSourcesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to get data sources or create them in new subscription </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call dataSourcesUpdateSubscriptionDataSourceAsync(String id, UpdateDataSourceSubscriptionVM updateDataSourceSubscriptionVM, final ApiCallback<Void> _callback) throws ApiException {

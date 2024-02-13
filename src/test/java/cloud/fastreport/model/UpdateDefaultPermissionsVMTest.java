@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.UpdateDataSourcePermissionsVM;
 import cloud.fastreport.model.UpdateFilePermissionsVM;
 import cloud.fastreport.model.UpdateGroupPermissionsVM;
@@ -42,35 +43,11 @@ public class UpdateDefaultPermissionsVMTest {
     }
 
     /**
-     * Test the property 'filePermissions'
+     * Test the property '$t'
      */
     @Test
-    public void filePermissionsTest() {
-        // TODO: test filePermissions
-    }
-
-    /**
-     * Test the property 'groupPermissions'
-     */
-    @Test
-    public void groupPermissionsTest() {
-        // TODO: test groupPermissions
-    }
-
-    /**
-     * Test the property 'dataSourcePermissions'
-     */
-    @Test
-    public void dataSourcePermissionsTest() {
-        // TODO: test dataSourcePermissions
-    }
-
-    /**
-     * Test the property 'taskPermissions'
-     */
-    @Test
-    public void taskPermissionsTest() {
-        // TODO: test taskPermissions
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

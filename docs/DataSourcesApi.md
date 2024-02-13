@@ -87,6 +87,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Everything is all right |  -  |
 | **400** | id is not hex24 |  -  |
+| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) |  -  |
 | **404** | there is no subscription with provided id found, or user don&#39;t even have a subscription |  -  |
 
@@ -158,12 +159,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **200** | Everything is all right |  -  |
+| **400** | VM is not valid |  -  |
+| **402** | Subscription is outdated or have not enough limits |  -  |
+| **403** | You don&#39;t have permisison to create data sources from this subscription (or in your default (1st) subscription) |  -  |
+| **404** | There is no subscription with provided id found, or user don&#39;t even have a subscription |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="dataSourcesDeleteDataSource"></a>
 # **dataSourcesDeleteDataSource**
@@ -232,12 +233,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **204** | Everything is all right |  -  |
+| **400** | id is not hex24 |  -  |
+| **402** | Subscription is outdated or have not enough limits |  -  |
+| **403** | You don&#39;t have permisison to delete data sources from this subscription (or in your default (1st) subscription) |  -  |
+| **404** | There is no data source or subscription with provided id found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="dataSourcesFetchData"></a>
 # **dataSourcesFetchData**
@@ -306,12 +307,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **204** | Everything is all right |  -  |
+| **400** | id is not hex24 |  -  |
+| **402** | Subscription is outdated or have not enough limits |  -  |
+| **403** | You don&#39;t have permisison to fetch data sources from this subscription (or in your default (1st) subscription) |  -  |
+| **404** | There is no data source or subscription with provided id found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="dataSourcesGetAvailableDataSources"></a>
 # **dataSourcesGetAvailableDataSources**
@@ -389,11 +390,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **200** | Everything is all right |  -  |
+| **400** | One of params is not valid |  -  |
+| **402** | Subscription is outdated or have not enough limits |  -  |
+| **403** | You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) |  -  |
+| **404** | There is no subscription with provided id found |  -  |
 
 <a id="dataSourcesGetDataSource"></a>
 # **dataSourcesGetDataSource**
@@ -463,12 +464,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **200** | Everything is all right |  -  |
+| **400** | id is not hex24 |  -  |
+| **402** | Subscription is outdated or have not enough limits |  -  |
+| **403** | You don&#39;t have permisison to get data sources from this subscription (or in your default (1st) subscription) |  -  |
+| **404** | There is no data source or subscription with provided id found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="dataSourcesGetPermissions"></a>
 # **dataSourcesGetPermissions**
@@ -538,12 +539,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **200** | Everything is all right |  -  |
+| **400** | id is not hex24 |  -  |
+| **402** | Subscription is outdated or have not enough limits |  -  |
+| **403** | You don&#39;t have permisison to get data sources&#39; permissions from this subscription (or in your default (1st) subscription) |  -  |
+| **404** | There is no data source or subscription with provided id found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="dataSourcesRenameDataSource"></a>
 # **dataSourcesRenameDataSource**
@@ -615,12 +616,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **200** | Everything is all right |  -  |
+| **400** | id is not hex24 or VM is not valid |  -  |
+| **402** | Subscription is outdated or have not enough limits |  -  |
+| **403** | You don&#39;t have permisison to update data sources&#39; name from this subscription (or in your default (1st) subscription) |  -  |
+| **404** | There is no data source or subscription with provided id found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="dataSourcesUpdateConnectionString"></a>
 # **dataSourcesUpdateConnectionString**
@@ -692,12 +693,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **200** | Everything is all right |  -  |
+| **400** | id is not hex24 or VM is not valid |  -  |
+| **402** | Subscription is outdated or have not enough limits |  -  |
+| **403** | You don&#39;t have permisison to update data sources&#39; connection string from this subscription (or in your default (1st) subscription) |  -  |
+| **404** | There is no data source or subscription with provided id found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="dataSourcesUpdatePermissions"></a>
 # **dataSourcesUpdatePermissions**
@@ -768,12 +769,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **204** | Everything is all right |  -  |
+| **400** | id is not hex24 or VM is not valid |  -  |
+| **402** | Subscription is outdated or have not enough limits |  -  |
+| **403** | You don&#39;t have permisison to update data sources&#39; permissions from this subscription (or in your default (1st) subscription) |  -  |
+| **404** | There is no data source or subscription with provided id found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="dataSourcesUpdateSubscriptionDataSource"></a>
 # **dataSourcesUpdateSubscriptionDataSource**
@@ -844,10 +845,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **200** | Everything is all right |  -  |
+| **400** | id is not hex24 or VM is not valid |  -  |
+| **402** | Subscription is outdated or have not enough limits |  -  |
+| **403** | You don&#39;t have permisison to get data sources or create them in new subscription |  -  |
+| **404** | There is no data source or subscription with provided id found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 

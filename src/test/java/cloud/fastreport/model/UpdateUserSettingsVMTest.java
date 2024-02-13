@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.AuditType;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.ProfileVisibility;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -43,35 +44,11 @@ public class UpdateUserSettingsVMTest {
     }
 
     /**
-     * Test the property 'profileVisibility'
+     * Test the property '$t'
      */
     @Test
-    public void profileVisibilityTest() {
-        // TODO: test profileVisibility
-    }
-
-    /**
-     * Test the property 'defaultSubscription'
-     */
-    @Test
-    public void defaultSubscriptionTest() {
-        // TODO: test defaultSubscription
-    }
-
-    /**
-     * Test the property 'showHiddenFilesAndFolders'
-     */
-    @Test
-    public void showHiddenFilesAndFoldersTest() {
-        // TODO: test showHiddenFilesAndFolders
-    }
-
-    /**
-     * Test the property 'subscribedNotifications'
-     */
-    @Test
-    public void subscribedNotificationsTest() {
-        // TODO: test subscribedNotifications
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

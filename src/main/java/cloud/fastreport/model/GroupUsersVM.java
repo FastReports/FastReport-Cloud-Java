@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.GroupUserVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * GroupUsersVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class GroupUsersVM {
+public class GroupUsersVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_USERS = "users";
   @SerializedName(SERIALIZED_NAME_USERS)
   private List<GroupUserVM> users;
@@ -71,7 +72,12 @@ public class GroupUsersVM {
   @SerializedName(SERIALIZED_NAME_SKIP)
   private Integer skip;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public GroupUsersVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public GroupUsersVM users(List<GroupUserVM> users) {
@@ -158,6 +164,25 @@ public class GroupUsersVM {
   }
 
 
+  public GroupUsersVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -171,7 +196,9 @@ public class GroupUsersVM {
     return Objects.equals(this.users, groupUsersVM.users) &&
         Objects.equals(this.count, groupUsersVM.count) &&
         Objects.equals(this.take, groupUsersVM.take) &&
-        Objects.equals(this.skip, groupUsersVM.skip);
+        Objects.equals(this.skip, groupUsersVM.skip) &&
+        Objects.equals(this.$t, groupUsersVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -180,7 +207,7 @@ public class GroupUsersVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(users, count, take, skip);
+    return Objects.hash(users, count, take, skip, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -194,10 +221,12 @@ public class GroupUsersVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GroupUsersVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("    take: ").append(toIndentedString(take)).append("\n");
     sb.append("    skip: ").append(toIndentedString(skip)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -220,13 +249,11 @@ public class GroupUsersVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("users");
-    openapiFields.add("count");
-    openapiFields.add("take");
-    openapiFields.add("skip");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -249,19 +276,11 @@ public class GroupUsersVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GroupUsersVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("users") != null && !jsonObj.get("users").isJsonNull()) {
-        JsonArray jsonArrayusers = jsonObj.getAsJsonArray("users");
-        if (jsonArrayusers != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("users").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `users` to be an array in the JSON string but got `%s`", jsonObj.get("users").toString()));
-          }
 
-          // validate the optional field `users` (array)
-          for (int i = 0; i < jsonArrayusers.size(); i++) {
-            GroupUserVM.validateJsonElement(jsonArrayusers.get(i));
-          };
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : GroupUsersVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }

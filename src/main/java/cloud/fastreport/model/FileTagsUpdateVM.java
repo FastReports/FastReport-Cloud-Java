@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,12 +54,17 @@ import cloud.fastreport.JSON;
  * FileTagsUpdateVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FileTagsUpdateVM {
+public class FileTagsUpdateVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
   private List<String> tags;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public FileTagsUpdateVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public FileTagsUpdateVM tags(List<String> tags) {
@@ -88,6 +94,25 @@ public class FileTagsUpdateVM {
   }
 
 
+  public FileTagsUpdateVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -98,7 +123,9 @@ public class FileTagsUpdateVM {
       return false;
     }
     FileTagsUpdateVM fileTagsUpdateVM = (FileTagsUpdateVM) o;
-    return Objects.equals(this.tags, fileTagsUpdateVM.tags);
+    return Objects.equals(this.tags, fileTagsUpdateVM.tags) &&
+        Objects.equals(this.$t, fileTagsUpdateVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -107,7 +134,7 @@ public class FileTagsUpdateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(tags);
+    return Objects.hash(tags, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -121,7 +148,9 @@ public class FileTagsUpdateVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FileTagsUpdateVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -144,10 +173,11 @@ public class FileTagsUpdateVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("tags");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -170,10 +200,12 @@ public class FileTagsUpdateVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FileTagsUpdateVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull() && !jsonObj.get("tags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : FileTagsUpdateVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

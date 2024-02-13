@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import cloud.fastreport.model.AuditType;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,7 +54,7 @@ import cloud.fastreport.JSON;
  * AuditActionVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AuditActionVM {
+public class AuditActionVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
   private String userId;
@@ -307,7 +308,8 @@ public class AuditActionVM {
         Objects.equals(this.creatorUserId, auditActionVM.creatorUserId) &&
         Objects.equals(this.name, auditActionVM.name) &&
         Objects.equals(this.adminAction, auditActionVM.adminAction) &&
-        Objects.equals(this.$t, auditActionVM.$t);
+        Objects.equals(this.$t, auditActionVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -316,7 +318,7 @@ public class AuditActionVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, entityId, subscriptionId, type, id, createdTime, creatorUserId, name, adminAction, $t);
+    return Objects.hash(userId, entityId, subscriptionId, type, id, createdTime, creatorUserId, name, adminAction, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -330,6 +332,7 @@ public class AuditActionVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AuditActionVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
@@ -362,15 +365,6 @@ public class AuditActionVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("userId");
-    openapiFields.add("entityId");
-    openapiFields.add("subscriptionId");
-    openapiFields.add("type");
-    openapiFields.add("id");
-    openapiFields.add("createdTime");
-    openapiFields.add("creatorUserId");
-    openapiFields.add("name");
-    openapiFields.add("adminAction");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
@@ -393,6 +387,9 @@ public class AuditActionVM {
 
       String discriminatorValue = jsonElement.getAsJsonObject().get("$t").getAsString();
       switch (discriminatorValue) {
+        case "AuditActionVM":
+          AuditActionVM.validateJsonElement(jsonElement);
+          break;
         case "AuditFilePropertyChangedVM":
           AuditFilePropertyChangedVM.validateJsonElement(jsonElement);
           break;

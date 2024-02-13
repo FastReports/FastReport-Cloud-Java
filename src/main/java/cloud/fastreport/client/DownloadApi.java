@@ -84,10 +84,11 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetExportCall(String id, Boolean preview, final ApiCallback _callback) throws ApiException {
@@ -164,10 +165,11 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public File downloadGetExport(String id, Boolean preview) throws ApiException {
@@ -186,10 +188,11 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<File> downloadGetExportWithHttpInfo(String id, Boolean preview) throws ApiException {
@@ -210,10 +213,11 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetExportAsync(String id, Boolean preview, final ApiCallback<File> _callback) throws ApiException {
@@ -233,10 +237,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetExportThumbnailCall(String id, final ApiCallback _callback) throws ApiException {
@@ -308,10 +312,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
      </table>
      */
     public File downloadGetExportThumbnail(String id) throws ApiException {
@@ -329,10 +333,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<File> downloadGetExportThumbnailWithHttpInfo(String id) throws ApiException {
@@ -352,10 +356,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetExportThumbnailAsync(String id, final ApiCallback<File> _callback) throws ApiException {
@@ -376,11 +380,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Specified files was found </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified files were not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetExportsCall(String archiveName, String fileIds, String folderIds, final ApiCallback _callback) throws ApiException {
@@ -460,11 +464,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Specified files was found </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified files were not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public File downloadGetExports(String archiveName, String fileIds, String folderIds) throws ApiException {
@@ -483,11 +487,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Specified files was found </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified files were not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<File> downloadGetExportsWithHttpInfo(String archiveName, String fileIds, String folderIds) throws ApiException {
@@ -508,11 +512,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Specified files was found </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified files were not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetExportsAsync(String archiveName, String fileIds, String folderIds, final ApiCallback<File> _callback) throws ApiException {
@@ -531,11 +535,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetLastSVGExportCall(String reportId, final ApiCallback _callback) throws ApiException {
@@ -605,11 +609,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public File downloadGetLastSVGExport(String reportId) throws ApiException {
@@ -626,11 +630,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<File> downloadGetLastSVGExportWithHttpInfo(String reportId) throws ApiException {
@@ -649,11 +653,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetLastSVGExportAsync(String reportId, final ApiCallback<File> _callback) throws ApiException {
@@ -673,10 +677,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetReportCall(String id, final ApiCallback _callback) throws ApiException {
@@ -747,10 +751,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public File downloadGetReport(String id) throws ApiException {
@@ -768,10 +772,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<File> downloadGetReportWithHttpInfo(String id) throws ApiException {
@@ -791,10 +795,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetReportAsync(String id, final ApiCallback<File> _callback) throws ApiException {
@@ -814,10 +818,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetReportThumbnailCall(String id, final ApiCallback _callback) throws ApiException {
@@ -889,10 +893,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
      </table>
      */
     public File downloadGetReportThumbnail(String id) throws ApiException {
@@ -910,10 +914,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<File> downloadGetReportThumbnailWithHttpInfo(String id) throws ApiException {
@@ -933,10 +937,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetReportThumbnailAsync(String id, final ApiCallback<File> _callback) throws ApiException {
@@ -957,11 +961,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Files were downloaded </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Wrong parameters provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Files were not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetReportsCall(String archiveName, String fileIds, String folderIds, final ApiCallback _callback) throws ApiException {
@@ -1041,11 +1045,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Files were downloaded </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Wrong parameters provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Files were not found </td><td>  -  </td></tr>
      </table>
      */
     public File downloadGetReports(String archiveName, String fileIds, String folderIds) throws ApiException {
@@ -1064,11 +1068,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Files were downloaded </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Wrong parameters provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Files were not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<File> downloadGetReportsWithHttpInfo(String archiveName, String fileIds, String folderIds) throws ApiException {
@@ -1089,11 +1093,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Files were downloaded </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Wrong parameters provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Files were not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetReportsAsync(String archiveName, String fileIds, String folderIds, final ApiCallback<File> _callback) throws ApiException {
@@ -1113,10 +1117,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetTemplateCall(String id, final ApiCallback _callback) throws ApiException {
@@ -1187,10 +1191,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public File downloadGetTemplate(String id) throws ApiException {
@@ -1208,10 +1212,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<File> downloadGetTemplateWithHttpInfo(String id) throws ApiException {
@@ -1231,10 +1235,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified file was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad id provided </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified file was not found or user do not has access to the file </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetTemplateAsync(String id, final ApiCallback<File> _callback) throws ApiException {
@@ -1254,10 +1258,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetTemplateThumbnailCall(String id, final ApiCallback _callback) throws ApiException {
@@ -1329,10 +1333,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
      </table>
      */
     public File downloadGetTemplateThumbnail(String id) throws ApiException {
@@ -1350,10 +1354,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<File> downloadGetTemplateThumbnailWithHttpInfo(String id) throws ApiException {
@@ -1373,10 +1377,10 @@ public class DownloadApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Specified thumbnail was found </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Specified thumbnail was not found or user do not has access to it </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetTemplateThumbnailAsync(String id, final ApiCallback<File> _callback) throws ApiException {
@@ -1397,11 +1401,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Files were downloaded </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Wrong parameters provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Files were not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetTemplatesCall(String archiveName, String fileIds, String folderIds, final ApiCallback _callback) throws ApiException {
@@ -1481,11 +1485,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Files were downloaded </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Wrong parameters provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Files were not found </td><td>  -  </td></tr>
      </table>
      */
     public File downloadGetTemplates(String archiveName, String fileIds, String folderIds) throws ApiException {
@@ -1504,11 +1508,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Files were downloaded </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Wrong parameters provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Files were not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<File> downloadGetTemplatesWithHttpInfo(String archiveName, String fileIds, String folderIds) throws ApiException {
@@ -1529,11 +1533,11 @@ public class DownloadApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> File has been downloaded </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> wrong parameters provided </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Files were downloaded </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Wrong parameters provided </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> files is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Files were not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call downloadGetTemplatesAsync(String archiveName, String fileIds, String folderIds, final ApiCallback<File> _callback) throws ApiException {

@@ -40,7 +40,6 @@ import cloud.fastreport.model.FileSorting;
 import cloud.fastreport.model.FileTagsUpdateVM;
 import cloud.fastreport.model.FileVM;
 import cloud.fastreport.model.FilesVM;
-import cloud.fastreport.model.FolderCreateVM;
 import cloud.fastreport.model.FolderIconVM;
 import cloud.fastreport.model.FolderRenameVM;
 import cloud.fastreport.model.FolderSizeVM;
@@ -107,10 +106,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files in bin have been deleted </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileClearRecycleBinCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
@@ -178,10 +177,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files in bin have been deleted </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public void reportFolderAndFileClearRecycleBin(String subscriptionId) throws ApiException {
@@ -198,10 +197,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files in bin have been deleted </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> reportFolderAndFileClearRecycleBinWithHttpInfo(String subscriptionId) throws ApiException {
@@ -220,10 +219,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files in bin have been deleted </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileClearRecycleBinAsync(String subscriptionId, final ApiCallback<Void> _callback) throws ApiException {
@@ -389,10 +388,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files have been deleted </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileDeleteFilesCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
@@ -464,10 +463,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files have been deleted </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public void reportFolderAndFileDeleteFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
@@ -485,10 +484,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files have been deleted </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> reportFolderAndFileDeleteFilesWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
@@ -508,10 +507,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files have been deleted </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileDeleteFilesAsync(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback<Void> _callback) throws ApiException {
@@ -532,10 +531,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileGetCountCall(String id, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
@@ -614,10 +614,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public CountVM reportFolderAndFileGetCount(String id, String searchPattern, Boolean useRegex) throws ApiException {
@@ -637,10 +638,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<CountVM> reportFolderAndFileGetCountWithHttpInfo(String id, String searchPattern, Boolean useRegex) throws ApiException {
@@ -662,10 +664,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileGetCountAsync(String id, String searchPattern, Boolean useRegex, final ApiCallback<CountVM> _callback) throws ApiException {
@@ -691,10 +694,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or folder not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileGetFoldersAndFilesCall(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
@@ -793,10 +796,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or folder not found </td><td>  -  </td></tr>
      </table>
      */
     public FilesVM reportFolderAndFileGetFoldersAndFiles(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
@@ -820,10 +823,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or folder not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FilesVM> reportFolderAndFileGetFoldersAndFilesWithHttpInfo(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
@@ -849,10 +852,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or folder not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileGetFoldersAndFilesAsync(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback<FilesVM> _callback) throws ApiException {
@@ -878,10 +881,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileGetRecycleBinFoldersAndFilesCall(String subscriptionId, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
@@ -980,10 +983,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public FilesVM reportFolderAndFileGetRecycleBinFoldersAndFiles(String subscriptionId, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
@@ -1007,10 +1010,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FilesVM> reportFolderAndFileGetRecycleBinFoldersAndFilesWithHttpInfo(String subscriptionId, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
@@ -1036,10 +1039,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileGetRecycleBinFoldersAndFilesAsync(String subscriptionId, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback<FilesVM> _callback) throws ApiException {
@@ -1206,10 +1209,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files have been moved to bin </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileMoveFilesToBinCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
@@ -1281,10 +1284,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files have been moved to bin </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public void reportFolderAndFileMoveFilesToBin(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
@@ -1302,10 +1305,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files have been moved to bin </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> reportFolderAndFileMoveFilesToBinWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
@@ -1325,10 +1328,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files have been moved to bin </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileMoveFilesToBinAsync(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback<Void> _callback) throws ApiException {
@@ -1347,10 +1350,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files in bin have been restored </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileRecoverAllFromRecycleBinCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
@@ -1418,10 +1421,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files in bin have been restored </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public void reportFolderAndFileRecoverAllFromRecycleBin(String subscriptionId) throws ApiException {
@@ -1438,10 +1441,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files in bin have been restored </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> reportFolderAndFileRecoverAllFromRecycleBinWithHttpInfo(String subscriptionId) throws ApiException {
@@ -1460,10 +1463,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files in bin have been restored </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileRecoverAllFromRecycleBinAsync(String subscriptionId, final ApiCallback<Void> _callback) throws ApiException {
@@ -1483,10 +1486,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files have been recovered </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileRecoverFilesCall(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback _callback) throws ApiException {
@@ -1558,10 +1561,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files have been recovered </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public void reportFolderAndFileRecoverFiles(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
@@ -1579,10 +1582,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files have been recovered </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> reportFolderAndFileRecoverFilesWithHttpInfo(String subscriptionId, SelectedFilesVM selectedFilesVM) throws ApiException {
@@ -1602,10 +1605,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> All folders and files have been recovered </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Subscription id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFolderAndFileRecoverFilesAsync(String subscriptionId, SelectedFilesVM selectedFilesVM, final ApiCallback<Void> _callback) throws ApiException {
@@ -1625,8 +1628,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersCalculateFolderSizeCall(String id, final ApiCallback _callback) throws ApiException {
@@ -1696,8 +1701,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public FolderSizeVM reportFoldersCalculateFolderSize(String id) throws ApiException {
@@ -1716,8 +1723,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FolderSizeVM> reportFoldersCalculateFolderSizeWithHttpInfo(String id) throws ApiException {
@@ -1738,8 +1747,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersCalculateFolderSizeAsync(String id, final ApiCallback<FolderSizeVM> _callback) throws ApiException {
@@ -1761,9 +1772,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersCopyFolderCall(String id, String folderId, final ApiCallback _callback) throws ApiException {
@@ -1840,9 +1852,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public FileVM reportFoldersCopyFolder(String id, String folderId) throws ApiException {
@@ -1862,9 +1875,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FileVM> reportFoldersCopyFolderWithHttpInfo(String id, String folderId) throws ApiException {
@@ -1886,9 +1900,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersCopyFolderAsync(String id, String folderId, final ApiCallback<FileVM> _callback) throws ApiException {
@@ -1909,9 +1924,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersDeleteFolderCall(String id, final ApiCallback _callback) throws ApiException {
@@ -1980,9 +1996,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void reportFoldersDeleteFolder(String id) throws ApiException {
@@ -2000,9 +2017,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> reportFoldersDeleteFolderWithHttpInfo(String id) throws ApiException {
@@ -2022,9 +2040,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersDeleteFolderAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
@@ -2190,8 +2209,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns breadcrumbs parents list (starts from root folder) </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetBreadcrumbsCall(String id, final ApiCallback _callback) throws ApiException {
@@ -2261,8 +2282,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns breadcrumbs parents list (starts from root folder) </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public BreadcrumbsVM reportFoldersGetBreadcrumbs(String id) throws ApiException {
@@ -2281,8 +2304,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns breadcrumbs parents list (starts from root folder) </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<BreadcrumbsVM> reportFoldersGetBreadcrumbsWithHttpInfo(String id) throws ApiException {
@@ -2303,8 +2328,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns breadcrumbs parents list (starts from root folder) </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetBreadcrumbsAsync(String id, final ApiCallback<BreadcrumbsVM> _callback) throws ApiException {
@@ -2325,8 +2352,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetFolderCall(String id, final ApiCallback _callback) throws ApiException {
@@ -2396,8 +2425,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public FileVM reportFoldersGetFolder(String id) throws ApiException {
@@ -2416,8 +2447,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FileVM> reportFoldersGetFolderWithHttpInfo(String id) throws ApiException {
@@ -2438,8 +2471,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetFolderAsync(String id, final ApiCallback<FileVM> _callback) throws ApiException {
@@ -2465,9 +2500,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Gets all folders from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> 1 of params is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetFoldersCall(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
@@ -2566,9 +2603,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Gets all folders from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> 1 of params is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public FilesVM reportFoldersGetFolders(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
@@ -2592,9 +2631,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Gets all folders from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> 1 of params is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FilesVM> reportFoldersGetFoldersWithHttpInfo(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex) throws ApiException {
@@ -2620,9 +2661,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Gets all folders from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> 1 of params is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetFoldersAsync(String id, Integer skip, Integer take, FileSorting orderBy, Boolean desc, String searchPattern, Boolean useRegex, final ApiCallback<FilesVM> _callback) throws ApiException {
@@ -2643,8 +2686,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns count of folders in a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetFoldersCountCall(String id, final ApiCallback _callback) throws ApiException {
@@ -2714,8 +2759,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns count of folders in a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public CountVM reportFoldersGetFoldersCount(String id) throws ApiException {
@@ -2734,8 +2781,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns count of folders in a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<CountVM> reportFoldersGetFoldersCountWithHttpInfo(String id) throws ApiException {
@@ -2756,8 +2805,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns count of folders in a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetFoldersCountAsync(String id, final ApiCallback<CountVM> _callback) throws ApiException {
@@ -2779,9 +2830,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Name or 1 of ids is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetOrCreateCall(String name, String subscriptionId, String parentId, final ApiCallback _callback) throws ApiException {
@@ -2858,9 +2911,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Name or 1 of ids is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public FileVM reportFoldersGetOrCreate(String name, String subscriptionId, String parentId) throws ApiException {
@@ -2880,9 +2935,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Name or 1 of ids is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FileVM> reportFoldersGetOrCreateWithHttpInfo(String name, String subscriptionId, String parentId) throws ApiException {
@@ -2904,9 +2961,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Name or 1 of ids is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetOrCreateAsync(String name, String subscriptionId, String parentId, final ApiCallback<FileVM> _callback) throws ApiException {
@@ -2927,8 +2986,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> returned permissions </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> folder is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetPermissionsCall(String id, final ApiCallback _callback) throws ApiException {
@@ -2998,8 +3058,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> returned permissions </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> folder is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public FilePermissionsVM reportFoldersGetPermissions(String id) throws ApiException {
@@ -3018,8 +3079,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> returned permissions </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> folder is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FilePermissionsVM> reportFoldersGetPermissionsWithHttpInfo(String id) throws ApiException {
@@ -3040,8 +3102,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> returned permissions </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> folder is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetPermissionsAsync(String id, final ApiCallback<FilePermissionsVM> _callback) throws ApiException {
@@ -3061,9 +3124,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Gets user&#39;s root folder (without parents) </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error with the request. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found subscription </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> No permissions to get root folder </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found subscription </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetRootFolderCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
@@ -3130,9 +3194,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Gets user&#39;s root folder (without parents) </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error with the request. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found subscription </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> No permissions to get root folder </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found subscription </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public FileVM reportFoldersGetRootFolder(String subscriptionId) throws ApiException {
@@ -3150,9 +3215,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Gets user&#39;s root folder (without parents) </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error with the request. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found subscription </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> No permissions to get root folder </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found subscription </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FileVM> reportFoldersGetRootFolderWithHttpInfo(String subscriptionId) throws ApiException {
@@ -3172,9 +3238,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Gets user&#39;s root folder (without parents) </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Error with the request. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found subscription </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> No permissions to get root folder </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not found subscription </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersGetRootFolderAsync(String subscriptionId, final ApiCallback<FileVM> _callback) throws ApiException {
@@ -3196,9 +3263,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersMoveFolderCall(String id, String folderId, final ApiCallback _callback) throws ApiException {
@@ -3275,9 +3343,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public FileVM reportFoldersMoveFolder(String id, String folderId) throws ApiException {
@@ -3297,9 +3366,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FileVM> reportFoldersMoveFolderWithHttpInfo(String id, String folderId) throws ApiException {
@@ -3321,9 +3391,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder has been moved to a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> folderId or parentFolderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersMoveFolderAsync(String id, String folderId, final ApiCallback<FileVM> _callback) throws ApiException {
@@ -3344,9 +3415,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersMoveFolderToBinCall(String id, final ApiCallback _callback) throws ApiException {
@@ -3415,9 +3487,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void reportFoldersMoveFolderToBin(String id) throws ApiException {
@@ -3435,9 +3508,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> reportFoldersMoveFolderToBinWithHttpInfo(String id) throws ApiException {
@@ -3457,9 +3531,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Folder succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersMoveFolderToBinAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
@@ -3479,9 +3554,9 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> New folder has been created) </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Parent folder id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Parent folder id or VM is not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> parent folder/subscription not found </td><td>  -  </td></tr>
      </table>
      */
@@ -3555,9 +3630,9 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> New folder has been created) </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Parent folder id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Parent folder id or VM is not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> parent folder/subscription not found </td><td>  -  </td></tr>
      </table>
      */
@@ -3577,9 +3652,9 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> New folder has been created) </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Parent folder id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Parent folder id or VM is not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> parent folder/subscription not found </td><td>  -  </td></tr>
      </table>
      */
@@ -3601,9 +3676,9 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> New folder has been created) </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Parent folder id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Parent folder id or VM is not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> parent folder/subscription not found </td><td>  -  </td></tr>
      </table>
      */
@@ -3626,9 +3701,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Folder succesfully restored from bin </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersRecoverFolderCall(String id, String recoveryPath, final ApiCallback _callback) throws ApiException {
@@ -3702,9 +3778,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Folder succesfully restored from bin </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void reportFoldersRecoverFolder(String id, String recoveryPath) throws ApiException {
@@ -3723,9 +3800,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Folder succesfully restored from bin </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> reportFoldersRecoverFolderWithHttpInfo(String id, String recoveryPath) throws ApiException {
@@ -3746,9 +3824,10 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Folder succesfully restored from bin </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersRecoverFolderAsync(String id, String recoveryPath, final ApiCallback<Void> _callback) throws ApiException {
@@ -3768,10 +3847,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder name has been updated </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or VM is not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersRenameFolderCall(String id, FolderRenameVM folderRenameVM, final ApiCallback _callback) throws ApiException {
@@ -3844,10 +3924,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder name has been updated </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or VM is not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public FileVM reportFoldersRenameFolder(String id, FolderRenameVM folderRenameVM) throws ApiException {
@@ -3866,10 +3947,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder name has been updated </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or VM is not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FileVM> reportFoldersRenameFolderWithHttpInfo(String id, FolderRenameVM folderRenameVM) throws ApiException {
@@ -3890,10 +3972,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder name has been updated </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or VM is not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersRenameFolderAsync(String id, FolderRenameVM folderRenameVM, final ApiCallback<FileVM> _callback) throws ApiException {
@@ -3914,10 +3997,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder&#39;s icon has been updated </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or VM is not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersUpdateIconCall(String id, FolderIconVM folderIconVM, final ApiCallback _callback) throws ApiException {
@@ -3990,10 +4074,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder&#39;s icon has been updated </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or VM is not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public FileVM reportFoldersUpdateIcon(String id, FolderIconVM folderIconVM) throws ApiException {
@@ -4012,10 +4097,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder&#39;s icon has been updated </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or VM is not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FileVM> reportFoldersUpdateIconWithHttpInfo(String id, FolderIconVM folderIconVM) throws ApiException {
@@ -4036,10 +4122,11 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Folder&#39;s icon has been updated </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> folderId or VM is not valid </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersUpdateIconAsync(String id, FolderIconVM folderIconVM, final ApiCallback<FileVM> _callback) throws ApiException {
@@ -4059,12 +4146,12 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Folder&#39;s permissions has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersUpdatePermissionsCall(String id, UpdateFilePermissionsVM updateFilePermissionsVM, final ApiCallback _callback) throws ApiException {
@@ -4135,12 +4222,12 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Folder&#39;s permissions has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void reportFoldersUpdatePermissions(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
@@ -4157,12 +4244,12 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Folder&#39;s permissions has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> reportFoldersUpdatePermissionsWithHttpInfo(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
@@ -4181,12 +4268,12 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Folder&#39;s permissions has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersUpdatePermissionsAsync(String id, UpdateFilePermissionsVM updateFilePermissionsVM, final ApiCallback<Void> _callback) throws ApiException {
@@ -4209,7 +4296,8 @@ public class ReportsApi {
         <tr><td> 400 </td><td> folderId or Tags is null </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersUpdateTagsCall(String id, FolderTagsUpdateVM folderTagsUpdateVM, final ApiCallback _callback) throws ApiException {
@@ -4285,7 +4373,8 @@ public class ReportsApi {
         <tr><td> 400 </td><td> folderId or Tags is null </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public FileVM reportFoldersUpdateTags(String id, FolderTagsUpdateVM folderTagsUpdateVM) throws ApiException {
@@ -4307,7 +4396,8 @@ public class ReportsApi {
         <tr><td> 400 </td><td> folderId or Tags is null </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FileVM> reportFoldersUpdateTagsWithHttpInfo(String id, FolderTagsUpdateVM folderTagsUpdateVM) throws ApiException {
@@ -4331,7 +4421,8 @@ public class ReportsApi {
         <tr><td> 400 </td><td> folderId or Tags is null </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportFoldersUpdateTagsAsync(String id, FolderTagsUpdateVM folderTagsUpdateVM, final ApiCallback<FileVM> _callback) throws ApiException {
@@ -4352,10 +4443,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File has been copied </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId or folderId is null </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File, subscription or folder not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -4432,10 +4523,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File has been copied </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId or folderId is null </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File, subscription or folder not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -4455,10 +4546,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File has been copied </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId or folderId is null </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File, subscription or folder not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -4480,10 +4571,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File has been copied </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId or folderId is null </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File, subscription or folder not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -4505,9 +4596,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -4577,9 +4668,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -4598,9 +4689,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -4621,9 +4712,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -4646,8 +4737,8 @@ public class ReportsApi {
         <tr><td> 200 </td><td> Specified report has been exported </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Specified report has been exported </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Report Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Exports folder not found </td><td>  -  </td></tr>
      </table>
      */
@@ -4723,8 +4814,8 @@ public class ReportsApi {
         <tr><td> 200 </td><td> Specified report has been exported </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Specified report has been exported </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Report Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Exports folder not found </td><td>  -  </td></tr>
      </table>
      */
@@ -4746,8 +4837,8 @@ public class ReportsApi {
         <tr><td> 200 </td><td> Specified report has been exported </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Specified report has been exported </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Report Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Exports folder not found </td><td>  -  </td></tr>
      </table>
      */
@@ -4771,8 +4862,8 @@ public class ReportsApi {
         <tr><td> 200 </td><td> Specified report has been exported </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Specified report has been exported </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Report Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Exports folder not found </td><td>  -  </td></tr>
      </table>
      */
@@ -4794,8 +4885,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns the specified file </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -4866,8 +4958,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns the specified file </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -4887,8 +4980,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns the specified file </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -4910,8 +5004,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns the specified file </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -4933,10 +5028,11 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns the actions </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportsGetFileHistoryCall(String id, Integer skip, Integer take, final ApiCallback _callback) throws ApiException {
@@ -5014,10 +5110,11 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns the actions </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public AuditActionsVM reportsGetFileHistory(String id, Integer skip, Integer take) throws ApiException {
@@ -5036,10 +5133,11 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns the actions </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<AuditActionsVM> reportsGetFileHistoryWithHttpInfo(String id, Integer skip, Integer take) throws ApiException {
@@ -5060,10 +5158,11 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns the actions </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportsGetFileHistoryAsync(String id, Integer skip, Integer take, final ApiCallback<AuditActionsVM> _callback) throws ApiException {
@@ -5084,8 +5183,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5156,8 +5256,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5177,8 +5278,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5200,8 +5302,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns count of the files in a specified folder </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Folder or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5228,9 +5331,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid params </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File, subscription or folder not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5330,9 +5434,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid params </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File, subscription or folder not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5357,9 +5462,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid params </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File, subscription or folder not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5386,9 +5492,10 @@ public class ReportsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> FolderId is null </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid params </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File, subscription or folder not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5408,10 +5515,11 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> got permissions successfully </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> file is not found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportsGetPermissionsCall(String id, final ApiCallback _callback) throws ApiException {
@@ -5471,7 +5579,7 @@ public class ReportsApi {
     }
 
     /**
-     * Get all file permissions
+     * 
      * 
      * @param id  (required)
      * @return FilePermissionsVM
@@ -5479,10 +5587,11 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> got permissions successfully </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> file is not found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
     public FilePermissionsVM reportsGetPermissions(String id) throws ApiException {
@@ -5491,7 +5600,7 @@ public class ReportsApi {
     }
 
     /**
-     * Get all file permissions
+     * 
      * 
      * @param id  (required)
      * @return ApiResponse&lt;FilePermissionsVM&gt;
@@ -5499,10 +5608,11 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> got permissions successfully </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> file is not found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<FilePermissionsVM> reportsGetPermissionsWithHttpInfo(String id) throws ApiException {
@@ -5512,7 +5622,7 @@ public class ReportsApi {
     }
 
     /**
-     * Get all file permissions (asynchronously)
+     *  (asynchronously)
      * 
      * @param id  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -5521,10 +5631,11 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> got permissions successfully </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> id is not valid </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> file is not found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportsGetPermissionsAsync(String id, final ApiCallback<FilePermissionsVM> _callback) throws ApiException {
@@ -5546,9 +5657,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File has been moved </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File, subscription or folder not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5626,9 +5737,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File has been moved </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File, subscription or folder not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5649,9 +5760,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File has been moved </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File, subscription or folder not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5674,9 +5785,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File has been moved </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> fileId or folderId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File or folder not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File, subscription or folder not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5698,9 +5809,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5770,9 +5881,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5791,9 +5902,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5814,9 +5925,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> File succesfully deleted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5838,9 +5949,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> File succesfully recovered </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5915,9 +6026,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> File succesfully recovered </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5937,9 +6048,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> File succesfully recovered </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5961,9 +6072,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> File succesfully recovered </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -5985,9 +6096,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File name has been updated </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -6062,9 +6173,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File name has been updated </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -6085,9 +6196,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File name has been updated </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -6110,9 +6221,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File name has been updated </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -6136,8 +6247,8 @@ public class ReportsApi {
         <tr><td> 200 </td><td> Specified template has been prepared </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Specified template has been prepared </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Template Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Template or folder not found </td><td>  -  </td></tr>
      </table>
      */
@@ -6213,8 +6324,8 @@ public class ReportsApi {
         <tr><td> 200 </td><td> Specified template has been prepared </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Specified template has been prepared </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Template Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Template or folder not found </td><td>  -  </td></tr>
      </table>
      */
@@ -6236,8 +6347,8 @@ public class ReportsApi {
         <tr><td> 200 </td><td> Specified template has been prepared </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Specified template has been prepared </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Template Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Template or folder not found </td><td>  -  </td></tr>
      </table>
      */
@@ -6261,8 +6372,8 @@ public class ReportsApi {
         <tr><td> 200 </td><td> Specified template has been prepared </td><td>  -  </td></tr>
         <tr><td> 204 </td><td> Specified template has been prepared </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Template Id is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Template or folder not found </td><td>  -  </td></tr>
      </table>
      */
@@ -6285,9 +6396,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File&#39;s icon has been updated </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -6362,9 +6473,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File&#39;s icon has been updated </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -6385,9 +6496,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File&#39;s icon has been updated </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -6410,9 +6521,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> File&#39;s icon has been updated </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -6433,12 +6544,12 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> File&#39;s permissions has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportsUpdatePermissionsCall(String id, UpdateFilePermissionsVM updateFilePermissionsVM, final ApiCallback _callback) throws ApiException {
@@ -6509,12 +6620,12 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> File&#39;s permissions has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
     public void reportsUpdatePermissions(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
@@ -6531,12 +6642,12 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> File&#39;s permissions has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> reportsUpdatePermissionsWithHttpInfo(String id, UpdateFilePermissionsVM updateFilePermissionsVM) throws ApiException {
@@ -6555,12 +6666,12 @@ public class ReportsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> File&#39;s permissions has been updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> FileId or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call reportsUpdatePermissionsAsync(String id, UpdateFilePermissionsVM updateFilePermissionsVM, final ApiCallback<Void> _callback) throws ApiException {
@@ -6581,9 +6692,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Tags has been updated </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -6658,9 +6769,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Tags has been updated </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -6681,9 +6792,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Tags has been updated </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -6706,9 +6817,9 @@ public class ReportsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Tags has been updated </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> FileId is null </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> File not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File or subscription not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */

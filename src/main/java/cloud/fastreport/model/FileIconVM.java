@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,12 +52,17 @@ import cloud.fastreport.JSON;
  * FileIconVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FileIconVM {
+public class FileIconVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_ICON = "icon";
   @SerializedName(SERIALIZED_NAME_ICON)
   private byte[] icon;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public FileIconVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public FileIconVM icon(byte[] icon) {
@@ -78,6 +84,25 @@ public class FileIconVM {
   }
 
 
+  public FileIconVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -88,7 +113,9 @@ public class FileIconVM {
       return false;
     }
     FileIconVM fileIconVM = (FileIconVM) o;
-    return Arrays.equals(this.icon, fileIconVM.icon);
+    return Arrays.equals(this.icon, fileIconVM.icon) &&
+        Objects.equals(this.$t, fileIconVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -97,7 +124,7 @@ public class FileIconVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(Arrays.hashCode(icon));
+    return Objects.hash(Arrays.hashCode(icon), $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -111,7 +138,9 @@ public class FileIconVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FileIconVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -134,10 +163,11 @@ public class FileIconVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("icon");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -160,7 +190,13 @@ public class FileIconVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FileIconVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : FileIconVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

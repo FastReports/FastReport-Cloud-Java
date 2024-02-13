@@ -92,9 +92,9 @@ public class SubscriptionsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successfully returned </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsGetDefaultPermissionsCall(String subscriptionId, final ApiCallback _callback) throws ApiException {
@@ -164,9 +164,9 @@ public class SubscriptionsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successfully returned </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
      </table>
      */
     public DefaultPermissionsVM subscriptionsGetDefaultPermissions(String subscriptionId) throws ApiException {
@@ -185,9 +185,9 @@ public class SubscriptionsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successfully returned </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<DefaultPermissionsVM> subscriptionsGetDefaultPermissionsWithHttpInfo(String subscriptionId) throws ApiException {
@@ -208,9 +208,9 @@ public class SubscriptionsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successfully returned </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsGetDefaultPermissionsAsync(String subscriptionId, final ApiCallback<DefaultPermissionsVM> _callback) throws ApiException {
@@ -353,7 +353,11 @@ public class SubscriptionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsGetPermissionsCall(String id, final ApiCallback _callback) throws ApiException {
@@ -422,7 +426,11 @@ public class SubscriptionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public SubscriptionPermissionsVM subscriptionsGetPermissions(String id) throws ApiException {
@@ -440,7 +448,11 @@ public class SubscriptionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<SubscriptionPermissionsVM> subscriptionsGetPermissionsWithHttpInfo(String id) throws ApiException {
@@ -460,7 +472,11 @@ public class SubscriptionsApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsGetPermissionsAsync(String id, final ApiCallback<SubscriptionPermissionsVM> _callback) throws ApiException {
@@ -483,6 +499,7 @@ public class SubscriptionsApi {
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsGetSubscriptionCall(String id, final ApiCallback _callback) throws ApiException {
@@ -554,6 +571,7 @@ public class SubscriptionsApi {
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public SubscriptionVM subscriptionsGetSubscription(String id) throws ApiException {
@@ -574,6 +592,7 @@ public class SubscriptionsApi {
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<SubscriptionVM> subscriptionsGetSubscriptionWithHttpInfo(String id) throws ApiException {
@@ -596,6 +615,7 @@ public class SubscriptionsApi {
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsGetSubscriptionAsync(String id, final ApiCallback<SubscriptionVM> _callback) throws ApiException {
@@ -752,7 +772,7 @@ public class SubscriptionsApi {
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsRenameSubscriptionCall(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM, final ApiCallback _callback) throws ApiException {
@@ -833,7 +853,7 @@ public class SubscriptionsApi {
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
      </table>
      */
     public SubscriptionVM subscriptionsRenameSubscription(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM) throws ApiException {
@@ -855,7 +875,7 @@ public class SubscriptionsApi {
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<SubscriptionVM> subscriptionsRenameSubscriptionWithHttpInfo(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM) throws ApiException {
@@ -879,7 +899,7 @@ public class SubscriptionsApi {
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsRenameSubscriptionAsync(String subscriptionId, RenameSubscriptionVM renameSubscriptionVM, final ApiCallback<SubscriptionVM> _callback) throws ApiException {
@@ -901,9 +921,9 @@ public class SubscriptionsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successfully changed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsUpdateDefaultPermissionsCall(String subscriptionId, UpdateDefaultPermissionsVM updateDefaultPermissionsVM, final ApiCallback _callback) throws ApiException {
@@ -982,9 +1002,9 @@ public class SubscriptionsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successfully changed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
      </table>
      */
     public DefaultPermissionsVM subscriptionsUpdateDefaultPermissions(String subscriptionId, UpdateDefaultPermissionsVM updateDefaultPermissionsVM) throws ApiException {
@@ -1004,9 +1024,9 @@ public class SubscriptionsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successfully changed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<DefaultPermissionsVM> subscriptionsUpdateDefaultPermissionsWithHttpInfo(String subscriptionId, UpdateDefaultPermissionsVM updateDefaultPermissionsVM) throws ApiException {
@@ -1028,9 +1048,9 @@ public class SubscriptionsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successfully changed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsUpdateDefaultPermissionsAsync(String subscriptionId, UpdateDefaultPermissionsVM updateDefaultPermissionsVM, final ApiCallback<DefaultPermissionsVM> _callback) throws ApiException {
@@ -1054,7 +1074,7 @@ public class SubscriptionsApi {
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsUpdateLocaleCall(String subscriptionId, UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM, final ApiCallback _callback) throws ApiException {
@@ -1135,7 +1155,7 @@ public class SubscriptionsApi {
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
      </table>
      */
     public SubscriptionVM subscriptionsUpdateLocale(String subscriptionId, UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM) throws ApiException {
@@ -1157,7 +1177,7 @@ public class SubscriptionsApi {
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<SubscriptionVM> subscriptionsUpdateLocaleWithHttpInfo(String subscriptionId, UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM) throws ApiException {
@@ -1181,7 +1201,7 @@ public class SubscriptionsApi {
         <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> there is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id (or user have no permission) </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsUpdateLocaleAsync(String subscriptionId, UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM, final ApiCallback<SubscriptionVM> _callback) throws ApiException {
@@ -1201,12 +1221,12 @@ public class SubscriptionsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Succesfully updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsUpdatePermissionsCall(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM, final ApiCallback _callback) throws ApiException {
@@ -1277,12 +1297,12 @@ public class SubscriptionsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Succesfully updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void subscriptionsUpdatePermissions(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM) throws ApiException {
@@ -1299,12 +1319,12 @@ public class SubscriptionsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Succesfully updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> subscriptionsUpdatePermissionsWithHttpInfo(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM) throws ApiException {
@@ -1323,12 +1343,12 @@ public class SubscriptionsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Succesfully updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Request is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no subscription with such id </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call subscriptionsUpdatePermissionsAsync(String id, UpdateSubscriptionPermissionsVM updateSubscriptionPermissionsVM, final ApiCallback<Void> _callback) throws ApiException {

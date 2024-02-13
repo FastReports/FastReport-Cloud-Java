@@ -66,6 +66,10 @@ public class WebhookTaskVM extends TransportTaskBaseVM {
   @SerializedName(SERIALIZED_NAME_URL)
   private URI url;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public WebhookTaskVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -116,6 +120,25 @@ public class WebhookTaskVM extends TransportTaskBaseVM {
   }
 
 
+  public WebhookTaskVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -128,6 +151,7 @@ public class WebhookTaskVM extends TransportTaskBaseVM {
     WebhookTaskVM webhookTaskVM = (WebhookTaskVM) o;
     return Objects.equals(this.headers, webhookTaskVM.headers) &&
         Objects.equals(this.url, webhookTaskVM.url) &&
+        Objects.equals(this.$t, webhookTaskVM.$t) &&
         super.equals(o);
   }
 
@@ -137,7 +161,7 @@ public class WebhookTaskVM extends TransportTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(headers, url, super.hashCode());
+    return Objects.hash(headers, url, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -154,6 +178,7 @@ public class WebhookTaskVM extends TransportTaskBaseVM {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

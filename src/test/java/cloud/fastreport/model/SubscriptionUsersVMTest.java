@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.SubscriptionUserVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -42,35 +43,11 @@ public class SubscriptionUsersVMTest {
     }
 
     /**
-     * Test the property 'users'
+     * Test the property '$t'
      */
     @Test
-    public void usersTest() {
-        // TODO: test users
-    }
-
-    /**
-     * Test the property 'count'
-     */
-    @Test
-    public void countTest() {
-        // TODO: test count
-    }
-
-    /**
-     * Test the property 'take'
-     */
-    @Test
-    public void takeTest() {
-        // TODO: test take
-    }
-
-    /**
-     * Test the property 'skip'
-     */
-    @Test
-    public void skipTest() {
-        // TODO: test skip
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

@@ -197,6 +197,9 @@ public class CreateTransportTaskBaseVM extends CreateTaskBaseVM {
         case "CreateFTPUploadTaskVM":
           CreateFTPUploadTaskVM.validateJsonElement(jsonElement);
           break;
+        case "CreateTransportTaskBaseVM":
+          CreateTransportTaskBaseVM.validateJsonElement(jsonElement);
+          break;
         case "CreateWebhookTaskVM":
           CreateWebhookTaskVM.validateJsonElement(jsonElement);
           break;

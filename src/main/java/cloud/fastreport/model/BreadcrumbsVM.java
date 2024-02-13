@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import cloud.fastreport.model.BreadcrumbsModel;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -54,12 +55,17 @@ import cloud.fastreport.JSON;
  * BreadcrumbsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class BreadcrumbsVM {
+public class BreadcrumbsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_BREADCRUMBS = "breadcrumbs";
   @SerializedName(SERIALIZED_NAME_BREADCRUMBS)
   private List<BreadcrumbsModel> breadcrumbs;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public BreadcrumbsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public BreadcrumbsVM breadcrumbs(List<BreadcrumbsModel> breadcrumbs) {
@@ -89,6 +95,25 @@ public class BreadcrumbsVM {
   }
 
 
+  public BreadcrumbsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -99,7 +124,9 @@ public class BreadcrumbsVM {
       return false;
     }
     BreadcrumbsVM breadcrumbsVM = (BreadcrumbsVM) o;
-    return Objects.equals(this.breadcrumbs, breadcrumbsVM.breadcrumbs);
+    return Objects.equals(this.breadcrumbs, breadcrumbsVM.breadcrumbs) &&
+        Objects.equals(this.$t, breadcrumbsVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -108,7 +135,7 @@ public class BreadcrumbsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(breadcrumbs);
+    return Objects.hash(breadcrumbs, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -122,7 +149,9 @@ public class BreadcrumbsVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BreadcrumbsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    breadcrumbs: ").append(toIndentedString(breadcrumbs)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -145,10 +174,11 @@ public class BreadcrumbsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("breadcrumbs");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -171,19 +201,11 @@ public class BreadcrumbsVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `BreadcrumbsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("breadcrumbs") != null && !jsonObj.get("breadcrumbs").isJsonNull()) {
-        JsonArray jsonArraybreadcrumbs = jsonObj.getAsJsonArray("breadcrumbs");
-        if (jsonArraybreadcrumbs != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("breadcrumbs").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `breadcrumbs` to be an array in the JSON string but got `%s`", jsonObj.get("breadcrumbs").toString()));
-          }
 
-          // validate the optional field `breadcrumbs` (array)
-          for (int i = 0; i < jsonArraybreadcrumbs.size(); i++) {
-            BreadcrumbsModel.validateJsonElement(jsonArraybreadcrumbs.get(i));
-          };
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : BreadcrumbsVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }

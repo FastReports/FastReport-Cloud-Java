@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -39,27 +40,11 @@ public class AuthConfigVMTest {
     }
 
     /**
-     * Test the property 'useLocal'
+     * Test the property '$t'
      */
     @Test
-    public void useLocalTest() {
-        // TODO: test useLocal
-    }
-
-    /**
-     * Test the property 'useOpenId'
-     */
-    @Test
-    public void useOpenIdTest() {
-        // TODO: test useOpenId
-    }
-
-    /**
-     * Test the property 'authority'
-     */
-    @Test
-    public void authorityTest() {
-        // TODO: test authority
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

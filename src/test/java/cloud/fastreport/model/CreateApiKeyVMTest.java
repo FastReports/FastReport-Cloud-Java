@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -40,19 +41,11 @@ public class CreateApiKeyVMTest {
     }
 
     /**
-     * Test the property 'description'
+     * Test the property '$t'
      */
     @Test
-    public void descriptionTest() {
-        // TODO: test description
-    }
-
-    /**
-     * Test the property 'expired'
-     */
-    @Test
-    public void expiredTest() {
-        // TODO: test expired
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

@@ -82,8 +82,8 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Succesfully added |  -  |
 | **400** | The reqeust is wrong |  -  |
+| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **402** | subscription is outdated |  -  |
 | **404** | Subscription or user is not found |  -  |
 | **500** | Exception thrown |  -  |
 
@@ -157,6 +157,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Succesfully returned |  -  |
 | **400** | The reqeust is wrong |  -  |
+| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Subscription is not found |  -  |
 | **500** | Exception thrown |  -  |
@@ -235,6 +236,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Succesfully returned |  -  |
 | **400** | The reqeust is wrong |  -  |
+| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | Subscription is not found |  -  |
 | **500** | Exception thrown |  -  |
@@ -308,7 +310,8 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Succesfully deleted |  -  |
 | **400** | The reqeust is wrong |  -  |
-| **402** | subscription id outdated |  -  |
+| **401** | User is unauthorized |  -  |
+| **402** | Subscription id outdated |  -  |
 | **404** | Subscription or user is not found |  -  |
 | **500** | Exception thrown |  -  |
 
@@ -383,8 +386,8 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Succesfully deleted |  -  |
 | **400** | The reqeust is wrong |  -  |
+| **402** | Subscription id outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **402** | subscription id outdated |  -  |
 | **404** | Subscription or user is not found |  -  |
 | **500** | Exception thrown |  -  |
 

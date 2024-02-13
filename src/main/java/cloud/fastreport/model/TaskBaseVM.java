@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,7 +53,7 @@ import cloud.fastreport.JSON;
  * TaskBaseVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TaskBaseVM {
+public class TaskBaseVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_CRON_EXPRESSION = "cronExpression";
   @SerializedName(SERIALIZED_NAME_CRON_EXPRESSION)
   private String cronExpression;
@@ -282,7 +283,8 @@ public class TaskBaseVM {
         Objects.equals(this.recurrentRunTime, taskBaseVM.recurrentRunTime) &&
         Objects.equals(this.recurrentWasRunTime, taskBaseVM.recurrentWasRunTime) &&
         Objects.equals(this.subscriptionId, taskBaseVM.subscriptionId) &&
-        Objects.equals(this.$t, taskBaseVM.$t);
+        Objects.equals(this.$t, taskBaseVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -291,7 +293,7 @@ public class TaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(cronExpression, delayedRunTime, delayedWasRunTime, id, name, recurrentRunTime, recurrentWasRunTime, subscriptionId, $t);
+    return Objects.hash(cronExpression, delayedRunTime, delayedWasRunTime, id, name, recurrentRunTime, recurrentWasRunTime, subscriptionId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -305,6 +307,7 @@ public class TaskBaseVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TaskBaseVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    cronExpression: ").append(toIndentedString(cronExpression)).append("\n");
     sb.append("    delayedRunTime: ").append(toIndentedString(delayedRunTime)).append("\n");
     sb.append("    delayedWasRunTime: ").append(toIndentedString(delayedWasRunTime)).append("\n");
@@ -336,14 +339,6 @@ public class TaskBaseVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("cronExpression");
-    openapiFields.add("delayedRunTime");
-    openapiFields.add("delayedWasRunTime");
-    openapiFields.add("id");
-    openapiFields.add("name");
-    openapiFields.add("recurrentRunTime");
-    openapiFields.add("recurrentWasRunTime");
-    openapiFields.add("subscriptionId");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
@@ -384,20 +379,23 @@ public class TaskBaseVM {
         case "PrepareTemplateTaskVM":
           PrepareTemplateTaskVM.validateJsonElement(jsonElement);
           break;
+        case "TaskBaseVM":
+          TaskBaseVM.validateJsonElement(jsonElement);
+          break;
         case "ThumbnailReportTaskVM":
           ThumbnailReportTaskVM.validateJsonElement(jsonElement);
           break;
         case "ThumbnailTemplateTaskVM":
           ThumbnailTemplateTaskVM.validateJsonElement(jsonElement);
           break;
-        case "WebhookTaskVM":
-          WebhookTaskVM.validateJsonElement(jsonElement);
-          break;
         case "TransformTaskBaseVM":
           TransformTaskBaseVM.validateJsonElement(jsonElement);
           break;
         case "TransportTaskBaseVM":
           TransportTaskBaseVM.validateJsonElement(jsonElement);
+          break;
+        case "WebhookTaskVM":
+          WebhookTaskVM.validateJsonElement(jsonElement);
           break;
         default:
           throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));

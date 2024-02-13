@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.AuditType;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -38,78 +39,6 @@ public class AuditActionVMTest {
     @Test
     public void testAuditActionVM() {
         // TODO: test AuditActionVM
-    }
-
-    /**
-     * Test the property 'userId'
-     */
-    @Test
-    public void userIdTest() {
-        // TODO: test userId
-    }
-
-    /**
-     * Test the property 'entityId'
-     */
-    @Test
-    public void entityIdTest() {
-        // TODO: test entityId
-    }
-
-    /**
-     * Test the property 'subscriptionId'
-     */
-    @Test
-    public void subscriptionIdTest() {
-        // TODO: test subscriptionId
-    }
-
-    /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
-    }
-
-    /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
-    }
-
-    /**
-     * Test the property 'createdTime'
-     */
-    @Test
-    public void createdTimeTest() {
-        // TODO: test createdTime
-    }
-
-    /**
-     * Test the property 'creatorUserId'
-     */
-    @Test
-    public void creatorUserIdTest() {
-        // TODO: test creatorUserId
-    }
-
-    /**
-     * Test the property 'name'
-     */
-    @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
-     * Test the property 'adminAction'
-     */
-    @Test
-    public void adminActionTest() {
-        // TODO: test adminAction
     }
 
     /**

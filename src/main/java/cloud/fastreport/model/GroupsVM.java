@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.GroupVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * GroupsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class GroupsVM {
+public class GroupsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_GROUPS = "groups";
   @SerializedName(SERIALIZED_NAME_GROUPS)
   private List<GroupVM> groups;
@@ -71,7 +72,12 @@ public class GroupsVM {
   @SerializedName(SERIALIZED_NAME_TAKE)
   private Integer take;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public GroupsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public GroupsVM groups(List<GroupVM> groups) {
@@ -158,6 +164,25 @@ public class GroupsVM {
   }
 
 
+  public GroupsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -171,7 +196,9 @@ public class GroupsVM {
     return Objects.equals(this.groups, groupsVM.groups) &&
         Objects.equals(this.count, groupsVM.count) &&
         Objects.equals(this.skip, groupsVM.skip) &&
-        Objects.equals(this.take, groupsVM.take);
+        Objects.equals(this.take, groupsVM.take) &&
+        Objects.equals(this.$t, groupsVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -180,7 +207,7 @@ public class GroupsVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(groups, count, skip, take);
+    return Objects.hash(groups, count, skip, take, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -194,10 +221,12 @@ public class GroupsVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GroupsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("    skip: ").append(toIndentedString(skip)).append("\n");
     sb.append("    take: ").append(toIndentedString(take)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -220,13 +249,11 @@ public class GroupsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("groups");
-    openapiFields.add("count");
-    openapiFields.add("skip");
-    openapiFields.add("take");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -249,19 +276,11 @@ public class GroupsVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GroupsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull()) {
-        JsonArray jsonArraygroups = jsonObj.getAsJsonArray("groups");
-        if (jsonArraygroups != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("groups").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `groups` to be an array in the JSON string but got `%s`", jsonObj.get("groups").toString()));
-          }
 
-          // validate the optional field `groups` (array)
-          for (int i = 0; i < jsonArraygroups.size(); i++) {
-            GroupVM.validateJsonElement(jsonArraygroups.get(i));
-          };
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : GroupsVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }

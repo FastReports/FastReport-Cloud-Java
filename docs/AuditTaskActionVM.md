@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**messageId** | **String** |  |  [optional] |
 |**fileName** | **String** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

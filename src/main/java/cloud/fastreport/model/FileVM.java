@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.FileStatus;
 import cloud.fastreport.model.FileStatusReason;
 import cloud.fastreport.model.FileType;
@@ -57,7 +58,7 @@ import cloud.fastreport.JSON;
  * FileVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FileVM {
+public class FileVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
@@ -487,7 +488,8 @@ public class FileVM {
         Objects.equals(this.statusReason, fileVM.statusReason) &&
         Objects.equals(this.errorMessage, fileVM.errorMessage) &&
         Objects.equals(this.isDeleted, fileVM.isDeleted) &&
-        Objects.equals(this.$t, fileVM.$t);
+        Objects.equals(this.$t, fileVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -496,7 +498,7 @@ public class FileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdTime, creatorUserId, editedTime, editorUserId, name, parentId, tags, Arrays.hashCode(icon), type, size, subscriptionId, status, statusReason, errorMessage, isDeleted, $t);
+    return Objects.hash(id, createdTime, creatorUserId, editedTime, editorUserId, name, parentId, tags, Arrays.hashCode(icon), type, size, subscriptionId, status, statusReason, errorMessage, isDeleted, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -510,6 +512,7 @@ public class FileVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FileVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    createdTime: ").append(toIndentedString(createdTime)).append("\n");
     sb.append("    creatorUserId: ").append(toIndentedString(creatorUserId)).append("\n");
@@ -549,22 +552,6 @@ public class FileVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("createdTime");
-    openapiFields.add("creatorUserId");
-    openapiFields.add("editedTime");
-    openapiFields.add("editorUserId");
-    openapiFields.add("name");
-    openapiFields.add("parentId");
-    openapiFields.add("tags");
-    openapiFields.add("icon");
-    openapiFields.add("type");
-    openapiFields.add("size");
-    openapiFields.add("subscriptionId");
-    openapiFields.add("status");
-    openapiFields.add("statusReason");
-    openapiFields.add("errorMessage");
-    openapiFields.add("isDeleted");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)

@@ -75,9 +75,9 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **404** | Not Found |  -  |
+| **204** | Notifications are cleared |  -  |
+| **400** | Bad VM |  -  |
+| **404** | User is not found |  -  |
 
 <a id="userNotificationsGetNotifications"></a>
 # **userNotificationsGetNotifications**
@@ -151,6 +151,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **204** | No Content |  -  |
+| **200** | Notifications are getted |  -  |
 

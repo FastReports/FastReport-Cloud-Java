@@ -218,11 +218,12 @@ public class ApiKeysApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The request is wrong </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> No such apikey found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> exception thrown </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call apiKeysDeleteApiKeyCall(DeleteApiKeyVM deleteApiKeyVM, final ApiCallback _callback) throws ApiException {
@@ -287,40 +288,45 @@ public class ApiKeysApi {
      * Delete an apikey
      * 
      * @param deleteApiKeyVM  (required)
+     * @return ApiKeyVM
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The request is wrong </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> No such apikey found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> exception thrown </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
      </table>
      */
-    public void apiKeysDeleteApiKey(DeleteApiKeyVM deleteApiKeyVM) throws ApiException {
-        apiKeysDeleteApiKeyWithHttpInfo(deleteApiKeyVM);
+    public ApiKeyVM apiKeysDeleteApiKey(DeleteApiKeyVM deleteApiKeyVM) throws ApiException {
+        ApiResponse<ApiKeyVM> localVarResp = apiKeysDeleteApiKeyWithHttpInfo(deleteApiKeyVM);
+        return localVarResp.getData();
     }
 
     /**
      * Delete an apikey
      * 
      * @param deleteApiKeyVM  (required)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;ApiKeyVM&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The request is wrong </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> No such apikey found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> exception thrown </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> apiKeysDeleteApiKeyWithHttpInfo(DeleteApiKeyVM deleteApiKeyVM) throws ApiException {
+    public ApiResponse<ApiKeyVM> apiKeysDeleteApiKeyWithHttpInfo(DeleteApiKeyVM deleteApiKeyVM) throws ApiException {
         okhttp3.Call localVarCall = apiKeysDeleteApiKeyValidateBeforeCall(deleteApiKeyVM, null);
-        return localVarApiClient.execute(localVarCall);
+        Type localVarReturnType = new TypeToken<ApiKeyVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
@@ -333,17 +339,19 @@ public class ApiKeysApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The request is wrong </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> User is not authorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> No such apikey found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> exception thrown </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Succesfully deleted </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call apiKeysDeleteApiKeyAsync(DeleteApiKeyVM deleteApiKeyVM, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call apiKeysDeleteApiKeyAsync(DeleteApiKeyVM deleteApiKeyVM, final ApiCallback<ApiKeyVM> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = apiKeysDeleteApiKeyValidateBeforeCall(deleteApiKeyVM, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
+        Type localVarReturnType = new TypeToken<ApiKeyVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
@@ -410,7 +418,7 @@ public class ApiKeysApi {
     }
 
     /**
-     * Returns list with all api keys of current user
+     * Returns list with all apikeys of current user
      * Always work, it should make only 200 response (except if user is not authorized).
      * @return ApiKeysVM
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -428,7 +436,7 @@ public class ApiKeysApi {
     }
 
     /**
-     * Returns list with all api keys of current user
+     * Returns list with all apikeys of current user
      * Always work, it should make only 200 response (except if user is not authorized).
      * @return ApiResponse&lt;ApiKeysVM&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -447,7 +455,7 @@ public class ApiKeysApi {
     }
 
     /**
-     * Returns list with all api keys of current user (asynchronously)
+     * Returns list with all apikeys of current user (asynchronously)
      * Always work, it should make only 200 response (except if user is not authorized).
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

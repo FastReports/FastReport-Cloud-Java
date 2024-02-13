@@ -85,9 +85,9 @@ public class GroupUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier, subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -164,9 +164,9 @@ public class GroupUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier, subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -186,9 +186,9 @@ public class GroupUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier, subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -210,9 +210,9 @@ public class GroupUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier, subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -235,8 +235,9 @@ public class GroupUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -317,8 +318,9 @@ public class GroupUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -340,8 +342,9 @@ public class GroupUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -365,8 +368,9 @@ public class GroupUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -389,7 +393,7 @@ public class GroupUsersApi {
         <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -460,7 +464,7 @@ public class GroupUsersApi {
         <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -480,7 +484,7 @@ public class GroupUsersApi {
         <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -502,7 +506,7 @@ public class GroupUsersApi {
         <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -524,9 +528,9 @@ public class GroupUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier, subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -603,9 +607,9 @@ public class GroupUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier, subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -625,9 +629,9 @@ public class GroupUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier, subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -649,9 +653,9 @@ public class GroupUsersApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully removed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier, subscription or user is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */

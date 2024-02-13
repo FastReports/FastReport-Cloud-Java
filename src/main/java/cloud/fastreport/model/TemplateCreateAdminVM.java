@@ -63,6 +63,10 @@ public class TemplateCreateAdminVM extends TemplateCreateVM {
   @SerializedName(SERIALIZED_NAME_PARENT_ID)
   private String parentId;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public TemplateCreateAdminVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -105,6 +109,25 @@ public class TemplateCreateAdminVM extends TemplateCreateVM {
   }
 
 
+  public TemplateCreateAdminVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -117,6 +140,7 @@ public class TemplateCreateAdminVM extends TemplateCreateVM {
     TemplateCreateAdminVM templateCreateAdminVM = (TemplateCreateAdminVM) o;
     return Objects.equals(this.ownerId, templateCreateAdminVM.ownerId) &&
         Objects.equals(this.parentId, templateCreateAdminVM.parentId) &&
+        Objects.equals(this.$t, templateCreateAdminVM.$t) &&
         super.equals(o);
   }
 
@@ -126,7 +150,7 @@ public class TemplateCreateAdminVM extends TemplateCreateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, parentId, super.hashCode());
+    return Objects.hash(ownerId, parentId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -143,6 +167,7 @@ public class TemplateCreateAdminVM extends TemplateCreateVM {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

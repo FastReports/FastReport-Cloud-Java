@@ -10,6 +10,7 @@
 |**locale** | **String** |  |  [optional] |
 |**reportParameters** | **Map&lt;String, String&gt;** |  |  [optional] |
 |**cacheTolerance** | **Double** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

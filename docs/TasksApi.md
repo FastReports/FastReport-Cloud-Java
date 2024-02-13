@@ -84,12 +84,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Task was created |  -  |
+| **400** | Bad VM provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="tasksDeleteTask"></a>
 # **tasksDeleteTask**
@@ -158,12 +158,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **204** | Task was deleted |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or task was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="tasksGet"></a>
 # **tasksGet**
@@ -233,12 +233,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Task was found |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or task was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="tasksGetList"></a>
 # **tasksGetList**
@@ -314,12 +314,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Tasks were found |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or tasks were not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="tasksGetPermissions"></a>
 # **tasksGetPermissions**
@@ -389,12 +389,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **200** | Task was found |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or task was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="tasksRenameTask"></a>
 # **tasksRenameTask**
@@ -466,12 +466,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Task was found |  -  |
+| **400** | Bad id or name provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or task was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="tasksRunTask"></a>
 # **tasksRunTask**
@@ -540,12 +540,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Task was executed |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription was not found |  -  |
+| **402** | Subscription is outdated |  -  |
+| **400** | Bad VM provided |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="tasksRunTaskById"></a>
 # **tasksRunTaskById**
@@ -614,12 +614,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **200** | Task was executed |  -  |
+| **400** | Bad id provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or task was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="tasksUpdatePermissions"></a>
 # **tasksUpdatePermissions**
@@ -690,12 +690,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **204** | Task was updated |  -  |
+| **400** | Bad id or VM provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or task was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="tasksUpdateTask"></a>
 # **tasksUpdateTask**
@@ -768,9 +768,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **402** | Client Error |  -  |
-| **400** | Bad Request |  -  |
-| **500** | Server Error |  -  |
+| **400** | Bad id or VM provided |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | Not enough permissions for the operation |  -  |
+| **404** | Subscription or task was not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
+| **204** | Task was updated |  -  |
 

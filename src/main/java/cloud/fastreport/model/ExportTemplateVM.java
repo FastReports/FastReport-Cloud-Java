@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.ExportFormat;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * ExportTemplateVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ExportTemplateVM {
+public class ExportTemplateVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_FILE_NAME = "fileName";
   @SerializedName(SERIALIZED_NAME_FILE_NAME)
   private String fileName;
@@ -83,7 +84,12 @@ public class ExportTemplateVM {
   @SerializedName(SERIALIZED_NAME_REPORT_PARAMETERS)
   private Map<String, String> reportParameters;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public ExportTemplateVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public ExportTemplateVM fileName(String fileName) {
@@ -237,6 +243,25 @@ public class ExportTemplateVM {
   }
 
 
+  public ExportTemplateVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -253,7 +278,9 @@ public class ExportTemplateVM {
         Objects.equals(this.pagesCount, exportTemplateVM.pagesCount) &&
         Objects.equals(this.format, exportTemplateVM.format) &&
         Objects.equals(this.exportParameters, exportTemplateVM.exportParameters) &&
-        Objects.equals(this.reportParameters, exportTemplateVM.reportParameters);
+        Objects.equals(this.reportParameters, exportTemplateVM.reportParameters) &&
+        Objects.equals(this.$t, exportTemplateVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -262,7 +289,7 @@ public class ExportTemplateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileName, folderId, locale, pagesCount, format, exportParameters, reportParameters);
+    return Objects.hash(fileName, folderId, locale, pagesCount, format, exportParameters, reportParameters, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -276,6 +303,7 @@ public class ExportTemplateVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExportTemplateVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
     sb.append("    folderId: ").append(toIndentedString(folderId)).append("\n");
     sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
@@ -283,6 +311,7 @@ public class ExportTemplateVM {
     sb.append("    format: ").append(toIndentedString(format)).append("\n");
     sb.append("    exportParameters: ").append(toIndentedString(exportParameters)).append("\n");
     sb.append("    reportParameters: ").append(toIndentedString(reportParameters)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -305,16 +334,11 @@ public class ExportTemplateVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("fileName");
-    openapiFields.add("folderId");
-    openapiFields.add("locale");
-    openapiFields.add("pagesCount");
-    openapiFields.add("format");
-    openapiFields.add("exportParameters");
-    openapiFields.add("reportParameters");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -337,19 +361,12 @@ public class ExportTemplateVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ExportTemplateVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("fileName") != null && !jsonObj.get("fileName").isJsonNull()) && !jsonObj.get("fileName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fileName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fileName").toString()));
-      }
-      if ((jsonObj.get("folderId") != null && !jsonObj.get("folderId").isJsonNull()) && !jsonObj.get("folderId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `folderId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("folderId").toString()));
-      }
-      if ((jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull()) && !jsonObj.get("locale").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `locale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("locale").toString()));
-      }
-      // validate the optional field `format`
-      if (jsonObj.get("format") != null && !jsonObj.get("format").isJsonNull()) {
-        ExportFormat.validateJsonElement(jsonObj.get("format"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ExportTemplateVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,7 +52,7 @@ import cloud.fastreport.JSON;
  * AuthConfigVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AuthConfigVM {
+public class AuthConfigVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_USE_LOCAL = "useLocal";
   @SerializedName(SERIALIZED_NAME_USE_LOCAL)
   private Boolean useLocal;
@@ -64,7 +65,12 @@ public class AuthConfigVM {
   @SerializedName(SERIALIZED_NAME_AUTHORITY)
   private String authority;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public AuthConfigVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public AuthConfigVM useLocal(Boolean useLocal) {
@@ -124,6 +130,25 @@ public class AuthConfigVM {
   }
 
 
+  public AuthConfigVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -136,7 +161,9 @@ public class AuthConfigVM {
     AuthConfigVM authConfigVM = (AuthConfigVM) o;
     return Objects.equals(this.useLocal, authConfigVM.useLocal) &&
         Objects.equals(this.useOpenId, authConfigVM.useOpenId) &&
-        Objects.equals(this.authority, authConfigVM.authority);
+        Objects.equals(this.authority, authConfigVM.authority) &&
+        Objects.equals(this.$t, authConfigVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -145,7 +172,7 @@ public class AuthConfigVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(useLocal, useOpenId, authority);
+    return Objects.hash(useLocal, useOpenId, authority, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -159,9 +186,11 @@ public class AuthConfigVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AuthConfigVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    useLocal: ").append(toIndentedString(useLocal)).append("\n");
     sb.append("    useOpenId: ").append(toIndentedString(useOpenId)).append("\n");
     sb.append("    authority: ").append(toIndentedString(authority)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -184,12 +213,11 @@ public class AuthConfigVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("useLocal");
-    openapiFields.add("useOpenId");
-    openapiFields.add("authority");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -212,9 +240,12 @@ public class AuthConfigVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthConfigVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("authority") != null && !jsonObj.get("authority").isJsonNull()) && !jsonObj.get("authority").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `authority` to be a primitive type in the JSON string but got `%s`", jsonObj.get("authority").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : AuthConfigVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

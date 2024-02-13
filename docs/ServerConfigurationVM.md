@@ -13,7 +13,7 @@
 |**corporateServerMode** | **Boolean** |  |  [optional] |
 |**lastSLAVersion** | **OffsetDateTime** |  |  [optional] |
 |**isDisabled** | **Boolean** |  |  [optional] |
-|**frontend** | [**FrontendApp**](FrontendApp.md) |  |  [optional] |
+|**frontend** | [**FrontendAppVM**](FrontendAppVM.md) |  |  [optional] |
 |**invariantLocale** | **String** |  |  [optional] |
 |**auth** | [**AuthConfigVM**](AuthConfigVM.md) |  |  [optional] |
 |**designerForAnons** | **Boolean** |  |  [optional] |
@@ -23,6 +23,7 @@
 |**homePageLink** | **String** |  |  [optional] |
 |**authServerName** | **String** |  |  [optional] |
 |**updateWorkspaceLink** | **String** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

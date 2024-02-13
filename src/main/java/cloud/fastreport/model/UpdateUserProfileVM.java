@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,7 +52,7 @@ import cloud.fastreport.JSON;
  * UpdateUserProfileVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdateUserProfileVM {
+public class UpdateUserProfileVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
@@ -72,7 +73,12 @@ public class UpdateUserProfileVM {
   @SerializedName(SERIALIZED_NAME_PASSWORD_NEW2)
   private String passwordNew2;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public UpdateUserProfileVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public UpdateUserProfileVM name(String name) {
@@ -170,6 +176,25 @@ public class UpdateUserProfileVM {
   }
 
 
+  public UpdateUserProfileVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -184,7 +209,9 @@ public class UpdateUserProfileVM {
         Objects.equals(this.username, updateUserProfileVM.username) &&
         Objects.equals(this.email, updateUserProfileVM.email) &&
         Objects.equals(this.passwordNew, updateUserProfileVM.passwordNew) &&
-        Objects.equals(this.passwordNew2, updateUserProfileVM.passwordNew2);
+        Objects.equals(this.passwordNew2, updateUserProfileVM.passwordNew2) &&
+        Objects.equals(this.$t, updateUserProfileVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -193,7 +220,7 @@ public class UpdateUserProfileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, username, email, passwordNew, passwordNew2);
+    return Objects.hash(name, username, email, passwordNew, passwordNew2, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -207,11 +234,13 @@ public class UpdateUserProfileVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateUserProfileVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    passwordNew: ").append(toIndentedString(passwordNew)).append("\n");
     sb.append("    passwordNew2: ").append(toIndentedString(passwordNew2)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -234,14 +263,11 @@ public class UpdateUserProfileVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("name");
-    openapiFields.add("username");
-    openapiFields.add("email");
-    openapiFields.add("passwordNew");
-    openapiFields.add("passwordNew2");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -264,21 +290,12 @@ public class UpdateUserProfileVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateUserProfileVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if ((jsonObj.get("username") != null && !jsonObj.get("username").isJsonNull()) && !jsonObj.get("username").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `username` to be a primitive type in the JSON string but got `%s`", jsonObj.get("username").toString()));
-      }
-      if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
-      }
-      if ((jsonObj.get("passwordNew") != null && !jsonObj.get("passwordNew").isJsonNull()) && !jsonObj.get("passwordNew").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `passwordNew` to be a primitive type in the JSON string but got `%s`", jsonObj.get("passwordNew").toString()));
-      }
-      if ((jsonObj.get("passwordNew2") != null && !jsonObj.get("passwordNew2").isJsonNull()) && !jsonObj.get("passwordNew2").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `passwordNew2` to be a primitive type in the JSON string but got `%s`", jsonObj.get("passwordNew2").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : UpdateUserProfileVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

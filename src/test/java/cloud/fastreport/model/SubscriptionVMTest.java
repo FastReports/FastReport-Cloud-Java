@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.SubscriptionFolder;
 import cloud.fastreport.model.SubscriptionPeriodVM;
 import com.google.gson.TypeAdapter;
@@ -40,70 +41,6 @@ public class SubscriptionVMTest {
     @Test
     public void testSubscriptionVM() {
         // TODO: test SubscriptionVM
-    }
-
-    /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
-    }
-
-    /**
-     * Test the property 'name'
-     */
-    @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
-     * Test the property 'locale'
-     */
-    @Test
-    public void localeTest() {
-        // TODO: test locale
-    }
-
-    /**
-     * Test the property 'current'
-     */
-    @Test
-    public void currentTest() {
-        // TODO: test current
-    }
-
-    /**
-     * Test the property 'old'
-     */
-    @Test
-    public void oldTest() {
-        // TODO: test old
-    }
-
-    /**
-     * Test the property 'templatesFolder'
-     */
-    @Test
-    public void templatesFolderTest() {
-        // TODO: test templatesFolder
-    }
-
-    /**
-     * Test the property 'reportsFolder'
-     */
-    @Test
-    public void reportsFolderTest() {
-        // TODO: test reportsFolder
-    }
-
-    /**
-     * Test the property 'exportsFolder'
-     */
-    @Test
-    public void exportsFolderTest() {
-        // TODO: test exportsFolder
     }
 
     /**

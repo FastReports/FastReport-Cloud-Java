@@ -83,9 +83,9 @@ public class UserNotificationsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Notifications are cleared </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad VM </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> User is not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call userNotificationsClearNotificationsCall(ClearNotificationsVM clearNotificationsVM, final ApiCallback _callback) throws ApiException {
@@ -149,9 +149,9 @@ public class UserNotificationsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Notifications are cleared </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad VM </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> User is not found </td><td>  -  </td></tr>
      </table>
      */
     public void userNotificationsClearNotifications(ClearNotificationsVM clearNotificationsVM) throws ApiException {
@@ -167,9 +167,9 @@ public class UserNotificationsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Notifications are cleared </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad VM </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> User is not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> userNotificationsClearNotificationsWithHttpInfo(ClearNotificationsVM clearNotificationsVM) throws ApiException {
@@ -187,9 +187,9 @@ public class UserNotificationsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Notifications are cleared </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad VM </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> User is not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call userNotificationsClearNotificationsAsync(ClearNotificationsVM clearNotificationsVM, final ApiCallback<Void> _callback) throws ApiException {
@@ -209,8 +209,7 @@ public class UserNotificationsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Notifications are getted </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call userNotificationsGetNotificationsCall(Integer skip, Integer take, String subscriptionId, final ApiCallback _callback) throws ApiException {
@@ -286,8 +285,7 @@ public class UserNotificationsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Notifications are getted </td><td>  -  </td></tr>
      </table>
      */
     public AuditActionsVM userNotificationsGetNotifications(Integer skip, Integer take, String subscriptionId) throws ApiException {
@@ -306,8 +304,7 @@ public class UserNotificationsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Notifications are getted </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<AuditActionsVM> userNotificationsGetNotificationsWithHttpInfo(Integer skip, Integer take, String subscriptionId) throws ApiException {
@@ -328,8 +325,7 @@ public class UserNotificationsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Notifications are getted </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call userNotificationsGetNotificationsAsync(Integer skip, Integer take, String subscriptionId, final ApiCallback<AuditActionsVM> _callback) throws ApiException {

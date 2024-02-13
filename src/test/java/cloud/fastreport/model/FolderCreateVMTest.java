@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -38,30 +39,6 @@ public class FolderCreateVMTest {
     @Test
     public void testFolderCreateVM() {
         // TODO: test FolderCreateVM
-    }
-
-    /**
-     * Test the property 'name'
-     */
-    @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
-     * Test the property 'tags'
-     */
-    @Test
-    public void tagsTest() {
-        // TODO: test tags
-    }
-
-    /**
-     * Test the property 'icon'
-     */
-    @Test
-    public void iconTest() {
-        // TODO: test icon
     }
 
     /**

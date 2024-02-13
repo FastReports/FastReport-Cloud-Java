@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.FileKind;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -52,7 +53,7 @@ import cloud.fastreport.JSON;
  * InputFileVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class InputFileVM {
+public class InputFileVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_ENTITY_ID = "entityId";
   @SerializedName(SERIALIZED_NAME_ENTITY_ID)
   private String entityId;
@@ -61,7 +62,12 @@ public class InputFileVM {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private FileKind type;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public InputFileVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public InputFileVM entityId(String entityId) {
@@ -102,6 +108,25 @@ public class InputFileVM {
   }
 
 
+  public InputFileVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -113,7 +138,9 @@ public class InputFileVM {
     }
     InputFileVM inputFileVM = (InputFileVM) o;
     return Objects.equals(this.entityId, inputFileVM.entityId) &&
-        Objects.equals(this.type, inputFileVM.type);
+        Objects.equals(this.type, inputFileVM.type) &&
+        Objects.equals(this.$t, inputFileVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -122,7 +149,7 @@ public class InputFileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(entityId, type);
+    return Objects.hash(entityId, type, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -136,8 +163,10 @@ public class InputFileVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InputFileVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -160,11 +189,11 @@ public class InputFileVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("entityId");
-    openapiFields.add("type");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -180,52 +209,19 @@ public class InputFileVM {
         }
       }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!InputFileVM.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InputFileVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("entityId") != null && !jsonObj.get("entityId").isJsonNull()) && !jsonObj.get("entityId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `entityId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("entityId").toString()));
-      }
-      // validate the optional field `type`
-      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
-        FileKind.validateJsonElement(jsonObj.get("type"));
+      String discriminatorValue = jsonElement.getAsJsonObject().get("$t").getAsString();
+      switch (discriminatorValue) {
+        case "InputFileVM":
+          InputFileVM.validateJsonElement(jsonElement);
+          break;
+        case "RunInputFileVM":
+          RunInputFileVM.validateJsonElement(jsonElement);
+          break;
+        default:
+          throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }
   }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!InputFileVM.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'InputFileVM' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<InputFileVM> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(InputFileVM.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<InputFileVM>() {
-           @Override
-           public void write(JsonWriter out, InputFileVM value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public InputFileVM read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             // comment by Detrav, do not need to validate JSON while parse
-             //validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
 
  /**
   * Create an instance of InputFileVM given an JSON string

@@ -13,7 +13,8 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.DataSourcePermissions;
+import cloud.fastreport.model.CloudBaseVM;
+import cloud.fastreport.model.DataSourcePermissionsCRUDVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -39,11 +40,11 @@ public class DataSourcePermissionsVMTest {
     }
 
     /**
-     * Test the property 'permissions'
+     * Test the property '$t'
      */
     @Test
-    public void permissionsTest() {
-        // TODO: test permissions
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

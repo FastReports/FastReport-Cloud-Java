@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.GroupVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * SubscriptionUserVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SubscriptionUserVM {
+public class SubscriptionUserVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
   private String userId;
@@ -63,7 +64,12 @@ public class SubscriptionUserVM {
   @SerializedName(SERIALIZED_NAME_GROUPS)
   private List<GroupVM> groups;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public SubscriptionUserVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public SubscriptionUserVM userId(String userId) {
@@ -112,6 +118,25 @@ public class SubscriptionUserVM {
   }
 
 
+  public SubscriptionUserVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -123,7 +148,9 @@ public class SubscriptionUserVM {
     }
     SubscriptionUserVM subscriptionUserVM = (SubscriptionUserVM) o;
     return Objects.equals(this.userId, subscriptionUserVM.userId) &&
-        Objects.equals(this.groups, subscriptionUserVM.groups);
+        Objects.equals(this.groups, subscriptionUserVM.groups) &&
+        Objects.equals(this.$t, subscriptionUserVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -132,7 +159,7 @@ public class SubscriptionUserVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, groups);
+    return Objects.hash(userId, groups, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -146,8 +173,10 @@ public class SubscriptionUserVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SubscriptionUserVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -170,11 +199,11 @@ public class SubscriptionUserVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("userId");
-    openapiFields.add("groups");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -197,22 +226,11 @@ public class SubscriptionUserVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SubscriptionUserVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("userId") != null && !jsonObj.get("userId").isJsonNull()) && !jsonObj.get("userId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `userId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("userId").toString()));
-      }
-      if (jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull()) {
-        JsonArray jsonArraygroups = jsonObj.getAsJsonArray("groups");
-        if (jsonArraygroups != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("groups").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `groups` to be an array in the JSON string but got `%s`", jsonObj.get("groups").toString()));
-          }
 
-          // validate the optional field `groups` (array)
-          for (int i = 0; i < jsonArraygroups.size(); i++) {
-            GroupVM.validateJsonElement(jsonArraygroups.get(i));
-          };
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : SubscriptionUserVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }

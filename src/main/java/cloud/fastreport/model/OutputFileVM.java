@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.FileKind;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -52,7 +53,7 @@ import cloud.fastreport.JSON;
  * OutputFileVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class OutputFileVM {
+public class OutputFileVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_FILE_NAME = "fileName";
   @SerializedName(SERIALIZED_NAME_FILE_NAME)
   private String fileName;
@@ -69,7 +70,12 @@ public class OutputFileVM {
   @SerializedName(SERIALIZED_NAME_IS_TEMPORARY)
   private Boolean isTemporary;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public OutputFileVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public OutputFileVM fileName(String fileName) {
@@ -148,6 +154,25 @@ public class OutputFileVM {
   }
 
 
+  public OutputFileVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -161,7 +186,9 @@ public class OutputFileVM {
     return Objects.equals(this.fileName, outputFileVM.fileName) &&
         Objects.equals(this.folderId, outputFileVM.folderId) &&
         Objects.equals(this.type, outputFileVM.type) &&
-        Objects.equals(this.isTemporary, outputFileVM.isTemporary);
+        Objects.equals(this.isTemporary, outputFileVM.isTemporary) &&
+        Objects.equals(this.$t, outputFileVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -170,7 +197,7 @@ public class OutputFileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileName, folderId, type, isTemporary);
+    return Objects.hash(fileName, folderId, type, isTemporary, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -184,10 +211,12 @@ public class OutputFileVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class OutputFileVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
     sb.append("    folderId: ").append(toIndentedString(folderId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    isTemporary: ").append(toIndentedString(isTemporary)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -210,13 +239,11 @@ public class OutputFileVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("fileName");
-    openapiFields.add("folderId");
-    openapiFields.add("type");
-    openapiFields.add("isTemporary");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -239,16 +266,12 @@ public class OutputFileVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `OutputFileVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("fileName") != null && !jsonObj.get("fileName").isJsonNull()) && !jsonObj.get("fileName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fileName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fileName").toString()));
-      }
-      if ((jsonObj.get("folderId") != null && !jsonObj.get("folderId").isJsonNull()) && !jsonObj.get("folderId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `folderId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("folderId").toString()));
-      }
-      // validate the optional field `type`
-      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
-        FileKind.validateJsonElement(jsonObj.get("type"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : OutputFileVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

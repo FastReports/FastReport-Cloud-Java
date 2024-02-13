@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -41,43 +42,11 @@ public class PrepareTemplateVMTest {
     }
 
     /**
-     * Test the property 'name'
+     * Test the property '$t'
      */
     @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
-     * Test the property 'locale'
-     */
-    @Test
-    public void localeTest() {
-        // TODO: test locale
-    }
-
-    /**
-     * Test the property 'folderId'
-     */
-    @Test
-    public void folderIdTest() {
-        // TODO: test folderId
-    }
-
-    /**
-     * Test the property 'pagesCount'
-     */
-    @Test
-    public void pagesCountTest() {
-        // TODO: test pagesCount
-    }
-
-    /**
-     * Test the property 'reportParameters'
-     */
-    @Test
-    public void reportParametersTest() {
-        // TODO: test reportParameters
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

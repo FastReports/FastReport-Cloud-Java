@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,7 +53,7 @@ import cloud.fastreport.JSON;
  * CreateTaskBaseVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateTaskBaseVM {
+public class CreateTaskBaseVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_CRON_EXPRESSION = "cronExpression";
   @SerializedName(SERIALIZED_NAME_CRON_EXPRESSION)
   private String cronExpression;
@@ -186,7 +187,8 @@ public class CreateTaskBaseVM {
         Objects.equals(this.delayedRunTime, createTaskBaseVM.delayedRunTime) &&
         Objects.equals(this.name, createTaskBaseVM.name) &&
         Objects.equals(this.subscriptionId, createTaskBaseVM.subscriptionId) &&
-        Objects.equals(this.$t, createTaskBaseVM.$t);
+        Objects.equals(this.$t, createTaskBaseVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -195,7 +197,7 @@ public class CreateTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(cronExpression, delayedRunTime, name, subscriptionId, $t);
+    return Objects.hash(cronExpression, delayedRunTime, name, subscriptionId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -209,6 +211,7 @@ public class CreateTaskBaseVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateTaskBaseVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    cronExpression: ").append(toIndentedString(cronExpression)).append("\n");
     sb.append("    delayedRunTime: ").append(toIndentedString(delayedRunTime)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
@@ -236,10 +239,6 @@ public class CreateTaskBaseVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("cronExpression");
-    openapiFields.add("delayedRunTime");
-    openapiFields.add("name");
-    openapiFields.add("subscriptionId");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
@@ -280,20 +279,23 @@ public class CreateTaskBaseVM {
         case "CreatePrepareTemplateTaskVM":
           CreatePrepareTemplateTaskVM.validateJsonElement(jsonElement);
           break;
+        case "CreateTaskBaseVM":
+          CreateTaskBaseVM.validateJsonElement(jsonElement);
+          break;
         case "CreateThumbnailReportTaskVM":
           CreateThumbnailReportTaskVM.validateJsonElement(jsonElement);
           break;
         case "CreateThumbnailTemplateTaskVM":
           CreateThumbnailTemplateTaskVM.validateJsonElement(jsonElement);
           break;
-        case "CreateWebhookTaskVM":
-          CreateWebhookTaskVM.validateJsonElement(jsonElement);
-          break;
         case "CreateTransformTaskBaseVM":
           CreateTransformTaskBaseVM.validateJsonElement(jsonElement);
           break;
         case "CreateTransportTaskBaseVM":
           CreateTransportTaskBaseVM.validateJsonElement(jsonElement);
+          break;
+        case "CreateWebhookTaskVM":
+          CreateWebhookTaskVM.validateJsonElement(jsonElement);
           break;
         default:
           throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));

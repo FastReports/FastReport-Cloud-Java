@@ -72,6 +72,10 @@ public class PrepareTemplateTaskVM extends TransformTaskBaseVM {
   @SerializedName(SERIALIZED_NAME_REPORT_PARAMETERS)
   private Map<String, String> reportParameters;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public PrepareTemplateTaskVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -151,6 +155,25 @@ public class PrepareTemplateTaskVM extends TransformTaskBaseVM {
   }
 
 
+  public PrepareTemplateTaskVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -164,6 +187,7 @@ public class PrepareTemplateTaskVM extends TransformTaskBaseVM {
     return Objects.equals(this.exportIds, prepareTemplateTaskVM.exportIds) &&
         Objects.equals(this.pagesCount, prepareTemplateTaskVM.pagesCount) &&
         Objects.equals(this.reportParameters, prepareTemplateTaskVM.reportParameters) &&
+        Objects.equals(this.$t, prepareTemplateTaskVM.$t) &&
         super.equals(o);
   }
 
@@ -173,7 +197,7 @@ public class PrepareTemplateTaskVM extends TransformTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(exportIds, pagesCount, reportParameters, super.hashCode());
+    return Objects.hash(exportIds, pagesCount, reportParameters, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -191,6 +215,7 @@ public class PrepareTemplateTaskVM extends TransformTaskBaseVM {
     sb.append("    exportIds: ").append(toIndentedString(exportIds)).append("\n");
     sb.append("    pagesCount: ").append(toIndentedString(pagesCount)).append("\n");
     sb.append("    reportParameters: ").append(toIndentedString(reportParameters)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

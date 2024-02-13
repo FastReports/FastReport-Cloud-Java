@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -36,14 +37,6 @@ public class RunTaskBaseVMTest {
     @Test
     public void testRunTaskBaseVM() {
         // TODO: test RunTaskBaseVM
-    }
-
-    /**
-     * Test the property 'subscriptionId'
-     */
-    @Test
-    public void subscriptionIdTest() {
-        // TODO: test subscriptionId
     }
 
     /**

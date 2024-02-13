@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.SubscriptionPlanVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -52,7 +53,7 @@ import cloud.fastreport.JSON;
  * SubscriptionPeriodVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SubscriptionPeriodVM {
+public class SubscriptionPeriodVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_START_TIME = "startTime";
   @SerializedName(SERIALIZED_NAME_START_TIME)
   private OffsetDateTime startTime;
@@ -65,7 +66,12 @@ public class SubscriptionPeriodVM {
   @SerializedName(SERIALIZED_NAME_PLAN)
   private SubscriptionPlanVM plan;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public SubscriptionPeriodVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public SubscriptionPeriodVM startTime(OffsetDateTime startTime) {
@@ -125,6 +131,25 @@ public class SubscriptionPeriodVM {
   }
 
 
+  public SubscriptionPeriodVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -137,21 +162,25 @@ public class SubscriptionPeriodVM {
     SubscriptionPeriodVM subscriptionPeriodVM = (SubscriptionPeriodVM) o;
     return Objects.equals(this.startTime, subscriptionPeriodVM.startTime) &&
         Objects.equals(this.endTime, subscriptionPeriodVM.endTime) &&
-        Objects.equals(this.plan, subscriptionPeriodVM.plan);
+        Objects.equals(this.plan, subscriptionPeriodVM.plan) &&
+        Objects.equals(this.$t, subscriptionPeriodVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startTime, endTime, plan);
+    return Objects.hash(startTime, endTime, plan, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SubscriptionPeriodVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
     sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
     sb.append("    plan: ").append(toIndentedString(plan)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -174,12 +203,11 @@ public class SubscriptionPeriodVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("startTime");
-    openapiFields.add("endTime");
-    openapiFields.add("plan");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -202,10 +230,12 @@ public class SubscriptionPeriodVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SubscriptionPeriodVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `plan`
-      if (jsonObj.get("plan") != null && !jsonObj.get("plan").isJsonNull()) {
-        SubscriptionPlanVM.validateJsonElement(jsonObj.get("plan"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : SubscriptionPeriodVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -38,27 +39,11 @@ public class FolderSizeVMTest {
     }
 
     /**
-     * Test the property 'size'
+     * Test the property '$t'
      */
     @Test
-    public void sizeTest() {
-        // TODO: test size
-    }
-
-    /**
-     * Test the property 'realSize'
-     */
-    @Test
-    public void realSizeTest() {
-        // TODO: test realSize
-    }
-
-    /**
-     * Test the property 'documentsCount'
-     */
-    @Test
-    public void documentsCountTest() {
-        // TODO: test documentsCount
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,7 +51,7 @@ import cloud.fastreport.JSON;
  * FolderSizeVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FolderSizeVM {
+public class FolderSizeVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_SIZE = "size";
   @SerializedName(SERIALIZED_NAME_SIZE)
   private Long size;
@@ -63,7 +64,12 @@ public class FolderSizeVM {
   @SerializedName(SERIALIZED_NAME_DOCUMENTS_COUNT)
   private Long documentsCount;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public FolderSizeVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public FolderSizeVM size(Long size) {
@@ -123,6 +129,25 @@ public class FolderSizeVM {
   }
 
 
+  public FolderSizeVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -135,21 +160,25 @@ public class FolderSizeVM {
     FolderSizeVM folderSizeVM = (FolderSizeVM) o;
     return Objects.equals(this.size, folderSizeVM.size) &&
         Objects.equals(this.realSize, folderSizeVM.realSize) &&
-        Objects.equals(this.documentsCount, folderSizeVM.documentsCount);
+        Objects.equals(this.documentsCount, folderSizeVM.documentsCount) &&
+        Objects.equals(this.$t, folderSizeVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(size, realSize, documentsCount);
+    return Objects.hash(size, realSize, documentsCount, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FolderSizeVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    realSize: ").append(toIndentedString(realSize)).append("\n");
     sb.append("    documentsCount: ").append(toIndentedString(documentsCount)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -172,12 +201,11 @@ public class FolderSizeVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("size");
-    openapiFields.add("realSize");
-    openapiFields.add("documentsCount");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -200,7 +228,13 @@ public class FolderSizeVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FolderSizeVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : FolderSizeVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,7 +53,7 @@ import cloud.fastreport.JSON;
  * CreateApiKeyVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateApiKeyVM {
+public class CreateApiKeyVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
@@ -61,7 +62,12 @@ public class CreateApiKeyVM {
   @SerializedName(SERIALIZED_NAME_EXPIRED)
   private OffsetDateTime expired;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public CreateApiKeyVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public CreateApiKeyVM description(String description) {
@@ -102,6 +108,25 @@ public class CreateApiKeyVM {
   }
 
 
+  public CreateApiKeyVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -113,7 +138,9 @@ public class CreateApiKeyVM {
     }
     CreateApiKeyVM createApiKeyVM = (CreateApiKeyVM) o;
     return Objects.equals(this.description, createApiKeyVM.description) &&
-        Objects.equals(this.expired, createApiKeyVM.expired);
+        Objects.equals(this.expired, createApiKeyVM.expired) &&
+        Objects.equals(this.$t, createApiKeyVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -122,7 +149,7 @@ public class CreateApiKeyVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, expired);
+    return Objects.hash(description, expired, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -136,8 +163,10 @@ public class CreateApiKeyVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateApiKeyVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    expired: ").append(toIndentedString(expired)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -160,12 +189,12 @@ public class CreateApiKeyVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("description");
-    openapiFields.add("expired");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("expired");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -194,10 +223,6 @@ public class CreateApiKeyVM {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
   }
 

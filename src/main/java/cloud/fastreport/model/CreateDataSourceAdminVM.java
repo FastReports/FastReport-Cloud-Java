@@ -58,6 +58,10 @@ public class CreateDataSourceAdminVM extends CreateDataSourceVM {
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public CreateDataSourceAdminVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -81,6 +85,25 @@ public class CreateDataSourceAdminVM extends CreateDataSourceVM {
   }
 
 
+  public CreateDataSourceAdminVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -92,6 +115,7 @@ public class CreateDataSourceAdminVM extends CreateDataSourceVM {
     }
     CreateDataSourceAdminVM createDataSourceAdminVM = (CreateDataSourceAdminVM) o;
     return Objects.equals(this.ownerId, createDataSourceAdminVM.ownerId) &&
+        Objects.equals(this.$t, createDataSourceAdminVM.$t) &&
         super.equals(o);
   }
 
@@ -101,7 +125,7 @@ public class CreateDataSourceAdminVM extends CreateDataSourceVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, super.hashCode());
+    return Objects.hash(ownerId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -117,6 +141,7 @@ public class CreateDataSourceAdminVM extends CreateDataSourceVM {
     sb.append("class CreateDataSourceAdminVM {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -148,9 +173,9 @@ public class CreateDataSourceAdminVM extends CreateDataSourceVM {
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("ownerId");
+    openapiRequiredFields.add("$t");
     openapiRequiredFields.add("connectionString");
     openapiRequiredFields.add("subscriptionId");
-    openapiRequiredFields.add("$t");
   }
 
  /**

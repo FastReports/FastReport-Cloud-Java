@@ -285,6 +285,9 @@ public class UpdateTransformTaskBaseVM extends UpdateTaskBaseVM {
         case "UpdatePrepareTemplateTaskVM":
           UpdatePrepareTemplateTaskVM.validateJsonElement(jsonElement);
           break;
+        case "UpdateTransformTaskBaseVM":
+          UpdateTransformTaskBaseVM.validateJsonElement(jsonElement);
+          break;
         default:
           throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }

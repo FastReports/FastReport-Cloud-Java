@@ -14,8 +14,9 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.GroupAdministrate;
-import cloud.fastreport.model.GroupPermissions;
+import cloud.fastreport.model.GroupPermissionsCRUDVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,19 +53,24 @@ import cloud.fastreport.JSON;
  * UpdateGroupPermissionsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdateGroupPermissionsVM {
+public class UpdateGroupPermissionsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_NEW_PERMISSIONS = "newPermissions";
   @SerializedName(SERIALIZED_NAME_NEW_PERMISSIONS)
-  private GroupPermissions newPermissions;
+  private GroupPermissionsCRUDVM newPermissions;
 
   public static final String SERIALIZED_NAME_ADMINISTRATE = "administrate";
   @SerializedName(SERIALIZED_NAME_ADMINISTRATE)
   private GroupAdministrate administrate;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public UpdateGroupPermissionsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
-  public UpdateGroupPermissionsVM newPermissions(GroupPermissions newPermissions) {
+  public UpdateGroupPermissionsVM newPermissions(GroupPermissionsCRUDVM newPermissions) {
     this.newPermissions = newPermissions;
     return this;
   }
@@ -74,11 +80,11 @@ public class UpdateGroupPermissionsVM {
    * @return newPermissions
   **/
   @javax.annotation.Nonnull
-  public GroupPermissions getNewPermissions() {
+  public GroupPermissionsCRUDVM getNewPermissions() {
     return newPermissions;
   }
 
-  public void setNewPermissions(GroupPermissions newPermissions) {
+  public void setNewPermissions(GroupPermissionsCRUDVM newPermissions) {
     this.newPermissions = newPermissions;
   }
 
@@ -102,6 +108,25 @@ public class UpdateGroupPermissionsVM {
   }
 
 
+  public UpdateGroupPermissionsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -113,20 +138,24 @@ public class UpdateGroupPermissionsVM {
     }
     UpdateGroupPermissionsVM updateGroupPermissionsVM = (UpdateGroupPermissionsVM) o;
     return Objects.equals(this.newPermissions, updateGroupPermissionsVM.newPermissions) &&
-        Objects.equals(this.administrate, updateGroupPermissionsVM.administrate);
+        Objects.equals(this.administrate, updateGroupPermissionsVM.administrate) &&
+        Objects.equals(this.$t, updateGroupPermissionsVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(newPermissions, administrate);
+    return Objects.hash(newPermissions, administrate, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateGroupPermissionsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    newPermissions: ").append(toIndentedString(newPermissions)).append("\n");
     sb.append("    administrate: ").append(toIndentedString(administrate)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -149,13 +178,13 @@ public class UpdateGroupPermissionsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("newPermissions");
-    openapiFields.add("administrate");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("newPermissions");
     openapiRequiredFields.add("administrate");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -185,11 +214,6 @@ public class UpdateGroupPermissionsVM {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `newPermissions`
-      GroupPermissions.validateJsonElement(jsonObj.get("newPermissions"));
-      // validate the required field `administrate`
-      GroupAdministrate.validateJsonElement(jsonObj.get("administrate"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

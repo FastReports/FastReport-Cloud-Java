@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**permissions** | [**GroupPermissions**](GroupPermissions.md) |  |  [optional] |
+|**permissions** | [**GroupPermissionsCRUDVM**](GroupPermissionsCRUDVM.md) |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

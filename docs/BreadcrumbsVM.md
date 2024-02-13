@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**breadcrumbs** | [**List&lt;BreadcrumbsModel&gt;**](BreadcrumbsModel.md) |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

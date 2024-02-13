@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.SubscriptionFolder;
 import cloud.fastreport.model.SubscriptionPeriodVM;
 import com.google.gson.TypeAdapter;
@@ -55,7 +56,7 @@ import cloud.fastreport.JSON;
  * SubscriptionVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class SubscriptionVM {
+public class SubscriptionVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
@@ -293,7 +294,8 @@ public class SubscriptionVM {
         Objects.equals(this.templatesFolder, subscriptionVM.templatesFolder) &&
         Objects.equals(this.reportsFolder, subscriptionVM.reportsFolder) &&
         Objects.equals(this.exportsFolder, subscriptionVM.exportsFolder) &&
-        Objects.equals(this.$t, subscriptionVM.$t);
+        Objects.equals(this.$t, subscriptionVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -302,7 +304,7 @@ public class SubscriptionVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, locale, current, old, templatesFolder, reportsFolder, exportsFolder, $t);
+    return Objects.hash(id, name, locale, current, old, templatesFolder, reportsFolder, exportsFolder, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -316,6 +318,7 @@ public class SubscriptionVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SubscriptionVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
@@ -347,14 +350,6 @@ public class SubscriptionVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("name");
-    openapiFields.add("locale");
-    openapiFields.add("current");
-    openapiFields.add("old");
-    openapiFields.add("templatesFolder");
-    openapiFields.add("reportsFolder");
-    openapiFields.add("exportsFolder");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)

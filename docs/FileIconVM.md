@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**icon** | **byte[]** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

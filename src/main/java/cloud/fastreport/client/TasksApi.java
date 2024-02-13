@@ -88,12 +88,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad VM provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksCreateTaskCall(CreateTaskBaseVM createTaskBaseVM, final ApiCallback _callback) throws ApiException {
@@ -158,12 +158,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad VM provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public TaskBaseVM tasksCreateTask(CreateTaskBaseVM createTaskBaseVM) throws ApiException {
@@ -180,12 +180,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad VM provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<TaskBaseVM> tasksCreateTaskWithHttpInfo(CreateTaskBaseVM createTaskBaseVM) throws ApiException {
@@ -204,12 +204,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was created </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad VM provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksCreateTaskAsync(CreateTaskBaseVM createTaskBaseVM, final ApiCallback<TaskBaseVM> _callback) throws ApiException {
@@ -228,12 +228,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Task was deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksDeleteTaskCall(String taskId, final ApiCallback _callback) throws ApiException {
@@ -300,12 +300,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Task was deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void tasksDeleteTask(String taskId) throws ApiException {
@@ -321,12 +321,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Task was deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> tasksDeleteTaskWithHttpInfo(String taskId) throws ApiException {
@@ -344,12 +344,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Task was deleted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksDeleteTaskAsync(String taskId, final ApiCallback<Void> _callback) throws ApiException {
@@ -367,12 +367,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksGetCall(String taskId, final ApiCallback _callback) throws ApiException {
@@ -440,12 +440,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public TaskBaseVM tasksGet(String taskId) throws ApiException {
@@ -462,12 +462,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<TaskBaseVM> tasksGetWithHttpInfo(String taskId) throws ApiException {
@@ -486,12 +486,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksGetAsync(String taskId, final ApiCallback<TaskBaseVM> _callback) throws ApiException {
@@ -513,12 +513,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Tasks were found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or tasks were not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksGetListCall(Integer skip, Integer take, String subscriptionId, String searchPattern, final ApiCallback _callback) throws ApiException {
@@ -599,12 +599,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Tasks were found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or tasks were not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public TasksVM tasksGetList(Integer skip, Integer take, String subscriptionId, String searchPattern) throws ApiException {
@@ -624,12 +624,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Tasks were found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or tasks were not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<TasksVM> tasksGetListWithHttpInfo(Integer skip, Integer take, String subscriptionId, String searchPattern) throws ApiException {
@@ -651,12 +651,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Tasks were found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or tasks were not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksGetListAsync(Integer skip, Integer take, String subscriptionId, String searchPattern, final ApiCallback<TasksVM> _callback) throws ApiException {
@@ -675,12 +675,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksGetPermissionsCall(String id, final ApiCallback _callback) throws ApiException {
@@ -748,12 +748,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public TaskPermissionsVM tasksGetPermissions(String id) throws ApiException {
@@ -770,12 +770,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<TaskPermissionsVM> tasksGetPermissionsWithHttpInfo(String id) throws ApiException {
@@ -794,12 +794,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksGetPermissionsAsync(String id, final ApiCallback<TaskPermissionsVM> _callback) throws ApiException {
@@ -819,12 +819,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id or name provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksRenameTaskCall(String taskId, String newName, final ApiCallback _callback) throws ApiException {
@@ -897,12 +897,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id or name provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public TaskBaseVM tasksRenameTask(String taskId, String newName) throws ApiException {
@@ -920,12 +920,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id or name provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<TaskBaseVM> tasksRenameTaskWithHttpInfo(String taskId, String newName) throws ApiException {
@@ -945,12 +945,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id or name provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksRenameTaskAsync(String taskId, String newName, final ApiCallback<TaskBaseVM> _callback) throws ApiException {
@@ -969,12 +969,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was executed </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription was not found </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad VM provided </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksRunTaskCall(RunTaskBaseVM runTaskBaseVM, final ApiCallback _callback) throws ApiException {
@@ -1038,12 +1038,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was executed </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription was not found </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad VM provided </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void tasksRunTask(RunTaskBaseVM runTaskBaseVM) throws ApiException {
@@ -1059,12 +1059,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was executed </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription was not found </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad VM provided </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> tasksRunTaskWithHttpInfo(RunTaskBaseVM runTaskBaseVM) throws ApiException {
@@ -1082,12 +1082,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was executed </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription was not found </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad VM provided </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksRunTaskAsync(RunTaskBaseVM runTaskBaseVM, final ApiCallback<Void> _callback) throws ApiException {
@@ -1105,12 +1105,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was executed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksRunTaskByIdCall(String taskId, final ApiCallback _callback) throws ApiException {
@@ -1177,12 +1177,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was executed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void tasksRunTaskById(String taskId) throws ApiException {
@@ -1198,12 +1198,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was executed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> tasksRunTaskByIdWithHttpInfo(String taskId) throws ApiException {
@@ -1221,12 +1221,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Task was executed </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksRunTaskByIdAsync(String taskId, final ApiCallback<Void> _callback) throws ApiException {
@@ -1245,12 +1245,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Task was updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id or VM provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksUpdatePermissionsCall(String id, UpdateTaskPermissionsVM updateTaskPermissionsVM, final ApiCallback _callback) throws ApiException {
@@ -1321,12 +1321,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Task was updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id or VM provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void tasksUpdatePermissions(String id, UpdateTaskPermissionsVM updateTaskPermissionsVM) throws ApiException {
@@ -1343,12 +1343,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Task was updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id or VM provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> tasksUpdatePermissionsWithHttpInfo(String id, UpdateTaskPermissionsVM updateTaskPermissionsVM) throws ApiException {
@@ -1367,12 +1367,12 @@ public class TasksApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Task was updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id or VM provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksUpdatePermissionsAsync(String id, UpdateTaskPermissionsVM updateTaskPermissionsVM, final ApiCallback<Void> _callback) throws ApiException {
@@ -1392,11 +1392,12 @@ public class TasksApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id or VM provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Task was updated </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksUpdateTaskCall(String taskId, UpdateTaskBaseVM updateTaskBaseVM, final ApiCallback _callback) throws ApiException {
@@ -1469,11 +1470,12 @@ public class TasksApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id or VM provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Task was updated </td><td>  -  </td></tr>
      </table>
      */
     public TaskBaseVM tasksUpdateTask(String taskId, UpdateTaskBaseVM updateTaskBaseVM) throws ApiException {
@@ -1492,11 +1494,12 @@ public class TasksApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id or VM provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Task was updated </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<TaskBaseVM> tasksUpdateTaskWithHttpInfo(String taskId, UpdateTaskBaseVM updateTaskBaseVM) throws ApiException {
@@ -1517,11 +1520,12 @@ public class TasksApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad id or VM provided </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Not enough permissions for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription or task was not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Task was updated </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call tasksUpdateTaskAsync(String taskId, UpdateTaskBaseVM updateTaskBaseVM, final ApiCallback<TaskBaseVM> _callback) throws ApiException {

@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,12 +51,17 @@ import cloud.fastreport.JSON;
  * AcceptAgreementsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AcceptAgreementsVM {
+public class AcceptAgreementsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_SLA_ACCEPTED = "slaAccepted";
   @SerializedName(SERIALIZED_NAME_SLA_ACCEPTED)
   private Boolean slaAccepted;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public AcceptAgreementsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public AcceptAgreementsVM slaAccepted(Boolean slaAccepted) {
@@ -77,6 +83,25 @@ public class AcceptAgreementsVM {
   }
 
 
+  public AcceptAgreementsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -87,19 +112,23 @@ public class AcceptAgreementsVM {
       return false;
     }
     AcceptAgreementsVM acceptAgreementsVM = (AcceptAgreementsVM) o;
-    return Objects.equals(this.slaAccepted, acceptAgreementsVM.slaAccepted);
+    return Objects.equals(this.slaAccepted, acceptAgreementsVM.slaAccepted) &&
+        Objects.equals(this.$t, acceptAgreementsVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(slaAccepted);
+    return Objects.hash(slaAccepted, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AcceptAgreementsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    slaAccepted: ").append(toIndentedString(slaAccepted)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -122,10 +151,11 @@ public class AcceptAgreementsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("slaAccepted");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -148,7 +178,13 @@ public class AcceptAgreementsVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AcceptAgreementsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : AcceptAgreementsVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

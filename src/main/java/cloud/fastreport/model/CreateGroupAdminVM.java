@@ -57,6 +57,10 @@ public class CreateGroupAdminVM extends CreateGroupVM {
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public CreateGroupAdminVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -80,6 +84,25 @@ public class CreateGroupAdminVM extends CreateGroupVM {
   }
 
 
+  public CreateGroupAdminVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -91,6 +114,7 @@ public class CreateGroupAdminVM extends CreateGroupVM {
     }
     CreateGroupAdminVM createGroupAdminVM = (CreateGroupAdminVM) o;
     return Objects.equals(this.ownerId, createGroupAdminVM.ownerId) &&
+        Objects.equals(this.$t, createGroupAdminVM.$t) &&
         super.equals(o);
   }
 
@@ -100,7 +124,7 @@ public class CreateGroupAdminVM extends CreateGroupVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(ownerId, super.hashCode());
+    return Objects.hash(ownerId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -116,6 +140,7 @@ public class CreateGroupAdminVM extends CreateGroupVM {
     sb.append("class CreateGroupAdminVM {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -144,8 +169,8 @@ public class CreateGroupAdminVM extends CreateGroupVM {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("name");
     openapiRequiredFields.add("$t");
+    openapiRequiredFields.add("name");
   }
 
  /**

@@ -81,9 +81,9 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Succesfully retured |  -  |
 | **400** | The reqeust is wrong |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | subscription is outdated |  -  |
-| **404** | Group with this identifier is not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Group with this identifier, subscription or user is not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="groupUsersGetUsersInGroup"></a>
@@ -160,8 +160,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Succesfully retured |  -  |
 | **400** | The reqeust is wrong |  -  |
+| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Group with this identifier is not found |  -  |
+| **404** | Group with this identifier or subscription is not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="groupUsersLeaveFromGroup"></a>
@@ -234,7 +235,7 @@ null (empty response body)
 | **204** | Succesfully removed |  -  |
 | **400** | The reqeust is wrong |  -  |
 | **402** | subscription is outdated |  -  |
-| **404** | Group with this identifier is not found |  -  |
+| **404** | Group with this identifier or subscription is not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="groupUsersRemoveFromGroup"></a>
@@ -308,8 +309,8 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Succesfully removed |  -  |
 | **400** | The reqeust is wrong |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | subscription is outdated |  -  |
-| **404** | Group with this identifier is not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Group with this identifier, subscription or user is not found |  -  |
 | **500** | Exception thrown |  -  |
 

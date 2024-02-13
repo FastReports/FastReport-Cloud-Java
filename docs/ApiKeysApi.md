@@ -6,7 +6,7 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 | [**apiKeysCreateApiKey**](ApiKeysApi.md#apiKeysCreateApiKey) | **POST** /api/manage/v1/ApiKeys | Create a new apikey, 5 apikeys for user. Hardcoded for ddos. |
 | [**apiKeysDeleteApiKey**](ApiKeysApi.md#apiKeysDeleteApiKey) | **DELETE** /api/manage/v1/ApiKeys | Delete an apikey |
-| [**apiKeysGetApiKeys**](ApiKeysApi.md#apiKeysGetApiKeys) | **GET** /api/manage/v1/ApiKeys | Returns list with all api keys of current user |
+| [**apiKeysGetApiKeys**](ApiKeysApi.md#apiKeysGetApiKeys) | **GET** /api/manage/v1/ApiKeys | Returns list with all apikeys of current user |
 
 
 <a id="apiKeysCreateApiKey"></a>
@@ -83,7 +83,7 @@ public class Example {
 
 <a id="apiKeysDeleteApiKey"></a>
 # **apiKeysDeleteApiKey**
-> apiKeysDeleteApiKey(deleteApiKeyVM)
+> ApiKeyVM apiKeysDeleteApiKey(deleteApiKeyVM)
 
 Delete an apikey
 
@@ -114,7 +114,8 @@ public class Example {
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
     DeleteApiKeyVM deleteApiKeyVM = new DeleteApiKeyVM(); // DeleteApiKeyVM | 
     try {
-      apiInstance.apiKeysDeleteApiKey(deleteApiKeyVM);
+      ApiKeyVM result = apiInstance.apiKeysDeleteApiKey(deleteApiKeyVM);
+      System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApiKeysApi#apiKeysDeleteApiKey");
       System.err.println("Status code: " + e.getCode());
@@ -134,7 +135,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**ApiKeyVM**](ApiKeyVM.md)
 
 ### Authorization
 
@@ -148,17 +149,18 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Succesfully deleted |  -  |
+| **200** | Success |  -  |
 | **400** | The request is wrong |  -  |
 | **401** | User is not authorized |  -  |
 | **404** | No such apikey found |  -  |
 | **500** | exception thrown |  -  |
+| **204** | Succesfully deleted |  -  |
 
 <a id="apiKeysGetApiKeys"></a>
 # **apiKeysGetApiKeys**
 > ApiKeysVM apiKeysGetApiKeys()
 
-Returns list with all api keys of current user
+Returns list with all apikeys of current user
 
 Always work, it should make only 200 response (except if user is not authorized).
 

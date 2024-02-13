@@ -196,6 +196,9 @@ public class UpdateTransportTaskBaseVM extends UpdateTaskBaseVM {
         case "UpdateFTPUploadTaskVM":
           UpdateFTPUploadTaskVM.validateJsonElement(jsonElement);
           break;
+        case "UpdateTransportTaskBaseVM":
+          UpdateTransportTaskBaseVM.validateJsonElement(jsonElement);
+          break;
         case "UpdateWebhookTaskVM":
           UpdateWebhookTaskVM.validateJsonElement(jsonElement);
           break;

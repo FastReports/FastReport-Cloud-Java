@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import cloud.fastreport.model.FileKind;
+import cloud.fastreport.model.InputFileVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,7 +53,7 @@ import cloud.fastreport.JSON;
  * RunInputFileVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RunInputFileVM {
+public class RunInputFileVM extends InputFileVM {
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)
   private byte[] content;
@@ -61,15 +62,12 @@ public class RunInputFileVM {
   @SerializedName(SERIALIZED_NAME_FILE_NAME)
   private String fileName;
 
-  public static final String SERIALIZED_NAME_ENTITY_ID = "entityId";
-  @SerializedName(SERIALIZED_NAME_ENTITY_ID)
-  private String entityId;
-
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  private FileKind type;
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
 
   public RunInputFileVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public RunInputFileVM content(byte[] content) {
@@ -110,41 +108,22 @@ public class RunInputFileVM {
   }
 
 
-  public RunInputFileVM entityId(String entityId) {
-    this.entityId = entityId;
+  public RunInputFileVM $t(String $t) {
+    this.$t = $t;
     return this;
   }
 
    /**
-   * Get entityId
-   * @return entityId
+   * Get $t
+   * @return $t
   **/
-  @javax.annotation.Nullable
-  public String getEntityId() {
-    return entityId;
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
   }
 
-  public void setEntityId(String entityId) {
-    this.entityId = entityId;
-  }
-
-
-  public RunInputFileVM type(FileKind type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  public FileKind getType() {
-    return type;
-  }
-
-  public void setType(FileKind type) {
-    this.type = type;
+  public void set$T(String $t) {
+    this.$t = $t;
   }
 
 
@@ -160,8 +139,8 @@ public class RunInputFileVM {
     RunInputFileVM runInputFileVM = (RunInputFileVM) o;
     return Arrays.equals(this.content, runInputFileVM.content) &&
         Objects.equals(this.fileName, runInputFileVM.fileName) &&
-        Objects.equals(this.entityId, runInputFileVM.entityId) &&
-        Objects.equals(this.type, runInputFileVM.type);
+        Objects.equals(this.$t, runInputFileVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -170,7 +149,7 @@ public class RunInputFileVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(Arrays.hashCode(content), fileName, entityId, type);
+    return Objects.hash(Arrays.hashCode(content), fileName, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -184,10 +163,10 @@ public class RunInputFileVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RunInputFileVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
-    sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -212,9 +191,11 @@ public class RunInputFileVM {
     openapiFields = new HashSet<String>();
     openapiFields.add("entityId");
     openapiFields.add("type");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -237,16 +218,12 @@ public class RunInputFileVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RunInputFileVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("fileName") != null && !jsonObj.get("fileName").isJsonNull()) && !jsonObj.get("fileName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fileName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fileName").toString()));
-      }
-      if ((jsonObj.get("entityId") != null && !jsonObj.get("entityId").isJsonNull()) && !jsonObj.get("entityId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `entityId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("entityId").toString()));
-      }
-      // validate the optional field `type`
-      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
-        FileKind.validateJsonElement(jsonObj.get("type"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : RunInputFileVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -53,7 +54,7 @@ import cloud.fastreport.JSON;
  * FileCreateVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FileCreateVM {
+public class FileCreateVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
@@ -195,7 +196,8 @@ public class FileCreateVM {
         Objects.equals(this.tags, fileCreateVM.tags) &&
         Arrays.equals(this.icon, fileCreateVM.icon) &&
         Arrays.equals(this.content, fileCreateVM.content) &&
-        Objects.equals(this.$t, fileCreateVM.$t);
+        Objects.equals(this.$t, fileCreateVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -204,7 +206,7 @@ public class FileCreateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, tags, Arrays.hashCode(icon), Arrays.hashCode(content), $t);
+    return Objects.hash(name, tags, Arrays.hashCode(icon), Arrays.hashCode(content), $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -218,6 +220,7 @@ public class FileCreateVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FileCreateVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
@@ -245,10 +248,6 @@ public class FileCreateVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("name");
-    openapiFields.add("tags");
-    openapiFields.add("icon");
-    openapiFields.add("content");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)

@@ -61,7 +61,7 @@ public class SubscriptionInvitesApiTest {
     }
 
     /**
-     * Rename subscription
+     * Delete invite with specified token
      *
      * @throws ApiException if the Api call fails
      */

@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import cloud.fastreport.model.FileVM;
+import cloud.fastreport.model.FilesVMBase;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -54,107 +55,31 @@ import cloud.fastreport.JSON;
  * FilesVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FilesVM {
-  public static final String SERIALIZED_NAME_FILES = "files";
-  @SerializedName(SERIALIZED_NAME_FILES)
-  private List<FileVM> files;
-
-  public static final String SERIALIZED_NAME_COUNT = "count";
-  @SerializedName(SERIALIZED_NAME_COUNT)
-  private Long count;
-
-  public static final String SERIALIZED_NAME_SKIP = "skip";
-  @SerializedName(SERIALIZED_NAME_SKIP)
-  private Integer skip;
-
-  public static final String SERIALIZED_NAME_TAKE = "take";
-  @SerializedName(SERIALIZED_NAME_TAKE)
-  private Integer take;
+public class FilesVM extends FilesVMBase {
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
 
   public FilesVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
-  public FilesVM files(List<FileVM> files) {
-    this.files = files;
-    return this;
-  }
-
-  public FilesVM addFilesItem(FileVM filesItem) {
-    if (this.files == null) {
-      this.files = new ArrayList<>();
-    }
-    this.files.add(filesItem);
+  public FilesVM $t(String $t) {
+    this.$t = $t;
     return this;
   }
 
    /**
-   * Get files
-   * @return files
+   * Get $t
+   * @return $t
   **/
-  @javax.annotation.Nullable
-  public List<FileVM> getFiles() {
-    return files;
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
   }
 
-  public void setFiles(List<FileVM> files) {
-    this.files = files;
-  }
-
-
-  public FilesVM count(Long count) {
-    this.count = count;
-    return this;
-  }
-
-   /**
-   * Get count
-   * @return count
-  **/
-  @javax.annotation.Nullable
-  public Long getCount() {
-    return count;
-  }
-
-  public void setCount(Long count) {
-    this.count = count;
-  }
-
-
-  public FilesVM skip(Integer skip) {
-    this.skip = skip;
-    return this;
-  }
-
-   /**
-   * Get skip
-   * @return skip
-  **/
-  @javax.annotation.Nullable
-  public Integer getSkip() {
-    return skip;
-  }
-
-  public void setSkip(Integer skip) {
-    this.skip = skip;
-  }
-
-
-  public FilesVM take(Integer take) {
-    this.take = take;
-    return this;
-  }
-
-   /**
-   * Get take
-   * @return take
-  **/
-  @javax.annotation.Nullable
-  public Integer getTake() {
-    return take;
-  }
-
-  public void setTake(Integer take) {
-    this.take = take;
+  public void set$T(String $t) {
+    this.$t = $t;
   }
 
 
@@ -168,10 +93,8 @@ public class FilesVM {
       return false;
     }
     FilesVM filesVM = (FilesVM) o;
-    return Objects.equals(this.files, filesVM.files) &&
-        Objects.equals(this.count, filesVM.count) &&
-        Objects.equals(this.skip, filesVM.skip) &&
-        Objects.equals(this.take, filesVM.take);
+    return Objects.equals(this.$t, filesVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -180,7 +103,7 @@ public class FilesVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(files, count, skip, take);
+    return Objects.hash($t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -194,10 +117,8 @@ public class FilesVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FilesVM {\n");
-    sb.append("    files: ").append(toIndentedString(files)).append("\n");
-    sb.append("    count: ").append(toIndentedString(count)).append("\n");
-    sb.append("    skip: ").append(toIndentedString(skip)).append("\n");
-    sb.append("    take: ").append(toIndentedString(take)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -224,9 +145,11 @@ public class FilesVM {
     openapiFields.add("count");
     openapiFields.add("skip");
     openapiFields.add("take");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -249,19 +172,11 @@ public class FilesVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FilesVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("files") != null && !jsonObj.get("files").isJsonNull()) {
-        JsonArray jsonArrayfiles = jsonObj.getAsJsonArray("files");
-        if (jsonArrayfiles != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("files").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `files` to be an array in the JSON string but got `%s`", jsonObj.get("files").toString()));
-          }
 
-          // validate the optional field `files` (array)
-          for (int i = 0; i < jsonArrayfiles.size(); i++) {
-            FileVM.validateJsonElement(jsonArrayfiles.get(i));
-          };
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : FilesVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
   }

@@ -93,6 +93,10 @@ public class EmailTaskVM extends TransportTaskBaseVM {
   @SerializedName(SERIALIZED_NAME_USERNAME)
   private String username;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public EmailTaskVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -278,6 +282,25 @@ public class EmailTaskVM extends TransportTaskBaseVM {
   }
 
 
+  public EmailTaskVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -297,6 +320,7 @@ public class EmailTaskVM extends TransportTaskBaseVM {
         Objects.equals(this.subject, emailTaskVM.subject) &&
         Objects.equals(this.to, emailTaskVM.to) &&
         Objects.equals(this.username, emailTaskVM.username) &&
+        Objects.equals(this.$t, emailTaskVM.$t) &&
         super.equals(o);
   }
 
@@ -306,7 +330,7 @@ public class EmailTaskVM extends TransportTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(body, enableSsl, from, isBodyHtml, port, server, subject, to, username, super.hashCode());
+    return Objects.hash(body, enableSsl, from, isBodyHtml, port, server, subject, to, username, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -330,6 +354,7 @@ public class EmailTaskVM extends TransportTaskBaseVM {
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

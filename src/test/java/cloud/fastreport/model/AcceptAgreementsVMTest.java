@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -38,11 +39,11 @@ public class AcceptAgreementsVMTest {
     }
 
     /**
-     * Test the property 'slaAccepted'
+     * Test the property '$t'
      */
     @Test
-    public void slaAcceptedTest() {
-        // TODO: test slaAccepted
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

@@ -57,6 +57,10 @@ public class RunThumbnailTemplateTaskVM extends RunTaskBaseVM {
   @SerializedName(SERIALIZED_NAME_TEMPLATE_ID)
   private String templateId;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public RunThumbnailTemplateTaskVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -80,6 +84,25 @@ public class RunThumbnailTemplateTaskVM extends RunTaskBaseVM {
   }
 
 
+  public RunThumbnailTemplateTaskVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -91,6 +114,7 @@ public class RunThumbnailTemplateTaskVM extends RunTaskBaseVM {
     }
     RunThumbnailTemplateTaskVM runThumbnailTemplateTaskVM = (RunThumbnailTemplateTaskVM) o;
     return Objects.equals(this.templateId, runThumbnailTemplateTaskVM.templateId) &&
+        Objects.equals(this.$t, runThumbnailTemplateTaskVM.$t) &&
         super.equals(o);
   }
 
@@ -100,7 +124,7 @@ public class RunThumbnailTemplateTaskVM extends RunTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateId, super.hashCode());
+    return Objects.hash(templateId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -116,6 +140,7 @@ public class RunThumbnailTemplateTaskVM extends RunTaskBaseVM {
     sb.append("class RunThumbnailTemplateTaskVM {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -55,9 +55,32 @@ import cloud.fastreport.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AdminExportFolderCreateVM extends AdminFolderCreateVM {
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public AdminExportFolderCreateVM() {
     this.$t = this.getClass().getSimpleName();
   }
+
+  public AdminExportFolderCreateVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
 
 
   @Override
@@ -68,7 +91,9 @@ public class AdminExportFolderCreateVM extends AdminFolderCreateVM {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    return super.equals(o);
+    AdminExportFolderCreateVM adminExportFolderCreateVM = (AdminExportFolderCreateVM) o;
+    return Objects.equals(this.$t, adminExportFolderCreateVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -77,7 +102,7 @@ public class AdminExportFolderCreateVM extends AdminFolderCreateVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode());
+    return Objects.hash($t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -92,6 +117,7 @@ public class AdminExportFolderCreateVM extends AdminFolderCreateVM {
     StringBuilder sb = new StringBuilder();
     sb.append("class AdminExportFolderCreateVM {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -124,9 +150,9 @@ public class AdminExportFolderCreateVM extends AdminFolderCreateVM {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
     openapiRequiredFields.add("parentId");
     openapiRequiredFields.add("ownerId");
-    openapiRequiredFields.add("$t");
   }
 
  /**

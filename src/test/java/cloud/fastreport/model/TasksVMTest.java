@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.TaskBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -42,35 +43,11 @@ public class TasksVMTest {
     }
 
     /**
-     * Test the property 'count'
+     * Test the property '$t'
      */
     @Test
-    public void countTest() {
-        // TODO: test count
-    }
-
-    /**
-     * Test the property 'skip'
-     */
-    @Test
-    public void skipTest() {
-        // TODO: test skip
-    }
-
-    /**
-     * Test the property 'take'
-     */
-    @Test
-    public void takeTest() {
-        // TODO: test take
-    }
-
-    /**
-     * Test the property 'tasks'
-     */
-    @Test
-    public void tasksTest() {
-        // TODO: test tasks
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

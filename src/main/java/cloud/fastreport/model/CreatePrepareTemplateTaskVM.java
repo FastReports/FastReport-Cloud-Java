@@ -74,6 +74,10 @@ public class CreatePrepareTemplateTaskVM extends CreateTransformTaskBaseVM {
   @SerializedName(SERIALIZED_NAME_REPORT_PARAMETERS)
   private Map<String, String> reportParameters;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public CreatePrepareTemplateTaskVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -153,6 +157,25 @@ public class CreatePrepareTemplateTaskVM extends CreateTransformTaskBaseVM {
   }
 
 
+  public CreatePrepareTemplateTaskVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -166,6 +189,7 @@ public class CreatePrepareTemplateTaskVM extends CreateTransformTaskBaseVM {
     return Objects.equals(this.exports, createPrepareTemplateTaskVM.exports) &&
         Objects.equals(this.pagesCount, createPrepareTemplateTaskVM.pagesCount) &&
         Objects.equals(this.reportParameters, createPrepareTemplateTaskVM.reportParameters) &&
+        Objects.equals(this.$t, createPrepareTemplateTaskVM.$t) &&
         super.equals(o);
   }
 
@@ -175,7 +199,7 @@ public class CreatePrepareTemplateTaskVM extends CreateTransformTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(exports, pagesCount, reportParameters, super.hashCode());
+    return Objects.hash(exports, pagesCount, reportParameters, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -193,6 +217,7 @@ public class CreatePrepareTemplateTaskVM extends CreateTransformTaskBaseVM {
     sb.append("    exports: ").append(toIndentedString(exports)).append("\n");
     sb.append("    pagesCount: ").append(toIndentedString(pagesCount)).append("\n");
     sb.append("    reportParameters: ").append(toIndentedString(reportParameters)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

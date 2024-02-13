@@ -84,6 +84,7 @@ public class SubscriptionGroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
      </table>
@@ -155,6 +156,7 @@ public class SubscriptionGroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
      </table>
@@ -175,6 +177,7 @@ public class SubscriptionGroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
      </table>
@@ -197,6 +200,7 @@ public class SubscriptionGroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
      </table>
@@ -220,6 +224,7 @@ public class SubscriptionGroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Everything is all right (list of groups may be empty) </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
      </table>
@@ -296,6 +301,7 @@ public class SubscriptionGroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Everything is all right (list of groups may be empty) </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
      </table>
@@ -317,6 +323,7 @@ public class SubscriptionGroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Everything is all right (list of groups may be empty) </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
      </table>
@@ -340,6 +347,7 @@ public class SubscriptionGroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Everything is all right (list of groups may be empty) </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> id is not hex24 </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is blocked </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> there is no subscription with provided id found, or user don&#39;t even have a subscription </td><td>  -  </td></tr>
      </table>

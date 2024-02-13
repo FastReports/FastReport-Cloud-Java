@@ -14,8 +14,9 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.TaskAdministrate;
-import cloud.fastreport.model.TaskPermissions;
+import cloud.fastreport.model.TaskPermissionsCRUDVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -52,16 +53,21 @@ import cloud.fastreport.JSON;
  * UpdateTaskPermissionsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdateTaskPermissionsVM {
+public class UpdateTaskPermissionsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_ADMINISTRATE = "administrate";
   @SerializedName(SERIALIZED_NAME_ADMINISTRATE)
   private TaskAdministrate administrate;
 
   public static final String SERIALIZED_NAME_NEW_PERMISSIONS = "newPermissions";
   @SerializedName(SERIALIZED_NAME_NEW_PERMISSIONS)
-  private TaskPermissions newPermissions;
+  private TaskPermissionsCRUDVM newPermissions;
+
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
 
   public UpdateTaskPermissionsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public UpdateTaskPermissionsVM administrate(TaskAdministrate administrate) {
@@ -83,7 +89,7 @@ public class UpdateTaskPermissionsVM {
   }
 
 
-  public UpdateTaskPermissionsVM newPermissions(TaskPermissions newPermissions) {
+  public UpdateTaskPermissionsVM newPermissions(TaskPermissionsCRUDVM newPermissions) {
     this.newPermissions = newPermissions;
     return this;
   }
@@ -93,12 +99,31 @@ public class UpdateTaskPermissionsVM {
    * @return newPermissions
   **/
   @javax.annotation.Nonnull
-  public TaskPermissions getNewPermissions() {
+  public TaskPermissionsCRUDVM getNewPermissions() {
     return newPermissions;
   }
 
-  public void setNewPermissions(TaskPermissions newPermissions) {
+  public void setNewPermissions(TaskPermissionsCRUDVM newPermissions) {
     this.newPermissions = newPermissions;
+  }
+
+
+  public UpdateTaskPermissionsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
   }
 
 
@@ -113,20 +138,24 @@ public class UpdateTaskPermissionsVM {
     }
     UpdateTaskPermissionsVM updateTaskPermissionsVM = (UpdateTaskPermissionsVM) o;
     return Objects.equals(this.administrate, updateTaskPermissionsVM.administrate) &&
-        Objects.equals(this.newPermissions, updateTaskPermissionsVM.newPermissions);
+        Objects.equals(this.newPermissions, updateTaskPermissionsVM.newPermissions) &&
+        Objects.equals(this.$t, updateTaskPermissionsVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(administrate, newPermissions);
+    return Objects.hash(administrate, newPermissions, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateTaskPermissionsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    administrate: ").append(toIndentedString(administrate)).append("\n");
     sb.append("    newPermissions: ").append(toIndentedString(newPermissions)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -149,13 +178,13 @@ public class UpdateTaskPermissionsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("administrate");
-    openapiFields.add("newPermissions");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("administrate");
     openapiRequiredFields.add("newPermissions");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -185,11 +214,6 @@ public class UpdateTaskPermissionsVM {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `administrate`
-      TaskAdministrate.validateJsonElement(jsonObj.get("administrate"));
-      // validate the required field `newPermissions`
-      TaskPermissions.validateJsonElement(jsonObj.get("newPermissions"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

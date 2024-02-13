@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.DataSourceConnectionType;
 import cloud.fastreport.model.DataSourceStatus;
 import com.google.gson.TypeAdapter;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * DataSourceVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class DataSourceVM {
+public class DataSourceVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
@@ -103,7 +104,12 @@ public class DataSourceVM {
   @SerializedName(SERIALIZED_NAME_ERROR_MESSAGE)
   private String errorMessage;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public DataSourceVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public DataSourceVM id(String id) {
@@ -334,6 +340,25 @@ public class DataSourceVM {
   }
 
 
+  public DataSourceVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -355,7 +380,9 @@ public class DataSourceVM {
         Objects.equals(this.createdTime, dataSourceVM.createdTime) &&
         Objects.equals(this.creatorUserId, dataSourceVM.creatorUserId) &&
         Objects.equals(this.status, dataSourceVM.status) &&
-        Objects.equals(this.errorMessage, dataSourceVM.errorMessage);
+        Objects.equals(this.errorMessage, dataSourceVM.errorMessage) &&
+        Objects.equals(this.$t, dataSourceVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -364,7 +391,7 @@ public class DataSourceVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, connectionType, connectionString, dataStructure, subscriptionId, editedTime, editorUserId, createdTime, creatorUserId, status, errorMessage);
+    return Objects.hash(id, name, connectionType, connectionString, dataStructure, subscriptionId, editedTime, editorUserId, createdTime, creatorUserId, status, errorMessage, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -378,6 +405,7 @@ public class DataSourceVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DataSourceVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    connectionType: ").append(toIndentedString(connectionType)).append("\n");
@@ -390,6 +418,7 @@ public class DataSourceVM {
     sb.append("    creatorUserId: ").append(toIndentedString(creatorUserId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -412,21 +441,11 @@ public class DataSourceVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("name");
-    openapiFields.add("connectionType");
-    openapiFields.add("connectionString");
-    openapiFields.add("dataStructure");
-    openapiFields.add("subscriptionId");
-    openapiFields.add("editedTime");
-    openapiFields.add("editorUserId");
-    openapiFields.add("createdTime");
-    openapiFields.add("creatorUserId");
-    openapiFields.add("status");
-    openapiFields.add("errorMessage");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -449,38 +468,12 @@ public class DataSourceVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DataSourceVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      // validate the optional field `connectionType`
-      if (jsonObj.get("connectionType") != null && !jsonObj.get("connectionType").isJsonNull()) {
-        DataSourceConnectionType.validateJsonElement(jsonObj.get("connectionType"));
-      }
-      if ((jsonObj.get("connectionString") != null && !jsonObj.get("connectionString").isJsonNull()) && !jsonObj.get("connectionString").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `connectionString` to be a primitive type in the JSON string but got `%s`", jsonObj.get("connectionString").toString()));
-      }
-      if ((jsonObj.get("dataStructure") != null && !jsonObj.get("dataStructure").isJsonNull()) && !jsonObj.get("dataStructure").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `dataStructure` to be a primitive type in the JSON string but got `%s`", jsonObj.get("dataStructure").toString()));
-      }
-      if ((jsonObj.get("subscriptionId") != null && !jsonObj.get("subscriptionId").isJsonNull()) && !jsonObj.get("subscriptionId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `subscriptionId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subscriptionId").toString()));
-      }
-      if ((jsonObj.get("editorUserId") != null && !jsonObj.get("editorUserId").isJsonNull()) && !jsonObj.get("editorUserId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `editorUserId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("editorUserId").toString()));
-      }
-      if ((jsonObj.get("creatorUserId") != null && !jsonObj.get("creatorUserId").isJsonNull()) && !jsonObj.get("creatorUserId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `creatorUserId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("creatorUserId").toString()));
-      }
-      // validate the optional field `status`
-      if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
-        DataSourceStatus.validateJsonElement(jsonObj.get("status"));
-      }
-      if ((jsonObj.get("errorMessage") != null && !jsonObj.get("errorMessage").isJsonNull()) && !jsonObj.get("errorMessage").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `errorMessage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("errorMessage").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : DataSourceVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

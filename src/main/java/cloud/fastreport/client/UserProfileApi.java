@@ -83,7 +83,6 @@ public class UserProfileApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call userProfileGetMyProfileCall(final ApiCallback _callback) throws ApiException {
@@ -145,7 +144,6 @@ public class UserProfileApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
      </table>
      */
     public UserProfileVM userProfileGetMyProfile() throws ApiException {
@@ -162,7 +160,6 @@ public class UserProfileApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<UserProfileVM> userProfileGetMyProfileWithHttpInfo() throws ApiException {
@@ -181,7 +178,6 @@ public class UserProfileApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully returned </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call userProfileGetMyProfileAsync(final ApiCallback<UserProfileVM> _callback) throws ApiException {

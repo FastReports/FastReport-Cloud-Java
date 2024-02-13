@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**permissions** | [**TaskPermissions**](TaskPermissions.md) |  |  [optional] |
+|**permissions** | [**TaskPermissionsCRUDVM**](TaskPermissionsCRUDVM.md) |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

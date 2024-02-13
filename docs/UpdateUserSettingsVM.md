@@ -11,6 +11,7 @@
 |**defaultSubscription** | **String** |  |  [optional] |
 |**showHiddenFilesAndFolders** | **Boolean** |  |  [optional] |
 |**subscribedNotifications** | **List&lt;AuditType&gt;** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

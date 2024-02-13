@@ -13,10 +13,11 @@
 
 package cloud.fastreport.model;
 
-import cloud.fastreport.model.DataSourcePermissions;
-import cloud.fastreport.model.FilePermissions;
-import cloud.fastreport.model.GroupPermissions;
-import cloud.fastreport.model.TaskPermissions;
+import cloud.fastreport.model.CloudBaseVM;
+import cloud.fastreport.model.DataSourcePermissionsCRUDVM;
+import cloud.fastreport.model.FilePermissionsCRUDVM;
+import cloud.fastreport.model.GroupPermissionsCRUDVM;
+import cloud.fastreport.model.TaskPermissionsCRUDVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -42,35 +43,11 @@ public class DefaultPermissionsVMTest {
     }
 
     /**
-     * Test the property 'filePermissions'
+     * Test the property '$t'
      */
     @Test
-    public void filePermissionsTest() {
-        // TODO: test filePermissions
-    }
-
-    /**
-     * Test the property 'dataSourcePermissions'
-     */
-    @Test
-    public void dataSourcePermissionsTest() {
-        // TODO: test dataSourcePermissions
-    }
-
-    /**
-     * Test the property 'groupPermissions'
-     */
-    @Test
-    public void groupPermissionsTest() {
-        // TODO: test groupPermissions
-    }
-
-    /**
-     * Test the property 'taskPermissions'
-     */
-    @Test
-    public void taskPermissionsTest() {
-        // TODO: test taskPermissions
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

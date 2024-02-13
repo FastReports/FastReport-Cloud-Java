@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,12 +51,17 @@ import cloud.fastreport.JSON;
  * UpdateSubscriptionLocaleVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class UpdateSubscriptionLocaleVM {
+public class UpdateSubscriptionLocaleVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_LOCALE = "locale";
   @SerializedName(SERIALIZED_NAME_LOCALE)
   private String locale;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public UpdateSubscriptionLocaleVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public UpdateSubscriptionLocaleVM locale(String locale) {
@@ -77,6 +83,25 @@ public class UpdateSubscriptionLocaleVM {
   }
 
 
+  public UpdateSubscriptionLocaleVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -87,19 +112,23 @@ public class UpdateSubscriptionLocaleVM {
       return false;
     }
     UpdateSubscriptionLocaleVM updateSubscriptionLocaleVM = (UpdateSubscriptionLocaleVM) o;
-    return Objects.equals(this.locale, updateSubscriptionLocaleVM.locale);
+    return Objects.equals(this.locale, updateSubscriptionLocaleVM.locale) &&
+        Objects.equals(this.$t, updateSubscriptionLocaleVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locale);
+    return Objects.hash(locale, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateSubscriptionLocaleVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -122,11 +151,12 @@ public class UpdateSubscriptionLocaleVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("locale");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("locale");
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -155,10 +185,6 @@ public class UpdateSubscriptionLocaleVM {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("locale").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `locale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("locale").toString()));
       }
   }
 

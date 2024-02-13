@@ -10,6 +10,7 @@
 |**periodStart** | **OffsetDateTime** |  |  [optional] |
 |**periodEnd** | **OffsetDateTime** |  |  [optional] |
 |**planId** | **String** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

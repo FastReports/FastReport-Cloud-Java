@@ -14,10 +14,11 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
-import cloud.fastreport.model.DataSourcePermissions;
-import cloud.fastreport.model.FilePermissions;
-import cloud.fastreport.model.GroupPermissions;
-import cloud.fastreport.model.TaskPermissions;
+import cloud.fastreport.model.CloudBaseVM;
+import cloud.fastreport.model.DataSourcePermissionsCRUDVM;
+import cloud.fastreport.model.FilePermissionsCRUDVM;
+import cloud.fastreport.model.GroupPermissionsCRUDVM;
+import cloud.fastreport.model.TaskPermissionsCRUDVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -54,27 +55,32 @@ import cloud.fastreport.JSON;
  * DefaultPermissionsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class DefaultPermissionsVM {
+public class DefaultPermissionsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_FILE_PERMISSIONS = "filePermissions";
   @SerializedName(SERIALIZED_NAME_FILE_PERMISSIONS)
-  private FilePermissions filePermissions;
+  private FilePermissionsCRUDVM filePermissions;
 
   public static final String SERIALIZED_NAME_DATA_SOURCE_PERMISSIONS = "dataSourcePermissions";
   @SerializedName(SERIALIZED_NAME_DATA_SOURCE_PERMISSIONS)
-  private DataSourcePermissions dataSourcePermissions;
+  private DataSourcePermissionsCRUDVM dataSourcePermissions;
 
   public static final String SERIALIZED_NAME_GROUP_PERMISSIONS = "groupPermissions";
   @SerializedName(SERIALIZED_NAME_GROUP_PERMISSIONS)
-  private GroupPermissions groupPermissions;
+  private GroupPermissionsCRUDVM groupPermissions;
 
   public static final String SERIALIZED_NAME_TASK_PERMISSIONS = "taskPermissions";
   @SerializedName(SERIALIZED_NAME_TASK_PERMISSIONS)
-  private TaskPermissions taskPermissions;
+  private TaskPermissionsCRUDVM taskPermissions;
+
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
 
   public DefaultPermissionsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
-  public DefaultPermissionsVM filePermissions(FilePermissions filePermissions) {
+  public DefaultPermissionsVM filePermissions(FilePermissionsCRUDVM filePermissions) {
     this.filePermissions = filePermissions;
     return this;
   }
@@ -84,16 +90,16 @@ public class DefaultPermissionsVM {
    * @return filePermissions
   **/
   @javax.annotation.Nullable
-  public FilePermissions getFilePermissions() {
+  public FilePermissionsCRUDVM getFilePermissions() {
     return filePermissions;
   }
 
-  public void setFilePermissions(FilePermissions filePermissions) {
+  public void setFilePermissions(FilePermissionsCRUDVM filePermissions) {
     this.filePermissions = filePermissions;
   }
 
 
-  public DefaultPermissionsVM dataSourcePermissions(DataSourcePermissions dataSourcePermissions) {
+  public DefaultPermissionsVM dataSourcePermissions(DataSourcePermissionsCRUDVM dataSourcePermissions) {
     this.dataSourcePermissions = dataSourcePermissions;
     return this;
   }
@@ -103,16 +109,16 @@ public class DefaultPermissionsVM {
    * @return dataSourcePermissions
   **/
   @javax.annotation.Nullable
-  public DataSourcePermissions getDataSourcePermissions() {
+  public DataSourcePermissionsCRUDVM getDataSourcePermissions() {
     return dataSourcePermissions;
   }
 
-  public void setDataSourcePermissions(DataSourcePermissions dataSourcePermissions) {
+  public void setDataSourcePermissions(DataSourcePermissionsCRUDVM dataSourcePermissions) {
     this.dataSourcePermissions = dataSourcePermissions;
   }
 
 
-  public DefaultPermissionsVM groupPermissions(GroupPermissions groupPermissions) {
+  public DefaultPermissionsVM groupPermissions(GroupPermissionsCRUDVM groupPermissions) {
     this.groupPermissions = groupPermissions;
     return this;
   }
@@ -122,16 +128,16 @@ public class DefaultPermissionsVM {
    * @return groupPermissions
   **/
   @javax.annotation.Nullable
-  public GroupPermissions getGroupPermissions() {
+  public GroupPermissionsCRUDVM getGroupPermissions() {
     return groupPermissions;
   }
 
-  public void setGroupPermissions(GroupPermissions groupPermissions) {
+  public void setGroupPermissions(GroupPermissionsCRUDVM groupPermissions) {
     this.groupPermissions = groupPermissions;
   }
 
 
-  public DefaultPermissionsVM taskPermissions(TaskPermissions taskPermissions) {
+  public DefaultPermissionsVM taskPermissions(TaskPermissionsCRUDVM taskPermissions) {
     this.taskPermissions = taskPermissions;
     return this;
   }
@@ -141,12 +147,31 @@ public class DefaultPermissionsVM {
    * @return taskPermissions
   **/
   @javax.annotation.Nullable
-  public TaskPermissions getTaskPermissions() {
+  public TaskPermissionsCRUDVM getTaskPermissions() {
     return taskPermissions;
   }
 
-  public void setTaskPermissions(TaskPermissions taskPermissions) {
+  public void setTaskPermissions(TaskPermissionsCRUDVM taskPermissions) {
     this.taskPermissions = taskPermissions;
+  }
+
+
+  public DefaultPermissionsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
   }
 
 
@@ -163,22 +188,26 @@ public class DefaultPermissionsVM {
     return Objects.equals(this.filePermissions, defaultPermissionsVM.filePermissions) &&
         Objects.equals(this.dataSourcePermissions, defaultPermissionsVM.dataSourcePermissions) &&
         Objects.equals(this.groupPermissions, defaultPermissionsVM.groupPermissions) &&
-        Objects.equals(this.taskPermissions, defaultPermissionsVM.taskPermissions);
+        Objects.equals(this.taskPermissions, defaultPermissionsVM.taskPermissions) &&
+        Objects.equals(this.$t, defaultPermissionsVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filePermissions, dataSourcePermissions, groupPermissions, taskPermissions);
+    return Objects.hash(filePermissions, dataSourcePermissions, groupPermissions, taskPermissions, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DefaultPermissionsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    filePermissions: ").append(toIndentedString(filePermissions)).append("\n");
     sb.append("    dataSourcePermissions: ").append(toIndentedString(dataSourcePermissions)).append("\n");
     sb.append("    groupPermissions: ").append(toIndentedString(groupPermissions)).append("\n");
     sb.append("    taskPermissions: ").append(toIndentedString(taskPermissions)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -201,13 +230,11 @@ public class DefaultPermissionsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("filePermissions");
-    openapiFields.add("dataSourcePermissions");
-    openapiFields.add("groupPermissions");
-    openapiFields.add("taskPermissions");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -230,22 +257,12 @@ public class DefaultPermissionsVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DefaultPermissionsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `filePermissions`
-      if (jsonObj.get("filePermissions") != null && !jsonObj.get("filePermissions").isJsonNull()) {
-        FilePermissions.validateJsonElement(jsonObj.get("filePermissions"));
-      }
-      // validate the optional field `dataSourcePermissions`
-      if (jsonObj.get("dataSourcePermissions") != null && !jsonObj.get("dataSourcePermissions").isJsonNull()) {
-        DataSourcePermissions.validateJsonElement(jsonObj.get("dataSourcePermissions"));
-      }
-      // validate the optional field `groupPermissions`
-      if (jsonObj.get("groupPermissions") != null && !jsonObj.get("groupPermissions").isJsonNull()) {
-        GroupPermissions.validateJsonElement(jsonObj.get("groupPermissions"));
-      }
-      // validate the optional field `taskPermissions`
-      if (jsonObj.get("taskPermissions") != null && !jsonObj.get("taskPermissions").isJsonNull()) {
-        TaskPermissions.validateJsonElement(jsonObj.get("taskPermissions"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : DefaultPermissionsVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

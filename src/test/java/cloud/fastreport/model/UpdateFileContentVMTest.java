@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -38,11 +39,11 @@ public class UpdateFileContentVMTest {
     }
 
     /**
-     * Test the property 'content'
+     * Test the property '$t'
      */
     @Test
-    public void contentTest() {
-        // TODO: test content
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

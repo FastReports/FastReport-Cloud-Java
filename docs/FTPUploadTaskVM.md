@@ -14,6 +14,7 @@
 |**ftpPort** | **Integer** |  |  [optional] |
 |**ftpUsername** | **String** |  |  [optional] |
 |**useSFTP** | **Boolean** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

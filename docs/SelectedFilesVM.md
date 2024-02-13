@@ -15,6 +15,7 @@
 |**folders** | **List&lt;String&gt;** |  |  [optional] |
 |**path** | **String** |  |  [optional] |
 |**isBin** | **Boolean** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

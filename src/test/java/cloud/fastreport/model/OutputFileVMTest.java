@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.FileKind;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -40,35 +41,11 @@ public class OutputFileVMTest {
     }
 
     /**
-     * Test the property 'fileName'
+     * Test the property '$t'
      */
     @Test
-    public void fileNameTest() {
-        // TODO: test fileName
-    }
-
-    /**
-     * Test the property 'folderId'
-     */
-    @Test
-    public void folderIdTest() {
-        // TODO: test folderId
-    }
-
-    /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
-    }
-
-    /**
-     * Test the property 'isTemporary'
-     */
-    @Test
-    public void isTemporaryTest() {
-        // TODO: test isTemporary
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

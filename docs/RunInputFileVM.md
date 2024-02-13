@@ -9,8 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**content** | **byte[]** |  |  [optional] |
 |**fileName** | **String** |  |  [optional] |
-|**entityId** | **String** |  |  [optional] |
-|**type** | **FileKind** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

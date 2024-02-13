@@ -10,6 +10,7 @@
 |**format** | **ExportFormat** |  |  [optional] |
 |**reportId** | **String** |  |  [optional] |
 |**templateId** | **String** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

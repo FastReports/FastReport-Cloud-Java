@@ -27,6 +27,7 @@
 |**unlimitedPage** | **Boolean** |  |  [optional] |
 |**pageLimit** | **Integer** |  |  [optional] |
 |**tasks** | [**TaskSettingsVM**](TaskSettingsVM.md) |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

@@ -14,7 +14,8 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
-import cloud.fastreport.model.DataSourcePermissions;
+import cloud.fastreport.model.CloudBaseVM;
+import cloud.fastreport.model.DataSourcePermissionsCRUDVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,15 +52,20 @@ import cloud.fastreport.JSON;
  * DataSourcePermissionsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class DataSourcePermissionsVM {
+public class DataSourcePermissionsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
-  private DataSourcePermissions permissions;
+  private DataSourcePermissionsCRUDVM permissions;
+
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
 
   public DataSourcePermissionsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
-  public DataSourcePermissionsVM permissions(DataSourcePermissions permissions) {
+  public DataSourcePermissionsVM permissions(DataSourcePermissionsCRUDVM permissions) {
     this.permissions = permissions;
     return this;
   }
@@ -69,12 +75,31 @@ public class DataSourcePermissionsVM {
    * @return permissions
   **/
   @javax.annotation.Nullable
-  public DataSourcePermissions getPermissions() {
+  public DataSourcePermissionsCRUDVM getPermissions() {
     return permissions;
   }
 
-  public void setPermissions(DataSourcePermissions permissions) {
+  public void setPermissions(DataSourcePermissionsCRUDVM permissions) {
     this.permissions = permissions;
+  }
+
+
+  public DataSourcePermissionsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
   }
 
 
@@ -88,19 +113,23 @@ public class DataSourcePermissionsVM {
       return false;
     }
     DataSourcePermissionsVM dataSourcePermissionsVM = (DataSourcePermissionsVM) o;
-    return Objects.equals(this.permissions, dataSourcePermissionsVM.permissions);
+    return Objects.equals(this.permissions, dataSourcePermissionsVM.permissions) &&
+        Objects.equals(this.$t, dataSourcePermissionsVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(permissions);
+    return Objects.hash(permissions, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DataSourcePermissionsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -123,10 +152,11 @@ public class DataSourcePermissionsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("permissions");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -149,10 +179,12 @@ public class DataSourcePermissionsVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DataSourcePermissionsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `permissions`
-      if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonNull()) {
-        DataSourcePermissions.validateJsonElement(jsonObj.get("permissions"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : DataSourcePermissionsVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

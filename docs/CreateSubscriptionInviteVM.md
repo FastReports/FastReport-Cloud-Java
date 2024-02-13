@@ -10,6 +10,7 @@
 |**usages** | **Long** |  |  [optional] |
 |**durable** | **Boolean** |  |  [optional] |
 |**expiredDate** | **OffsetDateTime** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

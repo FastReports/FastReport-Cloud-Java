@@ -11,6 +11,7 @@
 |**oldValue** | **Object** |  |  [optional] |
 |**newValue** | **Object** |  |  [optional] |
 |**entityType** | **EntityType** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

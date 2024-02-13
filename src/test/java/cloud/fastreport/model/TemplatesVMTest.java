@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.FilesVMBase;
 import cloud.fastreport.model.TemplateVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -71,6 +72,14 @@ public class TemplatesVMTest {
     @Test
     public void takeTest() {
         // TODO: test take
+    }
+
+    /**
+     * Test the property '$t'
+     */
+    @Test
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

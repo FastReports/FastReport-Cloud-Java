@@ -12,6 +12,7 @@
 |**showHiddenFilesAndFolders** | **Boolean** |  |  [optional] |
 |**slaAcceptedDateTime** | **OffsetDateTime** |  |  [optional] |
 |**subscribedNotifications** | **List&lt;AuditType&gt;** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

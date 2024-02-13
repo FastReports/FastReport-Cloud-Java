@@ -14,7 +14,8 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
-import cloud.fastreport.model.FilePermissions;
+import cloud.fastreport.model.CloudBaseVM;
+import cloud.fastreport.model.FilePermissionsCRUDVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -51,15 +52,20 @@ import cloud.fastreport.JSON;
  * FilePermissionsVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class FilePermissionsVM {
+public class FilePermissionsVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
-  private FilePermissions permissions;
+  private FilePermissionsCRUDVM permissions;
+
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
 
   public FilePermissionsVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
-  public FilePermissionsVM permissions(FilePermissions permissions) {
+  public FilePermissionsVM permissions(FilePermissionsCRUDVM permissions) {
     this.permissions = permissions;
     return this;
   }
@@ -69,12 +75,31 @@ public class FilePermissionsVM {
    * @return permissions
   **/
   @javax.annotation.Nullable
-  public FilePermissions getPermissions() {
+  public FilePermissionsCRUDVM getPermissions() {
     return permissions;
   }
 
-  public void setPermissions(FilePermissions permissions) {
+  public void setPermissions(FilePermissionsCRUDVM permissions) {
     this.permissions = permissions;
+  }
+
+
+  public FilePermissionsVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
   }
 
 
@@ -88,19 +113,23 @@ public class FilePermissionsVM {
       return false;
     }
     FilePermissionsVM filePermissionsVM = (FilePermissionsVM) o;
-    return Objects.equals(this.permissions, filePermissionsVM.permissions);
+    return Objects.equals(this.permissions, filePermissionsVM.permissions) &&
+        Objects.equals(this.$t, filePermissionsVM.$t) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(permissions);
+    return Objects.hash(permissions, $t, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FilePermissionsVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -123,10 +152,11 @@ public class FilePermissionsVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("permissions");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -149,10 +179,12 @@ public class FilePermissionsVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FilePermissionsVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `permissions`
-      if (jsonObj.get("permissions") != null && !jsonObj.get("permissions").isJsonNull()) {
-        FilePermissions.validateJsonElement(jsonObj.get("permissions"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : FilePermissionsVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

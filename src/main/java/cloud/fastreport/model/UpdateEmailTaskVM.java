@@ -97,6 +97,10 @@ public class UpdateEmailTaskVM extends UpdateTransportTaskBaseVM {
   @SerializedName(SERIALIZED_NAME_USERNAME)
   private String username;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public UpdateEmailTaskVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -299,6 +303,25 @@ public class UpdateEmailTaskVM extends UpdateTransportTaskBaseVM {
   }
 
 
+  public UpdateEmailTaskVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -319,6 +342,7 @@ public class UpdateEmailTaskVM extends UpdateTransportTaskBaseVM {
         Objects.equals(this.subject, updateEmailTaskVM.subject) &&
         Objects.equals(this.to, updateEmailTaskVM.to) &&
         Objects.equals(this.username, updateEmailTaskVM.username) &&
+        Objects.equals(this.$t, updateEmailTaskVM.$t) &&
         super.equals(o);
   }
 
@@ -328,7 +352,7 @@ public class UpdateEmailTaskVM extends UpdateTransportTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(body, enableSsl, from, isBodyHtml, password, port, server, subject, to, username, super.hashCode());
+    return Objects.hash(body, enableSsl, from, isBodyHtml, password, port, server, subject, to, username, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -353,6 +377,7 @@ public class UpdateEmailTaskVM extends UpdateTransportTaskBaseVM {
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

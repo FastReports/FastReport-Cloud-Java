@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -41,67 +42,11 @@ public class SelectedFilesVMTest {
     }
 
     /**
-     * Test the property 'isAllSelected'
+     * Test the property '$t'
      */
     @Test
-    public void isAllSelectedTest() {
-        // TODO: test isAllSelected
-    }
-
-    /**
-     * Test the property 'folderId'
-     */
-    @Test
-    public void folderIdTest() {
-        // TODO: test folderId
-    }
-
-    /**
-     * Test the property 'searchPattern'
-     */
-    @Test
-    public void searchPatternTest() {
-        // TODO: test searchPattern
-    }
-
-    /**
-     * Test the property 'useRegex'
-     */
-    @Test
-    public void useRegexTest() {
-        // TODO: test useRegex
-    }
-
-    /**
-     * Test the property 'files'
-     */
-    @Test
-    public void filesTest() {
-        // TODO: test files
-    }
-
-    /**
-     * Test the property 'folders'
-     */
-    @Test
-    public void foldersTest() {
-        // TODO: test folders
-    }
-
-    /**
-     * Test the property 'path'
-     */
-    @Test
-    public void pathTest() {
-        // TODO: test path
-    }
-
-    /**
-     * Test the property 'isBin'
-     */
-    @Test
-    public void isBinTest() {
-        // TODO: test isBin
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

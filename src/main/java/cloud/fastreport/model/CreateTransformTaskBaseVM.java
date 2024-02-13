@@ -287,6 +287,9 @@ public class CreateTransformTaskBaseVM extends CreateTaskBaseVM {
         case "CreatePrepareTemplateTaskVM":
           CreatePrepareTemplateTaskVM.validateJsonElement(jsonElement);
           break;
+        case "CreateTransformTaskBaseVM":
+          CreateTransformTaskBaseVM.validateJsonElement(jsonElement);
+          break;
         default:
           throw new IllegalArgumentException(String.format("The value of the `$t` field `%s` does not match any key defined in the discriminator's mapping.", discriminatorValue));
       }

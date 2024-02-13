@@ -83,6 +83,10 @@ public class FTPUploadTaskVM extends TransportTaskBaseVM {
   @SerializedName(SERIALIZED_NAME_USE_S_F_T_P)
   private Boolean useSFTP;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public FTPUploadTaskVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -220,6 +224,25 @@ public class FTPUploadTaskVM extends TransportTaskBaseVM {
   }
 
 
+  public FTPUploadTaskVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -237,6 +260,7 @@ public class FTPUploadTaskVM extends TransportTaskBaseVM {
         Objects.equals(this.ftpPort, ftPUploadTaskVM.ftpPort) &&
         Objects.equals(this.ftpUsername, ftPUploadTaskVM.ftpUsername) &&
         Objects.equals(this.useSFTP, ftPUploadTaskVM.useSFTP) &&
+        Objects.equals(this.$t, ftPUploadTaskVM.$t) &&
         super.equals(o);
   }
 
@@ -246,7 +270,7 @@ public class FTPUploadTaskVM extends TransportTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(archive, archiveName, destinationFolder, ftpHost, ftpPort, ftpUsername, useSFTP, super.hashCode());
+    return Objects.hash(archive, archiveName, destinationFolder, ftpHost, ftpPort, ftpUsername, useSFTP, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -268,6 +292,7 @@ public class FTPUploadTaskVM extends TransportTaskBaseVM {
     sb.append("    ftpPort: ").append(toIndentedString(ftpPort)).append("\n");
     sb.append("    ftpUsername: ").append(toIndentedString(ftpUsername)).append("\n");
     sb.append("    useSFTP: ").append(toIndentedString(useSFTP)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

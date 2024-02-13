@@ -10,6 +10,7 @@
 |**size** | **Long** |  |  [optional] |
 |**realSize** | **Long** |  |  [optional] |
 |**documentsCount** | **Long** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

@@ -10,6 +10,7 @@
 |**startTime** | **OffsetDateTime** |  |  [optional] |
 |**endTime** | **OffsetDateTime** |  |  [optional] |
 |**plan** | [**SubscriptionPlanVM**](SubscriptionPlanVM.md) |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

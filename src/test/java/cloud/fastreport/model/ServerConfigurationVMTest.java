@@ -14,7 +14,8 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.AuthConfigVM;
-import cloud.fastreport.model.FrontendApp;
+import cloud.fastreport.model.CloudBaseVM;
+import cloud.fastreport.model.FrontendAppVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -42,131 +43,11 @@ public class ServerConfigurationVMTest {
     }
 
     /**
-     * Test the property 'title'
+     * Test the property '$t'
      */
     @Test
-    public void titleTest() {
-        // TODO: test title
-    }
-
-    /**
-     * Test the property 'logoLink'
-     */
-    @Test
-    public void logoLinkTest() {
-        // TODO: test logoLink
-    }
-
-    /**
-     * Test the property 'copyright'
-     */
-    @Test
-    public void copyrightTest() {
-        // TODO: test copyright
-    }
-
-    /**
-     * Test the property 'corporateServerMode'
-     */
-    @Test
-    public void corporateServerModeTest() {
-        // TODO: test corporateServerMode
-    }
-
-    /**
-     * Test the property 'lastSLAVersion'
-     */
-    @Test
-    public void lastSLAVersionTest() {
-        // TODO: test lastSLAVersion
-    }
-
-    /**
-     * Test the property 'isDisabled'
-     */
-    @Test
-    public void isDisabledTest() {
-        // TODO: test isDisabled
-    }
-
-    /**
-     * Test the property 'frontend'
-     */
-    @Test
-    public void frontendTest() {
-        // TODO: test frontend
-    }
-
-    /**
-     * Test the property 'invariantLocale'
-     */
-    @Test
-    public void invariantLocaleTest() {
-        // TODO: test invariantLocale
-    }
-
-    /**
-     * Test the property 'auth'
-     */
-    @Test
-    public void authTest() {
-        // TODO: test auth
-    }
-
-    /**
-     * Test the property 'designerForAnons'
-     */
-    @Test
-    public void designerForAnonsTest() {
-        // TODO: test designerForAnons
-    }
-
-    /**
-     * Test the property 'slaLink'
-     */
-    @Test
-    public void slaLinkTest() {
-        // TODO: test slaLink
-    }
-
-    /**
-     * Test the property 'firstStepsVideoLink'
-     */
-    @Test
-    public void firstStepsVideoLinkTest() {
-        // TODO: test firstStepsVideoLink
-    }
-
-    /**
-     * Test the property 'aboutLink'
-     */
-    @Test
-    public void aboutLinkTest() {
-        // TODO: test aboutLink
-    }
-
-    /**
-     * Test the property 'homePageLink'
-     */
-    @Test
-    public void homePageLinkTest() {
-        // TODO: test homePageLink
-    }
-
-    /**
-     * Test the property 'authServerName'
-     */
-    @Test
-    public void authServerNameTest() {
-        // TODO: test authServerName
-    }
-
-    /**
-     * Test the property 'updateWorkspaceLink'
-     */
-    @Test
-    public void updateWorkspaceLinkTest() {
-        // TODO: test updateWorkspaceLink
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

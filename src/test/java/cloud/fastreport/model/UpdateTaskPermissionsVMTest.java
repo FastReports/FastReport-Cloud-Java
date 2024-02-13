@@ -13,8 +13,9 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.TaskAdministrate;
-import cloud.fastreport.model.TaskPermissions;
+import cloud.fastreport.model.TaskPermissionsCRUDVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -40,19 +41,11 @@ public class UpdateTaskPermissionsVMTest {
     }
 
     /**
-     * Test the property 'administrate'
+     * Test the property '$t'
      */
     @Test
-    public void administrateTest() {
-        // TODO: test administrate
-    }
-
-    /**
-     * Test the property 'newPermissions'
-     */
-    @Test
-    public void newPermissionsTest() {
-        // TODO: test newPermissions
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

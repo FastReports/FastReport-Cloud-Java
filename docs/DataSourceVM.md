@@ -19,6 +19,7 @@
 |**creatorUserId** | **String** |  |  [optional] |
 |**status** | **DataSourceStatus** |  |  [optional] |
 |**errorMessage** | **String** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

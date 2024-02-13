@@ -15,7 +15,8 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import cloud.fastreport.model.AuthConfigVM;
-import cloud.fastreport.model.FrontendApp;
+import cloud.fastreport.model.CloudBaseVM;
+import cloud.fastreport.model.FrontendAppVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * ServerConfigurationVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ServerConfigurationVM {
+public class ServerConfigurationVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
   private String title;
@@ -81,7 +82,7 @@ public class ServerConfigurationVM {
 
   public static final String SERIALIZED_NAME_FRONTEND = "frontend";
   @SerializedName(SERIALIZED_NAME_FRONTEND)
-  private FrontendApp frontend;
+  private FrontendAppVM frontend;
 
   public static final String SERIALIZED_NAME_INVARIANT_LOCALE = "invariantLocale";
   @SerializedName(SERIALIZED_NAME_INVARIANT_LOCALE)
@@ -119,7 +120,12 @@ public class ServerConfigurationVM {
   @SerializedName(SERIALIZED_NAME_UPDATE_WORKSPACE_LINK)
   private String updateWorkspaceLink;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public ServerConfigurationVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public ServerConfigurationVM title(String title) {
@@ -236,7 +242,7 @@ public class ServerConfigurationVM {
   }
 
 
-  public ServerConfigurationVM frontend(FrontendApp frontend) {
+  public ServerConfigurationVM frontend(FrontendAppVM frontend) {
     this.frontend = frontend;
     return this;
   }
@@ -246,11 +252,11 @@ public class ServerConfigurationVM {
    * @return frontend
   **/
   @javax.annotation.Nullable
-  public FrontendApp getFrontend() {
+  public FrontendAppVM getFrontend() {
     return frontend;
   }
 
-  public void setFrontend(FrontendApp frontend) {
+  public void setFrontend(FrontendAppVM frontend) {
     this.frontend = frontend;
   }
 
@@ -426,6 +432,25 @@ public class ServerConfigurationVM {
   }
 
 
+  public ServerConfigurationVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -451,7 +476,9 @@ public class ServerConfigurationVM {
         Objects.equals(this.aboutLink, serverConfigurationVM.aboutLink) &&
         Objects.equals(this.homePageLink, serverConfigurationVM.homePageLink) &&
         Objects.equals(this.authServerName, serverConfigurationVM.authServerName) &&
-        Objects.equals(this.updateWorkspaceLink, serverConfigurationVM.updateWorkspaceLink);
+        Objects.equals(this.updateWorkspaceLink, serverConfigurationVM.updateWorkspaceLink) &&
+        Objects.equals(this.$t, serverConfigurationVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -460,7 +487,7 @@ public class ServerConfigurationVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, logoLink, copyright, corporateServerMode, lastSLAVersion, isDisabled, frontend, invariantLocale, auth, designerForAnons, slaLink, firstStepsVideoLink, aboutLink, homePageLink, authServerName, updateWorkspaceLink);
+    return Objects.hash(title, logoLink, copyright, corporateServerMode, lastSLAVersion, isDisabled, frontend, invariantLocale, auth, designerForAnons, slaLink, firstStepsVideoLink, aboutLink, homePageLink, authServerName, updateWorkspaceLink, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -474,6 +501,7 @@ public class ServerConfigurationVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ServerConfigurationVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    logoLink: ").append(toIndentedString(logoLink)).append("\n");
     sb.append("    copyright: ").append(toIndentedString(copyright)).append("\n");
@@ -490,6 +518,7 @@ public class ServerConfigurationVM {
     sb.append("    homePageLink: ").append(toIndentedString(homePageLink)).append("\n");
     sb.append("    authServerName: ").append(toIndentedString(authServerName)).append("\n");
     sb.append("    updateWorkspaceLink: ").append(toIndentedString(updateWorkspaceLink)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -512,25 +541,11 @@ public class ServerConfigurationVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("title");
-    openapiFields.add("logoLink");
-    openapiFields.add("copyright");
-    openapiFields.add("corporateServerMode");
-    openapiFields.add("lastSLAVersion");
-    openapiFields.add("isDisabled");
-    openapiFields.add("frontend");
-    openapiFields.add("invariantLocale");
-    openapiFields.add("auth");
-    openapiFields.add("designerForAnons");
-    openapiFields.add("slaLink");
-    openapiFields.add("firstStepsVideoLink");
-    openapiFields.add("aboutLink");
-    openapiFields.add("homePageLink");
-    openapiFields.add("authServerName");
-    openapiFields.add("updateWorkspaceLink");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -553,44 +568,12 @@ public class ServerConfigurationVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ServerConfigurationVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("title") != null && !jsonObj.get("title").isJsonNull()) && !jsonObj.get("title").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
-      }
-      if ((jsonObj.get("logoLink") != null && !jsonObj.get("logoLink").isJsonNull()) && !jsonObj.get("logoLink").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `logoLink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("logoLink").toString()));
-      }
-      if ((jsonObj.get("copyright") != null && !jsonObj.get("copyright").isJsonNull()) && !jsonObj.get("copyright").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `copyright` to be a primitive type in the JSON string but got `%s`", jsonObj.get("copyright").toString()));
-      }
-      // validate the optional field `frontend`
-      if (jsonObj.get("frontend") != null && !jsonObj.get("frontend").isJsonNull()) {
-        FrontendApp.validateJsonElement(jsonObj.get("frontend"));
-      }
-      if ((jsonObj.get("invariantLocale") != null && !jsonObj.get("invariantLocale").isJsonNull()) && !jsonObj.get("invariantLocale").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `invariantLocale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invariantLocale").toString()));
-      }
-      // validate the optional field `auth`
-      if (jsonObj.get("auth") != null && !jsonObj.get("auth").isJsonNull()) {
-        AuthConfigVM.validateJsonElement(jsonObj.get("auth"));
-      }
-      if ((jsonObj.get("slaLink") != null && !jsonObj.get("slaLink").isJsonNull()) && !jsonObj.get("slaLink").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `slaLink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("slaLink").toString()));
-      }
-      if ((jsonObj.get("firstStepsVideoLink") != null && !jsonObj.get("firstStepsVideoLink").isJsonNull()) && !jsonObj.get("firstStepsVideoLink").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `firstStepsVideoLink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("firstStepsVideoLink").toString()));
-      }
-      if ((jsonObj.get("aboutLink") != null && !jsonObj.get("aboutLink").isJsonNull()) && !jsonObj.get("aboutLink").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `aboutLink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("aboutLink").toString()));
-      }
-      if ((jsonObj.get("homePageLink") != null && !jsonObj.get("homePageLink").isJsonNull()) && !jsonObj.get("homePageLink").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `homePageLink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("homePageLink").toString()));
-      }
-      if ((jsonObj.get("authServerName") != null && !jsonObj.get("authServerName").isJsonNull()) && !jsonObj.get("authServerName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `authServerName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("authServerName").toString()));
-      }
-      if ((jsonObj.get("updateWorkspaceLink") != null && !jsonObj.get("updateWorkspaceLink").isJsonNull()) && !jsonObj.get("updateWorkspaceLink").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `updateWorkspaceLink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("updateWorkspaceLink").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ServerConfigurationVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

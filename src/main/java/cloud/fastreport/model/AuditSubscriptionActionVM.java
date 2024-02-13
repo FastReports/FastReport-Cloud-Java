@@ -67,6 +67,10 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
   @SerializedName(SERIALIZED_NAME_PLAN_ID)
   private String planId;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public AuditSubscriptionActionVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -128,6 +132,25 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
   }
 
 
+  public AuditSubscriptionActionVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -141,6 +164,7 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
     return Objects.equals(this.periodStart, auditSubscriptionActionVM.periodStart) &&
         Objects.equals(this.periodEnd, auditSubscriptionActionVM.periodEnd) &&
         Objects.equals(this.planId, auditSubscriptionActionVM.planId) &&
+        Objects.equals(this.$t, auditSubscriptionActionVM.$t) &&
         super.equals(o);
   }
 
@@ -150,7 +174,7 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(periodStart, periodEnd, planId, super.hashCode());
+    return Objects.hash(periodStart, periodEnd, planId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -168,6 +192,7 @@ public class AuditSubscriptionActionVM extends AuditActionVM {
     sb.append("    periodStart: ").append(toIndentedString(periodStart)).append("\n");
     sb.append("    periodEnd: ").append(toIndentedString(periodEnd)).append("\n");
     sb.append("    planId: ").append(toIndentedString(planId)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

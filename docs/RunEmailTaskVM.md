@@ -17,6 +17,7 @@
 |**subject** | **String** |  |  [optional] |
 |**to** | **List&lt;String&gt;** |  |  |
 |**username** | **String** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

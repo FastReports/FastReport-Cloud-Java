@@ -89,8 +89,8 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully created </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Information from view model is not found </td><td>  -  </td></tr>
      </table>
      */
@@ -158,8 +158,8 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully created </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Information from view model is not found </td><td>  -  </td></tr>
      </table>
      */
@@ -179,8 +179,8 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully created </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Information from view model is not found </td><td>  -  </td></tr>
      </table>
      */
@@ -202,8 +202,8 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully created </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Information from view model is not found </td><td>  -  </td></tr>
      </table>
      */
@@ -225,9 +225,9 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully delete </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscripiton is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscripiton is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -297,9 +297,9 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully delete </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscripiton is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscripiton is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -318,9 +318,9 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully delete </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscripiton is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscripiton is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -341,9 +341,9 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 204 </td><td> Succesfully delete </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscripiton is outdated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> subscripiton is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -365,7 +365,7 @@ public class GroupsApi {
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -437,7 +437,7 @@ public class GroupsApi {
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -458,7 +458,7 @@ public class GroupsApi {
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -481,7 +481,7 @@ public class GroupsApi {
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -504,8 +504,9 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is unauthorized </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Current user is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call groupsGetGroupListCall(Integer skip, Integer take, final ApiCallback _callback) throws ApiException {
@@ -578,8 +579,9 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is unauthorized </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Current user is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
      </table>
      */
     public GroupsVM groupsGetGroupList(Integer skip, Integer take) throws ApiException {
@@ -599,8 +601,9 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is unauthorized </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Current user is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<GroupsVM> groupsGetGroupListWithHttpInfo(Integer skip, Integer take) throws ApiException {
@@ -622,8 +625,9 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> User is unauthorized </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Current user is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription is not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call groupsGetGroupListAsync(Integer skip, Integer take, final ApiCallback<GroupsVM> _callback) throws ApiException {
@@ -645,7 +649,7 @@ public class GroupsApi {
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call groupsGetPermissionsCall(String id, final ApiCallback _callback) throws ApiException {
@@ -716,7 +720,7 @@ public class GroupsApi {
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
      </table>
      */
     public GroupPermissionsVM groupsGetPermissions(String id) throws ApiException {
@@ -736,7 +740,7 @@ public class GroupsApi {
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<GroupPermissionsVM> groupsGetPermissionsWithHttpInfo(String id) throws ApiException {
@@ -758,7 +762,7 @@ public class GroupsApi {
         <tr><td> 200 </td><td> Succesfully retured </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call groupsGetPermissionsAsync(String id, final ApiCallback<GroupPermissionsVM> _callback) throws ApiException {
@@ -780,9 +784,9 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully renamed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -862,9 +866,9 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully renamed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -885,9 +889,9 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully renamed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -910,9 +914,9 @@ public class GroupsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Succesfully renamed </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> The reqeust is wrong </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
         <tr><td> 402 </td><td> subscription is outdated </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Group with this identifier is not found </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group with this identifier or subscription is not found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Exception thrown </td><td>  -  </td></tr>
      </table>
      */
@@ -933,12 +937,12 @@ public class GroupsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Permissions are updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You have no permissions to work with groups </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group or subscription is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call groupsUpdatePermissionsCall(String id, UpdateGroupPermissionsVM updateGroupPermissionsVM, final ApiCallback _callback) throws ApiException {
@@ -1009,12 +1013,12 @@ public class GroupsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Permissions are updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You have no permissions to work with groups </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group or subscription is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public void groupsUpdatePermissions(String id, UpdateGroupPermissionsVM updateGroupPermissionsVM) throws ApiException {
@@ -1031,12 +1035,12 @@ public class GroupsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Permissions are updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You have no permissions to work with groups </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group or subscription is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Void> groupsUpdatePermissionsWithHttpInfo(String id, UpdateGroupPermissionsVM updateGroupPermissionsVM) throws ApiException {
@@ -1055,12 +1059,12 @@ public class GroupsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
-        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Permissions are updated </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You have no permissions to work with groups </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Group or subscription is not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call groupsUpdatePermissionsAsync(String id, UpdateGroupPermissionsVM updateGroupPermissionsVM, final ApiCallback<Void> _callback) throws ApiException {

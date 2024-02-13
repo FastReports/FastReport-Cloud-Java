@@ -58,6 +58,10 @@ public class CreateThumbnailReportTaskVM extends CreateTaskBaseVM {
   @SerializedName(SERIALIZED_NAME_REPORT_ID)
   private String reportId;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public CreateThumbnailReportTaskVM() {
     this.$t = this.getClass().getSimpleName();
   }
@@ -81,6 +85,25 @@ public class CreateThumbnailReportTaskVM extends CreateTaskBaseVM {
   }
 
 
+  public CreateThumbnailReportTaskVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -92,6 +115,7 @@ public class CreateThumbnailReportTaskVM extends CreateTaskBaseVM {
     }
     CreateThumbnailReportTaskVM createThumbnailReportTaskVM = (CreateThumbnailReportTaskVM) o;
     return Objects.equals(this.reportId, createThumbnailReportTaskVM.reportId) &&
+        Objects.equals(this.$t, createThumbnailReportTaskVM.$t) &&
         super.equals(o);
   }
 
@@ -101,7 +125,7 @@ public class CreateThumbnailReportTaskVM extends CreateTaskBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(reportId, super.hashCode());
+    return Objects.hash(reportId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -117,6 +141,7 @@ public class CreateThumbnailReportTaskVM extends CreateTaskBaseVM {
     sb.append("class CreateThumbnailReportTaskVM {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    reportId: ").append(toIndentedString(reportId)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }

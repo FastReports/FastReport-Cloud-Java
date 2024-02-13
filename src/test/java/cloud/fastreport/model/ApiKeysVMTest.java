@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import cloud.fastreport.model.ApiKeyVM;
+import cloud.fastreport.model.CloudBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -42,19 +43,11 @@ public class ApiKeysVMTest {
     }
 
     /**
-     * Test the property 'apiKeys'
+     * Test the property '$t'
      */
     @Test
-    public void apiKeysTest() {
-        // TODO: test apiKeys
-    }
-
-    /**
-     * Test the property 'count'
-     */
-    @Test
-    public void countTest() {
-        // TODO: test count
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

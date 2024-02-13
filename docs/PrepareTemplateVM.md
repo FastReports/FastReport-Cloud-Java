@@ -12,6 +12,7 @@
 |**folderId** | **String** |  |  [optional] |
 |**pagesCount** | **Integer** |  |  [optional] |
 |**reportParameters** | **Map&lt;String, String&gt;** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

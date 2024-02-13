@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.ExportFormat;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -54,7 +55,7 @@ import cloud.fastreport.JSON;
  * ExportReportVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ExportReportVM {
+public class ExportReportVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_FILE_NAME = "fileName";
   @SerializedName(SERIALIZED_NAME_FILE_NAME)
   private String fileName;
@@ -79,7 +80,12 @@ public class ExportReportVM {
   @SerializedName(SERIALIZED_NAME_EXPORT_PARAMETERS)
   private Map<String, String> exportParameters;
 
+  public static final String SERIALIZED_NAME_$_T = "$t";
+  @SerializedName(SERIALIZED_NAME_$_T)
+  protected String $t;
+
   public ExportReportVM() {
+    this.$t = this.getClass().getSimpleName();
   }
 
   public ExportReportVM fileName(String fileName) {
@@ -206,6 +212,25 @@ public class ExportReportVM {
   }
 
 
+  public ExportReportVM $t(String $t) {
+    this.$t = $t;
+    return this;
+  }
+
+   /**
+   * Get $t
+   * @return $t
+  **/
+  @javax.annotation.Nonnull
+  public String get$T() {
+    return $t;
+  }
+
+  public void set$T(String $t) {
+    this.$t = $t;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -221,7 +246,9 @@ public class ExportReportVM {
         Objects.equals(this.locale, exportReportVM.locale) &&
         Objects.equals(this.pagesCount, exportReportVM.pagesCount) &&
         Objects.equals(this.format, exportReportVM.format) &&
-        Objects.equals(this.exportParameters, exportReportVM.exportParameters);
+        Objects.equals(this.exportParameters, exportReportVM.exportParameters) &&
+        Objects.equals(this.$t, exportReportVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -230,7 +257,7 @@ public class ExportReportVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileName, folderId, locale, pagesCount, format, exportParameters);
+    return Objects.hash(fileName, folderId, locale, pagesCount, format, exportParameters, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -244,12 +271,14 @@ public class ExportReportVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExportReportVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
     sb.append("    folderId: ").append(toIndentedString(folderId)).append("\n");
     sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     sb.append("    pagesCount: ").append(toIndentedString(pagesCount)).append("\n");
     sb.append("    format: ").append(toIndentedString(format)).append("\n");
     sb.append("    exportParameters: ").append(toIndentedString(exportParameters)).append("\n");
+    sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -272,15 +301,11 @@ public class ExportReportVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("fileName");
-    openapiFields.add("folderId");
-    openapiFields.add("locale");
-    openapiFields.add("pagesCount");
-    openapiFields.add("format");
-    openapiFields.add("exportParameters");
+    openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("$t");
   }
 
  /**
@@ -303,19 +328,12 @@ public class ExportReportVM {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ExportReportVM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("fileName") != null && !jsonObj.get("fileName").isJsonNull()) && !jsonObj.get("fileName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fileName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fileName").toString()));
-      }
-      if ((jsonObj.get("folderId") != null && !jsonObj.get("folderId").isJsonNull()) && !jsonObj.get("folderId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `folderId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("folderId").toString()));
-      }
-      if ((jsonObj.get("locale") != null && !jsonObj.get("locale").isJsonNull()) && !jsonObj.get("locale").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `locale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("locale").toString()));
-      }
-      // validate the optional field `format`
-      if (jsonObj.get("format") != null && !jsonObj.get("format").isJsonNull()) {
-        ExportFormat.validateJsonElement(jsonObj.get("format"));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ExportReportVM.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
   }
 

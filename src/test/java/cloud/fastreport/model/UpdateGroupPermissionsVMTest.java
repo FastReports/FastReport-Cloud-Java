@@ -13,8 +13,9 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.GroupAdministrate;
-import cloud.fastreport.model.GroupPermissions;
+import cloud.fastreport.model.GroupPermissionsCRUDVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -40,19 +41,11 @@ public class UpdateGroupPermissionsVMTest {
     }
 
     /**
-     * Test the property 'newPermissions'
+     * Test the property '$t'
      */
     @Test
-    public void newPermissionsTest() {
-        // TODO: test newPermissions
-    }
-
-    /**
-     * Test the property 'administrate'
-     */
-    @Test
-    public void administrateTest() {
-        // TODO: test administrate
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

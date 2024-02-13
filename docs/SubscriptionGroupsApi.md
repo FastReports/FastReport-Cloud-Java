@@ -78,6 +78,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Everything is all right |  -  |
 | **400** | id is not hex24 |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) |  -  |
 | **404** | there is no subscription with provided id found, or user don&#39;t even have a subscription |  -  |
 
@@ -153,6 +154,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Everything is all right (list of groups may be empty) |  -  |
 | **400** | id is not hex24 |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have permisison to get groups from this subscription (or in your default (1st) subscription) |  -  |
 | **404** | there is no subscription with provided id found, or user don&#39;t even have a subscription |  -  |
 

@@ -34,11 +34,11 @@ All URIs are relative to *http://localhost*
 | [**exportFoldersUpdateTags**](ExportsApi.md#exportFoldersUpdateTags) | **PUT** /api/rp/v1/Exports/Folder/{id}/UpdateTags | Update tags |
 | [**exportsCopyFile**](ExportsApi.md#exportsCopyFile) | **POST** /api/rp/v1/Exports/File/{id}/Copy/{folderId} | Copy file to a specified folder |
 | [**exportsDeleteFile**](ExportsApi.md#exportsDeleteFile) | **DELETE** /api/rp/v1/Exports/File/{id} | Delete specified file |
-| [**exportsGetFile**](ExportsApi.md#exportsGetFile) | **GET** /api/rp/v1/Exports/File/{id} |  |
+| [**exportsGetFile**](ExportsApi.md#exportsGetFile) | **GET** /api/rp/v1/Exports/File/{id} | Get export by specified id |
 | [**exportsGetFileHistory**](ExportsApi.md#exportsGetFileHistory) | **GET** /api/rp/v1/Exports/File/{id}/History | Returns list of actions, performed on this file |
 | [**exportsGetFilesCount**](ExportsApi.md#exportsGetFilesCount) | **GET** /api/rp/v1/Exports/Folder/{id}/CountFiles | Get count of files what contains in a specified folder |
 | [**exportsGetFilesList**](ExportsApi.md#exportsGetFilesList) | **GET** /api/rp/v1/Exports/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason. |
-| [**exportsGetPermissions**](ExportsApi.md#exportsGetPermissions) | **GET** /api/rp/v1/Exports/File/{id}/permissions | Get all file permissions |
+| [**exportsGetPermissions**](ExportsApi.md#exportsGetPermissions) | **GET** /api/rp/v1/Exports/File/{id}/permissions |  |
 | [**exportsMoveFile**](ExportsApi.md#exportsMoveFile) | **POST** /api/rp/v1/Exports/File/{id}/Move/{folderId} | Move file to a specified folder |
 | [**exportsMoveFileToBin**](ExportsApi.md#exportsMoveFileToBin) | **DELETE** /api/rp/v1/Exports/File/{id}/ToBin | Move specified file to recycle bin |
 | [**exportsRecoverFile**](ExportsApi.md#exportsRecoverFile) | **POST** /api/rp/v1/Exports/File/{id}/Recover | Recover specified file from bin |
@@ -118,10 +118,10 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | All folders and files in bin have been deleted |  -  |
-| **400** | FolderId is null |  -  |
-| **402** | Payment required, subscription is blocked |  -  |
+| **400** | Subscription id is not valid |  -  |
+| **402** | Payment required, subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="exportFolderAndFileCopyFiles"></a>
 # **exportFolderAndFileCopyFiles**
@@ -273,10 +273,10 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | All folders and files have been deleted |  -  |
-| **400** | FolderId is null |  -  |
-| **402** | Payment required, subscription is blocked |  -  |
+| **400** | Subscription id or VM is not valid |  -  |
+| **402** | Payment required, subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="exportFolderAndFileGetCount"></a>
 # **exportFolderAndFileGetCount**
@@ -353,10 +353,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Returns count of the files in a specified folder |  -  |
-| **400** | FolderId is null |  -  |
+| **400** | Params are not valid |  -  |
 | **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFolderAndFileGetFoldersAndFiles"></a>
 # **exportFolderAndFileGetFoldersAndFiles**
@@ -441,10 +442,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Returns list of the files from a specified folder |  -  |
-| **400** | FolderId is null |  -  |
+| **400** | Params are not valid |  -  |
 | **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription or folder not found |  -  |
 
 <a id="exportFolderAndFileGetRecycleBinFoldersAndFiles"></a>
 # **exportFolderAndFileGetRecycleBinFoldersAndFiles**
@@ -529,10 +530,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Returns list of the files from a specified folder |  -  |
-| **400** | FolderId is null |  -  |
+| **400** | Params are not valid |  -  |
 | **402** | Payment required, subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="exportFolderAndFileMoveFiles"></a>
 # **exportFolderAndFileMoveFiles**
@@ -684,10 +685,10 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | All folders and files have been moved to bin |  -  |
-| **400** | FolderId is null |  -  |
-| **402** | Payment required, subscription is blocked |  -  |
+| **400** | Subscription id or VM is not valid |  -  |
+| **402** | Payment required, subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="exportFolderAndFileRecoverAllFromRecycleBin"></a>
 # **exportFolderAndFileRecoverAllFromRecycleBin**
@@ -759,10 +760,10 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | All folders and files in bin have been restored |  -  |
-| **400** | FolderId is null |  -  |
-| **402** | Payment required, subscription is blocked |  -  |
+| **400** | Subscription id is not valid |  -  |
+| **402** | Payment required, subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="exportFolderAndFileRecoverFiles"></a>
 # **exportFolderAndFileRecoverFiles**
@@ -836,10 +837,10 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | All folders and files have been recovered |  -  |
-| **400** | FolderId is null |  -  |
-| **402** | Payment required, subscription is blocked |  -  |
+| **400** | Subscription id or VM is not valid |  -  |
+| **402** | Payment required, subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="exportFoldersCalculateFolderSize"></a>
 # **exportFoldersCalculateFolderSize**
@@ -913,8 +914,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns specified folder |  -  |
 | **400** | Id is null |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersCopyFolder"></a>
 # **exportFoldersCopyFolder**
@@ -990,9 +993,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Folder has been moved to a specified folder |  -  |
 | **400** | folderId or parentFolderId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersDeleteFolder"></a>
 # **exportFoldersDeleteFolder**
@@ -1065,9 +1069,10 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Folder succesfully deleted |  -  |
 | **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersGetBreadcrumbs"></a>
 # **exportFoldersGetBreadcrumbs**
@@ -1141,8 +1146,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns breadcrumbs parents list (starts from root folder) |  -  |
 | **400** | folderId is null |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersGetFolder"></a>
 # **exportFoldersGetFolder**
@@ -1216,8 +1223,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns specified folder |  -  |
 | **400** | Id is null |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersGetFolders"></a>
 # **exportFoldersGetFolders**
@@ -1302,9 +1311,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Gets all folders from a specified folder |  -  |
-| **400** | folderId is null |  -  |
+| **400** | 1 of params is not valid |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersGetFoldersCount"></a>
 # **exportFoldersGetFoldersCount**
@@ -1378,8 +1389,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns count of folders in a specified folder |  -  |
 | **400** | folderId is null |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersGetOrCreate"></a>
 # **exportFoldersGetOrCreate**
@@ -1456,9 +1469,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Returns specified folder |  -  |
-| **400** | Id is null |  -  |
+| **400** | Name or 1 of ids is not valid |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersGetPermissions"></a>
 # **exportFoldersGetPermissions**
@@ -1530,8 +1545,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | returned permissions |  -  |
 | **400** | id is not valid |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | folder is not found |  -  |
+| **404** | Folder or subscription not found |  -  |
 
 <a id="exportFoldersGetRootFolder"></a>
 # **exportFoldersGetRootFolder**
@@ -1604,9 +1620,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Gets user&#39;s root folder (without parents) |  -  |
-| **400** | Error with the request. |  -  |
-| **404** | Not found subscription |  -  |
+| **402** | Subscription is blocked |  -  |
 | **403** | No permissions to get root folder |  -  |
+| **404** | Not found subscription |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersMoveFolder"></a>
 # **exportFoldersMoveFolder**
@@ -1682,9 +1699,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Folder has been moved to a specified folder |  -  |
 | **400** | folderId or parentFolderId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersMoveFolderToBin"></a>
 # **exportFoldersMoveFolderToBin**
@@ -1757,9 +1775,10 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Folder succesfully deleted |  -  |
 | **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersPostFolder"></a>
 # **exportFoldersPostFolder**
@@ -1834,9 +1853,9 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | New folder has been created) |  -  |
-| **400** | Parent folder id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
+| **400** | Parent folder id or VM is not valid |  -  |
 | **402** | subscription is outdated |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | parent folder/subscription not found |  -  |
 
 <a id="exportFoldersRecoverFolder"></a>
@@ -1912,9 +1931,10 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | Folder succesfully restored from bin |  -  |
 | **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersRenameFolder"></a>
 # **exportFoldersRenameFolder**
@@ -1989,10 +2009,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Folder name has been updated |  -  |
-| **400** | folderId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
+| **400** | folderId or VM is not valid |  -  |
 | **402** | subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersUpdateIcon"></a>
 # **exportFoldersUpdateIcon**
@@ -2067,10 +2088,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Folder&#39;s icon has been updated |  -  |
-| **400** | folderId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
+| **400** | folderId or VM is not valid |  -  |
 | **402** | subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersUpdatePermissions"></a>
 # **exportFoldersUpdatePermissions**
@@ -2141,12 +2163,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **204** | Folder&#39;s permissions has been updated |  -  |
+| **400** | Id or VM is not valid |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportFoldersUpdateTags"></a>
 # **exportFoldersUpdateTags**
@@ -2224,7 +2246,8 @@ public class Example {
 | **400** | folderId or Tags is null |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | subscription is outdated |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportsCopyFile"></a>
 # **exportsCopyFile**
@@ -2297,10 +2320,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | File has been copied |  -  |
-| **400** | fileId or folderId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
+| **400** | FileId or folderId is null |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File or folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File, subscription or folder not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="exportsDeleteFile"></a>
@@ -2374,16 +2397,16 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | File succesfully deleted |  -  |
 | **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="exportsGetFile"></a>
 # **exportsGetFile**
 > ExportVM exportsGetFile(id)
 
-
+Get export by specified id
 
 ### Example
 ```java
@@ -2410,7 +2433,7 @@ public class Example {
     JWT.setBearerToken("BEARER TOKEN");
 
     ExportsApi apiInstance = new ExportsApi(defaultClient);
-    String id = "id_example"; // String | 
+    String id = "id_example"; // String | id of export
     try {
       ExportVM result = apiInstance.exportsGetFile(id);
       System.out.println(result);
@@ -2429,7 +2452,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**|  | |
+| **id** | **String**| id of export | |
 
 ### Return type
 
@@ -2447,11 +2470,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **200** | Export is found |  -  |
+| **400** | id is not valid |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | You have no get permission |  -  |
+| **404** | Export or subscription is not found |  -  |
+| **500** | Try again, if error still here - text our support |  -  |
 
 <a id="exportsGetFileHistory"></a>
 # **exportsGetFileHistory**
@@ -2525,10 +2549,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
+| **200** | Returns the actions |  -  |
+| **400** | Id is null |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 
 <a id="exportsGetFilesCount"></a>
 # **exportsGetFilesCount**
@@ -2602,8 +2627,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Returns count of the files in a specified folder |  -  |
 | **400** | FolderId is null |  -  |
+| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | Folder not found |  -  |
+| **404** | Folder or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="exportsGetFilesList"></a>
@@ -2687,16 +2713,17 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Returns list of the files from a specified folder |  -  |
-| **400** | FolderId is null |  -  |
+| **400** | Invalid params |  -  |
+| **402** | Subscription is outdated |  -  |
 | **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | File or folder not found |  -  |
+| **404** | File, subscription or folder not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="exportsGetPermissions"></a>
 # **exportsGetPermissions**
 > FilePermissionsVM exportsGetPermissions(id)
 
-Get all file permissions
+
 
 ### Example
 ```java
@@ -2760,10 +2787,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | got permissions successfully |  -  |
-| **400** | id is not valid |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
-| **404** | file is not found |  -  |
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **402** | Client Error |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
 
 <a id="exportsMoveFile"></a>
 # **exportsMoveFile**
@@ -2839,9 +2867,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | File has been moved |  -  |
 | **400** | fileId or folderId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File or folder not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File, subscription or folder not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="exportsMoveFileToBin"></a>
@@ -2915,9 +2943,9 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | File succesfully deleted |  -  |
 | **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="exportsRecoverFile"></a>
@@ -2993,9 +3021,9 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | File succesfully recovered |  -  |
 | **400** | Id is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="exportsRenameFile"></a>
@@ -3072,9 +3100,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | File name has been updated |  -  |
 | **400** | FileId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="exportsUpdateIcon"></a>
@@ -3151,9 +3179,9 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | File&#39;s icon has been updated |  -  |
 | **400** | FileId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 
 <a id="exportsUpdatePermissions"></a>
@@ -3225,12 +3253,12 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | No Content |  -  |
-| **400** | Bad Request |  -  |
-| **402** | Client Error |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **500** | Server Error |  -  |
+| **204** | File&#39;s permissions has been updated |  -  |
+| **400** | FileId or VM is not valid |  -  |
+| **402** | Subscription is outdated |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
+| **500** | Exception thrown |  -  |
 
 <a id="exportsUpdateTags"></a>
 # **exportsUpdateTags**
@@ -3306,8 +3334,8 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Tags has been updated |  -  |
 | **400** | FileId is null |  -  |
-| **403** | You don&#39;t have rights for the operation |  -  |
 | **402** | Subscription is outdated |  -  |
-| **404** | File not found |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
 

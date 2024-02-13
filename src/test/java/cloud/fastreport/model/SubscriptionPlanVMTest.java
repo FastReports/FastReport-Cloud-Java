@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.TaskSettingsVM;
 import cloud.fastreport.model.TimePeriodType;
 import com.google.gson.TypeAdapter;
@@ -41,163 +42,11 @@ public class SubscriptionPlanVMTest {
     }
 
     /**
-     * Test the property 'id'
+     * Test the property '$t'
      */
     @Test
-    public void idTest() {
-        // TODO: test id
-    }
-
-    /**
-     * Test the property 'isActive'
-     */
-    @Test
-    public void isActiveTest() {
-        // TODO: test isActive
-    }
-
-    /**
-     * Test the property 'displayName'
-     */
-    @Test
-    public void displayNameTest() {
-        // TODO: test displayName
-    }
-
-    /**
-     * Test the property 'timePeriodType'
-     */
-    @Test
-    public void timePeriodTypeTest() {
-        // TODO: test timePeriodType
-    }
-
-    /**
-     * Test the property 'timePeriod'
-     */
-    @Test
-    public void timePeriodTest() {
-        // TODO: test timePeriod
-    }
-
-    /**
-     * Test the property 'readonlyTimeLimitType'
-     */
-    @Test
-    public void readonlyTimeLimitTypeTest() {
-        // TODO: test readonlyTimeLimitType
-    }
-
-    /**
-     * Test the property 'readonlyTimeLimit'
-     */
-    @Test
-    public void readonlyTimeLimitTest() {
-        // TODO: test readonlyTimeLimit
-    }
-
-    /**
-     * Test the property 'templatesSpaceLimit'
-     */
-    @Test
-    public void templatesSpaceLimitTest() {
-        // TODO: test templatesSpaceLimit
-    }
-
-    /**
-     * Test the property 'reportsSpaceLimit'
-     */
-    @Test
-    public void reportsSpaceLimitTest() {
-        // TODO: test reportsSpaceLimit
-    }
-
-    /**
-     * Test the property 'exportsSpaceLimit'
-     */
-    @Test
-    public void exportsSpaceLimitTest() {
-        // TODO: test exportsSpaceLimit
-    }
-
-    /**
-     * Test the property 'fileUploadSizeLimit'
-     */
-    @Test
-    public void fileUploadSizeLimitTest() {
-        // TODO: test fileUploadSizeLimit
-    }
-
-    /**
-     * Test the property 'dataSourceLimit'
-     */
-    @Test
-    public void dataSourceLimitTest() {
-        // TODO: test dataSourceLimit
-    }
-
-    /**
-     * Test the property 'maxUsersCount'
-     */
-    @Test
-    public void maxUsersCountTest() {
-        // TODO: test maxUsersCount
-    }
-
-    /**
-     * Test the property 'groupLimit'
-     */
-    @Test
-    public void groupLimitTest() {
-        // TODO: test groupLimit
-    }
-
-    /**
-     * Test the property 'onlineDesigner'
-     */
-    @Test
-    public void onlineDesignerTest() {
-        // TODO: test onlineDesigner
-    }
-
-    /**
-     * Test the property 'isDemo'
-     */
-    @Test
-    public void isDemoTest() {
-        // TODO: test isDemo
-    }
-
-    /**
-     * Test the property 'urlToBuy'
-     */
-    @Test
-    public void urlToBuyTest() {
-        // TODO: test urlToBuy
-    }
-
-    /**
-     * Test the property 'unlimitedPage'
-     */
-    @Test
-    public void unlimitedPageTest() {
-        // TODO: test unlimitedPage
-    }
-
-    /**
-     * Test the property 'pageLimit'
-     */
-    @Test
-    public void pageLimitTest() {
-        // TODO: test pageLimit
-    }
-
-    /**
-     * Test the property 'tasks'
-     */
-    @Test
-    public void tasksTest() {
-        // TODO: test tasks
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

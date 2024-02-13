@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.DataSourceConnectionType;
 import cloud.fastreport.model.DataSourceStatus;
 import com.google.gson.TypeAdapter;
@@ -42,99 +43,11 @@ public class DataSourceVMTest {
     }
 
     /**
-     * Test the property 'id'
+     * Test the property '$t'
      */
     @Test
-    public void idTest() {
-        // TODO: test id
-    }
-
-    /**
-     * Test the property 'name'
-     */
-    @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
-     * Test the property 'connectionType'
-     */
-    @Test
-    public void connectionTypeTest() {
-        // TODO: test connectionType
-    }
-
-    /**
-     * Test the property 'connectionString'
-     */
-    @Test
-    public void connectionStringTest() {
-        // TODO: test connectionString
-    }
-
-    /**
-     * Test the property 'dataStructure'
-     */
-    @Test
-    public void dataStructureTest() {
-        // TODO: test dataStructure
-    }
-
-    /**
-     * Test the property 'subscriptionId'
-     */
-    @Test
-    public void subscriptionIdTest() {
-        // TODO: test subscriptionId
-    }
-
-    /**
-     * Test the property 'editedTime'
-     */
-    @Test
-    public void editedTimeTest() {
-        // TODO: test editedTime
-    }
-
-    /**
-     * Test the property 'editorUserId'
-     */
-    @Test
-    public void editorUserIdTest() {
-        // TODO: test editorUserId
-    }
-
-    /**
-     * Test the property 'createdTime'
-     */
-    @Test
-    public void createdTimeTest() {
-        // TODO: test createdTime
-    }
-
-    /**
-     * Test the property 'creatorUserId'
-     */
-    @Test
-    public void creatorUserIdTest() {
-        // TODO: test creatorUserId
-    }
-
-    /**
-     * Test the property 'status'
-     */
-    @Test
-    public void statusTest() {
-        // TODO: test status
-    }
-
-    /**
-     * Test the property 'errorMessage'
-     */
-    @Test
-    public void errorMessageTest() {
-        // TODO: test errorMessage
+    public void $tTest() {
+        // TODO: test $t
     }
 
 }

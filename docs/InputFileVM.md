@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**entityId** | **String** |  |  [optional] |
 |**type** | **FileKind** |  |  [optional] |
+|**$t** | **String** |  |  |
 
 
 

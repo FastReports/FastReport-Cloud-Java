@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.DataSourceConnectionType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -52,7 +53,7 @@ import cloud.fastreport.JSON;
  * CreateDataSourceVM
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class CreateDataSourceVM {
+public class CreateDataSourceVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
@@ -186,7 +187,8 @@ public class CreateDataSourceVM {
         Objects.equals(this.connectionString, createDataSourceVM.connectionString) &&
         Objects.equals(this.subscriptionId, createDataSourceVM.subscriptionId) &&
         Objects.equals(this.connectionType, createDataSourceVM.connectionType) &&
-        Objects.equals(this.$t, createDataSourceVM.$t);
+        Objects.equals(this.$t, createDataSourceVM.$t) &&
+        super.equals(o);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -195,7 +197,7 @@ public class CreateDataSourceVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, connectionString, subscriptionId, connectionType, $t);
+    return Objects.hash(name, connectionString, subscriptionId, connectionType, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -209,6 +211,7 @@ public class CreateDataSourceVM {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateDataSourceVM {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    connectionString: ").append(toIndentedString(connectionString)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
@@ -236,10 +239,6 @@ public class CreateDataSourceVM {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("name");
-    openapiFields.add("connectionString");
-    openapiFields.add("subscriptionId");
-    openapiFields.add("connectionType");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)

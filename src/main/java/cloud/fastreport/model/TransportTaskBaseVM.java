@@ -201,6 +201,9 @@ public class TransportTaskBaseVM extends TaskBaseVM {
         case "FTPUploadTaskVM":
           FTPUploadTaskVM.validateJsonElement(jsonElement);
           break;
+        case "TransportTaskBaseVM":
+          TransportTaskBaseVM.validateJsonElement(jsonElement);
+          break;
         case "WebhookTaskVM":
           WebhookTaskVM.validateJsonElement(jsonElement);
           break;

@@ -55,12 +55,12 @@ public class ApiKeysApiTest {
     @Test
     public void apiKeysDeleteApiKeyTest() throws ApiException {
         DeleteApiKeyVM deleteApiKeyVM = null;
-        api.apiKeysDeleteApiKey(deleteApiKeyVM);
+        ApiKeyVM response = api.apiKeysDeleteApiKey(deleteApiKeyVM);
         // TODO: test validations
     }
 
     /**
-     * Returns list with all api keys of current user
+     * Returns list with all apikeys of current user
      *
      * Always work, it should make only 200 response (except if user is not authorized).
      *

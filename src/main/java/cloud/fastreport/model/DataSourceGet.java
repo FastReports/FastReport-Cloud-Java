@@ -35,6 +35,12 @@ public enum DataSourceGet {
   
   NUMBER_2(2),
   
+  NUMBER_4(4),
+  
+  NUMBER_8(8),
+  
+  NUMBER_16(16),
+  
   NUMBER_MINUS_1(-1);
 
   private Integer value;

@@ -32,6 +32,7 @@ docs/ApiKeysVM.md
 docs/AppMixinsVM.md
 docs/AuditActionVM.md
 docs/AuditActionsVM.md
+docs/AuditActiveStatsVM.md
 docs/AuditFilePropertyChangedVM.md
 docs/AuditStatVM.md
 docs/AuditStatsVM.md
@@ -63,6 +64,7 @@ docs/CreateExportReportTaskVM.md
 docs/CreateExportTemplateTaskVM.md
 docs/CreateFTPUploadTaskVM.md
 docs/CreateFetchTaskVM.md
+docs/CreateFileShareVM.md
 docs/CreateGroupAdminVM.md
 docs/CreateGroupVM.md
 docs/CreateIfNotExistInternalVM.md
@@ -72,6 +74,7 @@ docs/CreateSubscriptionPeriodVM.md
 docs/CreateSubscriptionPlanVM.md
 docs/CreateSubscriptionVM.md
 docs/CreateTaskBaseVM.md
+docs/CreateTaskEndVM.md
 docs/CreateThumbnailReportTaskVM.md
 docs/CreateThumbnailTemplateTaskVM.md
 docs/CreateTransformTaskBaseVM.md
@@ -83,9 +86,13 @@ docs/DataSourceCreate.md
 docs/DataSourceDelete.md
 docs/DataSourceExecute.md
 docs/DataSourceGet.md
+docs/DataSourceParameterTypeVM.md
+docs/DataSourceParameterTypesVM.md
 docs/DataSourcePermissionCRUDVM.md
 docs/DataSourcePermissionsCRUDVM.md
 docs/DataSourcePermissionsVM.md
+docs/DataSourceSelectCommandParameterVM.md
+docs/DataSourceSelectCommandVM.md
 docs/DataSourceSorting.md
 docs/DataSourceStatus.md
 docs/DataSourceUpdate.md
@@ -124,6 +131,8 @@ docs/FilePermissionCRUDVM.md
 docs/FilePermissionsCRUDVM.md
 docs/FilePermissionsVM.md
 docs/FileRenameVM.md
+docs/FileShareVM.md
+docs/FileSharingKeysVM.md
 docs/FileSorting.md
 docs/FileStatus.md
 docs/FileStatusReason.md
@@ -230,6 +239,7 @@ docs/TaskAdministrate.md
 docs/TaskBaseVM.md
 docs/TaskCreate.md
 docs/TaskDelete.md
+docs/TaskEnd.md
 docs/TaskExecute.md
 docs/TaskGet.md
 docs/TaskIdsVM.md
@@ -259,6 +269,7 @@ docs/UpdateContactVM.md
 docs/UpdateContentInternalVM.md
 docs/UpdateDataSourceConnectionStringVM.md
 docs/UpdateDataSourcePermissionsVM.md
+docs/UpdateDataSourceSelectCommandsVM.md
 docs/UpdateDataSourceSubscriptionVM.md
 docs/UpdateDataSourceVM.md
 docs/UpdateDataVM.md
@@ -370,6 +381,7 @@ src/main/java/cloud/fastreport/model/ApiKeysVM.java
 src/main/java/cloud/fastreport/model/AppMixinsVM.java
 src/main/java/cloud/fastreport/model/AuditActionVM.java
 src/main/java/cloud/fastreport/model/AuditActionsVM.java
+src/main/java/cloud/fastreport/model/AuditActiveStatsVM.java
 src/main/java/cloud/fastreport/model/AuditFilePropertyChangedVM.java
 src/main/java/cloud/fastreport/model/AuditStatVM.java
 src/main/java/cloud/fastreport/model/AuditStatsVM.java
@@ -398,6 +410,7 @@ src/main/java/cloud/fastreport/model/CreateExportReportTaskVM.java
 src/main/java/cloud/fastreport/model/CreateExportTemplateTaskVM.java
 src/main/java/cloud/fastreport/model/CreateFTPUploadTaskVM.java
 src/main/java/cloud/fastreport/model/CreateFetchTaskVM.java
+src/main/java/cloud/fastreport/model/CreateFileShareVM.java
 src/main/java/cloud/fastreport/model/CreateGroupAdminVM.java
 src/main/java/cloud/fastreport/model/CreateGroupVM.java
 src/main/java/cloud/fastreport/model/CreateIfNotExistInternalVM.java
@@ -407,6 +420,7 @@ src/main/java/cloud/fastreport/model/CreateSubscriptionPeriodVM.java
 src/main/java/cloud/fastreport/model/CreateSubscriptionPlanVM.java
 src/main/java/cloud/fastreport/model/CreateSubscriptionVM.java
 src/main/java/cloud/fastreport/model/CreateTaskBaseVM.java
+src/main/java/cloud/fastreport/model/CreateTaskEndVM.java
 src/main/java/cloud/fastreport/model/CreateThumbnailReportTaskVM.java
 src/main/java/cloud/fastreport/model/CreateThumbnailTemplateTaskVM.java
 src/main/java/cloud/fastreport/model/CreateTransformTaskBaseVM.java
@@ -418,9 +432,13 @@ src/main/java/cloud/fastreport/model/DataSourceCreate.java
 src/main/java/cloud/fastreport/model/DataSourceDelete.java
 src/main/java/cloud/fastreport/model/DataSourceExecute.java
 src/main/java/cloud/fastreport/model/DataSourceGet.java
+src/main/java/cloud/fastreport/model/DataSourceParameterTypeVM.java
+src/main/java/cloud/fastreport/model/DataSourceParameterTypesVM.java
 src/main/java/cloud/fastreport/model/DataSourcePermissionCRUDVM.java
 src/main/java/cloud/fastreport/model/DataSourcePermissionsCRUDVM.java
 src/main/java/cloud/fastreport/model/DataSourcePermissionsVM.java
+src/main/java/cloud/fastreport/model/DataSourceSelectCommandParameterVM.java
+src/main/java/cloud/fastreport/model/DataSourceSelectCommandVM.java
 src/main/java/cloud/fastreport/model/DataSourceSorting.java
 src/main/java/cloud/fastreport/model/DataSourceStatus.java
 src/main/java/cloud/fastreport/model/DataSourceUpdate.java
@@ -456,6 +474,8 @@ src/main/java/cloud/fastreport/model/FilePermissionCRUDVM.java
 src/main/java/cloud/fastreport/model/FilePermissionsCRUDVM.java
 src/main/java/cloud/fastreport/model/FilePermissionsVM.java
 src/main/java/cloud/fastreport/model/FileRenameVM.java
+src/main/java/cloud/fastreport/model/FileShareVM.java
+src/main/java/cloud/fastreport/model/FileSharingKeysVM.java
 src/main/java/cloud/fastreport/model/FileSorting.java
 src/main/java/cloud/fastreport/model/FileStatus.java
 src/main/java/cloud/fastreport/model/FileStatusReason.java
@@ -553,6 +573,7 @@ src/main/java/cloud/fastreport/model/TaskAdministrate.java
 src/main/java/cloud/fastreport/model/TaskBaseVM.java
 src/main/java/cloud/fastreport/model/TaskCreate.java
 src/main/java/cloud/fastreport/model/TaskDelete.java
+src/main/java/cloud/fastreport/model/TaskEnd.java
 src/main/java/cloud/fastreport/model/TaskExecute.java
 src/main/java/cloud/fastreport/model/TaskGet.java
 src/main/java/cloud/fastreport/model/TaskIdsVM.java
@@ -580,6 +601,7 @@ src/main/java/cloud/fastreport/model/UpdateContactVM.java
 src/main/java/cloud/fastreport/model/UpdateContentInternalVM.java
 src/main/java/cloud/fastreport/model/UpdateDataSourceConnectionStringVM.java
 src/main/java/cloud/fastreport/model/UpdateDataSourcePermissionsVM.java
+src/main/java/cloud/fastreport/model/UpdateDataSourceSelectCommandsVM.java
 src/main/java/cloud/fastreport/model/UpdateDataSourceSubscriptionVM.java
 src/main/java/cloud/fastreport/model/UpdateDataSourceVM.java
 src/main/java/cloud/fastreport/model/UpdateDataVM.java
@@ -661,6 +683,7 @@ src/test/java/cloud/fastreport/model/ApiKeysVMTest.java
 src/test/java/cloud/fastreport/model/AppMixinsVMTest.java
 src/test/java/cloud/fastreport/model/AuditActionVMTest.java
 src/test/java/cloud/fastreport/model/AuditActionsVMTest.java
+src/test/java/cloud/fastreport/model/AuditActiveStatsVMTest.java
 src/test/java/cloud/fastreport/model/AuditFilePropertyChangedVMTest.java
 src/test/java/cloud/fastreport/model/AuditStatVMTest.java
 src/test/java/cloud/fastreport/model/AuditStatsVMTest.java
@@ -689,6 +712,7 @@ src/test/java/cloud/fastreport/model/CreateExportReportTaskVMTest.java
 src/test/java/cloud/fastreport/model/CreateExportTemplateTaskVMTest.java
 src/test/java/cloud/fastreport/model/CreateFTPUploadTaskVMTest.java
 src/test/java/cloud/fastreport/model/CreateFetchTaskVMTest.java
+src/test/java/cloud/fastreport/model/CreateFileShareVMTest.java
 src/test/java/cloud/fastreport/model/CreateGroupAdminVMTest.java
 src/test/java/cloud/fastreport/model/CreateGroupVMTest.java
 src/test/java/cloud/fastreport/model/CreateIfNotExistInternalVMTest.java
@@ -698,6 +722,7 @@ src/test/java/cloud/fastreport/model/CreateSubscriptionPeriodVMTest.java
 src/test/java/cloud/fastreport/model/CreateSubscriptionPlanVMTest.java
 src/test/java/cloud/fastreport/model/CreateSubscriptionVMTest.java
 src/test/java/cloud/fastreport/model/CreateTaskBaseVMTest.java
+src/test/java/cloud/fastreport/model/CreateTaskEndVMTest.java
 src/test/java/cloud/fastreport/model/CreateThumbnailReportTaskVMTest.java
 src/test/java/cloud/fastreport/model/CreateThumbnailTemplateTaskVMTest.java
 src/test/java/cloud/fastreport/model/CreateTransformTaskBaseVMTest.java
@@ -709,9 +734,13 @@ src/test/java/cloud/fastreport/model/DataSourceCreateTest.java
 src/test/java/cloud/fastreport/model/DataSourceDeleteTest.java
 src/test/java/cloud/fastreport/model/DataSourceExecuteTest.java
 src/test/java/cloud/fastreport/model/DataSourceGetTest.java
+src/test/java/cloud/fastreport/model/DataSourceParameterTypeVMTest.java
+src/test/java/cloud/fastreport/model/DataSourceParameterTypesVMTest.java
 src/test/java/cloud/fastreport/model/DataSourcePermissionCRUDVMTest.java
 src/test/java/cloud/fastreport/model/DataSourcePermissionsCRUDVMTest.java
 src/test/java/cloud/fastreport/model/DataSourcePermissionsVMTest.java
+src/test/java/cloud/fastreport/model/DataSourceSelectCommandParameterVMTest.java
+src/test/java/cloud/fastreport/model/DataSourceSelectCommandVMTest.java
 src/test/java/cloud/fastreport/model/DataSourceSortingTest.java
 src/test/java/cloud/fastreport/model/DataSourceStatusTest.java
 src/test/java/cloud/fastreport/model/DataSourceUpdateTest.java
@@ -747,6 +776,8 @@ src/test/java/cloud/fastreport/model/FilePermissionCRUDVMTest.java
 src/test/java/cloud/fastreport/model/FilePermissionsCRUDVMTest.java
 src/test/java/cloud/fastreport/model/FilePermissionsVMTest.java
 src/test/java/cloud/fastreport/model/FileRenameVMTest.java
+src/test/java/cloud/fastreport/model/FileShareVMTest.java
+src/test/java/cloud/fastreport/model/FileSharingKeysVMTest.java
 src/test/java/cloud/fastreport/model/FileSortingTest.java
 src/test/java/cloud/fastreport/model/FileStatusReasonTest.java
 src/test/java/cloud/fastreport/model/FileStatusTest.java
@@ -844,6 +875,7 @@ src/test/java/cloud/fastreport/model/TaskAdministrateTest.java
 src/test/java/cloud/fastreport/model/TaskBaseVMTest.java
 src/test/java/cloud/fastreport/model/TaskCreateTest.java
 src/test/java/cloud/fastreport/model/TaskDeleteTest.java
+src/test/java/cloud/fastreport/model/TaskEndTest.java
 src/test/java/cloud/fastreport/model/TaskExecuteTest.java
 src/test/java/cloud/fastreport/model/TaskGetTest.java
 src/test/java/cloud/fastreport/model/TaskIdsVMTest.java
@@ -871,6 +903,7 @@ src/test/java/cloud/fastreport/model/UpdateContactVMTest.java
 src/test/java/cloud/fastreport/model/UpdateContentInternalVMTest.java
 src/test/java/cloud/fastreport/model/UpdateDataSourceConnectionStringVMTest.java
 src/test/java/cloud/fastreport/model/UpdateDataSourcePermissionsVMTest.java
+src/test/java/cloud/fastreport/model/UpdateDataSourceSelectCommandsVMTest.java
 src/test/java/cloud/fastreport/model/UpdateDataSourceSubscriptionVMTest.java
 src/test/java/cloud/fastreport/model/UpdateDataSourceVMTest.java
 src/test/java/cloud/fastreport/model/UpdateDataVMTest.java

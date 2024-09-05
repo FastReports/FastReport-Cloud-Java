@@ -18,6 +18,7 @@ import cloud.fastreport.model.ExportFormat;
 import cloud.fastreport.model.ExportReportTaskVM;
 import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.OutputFileVM;
+import cloud.fastreport.model.TaskEnd;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -188,8 +189,8 @@ public class ExportTemplateTaskVM extends ExportReportTaskVM {
     openapiFields.add("outputFile");
     openapiFields.add("transportIds");
     openapiFields.add("cronExpression");
-    openapiFields.add("delayedRunTime");
-    openapiFields.add("delayedWasRunTime");
+    openapiFields.add("startsOn");
+    openapiFields.add("ends");
     openapiFields.add("id");
     openapiFields.add("name");
     openapiFields.add("recurrentRunTime");

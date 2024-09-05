@@ -190,6 +190,9 @@ public class CloudBaseVM {
         case "AuditActionsVM":
           AuditActionsVM.validateJsonElement(jsonElement);
           break;
+        case "AuditActiveStatsVM":
+          AuditActiveStatsVM.validateJsonElement(jsonElement);
+          break;
         case "AuditFilePropertyChangedVM":
           AuditFilePropertyChangedVM.validateJsonElement(jsonElement);
           break;
@@ -292,6 +295,9 @@ public class CloudBaseVM {
         case "CreateWebhookTaskVM":
           CreateWebhookTaskVM.validateJsonElement(jsonElement);
           break;
+        case "DataSourceParameterTypesVM":
+          DataSourceParameterTypesVM.validateJsonElement(jsonElement);
+          break;
         case "DataSourcePermissionCRUDVM":
           DataSourcePermissionCRUDVM.validateJsonElement(jsonElement);
           break;
@@ -300,6 +306,12 @@ public class CloudBaseVM {
           break;
         case "DataSourcePermissionsVM":
           DataSourcePermissionsVM.validateJsonElement(jsonElement);
+          break;
+        case "DataSourceSelectCommandParameterVM":
+          DataSourceSelectCommandParameterVM.validateJsonElement(jsonElement);
+          break;
+        case "DataSourceSelectCommandVM":
+          DataSourceSelectCommandVM.validateJsonElement(jsonElement);
           break;
         case "DataSourceVM":
           DataSourceVM.validateJsonElement(jsonElement);
@@ -639,6 +651,9 @@ public class CloudBaseVM {
           break;
         case "UpdateDataSourcePermissionsVM":
           UpdateDataSourcePermissionsVM.validateJsonElement(jsonElement);
+          break;
+        case "UpdateDataSourceSelectCommandsVM":
+          UpdateDataSourceSelectCommandsVM.validateJsonElement(jsonElement);
           break;
         case "UpdateDataSourceSubscriptionVM":
           UpdateDataSourceSubscriptionVM.validateJsonElement(jsonElement);

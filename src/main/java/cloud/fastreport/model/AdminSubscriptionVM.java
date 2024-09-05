@@ -201,6 +201,7 @@ public class AdminSubscriptionVM extends SubscriptionVM {
     openapiFields.add("templatesFolder");
     openapiFields.add("reportsFolder");
     openapiFields.add("exportsFolder");
+    openapiFields.add("tags");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)

@@ -16,6 +16,7 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import cloud.fastreport.model.CloudBaseVM;
 import cloud.fastreport.model.DataSourceConnectionType;
+import cloud.fastreport.model.DataSourceSelectCommandVM;
 import cloud.fastreport.model.DataSourceStatus;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -24,7 +25,9 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -103,6 +106,10 @@ public class DataSourceVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_ERROR_MESSAGE = "errorMessage";
   @SerializedName(SERIALIZED_NAME_ERROR_MESSAGE)
   private String errorMessage;
+
+  public static final String SERIALIZED_NAME_SELECT_COMMANDS = "selectCommands";
+  @SerializedName(SERIALIZED_NAME_SELECT_COMMANDS)
+  private List<DataSourceSelectCommandVM> selectCommands;
 
   public static final String SERIALIZED_NAME_$_T = "$t";
   @SerializedName(SERIALIZED_NAME_$_T)
@@ -340,6 +347,33 @@ public class DataSourceVM extends CloudBaseVM {
   }
 
 
+  public DataSourceVM selectCommands(List<DataSourceSelectCommandVM> selectCommands) {
+    this.selectCommands = selectCommands;
+    return this;
+  }
+
+  public DataSourceVM addSelectCommandsItem(DataSourceSelectCommandVM selectCommandsItem) {
+    if (this.selectCommands == null) {
+      this.selectCommands = new ArrayList<>();
+    }
+    this.selectCommands.add(selectCommandsItem);
+    return this;
+  }
+
+   /**
+   * Get selectCommands
+   * @return selectCommands
+  **/
+  @javax.annotation.Nullable
+  public List<DataSourceSelectCommandVM> getSelectCommands() {
+    return selectCommands;
+  }
+
+  public void setSelectCommands(List<DataSourceSelectCommandVM> selectCommands) {
+    this.selectCommands = selectCommands;
+  }
+
+
   public DataSourceVM $t(String $t) {
     this.$t = $t;
     return this;
@@ -381,6 +415,7 @@ public class DataSourceVM extends CloudBaseVM {
         Objects.equals(this.creatorUserId, dataSourceVM.creatorUserId) &&
         Objects.equals(this.status, dataSourceVM.status) &&
         Objects.equals(this.errorMessage, dataSourceVM.errorMessage) &&
+        Objects.equals(this.selectCommands, dataSourceVM.selectCommands) &&
         Objects.equals(this.$t, dataSourceVM.$t) &&
         super.equals(o);
   }
@@ -391,7 +426,7 @@ public class DataSourceVM extends CloudBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, connectionType, connectionString, dataStructure, subscriptionId, editedTime, editorUserId, createdTime, creatorUserId, status, errorMessage, $t, super.hashCode());
+    return Objects.hash(id, name, connectionType, connectionString, dataStructure, subscriptionId, editedTime, editorUserId, createdTime, creatorUserId, status, errorMessage, selectCommands, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -418,6 +453,7 @@ public class DataSourceVM extends CloudBaseVM {
     sb.append("    creatorUserId: ").append(toIndentedString(creatorUserId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
+    sb.append("    selectCommands: ").append(toIndentedString(selectCommands)).append("\n");
     sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();

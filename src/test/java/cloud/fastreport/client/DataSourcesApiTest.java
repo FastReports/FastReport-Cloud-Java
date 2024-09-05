@@ -15,6 +15,8 @@ package cloud.fastreport.client;
 
 import cloud.fastreport.ApiException;
 import cloud.fastreport.model.CreateDataSourceVM;
+import cloud.fastreport.model.DataSourceConnectionType;
+import cloud.fastreport.model.DataSourceParameterTypesVM;
 import cloud.fastreport.model.DataSourcePermissionsVM;
 import cloud.fastreport.model.DataSourceSorting;
 import cloud.fastreport.model.DataSourceVM;
@@ -23,6 +25,7 @@ import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.RenameDataSourceVM;
 import cloud.fastreport.model.UpdateDataSourceConnectionStringVM;
 import cloud.fastreport.model.UpdateDataSourcePermissionsVM;
+import cloud.fastreport.model.UpdateDataSourceSelectCommandsVM;
 import cloud.fastreport.model.UpdateDataSourceSubscriptionVM;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -117,6 +120,18 @@ public class DataSourcesApiTest {
     }
 
     /**
+     * Get data source parameter DataType&#39;s
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void dataSourcesGetParameterTypesTest() throws ApiException {
+        DataSourceConnectionType dataSourceType = null;
+        DataSourceParameterTypesVM response = api.dataSourcesGetParameterTypes(dataSourceType);
+        // TODO: test validations
+    }
+
+    /**
      * Get all Data source permissions
      *
      * @throws ApiException if the Api call fails
@@ -164,6 +179,19 @@ public class DataSourcesApiTest {
         String id = null;
         UpdateDataSourcePermissionsVM updateDataSourcePermissionsVM = null;
         api.dataSourcesUpdatePermissions(id, updateDataSourcePermissionsVM);
+        // TODO: test validations
+    }
+
+    /**
+     * Update data source&#39;s select commands by id
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void dataSourcesUpdateSelectCommandsTest() throws ApiException {
+        String id = null;
+        UpdateDataSourceSelectCommandsVM updateDataSourceSelectCommandsVM = null;
+        DataSourceVM response = api.dataSourcesUpdateSelectCommands(id, updateDataSourceSelectCommandsVM);
         // TODO: test validations
     }
 

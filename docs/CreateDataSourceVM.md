@@ -11,6 +11,7 @@
 |**connectionString** | **String** |  |  |
 |**subscriptionId** | **String** |  |  |
 |**connectionType** | **DataSourceConnectionType** |  |  [optional] |
+|**selectCommands** | [**List&lt;DataSourceSelectCommandVM&gt;**](DataSourceSelectCommandVM.md) |  |  [optional] |
 |**$t** | **String** |  |  |
 
 

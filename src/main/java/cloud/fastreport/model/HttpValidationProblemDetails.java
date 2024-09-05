@@ -82,11 +82,17 @@ public class HttpValidationProblemDetails {
   public HttpValidationProblemDetails() {
   }
 
-  public HttpValidationProblemDetails(
-     Map<String, List<String>> errors
-  ) {
-    this();
+  public HttpValidationProblemDetails errors(Map<String, List<String>> errors) {
     this.errors = errors;
+    return this;
+  }
+
+  public HttpValidationProblemDetails putErrorsItem(String key, List<String> errorsItem) {
+    if (this.errors == null) {
+      this.errors = new HashMap<>();
+    }
+    this.errors.put(key, errorsItem);
+    return this;
   }
 
    /**
@@ -98,6 +104,9 @@ public class HttpValidationProblemDetails {
     return errors;
   }
 
+  public void setErrors(Map<String, List<String>> errors) {
+    this.errors = errors;
+  }
 
 
   public HttpValidationProblemDetails type(String type) {

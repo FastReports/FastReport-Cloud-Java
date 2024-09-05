@@ -29,8 +29,6 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(DataSourceSorting.Adapter.class)
 public enum DataSourceSorting {
   
-  NONE("None"),
-  
   CREATEDTIME("CreatedTime"),
   
   EDITEDTIME("EditedTime"),

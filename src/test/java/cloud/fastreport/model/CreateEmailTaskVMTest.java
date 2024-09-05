@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CreateTaskEndVM;
 import cloud.fastreport.model.CreateTransportTaskBaseVM;
 import cloud.fastreport.model.InputFileVM;
 import com.google.gson.TypeAdapter;
@@ -68,11 +69,19 @@ public class CreateEmailTaskVMTest {
     }
 
     /**
-     * Test the property 'delayedRunTime'
+     * Test the property 'startsOn'
      */
     @Test
-    public void delayedRunTimeTest() {
-        // TODO: test delayedRunTime
+    public void startsOnTest() {
+        // TODO: test startsOn
+    }
+
+    /**
+     * Test the property 'ends'
+     */
+    @Test
+    public void endsTest() {
+        // TODO: test ends
     }
 
     /**

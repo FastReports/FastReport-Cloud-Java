@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**errors** | **Map&lt;String, List&lt;String&gt;&gt;** |  |  [optional] [readonly] |
+|**errors** | **Map&lt;String, List&lt;String&gt;&gt;** |  |  [optional] |
 |**type** | **String** |  |  [optional] |
 |**title** | **String** |  |  [optional] |
 |**status** | **Integer** |  |  [optional] |

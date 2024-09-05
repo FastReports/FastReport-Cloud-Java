@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CreateTaskEndVM;
 import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.OutputFileVM;
 import cloud.fastreport.model.UpdateTaskBaseVM;
@@ -53,11 +54,19 @@ public class UpdateTransformTaskBaseVMTest {
     }
 
     /**
-     * Test the property 'delayedRunTime'
+     * Test the property 'startsOn'
      */
     @Test
-    public void delayedRunTimeTest() {
-        // TODO: test delayedRunTime
+    public void startsOnTest() {
+        // TODO: test startsOn
+    }
+
+    /**
+     * Test the property 'ends'
+     */
+    @Test
+    public void endsTest() {
+        // TODO: test ends
     }
 
     /**

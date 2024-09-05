@@ -22,7 +22,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -61,6 +63,10 @@ public class UpdateSubscriptionVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_LOCALE = "locale";
   @SerializedName(SERIALIZED_NAME_LOCALE)
   private String locale;
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  private List<String> tags;
 
   public static final String SERIALIZED_NAME_DEFAULT_PERMISSIONS = "defaultPermissions";
   @SerializedName(SERIALIZED_NAME_DEFAULT_PERMISSIONS)
@@ -109,6 +115,33 @@ public class UpdateSubscriptionVM extends CloudBaseVM {
 
   public void setLocale(String locale) {
     this.locale = locale;
+  }
+
+
+  public UpdateSubscriptionVM tags(List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public UpdateSubscriptionVM addTagsItem(String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+   /**
+   * Get tags
+   * @return tags
+  **/
+  @javax.annotation.Nullable
+  public List<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<String> tags) {
+    this.tags = tags;
   }
 
 
@@ -162,6 +195,7 @@ public class UpdateSubscriptionVM extends CloudBaseVM {
     UpdateSubscriptionVM updateSubscriptionVM = (UpdateSubscriptionVM) o;
     return Objects.equals(this.name, updateSubscriptionVM.name) &&
         Objects.equals(this.locale, updateSubscriptionVM.locale) &&
+        Objects.equals(this.tags, updateSubscriptionVM.tags) &&
         Objects.equals(this.defaultPermissions, updateSubscriptionVM.defaultPermissions) &&
         Objects.equals(this.$t, updateSubscriptionVM.$t) &&
         super.equals(o);
@@ -173,7 +207,7 @@ public class UpdateSubscriptionVM extends CloudBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, locale, defaultPermissions, $t, super.hashCode());
+    return Objects.hash(name, locale, tags, defaultPermissions, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -190,6 +224,7 @@ public class UpdateSubscriptionVM extends CloudBaseVM {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    defaultPermissions: ").append(toIndentedString(defaultPermissions)).append("\n");
     sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");

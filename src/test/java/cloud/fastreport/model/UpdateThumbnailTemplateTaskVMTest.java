@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CreateTaskEndVM;
 import cloud.fastreport.model.UpdateTaskBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -49,11 +50,19 @@ public class UpdateThumbnailTemplateTaskVMTest {
     }
 
     /**
-     * Test the property 'delayedRunTime'
+     * Test the property 'startsOn'
      */
     @Test
-    public void delayedRunTimeTest() {
-        // TODO: test delayedRunTime
+    public void startsOnTest() {
+        // TODO: test startsOn
+    }
+
+    /**
+     * Test the property 'ends'
+     */
+    @Test
+    public void endsTest() {
+        // TODO: test ends
     }
 
     /**

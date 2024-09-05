@@ -16,13 +16,16 @@ package cloud.fastreport.model;
 import java.util.Objects;
 import cloud.fastreport.model.CreateDataSourceVM;
 import cloud.fastreport.model.DataSourceConnectionType;
+import cloud.fastreport.model.DataSourceSelectCommandVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -168,6 +171,7 @@ public class CreateDataSourceAdminVM extends CreateDataSourceVM {
     openapiFields.add("connectionString");
     openapiFields.add("subscriptionId");
     openapiFields.add("connectionType");
+    openapiFields.add("selectCommands");
     openapiFields.add("$t");
 
     // a set of required properties/fields (JSON key names)

@@ -15,13 +15,16 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import cloud.fastreport.model.CloudBaseVM;
+import cloud.fastreport.model.DataSourceSelectCommandVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -64,6 +67,10 @@ public class UpdateDataSourceVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_CONNECTION_STRING = "connectionString";
   @SerializedName(SERIALIZED_NAME_CONNECTION_STRING)
   private String connectionString;
+
+  public static final String SERIALIZED_NAME_SELECT_COMMANDS = "selectCommands";
+  @SerializedName(SERIALIZED_NAME_SELECT_COMMANDS)
+  private List<DataSourceSelectCommandVM> selectCommands;
 
   public static final String SERIALIZED_NAME_$_T = "$t";
   @SerializedName(SERIALIZED_NAME_$_T)
@@ -130,6 +137,33 @@ public class UpdateDataSourceVM extends CloudBaseVM {
   }
 
 
+  public UpdateDataSourceVM selectCommands(List<DataSourceSelectCommandVM> selectCommands) {
+    this.selectCommands = selectCommands;
+    return this;
+  }
+
+  public UpdateDataSourceVM addSelectCommandsItem(DataSourceSelectCommandVM selectCommandsItem) {
+    if (this.selectCommands == null) {
+      this.selectCommands = new ArrayList<>();
+    }
+    this.selectCommands.add(selectCommandsItem);
+    return this;
+  }
+
+   /**
+   * Get selectCommands
+   * @return selectCommands
+  **/
+  @javax.annotation.Nullable
+  public List<DataSourceSelectCommandVM> getSelectCommands() {
+    return selectCommands;
+  }
+
+  public void setSelectCommands(List<DataSourceSelectCommandVM> selectCommands) {
+    this.selectCommands = selectCommands;
+  }
+
+
   public UpdateDataSourceVM $t(String $t) {
     this.$t = $t;
     return this;
@@ -162,6 +196,7 @@ public class UpdateDataSourceVM extends CloudBaseVM {
     return Objects.equals(this.name, updateDataSourceVM.name) &&
         Objects.equals(this.subscriptionId, updateDataSourceVM.subscriptionId) &&
         Objects.equals(this.connectionString, updateDataSourceVM.connectionString) &&
+        Objects.equals(this.selectCommands, updateDataSourceVM.selectCommands) &&
         Objects.equals(this.$t, updateDataSourceVM.$t) &&
         super.equals(o);
   }
@@ -172,7 +207,7 @@ public class UpdateDataSourceVM extends CloudBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, subscriptionId, connectionString, $t, super.hashCode());
+    return Objects.hash(name, subscriptionId, connectionString, selectCommands, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -190,6 +225,7 @@ public class UpdateDataSourceVM extends CloudBaseVM {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    connectionString: ").append(toIndentedString(connectionString)).append("\n");
+    sb.append("    selectCommands: ").append(toIndentedString(selectCommands)).append("\n");
     sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();

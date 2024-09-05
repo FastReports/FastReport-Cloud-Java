@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import cloud.fastreport.model.CloudBaseVM;
+import cloud.fastreport.model.TaskEnd;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,13 +59,13 @@ public class TaskBaseVM extends CloudBaseVM {
   @SerializedName(SERIALIZED_NAME_CRON_EXPRESSION)
   private String cronExpression;
 
-  public static final String SERIALIZED_NAME_DELAYED_RUN_TIME = "delayedRunTime";
-  @SerializedName(SERIALIZED_NAME_DELAYED_RUN_TIME)
-  private OffsetDateTime delayedRunTime;
+  public static final String SERIALIZED_NAME_STARTS_ON = "startsOn";
+  @SerializedName(SERIALIZED_NAME_STARTS_ON)
+  private OffsetDateTime startsOn;
 
-  public static final String SERIALIZED_NAME_DELAYED_WAS_RUN_TIME = "delayedWasRunTime";
-  @SerializedName(SERIALIZED_NAME_DELAYED_WAS_RUN_TIME)
-  private OffsetDateTime delayedWasRunTime;
+  public static final String SERIALIZED_NAME_ENDS = "ends";
+  @SerializedName(SERIALIZED_NAME_ENDS)
+  private TaskEnd ends;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -113,41 +114,41 @@ public class TaskBaseVM extends CloudBaseVM {
   }
 
 
-  public TaskBaseVM delayedRunTime(OffsetDateTime delayedRunTime) {
-    this.delayedRunTime = delayedRunTime;
+  public TaskBaseVM startsOn(OffsetDateTime startsOn) {
+    this.startsOn = startsOn;
     return this;
   }
 
    /**
-   * Get delayedRunTime
-   * @return delayedRunTime
+   * Get startsOn
+   * @return startsOn
   **/
   @javax.annotation.Nullable
-  public OffsetDateTime getDelayedRunTime() {
-    return delayedRunTime;
+  public OffsetDateTime getStartsOn() {
+    return startsOn;
   }
 
-  public void setDelayedRunTime(OffsetDateTime delayedRunTime) {
-    this.delayedRunTime = delayedRunTime;
+  public void setStartsOn(OffsetDateTime startsOn) {
+    this.startsOn = startsOn;
   }
 
 
-  public TaskBaseVM delayedWasRunTime(OffsetDateTime delayedWasRunTime) {
-    this.delayedWasRunTime = delayedWasRunTime;
+  public TaskBaseVM ends(TaskEnd ends) {
+    this.ends = ends;
     return this;
   }
 
    /**
-   * Get delayedWasRunTime
-   * @return delayedWasRunTime
+   * Get ends
+   * @return ends
   **/
   @javax.annotation.Nullable
-  public OffsetDateTime getDelayedWasRunTime() {
-    return delayedWasRunTime;
+  public TaskEnd getEnds() {
+    return ends;
   }
 
-  public void setDelayedWasRunTime(OffsetDateTime delayedWasRunTime) {
-    this.delayedWasRunTime = delayedWasRunTime;
+  public void setEnds(TaskEnd ends) {
+    this.ends = ends;
   }
 
 
@@ -276,8 +277,8 @@ public class TaskBaseVM extends CloudBaseVM {
     }
     TaskBaseVM taskBaseVM = (TaskBaseVM) o;
     return Objects.equals(this.cronExpression, taskBaseVM.cronExpression) &&
-        Objects.equals(this.delayedRunTime, taskBaseVM.delayedRunTime) &&
-        Objects.equals(this.delayedWasRunTime, taskBaseVM.delayedWasRunTime) &&
+        Objects.equals(this.startsOn, taskBaseVM.startsOn) &&
+        Objects.equals(this.ends, taskBaseVM.ends) &&
         Objects.equals(this.id, taskBaseVM.id) &&
         Objects.equals(this.name, taskBaseVM.name) &&
         Objects.equals(this.recurrentRunTime, taskBaseVM.recurrentRunTime) &&
@@ -293,7 +294,7 @@ public class TaskBaseVM extends CloudBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(cronExpression, delayedRunTime, delayedWasRunTime, id, name, recurrentRunTime, recurrentWasRunTime, subscriptionId, $t, super.hashCode());
+    return Objects.hash(cronExpression, startsOn, ends, id, name, recurrentRunTime, recurrentWasRunTime, subscriptionId, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -309,8 +310,8 @@ public class TaskBaseVM extends CloudBaseVM {
     sb.append("class TaskBaseVM {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    cronExpression: ").append(toIndentedString(cronExpression)).append("\n");
-    sb.append("    delayedRunTime: ").append(toIndentedString(delayedRunTime)).append("\n");
-    sb.append("    delayedWasRunTime: ").append(toIndentedString(delayedWasRunTime)).append("\n");
+    sb.append("    startsOn: ").append(toIndentedString(startsOn)).append("\n");
+    sb.append("    ends: ").append(toIndentedString(ends)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    recurrentRunTime: ").append(toIndentedString(recurrentRunTime)).append("\n");

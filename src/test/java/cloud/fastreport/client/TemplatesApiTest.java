@@ -17,12 +17,14 @@ import cloud.fastreport.ApiException;
 import cloud.fastreport.model.AuditActionsVM;
 import cloud.fastreport.model.BreadcrumbsVM;
 import cloud.fastreport.model.CountVM;
+import cloud.fastreport.model.CreateFileShareVM;
 import cloud.fastreport.model.ExportTemplateVM;
 import cloud.fastreport.model.ExportVM;
 import java.io.File;
 import cloud.fastreport.model.FileIconVM;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileRenameVM;
+import cloud.fastreport.model.FileSharingKeysVM;
 import cloud.fastreport.model.FileSorting;
 import cloud.fastreport.model.FileTagsUpdateVM;
 import cloud.fastreport.model.FileVM;
@@ -84,6 +86,22 @@ public class TemplatesApiTest {
         String subscriptionId = null;
         SelectedFilesVM selectedFilesVM = null;
         api.templateFolderAndFileCopyFiles(subscriptionId, selectedFilesVM);
+        // TODO: test validations
+    }
+
+    /**
+     * Count all folders and files from recycle bin
+     *
+     * User with a Get DeletedFiles permission can access this method.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void templateFolderAndFileCountRecycleBinFoldersAndFilesTest() throws ApiException {
+        String subscriptionId = null;
+        String searchPattern = null;
+        Boolean useRegex = null;
+        CountVM response = api.templateFolderAndFileCountRecycleBinFoldersAndFiles(subscriptionId, searchPattern, useRegex);
         // TODO: test validations
     }
 
@@ -525,6 +543,19 @@ public class TemplatesApiTest {
     }
 
     /**
+     * Create a new key, that can be used to share access to a file  (You need Administrate.Anon permission to create a new key)
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void templatesCreateSharingKeyTest() throws ApiException {
+        String id = null;
+        CreateFileShareVM createFileShareVM = null;
+        FileSharingKeysVM response = api.templatesCreateSharingKey(id, createFileShareVM);
+        // TODO: test validations
+    }
+
+    /**
      * Delete specified file
      *
      * User with Delete permission can access the method.
@@ -535,6 +566,19 @@ public class TemplatesApiTest {
     public void templatesDeleteFileTest() throws ApiException {
         String id = null;
         api.templatesDeleteFile(id);
+        // TODO: test validations
+    }
+
+    /**
+     * Deletes a sharing key, making links, that utilizing it no longer work
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void templatesDeleteSharingKeyTest() throws ApiException {
+        String id = null;
+        String key = null;
+        api.templatesDeleteSharingKey(id, key);
         // TODO: test validations
     }
 
@@ -620,6 +664,18 @@ public class TemplatesApiTest {
     public void templatesGetPermissionsTest() throws ApiException {
         String id = null;
         FilePermissionsVM response = api.templatesGetPermissions(id);
+        // TODO: test validations
+    }
+
+    /**
+     * Returns all sharing keys, associated with the file
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void templatesGetSharingKeysTest() throws ApiException {
+        String id = null;
+        FileSharingKeysVM response = api.templatesGetSharingKeys(id);
         // TODO: test validations
     }
 

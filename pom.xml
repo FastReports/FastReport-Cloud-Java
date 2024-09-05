@@ -5,7 +5,7 @@
     <artifactId>fastreport-cloud-sdk</artifactId>
     <packaging>jar</packaging>
     <name>fastreport-cloud-sdk</name>
-    <version>2024.1.23</version>
+    <version>2024.2.13</version>
     <url>https://github.com/FastReports/FastReport-Cloud-Java</url>
     <description>FastReport Cloud SDK</description>
     <scm>

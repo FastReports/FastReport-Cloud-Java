@@ -23,6 +23,7 @@
 |**homePageLink** | **String** |  |  [optional] |
 |**authServerName** | **String** |  |  [optional] |
 |**updateWorkspaceLink** | **String** |  |  [optional] |
+|**sharingEnabled** | **Boolean** |  |  [optional] |
 |**$t** | **String** |  |  |
 
 

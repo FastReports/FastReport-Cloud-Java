@@ -6,6 +6,7 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 | [**exportFolderAndFileClearRecycleBin**](ExportsApi.md#exportFolderAndFileClearRecycleBin) | **DELETE** /api/rp/v1/Exports/{subscriptionId}/ClearRecycleBin | Delete all folders and files from recycle bin |
 | [**exportFolderAndFileCopyFiles**](ExportsApi.md#exportFolderAndFileCopyFiles) | **POST** /api/rp/v1/Exports/{subscriptionId}/CopyFiles | Copy folders and files to a specified folder |
+| [**exportFolderAndFileCountRecycleBinFoldersAndFiles**](ExportsApi.md#exportFolderAndFileCountRecycleBinFoldersAndFiles) | **GET** /api/rp/v1/Exports/{subscriptionId}/CountRecycleBinFolderAndFiles | Count all folders and files from recycle bin |
 | [**exportFolderAndFileDeleteFiles**](ExportsApi.md#exportFolderAndFileDeleteFiles) | **POST** /api/rp/v1/Exports/{subscriptionId}/DeleteFiles | Delete folders and files |
 | [**exportFolderAndFileGetCount**](ExportsApi.md#exportFolderAndFileGetCount) | **GET** /api/rp/v1/Exports/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder |
 | [**exportFolderAndFileGetFoldersAndFiles**](ExportsApi.md#exportFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Exports/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder |
@@ -33,12 +34,15 @@ All URIs are relative to *http://localhost*
 | [**exportFoldersUpdatePermissions**](ExportsApi.md#exportFoldersUpdatePermissions) | **POST** /api/rp/v1/Exports/{id}/permissions | Update permissions |
 | [**exportFoldersUpdateTags**](ExportsApi.md#exportFoldersUpdateTags) | **PUT** /api/rp/v1/Exports/Folder/{id}/UpdateTags | Update tags |
 | [**exportsCopyFile**](ExportsApi.md#exportsCopyFile) | **POST** /api/rp/v1/Exports/File/{id}/Copy/{folderId} | Copy file to a specified folder |
+| [**exportsCreateSharingKey**](ExportsApi.md#exportsCreateSharingKey) | **POST** /api/rp/v1/Exports/File/{id}/sharingKey | Create a new key, that can be used to share access to a file  (You need Administrate.Anon permission to create a new key) |
 | [**exportsDeleteFile**](ExportsApi.md#exportsDeleteFile) | **DELETE** /api/rp/v1/Exports/File/{id} | Delete specified file |
+| [**exportsDeleteSharingKey**](ExportsApi.md#exportsDeleteSharingKey) | **DELETE** /api/rp/v1/Exports/File/{id}/sharingKey | Deletes a sharing key, making links, that utilizing it no longer work |
 | [**exportsGetFile**](ExportsApi.md#exportsGetFile) | **GET** /api/rp/v1/Exports/File/{id} | Get export by specified id |
 | [**exportsGetFileHistory**](ExportsApi.md#exportsGetFileHistory) | **GET** /api/rp/v1/Exports/File/{id}/History | Returns list of actions, performed on this file |
 | [**exportsGetFilesCount**](ExportsApi.md#exportsGetFilesCount) | **GET** /api/rp/v1/Exports/Folder/{id}/CountFiles | Get count of files what contains in a specified folder |
 | [**exportsGetFilesList**](ExportsApi.md#exportsGetFilesList) | **GET** /api/rp/v1/Exports/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason. |
 | [**exportsGetPermissions**](ExportsApi.md#exportsGetPermissions) | **GET** /api/rp/v1/Exports/File/{id}/permissions |  |
+| [**exportsGetSharingKeys**](ExportsApi.md#exportsGetSharingKeys) | **GET** /api/rp/v1/Exports/File/{id}/sharingKeys | Returns all sharing keys, associated with the file |
 | [**exportsMoveFile**](ExportsApi.md#exportsMoveFile) | **POST** /api/rp/v1/Exports/File/{id}/Move/{folderId} | Move file to a specified folder |
 | [**exportsMoveFileToBin**](ExportsApi.md#exportsMoveFileToBin) | **DELETE** /api/rp/v1/Exports/File/{id}/ToBin | Move specified file to recycle bin |
 | [**exportsRecoverFile**](ExportsApi.md#exportsRecoverFile) | **POST** /api/rp/v1/Exports/File/{id}/Recover | Recover specified file from bin |
@@ -200,6 +204,86 @@ null (empty response body)
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
 | **500** | Server Error |  -  |
+
+<a id="exportFolderAndFileCountRecycleBinFoldersAndFiles"></a>
+# **exportFolderAndFileCountRecycleBinFoldersAndFiles**
+> CountVM exportFolderAndFileCountRecycleBinFoldersAndFiles(subscriptionId, searchPattern, useRegex)
+
+Count all folders and files from recycle bin
+
+User with a Get DeletedFiles permission can access this method.
+
+### Example
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.ExportsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
+
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
+
+    ExportsApi apiInstance = new ExportsApi(defaultClient);
+    String subscriptionId = "subscriptionId_example"; // String | subscription id
+    String searchPattern = ""; // String | 
+    Boolean useRegex = false; // Boolean | 
+    try {
+      CountVM result = apiInstance.exportFolderAndFileCountRecycleBinFoldersAndFiles(subscriptionId, searchPattern, useRegex);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ExportsApi#exportFolderAndFileCountRecycleBinFoldersAndFiles");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| subscription id | |
+| **searchPattern** | **String**|  | [optional] [default to ] |
+| **useRegex** | **Boolean**|  | [optional] [default to false] |
+
+### Return type
+
+[**CountVM**](CountVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Returns list of the files from a specified folder |  -  |
+| **400** | Params are not valid |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="exportFolderAndFileDeleteFiles"></a>
 # **exportFolderAndFileDeleteFiles**
@@ -395,7 +479,7 @@ public class Example {
     String id = "id_example"; // String | folder id
     Integer skip = 0; // Integer | number of folder and files, that have to be skipped
     Integer take = 10; // Integer | number of folder and files, that have to be returned
-    FileSorting orderBy = FileSorting.fromValue("None"); // FileSorting | indicates a field to sort by
+    FileSorting orderBy = FileSorting.fromValue("CreatedTime"); // FileSorting | indicates a field to sort by
     Boolean desc = false; // Boolean | indicates if sorting is descending
     String searchPattern = ""; // String | 
     Boolean useRegex = false; // Boolean | 
@@ -420,7 +504,7 @@ public class Example {
 | **id** | **String**| folder id | |
 | **skip** | **Integer**| number of folder and files, that have to be skipped | [optional] [default to 0] |
 | **take** | **Integer**| number of folder and files, that have to be returned | [optional] [default to 10] |
-| **orderBy** | [**FileSorting**](.md)| indicates a field to sort by | [optional] [enum: None, CreatedTime, EditedTime, Size, Name] |
+| **orderBy** | [**FileSorting**](.md)| indicates a field to sort by | [optional] [enum: CreatedTime, EditedTime, Size, Name] |
 | **desc** | **Boolean**| indicates if sorting is descending | [optional] [default to false] |
 | **searchPattern** | **String**|  | [optional] [default to ] |
 | **useRegex** | **Boolean**|  | [optional] [default to false] |
@@ -483,7 +567,7 @@ public class Example {
     String subscriptionId = "subscriptionId_example"; // String | subscription id
     Integer skip = 0; // Integer | number of folder and files, that have to be skipped
     Integer take = 10; // Integer | number of folder and files, that have to be returned
-    FileSorting orderBy = FileSorting.fromValue("None"); // FileSorting | indicates a field to sort by
+    FileSorting orderBy = FileSorting.fromValue("CreatedTime"); // FileSorting | indicates a field to sort by
     Boolean desc = false; // Boolean | indicates if sorting is descending
     String searchPattern = ""; // String | 
     Boolean useRegex = false; // Boolean | 
@@ -508,7 +592,7 @@ public class Example {
 | **subscriptionId** | **String**| subscription id | |
 | **skip** | **Integer**| number of folder and files, that have to be skipped | [optional] [default to 0] |
 | **take** | **Integer**| number of folder and files, that have to be returned | [optional] [default to 10] |
-| **orderBy** | [**FileSorting**](.md)| indicates a field to sort by | [optional] [enum: None, CreatedTime, EditedTime, Size, Name] |
+| **orderBy** | [**FileSorting**](.md)| indicates a field to sort by | [optional] [enum: CreatedTime, EditedTime, Size, Name] |
 | **desc** | **Boolean**| indicates if sorting is descending | [optional] [default to false] |
 | **searchPattern** | **String**|  | [optional] [default to ] |
 | **useRegex** | **Boolean**|  | [optional] [default to false] |
@@ -1264,7 +1348,7 @@ public class Example {
     String id = "id_example"; // String | folder id
     Integer skip = 0; // Integer | number of files, that have to be skipped
     Integer take = 10; // Integer | number of files, that have to be returned
-    FileSorting orderBy = FileSorting.fromValue("None"); // FileSorting | 
+    FileSorting orderBy = FileSorting.fromValue("CreatedTime"); // FileSorting | 
     Boolean desc = false; // Boolean | 
     String searchPattern = ""; // String | 
     Boolean useRegex = false; // Boolean | 
@@ -1289,7 +1373,7 @@ public class Example {
 | **id** | **String**| folder id | |
 | **skip** | **Integer**| number of files, that have to be skipped | [optional] [default to 0] |
 | **take** | **Integer**| number of files, that have to be returned | [optional] [default to 10] |
-| **orderBy** | [**FileSorting**](.md)|  | [optional] [enum: None, CreatedTime, EditedTime, Size, Name] |
+| **orderBy** | [**FileSorting**](.md)|  | [optional] [enum: CreatedTime, EditedTime, Size, Name] |
 | **desc** | **Boolean**|  | [optional] [default to false] |
 | **searchPattern** | **String**|  | [optional] [default to ] |
 | **useRegex** | **Boolean**|  | [optional] [default to false] |
@@ -2326,6 +2410,83 @@ public class Example {
 | **404** | File, subscription or folder not found |  -  |
 | **500** | Exception thrown |  -  |
 
+<a id="exportsCreateSharingKey"></a>
+# **exportsCreateSharingKey**
+> FileSharingKeysVM exportsCreateSharingKey(id, createFileShareVM)
+
+Create a new key, that can be used to share access to a file  (You need Administrate.Anon permission to create a new key)
+
+### Example
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.ExportsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
+
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
+
+    ExportsApi apiInstance = new ExportsApi(defaultClient);
+    String id = "id_example"; // String | file id
+    CreateFileShareVM createFileShareVM = new CreateFileShareVM(); // CreateFileShareVM | parameters for sharing key creation
+    try {
+      FileSharingKeysVM result = apiInstance.exportsCreateSharingKey(id, createFileShareVM);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ExportsApi#exportsCreateSharingKey");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| file id | |
+| **createFileShareVM** | [**CreateFileShareVM**](CreateFileShareVM.md)| parameters for sharing key creation | [optional] |
+
+### Return type
+
+[**FileSharingKeysVM**](FileSharingKeysVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+| **402** | Client Error |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
+
 <a id="exportsDeleteFile"></a>
 # **exportsDeleteFile**
 > exportsDeleteFile(id)
@@ -2401,6 +2562,82 @@ null (empty response body)
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
+
+<a id="exportsDeleteSharingKey"></a>
+# **exportsDeleteSharingKey**
+> exportsDeleteSharingKey(id, key)
+
+Deletes a sharing key, making links, that utilizing it no longer work
+
+### Example
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.ExportsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
+
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
+
+    ExportsApi apiInstance = new ExportsApi(defaultClient);
+    String id = "id_example"; // String | file id
+    String key = "key_example"; // String | key to delete
+    try {
+      apiInstance.exportsDeleteSharingKey(id, key);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ExportsApi#exportsDeleteSharingKey");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| file id | |
+| **key** | **String**| key to delete | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | No Content |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+| **402** | Client Error |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
 
 <a id="exportsGetFile"></a>
 # **exportsGetFile**
@@ -2667,7 +2904,7 @@ public class Example {
     Integer skip = 0; // Integer | number of files, that have to be skipped
     Integer take = 10; // Integer | number of files, that have to be returned
     String searchPattern = "searchPattern_example"; // String | 
-    FileSorting orderBy = FileSorting.fromValue("None"); // FileSorting | 
+    FileSorting orderBy = FileSorting.fromValue("CreatedTime"); // FileSorting | 
     Boolean desc = false; // Boolean | 
     Boolean useRegex = false; // Boolean | 
     try {
@@ -2692,7 +2929,7 @@ public class Example {
 | **skip** | **Integer**| number of files, that have to be skipped | [optional] [default to 0] |
 | **take** | **Integer**| number of files, that have to be returned | [optional] [default to 10] |
 | **searchPattern** | **String**|  | [optional] |
-| **orderBy** | [**FileSorting**](.md)|  | [optional] [enum: None, CreatedTime, EditedTime, Size, Name] |
+| **orderBy** | [**FileSorting**](.md)|  | [optional] [enum: CreatedTime, EditedTime, Size, Name] |
 | **desc** | **Boolean**|  | [optional] [default to false] |
 | **useRegex** | **Boolean**|  | [optional] [default to false] |
 
@@ -2792,6 +3029,81 @@ public class Example {
 | **402** | Client Error |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
+
+<a id="exportsGetSharingKeys"></a>
+# **exportsGetSharingKeys**
+> FileSharingKeysVM exportsGetSharingKeys(id)
+
+Returns all sharing keys, associated with the file
+
+### Example
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.ExportsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
+
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
+
+    ExportsApi apiInstance = new ExportsApi(defaultClient);
+    String id = "id_example"; // String | file id
+    try {
+      FileSharingKeysVM result = apiInstance.exportsGetSharingKeys(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ExportsApi#exportsGetSharingKeys");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| file id | |
+
+### Return type
+
+[**FileSharingKeysVM**](FileSharingKeysVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+| **402** | Client Error |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
 
 <a id="exportsMoveFile"></a>
 # **exportsMoveFile**

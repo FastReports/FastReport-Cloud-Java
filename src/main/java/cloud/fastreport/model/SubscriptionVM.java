@@ -89,6 +89,10 @@ public class SubscriptionVM extends CloudBaseVM {
   @SerializedName(SERIALIZED_NAME_EXPORTS_FOLDER)
   private SubscriptionFolder exportsFolder;
 
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  private List<String> tags;
+
   public static final String SERIALIZED_NAME_$_T = "$t";
   @SerializedName(SERIALIZED_NAME_$_T)
   protected String $t;
@@ -257,6 +261,33 @@ public class SubscriptionVM extends CloudBaseVM {
   }
 
 
+  public SubscriptionVM tags(List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public SubscriptionVM addTagsItem(String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+   /**
+   * Get tags
+   * @return tags
+  **/
+  @javax.annotation.Nullable
+  public List<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<String> tags) {
+    this.tags = tags;
+  }
+
+
   public SubscriptionVM $t(String $t) {
     this.$t = $t;
     return this;
@@ -294,6 +325,7 @@ public class SubscriptionVM extends CloudBaseVM {
         Objects.equals(this.templatesFolder, subscriptionVM.templatesFolder) &&
         Objects.equals(this.reportsFolder, subscriptionVM.reportsFolder) &&
         Objects.equals(this.exportsFolder, subscriptionVM.exportsFolder) &&
+        Objects.equals(this.tags, subscriptionVM.tags) &&
         Objects.equals(this.$t, subscriptionVM.$t) &&
         super.equals(o);
   }
@@ -304,7 +336,7 @@ public class SubscriptionVM extends CloudBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, locale, current, old, templatesFolder, reportsFolder, exportsFolder, $t, super.hashCode());
+    return Objects.hash(id, name, locale, current, old, templatesFolder, reportsFolder, exportsFolder, tags, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -327,6 +359,7 @@ public class SubscriptionVM extends CloudBaseVM {
     sb.append("    templatesFolder: ").append(toIndentedString(templatesFolder)).append("\n");
     sb.append("    reportsFolder: ").append(toIndentedString(reportsFolder)).append("\n");
     sb.append("    exportsFolder: ").append(toIndentedString(exportsFolder)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();

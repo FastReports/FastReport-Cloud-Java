@@ -21,5 +21,7 @@
 
 * `FILESWITHOUTCHUNKS` (value: `"FilesWithoutChunks"`)
 
+* `FILESWITHDELETEDPARENTS` (value: `"FilesWithDeletedParents"`)
+
 
 

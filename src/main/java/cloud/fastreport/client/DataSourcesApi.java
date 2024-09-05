@@ -28,6 +28,8 @@ import java.io.IOException;
 
 
 import cloud.fastreport.model.CreateDataSourceVM;
+import cloud.fastreport.model.DataSourceConnectionType;
+import cloud.fastreport.model.DataSourceParameterTypesVM;
 import cloud.fastreport.model.DataSourcePermissionsVM;
 import cloud.fastreport.model.DataSourceSorting;
 import cloud.fastreport.model.DataSourceVM;
@@ -36,6 +38,7 @@ import cloud.fastreport.model.ProblemDetails;
 import cloud.fastreport.model.RenameDataSourceVM;
 import cloud.fastreport.model.UpdateDataSourceConnectionStringVM;
 import cloud.fastreport.model.UpdateDataSourcePermissionsVM;
+import cloud.fastreport.model.UpdateDataSourceSelectCommandsVM;
 import cloud.fastreport.model.UpdateDataSourceSubscriptionVM;
 
 import java.lang.reflect.Type;
@@ -951,6 +954,137 @@ public class DataSourcesApi {
         return localVarCall;
     }
     /**
+     * Build call for dataSourcesGetParameterTypes
+     * @param dataSourceType data source type (MsSql, MySql, etc.) (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Data source doesn&#39;t support parameters or wrong data source name </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call dataSourcesGetParameterTypesCall(DataSourceConnectionType dataSourceType, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/data/v1/DataSources/parameterTypes/{dataSourceType}"
+            .replace("{" + "dataSourceType" + "}", localVarApiClient.escapeString(dataSourceType.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call dataSourcesGetParameterTypesValidateBeforeCall(DataSourceConnectionType dataSourceType, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'dataSourceType' is set
+        if (dataSourceType == null) {
+            throw new ApiException("Missing the required parameter 'dataSourceType' when calling dataSourcesGetParameterTypes(Async)");
+        }
+
+        return dataSourcesGetParameterTypesCall(dataSourceType, _callback);
+
+    }
+
+    /**
+     * Get data source parameter DataType&#39;s
+     * 
+     * @param dataSourceType data source type (MsSql, MySql, etc.) (required)
+     * @return DataSourceParameterTypesVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Data source doesn&#39;t support parameters or wrong data source name </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
+     </table>
+     */
+    public DataSourceParameterTypesVM dataSourcesGetParameterTypes(DataSourceConnectionType dataSourceType) throws ApiException {
+        ApiResponse<DataSourceParameterTypesVM> localVarResp = dataSourcesGetParameterTypesWithHttpInfo(dataSourceType);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get data source parameter DataType&#39;s
+     * 
+     * @param dataSourceType data source type (MsSql, MySql, etc.) (required)
+     * @return ApiResponse&lt;DataSourceParameterTypesVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Data source doesn&#39;t support parameters or wrong data source name </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<DataSourceParameterTypesVM> dataSourcesGetParameterTypesWithHttpInfo(DataSourceConnectionType dataSourceType) throws ApiException {
+        okhttp3.Call localVarCall = dataSourcesGetParameterTypesValidateBeforeCall(dataSourceType, null);
+        Type localVarReturnType = new TypeToken<DataSourceParameterTypesVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get data source parameter DataType&#39;s (asynchronously)
+     * 
+     * @param dataSourceType data source type (MsSql, MySql, etc.) (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Data source doesn&#39;t support parameters or wrong data source name </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call dataSourcesGetParameterTypesAsync(DataSourceConnectionType dataSourceType, final ApiCallback<DataSourceParameterTypesVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = dataSourcesGetParameterTypesValidateBeforeCall(dataSourceType, _callback);
+        Type localVarReturnType = new TypeToken<DataSourceParameterTypesVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for dataSourcesGetPermissions
      * @param id data source id (required)
      * @param _callback Callback for upload/download progress
@@ -1278,7 +1412,7 @@ public class DataSourcesApi {
         Object localVarPostBody = updateDataSourceConnectionStringVM;
 
         // create path and map variables
-        String localVarPath = "/api/data/v1/DataSources/{id}/ConnectionString"
+        String localVarPath = "/api/data/v1/DataSources/{id}/connectionString"
             .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1537,6 +1671,156 @@ public class DataSourcesApi {
 
         okhttp3.Call localVarCall = dataSourcesUpdatePermissionsValidateBeforeCall(id, updateDataSourcePermissionsVM, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for dataSourcesUpdateSelectCommands
+     * @param id data source id (required)
+     * @param updateDataSourceSelectCommandsVM update viewmodel (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; connection string from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call dataSourcesUpdateSelectCommandsCall(String id, UpdateDataSourceSelectCommandsVM updateDataSourceSelectCommandsVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = updateDataSourceSelectCommandsVM;
+
+        // create path and map variables
+        String localVarPath = "/api/data/v1/DataSources/{id}/selectCommands"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call dataSourcesUpdateSelectCommandsValidateBeforeCall(String id, UpdateDataSourceSelectCommandsVM updateDataSourceSelectCommandsVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling dataSourcesUpdateSelectCommands(Async)");
+        }
+
+        return dataSourcesUpdateSelectCommandsCall(id, updateDataSourceSelectCommandsVM, _callback);
+
+    }
+
+    /**
+     * Update data source&#39;s select commands by id
+     * 
+     * @param id data source id (required)
+     * @param updateDataSourceSelectCommandsVM update viewmodel (optional)
+     * @return DataSourceVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; connection string from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
+     </table>
+     */
+    public DataSourceVM dataSourcesUpdateSelectCommands(String id, UpdateDataSourceSelectCommandsVM updateDataSourceSelectCommandsVM) throws ApiException {
+        ApiResponse<DataSourceVM> localVarResp = dataSourcesUpdateSelectCommandsWithHttpInfo(id, updateDataSourceSelectCommandsVM);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update data source&#39;s select commands by id
+     * 
+     * @param id data source id (required)
+     * @param updateDataSourceSelectCommandsVM update viewmodel (optional)
+     * @return ApiResponse&lt;DataSourceVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; connection string from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<DataSourceVM> dataSourcesUpdateSelectCommandsWithHttpInfo(String id, UpdateDataSourceSelectCommandsVM updateDataSourceSelectCommandsVM) throws ApiException {
+        okhttp3.Call localVarCall = dataSourcesUpdateSelectCommandsValidateBeforeCall(id, updateDataSourceSelectCommandsVM, null);
+        Type localVarReturnType = new TypeToken<DataSourceVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update data source&#39;s select commands by id (asynchronously)
+     * 
+     * @param id data source id (required)
+     * @param updateDataSourceSelectCommandsVM update viewmodel (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Everything is all right </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> id is not hex24 or VM is not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Subscription is outdated or have not enough limits </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have permisison to update data sources&#39; connection string from this subscription (or in your default (1st) subscription) </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> There is no data source or subscription with provided id found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Try again, if error still here - text our support </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call dataSourcesUpdateSelectCommandsAsync(String id, UpdateDataSourceSelectCommandsVM updateDataSourceSelectCommandsVM, final ApiCallback<DataSourceVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = dataSourcesUpdateSelectCommandsValidateBeforeCall(id, updateDataSourceSelectCommandsVM, _callback);
+        Type localVarReturnType = new TypeToken<DataSourceVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**

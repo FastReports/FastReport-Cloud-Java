@@ -43,7 +43,9 @@ public enum ProblemType {
   
   WRONGSUBSCRIPITONSIZES("WrongSubscripitonSizes"),
   
-  FILESWITHOUTCHUNKS("FilesWithoutChunks");
+  FILESWITHOUTCHUNKS("FilesWithoutChunks"),
+  
+  FILESWITHDELETEDPARENTS("FilesWithDeletedParents");
 
   private String value;
 

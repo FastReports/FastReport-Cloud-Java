@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CreateTaskEndVM;
 import cloud.fastreport.model.ExportFormat;
 import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.OutputFileVM;
@@ -188,7 +189,8 @@ public class UpdateExportTemplateTaskVM extends UpdateExportReportTaskVM {
     openapiFields.add("outputFile");
     openapiFields.add("transportIds");
     openapiFields.add("cronExpression");
-    openapiFields.add("delayedRunTime");
+    openapiFields.add("startsOn");
+    openapiFields.add("ends");
     openapiFields.add("name");
 
     // a set of required properties/fields (JSON key names)

@@ -22,7 +22,9 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -73,6 +75,10 @@ public class CreateSubscriptionVM extends CloudBaseVM {
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
   private String userId;
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  private List<String> tags;
 
   public static final String SERIALIZED_NAME_$_T = "$t";
   @SerializedName(SERIALIZED_NAME_$_T)
@@ -177,6 +183,33 @@ public class CreateSubscriptionVM extends CloudBaseVM {
   }
 
 
+  public CreateSubscriptionVM tags(List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public CreateSubscriptionVM addTagsItem(String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+   /**
+   * Get tags
+   * @return tags
+  **/
+  @javax.annotation.Nullable
+  public List<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<String> tags) {
+    this.tags = tags;
+  }
+
+
   public CreateSubscriptionVM $t(String $t) {
     this.$t = $t;
     return this;
@@ -211,6 +244,7 @@ public class CreateSubscriptionVM extends CloudBaseVM {
         Objects.equals(this.end, createSubscriptionVM.end) &&
         Objects.equals(this.name, createSubscriptionVM.name) &&
         Objects.equals(this.userId, createSubscriptionVM.userId) &&
+        Objects.equals(this.tags, createSubscriptionVM.tags) &&
         Objects.equals(this.$t, createSubscriptionVM.$t) &&
         super.equals(o);
   }
@@ -221,7 +255,7 @@ public class CreateSubscriptionVM extends CloudBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(planId, start, end, name, userId, $t, super.hashCode());
+    return Objects.hash(planId, start, end, name, userId, tags, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -241,6 +275,7 @@ public class CreateSubscriptionVM extends CloudBaseVM {
     sb.append("    end: ").append(toIndentedString(end)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();

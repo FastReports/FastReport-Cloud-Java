@@ -17,12 +17,14 @@ import cloud.fastreport.ApiException;
 import cloud.fastreport.model.AuditActionsVM;
 import cloud.fastreport.model.BreadcrumbsVM;
 import cloud.fastreport.model.CountVM;
+import cloud.fastreport.model.CreateFileShareVM;
 import cloud.fastreport.model.ExportFolderCreateVM;
 import cloud.fastreport.model.ExportVM;
 import cloud.fastreport.model.ExportsVM;
 import cloud.fastreport.model.FileIconVM;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileRenameVM;
+import cloud.fastreport.model.FileSharingKeysVM;
 import cloud.fastreport.model.FileSorting;
 import cloud.fastreport.model.FileTagsUpdateVM;
 import cloud.fastreport.model.FileVM;
@@ -76,6 +78,22 @@ public class ExportsApiTest {
         String subscriptionId = null;
         SelectedFilesVM selectedFilesVM = null;
         api.exportFolderAndFileCopyFiles(subscriptionId, selectedFilesVM);
+        // TODO: test validations
+    }
+
+    /**
+     * Count all folders and files from recycle bin
+     *
+     * User with a Get DeletedFiles permission can access this method.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void exportFolderAndFileCountRecycleBinFoldersAndFilesTest() throws ApiException {
+        String subscriptionId = null;
+        String searchPattern = null;
+        Boolean useRegex = null;
+        CountVM response = api.exportFolderAndFileCountRecycleBinFoldersAndFiles(subscriptionId, searchPattern, useRegex);
         // TODO: test validations
     }
 
@@ -487,6 +505,19 @@ public class ExportsApiTest {
     }
 
     /**
+     * Create a new key, that can be used to share access to a file  (You need Administrate.Anon permission to create a new key)
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void exportsCreateSharingKeyTest() throws ApiException {
+        String id = null;
+        CreateFileShareVM createFileShareVM = null;
+        FileSharingKeysVM response = api.exportsCreateSharingKey(id, createFileShareVM);
+        // TODO: test validations
+    }
+
+    /**
      * Delete specified file
      *
      * User with Delete permission can access the method.
@@ -497,6 +528,19 @@ public class ExportsApiTest {
     public void exportsDeleteFileTest() throws ApiException {
         String id = null;
         api.exportsDeleteFile(id);
+        // TODO: test validations
+    }
+
+    /**
+     * Deletes a sharing key, making links, that utilizing it no longer work
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void exportsDeleteSharingKeyTest() throws ApiException {
+        String id = null;
+        String key = null;
+        api.exportsDeleteSharingKey(id, key);
         // TODO: test validations
     }
 
@@ -565,6 +609,18 @@ public class ExportsApiTest {
     public void exportsGetPermissionsTest() throws ApiException {
         String id = null;
         FilePermissionsVM response = api.exportsGetPermissions(id);
+        // TODO: test validations
+    }
+
+    /**
+     * Returns all sharing keys, associated with the file
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void exportsGetSharingKeysTest() throws ApiException {
+        String id = null;
+        FileSharingKeysVM response = api.exportsGetSharingKeys(id);
         // TODO: test validations
     }
 

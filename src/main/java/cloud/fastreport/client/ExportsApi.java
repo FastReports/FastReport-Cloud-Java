@@ -30,12 +30,14 @@ import java.io.IOException;
 import cloud.fastreport.model.AuditActionsVM;
 import cloud.fastreport.model.BreadcrumbsVM;
 import cloud.fastreport.model.CountVM;
+import cloud.fastreport.model.CreateFileShareVM;
 import cloud.fastreport.model.ExportFolderCreateVM;
 import cloud.fastreport.model.ExportVM;
 import cloud.fastreport.model.ExportsVM;
 import cloud.fastreport.model.FileIconVM;
 import cloud.fastreport.model.FilePermissionsVM;
 import cloud.fastreport.model.FileRenameVM;
+import cloud.fastreport.model.FileSharingKeysVM;
 import cloud.fastreport.model.FileSorting;
 import cloud.fastreport.model.FileTagsUpdateVM;
 import cloud.fastreport.model.FileVM;
@@ -370,6 +372,161 @@ public class ExportsApi {
 
         okhttp3.Call localVarCall = exportFolderAndFileCopyFilesValidateBeforeCall(subscriptionId, selectedFilesVM, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportFolderAndFileCountRecycleBinFoldersAndFiles
+     * @param subscriptionId subscription id (required)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileCountRecycleBinFoldersAndFilesCall(String subscriptionId, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/{subscriptionId}/CountRecycleBinFolderAndFiles"
+            .replace("{" + "subscriptionId" + "}", localVarApiClient.escapeString(subscriptionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (searchPattern != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("searchPattern", searchPattern));
+        }
+
+        if (useRegex != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("useRegex", useRegex));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportFolderAndFileCountRecycleBinFoldersAndFilesValidateBeforeCall(String subscriptionId, String searchPattern, Boolean useRegex, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'subscriptionId' is set
+        if (subscriptionId == null) {
+            throw new ApiException("Missing the required parameter 'subscriptionId' when calling exportFolderAndFileCountRecycleBinFoldersAndFiles(Async)");
+        }
+
+        return exportFolderAndFileCountRecycleBinFoldersAndFilesCall(subscriptionId, searchPattern, useRegex, _callback);
+
+    }
+
+    /**
+     * Count all folders and files from recycle bin
+     * User with a Get DeletedFiles permission can access this method.
+     * @param subscriptionId subscription id (required)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @return CountVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public CountVM exportFolderAndFileCountRecycleBinFoldersAndFiles(String subscriptionId, String searchPattern, Boolean useRegex) throws ApiException {
+        ApiResponse<CountVM> localVarResp = exportFolderAndFileCountRecycleBinFoldersAndFilesWithHttpInfo(subscriptionId, searchPattern, useRegex);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Count all folders and files from recycle bin
+     * User with a Get DeletedFiles permission can access this method.
+     * @param subscriptionId subscription id (required)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @return ApiResponse&lt;CountVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<CountVM> exportFolderAndFileCountRecycleBinFoldersAndFilesWithHttpInfo(String subscriptionId, String searchPattern, Boolean useRegex) throws ApiException {
+        okhttp3.Call localVarCall = exportFolderAndFileCountRecycleBinFoldersAndFilesValidateBeforeCall(subscriptionId, searchPattern, useRegex, null);
+        Type localVarReturnType = new TypeToken<CountVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Count all folders and files from recycle bin (asynchronously)
+     * User with a Get DeletedFiles permission can access this method.
+     * @param subscriptionId subscription id (required)
+     * @param searchPattern  (optional, default to )
+     * @param useRegex  (optional, default to false)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of the files from a specified folder </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Params are not valid </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Payment required, subscription is blocked </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> You don&#39;t have rights for the operation </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Subscription not found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportFolderAndFileCountRecycleBinFoldersAndFilesAsync(String subscriptionId, String searchPattern, Boolean useRegex, final ApiCallback<CountVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportFolderAndFileCountRecycleBinFoldersAndFilesValidateBeforeCall(subscriptionId, searchPattern, useRegex, _callback);
+        Type localVarReturnType = new TypeToken<CountVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
@@ -4435,6 +4592,156 @@ public class ExportsApi {
         return localVarCall;
     }
     /**
+     * Build call for exportsCreateSharingKey
+     * @param id file id (required)
+     * @param createFileShareVM parameters for sharing key creation (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsCreateSharingKeyCall(String id, CreateFileShareVM createFileShareVM, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = createFileShareVM;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/sharingKey"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsCreateSharingKeyValidateBeforeCall(String id, CreateFileShareVM createFileShareVM, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsCreateSharingKey(Async)");
+        }
+
+        return exportsCreateSharingKeyCall(id, createFileShareVM, _callback);
+
+    }
+
+    /**
+     * Create a new key, that can be used to share access to a file  (You need Administrate.Anon permission to create a new key)
+     * 
+     * @param id file id (required)
+     * @param createFileShareVM parameters for sharing key creation (optional)
+     * @return FileSharingKeysVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public FileSharingKeysVM exportsCreateSharingKey(String id, CreateFileShareVM createFileShareVM) throws ApiException {
+        ApiResponse<FileSharingKeysVM> localVarResp = exportsCreateSharingKeyWithHttpInfo(id, createFileShareVM);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Create a new key, that can be used to share access to a file  (You need Administrate.Anon permission to create a new key)
+     * 
+     * @param id file id (required)
+     * @param createFileShareVM parameters for sharing key creation (optional)
+     * @return ApiResponse&lt;FileSharingKeysVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FileSharingKeysVM> exportsCreateSharingKeyWithHttpInfo(String id, CreateFileShareVM createFileShareVM) throws ApiException {
+        okhttp3.Call localVarCall = exportsCreateSharingKeyValidateBeforeCall(id, createFileShareVM, null);
+        Type localVarReturnType = new TypeToken<FileSharingKeysVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Create a new key, that can be used to share access to a file  (You need Administrate.Anon permission to create a new key) (asynchronously)
+     * 
+     * @param id file id (required)
+     * @param createFileShareVM parameters for sharing key creation (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsCreateSharingKeyAsync(String id, CreateFileShareVM createFileShareVM, final ApiCallback<FileSharingKeysVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsCreateSharingKeyValidateBeforeCall(id, createFileShareVM, _callback);
+        Type localVarReturnType = new TypeToken<FileSharingKeysVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for exportsDeleteFile
      * @param id file id (required)
      * @param _callback Callback for upload/download progress
@@ -4570,6 +4877,155 @@ public class ExportsApi {
     public okhttp3.Call exportsDeleteFileAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = exportsDeleteFileValidateBeforeCall(id, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsDeleteSharingKey
+     * @param id file id (required)
+     * @param key key to delete (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsDeleteSharingKeyCall(String id, String key, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/sharingKey"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()))
+            .replace("{" + "key" + "}", localVarApiClient.escapeString(key.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsDeleteSharingKeyValidateBeforeCall(String id, String key, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsDeleteSharingKey(Async)");
+        }
+
+        // verify the required parameter 'key' is set
+        if (key == null) {
+            throw new ApiException("Missing the required parameter 'key' when calling exportsDeleteSharingKey(Async)");
+        }
+
+        return exportsDeleteSharingKeyCall(id, key, _callback);
+
+    }
+
+    /**
+     * Deletes a sharing key, making links, that utilizing it no longer work
+     * 
+     * @param id file id (required)
+     * @param key key to delete (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public void exportsDeleteSharingKey(String id, String key) throws ApiException {
+        exportsDeleteSharingKeyWithHttpInfo(id, key);
+    }
+
+    /**
+     * Deletes a sharing key, making links, that utilizing it no longer work
+     * 
+     * @param id file id (required)
+     * @param key key to delete (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> exportsDeleteSharingKeyWithHttpInfo(String id, String key) throws ApiException {
+        okhttp3.Call localVarCall = exportsDeleteSharingKeyValidateBeforeCall(id, key, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Deletes a sharing key, making links, that utilizing it no longer work (asynchronously)
+     * 
+     * @param id file id (required)
+     * @param key key to delete (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> No Content </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsDeleteSharingKeyAsync(String id, String key, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsDeleteSharingKeyValidateBeforeCall(id, key, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
@@ -5341,6 +5797,149 @@ public class ExportsApi {
 
         okhttp3.Call localVarCall = exportsGetPermissionsValidateBeforeCall(id, _callback);
         Type localVarReturnType = new TypeToken<FilePermissionsVM>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for exportsGetSharingKeys
+     * @param id file id (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsGetSharingKeysCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/rp/v1/Exports/File/{id}/sharingKeys"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKey", "JWT" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call exportsGetSharingKeysValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling exportsGetSharingKeys(Async)");
+        }
+
+        return exportsGetSharingKeysCall(id, _callback);
+
+    }
+
+    /**
+     * Returns all sharing keys, associated with the file
+     * 
+     * @param id file id (required)
+     * @return FileSharingKeysVM
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public FileSharingKeysVM exportsGetSharingKeys(String id) throws ApiException {
+        ApiResponse<FileSharingKeysVM> localVarResp = exportsGetSharingKeysWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Returns all sharing keys, associated with the file
+     * 
+     * @param id file id (required)
+     * @return ApiResponse&lt;FileSharingKeysVM&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FileSharingKeysVM> exportsGetSharingKeysWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = exportsGetSharingKeysValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<FileSharingKeysVM>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Returns all sharing keys, associated with the file (asynchronously)
+     * 
+     * @param id file id (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+        <tr><td> 402 </td><td> Client Error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call exportsGetSharingKeysAsync(String id, final ApiCallback<FileSharingKeysVM> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = exportsGetSharingKeysValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<FileSharingKeysVM>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

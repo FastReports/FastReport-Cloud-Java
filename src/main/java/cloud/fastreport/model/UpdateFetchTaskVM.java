@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CreateTaskEndVM;
 import cloud.fastreport.model.UpdateTaskBaseVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -165,7 +166,8 @@ public class UpdateFetchTaskVM extends UpdateTaskBaseVM {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("cronExpression");
-    openapiFields.add("delayedRunTime");
+    openapiFields.add("startsOn");
+    openapiFields.add("ends");
     openapiFields.add("name");
     openapiFields.add("$t");
 

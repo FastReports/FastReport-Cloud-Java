@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import cloud.fastreport.model.TaskBaseVM;
+import cloud.fastreport.model.TaskEnd;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -165,8 +166,8 @@ public class ThumbnailTemplateTaskVM extends TaskBaseVM {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("cronExpression");
-    openapiFields.add("delayedRunTime");
-    openapiFields.add("delayedWasRunTime");
+    openapiFields.add("startsOn");
+    openapiFields.add("ends");
     openapiFields.add("id");
     openapiFields.add("name");
     openapiFields.add("recurrentRunTime");

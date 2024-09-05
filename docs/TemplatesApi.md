@@ -6,6 +6,7 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 | [**templateFolderAndFileClearRecycleBin**](TemplatesApi.md#templateFolderAndFileClearRecycleBin) | **DELETE** /api/rp/v1/Templates/{subscriptionId}/ClearRecycleBin | Delete all folders and files from recycle bin |
 | [**templateFolderAndFileCopyFiles**](TemplatesApi.md#templateFolderAndFileCopyFiles) | **POST** /api/rp/v1/Templates/{subscriptionId}/CopyFiles | Copy folders and files to a specified folder |
+| [**templateFolderAndFileCountRecycleBinFoldersAndFiles**](TemplatesApi.md#templateFolderAndFileCountRecycleBinFoldersAndFiles) | **GET** /api/rp/v1/Templates/{subscriptionId}/CountRecycleBinFolderAndFiles | Count all folders and files from recycle bin |
 | [**templateFolderAndFileDeleteFiles**](TemplatesApi.md#templateFolderAndFileDeleteFiles) | **POST** /api/rp/v1/Templates/{subscriptionId}/DeleteFiles | Delete folders and files |
 | [**templateFolderAndFileGetCount**](TemplatesApi.md#templateFolderAndFileGetCount) | **GET** /api/rp/v1/Templates/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder |
 | [**templateFolderAndFileGetFoldersAndFiles**](TemplatesApi.md#templateFolderAndFileGetFoldersAndFiles) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder |
@@ -35,13 +36,16 @@ All URIs are relative to *http://localhost*
 | [**templateFoldersUpdatePermissions**](TemplatesApi.md#templateFoldersUpdatePermissions) | **POST** /api/rp/v1/Templates/{id}/permissions | Update permissions |
 | [**templateFoldersUpdateTags**](TemplatesApi.md#templateFoldersUpdateTags) | **PUT** /api/rp/v1/Templates/Folder/{id}/UpdateTags | Update tags |
 | [**templatesCopyFile**](TemplatesApi.md#templatesCopyFile) | **POST** /api/rp/v1/Templates/File/{id}/Copy/{folderId} | Copy file to a specified folder |
+| [**templatesCreateSharingKey**](TemplatesApi.md#templatesCreateSharingKey) | **POST** /api/rp/v1/Templates/File/{id}/sharingKey | Create a new key, that can be used to share access to a file  (You need Administrate.Anon permission to create a new key) |
 | [**templatesDeleteFile**](TemplatesApi.md#templatesDeleteFile) | **DELETE** /api/rp/v1/Templates/File/{id} | Delete specified file |
+| [**templatesDeleteSharingKey**](TemplatesApi.md#templatesDeleteSharingKey) | **DELETE** /api/rp/v1/Templates/File/{id}/sharingKey | Deletes a sharing key, making links, that utilizing it no longer work |
 | [**templatesExport**](TemplatesApi.md#templatesExport) | **POST** /api/rp/v1/Templates/File/{id}/Export | Export specified report template to a specified format |
 | [**templatesGetFile**](TemplatesApi.md#templatesGetFile) | **GET** /api/rp/v1/Templates/File/{id} | Get specified file |
 | [**templatesGetFileHistory**](TemplatesApi.md#templatesGetFileHistory) | **GET** /api/rp/v1/Templates/File/{id}/History | Returns list of actions, performed on this file |
 | [**templatesGetFilesCount**](TemplatesApi.md#templatesGetFilesCount) | **GET** /api/rp/v1/Templates/Folder/{id}/CountFiles | Get count of files what contains in a specified folder |
 | [**templatesGetFilesList**](TemplatesApi.md#templatesGetFilesList) | **GET** /api/rp/v1/Templates/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason. |
 | [**templatesGetPermissions**](TemplatesApi.md#templatesGetPermissions) | **GET** /api/rp/v1/Templates/File/{id}/permissions |  |
+| [**templatesGetSharingKeys**](TemplatesApi.md#templatesGetSharingKeys) | **GET** /api/rp/v1/Templates/File/{id}/sharingKeys | Returns all sharing keys, associated with the file |
 | [**templatesMoveFile**](TemplatesApi.md#templatesMoveFile) | **POST** /api/rp/v1/Templates/File/{id}/Move/{folderId} | Move file to a specified folder |
 | [**templatesMoveFileToBin**](TemplatesApi.md#templatesMoveFileToBin) | **DELETE** /api/rp/v1/Templates/File/{id}/ToBin | Move specified file to recycle bin |
 | [**templatesPrepare**](TemplatesApi.md#templatesPrepare) | **POST** /api/rp/v1/Templates/File/{id}/Prepare | Prepare specified template to report |
@@ -209,6 +213,86 @@ null (empty response body)
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or folder not found |  -  |
 | **500** | Server Error |  -  |
+
+<a id="templateFolderAndFileCountRecycleBinFoldersAndFiles"></a>
+# **templateFolderAndFileCountRecycleBinFoldersAndFiles**
+> CountVM templateFolderAndFileCountRecycleBinFoldersAndFiles(subscriptionId, searchPattern, useRegex)
+
+Count all folders and files from recycle bin
+
+User with a Get DeletedFiles permission can access this method.
+
+### Example
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.TemplatesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
+
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
+
+    TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+    String subscriptionId = "subscriptionId_example"; // String | subscription id
+    String searchPattern = ""; // String | 
+    Boolean useRegex = false; // Boolean | 
+    try {
+      CountVM result = apiInstance.templateFolderAndFileCountRecycleBinFoldersAndFiles(subscriptionId, searchPattern, useRegex);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TemplatesApi#templateFolderAndFileCountRecycleBinFoldersAndFiles");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **subscriptionId** | **String**| subscription id | |
+| **searchPattern** | **String**|  | [optional] [default to ] |
+| **useRegex** | **Boolean**|  | [optional] [default to false] |
+
+### Return type
+
+[**CountVM**](CountVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Returns list of the files from a specified folder |  -  |
+| **400** | Params are not valid |  -  |
+| **402** | Payment required, subscription is blocked |  -  |
+| **403** | You don&#39;t have rights for the operation |  -  |
+| **404** | Subscription not found |  -  |
 
 <a id="templateFolderAndFileDeleteFiles"></a>
 # **templateFolderAndFileDeleteFiles**
@@ -404,7 +488,7 @@ public class Example {
     String id = "id_example"; // String | folder id
     Integer skip = 0; // Integer | number of folder and files, that have to be skipped
     Integer take = 10; // Integer | number of folder and files, that have to be returned
-    FileSorting orderBy = FileSorting.fromValue("None"); // FileSorting | indicates a field to sort by
+    FileSorting orderBy = FileSorting.fromValue("CreatedTime"); // FileSorting | indicates a field to sort by
     Boolean desc = false; // Boolean | indicates if sorting is descending
     String searchPattern = ""; // String | 
     Boolean useRegex = false; // Boolean | 
@@ -429,7 +513,7 @@ public class Example {
 | **id** | **String**| folder id | |
 | **skip** | **Integer**| number of folder and files, that have to be skipped | [optional] [default to 0] |
 | **take** | **Integer**| number of folder and files, that have to be returned | [optional] [default to 10] |
-| **orderBy** | [**FileSorting**](.md)| indicates a field to sort by | [optional] [enum: None, CreatedTime, EditedTime, Size, Name] |
+| **orderBy** | [**FileSorting**](.md)| indicates a field to sort by | [optional] [enum: CreatedTime, EditedTime, Size, Name] |
 | **desc** | **Boolean**| indicates if sorting is descending | [optional] [default to false] |
 | **searchPattern** | **String**|  | [optional] [default to ] |
 | **useRegex** | **Boolean**|  | [optional] [default to false] |
@@ -492,7 +576,7 @@ public class Example {
     String subscriptionId = "subscriptionId_example"; // String | subscription id
     Integer skip = 0; // Integer | number of folder and files, that have to be skipped
     Integer take = 10; // Integer | number of folder and files, that have to be returned
-    FileSorting orderBy = FileSorting.fromValue("None"); // FileSorting | indicates a field to sort by
+    FileSorting orderBy = FileSorting.fromValue("CreatedTime"); // FileSorting | indicates a field to sort by
     Boolean desc = false; // Boolean | indicates if sorting is descending
     String searchPattern = ""; // String | 
     Boolean useRegex = false; // Boolean | 
@@ -517,7 +601,7 @@ public class Example {
 | **subscriptionId** | **String**| subscription id | |
 | **skip** | **Integer**| number of folder and files, that have to be skipped | [optional] [default to 0] |
 | **take** | **Integer**| number of folder and files, that have to be returned | [optional] [default to 10] |
-| **orderBy** | [**FileSorting**](.md)| indicates a field to sort by | [optional] [enum: None, CreatedTime, EditedTime, Size, Name] |
+| **orderBy** | [**FileSorting**](.md)| indicates a field to sort by | [optional] [enum: CreatedTime, EditedTime, Size, Name] |
 | **desc** | **Boolean**| indicates if sorting is descending | [optional] [default to false] |
 | **searchPattern** | **String**|  | [optional] [default to ] |
 | **useRegex** | **Boolean**|  | [optional] [default to false] |
@@ -1351,7 +1435,7 @@ public class Example {
     String id = "id_example"; // String | folder id
     Integer skip = 0; // Integer | number of files, that have to be skipped
     Integer take = 10; // Integer | number of files, that have to be returned
-    FileSorting orderBy = FileSorting.fromValue("None"); // FileSorting | 
+    FileSorting orderBy = FileSorting.fromValue("CreatedTime"); // FileSorting | 
     Boolean desc = false; // Boolean | 
     String searchPattern = ""; // String | 
     Boolean useRegex = false; // Boolean | 
@@ -1376,7 +1460,7 @@ public class Example {
 | **id** | **String**| folder id | |
 | **skip** | **Integer**| number of files, that have to be skipped | [optional] [default to 0] |
 | **take** | **Integer**| number of files, that have to be returned | [optional] [default to 10] |
-| **orderBy** | [**FileSorting**](.md)|  | [optional] [enum: None, CreatedTime, EditedTime, Size, Name] |
+| **orderBy** | [**FileSorting**](.md)|  | [optional] [enum: CreatedTime, EditedTime, Size, Name] |
 | **desc** | **Boolean**|  | [optional] [default to false] |
 | **searchPattern** | **String**|  | [optional] [default to ] |
 | **useRegex** | **Boolean**|  | [optional] [default to false] |
@@ -2491,6 +2575,83 @@ public class Example {
 | **404** | File, subscription or folder not found |  -  |
 | **500** | Exception thrown |  -  |
 
+<a id="templatesCreateSharingKey"></a>
+# **templatesCreateSharingKey**
+> FileSharingKeysVM templatesCreateSharingKey(id, createFileShareVM)
+
+Create a new key, that can be used to share access to a file  (You need Administrate.Anon permission to create a new key)
+
+### Example
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.TemplatesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
+
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
+
+    TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+    String id = "id_example"; // String | file id
+    CreateFileShareVM createFileShareVM = new CreateFileShareVM(); // CreateFileShareVM | parameters for sharing key creation
+    try {
+      FileSharingKeysVM result = apiInstance.templatesCreateSharingKey(id, createFileShareVM);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TemplatesApi#templatesCreateSharingKey");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| file id | |
+| **createFileShareVM** | [**CreateFileShareVM**](CreateFileShareVM.md)| parameters for sharing key creation | [optional] |
+
+### Return type
+
+[**FileSharingKeysVM**](FileSharingKeysVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+| **402** | Client Error |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
+
 <a id="templatesDeleteFile"></a>
 # **templatesDeleteFile**
 > templatesDeleteFile(id)
@@ -2566,6 +2727,82 @@ null (empty response body)
 | **403** | You don&#39;t have rights for the operation |  -  |
 | **404** | File or subscription not found |  -  |
 | **500** | Exception thrown |  -  |
+
+<a id="templatesDeleteSharingKey"></a>
+# **templatesDeleteSharingKey**
+> templatesDeleteSharingKey(id, key)
+
+Deletes a sharing key, making links, that utilizing it no longer work
+
+### Example
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.TemplatesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
+
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
+
+    TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+    String id = "id_example"; // String | file id
+    String key = "key_example"; // String | key to delete
+    try {
+      apiInstance.templatesDeleteSharingKey(id, key);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TemplatesApi#templatesDeleteSharingKey");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| file id | |
+| **key** | **String**| key to delete | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | No Content |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+| **402** | Client Error |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
 
 <a id="templatesExport"></a>
 # **templatesExport**
@@ -2913,7 +3150,7 @@ public class Example {
     Integer skip = 0; // Integer | number of files, that have to be skipped
     Integer take = 10; // Integer | number of files, that have to be returned
     String searchPattern = "searchPattern_example"; // String | 
-    FileSorting orderBy = FileSorting.fromValue("None"); // FileSorting | 
+    FileSorting orderBy = FileSorting.fromValue("CreatedTime"); // FileSorting | 
     Boolean desc = false; // Boolean | 
     Boolean useRegex = false; // Boolean | 
     try {
@@ -2938,7 +3175,7 @@ public class Example {
 | **skip** | **Integer**| number of files, that have to be skipped | [optional] [default to 0] |
 | **take** | **Integer**| number of files, that have to be returned | [optional] [default to 10] |
 | **searchPattern** | **String**|  | [optional] |
-| **orderBy** | [**FileSorting**](.md)|  | [optional] [enum: None, CreatedTime, EditedTime, Size, Name] |
+| **orderBy** | [**FileSorting**](.md)|  | [optional] [enum: CreatedTime, EditedTime, Size, Name] |
 | **desc** | **Boolean**|  | [optional] [default to false] |
 | **useRegex** | **Boolean**|  | [optional] [default to false] |
 
@@ -3038,6 +3275,81 @@ public class Example {
 | **402** | Client Error |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
+
+<a id="templatesGetSharingKeys"></a>
+# **templatesGetSharingKeys**
+> FileSharingKeysVM templatesGetSharingKeys(id)
+
+Returns all sharing keys, associated with the file
+
+### Example
+```java
+// Import classes:
+import cloud.fastreport.ApiClient;
+import cloud.fastreport.ApiException;
+import cloud.fastreport.Configuration;
+import cloud.fastreport.auth.*;
+import cloud.fastreport.models.*;
+import cloud.fastreport.client.TemplatesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: ApiKey
+    HttpBasicAuth ApiKey = (HttpBasicAuth) defaultClient.getAuthentication("ApiKey");
+    ApiKey.setUsername("YOUR USERNAME");
+    ApiKey.setPassword("YOUR PASSWORD");
+
+    // Configure HTTP bearer authorization: JWT
+    HttpBearerAuth JWT = (HttpBearerAuth) defaultClient.getAuthentication("JWT");
+    JWT.setBearerToken("BEARER TOKEN");
+
+    TemplatesApi apiInstance = new TemplatesApi(defaultClient);
+    String id = "id_example"; // String | file id
+    try {
+      FileSharingKeysVM result = apiInstance.templatesGetSharingKeys(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling TemplatesApi#templatesGetSharingKeys");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| file id | |
+
+### Return type
+
+[**FileSharingKeysVM**](FileSharingKeysVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+| **402** | Client Error |  -  |
+| **404** | Not Found |  -  |
+| **500** | Server Error |  -  |
 
 <a id="templatesMoveFile"></a>
 # **templatesMoveFile**

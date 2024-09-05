@@ -1114,6 +1114,38 @@ paths:
       tags:
       - DataSources
       x-accepts: application/json
+  /api/data/v1/DataSources/parameterTypes/{dataSourceType}:
+    get:
+      operationId: DataSources_GetParameterTypes
+      parameters:
+      - description: "data source type (MsSql, MySql, etc.)"
+        explode: false
+        in: path
+        name: dataSourceType
+        required: true
+        schema:
+          $ref: '#/components/schemas/DataSourceConnectionType'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceParameterTypesVM'
+          description: Everything is all right
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Data source doesn't support parameters or wrong data source
+            name
+        "500":
+          description: "Try again, if error still here - text our support"
+      summary: Get data source parameter DataType's
+      tags:
+      - DataSources
+      x-accepts: application/json
   /api/data/v1/DataSources/{id}/permissions:
     get:
       operationId: DataSources_GetPermissions
@@ -1288,7 +1320,7 @@ paths:
       - DataSources
       x-content-type: application/json
       x-accepts: application/json
-  /api/data/v1/DataSources/{id}/ConnectionString:
+  /api/data/v1/DataSources/{id}/connectionString:
     put:
       operationId: DataSources_UpdateConnectionString
       parameters:
@@ -1408,6 +1440,70 @@ paths:
         "500":
           description: "Try again, if error still here - text our support"
       summary: Update data source's subscription
+      tags:
+      - DataSources
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/data/v1/DataSources/{id}/selectCommands:
+    put:
+      operationId: DataSources_UpdateSelectCommands
+      parameters:
+      - description: data source id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceSelectCommandsVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceSelectCommandsVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceSelectCommandsVM'
+        description: update viewmodel
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceVM'
+          description: Everything is all right
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: id is not hex24 or VM is not valid
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription is outdated or have not enough limits
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have permisison to update data sources' connection
+            string from this subscription (or in your default (1st) subscription)
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: There is no data source or subscription with provided id found
+        "500":
+          description: "Try again, if error still here - text our support"
+      summary: Update data source's select commands by id
       tags:
       - DataSources
       x-content-type: application/json
@@ -2639,6 +2735,75 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Subscription not found
       summary: Get all folders and files from recycle bin
+      tags:
+      - Exports
+      x-accepts: application/json
+  /api/rp/v1/Exports/{subscriptionId}/CountRecycleBinFolderAndFiles:
+    get:
+      description: User with a Get DeletedFiles permission can access this method.
+      operationId: ExportFolderAndFile_CountRecycleBinFoldersAndFiles
+      parameters:
+      - description: subscription id
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      - description: ""
+        explode: true
+        in: query
+        name: searchPattern
+        required: false
+        schema:
+          default: ""
+          maxLength: 100
+          minLength: 0
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: useRegex
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountVM'
+          description: Returns list of the files from a specified folder
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Params are not valid
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription not found
+      summary: Count all folders and files from recycle bin
       tags:
       - Exports
       x-accepts: application/json
@@ -4229,6 +4394,173 @@ paths:
       tags:
       - Exports
       x-accepts: application/json
+  /api/rp/v1/Exports/File/{id}/sharingKey:
+    delete:
+      operationId: Exports_DeleteSharingKey
+      parameters:
+      - description: file id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      - description: key to delete
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      summary: "Deletes a sharing key, making links, that utilizing it no longer work"
+      tags:
+      - Exports
+      x-accepts: application/json
+    post:
+      operationId: Exports_CreateSharingKey
+      parameters:
+      - description: file id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileShareVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileShareVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateFileShareVM'
+        description: parameters for sharing key creation
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileSharingKeysVM'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      summary: "Create a new key, that can be used to share access to a file\r\n(You\
+        \ need Administrate.Anon permission to create a new key)"
+      tags:
+      - Exports
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Exports/File/{id}/sharingKeys:
+    get:
+      operationId: Exports_GetSharingKeys
+      parameters:
+      - description: file id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileSharingKeysVM'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      summary: "Returns all sharing keys, associated with the file"
+      tags:
+      - Exports
+      x-accepts: application/json
   /api/rp/v1/Exports/File/{id}/ToBin:
     delete:
       description: User with Delete permission can access the method.
@@ -5801,6 +6133,75 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Subscription not found
       summary: Get all folders and files from recycle bin
+      tags:
+      - Reports
+      x-accepts: application/json
+  /api/rp/v1/Reports/{subscriptionId}/CountRecycleBinFolderAndFiles:
+    get:
+      description: User with a Get DeletedFiles permission can access this method.
+      operationId: ReportFolderAndFile_CountRecycleBinFoldersAndFiles
+      parameters:
+      - description: subscription id
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      - description: ""
+        explode: true
+        in: query
+        name: searchPattern
+        required: false
+        schema:
+          default: ""
+          maxLength: 100
+          minLength: 0
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: useRegex
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountVM'
+          description: Returns list of the files from a specified folder
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Params are not valid
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription not found
+      summary: Count all folders and files from recycle bin
       tags:
       - Reports
       x-accepts: application/json
@@ -7549,6 +7950,173 @@ paths:
         "500":
           description: Exception thrown
       summary: Copy file to a specified folder
+      tags:
+      - Reports
+      x-accepts: application/json
+  /api/rp/v1/Reports/File/{id}/sharingKey:
+    delete:
+      operationId: Reports_DeleteSharingKey
+      parameters:
+      - description: file id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      - description: key to delete
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      summary: "Deletes a sharing key, making links, that utilizing it no longer work"
+      tags:
+      - Reports
+      x-accepts: application/json
+    post:
+      operationId: Reports_CreateSharingKey
+      parameters:
+      - description: file id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileShareVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileShareVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateFileShareVM'
+        description: parameters for sharing key creation
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileSharingKeysVM'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      summary: "Create a new key, that can be used to share access to a file\r\n(You\
+        \ need Administrate.Anon permission to create a new key)"
+      tags:
+      - Reports
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Reports/File/{id}/sharingKeys:
+    get:
+      operationId: Reports_GetSharingKeys
+      parameters:
+      - description: file id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileSharingKeysVM'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      summary: "Returns all sharing keys, associated with the file"
       tags:
       - Reports
       x-accepts: application/json
@@ -10395,6 +10963,75 @@ paths:
       tags:
       - Templates
       x-accepts: application/json
+  /api/rp/v1/Templates/{subscriptionId}/CountRecycleBinFolderAndFiles:
+    get:
+      description: User with a Get DeletedFiles permission can access this method.
+      operationId: TemplateFolderAndFile_CountRecycleBinFoldersAndFiles
+      parameters:
+      - description: subscription id
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      - description: ""
+        explode: true
+        in: query
+        name: searchPattern
+        required: false
+        schema:
+          default: ""
+          maxLength: 100
+          minLength: 0
+          type: string
+        style: form
+      - description: ""
+        explode: true
+        in: query
+        name: useRegex
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountVM'
+          description: Returns list of the files from a specified folder
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Params are not valid
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: "Payment required, subscription is blocked"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: You don't have rights for the operation
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription not found
+      summary: Count all folders and files from recycle bin
+      tags:
+      - Templates
+      x-accepts: application/json
   /api/rp/v1/Templates/{subscriptionId}/ClearRecycleBin:
     delete:
       description: User with a Delete RecycleBin permission can access this method.
@@ -12385,6 +13022,173 @@ paths:
       tags:
       - Templates
       x-accepts: application/json
+  /api/rp/v1/Templates/File/{id}/sharingKey:
+    delete:
+      operationId: Templates_DeleteSharingKey
+      parameters:
+      - description: file id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      - description: key to delete
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      summary: "Deletes a sharing key, making links, that utilizing it no longer work"
+      tags:
+      - Templates
+      x-accepts: application/json
+    post:
+      operationId: Templates_CreateSharingKey
+      parameters:
+      - description: file id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileShareVM'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileShareVM'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateFileShareVM'
+        description: parameters for sharing key creation
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileSharingKeysVM'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      summary: "Create a new key, that can be used to share access to a file\r\n(You\
+        \ need Administrate.Anon permission to create a new key)"
+      tags:
+      - Templates
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/rp/v1/Templates/File/{id}/sharingKeys:
+    get:
+      operationId: Templates_GetSharingKeys
+      parameters:
+      - description: file id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: "^[A-Fa-f0-9]{24}$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileSharingKeysVM'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Client Error
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Server Error
+      summary: "Returns all sharing keys, associated with the file"
+      tags:
+      - Templates
+      x-accepts: application/json
   /api/rp/v1/Templates/File/{id}:
     delete:
       description: User with Delete permission can access the method.
@@ -14058,6 +14862,27 @@ components:
       required:
       - $t
       type: object
+    AuditActiveStatsVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/CloudBaseVM'
+      discriminator:
+        mapping:
+          AuditActiveStatsVM: '#/components/schemas/AuditActiveStatsVM'
+        propertyName: $t
+      properties:
+        items:
+          additionalProperties:
+            format: int32
+            nullable: true
+            type: integer
+          nullable: true
+          type: object
+        $t:
+          type: string
+      required:
+      - $t
+      type: object
     AuditFilePropertyChangedVM:
       additionalProperties: false
       allOf:
@@ -14535,19 +15360,24 @@ components:
           ExportsVM: '#/components/schemas/ExportsVM'
           CreateDataSourceAdminVM: '#/components/schemas/CreateDataSourceAdminVM'
           CreateDataSourceVM: '#/components/schemas/CreateDataSourceVM'
+          DataSourceParameterTypesVM: '#/components/schemas/DataSourceParameterTypesVM'
           DataSourcePermissionsVM: '#/components/schemas/DataSourcePermissionsVM'
           DataSourcePermissionsCRUDVM: '#/components/schemas/DataSourcePermissionsCRUDVM'
           DataSourcePermissionCRUDVM: '#/components/schemas/DataSourcePermissionCRUDVM'
+          DataSourceSelectCommandParameterVM: '#/components/schemas/DataSourceSelectCommandParameterVM'
+          DataSourceSelectCommandVM: '#/components/schemas/DataSourceSelectCommandVM'
           DataSourcesVM: '#/components/schemas/DataSourcesVM'
           DataSourceVM: '#/components/schemas/DataSourceVM'
           RenameDataSourceVM: '#/components/schemas/RenameDataSourceVM'
           UpdateDataSourceConnectionStringVM: '#/components/schemas/UpdateDataSourceConnectionStringVM'
           UpdateDataSourcePermissionsVM: '#/components/schemas/UpdateDataSourcePermissionsVM'
+          UpdateDataSourceSelectCommandsVM: '#/components/schemas/UpdateDataSourceSelectCommandsVM'
           UpdateDataSourceSubscriptionVM: '#/components/schemas/UpdateDataSourceSubscriptionVM'
           UpdateDataSourceVM: '#/components/schemas/UpdateDataSourceVM'
           UpdateDataVM: '#/components/schemas/UpdateDataVM'
           AuditActionsVM: '#/components/schemas/AuditActionsVM'
           AuditActionVM: '#/components/schemas/AuditActionVM'
+          AuditActiveStatsVM: '#/components/schemas/AuditActiveStatsVM'
           AuditFilePropertyChangedVM: '#/components/schemas/AuditFilePropertyChangedVM'
           AuditStatsVM: '#/components/schemas/AuditStatsVM'
           AuditStatVM: '#/components/schemas/AuditStatVM'
@@ -14884,6 +15714,152 @@ components:
         $t: $t
         name: name
         subscriptionId: subscriptionId
+        selectCommands:
+        - $t: $t
+          name: name
+          parameters:
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          command: command
+        - $t: $t
+          name: name
+          parameters:
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          command: command
+        - $t: $t
+          name: name
+          parameters:
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          command: command
+        - $t: $t
+          name: name
+          parameters:
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          command: command
+        - $t: $t
+          name: name
+          parameters:
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          command: command
         connectionType: null
       properties:
         name:
@@ -14901,6 +15877,12 @@ components:
           type: string
         connectionType:
           $ref: '#/components/schemas/DataSourceConnectionType'
+        selectCommands:
+          items:
+            $ref: '#/components/schemas/DataSourceSelectCommandVM'
+          maxItems: 10
+          nullable: true
+          type: array
         $t:
           type: string
       required:
@@ -15075,6 +16057,30 @@ components:
           type: string
       required:
       - $t
+      type: object
+    CreateFileShareVM:
+      additionalProperties: false
+      example:
+        expires: 2000-01-23T04:56:07.000+00:00
+        name: name
+        permission:
+          $t: $t
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+      properties:
+        expires:
+          format: date-time
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        permission:
+          $ref: '#/components/schemas/FilePermissionCRUDVM'
       type: object
     CreateGroupAdminVM:
       additionalProperties: false
@@ -15375,6 +16381,14 @@ components:
           minLength: 1
           pattern: "(^[0-9a-f]{24}$|^([0-9a-f]{8}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})$)"
           type: string
+        tags:
+          items:
+            type: string
+          maxItems: 5
+          maxLength: 50
+          minLength: 1
+          nullable: true
+          type: array
         $t:
           type: string
       required:
@@ -15405,17 +16419,22 @@ components:
       example:
         cronExpression: cronExpression
         $t: $t
-        delayedRunTime: 2000-01-23T04:56:07.000+00:00
+        ends:
+          after: 171976544
+          "on": 2000-01-23T04:56:07.000+00:00
         name: name
         subscriptionId: subscriptionId
+        startsOn: 2000-01-23T04:56:07.000+00:00
       properties:
         cronExpression:
           nullable: true
           type: string
-        delayedRunTime:
+        startsOn:
           format: date-time
           nullable: true
           type: string
+        ends:
+          $ref: '#/components/schemas/CreateTaskEndVM'
         name:
           maxLength: 50
           minLength: 1
@@ -15429,6 +16448,23 @@ components:
           type: string
       required:
       - $t
+      type: object
+    CreateTaskEndVM:
+      additionalProperties: false
+      example:
+        after: 171976544
+        "on": 2000-01-23T04:56:07.000+00:00
+      properties:
+        after:
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          type: integer
+        "on":
+          format: date-time
+          nullable: true
+          type: string
       type: object
     CreateThumbnailReportTaskVM:
       additionalProperties: false
@@ -15603,11 +16639,13 @@ components:
     DataSourceExecute:
       enum:
       - 0
+      - 1
       - -1
       format: int32
       type: integer
       x-enumNames:
       - None
+      - Fetch
       - All
       x-enumFlags: true
       x-typeName: FastReport.Cloud.Enums.DataSourcesPermissionsEnums.DataSourceExecute
@@ -15616,6 +16654,9 @@ components:
       - 0
       - 1
       - 2
+      - 4
+      - 8
+      - 16
       - -1
       format: int32
       type: integer
@@ -15623,9 +16664,51 @@ components:
       - None
       - Entity
       - Permission
+      - DataStructure
+      - ConnectionString
+      - SelectCommands
       - All
       x-enumFlags: true
       x-typeName: FastReport.Cloud.Enums.DataSourcesPermissionsEnums.DataSourceGet
+    DataSourceParameterTypeVM:
+      additionalProperties: false
+      example:
+        name: name
+        value: 0
+      properties:
+        name:
+          nullable: true
+          type: string
+        value:
+          format: int32
+          type: integer
+      type: object
+    DataSourceParameterTypesVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/CloudBaseVM'
+      discriminator:
+        mapping:
+          DataSourceParameterTypesVM: '#/components/schemas/DataSourceParameterTypesVM'
+        propertyName: $t
+      example:
+        $t: $t
+        dataTypes:
+        - name: name
+          value: 0
+        - name: name
+          value: 0
+      properties:
+        dataTypes:
+          items:
+            $ref: '#/components/schemas/DataSourceParameterTypeVM'
+          nullable: true
+          type: array
+        $t:
+          type: string
+      required:
+      - $t
+      type: object
     DataSourcePermissionCRUDVM:
       additionalProperties: false
       allOf:
@@ -15780,9 +16863,105 @@ components:
       required:
       - $t
       type: object
+    DataSourceSelectCommandParameterVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/CloudBaseVM'
+      discriminator:
+        mapping:
+          DataSourceSelectCommandParameterVM: '#/components/schemas/DataSourceSelectCommandParameterVM'
+        propertyName: $t
+      example:
+        $t: $t
+        size: 0
+        defaultValue: defaultValue
+        dataType: dataType
+        name: name
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        dataType:
+          maxLength: 50
+          minLength: 1
+          type: string
+        defaultValue:
+          maxLength: 500
+          nullable: true
+          type: string
+        size:
+          format: int32
+          type: integer
+        $t:
+          type: string
+      required:
+      - $t
+      - dataType
+      - name
+      type: object
+    DataSourceSelectCommandVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/CloudBaseVM'
+      discriminator:
+        mapping:
+          DataSourceSelectCommandVM: '#/components/schemas/DataSourceSelectCommandVM'
+        propertyName: $t
+      example:
+        $t: $t
+        name: name
+        parameters:
+        - $t: $t
+          size: 0
+          defaultValue: defaultValue
+          dataType: dataType
+          name: name
+        - $t: $t
+          size: 0
+          defaultValue: defaultValue
+          dataType: dataType
+          name: name
+        - $t: $t
+          size: 0
+          defaultValue: defaultValue
+          dataType: dataType
+          name: name
+        - $t: $t
+          size: 0
+          defaultValue: defaultValue
+          dataType: dataType
+          name: name
+        - $t: $t
+          size: 0
+          defaultValue: defaultValue
+          dataType: dataType
+          name: name
+        command: command
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        command:
+          maxLength: 1000
+          minLength: 1
+          type: string
+        parameters:
+          items:
+            $ref: '#/components/schemas/DataSourceSelectCommandParameterVM'
+          maxItems: 20
+          nullable: true
+          type: array
+        $t:
+          type: string
+      required:
+      - $t
+      - command
+      - name
+      type: object
     DataSourceSorting:
       enum:
-      - None
       - CreatedTime
       - EditedTime
       - Name
@@ -15802,6 +16981,7 @@ components:
       - 2
       - 4
       - 8
+      - 16
       - -1
       format: int32
       type: integer
@@ -15811,6 +16991,7 @@ components:
       - SubscriptionId
       - DataStructure
       - ConnectionString
+      - SelectCommands
       - All
       x-enumFlags: true
       x-typeName: FastReport.Cloud.Enums.DataSourcesPermissionsEnums.DataSourceUpdate
@@ -15835,6 +17016,65 @@ components:
         createdTime: 2000-01-23T04:56:07.000+00:00
         id: id
         subscriptionId: subscriptionId
+        selectCommands:
+        - $t: $t
+          name: name
+          parameters:
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          command: command
+        - $t: $t
+          name: name
+          parameters:
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          command: command
         status: null
       properties:
         id:
@@ -15871,6 +17111,11 @@ components:
         errorMessage:
           nullable: true
           type: string
+        selectCommands:
+          items:
+            $ref: '#/components/schemas/DataSourceSelectCommandVM'
+          nullable: true
+          type: array
         $t:
           type: string
       required:
@@ -15886,9 +17131,9 @@ components:
         propertyName: $t
       example:
         $t: $t
-        take: 1
-        count: 0
-        skip: 6
+        take: 5
+        count: 6
+        skip: 1
         dataSources:
         - connectionString: connectionString
           creatorUserId: creatorUserId
@@ -15902,6 +17147,65 @@ components:
           createdTime: 2000-01-23T04:56:07.000+00:00
           id: id
           subscriptionId: subscriptionId
+          selectCommands:
+          - $t: $t
+            name: name
+            parameters:
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            command: command
+          - $t: $t
+            name: name
+            parameters:
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            command: command
           status: null
         - connectionString: connectionString
           creatorUserId: creatorUserId
@@ -15915,6 +17219,65 @@ components:
           createdTime: 2000-01-23T04:56:07.000+00:00
           id: id
           subscriptionId: subscriptionId
+          selectCommands:
+          - $t: $t
+            name: name
+            parameters:
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            command: command
+          - $t: $t
+            name: name
+            parameters:
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            - $t: $t
+              size: 0
+              defaultValue: defaultValue
+              dataType: dataType
+              name: name
+            command: command
           status: null
       properties:
         dataSources:
@@ -16938,9 +18301,69 @@ components:
       required:
       - $t
       type: object
+    FileShareVM:
+      additionalProperties: false
+      example:
+        expires: 2000-01-23T04:56:07.000+00:00
+        name: name
+        permission:
+          $t: $t
+          get: null
+          create: null
+          update: null
+          administrate: null
+          delete: null
+          execute: null
+        key: key
+      properties:
+        expires:
+          format: date-time
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        permission:
+          $ref: '#/components/schemas/FilePermissionCRUDVM'
+        key:
+          nullable: true
+          type: string
+      type: object
+    FileSharingKeysVM:
+      additionalProperties: false
+      example:
+        keys:
+        - expires: 2000-01-23T04:56:07.000+00:00
+          name: name
+          permission:
+            $t: $t
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          key: key
+        - expires: 2000-01-23T04:56:07.000+00:00
+          name: name
+          permission:
+            $t: $t
+            get: null
+            create: null
+            update: null
+            administrate: null
+            delete: null
+            execute: null
+          key: key
+      properties:
+        keys:
+          items:
+            $ref: '#/components/schemas/FileShareVM'
+          nullable: true
+          type: array
+      type: object
     FileSorting:
       enum:
-      - None
       - CreatedTime
       - EditedTime
       - Size
@@ -17792,7 +19215,6 @@ components:
             items:
               type: string
             type: array
-          readOnly: true
           type: object
       type: object
     InputFileVM:
@@ -18106,6 +19528,7 @@ components:
       - LostFileChunks
       - WrongSubscripitonSizes
       - FilesWithoutChunks
+      - FilesWithDeletedParents
       type: string
       x-typeName: FastReport.Cloud.Base.Enums.ProblemType
     ProfileVisibility:
@@ -18942,6 +20365,7 @@ components:
         aboutLink: aboutLink
         title: title
         invariantLocale: invariantLocale
+        sharingEnabled: true
         $t: $t
         slaLink: slaLink
         updateWorkspaceLink: updateWorkspaceLink
@@ -19002,6 +20426,8 @@ components:
         updateWorkspaceLink:
           nullable: true
           type: string
+        sharingEnabled:
+          type: boolean
         $t:
           type: string
       required:
@@ -19904,6 +21330,9 @@ components:
           folderId: folderId
         id: id
         locale: locale
+        tags:
+        - tags
+        - tags
       properties:
         id:
           nullable: true
@@ -19927,6 +21356,11 @@ components:
           $ref: '#/components/schemas/SubscriptionFolder'
         exportsFolder:
           $ref: '#/components/schemas/SubscriptionFolder'
+        tags:
+          items:
+            type: string
+          nullable: true
+          type: array
         $t:
           type: string
       required:
@@ -20064,6 +21498,9 @@ components:
             folderId: folderId
           id: id
           locale: locale
+          tags:
+          - tags
+          - tags
         - exportsFolder:
             bytesUsed: 0
             folderId: folderId
@@ -20184,6 +21621,9 @@ components:
             folderId: folderId
           id: id
           locale: locale
+          tags:
+          - tags
+          - tags
         count: 0
         skip: 6
       properties:
@@ -20247,25 +21687,25 @@ components:
       example:
         cronExpression: cronExpression
         $t: $t
-        delayedRunTime: 2000-01-23T04:56:07.000+00:00
-        delayedWasRunTime: 2000-01-23T04:56:07.000+00:00
         recurrentWasRunTime: 2000-01-23T04:56:07.000+00:00
+        ends:
+          after: 5
+          "on": 2000-01-23T04:56:07.000+00:00
         recurrentRunTime: 2000-01-23T04:56:07.000+00:00
         name: name
         id: id
         subscriptionId: subscriptionId
+        startsOn: 2000-01-23T04:56:07.000+00:00
       properties:
         cronExpression:
           nullable: true
           type: string
-        delayedRunTime:
+        startsOn:
           format: date-time
           nullable: true
           type: string
-        delayedWasRunTime:
-          format: date-time
-          nullable: true
-          type: string
+        ends:
+          $ref: '#/components/schemas/TaskEnd'
         id:
           nullable: true
           pattern: "^[A-Fa-f0-9]{24}$"
@@ -20316,6 +21756,21 @@ components:
       - All
       x-enumFlags: true
       x-typeName: FastReport.Cloud.Enums.TaskPermissionsEnums.TaskDelete
+    TaskEnd:
+      additionalProperties: false
+      example:
+        after: 5
+        "on": 2000-01-23T04:56:07.000+00:00
+      properties:
+        after:
+          format: int32
+          nullable: true
+          type: integer
+        "on":
+          format: date-time
+          nullable: true
+          type: string
+      type: object
     TaskExecute:
       enum:
       - 0
@@ -20628,22 +22083,26 @@ components:
         tasks:
         - cronExpression: cronExpression
           $t: $t
-          delayedRunTime: 2000-01-23T04:56:07.000+00:00
-          delayedWasRunTime: 2000-01-23T04:56:07.000+00:00
           recurrentWasRunTime: 2000-01-23T04:56:07.000+00:00
+          ends:
+            after: 5
+            "on": 2000-01-23T04:56:07.000+00:00
           recurrentRunTime: 2000-01-23T04:56:07.000+00:00
           name: name
           id: id
           subscriptionId: subscriptionId
+          startsOn: 2000-01-23T04:56:07.000+00:00
         - cronExpression: cronExpression
           $t: $t
-          delayedRunTime: 2000-01-23T04:56:07.000+00:00
-          delayedWasRunTime: 2000-01-23T04:56:07.000+00:00
           recurrentWasRunTime: 2000-01-23T04:56:07.000+00:00
+          ends:
+            after: 5
+            "on": 2000-01-23T04:56:07.000+00:00
           recurrentRunTime: 2000-01-23T04:56:07.000+00:00
           name: name
           id: id
           subscriptionId: subscriptionId
+          startsOn: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           format: int64
@@ -21080,6 +22539,174 @@ components:
       - administrate
       - newPermissions
       type: object
+    UpdateDataSourceSelectCommandsVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/CloudBaseVM'
+      discriminator:
+        mapping:
+          UpdateDataSourceSelectCommandsVM: '#/components/schemas/UpdateDataSourceSelectCommandsVM'
+        propertyName: $t
+      example:
+        $t: $t
+        selectCommands:
+        - $t: $t
+          name: name
+          parameters:
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          command: command
+        - $t: $t
+          name: name
+          parameters:
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          command: command
+        - $t: $t
+          name: name
+          parameters:
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          command: command
+        - $t: $t
+          name: name
+          parameters:
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          command: command
+        - $t: $t
+          name: name
+          parameters:
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          - $t: $t
+            size: 0
+            defaultValue: defaultValue
+            dataType: dataType
+            name: name
+          command: command
+      properties:
+        selectCommands:
+          items:
+            $ref: '#/components/schemas/DataSourceSelectCommandVM'
+          maxItems: 10
+          type: array
+        $t:
+          type: string
+      required:
+      - $t
+      - selectCommands
+      type: object
     UpdateDataSourceSubscriptionVM:
       additionalProperties: false
       allOf:
@@ -21125,6 +22752,12 @@ components:
           minLength: 0
           nullable: true
           type: string
+        selectCommands:
+          items:
+            $ref: '#/components/schemas/DataSourceSelectCommandVM'
+          maxItems: 10
+          nullable: true
+          type: array
         $t:
           type: string
       required:
@@ -21949,6 +23582,14 @@ components:
           nullable: true
           pattern: "^[a-zA-Z]{2,4}(-[a-zA-Z]{2,4}){0,2}$"
           type: string
+        tags:
+          items:
+            type: string
+          maxItems: 5
+          maxLength: 50
+          minLength: 1
+          nullable: true
+          type: array
         defaultPermissions:
           $ref: '#/components/schemas/DefaultPermissionsVM'
         $t:
@@ -21978,16 +23619,21 @@ components:
       example:
         cronExpression: cronExpression
         $t: $t
-        delayedRunTime: 2000-01-23T04:56:07.000+00:00
+        ends:
+          after: 171976544
+          "on": 2000-01-23T04:56:07.000+00:00
         name: name
+        startsOn: 2000-01-23T04:56:07.000+00:00
       properties:
         cronExpression:
           nullable: true
           type: string
-        delayedRunTime:
+        startsOn:
           format: date-time
           nullable: true
           type: string
+        ends:
+          $ref: '#/components/schemas/CreateTaskEndVM'
         name:
           maxLength: 50
           minLength: 1

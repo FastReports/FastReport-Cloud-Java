@@ -19,6 +19,7 @@
 |**creatorUserId** | **String** |  |  [optional] |
 |**status** | **DataSourceStatus** |  |  [optional] |
 |**errorMessage** | **String** |  |  [optional] |
+|**selectCommands** | [**List&lt;DataSourceSelectCommandVM&gt;**](DataSourceSelectCommandVM.md) |  |  [optional] |
 |**$t** | **String** |  |  |
 
 

@@ -109,6 +109,14 @@ public class AdminSubscriptionVMTest {
     }
 
     /**
+     * Test the property 'tags'
+     */
+    @Test
+    public void tagsTest() {
+        // TODO: test tags
+    }
+
+    /**
      * Test the property '$t'
      */
     @Test

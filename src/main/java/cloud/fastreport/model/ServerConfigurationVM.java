@@ -120,6 +120,10 @@ public class ServerConfigurationVM extends CloudBaseVM {
   @SerializedName(SERIALIZED_NAME_UPDATE_WORKSPACE_LINK)
   private String updateWorkspaceLink;
 
+  public static final String SERIALIZED_NAME_SHARING_ENABLED = "sharingEnabled";
+  @SerializedName(SERIALIZED_NAME_SHARING_ENABLED)
+  private Boolean sharingEnabled;
+
   public static final String SERIALIZED_NAME_$_T = "$t";
   @SerializedName(SERIALIZED_NAME_$_T)
   protected String $t;
@@ -432,6 +436,25 @@ public class ServerConfigurationVM extends CloudBaseVM {
   }
 
 
+  public ServerConfigurationVM sharingEnabled(Boolean sharingEnabled) {
+    this.sharingEnabled = sharingEnabled;
+    return this;
+  }
+
+   /**
+   * Get sharingEnabled
+   * @return sharingEnabled
+  **/
+  @javax.annotation.Nullable
+  public Boolean getSharingEnabled() {
+    return sharingEnabled;
+  }
+
+  public void setSharingEnabled(Boolean sharingEnabled) {
+    this.sharingEnabled = sharingEnabled;
+  }
+
+
   public ServerConfigurationVM $t(String $t) {
     this.$t = $t;
     return this;
@@ -477,6 +500,7 @@ public class ServerConfigurationVM extends CloudBaseVM {
         Objects.equals(this.homePageLink, serverConfigurationVM.homePageLink) &&
         Objects.equals(this.authServerName, serverConfigurationVM.authServerName) &&
         Objects.equals(this.updateWorkspaceLink, serverConfigurationVM.updateWorkspaceLink) &&
+        Objects.equals(this.sharingEnabled, serverConfigurationVM.sharingEnabled) &&
         Objects.equals(this.$t, serverConfigurationVM.$t) &&
         super.equals(o);
   }
@@ -487,7 +511,7 @@ public class ServerConfigurationVM extends CloudBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, logoLink, copyright, corporateServerMode, lastSLAVersion, isDisabled, frontend, invariantLocale, auth, designerForAnons, slaLink, firstStepsVideoLink, aboutLink, homePageLink, authServerName, updateWorkspaceLink, $t, super.hashCode());
+    return Objects.hash(title, logoLink, copyright, corporateServerMode, lastSLAVersion, isDisabled, frontend, invariantLocale, auth, designerForAnons, slaLink, firstStepsVideoLink, aboutLink, homePageLink, authServerName, updateWorkspaceLink, sharingEnabled, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -518,6 +542,7 @@ public class ServerConfigurationVM extends CloudBaseVM {
     sb.append("    homePageLink: ").append(toIndentedString(homePageLink)).append("\n");
     sb.append("    authServerName: ").append(toIndentedString(authServerName)).append("\n");
     sb.append("    updateWorkspaceLink: ").append(toIndentedString(updateWorkspaceLink)).append("\n");
+    sb.append("    sharingEnabled: ").append(toIndentedString(sharingEnabled)).append("\n");
     sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CreateTaskEndVM;
 import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.UpdateTransportTaskBaseVM;
 import com.google.gson.TypeAdapter;
@@ -343,7 +344,8 @@ public class UpdateFTPUploadTaskVM extends UpdateTransportTaskBaseVM {
     openapiFields.add("inputFile");
     openapiFields.add("$t");
     openapiFields.add("cronExpression");
-    openapiFields.add("delayedRunTime");
+    openapiFields.add("startsOn");
+    openapiFields.add("ends");
     openapiFields.add("name");
 
     // a set of required properties/fields (JSON key names)

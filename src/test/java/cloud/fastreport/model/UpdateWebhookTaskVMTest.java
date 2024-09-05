@@ -13,6 +13,7 @@
 
 package cloud.fastreport.model;
 
+import cloud.fastreport.model.CreateTaskEndVM;
 import cloud.fastreport.model.InputFileVM;
 import cloud.fastreport.model.UpdateTransportTaskBaseVM;
 import com.google.gson.TypeAdapter;
@@ -69,11 +70,19 @@ public class UpdateWebhookTaskVMTest {
     }
 
     /**
-     * Test the property 'delayedRunTime'
+     * Test the property 'startsOn'
      */
     @Test
-    public void delayedRunTimeTest() {
-        // TODO: test delayedRunTime
+    public void startsOnTest() {
+        // TODO: test startsOn
+    }
+
+    /**
+     * Test the property 'ends'
+     */
+    @Test
+    public void endsTest() {
+        // TODO: test ends
     }
 
     /**

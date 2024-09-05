@@ -15,6 +15,7 @@ package cloud.fastreport.model;
 
 import java.util.Objects;
 import cloud.fastreport.model.CloudBaseVM;
+import cloud.fastreport.model.CreateTaskEndVM;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,9 +59,13 @@ public class UpdateTaskBaseVM extends CloudBaseVM {
   @SerializedName(SERIALIZED_NAME_CRON_EXPRESSION)
   private String cronExpression;
 
-  public static final String SERIALIZED_NAME_DELAYED_RUN_TIME = "delayedRunTime";
-  @SerializedName(SERIALIZED_NAME_DELAYED_RUN_TIME)
-  private OffsetDateTime delayedRunTime;
+  public static final String SERIALIZED_NAME_STARTS_ON = "startsOn";
+  @SerializedName(SERIALIZED_NAME_STARTS_ON)
+  private OffsetDateTime startsOn;
+
+  public static final String SERIALIZED_NAME_ENDS = "ends";
+  @SerializedName(SERIALIZED_NAME_ENDS)
+  private CreateTaskEndVM ends;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -93,22 +98,41 @@ public class UpdateTaskBaseVM extends CloudBaseVM {
   }
 
 
-  public UpdateTaskBaseVM delayedRunTime(OffsetDateTime delayedRunTime) {
-    this.delayedRunTime = delayedRunTime;
+  public UpdateTaskBaseVM startsOn(OffsetDateTime startsOn) {
+    this.startsOn = startsOn;
     return this;
   }
 
    /**
-   * Get delayedRunTime
-   * @return delayedRunTime
+   * Get startsOn
+   * @return startsOn
   **/
   @javax.annotation.Nullable
-  public OffsetDateTime getDelayedRunTime() {
-    return delayedRunTime;
+  public OffsetDateTime getStartsOn() {
+    return startsOn;
   }
 
-  public void setDelayedRunTime(OffsetDateTime delayedRunTime) {
-    this.delayedRunTime = delayedRunTime;
+  public void setStartsOn(OffsetDateTime startsOn) {
+    this.startsOn = startsOn;
+  }
+
+
+  public UpdateTaskBaseVM ends(CreateTaskEndVM ends) {
+    this.ends = ends;
+    return this;
+  }
+
+   /**
+   * Get ends
+   * @return ends
+  **/
+  @javax.annotation.Nullable
+  public CreateTaskEndVM getEnds() {
+    return ends;
+  }
+
+  public void setEnds(CreateTaskEndVM ends) {
+    this.ends = ends;
   }
 
 
@@ -161,7 +185,8 @@ public class UpdateTaskBaseVM extends CloudBaseVM {
     }
     UpdateTaskBaseVM updateTaskBaseVM = (UpdateTaskBaseVM) o;
     return Objects.equals(this.cronExpression, updateTaskBaseVM.cronExpression) &&
-        Objects.equals(this.delayedRunTime, updateTaskBaseVM.delayedRunTime) &&
+        Objects.equals(this.startsOn, updateTaskBaseVM.startsOn) &&
+        Objects.equals(this.ends, updateTaskBaseVM.ends) &&
         Objects.equals(this.name, updateTaskBaseVM.name) &&
         Objects.equals(this.$t, updateTaskBaseVM.$t) &&
         super.equals(o);
@@ -173,7 +198,7 @@ public class UpdateTaskBaseVM extends CloudBaseVM {
 
   @Override
   public int hashCode() {
-    return Objects.hash(cronExpression, delayedRunTime, name, $t, super.hashCode());
+    return Objects.hash(cronExpression, startsOn, ends, name, $t, super.hashCode());
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -189,7 +214,8 @@ public class UpdateTaskBaseVM extends CloudBaseVM {
     sb.append("class UpdateTaskBaseVM {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    cronExpression: ").append(toIndentedString(cronExpression)).append("\n");
-    sb.append("    delayedRunTime: ").append(toIndentedString(delayedRunTime)).append("\n");
+    sb.append("    startsOn: ").append(toIndentedString(startsOn)).append("\n");
+    sb.append("    ends: ").append(toIndentedString(ends)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    $t: ").append(toIndentedString($t)).append("\n");
     sb.append("}");

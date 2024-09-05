@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**cronExpression** | **String** |  |  [optional] |
-|**delayedRunTime** | **OffsetDateTime** |  |  [optional] |
-|**delayedWasRunTime** | **OffsetDateTime** |  |  [optional] |
+|**startsOn** | **OffsetDateTime** |  |  [optional] |
+|**ends** | [**TaskEnd**](TaskEnd.md) |  |  [optional] |
 |**id** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**recurrentRunTime** | **OffsetDateTime** |  |  [optional] |

@@ -14,6 +14,7 @@
 package cloud.fastreport.model;
 
 import java.util.Objects;
+import cloud.fastreport.model.CreateTaskEndVM;
 import cloud.fastreport.model.CreateTransformTaskBaseVM;
 import cloud.fastreport.model.CreateTransportTaskBaseVM;
 import cloud.fastreport.model.ExportFormat;
@@ -238,7 +239,8 @@ public class CreateExportReportTaskVM extends CreateTransformTaskBaseVM {
     openapiFields.add("transports");
     openapiFields.add("$t");
     openapiFields.add("cronExpression");
-    openapiFields.add("delayedRunTime");
+    openapiFields.add("startsOn");
+    openapiFields.add("ends");
     openapiFields.add("name");
     openapiFields.add("subscriptionId");
 
